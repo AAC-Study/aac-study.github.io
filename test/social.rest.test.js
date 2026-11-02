@@ -51,7 +51,7 @@ async function step(name, fn) {
         window.__calls.push({ method: method, path: path, body: body instanceof Blob ? { blob: true, type: body.type, size: body.size } : body, opts: opts || null });
         return answer(method, path);
       },
-      rpc: function (name, args) { return fake.api('POST', '/rest/v1/rpc/' + name, args || {}); }
+      rpc: function (name, args, opts) { return fake.api('POST', '/rest/v1/rpc/' + name, args || {}, opts); }
     };
     window.__realSb = Store.sb;
     Store.sb = fake;
@@ -77,6 +77,13 @@ async function step(name, fn) {
       'sc_block {"p_other":"u6","p_on":true}', 'sc_block {"p_other":"u6","p_on":false}', 'sc_pin_user {"p_other":"u7","p_on":true}'
     ]);
     assert.ok(c.every(x => x.method === 'POST'));
+  });
+
+  await step('here(): sc_here on/off, keepalive only when asked', async () => {
+    await reset();
+    await page.evaluate(() => Promise.all([Social.here('c1', true), Social.here('c1', false), Social.here('c1', false, true)]));
+    const c = (await calls()).map(x => x.path.replace('/rest/v1/rpc/', '') + ' ' + JSON.stringify(x.body) + ' ' + JSON.stringify(x.opts));
+    assert.deepStrictEqual(c, ['sc_here {"p_chat":"c1","p_on":true} null', 'sc_here {"p_chat":"c1","p_on":false} null', 'sc_here {"p_chat":"c1","p_on":false} {"keepalive":true}']);
   });
 
   await step('people(): profiles + requests + friendships + marks, relations built', async () => {

@@ -565,6 +565,7 @@
         return my.muted;
       });
     },
+    here: function () { return Promise.resolve(true); },   // пробный режим: пушей нет
     markRead: function (chatId) {
       return ask(function () {
         var me = needMe(), d = D(), my = (d.members[chatId] || {})[me];
@@ -875,6 +876,7 @@
     },
     react: function (id, emoji) { return rpc('sc_react', { p_msg: id, p_emoji: emoji }); },
     markRead: function (chatId) { return rpc('sc_mark_read', { p_chat: chatId }); },
+    here: function (chatId, on, keep) { return sb().rpc('sc_here', { p_chat: chatId, p_on: on !== false }, keep ? { keepalive: true } : undefined); },
     mute: function (chatId, on) { return rpc('sc_mute', { p_chat: chatId, p_on: on !== false }).then(function () { return on !== false; }); },
     pinMessage: function (chatId, msgId) { return rpc('sc_pin_message', { p_chat: chatId, p_msg: msgId == null ? null : msgId }); },
     groupUpdate: function (chatId, patch) {
@@ -946,7 +948,7 @@
     invalidate: function () { profCache = null; }
   };
   ['users', 'people', 'user', 'request', 'cancel', 'accept', 'decline', 'restore', 'block', 'pinUser',
-   'chats', 'openDirect', 'openSupport', 'createGroup', 'chat', 'messages', 'send', 'edit', 'react', 'markRead', 'mute', 'pinMessage',
+   'chats', 'openDirect', 'openSupport', 'createGroup', 'chat', 'messages', 'send', 'edit', 'react', 'markRead', 'here', 'mute', 'pinMessage',
    'groupUpdate', 'groupAdd', 'memberAction', 'leave', 'groupDelete', 'notifSeen', 'mediaUrl'].forEach(function (n) { Social[n] = wrap(n); });
   Social.removeFriend = wrap('unfriend');
   Social.removeMessage = wrap('removeMsg');

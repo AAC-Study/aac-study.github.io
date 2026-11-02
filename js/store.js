@@ -129,7 +129,7 @@
       if (opts.auth !== false && sess) h.Authorization = 'Bearer ' + sess.access_token;
       if (opts.headers) Object.keys(opts.headers).forEach(function (k) { h[k] = opts.headers[k]; });
       var b = body == null ? undefined : (opts.raw ? body : JSON.stringify(body));
-      return fetch(URL + path, { method: method, headers: h, body: b }).then(function (res) {
+      return fetch(URL + path, { method: method, headers: h, body: b, keepalive: !!opts.keepalive }).then(function (res) {
         return res.text().then(function (txt) {
           var data = null; try { data = txt ? JSON.parse(txt) : null; } catch (e) { data = txt; }
           if (!res.ok) { var e = new Error((data && (data.msg || data.message || data.error_description || data.error)) || ('HTTP ' + res.status)); e.status = res.status; e.data = data; throw e; }
@@ -175,7 +175,7 @@
 
     Store.sb = { url: URL, key: KEY, api: api, uid: function () { return sess && sess.user.id; },
       token: function () { return fresh().then(function (x) { return x && x.access_token; }); },
-      rpc: function (name, args) { return api('POST', '/rest/v1/rpc/' + name, args || {}); } };
+      rpc: function (name, args, opts) { return api('POST', '/rest/v1/rpc/' + name, args || {}, opts); } };
 
     Store.ready = loadMe().catch(function () { /* нет сети или сессия истекла */ });
 

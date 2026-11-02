@@ -79,6 +79,7 @@
     return reg().then(function (r) { return r.pushManager ? r.pushManager.getSubscription() : null; });
   }
 
+  var warmAt = 0;
   var Push = {
     reason: reason,
     /* включено ли на этом устройстве */
@@ -137,6 +138,12 @@
     hint: function (body) {
       if (!server() || !Store.auth.current()) return;
       fn(body).catch(function () { /* действие уже сохранено, пуш не обязателен */ });
+    },
+    /* человек начал печатать — заранее «будим» функцию, чтобы пуш ушёл сразу после отправки (не чаще раза в минуту) */
+    warm: function () {
+      if (!server() || !Store.auth.current() || Date.now() - warmAt < 60e3) return;
+      warmAt = Date.now();
+      fn({ action: 'warm' }).catch(function () {});
     },
     notifyAdmin: function (issueId) {
       if (!server() || !issueId) return;

@@ -580,7 +580,7 @@
     composer.appendChild(photoInput); composer.appendChild(fileInput);
 
     function autosize() { ta.style.height = 'auto'; ta.style.height = Math.min(140, ta.scrollHeight) + 'px'; }
-    ta.addEventListener('input', function () { autosize(); syncSend(); });
+    ta.addEventListener('input', function () { autosize(); syncSend(); if (window.Push && Push.warm) Push.warm(); });
     ta.addEventListener('keydown', function (e) {
       if ((e.key === 'Enter' || e.keyCode === 13) && !e.shiftKey && !coarse && !e.isComposing) { e.preventDefault(); sendText(); }
       if (e.key === 'Escape' && (S.reply || S.edit)) { clearCtx(); }
@@ -757,15 +757,34 @@
     function onSocial(e) { if (e && (e.detail === 'storage' || e.detail === 'push')) poll(); }
     document.addEventListener('socialchange', onSocial);
     /* вернулся в приложение (например, нажал на уведомление) — сразу отмечаем прочитанным */
-    function onVisible() { if (!document.hidden && S.alive) { poll(); if (atBottom(200)) markRead(); } }
+    /* «я сейчас в этом чате»: пока чат открыт и окно активно, сервер не шлёт пуш ни на одно моё устройство.
+       Вышел из чата, свернул или переключился на другое окно — отметка сразу снимается, и пуш приходит без ожидания. */
+    var hereOn = null;
+    function here(on, keep) {
+      if (!S.alive && on) return;
+      if (on === hereOn && !on) return;
+      hereOn = on;
+      Social.here(S.id, on, keep).catch(function () {});
+    }
+    function present() { return !document.hidden && (!document.hasFocus || document.hasFocus()); }
+    function onVisible() {
+      if (!S.alive) return;
+      if (document.hidden) { here(false); return; }
+      poll(); if (atBottom(200)) markRead();
+      if (present()) here(true);
+    }
+    function onBlur() { if (S.alive) here(false); }
+    function onPageHide() { here(false, true); }
     document.addEventListener('visibilitychange', onVisible);
     window.addEventListener('focus', onVisible);
-    /* «я сейчас в этом чате»: раз в 15 секунд отмечаем прочитанным — сервер не шлёт пуш ни на одно моё устройство */
+    window.addEventListener('blur', onBlur);
+    window.addEventListener('pagehide', onPageHide);
+    /* раз в 15 секунд подтверждаем «я в чате» (сервер считает отметку живой 25 секунд) */
     var beats = 0;
     var timer = setInterval(function () {
       if (document.hidden) return;
       poll();
-      if (++beats % 5 === 0 && (!document.hasFocus || document.hasFocus()) && atBottom(200)) Social.markRead(S.id).catch(function () {});
+      if (++beats % 5 === 0 && present()) here(true);
     }, 3000);
 
     Promise.all([refreshChat(), Social.messages(S.id, { limit: 60 })]).then(function (r) {
@@ -783,6 +802,7 @@
       var sep = document.getElementById('sc-unread');
       if (sep && sep.offsetTop > scroll.clientHeight) scroll.scrollTop = sep.offsetTop - 80; else toBottom();
       markRead();
+      if (present()) here(true);
       if (!coarse && !ta.disabled) ta.focus();
     }, function (e) {
       list.innerHTML = '';
@@ -1018,9 +1038,12 @@
     return function () {
       S.alive = false;
       clearInterval(timer); clearTimeout(readTimer); clearTimeout(cdTimer);
+      here(false);
       document.removeEventListener('socialchange', onSocial);
       document.removeEventListener('visibilitychange', onVisible);
       window.removeEventListener('focus', onVisible);
+      window.removeEventListener('blur', onBlur);
+      window.removeEventListener('pagehide', onPageHide);
       window.removeEventListener('resize', onVV);
       if (window.visualViewport) window.visualViewport.removeEventListener('resize', onVV);
       document.body.classList.remove('sc-chat-open');

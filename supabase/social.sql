@@ -338,6 +338,8 @@ create table if not exists public.chat_members (
 create index if not exists chat_members_user on public.chat_members(user_id);
 -- «без уведомлений»: свой переключатель у каждого участника чата
 alter table public.chat_members add column if not exists muted boolean not null default false;
+-- «я сейчас в этом чате» (умный пуш): ставится раз в 15 с, снимается при выходе из чата
+alter table public.chat_members add column if not exists here_at timestamptz;
 
 create table if not exists public.chat_bans (
   chat_id uuid not null references public.chats(id) on delete cascade,
@@ -593,6 +595,12 @@ $$;
 create or replace function public.sc_mute(p_chat uuid, p_on boolean) returns void
 language sql security definer set search_path = public as $$
   update public.chat_members set muted = coalesce(p_on, true) where chat_id = p_chat and user_id = auth.uid();
+$$;
+
+create or replace function public.sc_here(p_chat uuid, p_on boolean) returns void
+language sql security definer set search_path = public as $$
+  update public.chat_members set here_at = case when coalesce(p_on, true) then now() else null end
+  where chat_id = p_chat and user_id = auth.uid();
 $$;
 
 create or replace function public.sc_mark_read(p_chat uuid) returns void
@@ -903,7 +911,7 @@ begin
     'sc_public_stats(uuid)', 'sc_my_chats()', 'sc_mark_read(uuid)', 'sc_open_direct(uuid)', 'sc_create_group(text, uuid[])',
     'sc_group_add(uuid, uuid[])', 'sc_member_action(uuid, uuid, text, timestamptz, jsonb)', 'sc_leave(uuid)',
     'sc_group_delete(uuid)', 'sc_group_update(uuid, jsonb)', 'sc_pin_message(uuid, bigint)', 'sc_delete_message(bigint)',
-    'sc_react(bigint, text)', 'sc_notif_seen()', 'sc_support_open()', 'sc_mute(uuid, boolean)'] loop
+    'sc_react(bigint, text)', 'sc_notif_seen()', 'sc_support_open()', 'sc_mute(uuid, boolean)', 'sc_here(uuid, boolean)'] loop
     execute format('revoke execute on function public.%s from public, anon', f);
     execute format('grant execute on function public.%s to authenticated', f);
   end loop;
@@ -950,3 +958,35 @@ create policy "chat files: delete own" on storage.objects for delete to authenti
 create table if not exists public.push_log (key text primary key, at timestamptz not null default now());
 alter table public.push_log enable row level security;
 revoke all on public.push_log from anon, authenticated;
+
+-- ---------- пуш-уведомления: защита от спама ----------
+-- Каждому человеку: первые 3 пуша приходят сразу, дальше не чаще одного раза в 5 секунд.
+-- push_take(получатель) возвращает, через сколько миллисекунд можно отправить (0 = сразу),
+-- или -1, если очередь длиннее 2 минут (такой пуш не шлём, сообщение всё равно видно на сайте).
+create table if not exists public.push_rate (
+  user_id uuid primary key references auth.users on delete cascade,
+  tokens real not null default 3,
+  at timestamptz not null default now()
+);
+alter table public.push_rate enable row level security;
+revoke all on public.push_rate from anon, authenticated;
+
+create or replace function public.push_take(p_user uuid) returns integer
+language plpgsql security definer set search_path = public as $$
+declare
+  burst constant real := 3;      -- сколько пушей подряд приходят сразу
+  gap   constant real := 5;      -- секунд между пушами после этого
+  cap   constant real := 120;    -- длиннее очередь не держим
+  t real; a timestamptz; n timestamptz := clock_timestamp();
+begin
+  insert into public.push_rate (user_id, tokens, at) values (p_user, burst, n) on conflict (user_id) do nothing;
+  select tokens, at into t, a from public.push_rate where user_id = p_user for update;
+  t := least(burst, t + extract(epoch from (n - a))::real / gap) - 1;
+  if t < 0 and -t * gap > cap then return -1; end if;
+  update public.push_rate set tokens = t, at = n where user_id = p_user;
+  if t >= 0 then return 0; end if;
+  return ceil(-t * gap * 1000)::integer;
+end;
+$$;
+revoke execute on function public.push_take(uuid) from public, anon, authenticated;
+grant execute on function public.push_take(uuid) to service_role;

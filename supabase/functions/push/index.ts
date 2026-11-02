@@ -101,15 +101,20 @@ const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
 };
 
 const host = (u: string) => { try { return new globalThis.URL(u).host; } catch (_) { return "?"; } };
-async function sendTo(userIds: string[], kind: string, x: X = {}, onlyEndpoint?: string) {
-  if (!userIds.length) return 0;
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+const runtime = () => (globalThis as { EdgeRuntime?: { waitUntil(p: Promise<unknown>): void } }).EdgeRuntime;
+
+// Защита от спама: сколько ждать перед пушем этому человеку (0 = сразу, -1 = не слать). См. push_take в social.sql.
+async function takeSlot(uid: string): Promise<number> {
+  try { return Number(await db("rpc/push_take", { method: "POST", body: JSON.stringify({ p_user: uid }) })) || 0; }
+  catch (e) { console.error("push_take", String(e)); return 0; }   // если что-то не так с базой — лучше отправить
+}
+
+type Sub = { user_id: string; endpoint: string; p256dh: string; auth: string; lang: string };
+async function deliver(subs: Sub[], kind: string, x: X): Promise<number> {
   const as = await appServer();
-  let q = `push_subs?user_id=in.(${userIds.join(",")})&select=endpoint,p256dh,auth,lang`;
-  if (onlyEndpoint) q += `&endpoint=eq.${encodeURIComponent(onlyEndpoint)}`;
-  const subs = await db(q);
-  if (!subs.length) console.log(`push ${kind}: у получателя нет ни одного устройства с уведомлениями`);
   let sent = 0;
-  await Promise.all(subs.map(async (s: { endpoint: string; p256dh: string; auth: string; lang: string }) => {
+  await Promise.all(subs.map(async (s) => {
     const msg = (TEXT[s.lang] || TEXT.he)[kind](x);
     if (x.url) msg.url = x.url;
     if (x.tag) msg.tag = x.tag;
@@ -136,6 +141,30 @@ async function sendTo(userIds: string[], kind: string, x: X = {}, onlyEndpoint?:
   return sent;
 }
 
+// Отправить пуш людям userIds на все их устройства. Возвращает, сколько ушло сразу
+// (пуши, отложенные защитой от спама, уходят в фоне).
+async function sendTo(userIds: string[], kind: string, x: X = {}, onlyEndpoint?: string) {
+  if (!userIds.length) return 0;
+  let q = `push_subs?user_id=in.(${userIds.join(",")})&select=user_id,endpoint,p256dh,auth,lang`;
+  if (onlyEndpoint) q += `&endpoint=eq.${encodeURIComponent(onlyEndpoint)}`;
+  const [subs] = await Promise.all([db(q) as Promise<Sub[]>, appServer()]);
+  if (!subs.length) { console.log(`push ${kind}: у получателя нет ни одного устройства с уведомлениями`); return 0; }
+  const byUser = new Map<string, Sub[]>();
+  for (const s of subs) byUser.set(s.user_id, [...(byUser.get(s.user_id) || []), s]);
+  const limited = kind !== "test" && kind !== "goal";   // проверочные пуши не ограничиваем
+  const counts = await Promise.all([...byUser].map(async ([u, list]) => {
+    const wait = limited ? await takeSlot(u) : 0;
+    if (wait < 0) { console.log(`push ${kind}: слишком много пушей подряд, этот пропущен`); return 0; }
+    if (!wait) return deliver(list, kind, x);
+    console.log(`push ${kind}: защита от спама, отправка через ${wait} мс`);
+    const job = sleep(wait).then(() => deliver(list, kind, x)).catch((e) => { console.error("delayed push failed", String(e)); return 0; });
+    const rt = runtime();
+    if (rt) rt.waitUntil(job); else await job;
+    return 0;
+  }));
+  return counts.reduce((a, b) => a + b, 0);
+}
+
 // «Занять» отправку: каждое событие пушится только один раз, даже если сайт попросит дважды.
 async function claim(keys: string[]): Promise<Set<string>> {
   if (!keys.length) return new Set();
@@ -155,9 +184,11 @@ async function nameOf(uid: string) {
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: CORS });
   try {
-    const uid = await currentUser(req);
+    const t0 = Date.now();
+    const [uid, body] = await Promise.all([currentUser(req), req.json().catch(() => ({}))]);
     if (!uid) return json({ error: "not signed in" }, 401);
-    const body = await req.json().catch(() => ({}));
+    // «разогрев»: сайт зовёт это, когда человек начинает печатать, чтобы пуш потом ушёл без задержки на запуск функции
+    if (body.action === "warm") { await appServer(); return json({ ok: true }); }
     const action = String(body.action || "");
 
     if (action === "key") { await appServer(); return json({ key: publicKey }); }
@@ -185,7 +216,7 @@ Deno.serve(async (req) => {
       })();
       // С задержкой отвечаем сразу, а отправляем в фоне: человек может закрыть сайт,
       // и запрос оборвётся, но фоновая задача Supabase (EdgeRuntime.waitUntil) доработает.
-      const rt = (globalThis as { EdgeRuntime?: { waitUntil(p: Promise<unknown>): void } }).EdgeRuntime;
+      const rt = runtime();
       if (delay && rt) {
         rt.waitUntil(job.catch((e) => console.error("delayed push failed", String(e))));
         return json({ queued: true, delay });
@@ -221,22 +252,27 @@ Deno.serve(async (req) => {
       return json({ sent: counts.reduce((a, b) => a + b, 0) });
     }
     if (action === "message") {   // новое сообщение в чате → всем остальным участникам
-      const rows = await db(`messages?id=eq.${Number(body.id)}&sender_id=eq.${uid}&deleted=is.false&created_at=gt.${ago(2 * 60e3)}&select=id,chat_id,kind,body`);
+      const rows = await db(`messages?id=eq.${Number(body.id)}&sender_id=eq.${uid}&deleted=is.false&created_at=gt.${ago(2 * 60e3)}&select=id,chat_id,kind,body,created_at`);
       if (!rows.length) return json({ sent: 0 });
       const m = rows[0];
-      if (!(await claim([`m:${m.id}`])).size) return json({ sent: 0 });
-      const chat = (await db(`chats?id=eq.${m.chat_id}&select=kind,title`))[0];
-      if (!chat) return json({ sent: 0 });
-      if (chat.kind === "support") {   // «Сообщить о проблеме» уже прислало админу свой пуш
-        const recent = await db(`issues?user_id=eq.${uid}&created_at=gt.${ago(2 * 60e3)}&select=id&limit=1`);
-        if (recent.length) return json({ sent: 0 });
-      }
-      // не шлём тем, кто выключил уведомления чата, и тем, кто прямо сейчас сидит в этом чате (сайт отмечает это раз в 15 с)
-      const members = (await db(`chat_members?chat_id=eq.${m.chat_id}&user_id=neq.${uid}&muted=is.false&last_read_at=lt.${ago(25e3)}&select=user_id`)).map((x: { user_id: string }) => x.user_id);
-      const sent = await sendTo(members, "message", {
-        name: await nameOf(uid), chat: chat.kind === "group" ? chat.title : null, support: chat.kind === "support",
+      // всё, что не зависит друг от друга, спрашиваем у базы одновременно — так пуш уходит быстрее
+      const [got, chats, members, name, recent] = await Promise.all([
+        claim([`m:${m.id}`]),
+        db(`chats?id=eq.${m.chat_id}&select=kind,title`),
+        // не шлём тем, кто выключил уведомления чата, и тем, кто прямо сейчас сидит в этом чате (отметка here_at, живёт 25 с)
+        db(`chat_members?chat_id=eq.${m.chat_id}&user_id=neq.${uid}&muted=is.false&or=(here_at.is.null,here_at.lt.%22${ago(25e3)}%22)&select=user_id`),
+        nameOf(uid),
+        db(`issues?user_id=eq.${uid}&created_at=gt.${ago(2 * 60e3)}&select=id&limit=1`),
+        appServer(),
+      ]);
+      const chat = chats[0];
+      if (!got.size || !chat) return json({ sent: 0 });
+      if (chat.kind === "support" && recent.length) return json({ sent: 0 });   // «Сообщить о проблеме» уже прислало админу свой пуш
+      const sent = await sendTo(members.map((x: { user_id: string }) => x.user_id), "message", {
+        name, chat: chat.kind === "group" ? chat.title : null, support: chat.kind === "support",
         text: String(m.body || ""), mkind: m.kind, url: `#/chat/${m.chat_id}`, tag: `chat-${m.chat_id}`,
       });
+      console.log(`message ${m.id}: функция ${Date.now() - t0} мс, с момента отправки ${Date.now() - new Date(m.created_at).getTime()} мс`);
       return json({ sent });
     }
     return json({ error: "unknown action" }, 400);
