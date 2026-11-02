@@ -193,6 +193,8 @@
       else if (m.indexOf('banned') >= 0) code = 'err_banned';
       else if (m.indexOf('not confirmed') >= 0) code = 'err_not_confirmed';
       else if (m.indexOf('captcha') >= 0) code = 'err_captcha';
+      else if (m.indexOf('sending') >= 0 || m.indexOf('smtp') >= 0) code = 'err_mail_send';
+      else if (m.indexOf('email address invalid') >= 0 || m.indexOf('invalid format') >= 0) code = 'err_email_bad';
       else if (m.indexOf('already') >= 0) code = 'err_exists';
       else if (m.indexOf('password') >= 0 && m.indexOf('6') >= 0) code = 'err_short_pass';
       else if (e && e.status === 0) code = 'err_network';
@@ -262,7 +264,12 @@
         return http('POST', '/auth/v1/recover?redirect_to=' + encodeURIComponent(location.origin + location.pathname), body, { auth: false })
           .then(function () {}, function (e) {
             if (e && e.status === 429) { var x = new Error('err_too_often'); x.code = 'err_too_often'; throw x; }
-            throw mapAuthErr(e);
+            var er = mapAuthErr(e);
+            // здесь нет пароля: «неверный email или пароль» не подходит
+            if (er.code === 'err_login') { er.code = e && e.status >= 500 ? 'err_mail_send' : 'err_recover'; }
+            er.detail = (e && e.status ? e.status + ' ' : '') + String((e && e.message) || '').slice(0, 120);
+            try { console.warn('recover failed:', er.detail); } catch (x2) { /* */ }
+            throw er;
           });
       },
       /* когда пароль меняли в последний раз (не чаще раза в 24 часа — проверяет база) */

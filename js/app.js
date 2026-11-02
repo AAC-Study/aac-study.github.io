@@ -365,7 +365,10 @@
           el('p', null, [t('pw_sent_1'), ' ', el('b', { dir: 'ltr' }, String(email.value).trim())]),
           el('p', { class: 'muted' }, t('pw_sent_2'))
         ]));
-      }, function (er) { busy = false; cfReset(); showErr(t(er.code || 'err_network')); });
+      }, function (er) {
+        busy = false; cfReset();
+        showErr(t(er.code || 'err_network') + (er.detail && er.code !== 'err_too_often' && er.code !== 'err_network' ? ' (' + er.detail + ')' : ''));
+      });
     });
     authShell(app, [
       el('h1', { style: 'font-size:24px' }, t('pw_forgot_title')),

@@ -13,7 +13,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
       const u = new URL(r.request().url()); const body = r.request().postData();
       calls.push({ m: r.request().method(), path: u.pathname + u.search, body: body ? JSON.parse(body) : null });
       const j = (s, o) => r.fulfill({ status: s, contentType: 'application/json', body: JSON.stringify(o) });
-      if (u.pathname === '/auth/v1/recover') return j(200, {});
+      if (u.pathname === '/auth/v1/recover') return opts.recErr ? j(500, { code: 500, error_code: 'unexpected_failure', msg: 'Error sending recovery email' }) : j(200, {});
       if (u.pathname === '/auth/v1/user' && r.request().method() === 'PUT') return opts.putErr ? j(500, { code: 500, error_code: 'unexpected_failure', msg: 'Database error updating user' }) : j(200, { id: 'u1' });
       if (u.pathname === '/auth/v1/user') return j(200, { id: 'u1', email: 'a@b.c' });
       if (u.pathname === '/rest/v1/pass_changes') return j(200, opts.recent ? [{ changed_at: new Date(Date.now() - 3600e3).toISOString() }] : []);
@@ -34,6 +34,16 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     assert.strictEqual(c.body.email, 'a@b.c'); assert(c.path.includes('redirect_to='));
     await p.screenshot({ path: process.env.SP + '/pw-forgot.png' });
     assert.deepStrictEqual(errs, []); await ctx.close();
+  });
+  await step('forgot password: mail server error is not "wrong email or password"', async () => {
+    const { ctx, p } = await mk({ recErr: true });
+    p.on('console', () => {});
+    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); }); await p.reload();
+    await p.click('.auth-forgot'); await p.fill('#f-email', 'x@y.z'); await p.click('form button[type=submit]');
+    await p.waitForFunction(() => /Сервер не смог отправить письмо/.test(document.body.innerText));
+    const txt = await p.evaluate(() => document.body.innerText);
+    assert(!/пароль\b.*Неверный|Неверный email или пароль/.test(txt)); assert(/Error sending recovery email/.test(txt));
+    await ctx.close();
   });
   await step('recovery link -> new password screen -> saved -> home', async () => {
     const { ctx, p, errs, calls } = await mk({});
