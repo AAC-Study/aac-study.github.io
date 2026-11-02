@@ -265,7 +265,7 @@
     he: {
       tk_task: 'משימה {label}', tk_ai_task: 'משימת AI {label}', tk_solve_eq: 'פתרו את המשוואה',
       tk_draw: 'ציור', tk_type: 'הקלדה', tk_pen: 'עט', tk_eraser: 'מחק', tk_undo: 'ביטול', tk_clear: 'ניקוי',
-      tk_color: 'צבע {n}', tk_size: 'עובי {n}', tk_draft: 'טיוטה', tk_draft_ph: 'כאן אפשר לכתוב את הדרך, שורה אחרי שורה…',
+      tk_color: 'צבע {n}', tk_size: 'עובי {n}', tk_answer_ph_text: 'התשובה שלך', tk_draft: 'טיוטה', tk_draft_ph: 'כאן אפשר לכתוב את הדרך, שורה אחרי שורה…',
       tk_symbols: 'סימנים', tk_answer: 'התשובה שלך', tk_answer_ph_roots: 'למשל: −1, −5', tk_answer_ph_number: 'מספר אחד',
       tk_format_roots: 'כתבו את הפתרונות עם פסיק ביניהם, למשל −1, −5 או 1/3. אם אין פתרון — כתבו "אין פתרון".',
       tk_format_number: 'כתבו מספר אחד.', tk_choose: 'בחרו תשובה:',
@@ -295,7 +295,7 @@
     ru: {
       tk_task: 'Задача {label}', tk_ai_task: 'Задача от ИИ {label}', tk_solve_eq: 'Реши уравнение',
       tk_draw: 'Рисовать', tk_type: 'Печатать', tk_pen: 'Ручка', tk_eraser: 'Ластик', tk_undo: 'Отменить', tk_clear: 'Очистить',
-      tk_color: 'Цвет {n}', tk_size: 'Толщина {n}', tk_draft: 'Черновик', tk_draft_ph: 'Здесь можно записать решение, строка за строкой…',
+      tk_color: 'Цвет {n}', tk_size: 'Толщина {n}', tk_answer_ph_text: 'Твой ответ', tk_draft: 'Черновик', tk_draft_ph: 'Здесь можно записать решение, строка за строкой…',
       tk_symbols: 'Символы', tk_answer: 'Твой ответ', tk_answer_ph_roots: 'например: −1, −5', tk_answer_ph_number: 'одно число',
       tk_format_roots: 'Запиши корни через запятую, например −1, −5 или 1/3. Если решений нет — напиши «нет решений».',
       tk_format_number: 'Запиши одно число.', tk_choose: 'Выбери ответ:',
@@ -325,7 +325,7 @@
     en: {
       tk_task: 'Task {label}', tk_ai_task: 'AI task {label}', tk_solve_eq: 'Solve the equation',
       tk_draw: 'Draw', tk_type: 'Type', tk_pen: 'Pen', tk_eraser: 'Eraser', tk_undo: 'Undo', tk_clear: 'Clear',
-      tk_color: 'Color {n}', tk_size: 'Size {n}', tk_draft: 'Draft', tk_draft_ph: 'Write your working here, line by line…',
+      tk_color: 'Color {n}', tk_size: 'Size {n}', tk_answer_ph_text: 'Your answer', tk_draft: 'Draft', tk_draft_ph: 'Write your working here, line by line…',
       tk_symbols: 'Symbols', tk_answer: 'Your answer', tk_answer_ph_roots: 'e.g. −1, −5', tk_answer_ph_number: 'one number',
       tk_format_roots: 'Write the roots separated by commas, e.g. −1, −5 or 1/3. If there is none, write "no solution".',
       tk_format_number: 'Write one number.', tk_choose: 'Choose an answer:',
@@ -551,6 +551,10 @@
     }
   };
 
+  function quadLesson(lesson) {
+    var tk = (lesson && lesson.tasks) || {};
+    return (tk.teacher || []).concat(tk.ai || []).some(function (x) { return x.kind === 'roots'; });
+  }
   function buildPrompt(lesson, task, studentAnswer, lang) {
     var P = PROMPT[lang] || PROMPT.en;
     var instr = '';
@@ -563,7 +567,9 @@
     var vars = {
       topic: pick(lesson.title, lang), subject: subjectName(lesson.subject, lang), date: fmtDate(lesson.date),
       instr: instr, task: text, answer: ans ? '"' + ans + '"' : P.noAnswer,
-      method: task.kind === 'roots' || task.kind === 'number' || task.kind === 'choice' ? P.method : P.methodOther,
+      /* способ решения: свой у урока/задачи (method: {he,ru,en}); формула корней — только в уроках про квадратные уравнения */
+      method: (task.method || lesson.method) ? '3. ' + pick(task.method || lesson.method, lang)
+        : (quadLesson(lesson) && (task.kind === 'roots' || task.kind === 'number' || task.kind === 'choice') ? P.method : P.methodOther),
       lang: P.lang
     };
     return P.body.map(function (line) {
@@ -830,7 +836,7 @@
     } else {
       answerInput = el('input', {
         id: answerId, class: 'input tk-answer__input', type: 'text', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false',
-        dir: 'ltr', placeholder: task.kind === 'number' ? t('tk_answer_ph_number') : t('tk_answer_ph_roots')
+        dir: 'ltr', placeholder: task.kind === 'number' ? t('tk_answer_ph_number') : (task.kind === 'roots' ? t('tk_answer_ph_roots') : (task.placeholder ? pick(task.placeholder, lang) : t('tk_answer_ph_text')))
       });
       answerInput.value = st.answer || '';
       ansWrap.appendChild(el('label', { class: 'tk-answer__label', for: answerId }, t('tk_answer')));
