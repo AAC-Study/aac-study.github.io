@@ -19,7 +19,9 @@ create table if not exists public.profiles (
   created_at timestamptz not null default now()
 );
 alter table public.profiles enable row level security;
+drop policy if exists "profiles: read by members" on public.profiles;
 create policy "profiles: read by members" on public.profiles for select to authenticated using (true);
+drop policy if exists "profiles: update own" on public.profiles;
 create policy "profiles: update own" on public.profiles for update to authenticated
   using (id = auth.uid()) with check (id = auth.uid());
 -- xp и role нельзя менять напрямую: только через функцию award() / админом
@@ -54,6 +56,7 @@ create table if not exists public.progress (
   primary key (user_id, key)
 );
 alter table public.progress enable row level security;
+drop policy if exists "progress: read own" on public.progress;
 create policy "progress: read own" on public.progress for select to authenticated using (user_id = auth.uid());
 
 create or replace function public.award(p_key text, p_kind text default null, p_level int default 0) returns json
@@ -90,10 +93,14 @@ create table if not exists public.issues (
   created_at timestamptz not null default now()
 );
 alter table public.issues enable row level security;
+drop policy if exists "issues: anyone signed in can report" on public.issues;
 create policy "issues: anyone signed in can report" on public.issues for insert to authenticated with check (user_id = auth.uid());
+drop policy if exists "issues: reporter sees own" on public.issues;
 create policy "issues: reporter sees own" on public.issues for select to authenticated using (user_id = auth.uid());
+drop policy if exists "issues: admin reads" on public.issues;
 create policy "issues: admin reads" on public.issues for select to authenticated
   using (exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));
+drop policy if exists "issues: admin updates" on public.issues;
 create policy "issues: admin updates" on public.issues for update to authenticated
   using (exists(select 1 from public.profiles p where p.id = auth.uid() and p.role = 'admin'));
 
@@ -101,10 +108,13 @@ create policy "issues: admin updates" on public.issues for update to authenticat
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('avatars', 'avatars', true, 204800, array['image/jpeg','image/png','image/webp'])
 on conflict (id) do nothing;
+drop policy if exists "avatars: upload own" on storage.objects;
 create policy "avatars: upload own" on storage.objects for insert to authenticated
   with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+drop policy if exists "avatars: update own" on storage.objects;
 create policy "avatars: update own" on storage.objects for update to authenticated
   using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+drop policy if exists "avatars: delete own" on storage.objects;
 create policy "avatars: delete own" on storage.objects for delete to authenticated
   using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
 
@@ -120,7 +130,11 @@ create table if not exists public.push_subs (
   created_at timestamptz not null default now()
 );
 alter table public.push_subs enable row level security;
+drop policy if exists "push: own insert" on public.push_subs;
 create policy "push: own insert" on public.push_subs for insert to authenticated with check (user_id = auth.uid());
+drop policy if exists "push: own update" on public.push_subs;
 create policy "push: own update" on public.push_subs for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid());
+drop policy if exists "push: own read" on public.push_subs;
 create policy "push: own read" on public.push_subs for select to authenticated using (user_id = auth.uid());
+drop policy if exists "push: own delete" on public.push_subs;
 create policy "push: own delete" on public.push_subs for delete to authenticated using (user_id = auth.uid());
