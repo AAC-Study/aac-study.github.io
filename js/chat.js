@@ -790,6 +790,7 @@
       if (document.hidden) { here(false); return; }
       poll(); if (atBottom(200)) markRead();
       if (present()) here(true);
+      if (window.Push && Push.clearChat) Push.clearChat(S.id);
     }
     function onBlur() { if (S.alive) here(false); }
     function onPageHide() { here(false, true); }
@@ -821,6 +822,7 @@
       if (sep && sep.offsetTop > scroll.clientHeight) scroll.scrollTop = sep.offsetTop - 80; else toBottom();
       markRead();
       if (present()) here(true);
+      if (window.Push && Push.clearChat) Push.clearChat(S.id);
       if (!coarse && !ta.disabled) ta.focus();
     }, function (e) {
       list.innerHTML = '';

@@ -1,4 +1,5 @@
 /* Service worker: только пуш-уведомления (ничего не кэширует, чтобы всегда была свежая версия сайта). */
+var SW_VERSION = '2026-11-02.12';
 self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });
 
@@ -19,20 +20,30 @@ self.addEventListener('push', function (e) {
 });
 
 function show(msg) {
+  /* Каждое сообщение — отдельное уведомление (телефон сам сложит их в стопку, как в мессенджерах).
+     Поэтому у сообщений чата метка уникальная: «chat-<чат>-<время>». Когда открываешь чат, сайт убирает его уведомления. */
+  var tag = msg.tag || '';
+  var chat = /^chat-/.test(tag) ? tag.slice(5) : '';
+  if (chat) tag = 'chat-' + chat + '-' + Date.now();
   return self.registration.showNotification(msg.title || 'AAC', {
     body: msg.body || '',
     icon: 'img/icon-192.png',
     badge: 'img/badge-96.png',      // значок в строке состояния Android: только белый силуэт на прозрачном фоне
-    tag: msg.tag || undefined,
-    renotify: !!msg.tag,    // новое сообщение в том же чате снова звенит и всплывает
+    tag: tag || undefined,
+    renotify: !!tag,        // со звуком и баннером, даже если метка повторилась (проверочные пуши)
     /* Звук и вибрация как в мессенджерах: телефон сам решает по своему режиму
        (звук — звенит, вибрация — вибрирует, беззвучный — тихо). На Android уведомление со звуком всплывает сверху. */
     silent: false,
     vibrate: [180, 80, 180],
     timestamp: Date.now(),
-    data: { url: msg.url || '' }
+    data: { url: msg.url || '', chat: chat }
   });
 }
+
+/* сайт спрашивает версию (видно в настройках уведомлений) */
+self.addEventListener('message', function (e) {
+  if (e.data && e.data.type === 'version' && e.ports && e.ports[0]) e.ports[0].postMessage(SW_VERSION);
+});
 
 self.addEventListener('notificationclick', function (e) {
   e.notification.close();

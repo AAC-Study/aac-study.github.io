@@ -172,6 +172,31 @@
   document.addEventListener('langchange', syncLang);
   document.addEventListener('userchange', syncLang);
   if (Store.ready && Store.ready.then) Store.ready.then(syncLang, function () {});
+  /* при каждом открытии сайта проверяем, нет ли новой версии «обработчика уведомлений» (sw.js) —
+     иначе телефон может ещё долго показывать уведомления по-старому */
+  if ('serviceWorker' in navigator && navigator.serviceWorker.getRegistration) {
+    navigator.serviceWorker.getRegistration().then(function (r) { if (r) r.update().catch(function () {}); }, function () {});
+  }
+  /* открыл чат — убираем его уведомления с телефона/компьютера */
+  Push.clearChat = function (chatId) {
+    if (!chatId || !('serviceWorker' in navigator) || !navigator.serviceWorker.getRegistration) return;
+    navigator.serviceWorker.getRegistration().then(function (r) {
+      if (!r || !r.getNotifications) return null;
+      return r.getNotifications().then(function (list) {
+        list.forEach(function (n) { if ((n.data && n.data.chat === chatId) || n.tag === 'chat-' + chatId) n.close(); });
+      });
+    }).catch(function () {});
+  };
+  /* версия обработчика уведомлений на этом устройстве (для проверки, что обновление дошло) */
+  Push.swVersion = function () {
+    return new Promise(function (resolve) {
+      if (!('serviceWorker' in navigator) || !navigator.serviceWorker.controller || !window.MessageChannel) return resolve('');
+      var ch = new MessageChannel(), done = false;
+      ch.port1.onmessage = function (e) { done = true; resolve(String(e.data || '')); };
+      setTimeout(function () { if (!done) resolve(''); }, 1500);
+      navigator.serviceWorker.controller.postMessage({ type: 'version' }, [ch.port2]);
+    });
+  };
   Push.syncLang = syncLang;
 
   /* пришёл пуш, а сайт открыт: сразу обновляем колокольчик, чаты и список */
@@ -273,6 +298,9 @@
     });
     card.appendChild(row('star', t('push_goal'), t('push_goal_hint'), el('div', { class: 'goal-btns' }, goalBtns)));
     if (Store.mode === 'mock' && !r) card.appendChild(el('p', { class: 'muted push-note' }, t('push_demo_note')));
+    var ver = el('p', { class: 'muted push-note push-ver' });
+    card.appendChild(ver);
+    Push.swVersion().then(function (v) { if (v) ver.textContent = 'sw ' + v; });
     return card;
   };
 
