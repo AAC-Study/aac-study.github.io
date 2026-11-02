@@ -1,6 +1,6 @@
 {
-  "name": "לומדים ביחד · Учимся вместе",
-  "short_name": "לומדים ביחד",
+  "name": "AAC Study",
+  "short_name": "AAC Study",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#0e1020",

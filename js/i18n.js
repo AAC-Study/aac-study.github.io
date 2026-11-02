@@ -46,7 +46,7 @@
 
   I18N.add({
     he: {
-      app_name: 'לומדים ביחד', app_sub: 'AAC · הנדסאי תוכנה',
+      app_name: 'AAC Study', app_sub: 'לומדים ביחד · הנדסאי תוכנה',
       nav_home: 'ראשי', nav_subjects: 'מקצועות', nav_profile: 'האזור האישי', nav_settings: 'הגדרות', nav_logout: 'יציאה', nav_menu: 'תפריט',
       theme_light: 'מצב בהיר', theme_dark: 'מצב כהה', lang: 'שפה', notifications: 'התראות', no_notifications: 'אין התראות חדשות',
       login_title: 'כניסה', register_title: 'הרשמה', email: 'אימייל', password: 'סיסמה', display_name: 'שם תצוגה',
@@ -64,7 +64,7 @@
       settings_title: 'הגדרות', reduce_motion: 'פחות אנימציות', saved: 'נשמר', level_up: 'עלית לרמה {n}!', points_plus: '+{n} נקודות'
     },
     ru: {
-      app_name: 'Учимся вместе', app_sub: 'AAC · техник-программист',
+      app_name: 'AAC Study', app_sub: 'Учимся вместе · техник-программист',
       nav_home: 'Главная', nav_subjects: 'Предметы', nav_profile: 'Личный кабинет', nav_settings: 'Настройки', nav_logout: 'Выйти', nav_menu: 'Меню',
       theme_light: 'Светлая тема', theme_dark: 'Тёмная тема', lang: 'Язык', notifications: 'Уведомления', no_notifications: 'Новых уведомлений нет',
       login_title: 'Вход', register_title: 'Регистрация', email: 'Email', password: 'Пароль', display_name: 'Имя на сайте',
@@ -82,7 +82,7 @@
       settings_title: 'Настройки', reduce_motion: 'Меньше анимации', saved: 'Сохранено', level_up: 'Новый уровень: {n}!', points_plus: '+{n} очков'
     },
     en: {
-      app_name: 'Learn Together', app_sub: 'AAC · Software Technician',
+      app_name: 'AAC Study', app_sub: 'Learning together · Software Technician',
       nav_home: 'Home', nav_subjects: 'Subjects', nav_profile: 'My profile', nav_settings: 'Settings', nav_logout: 'Log out', nav_menu: 'Menu',
       theme_light: 'Light theme', theme_dark: 'Dark theme', lang: 'Language', notifications: 'Notifications', no_notifications: 'No new notifications',
       login_title: 'Log in', register_title: 'Sign up', email: 'Email', password: 'Password', display_name: 'Display name',
