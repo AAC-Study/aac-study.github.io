@@ -70,8 +70,9 @@
     setTheme: function (th) {
       document.documentElement.setAttribute('data-theme', th);
       U.storage.set('theme', th);
-      var meta = $('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', th === 'dark' ? '#0e1020' : '#f5f6fb');
+      /* цвет полосок телефона (сверху и снизу) = цвет фона сайта */
+      var dark = th === 'dark' || (th !== 'light' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches);
+      Array.prototype.forEach.call(document.querySelectorAll('meta[name="theme-color"]'), function (m) { m.setAttribute('content', dark ? '#0e1020' : '#f5f6fb'); });
       if (App.applyAccent) App.applyAccent();
     },
     /* Цвет сайта: 'violet' (по умолчанию) или свой {h, s, l} */
