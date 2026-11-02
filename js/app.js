@@ -214,6 +214,43 @@
   function setTitle(text) { var tt = $('#top-title'); if (tt) tt.textContent = text; document.title = text + ' · ' + t('app_name'); }
   App.setTitle = setTitle;
 
+  /* ---------- проверка «не робот» (Cloudflare Turnstile) ----------
+     Включается, только если в config.js задан TURNSTILE_SITE_KEY (это открытый ключ).
+     Секретный ключ Turnstile лежит только в Supabase (Authentication → Attack Protection). */
+  var cf = { loading: null, id: null, token: '' };
+  function cfKey() { return Store.mode === 'supabase' && (window.APP_CONFIG || {}).TURNSTILE_SITE_KEY; }
+  function cfLoad() {
+    if (window.turnstile) return Promise.resolve();
+    if (cf.loading) return cf.loading;
+    cf.loading = new Promise(function (ok, bad) {
+      var sc = document.createElement('script');
+      sc.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      sc.async = true;
+      sc.onload = function () { ok(); };
+      sc.onerror = function () { cf.loading = null; bad(new Error('cf')); };
+      document.head.appendChild(sc);
+    });
+    return cf.loading;
+  }
+  function cfBox(onErr) {
+    var box = el('div', { class: 'cf-box' });
+    if (!cfKey()) return null;
+    cf.token = '';
+    cfLoad().then(function () {
+      if (!box.isConnected) return;
+      if (cf.id != null) { try { window.turnstile.remove(cf.id); } catch (e) { /* */ } }
+      cf.id = window.turnstile.render(box, {
+        sitekey: cfKey(), theme: document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light',
+        language: I18N.lang, size: 'flexible',
+        callback: function (tok) { cf.token = tok; },
+        'expired-callback': function () { cf.token = ''; },
+        'error-callback': function () { cf.token = ''; }
+      });
+    }, function () { onErr(t('err_captcha_load')); });
+    return box;
+  }
+  function cfReset() { cf.token = ''; if (cf.id != null && window.turnstile) { try { window.turnstile.reset(cf.id); } catch (e) { /* */ } } }
+
   /* ---------- вход и регистрация ---------- */
   function renderAuth(mode) {
     var app = $('#app');
@@ -238,16 +275,39 @@
       field('f-email', t('email'), 'email', { ac: 'email', dir: 'ltr' }),
       field('f-pass', t('password'), 'password', { ac: isReg ? 'new-password' : 'current-password', dir: 'ltr' }),
       isReg ? field('f-invite', t('invite_code'), 'text', { ac: 'off', dir: 'ltr', hint: t('invite_hint') + (Store.mode === 'mock' ? ' (demo: ' + APP_CONFIG.MOCK_INVITE_CODE + ')' : '') }) : null,
+      cfBox(showErr),
       el('button', { class: 'btn btn--primary', type: 'submit', style: 'width:100%;margin-top:6px' }, isReg ? t('btn_register') : t('btn_login'))
     ]);
+    function showErr(txt) { errBox.textContent = txt; errBox.style.display = 'block'; }
+    var busy = false;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (busy) return;
       errBox.style.display = 'none';
+      if (cfKey() && !cf.token) { showErr(t('err_captcha_wait')); return; }
       var v = function (id) { var n = $('#' + id); return n ? n.value : ''; };
-      var p = isReg ? Store.auth.signUp({ name: v('f-name'), email: v('f-email'), password: v('f-pass'), invite: v('f-invite') })
-                    : Store.auth.signIn({ email: v('f-email'), password: v('f-pass') });
-      p.then(function () { App.go('/'); }).catch(function (er) { errBox.textContent = t(er.code || 'err_login'); errBox.style.display = 'block'; });
+      var cap = cf.token;
+      busy = true;
+      var p = isReg ? Store.auth.signUp({ name: v('f-name'), email: v('f-email'), password: v('f-pass'), invite: v('f-invite'), captcha: cap })
+                    : Store.auth.signIn({ email: v('f-email'), password: v('f-pass'), captcha: cap });
+      p.then(function (r) {
+        busy = false;
+        if (r && r.confirm) { checkMail(r.email); return; }
+        App.go('/');
+      }).catch(function (er) { busy = false; cfReset(); showErr(t(er.code || 'err_login')); });
     });
+    /* после регистрации, если сервер просит подтвердить почту */
+    function checkMail(email) {
+      form.innerHTML = '';
+      form.appendChild(el('div', { class: 'auth-mail' }, [
+        el('div', { class: 'auth-mail__icon', html: Icons.get('mail') }),
+        el('h2', { class: 'auth-mail__h' }, t('auth_mail_h')),
+        el('p', null, [t('auth_mail_1'), ' ', el('b', { dir: 'ltr' }, email)]),
+        el('p', { class: 'muted' }, t('auth_mail_2'))
+      ]));
+      var sw = $('.auth__switch', card); if (sw) sw.style.display = 'none';
+      var h1 = $('h1', card); if (h1) h1.style.display = 'none';
+    }
     var card = el('div', { class: 'auth__card' }, [
       el('div', { class: 'auth__top' }, [langSwitch(), themeBtn()]),
       el('div', { class: 'auth__brand' }, [el('div', { class: 'side__logo' }, el('img', { src: 'img/favicon.svg', alt: '' })), el('div', null, [el('b', null, t('app_name')), el('span', null, t('app_sub'))])]),
@@ -602,7 +662,11 @@
   }
   App.render = render;
 
-  window.addEventListener('hashchange', render);
+  window.addEventListener('hashchange', function () {
+    // ссылка из письма открылась во вкладке, где сайт уже был: перезагружаем, чтобы войти по ней
+    if (/(^#|&)(access_token|error_code)=/.test(location.hash)) { location.reload(); return; }
+    render();
+  });
   document.addEventListener('langchange', render);
   document.addEventListener('userchange', function () {
     // перерисовываем только если вошли/вышли; очки обновляют аватар и кабинет при следующем показе
@@ -612,5 +676,10 @@
   });
   window.addEventListener('error', function (e) { Store.reportIssue({ error: String(e.message), src: e.filename, line: e.lineno }); });
 
-  document.addEventListener('DOMContentLoaded', function () { I18N.init(); Store.ready.then(render, render); });
+  function linkNote() {
+    if (!Store.linkNote) return;
+    var n = Store.linkNote; Store.linkNote = null;
+    U.toast(t(n), n === 'auth_link_bad' ? 'err' : undefined);
+  }
+  document.addEventListener('DOMContentLoaded', function () { I18N.init(); Store.ready.then(function () { render(); linkNote(); }, render); });
 })();

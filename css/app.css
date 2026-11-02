@@ -420,3 +420,12 @@ body.no-scroll { overflow: hidden; }
   background: hsl(var(--h) 80% 60% / .16); color: hsl(var(--h) 70% 45%); }
 .push-topic__ic .ic { width: 18px; height: 18px; }
 .push-topic__name { flex: 1; min-width: 0; }
+
+/* вход: проверка «не робот» и экран «проверь почту» */
+.cf-box { margin: 4px 0 2px; min-height: 0; }
+.cf-box:empty { display: none; }
+.auth-mail { text-align: center; padding: 8px 0 4px; }
+.auth-mail__icon { width: 56px; height: 56px; margin: 0 auto 10px; border-radius: 50%; display: grid; place-items: center; background: var(--accent-soft, rgba(102,86,245,.12)); color: var(--accent, #6656f5); }
+.auth-mail__icon .ic { width: 28px; height: 28px; }
+.auth-mail__h { font-size: 20px; margin: 0 0 8px; }
+.auth-mail p { margin: 6px 0; overflow-wrap: anywhere; }

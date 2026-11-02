@@ -178,10 +178,12 @@
       });
     }
     function mapAuthErr(e) {
-      var m = String((e && e.message) || '').toLowerCase();
+      var m = (String((e && e.message) || '') + ' ' + String((e && e.data && e.data.error_code) || '')).toLowerCase().replace(/_/g, ' ');
       var code = 'err_login';
       if (m.indexOf('database error') >= 0 || m.indexOf('invalid_invite') >= 0) code = 'err_invite';
       else if (m.indexOf('banned') >= 0) code = 'err_banned';
+      else if (m.indexOf('not confirmed') >= 0) code = 'err_not_confirmed';
+      else if (m.indexOf('captcha') >= 0) code = 'err_captcha';
       else if (m.indexOf('already') >= 0) code = 'err_exists';
       else if (m.indexOf('password') >= 0 && m.indexOf('6') >= 0) code = 'err_short_pass';
       else if (e && e.status === 0) code = 'err_network';
@@ -192,7 +194,28 @@
       token: function () { return fresh().then(function (x) { return x && x.access_token; }); },
       rpc: function (name, args, opts) { return api('POST', '/rest/v1/rpc/' + name, args || {}, opts); } };
 
-    Store.ready = loadMe().catch(function () { /* нет сети или сессия истекла */ });
+    /* ссылка из письма «подтверди почту»: Supabase возвращает сюда с #access_token=… — сразу входим */
+    function fromLink() {
+      var h = location.hash || '';
+      if (h.indexOf('access_token=') < 0 && h.indexOf('error_code=') < 0 && h.indexOf('error=') < 0) return Promise.resolve();
+      var q = {};
+      h.replace(/^#\/?/, '').split('&').forEach(function (kv) {
+        var i = kv.indexOf('=');
+        if (i > 0) { try { q[decodeURIComponent(kv.slice(0, i))] = decodeURIComponent(kv.slice(i + 1).replace(/\+/g, ' ')); } catch (e) { /* */ } }
+      });
+      if (!q.access_token && !q.error && !q.error_code) return Promise.resolve();
+      try { history.replaceState(null, '', location.pathname + location.search + '#/'); } catch (e) { location.hash = '#/'; }
+      if (!q.access_token) { Store.linkNote = 'auth_link_bad'; return Promise.resolve(); }
+      return fetch(URL + '/auth/v1/user', { headers: { apikey: KEY, Authorization: 'Bearer ' + q.access_token } })
+        .then(function (r) { if (!r.ok) throw new Error('bad'); return r.json(); })
+        .then(function (u) {
+          saveSess({ access_token: q.access_token, refresh_token: q.refresh_token,
+            expires_at: Number(q.expires_at) || Math.floor(Date.now() / 1000) + (Number(q.expires_in) || 3600), user: { id: u.id, email: u.email } });
+          Store.linkNote = 'auth_confirmed';
+        })
+        .catch(function () { Store.linkNote = 'auth_link_bad'; });
+    }
+    Store.ready = fromLink().then(loadMe).catch(function () { /* нет сети или сессия истекла */ });
 
     Store.auth = {
       current: function () { return toPub(me); },
@@ -200,16 +223,22 @@
         var email = String(p.email || '').trim().toLowerCase();
         if (!email || !p.password || !p.name || !p.invite) return err('err_fields');
         if (String(p.password).length < 6) return err('err_short_pass');
-        return http('POST', '/auth/v1/signup', { email: email, password: p.password, data: { name: String(p.name).trim(), invite: String(p.invite).trim() } }, { auth: false })
+        var body = { email: email, password: p.password, data: { name: String(p.name).trim(), invite: String(p.invite).trim() } };
+        if (p.captcha) body.gotrue_meta_security = { captcha_token: p.captcha };
+        // если в Supabase включено подтверждение почты: ссылка из письма вернёт человека сюда же
+        var back = location.origin + location.pathname;
+        return http('POST', '/auth/v1/signup?redirect_to=' + encodeURIComponent(back), body, { auth: false })
           .then(function (r) {
-            if (!r || !r.access_token) { var e = new Error('err_confirm'); e.code = 'err_confirm'; throw e; }
-            saveSess(sessFrom(r)); return loadMe();
-          }, function (e) { throw mapAuthErr(e); })
-          .then(function () { emit(); return toPub(me); });
+            if (!r || !r.access_token) return { confirm: true, email: email };   // ждём, пока подтвердит почту
+            saveSess(sessFrom(r));
+            return loadMe().then(function () { emit(); return toPub(me); });
+          }, function (e) { throw mapAuthErr(e); });
       },
       signIn: function (p) {
         var email = String(p.email || '').trim().toLowerCase();
-        return http('POST', '/auth/v1/token?grant_type=password', { email: email, password: p.password }, { auth: false })
+        var body = { email: email, password: p.password };
+        if (p.captcha) body.gotrue_meta_security = { captcha_token: p.captcha };
+        return http('POST', '/auth/v1/token?grant_type=password', body, { auth: false })
           .then(function (r) { saveSess(sessFrom(r)); return loadMe(); }, function (e) { throw mapAuthErr(e); })
           .then(function () { emit(); return toPub(me); });
       },
