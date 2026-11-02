@@ -42,7 +42,8 @@
         var email = String(p.email || '').trim().toLowerCase();
         if (!email || !p.password || !p.name || !p.invite) return err('err_fields');
         if (String(p.password).length < 6) return err('err_short_pass');
-        if (String(p.invite).trim().toUpperCase() !== cfg.MOCK_INVITE_CODE) return err('err_invite');
+        var inv = String(U.storage.get('mock_invite', cfg.MOCK_INVITE_CODE) || '');
+        if (String(p.invite).trim().toUpperCase() !== inv.toUpperCase()) return err('err_invite');
         if (users[email]) return err('err_exists');
         var first = Object.keys(users).length === 0;
         users[email] = { id: 'u' + Date.now(), email: email, pass: p.password, name: String(p.name).trim(),
@@ -54,6 +55,7 @@
         var email = String(p.email || '').trim().toLowerCase();
         var u = users[email];
         if (!u || u.pass !== p.password) return err('err_login');
+        if ((U.storage.get('mock_banned', {}) || {})[u.id]) return err('err_banned');
         sessionEmail = email; U.storage.set('mock_session', email); emit();
         return Promise.resolve(pub(u));
       },
@@ -167,6 +169,7 @@
       var m = String((e && e.message) || '').toLowerCase();
       var code = 'err_login';
       if (m.indexOf('database error') >= 0 || m.indexOf('invalid_invite') >= 0) code = 'err_invite';
+      else if (m.indexOf('banned') >= 0) code = 'err_banned';
       else if (m.indexOf('already') >= 0) code = 'err_exists';
       else if (m.indexOf('password') >= 0 && m.indexOf('6') >= 0) code = 'err_short_pass';
       else if (e && e.status === 0) code = 'err_network';

@@ -437,8 +437,9 @@
   App.registerRoute('/admin', function (params, view) {
     var u = Store.auth.current();
     if (u.role !== 'admin') return App.go('/');
-    setTitle(t('admin_title'));
-    view.appendChild(el('div', { class: 'page-head' }, [el('h1', null, t('admin_title')), el('p', null, t('admin_lead'))]));
+    setTitle(t(window.Admin ? 'adm_head' : 'admin_title'));
+    view.appendChild(el('div', { class: 'page-head' }, [el('h1', null, t(window.Admin ? 'adm_head' : 'admin_title')), el('p', null, t(window.Admin ? 'adm_lead' : 'admin_lead'))]));
+    if (window.Admin) view.appendChild(Admin.tools());
     var list = el('div', { class: 'issue-list' });
     view.appendChild(list);
     Store.listIssues().then(function (items) {

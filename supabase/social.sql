@@ -171,6 +171,7 @@ create or replace function public.sc_uid() returns uuid
 language plpgsql stable set search_path = public as $$
 begin
   if auth.uid() is null then raise exception 'sc_err_auth'; end if;
+  if exists(select 1 from public.profiles where id = auth.uid() and banned) then raise exception 'sc_err_banned'; end if;
   return auth.uid();
 end $$;
 
@@ -387,7 +388,8 @@ alter table public.reactions enable row level security;
 -- ---------- помощники для политик (security definer, без рекурсии RLS) ----------
 create or replace function public.sc_is_member(p_chat uuid) returns boolean
 language sql stable security definer set search_path = public as $$
-  select exists(select 1 from public.chat_members where chat_id = p_chat and user_id = auth.uid());
+  select exists(select 1 from public.chat_members where chat_id = p_chat and user_id = auth.uid())
+     and not exists(select 1 from public.profiles where id = auth.uid() and banned);
 $$;
 create or replace function public.sc_try_uuid(p text) returns uuid
 language plpgsql immutable as $$

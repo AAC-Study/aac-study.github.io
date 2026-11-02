@@ -64,6 +64,7 @@ language plpgsql security definer set search_path = public as $$
 declare pts int; fam text; new_xp int;
 begin
   if auth.uid() is null then raise exception 'no_session'; end if;
+  if exists(select 1 from public.profiles where id = auth.uid() and banned) then raise exception 'banned'; end if;
   fam := split_part(p_key, ':', 1);
   if fam not in ('read', 'download', 'solve') then raise exception 'bad_key'; end if;
   if p_level is null or p_level < 0 or p_level > 3 then raise exception 'bad_level'; end if;
@@ -138,3 +139,58 @@ drop policy if exists "push: own read" on public.push_subs;
 create policy "push: own read" on public.push_subs for select to authenticated using (user_id = auth.uid());
 drop policy if exists "push: own delete" on public.push_subs;
 create policy "push: own delete" on public.push_subs for delete to authenticated using (user_id = auth.uid());
+
+-- ---------- админка: код приглашения и бан ----------
+-- banned меняет только админ (через admin_ban); сам человек его поменять не может (update разрешён только на name, avatar_url, frame, prefs).
+alter table public.profiles add column if not exists banned boolean not null default false;
+
+create or replace function public.me_ok() returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists(select 1 from public.profiles where id = auth.uid() and not banned);
+$$;
+create or replace function public.is_admin() returns boolean
+language sql stable security definer set search_path = public as $$
+  select exists(select 1 from public.profiles where id = auth.uid() and role = 'admin' and not banned);
+$$;
+
+create or replace function public.admin_invite_get() returns text
+language plpgsql stable security definer set search_path = public as $$
+begin
+  if not public.is_admin() then raise exception 'not_admin'; end if;
+  return (select value from public.app_secrets where key = 'invite_code');
+end $$;
+
+create or replace function public.admin_invite_set(p_code text) returns void
+language plpgsql security definer set search_path = public as $$
+declare c text := trim(coalesce(p_code, ''));
+begin
+  if not public.is_admin() then raise exception 'not_admin'; end if;
+  if char_length(c) < 6 or char_length(c) > 64 then raise exception 'bad_invite'; end if;
+  update public.app_secrets set value = c where key = 'invite_code';
+end $$;
+
+-- Бан: человек больше не может войти (Supabase Auth: banned_until), его вход на всех устройствах сбрасывается,
+-- а база отказывает ему во всём (me_ok). Разбан возвращает всё как было. Себя и других админов забанить нельзя.
+create or replace function public.admin_ban(p_user uuid, p_on boolean) returns void
+language plpgsql security definer set search_path = public as $$
+declare on_ boolean := coalesce(p_on, true);
+begin
+  if not public.is_admin() then raise exception 'not_admin'; end if;
+  if p_user = auth.uid() then raise exception 'ban_self'; end if;
+  if exists(select 1 from public.profiles where id = p_user and role = 'admin') then raise exception 'ban_admin'; end if;
+  update public.profiles set banned = on_ where id = p_user;
+  if not found then raise exception 'not_found'; end if;
+  if on_ then delete from public.push_subs where user_id = p_user; end if;
+  begin
+    update auth.users set banned_until = case when on_ then '2999-12-31'::timestamptz else null end where id = p_user;
+    if on_ then delete from auth.sessions where user_id = p_user; end if;
+  exception when others then null;   -- если нет доступа к auth — всё равно действует запрет в базе (me_ok)
+  end;
+end $$;
+
+-- забаненный не пишет о проблемах и не получает очки
+drop policy if exists "issues: anyone signed in can report" on public.issues;
+create policy "issues: anyone signed in can report" on public.issues for insert to authenticated with check (user_id = auth.uid() and public.me_ok());
+
+revoke execute on function public.me_ok(), public.is_admin(), public.admin_invite_get(), public.admin_invite_set(text), public.admin_ban(uuid, boolean) from public, anon;
+grant execute on function public.me_ok(), public.is_admin(), public.admin_invite_get(), public.admin_invite_set(text), public.admin_ban(uuid, boolean) to authenticated;

@@ -230,6 +230,35 @@ step('support chat: any user ↔ admins, no friendship needed', function () {
   assert.strictEqual(ok(B, "select count(*) from public.chats where id = " + q(sid)), '0', 'other users do not see it');
   fails(D, rpc('sc_pin_message', q(sid) + ', null'), 'sc_err_no_rights');
 });
+step('admin: invite code get/set, only for admin', function () {
+  assert.strictEqual(ok(A, rpc('admin_invite_get', '')), 'TEST');
+  fails(B, rpc('admin_invite_get', ''), 'not_admin');
+  fails(B, rpc('admin_invite_set', "'HACKED-123'"), 'not_admin');
+  fails(A, rpc('admin_invite_set', "'abc'"), 'bad_invite');
+  ok(A, rpc('admin_invite_set', "'NEW-CODE-2026'"));
+  assert.strictEqual(admin("select value from public.app_secrets where key = 'invite_code'"), 'NEW-CODE-2026');
+  let err = '';
+  try { admin("insert into auth.users(email, raw_user_meta_data) values ('z@x.y', '{\"name\":\"Z\",\"invite\":\"TEST\"}')"); } catch (e) { err = String(e.stderr || e.message); }
+  assert.ok(/invalid_invite/.test(err), 'old code no longer works: ' + err);
+  admin("update public.app_secrets set value = 'TEST' where key = 'invite_code'");
+});
+step('admin: ban blocks everything, unban restores; users cannot ban or unban themselves', function () {
+  fails(B, rpc('admin_ban', q(C) + ', true'), 'not_admin');
+  fails(A, rpc('admin_ban', q(A) + ', true'), 'ban_self');
+  fails(B, "update public.profiles set banned = false where id = " + q(B), 'permission denied');
+  admin("insert into auth.sessions(user_id) values (" + q(C) + ")");
+  ok(A, rpc('admin_ban', q(C) + ', true'));
+  assert.strictEqual(admin("select banned_until > now() from auth.users where id = " + q(C)), 't');
+  assert.strictEqual(admin("select count(*) from auth.sessions where user_id = " + q(C)), '0');
+  fails(C, rpc('sc_friend_request', q(D)), 'sc_err_banned');
+  assert.strictEqual(ok(C, "select count(*) from public.messages"), '0', 'banned reads no chats');
+  fails(C, "insert into public.issues(info) values ('{}')", 'row-level security');
+  fails(C, "select public.award('read:x')", 'banned');
+  fails(C, "update public.profiles set banned = false where id = " + q(C), 'permission denied');
+  ok(A, rpc('admin_ban', q(C) + ', false'));
+  assert.strictEqual(admin("select banned_until is null from auth.users where id = " + q(C)), 't');
+  assert.ok(Number(ok(C, "select count(*) from public.chats")) > 0, 'after unban C sees chats again');
+});
 step('anon gets nothing', function () {
   const r = as('', "set role anon; select count(*) from public.messages");
   assert.ok(!r.ok && /permission denied/.test(r.err), r.err || r.out);
