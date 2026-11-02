@@ -215,7 +215,8 @@
         })
         .catch(function () { Store.linkNote = 'auth_link_bad'; });
     }
-    Store.ready = fromLink().then(loadMe).catch(function () { /* нет сети или сессия истекла */ });
+    Store.ready = fromLink().then(loadMe).then(function (x) { setTimeout(flushAwards, 2000); return x; })
+      .catch(function () { /* нет сети или сессия истекла */ });
 
     Store.auth = {
       current: function () { return toPub(me); },
@@ -280,13 +281,42 @@
         var before = levelInfo(me.xp).level;
         done[key] = true;
         return Store.sb.rpc('award', { p_key: key, p_kind: (meta && meta.kind) || null, p_level: (meta && meta.level) || 0 }).then(function (r) {
+          awardQ(key, null);
           me.xp = r.xp; var after = levelInfo(me.xp).level; emit();
           if (r.added) U.toast(t('points_plus', { n: r.added }), 'xp');
           if (after > before) setTimeout(function () { U.toast(t('level_up', { n: after }), 'level'); }, 400);
           return { added: r.added, xp: r.xp, level: after, leveledUp: after > before };
-        }, function (e) { delete done[key]; throw e; });
+        }, function (e) {
+          // нет сети или сбой сервера: очки не теряем — запоминаем и отправим ещё раз позже
+          if (!e || !e.status || e.status >= 500) { awardQ(key, { points: points, meta: meta || null }); throw e; }
+          awardQ(key, null); delete done[key]; throw e;
+        });
       }
     };
+    /* очередь неотправленных очков (в этом браузере, для этого человека) */
+    function awardQKey() { return 'award_q:' + (me ? me.id : ''); }
+    function awardQ(key, val) {
+      if (!me) return;
+      var q = U.storage.get(awardQKey(), {}) || {};
+      if (val) q[key] = val; else if (q[key]) delete q[key]; else return;
+      U.storage.set(awardQKey(), q);
+    }
+    var flushing = false;
+    function flushAwards() {
+      if (!me || flushing || (navigator.onLine === false)) return;
+      var q = U.storage.get(awardQKey(), {}) || {};
+      var keys = Object.keys(q);
+      if (!keys.length) return;
+      flushing = true;
+      keys.reduce(function (p, k) {
+        return p.then(function () {
+          delete done[k];
+          return Store.progress.award(k, q[k].points, q[k].meta).catch(function () { /* в другой раз */ });
+        });
+      }, Promise.resolve()).then(function () { flushing = false; }, function () { flushing = false; });
+    }
+    Store.flushAwards = flushAwards;
+    window.addEventListener('online', function () { setTimeout(flushAwards, 1500); });
     Store.reportIssue = function (info) {
       if (!me) return Promise.resolve();
       return api('POST', '/rest/v1/issues', { info: info }, { headers: { Prefer: 'return=representation' } })

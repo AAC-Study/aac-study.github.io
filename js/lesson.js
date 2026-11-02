@@ -455,7 +455,11 @@
       ]);
       b.setAttribute('aria-label', Tasks.taskLabel(task, lang) + ': ' + Tasks.taskText(task, lang) + (solved ? ' — ' + t('tk_solved') : ''));
       b.addEventListener('click', function () {
-        Tasks.open(lesson, task, { onSolved: function () { refreshTiles(); }, onClose: function () { refreshTiles(); b.focus(); } });
+        try { sessionStorage.setItem('open_task', lesson.id + '|' + task.id); } catch (e) { /* */ }
+        Tasks.open(lesson, task, { onSolved: function () { refreshTiles(); }, onClose: function () {
+          try { sessionStorage.removeItem('open_task'); } catch (e) { /* */ }
+          refreshTiles(); b.focus();
+        } });
       });
       tiles.push({ el: b, task: task });
       return b;
@@ -680,13 +684,27 @@
       progFill.style.width = '100%';
       progText.textContent = t('ls_read_done');
     }
+    /* после «Обновить» или F5 снова открываем задачу, которая была открыта */
+    var openTask = null;
+    try { openTask = sessionStorage.getItem('open_task'); } catch (e) { /* */ }
+    if (openTask && openTask.indexOf(lesson.id + '|') === 0) {
+      var tid = openTask.slice(lesson.id.length + 1);
+      var hit = tiles.filter(function (x) { return String(x.task.id) === tid; })[0];
+      if (hit) setTimeout(function () { if (!Tasks.isOpen() && hit.el.isConnected) hit.el.click(); }, 80);
+    }
     if (has(readKey)) markRead();
     else if (window.ReadingTracker) {
       setProgress(0);
-      ctl.stopTracker = ReadingTracker.start(main, function () {
+      /* прогресс чтения переживает перезагрузку и обновление сайта; с другим устройством — через сервер */
+      var me = Store.auth.current();
+      var stKey = 'read_st:' + (me ? me.id : '') + ':' + lesson.id, syncKey = 'read:' + lesson.id;
+      var stopT = ctl.stopTracker = ReadingTracker.start(main, function () {
         award(readKey, Store.POINTS.read);
         markRead();
-      }, { key: lesson.id, onProgress: setProgress, paused: function () { return Tasks.isOpen(); } });
+      }, { key: lesson.id, onProgress: setProgress, paused: function () { return Tasks.isOpen(); },
+        saved: U.storage.get(stKey, null),
+        onSave: function (st) { U.storage.set(stKey, st); if (window.DraftSync) DraftSync.push(syncKey, st); } });
+      if (window.DraftSync) DraftSync.pull(syncKey).then(function (r) { if (r && stopT.merge) stopT.merge(r); });
     }
   }
 

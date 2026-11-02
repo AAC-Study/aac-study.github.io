@@ -13,7 +13,8 @@
    Прочитано = конец достигнут И все секции просмотрены И вовлечённое время ≥ 50% ожидаемого
    (слова / 200 в минуту, минимум 30 с). Прокручивать вверх-вниз можно сколько угодно.
    opts.paused() → true приостанавливает часы (окно задачи поверх урока).
-   Состояние хранится в памяти по opts.key, чтобы перерисовка страницы (смена языка) не сбрасывала прогресс. */
+   Состояние хранится в памяти по opts.key, чтобы перерисовка страницы (смена языка) не сбрасывала прогресс.
+   opts.saved — прогресс, сохранённый раньше (после перезагрузки страницы); opts.onSave(state) — куда сохранять. */
 (function () {
   'use strict';
 
@@ -42,13 +43,41 @@
     return inter / Math.min(r.height, vh);
   }
 
+  /* берём больший прогресс из двух (этот браузер и другое устройство) */
+  function merge(S, x) {
+    if (!x || typeof x !== 'object') return S;
+    if (typeof x.engagedMs === 'number' && x.engagedMs > S.engagedMs) S.engagedMs = x.engagedMs;
+    if (x.endReached) S.endReached = true;
+    if (x.seen && typeof x.seen === 'object') Object.keys(x.seen).forEach(function (id) {
+      var v = Number(x.seen[id]) || 0;
+      if (!(S.seen[id] >= v)) S.seen[id] = v;
+    });
+    return S;
+  }
+
   function start(root, onDone, opts) {
     var o = {};
     Object.keys(DEFAULTS).forEach(function (k) { o[k] = DEFAULTS[k]; });
     if (opts) Object.keys(opts).forEach(function (k) { o[k] = opts[k]; });
 
     var key = o.key || 'default';
-    var S = states[key] || (states[key] = { engagedMs: 0, seen: {}, endReached: false, done: false });
+    var S = states[key];
+    if (!S) {
+      S = states[key] = { engagedMs: 0, seen: {}, endReached: false, done: false };
+      merge(S, o.saved);              // прогресс, сохранённый до перезагрузки страницы
+    }
+    var lastSaved = '';
+    function save(force) {
+      if (!o.onSave) return;
+      var snap = { engagedMs: Math.round(S.engagedMs), seen: S.seen, endReached: S.endReached };
+      var j = JSON.stringify(snap);
+      if (j === lastSaved) return;
+      var t = now();
+      if (!force && t - (save.at || 0) < 2000) return;   // не чаще раза в 2 секунды
+      save.at = t; lastSaved = j;
+      snap.at = t;
+      try { o.onSave(snap); } catch (e) { /* */ }
+    }
 
     var sections = Array.prototype.slice.call(root.querySelectorAll(o.sectionSelector));
     var endEl = root.querySelector(o.endSelector);
@@ -122,6 +151,7 @@
         });
       }
       if (o.onProgress) o.onProgress(progress());
+      save(false);
       if (!S.done && S.endReached && S.engagedMs >= needEngagedMs &&
           info.every(function (x) { return S.seen[x.id] >= x.needMs; })) {
         S.done = true;
@@ -133,6 +163,7 @@
     function stop() {
       if (stopped) return;
       stopped = true;
+      save(true);
       if (timer) clearInterval(timer);
       if (io) io.disconnect();
       if (ioEnd) ioEnd.disconnect();
@@ -146,8 +177,11 @@
       };
     };
 
+    /* прогресс с другого устройства пришёл позже: добавляем */
+    stop.merge = function (x) { merge(S, x); if (o.onProgress && !stopped) o.onProgress(progress()); };
     if (S.done) { stop(); if (onDone) onDone(); return stop; }
     timer = setInterval(tick, o.tickMs);
+    if (o.onProgress) o.onProgress(progress());     // сохранённый прогресс видно сразу
     return stop;
   }
 
