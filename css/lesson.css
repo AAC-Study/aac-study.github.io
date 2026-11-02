@@ -482,3 +482,11 @@
   .tk-tools { gap: 6px 8px; }
   .tk-tool, .tk-color, .tk-size { width: 44px; }
 }
+
+/* ---------- офлайн-уроки ---------- */
+.off-box { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.off-box .ic, .off-chip .ic { width: 18px; height: 18px; }
+.off-chip { display: inline-flex; align-items: center; gap: 6px; color: var(--good, #16a34a); border-color: currentColor; }
+.off-note { flex-basis: 100%; margin: 0; font-size: .86rem; }
+.off-bar { position: fixed; left: 50%; transform: translateX(-50%); top: calc(70px + env(safe-area-inset-top)); z-index: 90; box-shadow: 0 6px 20px rgba(0,0,0,.18);
+  background: var(--text); color: var(--bg); padding: 8px 14px; border-radius: 999px; font-size: .9rem; max-width: calc(100% - 32px); text-align: center; }

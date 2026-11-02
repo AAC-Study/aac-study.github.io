@@ -1,7 +1,29 @@
-/* Service worker: только пуш-уведомления (ничего не кэширует, чтобы всегда была свежая версия сайта). */
-var SW_VERSION = '2026-11-02.12';
+/* Service worker: пуш-уведомления и офлайн-уроки.
+   Сайт всегда грузится из сети (свежая версия). Только если сети нет — отдаём то, что человек сам
+   скачал кнопкой «Скачать для офлайна» (кэш aac-offline-v1, его заполняет js/offline.js). */
+var SW_VERSION = '2026-11-02.13';
+var OFFLINE_CACHE = 'aac-offline-v1';
 self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });
+
+self.addEventListener('fetch', function (e) {
+  var req = e.request;
+  if (req.method !== 'GET') return;
+  var url = new URL(req.url);
+  if (url.origin !== self.location.origin) return;            // Supabase, шрифты и т.п. — не трогаем
+  e.respondWith(fetch(req).catch(function (err) {
+    return caches.open(OFFLINE_CACHE).then(function (c) {
+      return c.match(req, { ignoreSearch: true }).then(function (r) {
+        if (r) return r;
+        if (req.mode === 'navigate') {
+          return c.match(self.registration.scope).then(function (x) { return x || c.match(new URL('index.html', self.registration.scope).href); })
+            .then(function (x) { if (x) return x; throw err; });
+        }
+        throw err;
+      });
+    });
+  }));
+});
 
 /* iPhone/Safari требует показывать каждое уведомление, иначе отключает подписку */
 var MUST_SHOW = /iPhone|iPad|iPod|Macintosh.*Safari/.test(self.navigator.userAgent || '') && !/Chrome|Chromium|Edg|Firefox/.test(self.navigator.userAgent || '');

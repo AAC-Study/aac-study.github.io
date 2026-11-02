@@ -145,7 +145,12 @@
       if (sess.expires_at - 60 > Date.now() / 1000) return Promise.resolve(sess);
       if (!refreshing) refreshing = http('POST', '/auth/v1/token?grant_type=refresh_token', { refresh_token: sess.refresh_token }, { auth: false })
         .then(function (r) { saveSess(sessFrom(r)); refreshing = null; return sess; })
-        .catch(function (e) { refreshing = null; saveSess(null); me = null; emit(); throw e; });
+        .catch(function (e) {
+          refreshing = null;
+          // нет интернета — вход не сбрасываем (офлайн-уроки), выходим только если сервер сказал «токен недействителен»
+          if (e && (e.status === 400 || e.status === 401 || e.status === 403)) { saveSess(null); me = null; U.storage.set('sb_me_cache', null); emit(); }
+          throw e;
+        });
       return refreshing;
     }
     function api(method, path, body, opts) { return fresh().then(function () { return http(method, path, body, opts); }); }
@@ -162,8 +167,15 @@
       ]).then(function (r) {
         me = r[0] && r[0][0] ? r[0][0] : null;
         done = {}; (r[1] || []).forEach(function (x) { done[x.key] = true; });
+        U.storage.set('sb_me_cache', me ? { id: me.id, me: me, done: done } : null);   // для открытия без интернета
         return me;
-      }).catch(function (e) { if (e.status === 401) { saveSess(null); me = null; } throw e; });
+      }).catch(function (e) {
+        if (e.status === 401) { saveSess(null); me = null; U.storage.set('sb_me_cache', null); throw e; }
+        // нет интернета: показываем последний сохранённый профиль, чтобы открылись скачанные уроки
+        var c = U.storage.get('sb_me_cache', null);
+        if (c && sess && c.id === sess.user.id) { me = c.me; done = c.done || {}; return me; }
+        throw e;
+      });
     }
     function mapAuthErr(e) {
       var m = String((e && e.message) || '').toLowerCase();
@@ -203,7 +215,7 @@
       },
       signOut: function () {
         var p = sess ? http('POST', '/auth/v1/logout', {}).catch(function () {}) : Promise.resolve();
-        saveSess(null); me = null; done = {}; emit(); return p;
+        saveSess(null); me = null; done = {}; U.storage.set('sb_me_cache', null); emit(); return p;
       }
     };
 

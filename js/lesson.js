@@ -359,7 +359,8 @@
         ]),
         el('div', { class: 'ls-file__desc' }, t('ls_file_desc', { n: teacher.length + ai.length })),
         el('div', { class: 'ls-file__fmt' }, t('ls_file_fmt')),
-        el('div', { class: 'ls-file__btns' }, [dlBtn('he'), dlBtn('ru')])
+        el('div', { class: 'ls-file__btns' }, [dlBtn('he'), dlBtn('ru')]),
+        window.Offline ? Offline.button(lesson.id) : null
       ])
     ]);
     section(SECTIONS[0], [fileCard]);
