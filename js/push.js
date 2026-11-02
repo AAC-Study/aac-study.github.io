@@ -80,12 +80,26 @@
   }
 
   var warmAt = 0;
+  /* подписка этого устройства (если её нет — создаём) + запись на сервер для текущего человека и языка */
+  function subscribeAndSave(registration) {
+    var keyP = U.storage.get('push_vapid', '') ? Promise.resolve(U.storage.get('push_vapid', '')) :
+      fn({ action: 'key' }).then(function (x) { U.storage.set('push_vapid', x.key); return x.key; });
+    var lang = I18N.lang;
+    return keyP.then(function (key) {
+      return registration.pushManager.getSubscription().then(function (s) {
+        return s || registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToU8(key) });
+      });
+    }).then(function (sub) {
+      return fn({ action: 'save', sub: sub.toJSON(), lang: lang, ua: ua });
+    }).then(function () { synced = (Store.auth.current() || {}).id + '|' + lang; });
+  }
+  var synced = null;
   var Push = {
     reason: reason,
     /* включено ли на этом устройстве */
     isOn: function () {
       if (reason() || Notification.permission !== 'granted') return Promise.resolve(false);
-      if (U.storage.get('push_on', false) === false) return Promise.resolve(false);
+      if (U.storage.get('push_on', null) === false) return Promise.resolve(false);   // выключил сам кнопкой
       if (!server()) return Promise.resolve(true);
       return mySub().then(function (s) { return !!s; }, function () { return false; });
     },
@@ -98,16 +112,8 @@
         return reg();
       }).then(function (registration) {
         if (!server()) return null;
-        var keyP = U.storage.get('push_vapid', '') ? Promise.resolve(U.storage.get('push_vapid', '')) :
-          fn({ action: 'key' }).then(function (x) { U.storage.set('push_vapid', x.key); return x.key; });
-        return keyP.then(function (key) {
-          return registration.pushManager.getSubscription().then(function (s) {
-            return s || registration.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64ToU8(key) });
-          });
-        }).then(function (sub) {
-          return fn({ action: 'save', sub: sub.toJSON(), lang: I18N.lang, ua: ua });
-        });
-      }).then(function () { U.storage.set('push_on', true); syncedLang = I18N.lang; U.storage.set('push_offer', 'done'); });
+        return subscribeAndSave(registration);
+      }).then(function () { U.storage.set('push_on', true); U.storage.set('push_offer', 'done'); });
     },
     disable: function () {
       U.storage.set('push_on', false);
@@ -122,7 +128,7 @@
     local: function (kind) {
       var tx = LOCAL_TEXT[kind][I18N.lang] || LOCAL_TEXT[kind].he;
       return reg().then(function (r) {
-        return r.showNotification(tx[0], { body: tx[1], icon: 'img/icon-192.png', badge: 'img/badge-96.png', tag: kind, silent: true });
+        return r.showNotification(tx[0], { body: tx[1], icon: 'img/icon-192.png', badge: 'img/badge-96.png', tag: kind, silent: false, vibrate: [180, 80, 180] });
       });
     },
     /* kind: 'test' | 'goal'; delay в секундах */
@@ -150,20 +156,22 @@
       fn({ action: 'issue', id: issueId }).catch(function () { /* сообщение уже сохранено, пуш не обязателен */ });
     }
   };
-  /* язык уведомлений = язык сайта: при смене языка и при входе обновляем его на сервере */
-  var syncedLang = null;
+  /* Уведомления не должны выключаться сами (переустановка приложения, вход в аккаунт, обновление сайта, смена языка).
+     Если разрешение уже дано и человек сам не выключил их кнопкой — тихо включаем обратно и сообщаем серверу,
+     на каком языке присылать. Раз на человека и язык за открытие сайта. */
   function syncLang() {
     if (!server() || reason() || Notification.permission !== 'granted') return;
-    if (U.storage.get('push_on', false) === false || !Store.auth.current()) return;
-    if (syncedLang === I18N.lang) return;
-    var lang = I18N.lang;
-    mySub().then(function (s) {
-      if (!s) return null;
-      return fn({ action: 'save', sub: s.toJSON(), lang: lang, ua: ua }).then(function () { syncedLang = lang; });
-    }).catch(function () { /* попробуем при следующей смене */ });
+    var me = Store.auth.current();
+    if (!me || U.storage.get('push_on', null) === false) return;
+    var key = me.id + '|' + I18N.lang;
+    if (synced === key) return;
+    synced = key;
+    reg().then(subscribeAndSave).then(function () { U.storage.set('push_on', true); })
+      .catch(function () { synced = null; /* попробуем в следующий раз */ });
   }
   document.addEventListener('langchange', syncLang);
   document.addEventListener('userchange', syncLang);
+  if (Store.ready && Store.ready.then) Store.ready.then(syncLang, function () {});
   Push.syncLang = syncLang;
 
   /* пришёл пуш, а сайт открыт: сразу обновляем колокольчик, чаты и список */

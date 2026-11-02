@@ -555,6 +555,7 @@ button.sc-chat__who:hover { background: var(--accent-soft); }
 .sc-bub--stars .sc-nick, .sc-bub--cosmic .sc-nick, .sc-bub--ember .sc-nick, .sc-bub--midnight .sc-nick, .sc-bub--neon .sc-nick { filter: brightness(1.6) saturate(.8); }
 /* старые сообщения не анимируем (экономим батарею) */
 .sc-msg--still .sc-bub, .sc-msg--still .sc-bub::before, .sc-msg--still .sc-bub::after { animation: none !important; }
+.sc-msg--seen, .sc-msg--seen .sc-bub, .sc-msg--seen .sc-bub::before, .sc-msg--seen .sc-bub::after { animation: none !important; }   /* уже показанные сообщения при обновлении не анимируются заново */
 
 /* ===================================================================
    ФОНЫ ЧАТА: 10 статичных + 10 анимированных (только у себя на экране)

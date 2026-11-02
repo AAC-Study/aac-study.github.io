@@ -260,7 +260,7 @@
      /chat/:id — переписка
      =================================================================== */
   App.registerRoute('/chat/:id', function (params, view) {
-    var S = { id: params.id, chat: null, msgs: {}, ids: [], since: null, hasMore: true, loadingOld: false, reply: null, edit: null,
+    var S = { id: params.id, chat: null, msgs: {}, ids: [], shown: {}, since: null, hasMore: true, loadingOld: false, reply: null, edit: null,
               nodes: {}, users: {}, firstUnread: null, alive: true, cooldownUntil: 0, polls: 0, myId: me().id };
     view.classList.add('sc-view', 'sc-view--chat');
     document.body.classList.add('sc-chat-open');
@@ -470,18 +470,29 @@
     function renderList(force) {
       var keepBottom = atBottom(80);
       var prevH = scroll.scrollHeight, prevTop = scroll.scrollTop;
-      var frag = document.createDocumentFragment(), lastDay = null, nodes = {};
+      var nodes = {};
+      S.ids.forEach(function (id, i) {
+        var m = S.msgs[id], prev = S.msgs[S.ids[i - 1]], next = S.msgs[S.ids[i + 1]];
+        var cached = S.nodes[id], built = msgNode(m, prev, next);
+        if (!force && cached && cached.sig === built.sig) built = cached;
+        nodes[id] = built;
+      });
+      /* ничего не поменялось (тот же порядок, те же узлы) — DOM не трогаем совсем, чтобы чат не «моргал» */
+      var key = [S.hasMore, S.firstUnread, S.ids.join(',')].join('|');
+      var same = !force && key === S.listKey && S.ids.every(function (id) { return S.nodes[id] === nodes[id]; });
+      S.listKey = key;
+      if (same) return;
+      var frag = document.createDocumentFragment(), lastDay = null;
       if (S.hasMore && S.ids.length) frag.appendChild(el('div', { class: 'sc-more' }, el('button', { type: 'button', class: 'btn btn--ghost sc-btn-s', onclick: loadOlder, 'data-act': 'older' }, t('sc_load_older'))));
       if (!S.ids.length) frag.appendChild(el('div', { class: 'sc-hello' }, [el('span', { class: 'sc-hello__ic', html: ic('chat') }), el('span', null, t('sc_say_hi'))]));
       S.ids.forEach(function (id, i) {
-        var m = S.msgs[id], prev = S.msgs[S.ids[i - 1]], next = S.msgs[S.ids[i + 1]];
+        var m = S.msgs[id], built = nodes[id];
         var day = new Date(Social.fmt.ms(m.created_at)).toDateString();
         if (day !== lastDay) { frag.appendChild(el('div', { class: 'sc-day' }, el('span', null, Social.fmt.day(m.created_at)))); lastDay = day; }
         if (S.firstUnread === id) frag.appendChild(el('div', { class: 'sc-unread-sep', id: 'sc-unread' }, el('span', null, t('sc_new_messages'))));
-        var cached = S.nodes[id], built = msgNode(m, prev, next);
-        if (!force && cached && cached.sig === built.sig) built = cached;
         built.node.classList.toggle('sc-msg--still', i < S.ids.length - 14);   // анимируем только последние
-        nodes[id] = built;
+        if (S.shown[id]) built.node.classList.add('sc-msg--seen');            // и только новые: уже показанные не «моргают»
+        S.shown[id] = 1;
         frag.appendChild(built.node);
       });
       S.nodes = nodes;
@@ -718,6 +729,10 @@
         if (!S.alive) return;
         S.chat = r[0]; S.users = r[1];
         S.chat.members.forEach(function (m) { S.users[m.user_id] = m.user; });
+        /* шапку и поле ввода перерисовываем только если что-то правда поменялось — иначе аватар и ник «моргают» */
+        var hs = JSON.stringify(S.chat, function (k, v) { return k === 'last_read_at' || k === 'last_sent_at' || k === 'here_at' || k === 'last_msg_at' ? undefined : v; }) + '|' + me().prefs.chatBg;
+        if (hs === S.headSig) return;
+        S.headSig = hs;
         drawHead(); applyBg(); drawComposer(); drawPin();
       });
     }
@@ -730,9 +745,12 @@
       if (!S.alive || polling) return Promise.resolve();
       polling = true;
       S.polls++;
-      /* участники (а с ними и «прочитано» ✓✓) обновляются: в личном чате раз в 6 с, в группе раз в 15 с */
-      var every = S.chat && S.chat.kind === 'direct' ? 2 : 5;
-      var extra = S.polls % every === 0 ? refreshChat().catch(function () {}) : Promise.resolve();
+      /* «прочитано» ✓✓ проверяем при каждом опросе (лёгкий запрос), остальное о чате — раз в 10 секунд */
+      var extra = S.polls % 5 === 0 ? refreshChat().catch(function () {}) : Social.readState(S.id).then(function (rows) {
+        if (!S.alive || !S.chat) return;
+        var at = {}; (rows || []).forEach(function (x) { at[x.user_id] = x.last_read_at; });
+        S.chat.members.forEach(function (m) { if (at[m.user_id] !== undefined) m.last_read_at = at[m.user_id]; });
+      }).catch(function () {});
       return Promise.all([Social.messages(S.id, S.since ? { since: S.since } : { limit: 60 }), extra]).then(function (r) {
         polling = false;
         if (!S.alive) return;
@@ -741,11 +759,11 @@
         var sys = fresh.some(function (m) { return !S.msgs[m.id] && m.kind === 'system'; });
         var rs = readSig();
         if (merge(fresh)) {
-          renderList(S.polls % 5 === 0 || rs !== S.readSig);
+          renderList();
           if (newFromOthers && !wasBottom) { jump.hidden = false; jump.classList.add('has-n'); jump.querySelector('.sc-jump__n').textContent = String(newFromOthers); }
           if (newFromOthers && wasBottom) markRead();
         }
-        else if (rs !== S.readSig) renderList(true);   // собеседник прочитал — перерисовать галочки
+        else if (rs !== S.readSig) renderList();   // собеседник прочитал — перерисуются только сообщения с новыми галочками
         S.readSig = rs;
         if (sys) refreshChat().catch(function () {});
       }, function (e) {
@@ -779,13 +797,13 @@
     window.addEventListener('focus', onVisible);
     window.addEventListener('blur', onBlur);
     window.addEventListener('pagehide', onPageHide);
-    /* раз в 15 секунд подтверждаем «я в чате» (сервер считает отметку живой 25 секунд) */
+    /* раз в 14 секунд подтверждаем «я в чате» (сервер считает отметку живой 25 секунд) */
     var beats = 0;
     var timer = setInterval(function () {
       if (document.hidden) return;
       poll();
-      if (++beats % 5 === 0 && present()) here(true);
-    }, 3000);
+      if (++beats % 7 === 0 && present()) here(true);
+    }, 2000);
 
     Promise.all([refreshChat(), Social.messages(S.id, { limit: 60 })]).then(function (r) {
       if (!S.alive) return;

@@ -183,6 +183,25 @@ async function closeModals(page) {
     await page.waitForSelector('.sc-bub--k-deleted');
   });
 
+  await step('chat does not flicker on polls; ✓✓ appears within ~3 s after the other side reads', async () => {
+    await page.fill('.sc-input', 'tick-test');
+    await page.press('.sc-input', 'Enter');
+    await page.waitForFunction(() => Array.from(document.querySelectorAll('.sc-bub__text')).some(x => x.textContent === 'tick-test'));
+    await page.waitForTimeout(2500);
+    await page.evaluate(() => { window.__first = document.querySelector('.sc-msg'); window.__muts = 0;
+      new MutationObserver(m => { window.__muts += m.length; }).observe(document.querySelector('.sc-chat'), { childList: true, subtree: true }); });
+    await page.waitForTimeout(7000);   // several polls with nothing new
+    const r = await page.evaluate(() => ({ same: document.querySelector('.sc-msg') === window.__first && window.__first.isConnected, muts: window.__muts }));
+    assert.ok(r.same, 'message node was rebuilt');
+    assert.strictEqual(r.muts, 0, 'DOM changed while nothing happened: ' + r.muts);
+    // B reads on another device: bump B's last_read_at directly in the mock store
+    await page.evaluate(([cid, b]) => { const k = Object.keys(localStorage).find(x => { try { const d = JSON.parse(localStorage[x]); return d && d.v === 1 && d.members; } catch (e) { return false; } });
+      const d = JSON.parse(localStorage[k]); d.members[cid][b].last_read_at = new Date(Date.now() + 1000).toISOString(); localStorage[k] = JSON.stringify(d); }, [direct, B]);
+    const t0 = Date.now();
+    await page.waitForFunction(() => { const o = Array.from(document.querySelectorAll('.sc-msg--out')).pop(); return o && o.querySelector('.sc-bub__tick.is-read'); }, null, { timeout: 4000 });
+    assert.ok(Date.now() - t0 < 3500, 'ticks took ' + (Date.now() - t0) + ' ms');
+  });
+
   await step('group with 3 users: only admins can write', async () => {
     await go(page, '/chats');
     await page.click('[data-act=new-group]');

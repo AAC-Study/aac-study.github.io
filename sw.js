@@ -24,8 +24,12 @@ function show(msg) {
     icon: 'img/icon-192.png',
     badge: 'img/badge-96.png',      // значок в строке состояния Android: только белый силуэт на прозрачном фоне
     tag: msg.tag || undefined,
-    renotify: !!msg.tag,
-    silent: true,           // без звука, как просили
+    renotify: !!msg.tag,    // новое сообщение в том же чате снова звенит и всплывает
+    /* Звук и вибрация как в мессенджерах: телефон сам решает по своему режиму
+       (звук — звенит, вибрация — вибрирует, беззвучный — тихо). На Android уведомление со звуком всплывает сверху. */
+    silent: false,
+    vibrate: [180, 80, 180],
+    timestamp: Date.now(),
     data: { url: msg.url || '' }
   });
 }
