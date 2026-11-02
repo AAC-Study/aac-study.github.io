@@ -268,6 +268,25 @@ step('drafts: own rows only, upsert works, limit counts only new keys', function
   ok(D, "update public.drafts set data = '{}' where user_id = " + q(B));
   assert.strictEqual(admin("select data->>'text' from public.drafts where user_id = " + q(B)), 'y', 'D cannot change B drafts');
 });
+step('hardening: push endpoint allowlist, issue limits, award catalog', function () {
+  fails(B, "insert into public.push_subs(endpoint, user_id, p256dh, auth) values ('http://127.0.0.1:9/x', " + q(B) + ", 'k', 'a')", 'push_subs_endpoint_ok');
+  fails(B, "insert into public.push_subs(endpoint, user_id, p256dh, auth) values ('https://fcm.googleapis.com.evil.io/x', " + q(B) + ", 'k', 'a')", 'push_subs_endpoint_ok');
+  ok(B, "insert into public.push_subs(endpoint, user_id, p256dh, auth) values ('https://fcm.googleapis.com/fcm/send/abc', " + q(B) + ", 'k', 'a')");
+  for (let i = 0; i < 12; i++) ok(B, "insert into public.push_subs(endpoint, user_id, p256dh, auth) values ('https://fcm.googleapis.com/fcm/send/n" + i + "', " + q(B) + ", 'k', 'a')");
+  assert.strictEqual(admin("select count(*) from public.push_subs where user_id = " + q(B)), '10', 'max 10 devices');
+  fails(B, "insert into public.issues(info) values (jsonb_build_object('t', repeat('x', 5000000)))", 'issues_info_size');
+  for (let i = 0; i < 10; i++) ok(D, "insert into public.issues(info) values ('{\"t\":1}')");
+  fails(D, "insert into public.issues(info) values ('{\"t\":1}')", 'too_many_reports');
+  // empty catalog: anything allowed (old setups keep working)
+  ok(B, "select public.award('read:any-lesson')");
+  admin("insert into public.award_keys(key) values ('read:math-2026-11-01'), ('solve:math-2026-11-01:t1')");
+  fails(B, "select public.award('read:forged-1')", 'bad_key');
+  fails(B, "select public.award('solve:math-2026-11-01:fake')", 'bad_key');
+  ok(B, "select public.award('solve:math-2026-11-01:t1', 'solve', 0)");
+  ok(B, "select public.award('download:math-2026-11-01:ru')");
+  fails(B, "select public.award('download:math-2026-11-01:xx')", 'bad_key');
+  fails(B, "select count(*) from public.award_keys", 'permission denied');
+});
 step('anon gets nothing', function () {
   const r = as('', "set role anon; select count(*) from public.messages");
   assert.ok(!r.ok && /permission denied/.test(r.err), r.err || r.out);

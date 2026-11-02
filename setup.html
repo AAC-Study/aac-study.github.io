@@ -67,7 +67,28 @@
   }
   var dbBtn = document.getElementById('copyDb'), fnBtn = document.getElementById('copyFn');
   var codeEl = document.getElementById('code'), err1 = document.getElementById('err1');
-  Promise.all([load('schema', 'supabase/schema.sql'), load('social', 'supabase/social.sql')])
+  /* список того, за что дают очки (уроки и задачи) — чтобы нельзя было «накрутить» очки выдуманными ключами */
+  function script(src) {
+    return new Promise(function (res, rej) { var s = document.createElement('script'); s.src = src + '?v=' + Date.now(); s.onload = res; s.onerror = function () { rej(new Error(src)); }; document.head.appendChild(s); });
+  }
+  function loadKeys() {
+    window.LESSONS = window.LESSONS || {};
+    return script('data/lessons/index.js').then(function () {
+      return Promise.all((window.LESSON_INDEX || []).map(function (l) { return script('data/lessons/' + l.id + '.js'); }));
+    }).then(function () {
+      var keys = [], ok = /^[A-Za-z0-9._-]{1,80}$/;
+      (window.LESSON_INDEX || []).forEach(function (l) {
+        if (!ok.test(l.id)) return;
+        keys.push('read:' + l.id);
+        var L = window.LESSONS[l.id] || {}, tk = L.tasks || {};
+        (tk.teacher || []).concat(tk.ai || []).forEach(function (t) { if (t && ok.test(String(t.id))) keys.push('solve:' + l.id + ':' + t.id); });
+      });
+      if (!keys.length) { files.keys = ''; return; }
+      files.keys = '\n\n-- за что дают очки (' + keys.length + ')\ndelete from public.award_keys;\ninsert into public.award_keys(key) values\n' +
+        keys.map(function (k) { return "  ('" + k + "')"; }).join(',\n') + '\non conflict do nothing;\n';
+    });
+  }
+  Promise.all([load('schema', 'supabase/schema.sql'), load('social', 'supabase/social.sql'), loadKeys()])
     .then(function () { dbBtn.disabled = false; })
     .catch(function (e) { err1.textContent = 'Не удалось загрузить: ' + e.message; });
   load('fn', 'supabase/functions/push/index.ts')
@@ -79,7 +100,7 @@
     if (code.length < 6) { err1.textContent = 'Код слишком короткий (минимум 6 символов).'; codeEl.focus(); return; }
     if (/['\\]/.test(code)) { err1.textContent = 'Без кавычек и обратной косой черты, пожалуйста.'; return; }
     err1.textContent = '';
-    var sql = files.schema + '\n\n' + files.social +
+    var sql = files.schema + '\n\n' + files.social + (files.keys || '') +
       "\n\n-- код приглашения\nupdate public.app_secrets set value = '" + code + "' where key = 'invite_code';\n" +
       "select 'Готово! База настроена.' as result;\n";
     copy(sql, dbBtn, 'Скопировать код базы');

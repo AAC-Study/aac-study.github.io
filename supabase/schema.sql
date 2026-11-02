@@ -67,6 +67,7 @@ begin
   if exists(select 1 from public.profiles where id = auth.uid() and banned) then raise exception 'banned'; end if;
   fam := split_part(p_key, ':', 1);
   if fam not in ('read', 'download', 'solve') then raise exception 'bad_key'; end if;
+  if char_length(p_key) > 200 or not public.award_key_ok(p_key) then raise exception 'bad_key'; end if;
   if p_level is null or p_level < 0 or p_level > 3 then raise exception 'bad_level'; end if;
   pts := case
     when fam = 'read' then 10
@@ -224,3 +225,47 @@ begin
 end $$;
 drop trigger if exists drafts_limit on public.drafts;
 create trigger drafts_limit before insert on public.drafts for each row execute function public.drafts_limit();
+
+-- ---------- защита (проверка безопасности 02.11) ----------
+-- 1) Подписка на пуш — только адрес настоящей службы браузера (иначе функция могла бы стучаться куда угодно), не больше 10 устройств.
+alter table public.push_subs drop constraint if exists push_subs_endpoint_ok;
+alter table public.push_subs add constraint push_subs_endpoint_ok check (
+  endpoint ~* '^https://([a-z0-9-]+\.)*(fcm\.googleapis\.com|android\.googleapis\.com|updates\.push\.services\.mozilla\.com|notify\.windows\.com|push\.apple\.com)/'
+  and char_length(endpoint) <= 1000 and char_length(p256dh) <= 200 and char_length(auth) <= 100) not valid;
+create or replace function public.push_subs_limit() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if (select count(*) from public.push_subs where user_id = new.user_id and endpoint <> new.endpoint) >= 10 then
+    delete from public.push_subs where endpoint = (select endpoint from public.push_subs where user_id = new.user_id order by created_at limit 1);
+  end if;
+  return new;
+end $$;
+drop trigger if exists push_subs_limit on public.push_subs;
+create trigger push_subs_limit before insert on public.push_subs for each row execute function public.push_subs_limit();
+
+-- 2) Сообщения о проблемах: не больше ~4 МБ (4 фото), 10 в час и 300 всего от одного человека.
+alter table public.issues drop constraint if exists issues_info_size;
+alter table public.issues add constraint issues_info_size check (octet_length(info::text) <= 4500000) not valid;
+create or replace function public.issues_limit() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if (select count(*) from public.issues where user_id = new.user_id and created_at > now() - interval '1 hour') >= 10 then raise exception 'too_many_reports'; end if;
+  if (select count(*) from public.issues where user_id = new.user_id) >= 300 then raise exception 'too_many_reports'; end if;
+  return new;
+end $$;
+drop trigger if exists issues_limit on public.issues;
+create trigger issues_limit before insert on public.issues for each row execute function public.issues_limit();
+
+-- 3) Очки только за то, что есть на сайте: список ключей (уроки, задачи) заполняет страница setup.html.
+--    Пока список пуст (старая настройка), проверка не включается — чтобы ничего не сломать.
+create table if not exists public.award_keys (key text primary key);
+alter table public.award_keys enable row level security;   -- без политик: снаружи не видно
+revoke all on public.award_keys from anon, authenticated;
+create or replace function public.award_key_ok(p_key text) returns boolean
+language sql stable security definer set search_path = public as $$
+  select not exists(select 1 from public.award_keys limit 1)
+      or exists(select 1 from public.award_keys where key = p_key)
+      or (p_key like 'download:%' and exists(select 1 from public.award_keys where key = 'read:' || split_part(p_key, ':', 2))
+          and split_part(p_key, ':', 3) in ('he', 'ru', 'offline'));
+$$;
+revoke execute on function public.award_key_ok(text) from public, anon, authenticated;

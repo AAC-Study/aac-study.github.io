@@ -104,6 +104,12 @@ const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
   },
 };
 
+// Пуши шлём только настоящим службам браузеров (Google, Mozilla, Microsoft, Apple) и только по https.
+// Иначе любой мог бы сохранить «подписку» с адресом внутреннего сервера и заставить функцию стучаться туда (SSRF).
+const PUSH_HOSTS = /(^|\.)(fcm\.googleapis\.com|android\.googleapis\.com|updates\.push\.services\.mozilla\.com|notify\.windows\.com|push\.apple\.com)$/i;
+const okEndpoint = (u: unknown) => {
+  try { const x = new globalThis.URL(String(u)); return x.protocol === "https:" && !x.port && PUSH_HOSTS.test(x.hostname); } catch (_) { return false; }
+};
 const host = (u: string) => { try { return new globalThis.URL(u).host; } catch (_) { return "?"; } };
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const runtime = () => (globalThis as { EdgeRuntime?: { waitUntil(p: Promise<unknown>): void } }).EdgeRuntime;
@@ -119,6 +125,7 @@ async function deliver(subs: Sub[], kind: string, x: X): Promise<number> {
   const as = await appServer();
   let sent = 0;
   await Promise.all(subs.map(async (s) => {
+    if (!okEndpoint(s.endpoint)) { console.error(`push skipped: not a browser push service → ${host(s.endpoint)}`); return; }
     const msg = (TEXT[s.lang] || TEXT.he)[kind](x);
     if (x.url) msg.url = x.url;
     if (x.tag) msg.tag = x.tag;
@@ -199,7 +206,9 @@ Deno.serve(async (req) => {
 
     if (action === "save") {   // сохранить подписку этого устройства
       const s = body.sub || {};
-      if (!s.endpoint || !s.keys?.p256dh || !s.keys?.auth) return json({ error: "bad subscription" }, 400);
+      if (!okEndpoint(s.endpoint) || !s.keys?.p256dh || !s.keys?.auth || String(s.keys.p256dh).length > 200 || String(s.keys.auth).length > 100) {
+        return json({ error: "bad subscription" }, 400);
+      }
       await db("push_subs?on_conflict=endpoint", {
         method: "POST",
         headers: { Prefer: "resolution=merge-duplicates" },

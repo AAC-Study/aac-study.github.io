@@ -1,0 +1,2173 @@
+/* Lesson computer-2026-10-22 (Intro to Computers): computer structure and binary numbers. Format: see the comment at the top of data/lessons/math-2026-11-01.js. All conversions are generated and checked with parseInt / toString. */
+window.LESSONS = window.LESSONS || {};
+window.LESSONS["computer-2026-10-22"] = {
+  "id": "computer-2026-10-22",
+  "subject": "computer",
+  "date": "2026-10-22",
+  "title": {
+    "he": "מבנה המחשב ומספרים בינאריים",
+    "ru": "Устройство компьютера и двоичные числа",
+    "en": "Computer structure and binary numbers"
+  },
+  "summary": {
+    "he": "רכיבי המחשב והמעבד, פירמידת הזיכרון, ושלוש שיטות: מבסיס 10 לבסיס 2 (חלוקה ב־2 ושיטה טבלאית) ומבסיס 2 לבסיס 10.",
+    "ru": "Устройство компьютера и процессора, пирамида памяти и три метода: из десятичной в двоичную (деление на 2 и таблица весов) и из двоичной в десятичную.",
+    "en": "Computer and CPU parts, the memory pyramid, and three methods: base 10 to base 2 (division by 2 and the table method) and base 2 to base 10."
+  },
+  "timeline": [
+    {
+      "kind": "talk",
+      "title": {
+        "he": "מה יהיה בקורס",
+        "ru": "Что будет в курсе",
+        "en": "What the course covers"
+      },
+      "text": {
+        "he": "תוכנית הקורס מהלוח:\n1. היכרות עם רכיבי החומרה של המחשב\n2. מערכות ספרתיות: בינארי, דצימלי, Hexa, Octal\n3. חיבור, חיסור וכפל בבסיסים שונים\n4. שערים לוגיים\n5. טבלאות אמת ומפות קרנו\n6. רכיבים כמו ADDER\n7. אסמבלר",
+        "ru": "План курса с доски:\n1. Знакомство с железом компьютера\n2. Системы счисления: двоичная, десятичная, Hexa, Octal\n3. Сложение, вычитание и умножение в разных системах\n4. Логические вентили\n5. Таблицы истинности и карты Карно\n6. Компоненты вроде сумматора (ADDER)\n7. Ассемблер",
+        "en": "The course plan from the board:\n1. Computer hardware components\n2. Number systems: binary, decimal, Hexa, Octal\n3. Addition, subtraction and multiplication in different bases\n4. Logic gates\n5. Truth tables and Karnaugh maps\n6. Components such as an ADDER\n7. Assembler"
+      }
+    },
+    {
+      "kind": "talk",
+      "title": {
+        "he": "המחשב כ\"קופסה\": קלט, עיבוד, פלט",
+        "ru": "Компьютер как «коробка»: ввод, обработка, вывод",
+        "en": "The computer as a \"box\": input, processing, output"
+      },
+      "text": {
+        "he": "משהו נכנס, מעובד בפנים, ויוצאת תוצאה.\nקלט (input): מקלדת, עכבר, מיקרופון, מצלמת רשת.\nפלט (output): מסך, רמקולים, אוזניות.",
+        "ru": "Что-то входит, внутри обрабатывается, выходит результат.\nВвод (input): клавиатура, мышь, микрофон, веб-камера.\nВывод (output): экран, колонки, наушники.",
+        "en": "Something goes in, gets processed inside, and a result comes out.\nInput: keyboard, mouse, microphone, webcam.\nOutput: screen, speakers, headphones."
+      }
+    },
+    {
+      "kind": "talk",
+      "title": {
+        "he": "מה יש בתוך המחשב",
+        "ru": "Что внутри компьютера",
+        "en": "What is inside the computer"
+      },
+      "text": {
+        "he": "לוח אם (כל הרכיבים מחוברים אליו), ספק כוח, כרטיס מסך, זיכרון, ו־CPU — יחידת העיבוד המרכזית. השבב עצמו בגודל של ציפורן. המעבד עובד בכך שזרם עובר בין מיליארדי טרנזיסטורים.",
+        "ru": "Материнская плата (к ней подключено всё остальное), блок питания, видеокарта, память и CPU — центральный процессор. Сам кристалл размером с ноготь. Процессор работает тем, что ток переходит между миллиардами транзисторов.",
+        "en": "Motherboard (everything connects to it), power supply, graphics card, memory, and the CPU — the central processing unit. The chip itself is the size of a fingernail. The CPU works by moving current between billions of transistors."
+      }
+    },
+    {
+      "kind": "talk",
+      "title": {
+        "he": "איך מייצרים מעבד",
+        "ru": "Как делают процессор",
+        "en": "How a CPU is made"
+      },
+      "text": {
+        "he": "מחול מפיקים סיליקון ומכינים ממנו פרוסה עגולה ודקה (wafer). מהנדסים מתכננים איפה יהיו מיליארדי הטרנזיסטורים, ובליתוגרפיה חורטים את התוכנית על הפרוסה. הכול נעשה בחדרים נקיים — ריס אחד על הפרוסה הופך את השבב לפחת. בסוף חותכים את הפרוסה לשבבים, בודקים אותם וממיינים לפי איכות (binning).",
+        "ru": "Из песка получают кремний и делают из него круглую тонкую пластину (wafer). Инженеры планируют, где будут миллиарды транзисторов, и литографией переносят план на пластину. Всё это в чистых комнатах — одна ресница на пластине отправляет чип в брак. В конце пластину режут на чипы, проверяют и сортируют по качеству (binning).",
+        "en": "Silicon is made from sand and turned into a thin round slice (a wafer). Engineers plan where billions of transistors go, and lithography puts the plan onto the wafer. All of this happens in clean rooms — a single eyelash on the wafer makes the chip a reject. Finally the wafer is cut into chips, which are tested and sorted by quality (binning)."
+      }
+    },
+    {
+      "kind": "talk",
+      "title": {
+        "he": "מבנה ה־CPU",
+        "ru": "Устройство CPU",
+        "en": "Inside the CPU"
+      },
+      "text": {
+        "he": "`ALU` (Arithmetic Logic Unit): חשבון (+ − × ÷) ולוגיקה (AND, OR, XOR, NOT).\n`CU` (Control Unit): יחידת הבקרה, מחליטה איזו יחידה עושה מה.\nיחידה למספרים עשרוניים (עם נקודה, כמו 0.123).\n`Pipeline`: מאיץ את העבודה — המעבד מכין את הצעדים הבאים מראש.\n`MMU` (Memory Management Unit): מעבירה נתונים בין המעבד לזיכרון.",
+        "ru": "`ALU` (Arithmetic Logic Unit): арифметика (+ − × ÷) и логика (AND, OR, XOR, NOT).\n`CU` (Control Unit): блок управления, решает, какой блок что делает.\nБлок дробных чисел (с точкой, как 0.123).\n`Pipeline`: ускоряет работу — процессор заранее готовит следующие шаги.\n`MMU` (Memory Management Unit): переносит данные между процессором и памятью.",
+        "en": "`ALU` (Arithmetic Logic Unit): arithmetic (+ − × ÷) and logic (AND, OR, XOR, NOT).\n`CU` (Control Unit): decides which unit does what.\nA unit for decimal (floating-point) numbers like 0.123.\n`Pipeline`: speeds things up — the CPU prepares the next steps in advance.\n`MMU` (Memory Management Unit): moves data between the CPU and memory."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "פירמידת הזיכרון",
+        "ru": "Пирамида памяти",
+        "en": "The memory pyramid"
+      },
+      "text": {
+        "he": "מלמעלה למטה:\nאוגרים (רגיסטרים) — בתוך המעבד\nזיכרון L1\nזיכרון מטמון פנימי (L2)\nזיכרון מטמון חיצוני (L3)\nRAM — זיכרון ראשי\nזיכרון משני (דיסק)\nככל שעולים בפירמידה, הזיכרון מהיר יותר, קטן יותר ויקר יותר.",
+        "ru": "Сверху вниз:\nрегистры — внутри процессора\nкэш L1\nвнутренний кэш (L2)\nвнешний кэш (L3)\nRAM — оперативная память\nвторичная память (диск)\nЧем выше в пирамиде, тем память быстрее, меньше и дороже.",
+        "en": "From top to bottom:\nregisters — inside the CPU\nL1 cache\ninternal cache (L2)\nexternal cache (L3)\nRAM — main memory\nsecondary memory (disk)\nThe higher in the pyramid, the faster, smaller and more expensive the memory."
+      }
+    },
+    {
+      "kind": "talk",
+      "title": {
+        "he": "אוגר הדגלים",
+        "ru": "Регистр флагов",
+        "en": "The flag register"
+      },
+      "text": {
+        "he": "כל דגל הוא ביט אחד: 0 = הכול רגיל, 1 = קרה משהו מיוחד.\nגלישה (overflow): המערכת מצפה לשתי ספרות, אבל `55 + 55 = 110` — שלוש ספרות. הדגל עולה ל־1.\nאפס (zero): `1 − 1 = 0`. התוצאה 0, והדגל עולה ל־1.\nיש עוד 20–30 אוגרים; נלמד אותם עם אסמבלר.",
+        "ru": "Каждый флаг — один бит: 0 = всё обычно, 1 = случилось что-то особенное.\nПереполнение (overflow): система ждёт две цифры, а `55 + 55 = 110` — три цифры. Флаг становится 1.\nНоль (zero): `1 − 1 = 0`. Результат 0, флаг становится 1.\nРегистров ещё 20–30; их пройдём вместе с ассемблером.",
+        "en": "Each flag is one bit: 0 = normal, 1 = something special happened.\nOverflow: the system expects two digits, but `55 + 55 = 110` — three digits. The flag becomes 1.\nZero: `1 − 1 = 0`. The result is 0, so the flag becomes 1.\nThere are 20–30 more registers; we will meet them with assembler."
+      }
+    },
+    {
+      "kind": "talk",
+      "title": {
+        "he": "זיכרון מטמון (Cache)",
+        "ru": "Кэш (cache)",
+        "en": "Cache memory"
+      },
+      "text": {
+        "he": "זיכרון מהיר בתוך המעבד או לידו. מחזיקים בו מה שצריך הרבה, למשל פקודות שכיחות כמו create, move, delete.\nL1 הכי קטן ומהיר, L2 גדול יותר, L3 עוד יותר.\nאפשר לראות אצלכם: `Ctrl + Shift + Esc` ← מנהל המשימות ← ביצועים (Performance) ← CPU. למטה מופיעים L1, L2, L3.",
+        "ru": "Быстрая память внутри процессора или рядом с ним. В ней держат то, что нужно часто, например частые команды вроде create, move, delete.\nL1 самый маленький и быстрый, L2 больше, L3 ещё больше.\nМожно посмотреть у себя: `Ctrl + Shift + Esc` → Диспетчер задач → Производительность (Performance) → ЦП. Внизу строки L1, L2, L3.",
+        "en": "Fast memory inside or next to the CPU. It holds what is needed often, such as common commands like create, move, delete.\nL1 is the smallest and fastest, L2 is bigger, L3 bigger still.\nSee it yourself: `Ctrl + Shift + Esc` → Task Manager → Performance → CPU. L1, L2, L3 are listed at the bottom."
+      }
+    },
+    {
+      "kind": "qa",
+      "q": {
+        "he": "למה לא עושים את כל הזיכרון מהיר כמו המטמון?",
+        "ru": "Почему не делают всю память такой же быстрой, как кэш?",
+        "en": "Why isn't all memory as fast as cache?"
+      },
+      "a": {
+        "he": "כי הוא יקר מאוד. ככל שעולים בפירמידה, כל בייט יקר יותר.",
+        "ru": "Потому что она очень дорогая. Чем выше в пирамиде, тем дороже каждый байт.",
+        "en": "Because it is very expensive. The higher in the pyramid, the more each byte costs."
+      }
+    },
+    {
+      "kind": "talk",
+      "title": {
+        "he": "RAM, זיכרון וירטואלי וזיכרון משני",
+        "ru": "RAM, виртуальная и вторичная память",
+        "en": "RAM, virtual memory and secondary memory"
+      },
+      "text": {
+        "he": "RAM (זיכרון ראשי): כל מה שפתוח עכשיו — Word, פייסבוק, טיקטוק. כשהחשמל נופל או מכבים את המחשב, הוא מתרוקן. לכן שומרים ועושים גיבויים.\nכשפותחים יותר מדי, ה־RAM מתמלא והמכשיר נתקע. טיפ: ריסטארט פעם בשבוע מנקה את ה־RAM.\nזיכרון וירטואלי: חלק מהדיסק הקשיח שמשמש המשך ל־RAM. פייסבוק לא עולה כולו ל־RAM: מה שמשתמשים בו כל הזמן נמצא ב־RAM, ופעולה נדירה (להוסיף תמונה לסטורי) יושבת בזיכרון הווירטואלי ועולה כשצריך.\nזיכרון משני: הדיסק — שומר קבצים גם אחרי כיבוי.",
+        "ru": "RAM (оперативная память): всё, что открыто сейчас — Word, Facebook, TikTok. Пропало электричество или выключили компьютер — она очистилась. Поэтому сохраняем и делаем резервные копии.\nКогда открыто слишком много, RAM переполняется и устройство тормозит. Совет: перезагрузка раз в неделю очищает RAM.\nВиртуальная память: часть жёсткого диска, которая служит продолжением RAM. Facebook не загружается в RAM целиком: то, чем пользуешься всё время, в RAM, а редкое действие (добавить фото в сторис) лежит в виртуальной памяти и поднимается, когда нужно.\nВторичная память: диск — хранит файлы и после выключения.",
+        "en": "RAM (main memory): everything open right now — Word, Facebook, TikTok. When the power goes or the computer is turned off, it is emptied. So save your work and keep backups.\nWhen too much is open, RAM fills up and the device gets stuck. Tip: restarting once a week clears the RAM.\nVirtual memory: part of the hard disk used as an extension of RAM. Facebook doesn't load into RAM entirely: what you use all the time is in RAM, and a rare action (adding a photo to a story) sits in virtual memory and is loaded when needed.\nSecondary memory: the disk — it keeps files after power-off."
+      }
+    },
+    {
+      "kind": "qa",
+      "q": {
+        "he": "נעבור על זה (זיכרון, אוגרים) עוד פעם?",
+        "ru": "Мы будем проходить это (память, регистры) ещё раз?",
+        "en": "Will we go over this (memory, registers) again?"
+      },
+      "a": {
+        "he": "כן. זה יחזור לאורך כל השנתיים. צריך לדעת מה זה RAM, אוגרים וזיכרון.",
+        "ru": "Да. Это будет встречаться все два года. Нужно знать, что такое RAM, регистры и память.",
+        "en": "Yes. It comes back throughout the two years. You need to know what RAM, registers and memory are."
+      }
+    },
+    {
+      "kind": "talk",
+      "title": {
+        "he": "ביט ובייט",
+        "ru": "Бит и байт",
+        "en": "Bit and byte"
+      },
+      "text": {
+        "he": "ביט הוא היחידה הקטנה ביותר: ספרה אחת, 0 או 1. 0 = אין זרם, 1 = יש זרם.\n8 ביטים = בייט אחד. לכן כותבים מספרים לעתים קרובות ב־8 ביטים וממלאים אפסים משמאל: `5 = 00000101`.\nכמו מיליגרם, גרם וקילו — מיחידות קטנות בונים גדולות (קילובייט, מגהבייט, גיגהבייט).",
+        "ru": "Бит — самая маленькая единица: одна цифра, 0 или 1. 0 = тока нет, 1 = ток есть.\n8 бит = 1 байт. Поэтому числа часто пишут восемью битами, а слева дописывают нули: `5 = 00000101`.\nКак миллиграмм, грамм и килограмм — из маленьких единиц складываются большие (килобайт, мегабайт, гигабайт).",
+        "en": "A bit is the smallest unit: one digit, 0 or 1. 0 = no current, 1 = current.\n8 bits = 1 byte. So numbers are often written with 8 bits, filling zeros on the left: `5 = 00000101`.\nLike milligrams, grams and kilos — big units are built from small ones (kilobyte, megabyte, gigabyte)."
+      }
+    },
+    {
+      "kind": "talk",
+      "title": {
+        "he": "בסיס של שיטת ספירה",
+        "ru": "Основание системы счисления",
+        "en": "The base of a number system"
+      },
+      "text": {
+        "he": "בסיס = כמה ספרות שונות יש בשיטה.\nעשרוני (דצימלי), בסיס 10: הספרות 0–9. אחרי 9 כותבים 10, אחר כך 10–19, 20–29.\nבינארי, בסיס 2: רק 0 ו־1. סופרים `0, 1, 10, 11, 100…`\nאת הבסיס כותבים קטן למטה מימין: `10₁₀` זה עשר, ו־`10₂` זה שתיים. לכן תמיד כותבים את הבסיס.",
+        "ru": "Основание = сколько разных цифр в системе.\nДесятичная, основание 10: цифры 0–9. После 9 пишем 10, дальше 10–19, 20–29.\nДвоичная, основание 2: только 0 и 1. Считаем `0, 1, 10, 11, 100…`\nОснование пишут маленьким внизу справа: `10₁₀` — это десять, а `10₂` — это два. Поэтому основание пишем всегда.",
+        "en": "Base = how many different digits the system has.\nDecimal, base 10: digits 0–9. After 9 we write 10, then 10–19, 20–29.\nBinary, base 2: only 0 and 1. We count `0, 1, 10, 11, 100…`\nThe base is written small at the bottom right: `10₁₀` is ten, and `10₂` is two. So always write the base."
+      }
+    },
+    {
+      "kind": "qa",
+      "q": {
+        "he": "למה 0 זה \"כבוי\" ו־1 \"דולק\"?",
+        "ru": "Почему 0 — «выключено», а 1 — «включено»?",
+        "en": "Why is 0 \"off\" and 1 \"on\"?"
+      },
+      "a": {
+        "he": "זו מוסכמה שכל העולם קיבל.",
+        "ru": "Это договорённость, которую принял весь мир.",
+        "en": "It is a convention the whole world agreed on."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "טבלת המרה מבסיס 10 לבסיס 2",
+        "ru": "Таблица перевода из десятичной в двоичную",
+        "en": "Conversion table from base 10 to base 2"
+      },
+      "text": {
+        "he": "מעל העמודות המשקלים `2² 2¹ 2⁰` (כלומר 4, 2, 1). לכל מספר מחפשים אילו משקלים נותנים אותו יחד: משקל שצריך = 1, משקל שלא צריך = 0. על הלוח מולאו השורות 0–3; את 4–7 ממשיכים באותה דרך:",
+        "ru": "Над столбцами веса `2² 2¹ 2⁰` (то есть 4, 2, 1). Для каждого числа ищем, какие веса вместе его дают: нужный вес = 1, ненужный = 0. На доске заполнили строки 0–3; строки 4–7 заполняются так же:",
+        "en": "Above the columns are the weights `2² 2¹ 2⁰` (that is 4, 2, 1). For each number, find which weights add up to it: a needed weight = 1, an unneeded one = 0. Rows 0–3 were filled on the board; rows 4–7 follow the same way:"
+      },
+      "math": [
+        "0 = 000",
+        "1 = 001",
+        "2 = 010",
+        "3 = 011",
+        "4 = 100",
+        "5 = 101",
+        "6 = 110",
+        "7 = 111"
+      ]
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "מבסיס 2 לבסיס 10: `101₂`",
+        "ru": "Из двоичной в десятичную: `101₂`",
+        "en": "Base 2 to base 10: `101₂`"
+      },
+      "text": {
+        "he": "האלגוריתם מהלוח: (1) מעל כל ספרה שמים את המשקל שלה, מימין: `2⁰, 2¹, 2²…` (2) מכפילים כל ספרה במשקל שלה. (3) מחברים.",
+        "ru": "Алгоритм с доски: (1) над каждой цифрой ставим её вес, начиная справа: `2⁰, 2¹, 2²…` (2) каждую цифру умножаем на её вес. (3) всё складываем.",
+        "en": "The algorithm from the board: (1) put each digit's weight above it, starting from the right: `2⁰, 2¹, 2²…` (2) multiply each digit by its weight. (3) add everything up."
+      },
+      "math": [
+        "2² × 1 + 2¹ × 0 + 2⁰ × 1",
+        "= 4 × 1 + 2 × 0 + 1 × 1",
+        "= 4 + 0 + 1",
+        "= 5"
+      ]
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "MSB ו־LSB: `21₁₀ = 10101₂`",
+        "ru": "MSB и LSB: `21₁₀ = 10101₂`",
+        "en": "MSB and LSB: `21₁₀ = 10101₂`"
+      },
+      "text": {
+        "he": "MSB (Most Significant Bit) — הביט הכי שמאלי, עם המשקל הכי גדול. LSB (Least Significant Bit) — הביט הכי ימני, משקל 1. בדיקה:",
+        "ru": "MSB (Most Significant Bit) — самый левый бит, с самым большим весом. LSB (Least Significant Bit) — самый правый бит, вес 1. Проверка:",
+        "en": "MSB (Most Significant Bit) — the leftmost bit, with the biggest weight. LSB (Least Significant Bit) — the rightmost bit, weight 1. Check:"
+      },
+      "math": [
+        "2⁴ × 1 + 2³ × 0 + 2² × 1 + 2¹ × 0 + 2⁰ × 1",
+        "= 16 + 0 + 4 + 0 + 1",
+        "= 21"
+      ]
+    },
+    {
+      "kind": "tip",
+      "title": {
+        "he": "למה \"הכי משמעותי\"? דוגמת הרכב",
+        "ru": "Почему «самый значимый»? Пример с машиной",
+        "en": "Why \"most significant\"? The car example"
+      },
+      "text": {
+        "he": "רכב עולה 213,400. המוכר יוריד בשקט משהו מימין (213,300), אבל על הנחה בספרה השמאלית הוא לא יסכים. הספרה השמאלית היא הכי משמעותית — וכך גם עם ביטים.",
+        "ru": "Машина стоит 213 400. Продавец спокойно уберёт что-то справа (213 300), но на скидку в самой левой цифре не согласится. Левая цифра самая значимая — с битами так же.",
+        "en": "A car costs 213,400. The seller will happily knock something off on the right (213,300), but not a discount in the leftmost digit. The leftmost digit is the most significant — the same goes for bits."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "מבסיס 10 לבסיס 2: חלוקה ב־2 (השיטה הארוכה)",
+        "ru": "Из десятичной в двоичную: деление на 2 («длинный метод»)",
+        "en": "Base 10 to base 2: division by 2 (the long method)"
+      },
+      "text": {
+        "he": "(1) כותבים את המספר העשרוני. (2) מחלקים ב־2. (3) את השלם רושמים בטור אחד ואת השארית (0 או 1) בטור נפרד. כל פעם מחלקים את השלם ב־2, עד שהשלם מגיע ל־0. (4) קוראים את השאריות מלמטה למעלה. הדוגמה מהלוח, `10`:",
+        "ru": "(1) Пишем десятичное число. (2) Делим на 2. (3) Целую часть пишем в одну колонку, остаток (0 или 1) — в другую. Каждый раз делим целую часть на 2, пока она не станет 0. (4) Читаем остатки снизу вверх. Пример с доски, `10`:",
+        "en": "(1) Write the decimal number. (2) Divide by 2. (3) Write the quotient in one column and the remainder (0 or 1) in another. Keep dividing the quotient by 2 until it reaches 0. (4) Read the remainders from bottom to top. The board example, `10`:"
+      },
+      "math": [
+        "10 : 2 = 5   (0)",
+        "5 : 2 = 2   (1)",
+        "2 : 2 = 1   (0)",
+        "1 : 2 = 0   (1)",
+        "10₁₀ = 1010₂"
+      ]
+    },
+    {
+      "kind": "tip",
+      "title": {
+        "he": "השורה האחרונה `1 : 2 = 0`",
+        "ru": "Последняя строка `1 : 2 = 0`",
+        "en": "The last line `1 : 2 = 0`"
+      },
+      "text": {
+        "he": "2 לא נכנס ב־1 אפילו פעם אחת, אז השלם הוא 0, וה־1 עצמו נשאר כשארית.\nועוד טיפ: את השארית הראשונה רואים מיד — למספר זוגי היא 0, לאי־זוגי 1. לכן ה־LSB של מספר אי־זוגי הוא תמיד 1.",
+        "ru": "Двойка не помещается в единицу ни разу, значит целое 0, а сама единица остаётся остатком.\nЕщё совет: первый остаток видно сразу — у чётного числа 0, у нечётного 1. Поэтому LSB нечётного числа всегда 1.",
+        "en": "2 doesn't go into 1 even once, so the quotient is 0 and the 1 itself is the remainder.\nOne more tip: you can see the first remainder at once — 0 for an even number, 1 for an odd one. So the LSB of an odd number is always 1."
+      }
+    },
+    {
+      "kind": "qa",
+      "q": {
+        "he": "למה תמיד מחלקים דווקא ב־2?",
+        "ru": "Почему делим именно на 2?",
+        "en": "Why do we always divide by 2?"
+      },
+      "a": {
+        "he": "מחלקים בבסיס שאליו ממירים. בינארי הוא בסיס 2, לכן מחלקים ב־2. לאוקטלי היינו מחלקים ב־8.",
+        "ru": "Делим на основание системы, в которую переводим. Двоичная — основание 2, значит делим на 2. Для восьмеричной делили бы на 8.",
+        "en": "We divide by the base we convert to. Binary is base 2, so we divide by 2. For octal we would divide by 8."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "השיטה הטבלאית (מחסירים משקלים): `710`",
+        "ru": "Метод таблицы (вычитаем веса): `710`",
+        "en": "The table method (subtracting weights): `710`"
+      },
+      "text": {
+        "he": "כותבים את המשקלים `1024 512 256 128 64 32 16 8 4 2 1`. מתחילים מהמשקל הגדול ביותר שלא גדול מהמספר. נכנס — כותבים 1 ומחסירים; לא נכנס — כותבים 0. בסוף קוראים משמאל לימין:",
+        "ru": "Выписываем веса `1024 512 256 128 64 32 16 8 4 2 1`. Начинаем с самого большого веса, не больше нашего числа. Помещается — пишем 1 и вычитаем; не помещается — пишем 0. В конце читаем слева направо:",
+        "en": "Write the weights `1024 512 256 128 64 32 16 8 4 2 1`. Start with the largest weight not bigger than the number. If it fits, write 1 and subtract; if not, write 0. At the end read from left to right:"
+      },
+      "math": [
+        "710 − 512 = 198 → 1",
+        "256 > 198 → 0",
+        "198 − 128 = 70 → 1",
+        "70 − 64 = 6 → 1",
+        "32, 16, 8 > 6 → 0, 0, 0",
+        "6 − 4 = 2 → 1",
+        "2 − 2 = 0 → 1",
+        "1 > 0 → 0",
+        "710₁₀ = 1011000110₂"
+      ]
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "עוד דוגמאות בשיטה הטבלאית",
+        "ru": "Ещё примеры методом таблицы",
+        "en": "More table-method examples"
+      },
+      "text": {
+        "he": "על הלוח הומרו גם `1024`, `350` ו־`86`. (ב־`350` נכתבו על הלוח אפסים נוספים משמאל — הם לא משנים את הערך.)",
+        "ru": "На доске перевели ещё `1024`, `350` и `86`. (У `350` на доске были дописаны лишние нули слева — значение они не меняют.)",
+        "en": "The board also converted `1024`, `350` and `86`. (For `350` the board had extra zeros on the left — they don't change the value.)"
+      },
+      "math": [
+        "1024₁₀ = 10000000000₂",
+        "350₁₀ = 101011110₂",
+        "86₁₀ = 1010110₂"
+      ]
+    },
+    {
+      "kind": "tip",
+      "title": {
+        "he": "איך מוכיחים שהתשובה נכונה",
+        "ru": "Как доказать, что ответ верный",
+        "en": "How to prove the answer is right"
+      },
+      "text": {
+        "he": "ממירים את התוצאה בחזרה לבסיס 10. אם יצא המספר המקורי — התשובה נכונה. שתי השיטות (חלוקה וטבלה) נותנות תמיד אותה תשובה: חלוקה נוחה למספרים קטנים, טבלה — לגדולים, במיוחד ליד חזקה של 2 (1024, 4096).",
+        "ru": "Переводим результат обратно в десятичную. Получилось исходное число — ответ верный. Оба метода (деление и таблица) всегда дают один ответ: деление удобно для маленьких чисел, таблица — для больших, особенно рядом со степенью двойки (1024, 4096).",
+        "en": "Convert the result back to base 10. If you get the original number, the answer is right. Both methods (division and table) always give the same answer: division is handy for small numbers, the table for big ones, especially near a power of 2 (1024, 4096)."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "תרגילים מהלוח",
+        "ru": "Упражнения с доски",
+        "en": "Exercises from the board"
+      },
+      "text": {
+        "he": "1. המר לפי השיטה הארוכה (חלוקה ב־2): `17, 19, 35, 40`\n2. המר לפי השיטה הטבלאית: `1020, 75, 510, 4096`\n3. המר מבסיס בינארי לעשרוני: `1011, 1001, 1100, 110111`\nכולם בלשונית התרגילים, עם פתרון שלב אחרי שלב.",
+        "ru": "1. Делением на 2: `17, 19, 35, 40`\n2. Методом таблицы: `1020, 75, 510, 4096`\n3. Из двоичной в десятичную: `1011, 1001, 1100, 110111`\nВсе они во вкладке заданий, с решением по шагам.",
+        "en": "1. By division by 2: `17, 19, 35, 40`\n2. By the table method: `1020, 75, 510, 4096`\n3. From binary to decimal: `1011, 1001, 1100, 110111`\nAll of them are in the tasks tab, with step-by-step solutions."
+      }
+    }
+  ],
+  "review": [
+    {
+      "title": {
+        "he": "קלט ← עיבוד ← פלט",
+        "ru": "Ввод → обработка → вывод",
+        "en": "Input → processing → output"
+      },
+      "text": {
+        "he": "מקלדת, עכבר, מיקרופון — קלט. מסך, רמקולים — פלט. ה־CPU מעבד: `ALU` מחשב, `CU` מנהל, `MMU` מביא נתונים מהזיכרון.",
+        "ru": "Клавиатура, мышь, микрофон — ввод. Экран, колонки — вывод. CPU обрабатывает: `ALU` считает, `CU` управляет, `MMU` приносит данные из памяти.",
+        "en": "Keyboard, mouse, mic — input. Screen, speakers — output. The CPU processes: `ALU` computes, `CU` controls, `MMU` fetches data from memory."
+      }
+    },
+    {
+      "title": {
+        "he": "פירמידת הזיכרון",
+        "ru": "Пирамида памяти",
+        "en": "Memory pyramid"
+      },
+      "text": {
+        "he": "אוגרים ← L1 ← L2 ← L3 ← RAM ← דיסק. למעלה: מהיר, קטן ויקר. RAM מתרוקן כשמכבים.",
+        "ru": "Регистры → L1 → L2 → L3 → RAM → диск. Наверху: быстро, мало и дорого. RAM очищается при выключении.",
+        "en": "Registers → L1 → L2 → L3 → RAM → disk. At the top: fast, small, expensive. RAM is emptied at power-off."
+      }
+    },
+    {
+      "title": {
+        "he": "ביט, בייט, בסיס",
+        "ru": "Бит, байт, основание",
+        "en": "Bit, byte, base"
+      },
+      "text": {
+        "he": "ביט = 0 או 1. 8 ביטים = בייט. בבסיס 2 יש רק 0 ו־1, ותמיד כותבים את הבסיס: `10₂ = 2`.",
+        "ru": "Бит = 0 или 1. 8 бит = байт. В основании 2 есть только 0 и 1, основание пишем всегда: `10₂ = 2`.",
+        "en": "Bit = 0 or 1. 8 bits = a byte. Base 2 has only 0 and 1; always write the base: `10₂ = 2`."
+      }
+    },
+    {
+      "title": {
+        "he": "מבסיס 2 לבסיס 10",
+        "ru": "Из 2 в 10",
+        "en": "Base 2 → base 10"
+      },
+      "text": {
+        "he": "משקלים מימין `1, 2, 4, 8, 16…`, ספרה × משקל, ומחברים: `1011₂ = 8 + 2 + 1 = 11`.",
+        "ru": "Веса справа `1, 2, 4, 8, 16…`, цифра × вес, складываем: `1011₂ = 8 + 2 + 1 = 11`.",
+        "en": "Weights from the right `1, 2, 4, 8, 16…`, digit × weight, then add: `1011₂ = 8 + 2 + 1 = 11`."
+      }
+    },
+    {
+      "title": {
+        "he": "חלוקה ב־2",
+        "ru": "Деление на 2",
+        "en": "Division by 2"
+      },
+      "text": {
+        "he": "מחלקים עד שהשלם 0, וקוראים את השאריות מלמטה למעלה: `10 → 1010`.",
+        "ru": "Делим, пока целая часть не станет 0, остатки читаем снизу вверх: `10 → 1010`.",
+        "en": "Divide until the quotient is 0, read the remainders bottom to top: `10 → 1010`."
+      }
+    },
+    {
+      "title": {
+        "he": "השיטה הטבלאית",
+        "ru": "Метод таблицы",
+        "en": "The table method"
+      },
+      "text": {
+        "he": "מהמשקל הגדול: נכנס — 1 ומחסירים, לא נכנס — 0. קוראים משמאל לימין: `710 = 1011000110₂`.",
+        "ru": "От большого веса: помещается — 1 и вычитаем, нет — 0. Читаем слева направо: `710 = 1011000110₂`.",
+        "en": "From the largest weight: fits — 1 and subtract, doesn't — 0. Read left to right: `710 = 1011000110₂`."
+      }
+    },
+    {
+      "title": {
+        "he": "MSB, LSB ובדיקה",
+        "ru": "MSB, LSB и проверка",
+        "en": "MSB, LSB and checking"
+      },
+      "text": {
+        "he": "MSB — הביט השמאלי (הכי כבד), LSB — הימני (משקל 1). כל תשובה בודקים בהמרה חזרה.",
+        "ru": "MSB — левый бит (самый тяжёлый), LSB — правый (вес 1). Любой ответ проверяем обратным переводом.",
+        "en": "MSB — the leftmost bit (heaviest), LSB — the rightmost (weight 1). Check every answer by converting back."
+      }
+    }
+  ],
+  "tasks": {
+    "groups": {
+      "1": {
+        "he": "תרגיל 1 — המר בשיטה הארוכה (חלוקה ב־2)",
+        "ru": "Задание 1 — Переведите делением на 2",
+        "en": "Exercise 1 — Convert by division by 2"
+      },
+      "2": {
+        "he": "תרגיל 2 — המר בשיטה הטבלאית",
+        "ru": "Задание 2 — Переведите методом таблицы",
+        "en": "Exercise 2 — Convert by the table method"
+      },
+      "3": {
+        "he": "תרגיל 3 — המר מבינארי לעשרוני",
+        "ru": "Задание 3 — Из двоичной в десятичную",
+        "en": "Exercise 3 — Convert from binary to decimal"
+      },
+      "class": {
+        "he": "נפתר בכיתה",
+        "ru": "Решали в классе",
+        "en": "Solved in class"
+      }
+    },
+    "teacher": [
+      {
+        "id": "tc-1",
+        "group": "class",
+        "label": "כא",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `8` לבסיס 2 בשיטת החלוקה ב־2.",
+          "ru": "Переведите `8` в двоичную систему делением на 2.",
+          "en": "Convert `8` to base 2 using division by 2."
+        },
+        "answer": {
+          "accept": [
+            "1000",
+            "00001000",
+            "000000001000",
+            "0000000000001000"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מחלקים ב־2: השלם עובר לשורה הבאה, השארית נרשמת בצד. ממשיכים עד שהשלם הוא 0.",
+            "ru": "Делим на 2: целая часть идёт в следующую строку, остаток пишем сбоку. Продолжаем, пока целая часть не станет 0.",
+            "en": "Divide by 2: the quotient goes to the next line, the remainder is written on the side. Continue until the quotient is 0."
+          },
+          {
+            "he": "השורה הראשונה: `8 : 2 = 4`, שארית `0`. בסוף קוראים את השאריות מלמטה למעלה.",
+            "ru": "Первая строка: `8 : 2 = 4`, остаток `0`. В конце читаем остатки снизу вверх.",
+            "en": "First line: `8 : 2 = 4`, remainder `0`. At the end read the remainders from bottom to top."
+          }
+        ],
+        "solution": [
+          {
+            "he": "מחלקים ב־2 שוב ושוב, עד שהשלם מגיע ל־0. רושמים כל שארית:",
+            "ru": "Делим на 2 снова и снова, пока целая часть не станет 0. Записываем каждый остаток:",
+            "en": "Divide by 2 again and again until the quotient is 0. Write down each remainder:"
+          },
+          {
+            "he": "`8 : 2 = 4`, שארית `0`",
+            "ru": "`8 : 2 = 4`, остаток `0`",
+            "en": "`8 : 2 = 4`, remainder `0`"
+          },
+          {
+            "he": "`4 : 2 = 2`, שארית `0`",
+            "ru": "`4 : 2 = 2`, остаток `0`",
+            "en": "`4 : 2 = 2`, remainder `0`"
+          },
+          {
+            "he": "`2 : 2 = 1`, שארית `0`",
+            "ru": "`2 : 2 = 1`, остаток `0`",
+            "en": "`2 : 2 = 1`, remainder `0`"
+          },
+          {
+            "he": "`1 : 2 = 0`, שארית `1`",
+            "ru": "`1 : 2 = 0`, остаток `1`",
+            "en": "`1 : 2 = 0`, remainder `1`"
+          },
+          {
+            "he": "קוראים את השאריות מלמטה למעלה: `1000`",
+            "ru": "Читаем остатки снизу вверх: `1000`",
+            "en": "Read the remainders from bottom to top: `1000`"
+          },
+          {
+            "he": "תשובה: `8₁₀ = 1000₂`",
+            "ru": "Ответ: `8₁₀ = 1000₂`",
+            "en": "Answer: `8₁₀ = 1000₂`"
+          },
+          {
+            "he": "בדיקה: ממירים בחזרה — `1000₂ = 8`",
+            "ru": "Проверка: переводим обратно — `1000₂ = 8`",
+            "en": "Check: convert back — `1000₂ = 8`"
+          }
+        ]
+      },
+      {
+        "id": "tc-2",
+        "group": "class",
+        "label": "כב",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `20` לבסיס 2 בשיטת החלוקה ב־2.",
+          "ru": "Переведите `20` в двоичную систему делением на 2.",
+          "en": "Convert `20` to base 2 using division by 2."
+        },
+        "answer": {
+          "accept": [
+            "10100",
+            "00010100",
+            "000000010100",
+            "0000000000010100"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מחלקים ב־2: השלם עובר לשורה הבאה, השארית נרשמת בצד. ממשיכים עד שהשלם הוא 0.",
+            "ru": "Делим на 2: целая часть идёт в следующую строку, остаток пишем сбоку. Продолжаем, пока целая часть не станет 0.",
+            "en": "Divide by 2: the quotient goes to the next line, the remainder is written on the side. Continue until the quotient is 0."
+          },
+          {
+            "he": "השורה הראשונה: `20 : 2 = 10`, שארית `0`. בסוף קוראים את השאריות מלמטה למעלה.",
+            "ru": "Первая строка: `20 : 2 = 10`, остаток `0`. В конце читаем остатки снизу вверх.",
+            "en": "First line: `20 : 2 = 10`, remainder `0`. At the end read the remainders from bottom to top."
+          }
+        ],
+        "solution": [
+          {
+            "he": "מחלקים ב־2 שוב ושוב, עד שהשלם מגיע ל־0. רושמים כל שארית:",
+            "ru": "Делим на 2 снова и снова, пока целая часть не станет 0. Записываем каждый остаток:",
+            "en": "Divide by 2 again and again until the quotient is 0. Write down each remainder:"
+          },
+          {
+            "he": "`20 : 2 = 10`, שארית `0`",
+            "ru": "`20 : 2 = 10`, остаток `0`",
+            "en": "`20 : 2 = 10`, remainder `0`"
+          },
+          {
+            "he": "`10 : 2 = 5`, שארית `0`",
+            "ru": "`10 : 2 = 5`, остаток `0`",
+            "en": "`10 : 2 = 5`, remainder `0`"
+          },
+          {
+            "he": "`5 : 2 = 2`, שארית `1`",
+            "ru": "`5 : 2 = 2`, остаток `1`",
+            "en": "`5 : 2 = 2`, remainder `1`"
+          },
+          {
+            "he": "`2 : 2 = 1`, שארית `0`",
+            "ru": "`2 : 2 = 1`, остаток `0`",
+            "en": "`2 : 2 = 1`, remainder `0`"
+          },
+          {
+            "he": "`1 : 2 = 0`, שארית `1`",
+            "ru": "`1 : 2 = 0`, остаток `1`",
+            "en": "`1 : 2 = 0`, remainder `1`"
+          },
+          {
+            "he": "קוראים את השאריות מלמטה למעלה: `10100`",
+            "ru": "Читаем остатки снизу вверх: `10100`",
+            "en": "Read the remainders from bottom to top: `10100`"
+          },
+          {
+            "he": "תשובה: `20₁₀ = 10100₂`",
+            "ru": "Ответ: `20₁₀ = 10100₂`",
+            "en": "Answer: `20₁₀ = 10100₂`"
+          },
+          {
+            "he": "בדיקה: ממירים בחזרה — `10100₂ = 20`",
+            "ru": "Проверка: переводим обратно — `10100₂ = 20`",
+            "en": "Check: convert back — `10100₂ = 20`"
+          }
+        ]
+      },
+      {
+        "id": "tc-3",
+        "group": "class",
+        "label": "כג",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `39` לבסיס 2 בשיטת החלוקה ב־2.",
+          "ru": "Переведите `39` в двоичную систему делением на 2.",
+          "en": "Convert `39` to base 2 using division by 2."
+        },
+        "answer": {
+          "accept": [
+            "100111",
+            "00100111",
+            "000000100111",
+            "0000000000100111"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מחלקים ב־2: השלם עובר לשורה הבאה, השארית נרשמת בצד. ממשיכים עד שהשלם הוא 0.",
+            "ru": "Делим на 2: целая часть идёт в следующую строку, остаток пишем сбоку. Продолжаем, пока целая часть не станет 0.",
+            "en": "Divide by 2: the quotient goes to the next line, the remainder is written on the side. Continue until the quotient is 0."
+          },
+          {
+            "he": "השורה הראשונה: `39 : 2 = 19`, שארית `1`. בסוף קוראים את השאריות מלמטה למעלה.",
+            "ru": "Первая строка: `39 : 2 = 19`, остаток `1`. В конце читаем остатки снизу вверх.",
+            "en": "First line: `39 : 2 = 19`, remainder `1`. At the end read the remainders from bottom to top."
+          }
+        ],
+        "solution": [
+          {
+            "he": "מחלקים ב־2 שוב ושוב, עד שהשלם מגיע ל־0. רושמים כל שארית:",
+            "ru": "Делим на 2 снова и снова, пока целая часть не станет 0. Записываем каждый остаток:",
+            "en": "Divide by 2 again and again until the quotient is 0. Write down each remainder:"
+          },
+          {
+            "he": "`39 : 2 = 19`, שארית `1`",
+            "ru": "`39 : 2 = 19`, остаток `1`",
+            "en": "`39 : 2 = 19`, remainder `1`"
+          },
+          {
+            "he": "`19 : 2 = 9`, שארית `1`",
+            "ru": "`19 : 2 = 9`, остаток `1`",
+            "en": "`19 : 2 = 9`, remainder `1`"
+          },
+          {
+            "he": "`9 : 2 = 4`, שארית `1`",
+            "ru": "`9 : 2 = 4`, остаток `1`",
+            "en": "`9 : 2 = 4`, remainder `1`"
+          },
+          {
+            "he": "`4 : 2 = 2`, שארית `0`",
+            "ru": "`4 : 2 = 2`, остаток `0`",
+            "en": "`4 : 2 = 2`, remainder `0`"
+          },
+          {
+            "he": "`2 : 2 = 1`, שארית `0`",
+            "ru": "`2 : 2 = 1`, остаток `0`",
+            "en": "`2 : 2 = 1`, remainder `0`"
+          },
+          {
+            "he": "`1 : 2 = 0`, שארית `1`",
+            "ru": "`1 : 2 = 0`, остаток `1`",
+            "en": "`1 : 2 = 0`, remainder `1`"
+          },
+          {
+            "he": "קוראים את השאריות מלמטה למעלה: `100111`",
+            "ru": "Читаем остатки снизу вверх: `100111`",
+            "en": "Read the remainders from bottom to top: `100111`"
+          },
+          {
+            "he": "תשובה: `39₁₀ = 100111₂`",
+            "ru": "Ответ: `39₁₀ = 100111₂`",
+            "en": "Answer: `39₁₀ = 100111₂`"
+          },
+          {
+            "he": "בדיקה: ממירים בחזרה — `100111₂ = 39`",
+            "ru": "Проверка: переводим обратно — `100111₂ = 39`",
+            "en": "Check: convert back — `100111₂ = 39`"
+          }
+        ]
+      },
+      {
+        "id": "tc-4",
+        "group": "class",
+        "label": "כד",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `79` לבסיס 2 בשיטה הטבלאית.",
+          "ru": "Переведите `79` в двоичную систему методом таблицы.",
+          "en": "Convert `79` to base 2 using the table method."
+        },
+        "answer": {
+          "accept": [
+            "1001111",
+            "01001111",
+            "000001001111",
+            "0000000001001111"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כותבים את המשקלים: `64 32 16 8 4 2 1`. מתחילים מהגדול.",
+            "ru": "Выпиши веса: `64 32 16 8 4 2 1`. Начни с самого большого.",
+            "en": "Write the weights: `64 32 16 8 4 2 1`. Start with the largest."
+          },
+          {
+            "he": "`79 − 64 = 15` → 1. ממשיכים עם `15` למשקל הבא.",
+            "ru": "`79 − 64 = 15` → 1. Дальше с `15` к следующему весу.",
+            "en": "`79 − 64 = 15` → 1. Continue with `15` at the next weight."
+          }
+        ],
+        "solution": [
+          {
+            "he": "המשקל הגדול ביותר שלא גדול מ־`79` הוא `64`.",
+            "ru": "Самый большой вес, не больше `79`, это `64`.",
+            "en": "The largest weight not bigger than `79` is `64`."
+          },
+          "79 − 64 = 15 → 1",
+          "32, 16 > 15 → 0, 0",
+          "15 − 8 = 7 → 1",
+          "7 − 4 = 3 → 1",
+          "3 − 2 = 1 → 1",
+          "1 − 1 = 0 → 1",
+          {
+            "he": "קוראים את ה־1 וה־0 משמאל לימין: `1001111`",
+            "ru": "Читаем 1 и 0 слева направо: `1001111`",
+            "en": "Read the 1s and 0s from left to right: `1001111`"
+          },
+          {
+            "he": "תשובה: `79₁₀ = 1001111₂`",
+            "ru": "Ответ: `79₁₀ = 1001111₂`",
+            "en": "Answer: `79₁₀ = 1001111₂`"
+          }
+        ]
+      },
+      {
+        "id": "t1-1",
+        "group": "1",
+        "label": "1א",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `17` לבסיס 2 בשיטת החלוקה ב־2.",
+          "ru": "Переведите `17` в двоичную систему делением на 2.",
+          "en": "Convert `17` to base 2 using division by 2."
+        },
+        "answer": {
+          "accept": [
+            "10001",
+            "00010001",
+            "000000010001",
+            "0000000000010001"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מחלקים ב־2: השלם עובר לשורה הבאה, השארית נרשמת בצד. ממשיכים עד שהשלם הוא 0.",
+            "ru": "Делим на 2: целая часть идёт в следующую строку, остаток пишем сбоку. Продолжаем, пока целая часть не станет 0.",
+            "en": "Divide by 2: the quotient goes to the next line, the remainder is written on the side. Continue until the quotient is 0."
+          },
+          {
+            "he": "השורה הראשונה: `17 : 2 = 8`, שארית `1`. בסוף קוראים את השאריות מלמטה למעלה.",
+            "ru": "Первая строка: `17 : 2 = 8`, остаток `1`. В конце читаем остатки снизу вверх.",
+            "en": "First line: `17 : 2 = 8`, remainder `1`. At the end read the remainders from bottom to top."
+          }
+        ],
+        "solution": [
+          {
+            "he": "מחלקים ב־2 שוב ושוב, עד שהשלם מגיע ל־0. רושמים כל שארית:",
+            "ru": "Делим на 2 снова и снова, пока целая часть не станет 0. Записываем каждый остаток:",
+            "en": "Divide by 2 again and again until the quotient is 0. Write down each remainder:"
+          },
+          {
+            "he": "`17 : 2 = 8`, שארית `1`",
+            "ru": "`17 : 2 = 8`, остаток `1`",
+            "en": "`17 : 2 = 8`, remainder `1`"
+          },
+          {
+            "he": "`8 : 2 = 4`, שארית `0`",
+            "ru": "`8 : 2 = 4`, остаток `0`",
+            "en": "`8 : 2 = 4`, remainder `0`"
+          },
+          {
+            "he": "`4 : 2 = 2`, שארית `0`",
+            "ru": "`4 : 2 = 2`, остаток `0`",
+            "en": "`4 : 2 = 2`, remainder `0`"
+          },
+          {
+            "he": "`2 : 2 = 1`, שארית `0`",
+            "ru": "`2 : 2 = 1`, остаток `0`",
+            "en": "`2 : 2 = 1`, remainder `0`"
+          },
+          {
+            "he": "`1 : 2 = 0`, שארית `1`",
+            "ru": "`1 : 2 = 0`, остаток `1`",
+            "en": "`1 : 2 = 0`, remainder `1`"
+          },
+          {
+            "he": "קוראים את השאריות מלמטה למעלה: `10001`",
+            "ru": "Читаем остатки снизу вверх: `10001`",
+            "en": "Read the remainders from bottom to top: `10001`"
+          },
+          {
+            "he": "תשובה: `17₁₀ = 10001₂`",
+            "ru": "Ответ: `17₁₀ = 10001₂`",
+            "en": "Answer: `17₁₀ = 10001₂`"
+          },
+          {
+            "he": "בדיקה: ממירים בחזרה — `10001₂ = 17`",
+            "ru": "Проверка: переводим обратно — `10001₂ = 17`",
+            "en": "Check: convert back — `10001₂ = 17`"
+          }
+        ]
+      },
+      {
+        "id": "t1-2",
+        "group": "1",
+        "label": "1ב",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `19` לבסיס 2 בשיטת החלוקה ב־2.",
+          "ru": "Переведите `19` в двоичную систему делением на 2.",
+          "en": "Convert `19` to base 2 using division by 2."
+        },
+        "answer": {
+          "accept": [
+            "10011",
+            "00010011",
+            "000000010011",
+            "0000000000010011"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מחלקים ב־2: השלם עובר לשורה הבאה, השארית נרשמת בצד. ממשיכים עד שהשלם הוא 0.",
+            "ru": "Делим на 2: целая часть идёт в следующую строку, остаток пишем сбоку. Продолжаем, пока целая часть не станет 0.",
+            "en": "Divide by 2: the quotient goes to the next line, the remainder is written on the side. Continue until the quotient is 0."
+          },
+          {
+            "he": "השורה הראשונה: `19 : 2 = 9`, שארית `1`. בסוף קוראים את השאריות מלמטה למעלה.",
+            "ru": "Первая строка: `19 : 2 = 9`, остаток `1`. В конце читаем остатки снизу вверх.",
+            "en": "First line: `19 : 2 = 9`, remainder `1`. At the end read the remainders from bottom to top."
+          }
+        ],
+        "solution": [
+          {
+            "he": "מחלקים ב־2 שוב ושוב, עד שהשלם מגיע ל־0. רושמים כל שארית:",
+            "ru": "Делим на 2 снова и снова, пока целая часть не станет 0. Записываем каждый остаток:",
+            "en": "Divide by 2 again and again until the quotient is 0. Write down each remainder:"
+          },
+          {
+            "he": "`19 : 2 = 9`, שארית `1`",
+            "ru": "`19 : 2 = 9`, остаток `1`",
+            "en": "`19 : 2 = 9`, remainder `1`"
+          },
+          {
+            "he": "`9 : 2 = 4`, שארית `1`",
+            "ru": "`9 : 2 = 4`, остаток `1`",
+            "en": "`9 : 2 = 4`, remainder `1`"
+          },
+          {
+            "he": "`4 : 2 = 2`, שארית `0`",
+            "ru": "`4 : 2 = 2`, остаток `0`",
+            "en": "`4 : 2 = 2`, remainder `0`"
+          },
+          {
+            "he": "`2 : 2 = 1`, שארית `0`",
+            "ru": "`2 : 2 = 1`, остаток `0`",
+            "en": "`2 : 2 = 1`, remainder `0`"
+          },
+          {
+            "he": "`1 : 2 = 0`, שארית `1`",
+            "ru": "`1 : 2 = 0`, остаток `1`",
+            "en": "`1 : 2 = 0`, remainder `1`"
+          },
+          {
+            "he": "קוראים את השאריות מלמטה למעלה: `10011`",
+            "ru": "Читаем остатки снизу вверх: `10011`",
+            "en": "Read the remainders from bottom to top: `10011`"
+          },
+          {
+            "he": "תשובה: `19₁₀ = 10011₂`",
+            "ru": "Ответ: `19₁₀ = 10011₂`",
+            "en": "Answer: `19₁₀ = 10011₂`"
+          },
+          {
+            "he": "בדיקה: ממירים בחזרה — `10011₂ = 19`",
+            "ru": "Проверка: переводим обратно — `10011₂ = 19`",
+            "en": "Check: convert back — `10011₂ = 19`"
+          }
+        ]
+      },
+      {
+        "id": "t1-3",
+        "group": "1",
+        "label": "1ג",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `35` לבסיס 2 בשיטת החלוקה ב־2.",
+          "ru": "Переведите `35` в двоичную систему делением на 2.",
+          "en": "Convert `35` to base 2 using division by 2."
+        },
+        "answer": {
+          "accept": [
+            "100011",
+            "00100011",
+            "000000100011",
+            "0000000000100011"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מחלקים ב־2: השלם עובר לשורה הבאה, השארית נרשמת בצד. ממשיכים עד שהשלם הוא 0.",
+            "ru": "Делим на 2: целая часть идёт в следующую строку, остаток пишем сбоку. Продолжаем, пока целая часть не станет 0.",
+            "en": "Divide by 2: the quotient goes to the next line, the remainder is written on the side. Continue until the quotient is 0."
+          },
+          {
+            "he": "השורה הראשונה: `35 : 2 = 17`, שארית `1`. בסוף קוראים את השאריות מלמטה למעלה.",
+            "ru": "Первая строка: `35 : 2 = 17`, остаток `1`. В конце читаем остатки снизу вверх.",
+            "en": "First line: `35 : 2 = 17`, remainder `1`. At the end read the remainders from bottom to top."
+          }
+        ],
+        "solution": [
+          {
+            "he": "מחלקים ב־2 שוב ושוב, עד שהשלם מגיע ל־0. רושמים כל שארית:",
+            "ru": "Делим на 2 снова и снова, пока целая часть не станет 0. Записываем каждый остаток:",
+            "en": "Divide by 2 again and again until the quotient is 0. Write down each remainder:"
+          },
+          {
+            "he": "`35 : 2 = 17`, שארית `1`",
+            "ru": "`35 : 2 = 17`, остаток `1`",
+            "en": "`35 : 2 = 17`, remainder `1`"
+          },
+          {
+            "he": "`17 : 2 = 8`, שארית `1`",
+            "ru": "`17 : 2 = 8`, остаток `1`",
+            "en": "`17 : 2 = 8`, remainder `1`"
+          },
+          {
+            "he": "`8 : 2 = 4`, שארית `0`",
+            "ru": "`8 : 2 = 4`, остаток `0`",
+            "en": "`8 : 2 = 4`, remainder `0`"
+          },
+          {
+            "he": "`4 : 2 = 2`, שארית `0`",
+            "ru": "`4 : 2 = 2`, остаток `0`",
+            "en": "`4 : 2 = 2`, remainder `0`"
+          },
+          {
+            "he": "`2 : 2 = 1`, שארית `0`",
+            "ru": "`2 : 2 = 1`, остаток `0`",
+            "en": "`2 : 2 = 1`, remainder `0`"
+          },
+          {
+            "he": "`1 : 2 = 0`, שארית `1`",
+            "ru": "`1 : 2 = 0`, остаток `1`",
+            "en": "`1 : 2 = 0`, remainder `1`"
+          },
+          {
+            "he": "קוראים את השאריות מלמטה למעלה: `100011`",
+            "ru": "Читаем остатки снизу вверх: `100011`",
+            "en": "Read the remainders from bottom to top: `100011`"
+          },
+          {
+            "he": "תשובה: `35₁₀ = 100011₂`",
+            "ru": "Ответ: `35₁₀ = 100011₂`",
+            "en": "Answer: `35₁₀ = 100011₂`"
+          },
+          {
+            "he": "בדיקה: ממירים בחזרה — `100011₂ = 35`",
+            "ru": "Проверка: переводим обратно — `100011₂ = 35`",
+            "en": "Check: convert back — `100011₂ = 35`"
+          }
+        ]
+      },
+      {
+        "id": "t1-4",
+        "group": "1",
+        "label": "1ד",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `40` לבסיס 2 בשיטת החלוקה ב־2.",
+          "ru": "Переведите `40` в двоичную систему делением на 2.",
+          "en": "Convert `40` to base 2 using division by 2."
+        },
+        "answer": {
+          "accept": [
+            "101000",
+            "00101000",
+            "000000101000",
+            "0000000000101000"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מחלקים ב־2: השלם עובר לשורה הבאה, השארית נרשמת בצד. ממשיכים עד שהשלם הוא 0.",
+            "ru": "Делим на 2: целая часть идёт в следующую строку, остаток пишем сбоку. Продолжаем, пока целая часть не станет 0.",
+            "en": "Divide by 2: the quotient goes to the next line, the remainder is written on the side. Continue until the quotient is 0."
+          },
+          {
+            "he": "השורה הראשונה: `40 : 2 = 20`, שארית `0`. בסוף קוראים את השאריות מלמטה למעלה.",
+            "ru": "Первая строка: `40 : 2 = 20`, остаток `0`. В конце читаем остатки снизу вверх.",
+            "en": "First line: `40 : 2 = 20`, remainder `0`. At the end read the remainders from bottom to top."
+          }
+        ],
+        "solution": [
+          {
+            "he": "מחלקים ב־2 שוב ושוב, עד שהשלם מגיע ל־0. רושמים כל שארית:",
+            "ru": "Делим на 2 снова и снова, пока целая часть не станет 0. Записываем каждый остаток:",
+            "en": "Divide by 2 again and again until the quotient is 0. Write down each remainder:"
+          },
+          {
+            "he": "`40 : 2 = 20`, שארית `0`",
+            "ru": "`40 : 2 = 20`, остаток `0`",
+            "en": "`40 : 2 = 20`, remainder `0`"
+          },
+          {
+            "he": "`20 : 2 = 10`, שארית `0`",
+            "ru": "`20 : 2 = 10`, остаток `0`",
+            "en": "`20 : 2 = 10`, remainder `0`"
+          },
+          {
+            "he": "`10 : 2 = 5`, שארית `0`",
+            "ru": "`10 : 2 = 5`, остаток `0`",
+            "en": "`10 : 2 = 5`, remainder `0`"
+          },
+          {
+            "he": "`5 : 2 = 2`, שארית `1`",
+            "ru": "`5 : 2 = 2`, остаток `1`",
+            "en": "`5 : 2 = 2`, remainder `1`"
+          },
+          {
+            "he": "`2 : 2 = 1`, שארית `0`",
+            "ru": "`2 : 2 = 1`, остаток `0`",
+            "en": "`2 : 2 = 1`, remainder `0`"
+          },
+          {
+            "he": "`1 : 2 = 0`, שארית `1`",
+            "ru": "`1 : 2 = 0`, остаток `1`",
+            "en": "`1 : 2 = 0`, remainder `1`"
+          },
+          {
+            "he": "קוראים את השאריות מלמטה למעלה: `101000`",
+            "ru": "Читаем остатки снизу вверх: `101000`",
+            "en": "Read the remainders from bottom to top: `101000`"
+          },
+          {
+            "he": "תשובה: `40₁₀ = 101000₂`",
+            "ru": "Ответ: `40₁₀ = 101000₂`",
+            "en": "Answer: `40₁₀ = 101000₂`"
+          },
+          {
+            "he": "בדיקה: ממירים בחזרה — `101000₂ = 40`",
+            "ru": "Проверка: переводим обратно — `101000₂ = 40`",
+            "en": "Check: convert back — `101000₂ = 40`"
+          }
+        ]
+      },
+      {
+        "id": "t2-1",
+        "group": "2",
+        "label": "2א",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `1020` לבסיס 2 בשיטה הטבלאית.",
+          "ru": "Переведите `1020` в двоичную систему методом таблицы.",
+          "en": "Convert `1020` to base 2 using the table method."
+        },
+        "answer": {
+          "accept": [
+            "1111111100",
+            "001111111100",
+            "0000001111111100"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כותבים את המשקלים: `512 256 128 64 32 16 8 4 2 1`. מתחילים מהגדול.",
+            "ru": "Выпиши веса: `512 256 128 64 32 16 8 4 2 1`. Начни с самого большого.",
+            "en": "Write the weights: `512 256 128 64 32 16 8 4 2 1`. Start with the largest."
+          },
+          {
+            "he": "`1020 − 512 = 508` → 1. ממשיכים עם `508` למשקל הבא.",
+            "ru": "`1020 − 512 = 508` → 1. Дальше с `508` к следующему весу.",
+            "en": "`1020 − 512 = 508` → 1. Continue with `508` at the next weight."
+          }
+        ],
+        "solution": [
+          {
+            "he": "המשקל הגדול ביותר שלא גדול מ־`1020` הוא `512`.",
+            "ru": "Самый большой вес, не больше `1020`, это `512`.",
+            "en": "The largest weight not bigger than `1020` is `512`."
+          },
+          "1020 − 512 = 508 → 1",
+          "508 − 256 = 252 → 1",
+          "252 − 128 = 124 → 1",
+          "124 − 64 = 60 → 1",
+          "60 − 32 = 28 → 1",
+          "28 − 16 = 12 → 1",
+          "12 − 8 = 4 → 1",
+          "4 − 4 = 0 → 1",
+          "2, 1 > 0 → 0, 0",
+          {
+            "he": "קוראים את ה־1 וה־0 משמאל לימין: `1111111100`",
+            "ru": "Читаем 1 и 0 слева направо: `1111111100`",
+            "en": "Read the 1s and 0s from left to right: `1111111100`"
+          },
+          {
+            "he": "תשובה: `1020₁₀ = 1111111100₂`",
+            "ru": "Ответ: `1020₁₀ = 1111111100₂`",
+            "en": "Answer: `1020₁₀ = 1111111100₂`"
+          }
+        ]
+      },
+      {
+        "id": "t2-2",
+        "group": "2",
+        "label": "2ב",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `75` לבסיס 2 בשיטה הטבלאית.",
+          "ru": "Переведите `75` в двоичную систему методом таблицы.",
+          "en": "Convert `75` to base 2 using the table method."
+        },
+        "answer": {
+          "accept": [
+            "1001011",
+            "01001011",
+            "000001001011",
+            "0000000001001011"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כותבים את המשקלים: `64 32 16 8 4 2 1`. מתחילים מהגדול.",
+            "ru": "Выпиши веса: `64 32 16 8 4 2 1`. Начни с самого большого.",
+            "en": "Write the weights: `64 32 16 8 4 2 1`. Start with the largest."
+          },
+          {
+            "he": "`75 − 64 = 11` → 1. ממשיכים עם `11` למשקל הבא.",
+            "ru": "`75 − 64 = 11` → 1. Дальше с `11` к следующему весу.",
+            "en": "`75 − 64 = 11` → 1. Continue with `11` at the next weight."
+          }
+        ],
+        "solution": [
+          {
+            "he": "המשקל הגדול ביותר שלא גדול מ־`75` הוא `64`.",
+            "ru": "Самый большой вес, не больше `75`, это `64`.",
+            "en": "The largest weight not bigger than `75` is `64`."
+          },
+          "75 − 64 = 11 → 1",
+          "32, 16 > 11 → 0, 0",
+          "11 − 8 = 3 → 1",
+          "4 > 3 → 0",
+          "3 − 2 = 1 → 1",
+          "1 − 1 = 0 → 1",
+          {
+            "he": "קוראים את ה־1 וה־0 משמאל לימין: `1001011`",
+            "ru": "Читаем 1 и 0 слева направо: `1001011`",
+            "en": "Read the 1s and 0s from left to right: `1001011`"
+          },
+          {
+            "he": "תשובה: `75₁₀ = 1001011₂`",
+            "ru": "Ответ: `75₁₀ = 1001011₂`",
+            "en": "Answer: `75₁₀ = 1001011₂`"
+          }
+        ]
+      },
+      {
+        "id": "t2-3",
+        "group": "2",
+        "label": "2ג",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `510` לבסיס 2 בשיטה הטבלאית.",
+          "ru": "Переведите `510` в двоичную систему методом таблицы.",
+          "en": "Convert `510` to base 2 using the table method."
+        },
+        "answer": {
+          "accept": [
+            "111111110",
+            "000111111110",
+            "0000000111111110"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כותבים את המשקלים: `256 128 64 32 16 8 4 2 1`. מתחילים מהגדול.",
+            "ru": "Выпиши веса: `256 128 64 32 16 8 4 2 1`. Начни с самого большого.",
+            "en": "Write the weights: `256 128 64 32 16 8 4 2 1`. Start with the largest."
+          },
+          {
+            "he": "`510 − 256 = 254` → 1. ממשיכים עם `254` למשקל הבא.",
+            "ru": "`510 − 256 = 254` → 1. Дальше с `254` к следующему весу.",
+            "en": "`510 − 256 = 254` → 1. Continue with `254` at the next weight."
+          }
+        ],
+        "solution": [
+          {
+            "he": "המשקל הגדול ביותר שלא גדול מ־`510` הוא `256`.",
+            "ru": "Самый большой вес, не больше `510`, это `256`.",
+            "en": "The largest weight not bigger than `510` is `256`."
+          },
+          "510 − 256 = 254 → 1",
+          "254 − 128 = 126 → 1",
+          "126 − 64 = 62 → 1",
+          "62 − 32 = 30 → 1",
+          "30 − 16 = 14 → 1",
+          "14 − 8 = 6 → 1",
+          "6 − 4 = 2 → 1",
+          "2 − 2 = 0 → 1",
+          "1 > 0 → 0",
+          {
+            "he": "קוראים את ה־1 וה־0 משמאל לימין: `111111110`",
+            "ru": "Читаем 1 и 0 слева направо: `111111110`",
+            "en": "Read the 1s and 0s from left to right: `111111110`"
+          },
+          {
+            "he": "תשובה: `510₁₀ = 111111110₂`",
+            "ru": "Ответ: `510₁₀ = 111111110₂`",
+            "en": "Answer: `510₁₀ = 111111110₂`"
+          }
+        ]
+      },
+      {
+        "id": "t2-4",
+        "group": "2",
+        "label": "2ד",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `4096` לבסיס 2 בשיטה הטבלאית.",
+          "ru": "Переведите `4096` в двоичную систему методом таблицы.",
+          "en": "Convert `4096` to base 2 using the table method."
+        },
+        "answer": {
+          "accept": [
+            "1000000000000",
+            "0001000000000000"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כותבים את המשקלים: `4096 2048 1024 512 256 128 64 32 16 8 4 2 1`. מתחילים מהגדול.",
+            "ru": "Выпиши веса: `4096 2048 1024 512 256 128 64 32 16 8 4 2 1`. Начни с самого большого.",
+            "en": "Write the weights: `4096 2048 1024 512 256 128 64 32 16 8 4 2 1`. Start with the largest."
+          },
+          {
+            "he": "`4096 − 4096 = 0` → 1. ממשיכים עם `0` למשקל הבא.",
+            "ru": "`4096 − 4096 = 0` → 1. Дальше с `0` к следующему весу.",
+            "en": "`4096 − 4096 = 0` → 1. Continue with `0` at the next weight."
+          }
+        ],
+        "solution": [
+          {
+            "he": "המשקל הגדול ביותר שלא גדול מ־`4096` הוא `4096`.",
+            "ru": "Самый большой вес, не больше `4096`, это `4096`.",
+            "en": "The largest weight not bigger than `4096` is `4096`."
+          },
+          "4096 − 4096 = 0 → 1",
+          {
+            "he": "`2048` … `1` גדולים מ־`0` → 12 אפסים",
+            "ru": "`2048` … `1` больше `0` → 12 нулей",
+            "en": "`2048` … `1` are bigger than `0` → 12 zeros"
+          },
+          {
+            "he": "קוראים את ה־1 וה־0 משמאל לימין: `1000000000000`",
+            "ru": "Читаем 1 и 0 слева направо: `1000000000000`",
+            "en": "Read the 1s and 0s from left to right: `1000000000000`"
+          },
+          {
+            "he": "תשובה: `4096₁₀ = 1000000000000₂`",
+            "ru": "Ответ: `4096₁₀ = 1000000000000₂`",
+            "en": "Answer: `4096₁₀ = 1000000000000₂`"
+          }
+        ]
+      },
+      {
+        "id": "t3-1",
+        "group": "3",
+        "label": "3א",
+        "kind": "number",
+        "text": {
+          "he": "המירו את `1011₂` לבסיס 10.",
+          "ru": "Переведите `1011₂` в десятичную систему.",
+          "en": "Convert `1011₂` to base 10."
+        },
+        "answer": {
+          "value": "11"
+        },
+        "hints": [
+          {
+            "he": "המשקלים מימין: `1, 2, 4, 8`. מכפילים כל ספרה במשקל שלה.",
+            "ru": "Веса справа налево: `1, 2, 4, 8`. Каждую цифру умножаем на её вес.",
+            "en": "Weights from the right: `1, 2, 4, 8`. Multiply each digit by its weight."
+          },
+          {
+            "he": "עכשיו מחברים: `1 × 8 + 0 × 4 + 1 × 2 + 1 × 1`",
+            "ru": "Теперь сложи: `1 × 8 + 0 × 4 + 1 × 2 + 1 × 1`",
+            "en": "Now add: `1 × 8 + 0 × 4 + 1 × 2 + 1 × 1`"
+          }
+        ],
+        "solution": [
+          {
+            "he": "מעל כל ספרה כותבים את המשקל שלה, מימין לשמאל: `2³  2²  2¹  2⁰`",
+            "ru": "Над каждой цифрой пишем её вес (справа налево): `2³  2²  2¹  2⁰`",
+            "en": "Write each digit's weight above it, from the right: `2³  2²  2¹  2⁰`"
+          },
+          {
+            "he": "מכפילים כל ספרה במשקל שלה ומחברים:",
+            "ru": "Умножаем каждую цифру на её вес и складываем:",
+            "en": "Multiply each digit by its weight and add:"
+          },
+          "1 × 2³ + 0 × 2² + 1 × 2¹ + 1 × 2⁰",
+          "= 1 × 8 + 0 × 4 + 1 × 2 + 1 × 1",
+          "= 8 + 0 + 2 + 1",
+          "= 11",
+          {
+            "he": "תשובה: `1011₂ = 11₁₀`",
+            "ru": "Ответ: `1011₂ = 11₁₀`",
+            "en": "Answer: `1011₂ = 11₁₀`"
+          }
+        ]
+      },
+      {
+        "id": "t3-2",
+        "group": "3",
+        "label": "3ב",
+        "kind": "number",
+        "text": {
+          "he": "המירו את `1001₂` לבסיס 10.",
+          "ru": "Переведите `1001₂` в десятичную систему.",
+          "en": "Convert `1001₂` to base 10."
+        },
+        "answer": {
+          "value": "9"
+        },
+        "hints": [
+          {
+            "he": "המשקלים מימין: `1, 2, 4, 8`. מכפילים כל ספרה במשקל שלה.",
+            "ru": "Веса справа налево: `1, 2, 4, 8`. Каждую цифру умножаем на её вес.",
+            "en": "Weights from the right: `1, 2, 4, 8`. Multiply each digit by its weight."
+          },
+          {
+            "he": "עכשיו מחברים: `1 × 8 + 0 × 4 + 0 × 2 + 1 × 1`",
+            "ru": "Теперь сложи: `1 × 8 + 0 × 4 + 0 × 2 + 1 × 1`",
+            "en": "Now add: `1 × 8 + 0 × 4 + 0 × 2 + 1 × 1`"
+          }
+        ],
+        "solution": [
+          {
+            "he": "מעל כל ספרה כותבים את המשקל שלה, מימין לשמאל: `2³  2²  2¹  2⁰`",
+            "ru": "Над каждой цифрой пишем её вес (справа налево): `2³  2²  2¹  2⁰`",
+            "en": "Write each digit's weight above it, from the right: `2³  2²  2¹  2⁰`"
+          },
+          {
+            "he": "מכפילים כל ספרה במשקל שלה ומחברים:",
+            "ru": "Умножаем каждую цифру на её вес и складываем:",
+            "en": "Multiply each digit by its weight and add:"
+          },
+          "1 × 2³ + 0 × 2² + 0 × 2¹ + 1 × 2⁰",
+          "= 1 × 8 + 0 × 4 + 0 × 2 + 1 × 1",
+          "= 8 + 0 + 0 + 1",
+          "= 9",
+          {
+            "he": "תשובה: `1001₂ = 9₁₀`",
+            "ru": "Ответ: `1001₂ = 9₁₀`",
+            "en": "Answer: `1001₂ = 9₁₀`"
+          }
+        ]
+      },
+      {
+        "id": "t3-3",
+        "group": "3",
+        "label": "3ג",
+        "kind": "number",
+        "text": {
+          "he": "המירו את `1100₂` לבסיס 10.",
+          "ru": "Переведите `1100₂` в десятичную систему.",
+          "en": "Convert `1100₂` to base 10."
+        },
+        "answer": {
+          "value": "12"
+        },
+        "hints": [
+          {
+            "he": "המשקלים מימין: `1, 2, 4, 8`. מכפילים כל ספרה במשקל שלה.",
+            "ru": "Веса справа налево: `1, 2, 4, 8`. Каждую цифру умножаем на её вес.",
+            "en": "Weights from the right: `1, 2, 4, 8`. Multiply each digit by its weight."
+          },
+          {
+            "he": "עכשיו מחברים: `1 × 8 + 1 × 4 + 0 × 2 + 0 × 1`",
+            "ru": "Теперь сложи: `1 × 8 + 1 × 4 + 0 × 2 + 0 × 1`",
+            "en": "Now add: `1 × 8 + 1 × 4 + 0 × 2 + 0 × 1`"
+          }
+        ],
+        "solution": [
+          {
+            "he": "מעל כל ספרה כותבים את המשקל שלה, מימין לשמאל: `2³  2²  2¹  2⁰`",
+            "ru": "Над каждой цифрой пишем её вес (справа налево): `2³  2²  2¹  2⁰`",
+            "en": "Write each digit's weight above it, from the right: `2³  2²  2¹  2⁰`"
+          },
+          {
+            "he": "מכפילים כל ספרה במשקל שלה ומחברים:",
+            "ru": "Умножаем каждую цифру на её вес и складываем:",
+            "en": "Multiply each digit by its weight and add:"
+          },
+          "1 × 2³ + 1 × 2² + 0 × 2¹ + 0 × 2⁰",
+          "= 1 × 8 + 1 × 4 + 0 × 2 + 0 × 1",
+          "= 8 + 4 + 0 + 0",
+          "= 12",
+          {
+            "he": "תשובה: `1100₂ = 12₁₀`",
+            "ru": "Ответ: `1100₂ = 12₁₀`",
+            "en": "Answer: `1100₂ = 12₁₀`"
+          }
+        ]
+      },
+      {
+        "id": "t3-4",
+        "group": "3",
+        "label": "3ד",
+        "kind": "number",
+        "text": {
+          "he": "המירו את `110111₂` לבסיס 10.",
+          "ru": "Переведите `110111₂` в десятичную систему.",
+          "en": "Convert `110111₂` to base 10."
+        },
+        "answer": {
+          "value": "55"
+        },
+        "hints": [
+          {
+            "he": "המשקלים מימין: `1, 2, 4, 8, 16, 32`. מכפילים כל ספרה במשקל שלה.",
+            "ru": "Веса справа налево: `1, 2, 4, 8, 16, 32`. Каждую цифру умножаем на её вес.",
+            "en": "Weights from the right: `1, 2, 4, 8, 16, 32`. Multiply each digit by its weight."
+          },
+          {
+            "he": "עכשיו מחברים: `1 × 32 + 1 × 16 + 0 × 8 + 1 × 4 + 1 × 2 + 1 × 1`",
+            "ru": "Теперь сложи: `1 × 32 + 1 × 16 + 0 × 8 + 1 × 4 + 1 × 2 + 1 × 1`",
+            "en": "Now add: `1 × 32 + 1 × 16 + 0 × 8 + 1 × 4 + 1 × 2 + 1 × 1`"
+          }
+        ],
+        "solution": [
+          {
+            "he": "מעל כל ספרה כותבים את המשקל שלה, מימין לשמאל: `2⁵  2⁴  2³  2²  2¹  2⁰`",
+            "ru": "Над каждой цифрой пишем её вес (справа налево): `2⁵  2⁴  2³  2²  2¹  2⁰`",
+            "en": "Write each digit's weight above it, from the right: `2⁵  2⁴  2³  2²  2¹  2⁰`"
+          },
+          {
+            "he": "מכפילים כל ספרה במשקל שלה ומחברים:",
+            "ru": "Умножаем каждую цифру на её вес и складываем:",
+            "en": "Multiply each digit by its weight and add:"
+          },
+          "1 × 2⁵ + 1 × 2⁴ + 0 × 2³ + 1 × 2² + 1 × 2¹ + 1 × 2⁰",
+          "= 1 × 32 + 1 × 16 + 0 × 8 + 1 × 4 + 1 × 2 + 1 × 1",
+          "= 32 + 16 + 0 + 4 + 2 + 1",
+          "= 55",
+          {
+            "he": "תשובה: `110111₂ = 55₁₀`",
+            "ru": "Ответ: `110111₂ = 55₁₀`",
+            "en": "Answer: `110111₂ = 55₁₀`"
+          }
+        ]
+      }
+    ],
+    "ai": [
+      {
+        "id": "ai1-1",
+        "level": 1,
+        "label": "1.1",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `13` לבסיס 2 בשיטת החלוקה ב־2.",
+          "ru": "Переведите `13` в двоичную систему делением на 2.",
+          "en": "Convert `13` to base 2 using division by 2."
+        },
+        "answer": {
+          "accept": [
+            "1101",
+            "00001101",
+            "000000001101",
+            "0000000000001101"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מחלקים ב־2: השלם עובר לשורה הבאה, השארית נרשמת בצד. ממשיכים עד שהשלם הוא 0.",
+            "ru": "Делим на 2: целая часть идёт в следующую строку, остаток пишем сбоку. Продолжаем, пока целая часть не станет 0.",
+            "en": "Divide by 2: the quotient goes to the next line, the remainder is written on the side. Continue until the quotient is 0."
+          },
+          {
+            "he": "השורה הראשונה: `13 : 2 = 6`, שארית `1`. בסוף קוראים את השאריות מלמטה למעלה.",
+            "ru": "Первая строка: `13 : 2 = 6`, остаток `1`. В конце читаем остатки снизу вверх.",
+            "en": "First line: `13 : 2 = 6`, remainder `1`. At the end read the remainders from bottom to top."
+          }
+        ],
+        "solution": [
+          {
+            "he": "מחלקים ב־2 שוב ושוב, עד שהשלם מגיע ל־0. רושמים כל שארית:",
+            "ru": "Делим на 2 снова и снова, пока целая часть не станет 0. Записываем каждый остаток:",
+            "en": "Divide by 2 again and again until the quotient is 0. Write down each remainder:"
+          },
+          {
+            "he": "`13 : 2 = 6`, שארית `1`",
+            "ru": "`13 : 2 = 6`, остаток `1`",
+            "en": "`13 : 2 = 6`, remainder `1`"
+          },
+          {
+            "he": "`6 : 2 = 3`, שארית `0`",
+            "ru": "`6 : 2 = 3`, остаток `0`",
+            "en": "`6 : 2 = 3`, remainder `0`"
+          },
+          {
+            "he": "`3 : 2 = 1`, שארית `1`",
+            "ru": "`3 : 2 = 1`, остаток `1`",
+            "en": "`3 : 2 = 1`, remainder `1`"
+          },
+          {
+            "he": "`1 : 2 = 0`, שארית `1`",
+            "ru": "`1 : 2 = 0`, остаток `1`",
+            "en": "`1 : 2 = 0`, remainder `1`"
+          },
+          {
+            "he": "קוראים את השאריות מלמטה למעלה: `1101`",
+            "ru": "Читаем остатки снизу вверх: `1101`",
+            "en": "Read the remainders from bottom to top: `1101`"
+          },
+          {
+            "he": "תשובה: `13₁₀ = 1101₂`",
+            "ru": "Ответ: `13₁₀ = 1101₂`",
+            "en": "Answer: `13₁₀ = 1101₂`"
+          },
+          {
+            "he": "בדיקה: ממירים בחזרה — `1101₂ = 13`",
+            "ru": "Проверка: переводим обратно — `1101₂ = 13`",
+            "en": "Check: convert back — `1101₂ = 13`"
+          }
+        ]
+      },
+      {
+        "id": "ai1-2",
+        "level": 1,
+        "label": "1.2",
+        "kind": "number",
+        "text": {
+          "he": "המירו את `10110₂` לבסיס 10.",
+          "ru": "Переведите `10110₂` в десятичную систему.",
+          "en": "Convert `10110₂` to base 10."
+        },
+        "answer": {
+          "value": "22"
+        },
+        "hints": [
+          {
+            "he": "המשקלים מימין: `1, 2, 4, 8, 16`. מכפילים כל ספרה במשקל שלה.",
+            "ru": "Веса справа налево: `1, 2, 4, 8, 16`. Каждую цифру умножаем на её вес.",
+            "en": "Weights from the right: `1, 2, 4, 8, 16`. Multiply each digit by its weight."
+          },
+          {
+            "he": "עכשיו מחברים: `1 × 16 + 0 × 8 + 1 × 4 + 1 × 2 + 0 × 1`",
+            "ru": "Теперь сложи: `1 × 16 + 0 × 8 + 1 × 4 + 1 × 2 + 0 × 1`",
+            "en": "Now add: `1 × 16 + 0 × 8 + 1 × 4 + 1 × 2 + 0 × 1`"
+          }
+        ],
+        "solution": [
+          {
+            "he": "מעל כל ספרה כותבים את המשקל שלה, מימין לשמאל: `2⁴  2³  2²  2¹  2⁰`",
+            "ru": "Над каждой цифрой пишем её вес (справа налево): `2⁴  2³  2²  2¹  2⁰`",
+            "en": "Write each digit's weight above it, from the right: `2⁴  2³  2²  2¹  2⁰`"
+          },
+          {
+            "he": "מכפילים כל ספרה במשקל שלה ומחברים:",
+            "ru": "Умножаем каждую цифру на её вес и складываем:",
+            "en": "Multiply each digit by its weight and add:"
+          },
+          "1 × 2⁴ + 0 × 2³ + 1 × 2² + 1 × 2¹ + 0 × 2⁰",
+          "= 1 × 16 + 0 × 8 + 1 × 4 + 1 × 2 + 0 × 1",
+          "= 16 + 0 + 4 + 2 + 0",
+          "= 22",
+          {
+            "he": "תשובה: `10110₂ = 22₁₀`",
+            "ru": "Ответ: `10110₂ = 22₁₀`",
+            "en": "Answer: `10110₂ = 22₁₀`"
+          }
+        ]
+      },
+      {
+        "id": "ai1-3",
+        "level": 1,
+        "label": "1.3",
+        "kind": "number",
+        "text": {
+          "he": "המירו את `1111₂` לבסיס 10.",
+          "ru": "Переведите `1111₂` в десятичную систему.",
+          "en": "Convert `1111₂` to base 10."
+        },
+        "answer": {
+          "value": "15"
+        },
+        "hints": [
+          {
+            "he": "המשקלים מימין: `1, 2, 4, 8`. מכפילים כל ספרה במשקל שלה.",
+            "ru": "Веса справа налево: `1, 2, 4, 8`. Каждую цифру умножаем на её вес.",
+            "en": "Weights from the right: `1, 2, 4, 8`. Multiply each digit by its weight."
+          },
+          {
+            "he": "עכשיו מחברים: `1 × 8 + 1 × 4 + 1 × 2 + 1 × 1`",
+            "ru": "Теперь сложи: `1 × 8 + 1 × 4 + 1 × 2 + 1 × 1`",
+            "en": "Now add: `1 × 8 + 1 × 4 + 1 × 2 + 1 × 1`"
+          }
+        ],
+        "solution": [
+          {
+            "he": "מעל כל ספרה כותבים את המשקל שלה, מימין לשמאל: `2³  2²  2¹  2⁰`",
+            "ru": "Над каждой цифрой пишем её вес (справа налево): `2³  2²  2¹  2⁰`",
+            "en": "Write each digit's weight above it, from the right: `2³  2²  2¹  2⁰`"
+          },
+          {
+            "he": "מכפילים כל ספרה במשקל שלה ומחברים:",
+            "ru": "Умножаем каждую цифру на её вес и складываем:",
+            "en": "Multiply each digit by its weight and add:"
+          },
+          "1 × 2³ + 1 × 2² + 1 × 2¹ + 1 × 2⁰",
+          "= 1 × 8 + 1 × 4 + 1 × 2 + 1 × 1",
+          "= 8 + 4 + 2 + 1",
+          "= 15",
+          {
+            "he": "תשובה: `1111₂ = 15₁₀`",
+            "ru": "Ответ: `1111₂ = 15₁₀`",
+            "en": "Answer: `1111₂ = 15₁₀`"
+          }
+        ]
+      },
+      {
+        "id": "ai1-4",
+        "level": 1,
+        "label": "1.4",
+        "kind": "choice",
+        "text": {
+          "he": "איזה חלק במעבד מבצע חיבור ופעולות לוגיות (AND, OR, XOR, NOT)?",
+          "ru": "Какая часть процессора выполняет сложение и логические операции (AND, OR, XOR, NOT)?",
+          "en": "Which part of the CPU does addition and logic operations (AND, OR, XOR, NOT)?"
+        },
+        "options": [
+          "ALU",
+          "CU",
+          "MMU"
+        ],
+        "answer": {
+          "index": 0
+        },
+        "hints": [
+          {
+            "he": "A = Arithmetic, L = Logic.",
+            "ru": "A = Arithmetic (арифметика), L = Logic (логика).",
+            "en": "A = Arithmetic, L = Logic."
+          }
+        ],
+        "solution": [
+          {
+            "he": "`ALU` = Arithmetic Logic Unit: חשבון (+ − × ÷) ולוגיקה (AND, OR, XOR, NOT).",
+            "ru": "`ALU` = Arithmetic Logic Unit: арифметика (+ − × ÷) и логика (AND, OR, XOR, NOT).",
+            "en": "`ALU` = Arithmetic Logic Unit: arithmetic (+ − × ÷) and logic (AND, OR, XOR, NOT)."
+          },
+          {
+            "he": "`CU` היא יחידת הבקרה: מחליטה איזו יחידה עושה מה. `MMU` מעבירה נתונים מהזיכרון.",
+            "ru": "`CU` — блок управления: решает, какой блок что делает. `MMU` переносит данные из памяти.",
+            "en": "`CU` is the control unit: it decides which unit does what. `MMU` moves data from memory."
+          },
+          {
+            "he": "תשובה: ALU",
+            "ru": "Ответ: ALU",
+            "en": "Answer: ALU"
+          }
+        ]
+      },
+      {
+        "id": "ai2-1",
+        "level": 2,
+        "label": "2.1",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `100` לבסיס 2 בשיטה הטבלאית.",
+          "ru": "Переведите `100` в двоичную систему методом таблицы.",
+          "en": "Convert `100` to base 2 using the table method."
+        },
+        "answer": {
+          "accept": [
+            "1100100",
+            "01100100",
+            "000001100100",
+            "0000000001100100"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כותבים את המשקלים: `64 32 16 8 4 2 1`. מתחילים מהגדול.",
+            "ru": "Выпиши веса: `64 32 16 8 4 2 1`. Начни с самого большого.",
+            "en": "Write the weights: `64 32 16 8 4 2 1`. Start with the largest."
+          },
+          {
+            "he": "`100 − 64 = 36` → 1. ממשיכים עם `36` למשקל הבא.",
+            "ru": "`100 − 64 = 36` → 1. Дальше с `36` к следующему весу.",
+            "en": "`100 − 64 = 36` → 1. Continue with `36` at the next weight."
+          }
+        ],
+        "solution": [
+          {
+            "he": "המשקל הגדול ביותר שלא גדול מ־`100` הוא `64`.",
+            "ru": "Самый большой вес, не больше `100`, это `64`.",
+            "en": "The largest weight not bigger than `100` is `64`."
+          },
+          "100 − 64 = 36 → 1",
+          "36 − 32 = 4 → 1",
+          "16, 8 > 4 → 0, 0",
+          "4 − 4 = 0 → 1",
+          "2, 1 > 0 → 0, 0",
+          {
+            "he": "קוראים את ה־1 וה־0 משמאל לימין: `1100100`",
+            "ru": "Читаем 1 и 0 слева направо: `1100100`",
+            "en": "Read the 1s and 0s from left to right: `1100100`"
+          },
+          {
+            "he": "תשובה: `100₁₀ = 1100100₂`",
+            "ru": "Ответ: `100₁₀ = 1100100₂`",
+            "en": "Answer: `100₁₀ = 1100100₂`"
+          }
+        ]
+      },
+      {
+        "id": "ai2-2",
+        "level": 2,
+        "label": "2.2",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `64` לבסיס 2 בשיטה הטבלאית.",
+          "ru": "Переведите `64` в двоичную систему методом таблицы.",
+          "en": "Convert `64` to base 2 using the table method."
+        },
+        "answer": {
+          "accept": [
+            "1000000",
+            "01000000",
+            "000001000000",
+            "0000000001000000"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כותבים את המשקלים: `64 32 16 8 4 2 1`. מתחילים מהגדול.",
+            "ru": "Выпиши веса: `64 32 16 8 4 2 1`. Начни с самого большого.",
+            "en": "Write the weights: `64 32 16 8 4 2 1`. Start with the largest."
+          },
+          {
+            "he": "`64 − 64 = 0` → 1. ממשיכים עם `0` למשקל הבא.",
+            "ru": "`64 − 64 = 0` → 1. Дальше с `0` к следующему весу.",
+            "en": "`64 − 64 = 0` → 1. Continue with `0` at the next weight."
+          }
+        ],
+        "solution": [
+          {
+            "he": "המשקל הגדול ביותר שלא גדול מ־`64` הוא `64`.",
+            "ru": "Самый большой вес, не больше `64`, это `64`.",
+            "en": "The largest weight not bigger than `64` is `64`."
+          },
+          "64 − 64 = 0 → 1",
+          {
+            "he": "`32` … `1` גדולים מ־`0` → 6 אפסים",
+            "ru": "`32` … `1` больше `0` → 6 нулей",
+            "en": "`32` … `1` are bigger than `0` → 6 zeros"
+          },
+          {
+            "he": "קוראים את ה־1 וה־0 משמאל לימין: `1000000`",
+            "ru": "Читаем 1 и 0 слева направо: `1000000`",
+            "en": "Read the 1s and 0s from left to right: `1000000`"
+          },
+          {
+            "he": "תשובה: `64₁₀ = 1000000₂`",
+            "ru": "Ответ: `64₁₀ = 1000000₂`",
+            "en": "Answer: `64₁₀ = 1000000₂`"
+          }
+        ]
+      },
+      {
+        "id": "ai2-3",
+        "level": 2,
+        "label": "2.3",
+        "kind": "number",
+        "text": {
+          "he": "מה המשקל של ה־MSB במספר `100101₂`?",
+          "ru": "Какой вес у MSB в числе `100101₂`?",
+          "en": "What is the weight of the MSB in `100101₂`?"
+        },
+        "answer": {
+          "value": "32"
+        },
+        "hints": [
+          {
+            "he": "MSB הוא הביט הכי שמאלי. סופרים כמה ספרות יש במספר.",
+            "ru": "MSB — самый левый бит. Посчитай, сколько цифр в числе.",
+            "en": "The MSB is the leftmost bit. Count how many digits the number has."
+          },
+          {
+            "he": "יש 6 ספרות, ולכן המשקל השמאלי הוא `2⁵`.",
+            "ru": "Цифр 6, значит левый вес `2⁵`.",
+            "en": "There are 6 digits, so the leftmost weight is `2⁵`."
+          }
+        ],
+        "solution": [
+          {
+            "he": "המשקלים מימין: `1, 2, 4, 8, 16, 32`",
+            "ru": "Веса справа налево: `1, 2, 4, 8, 16, 32`",
+            "en": "Weights from the right: `1, 2, 4, 8, 16, 32`"
+          },
+          {
+            "he": "ב־`100101` יש 6 ספרות, וה־MSB עומד במקום השישי מימין.",
+            "ru": "В `100101` шесть цифр, MSB стоит на шестом месте справа.",
+            "en": "`100101` has 6 digits; the MSB is in the sixth place from the right."
+          },
+          "2⁵ = 2 × 2 × 2 × 2 × 2 = 32",
+          {
+            "he": "תשובה: 32",
+            "ru": "Ответ: 32",
+            "en": "Answer: 32"
+          }
+        ]
+      },
+      {
+        "id": "ai2-4",
+        "level": 2,
+        "label": "2.4",
+        "kind": "choice",
+        "text": {
+          "he": "סטודנט המיר את `45` לבינארי וקיבל `101101`. איך בודקים שהתשובה נכונה?",
+          "ru": "Студент перевёл `45` в двоичную и получил `101101`. Как проверить, что ответ верный?",
+          "en": "A student converted `45` to binary and got `101101`. How do you check the answer?"
+        },
+        "options": [
+          {
+            "he": "ממירים את `101101₂` בחזרה לבסיס 10 ובודקים שיוצא 45",
+            "ru": "Переводим `101101₂` обратно в десятичную и смотрим, получится ли 45",
+            "en": "Convert `101101₂` back to base 10 and see if it gives 45"
+          },
+          {
+            "he": "סופרים כמה ספרות 1 יש בתשובה",
+            "ru": "Считаем, сколько единиц в ответе",
+            "en": "Count how many 1s are in the answer"
+          },
+          {
+            "he": "מחלקים את 45 ב־10",
+            "ru": "Делим 45 на 10",
+            "en": "Divide 45 by 10"
+          }
+        ],
+        "answer": {
+          "index": 0
+        },
+        "hints": [
+          {
+            "he": "בשיעור: \"איך מוכיחים שהתשובה נכונה?\" — הולכים בכיוון ההפוך.",
+            "ru": "На уроке: «как доказать, что ответ верный?» — идём в обратную сторону.",
+            "en": "In class: \"how do you prove the answer is right?\" — go the other way."
+          }
+        ],
+        "solution": [
+          {
+            "he": "ממירים בחזרה:",
+            "ru": "Переводим обратно:",
+            "en": "Convert back:"
+          },
+          "1 × 32 + 0 × 16 + 1 × 8 + 1 × 4 + 0 × 2 + 1 × 1",
+          "= 32 + 0 + 8 + 4 + 0 + 1",
+          "= 45",
+          {
+            "he": "יצא המספר המקורי, ולכן התשובה נכונה.",
+            "ru": "Получилось исходное число — ответ верный.",
+            "en": "We got the original number, so the answer is correct."
+          }
+        ]
+      },
+      {
+        "id": "ai3-1",
+        "level": 3,
+        "label": "3.1",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `255` לבסיס 2 בשיטת החלוקה ב־2.",
+          "ru": "Переведите `255` в двоичную систему делением на 2.",
+          "en": "Convert `255` to base 2 using division by 2."
+        },
+        "answer": {
+          "accept": [
+            "11111111",
+            "000011111111",
+            "0000000011111111"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מחלקים ב־2: השלם עובר לשורה הבאה, השארית נרשמת בצד. ממשיכים עד שהשלם הוא 0.",
+            "ru": "Делим на 2: целая часть идёт в следующую строку, остаток пишем сбоку. Продолжаем, пока целая часть не станет 0.",
+            "en": "Divide by 2: the quotient goes to the next line, the remainder is written on the side. Continue until the quotient is 0."
+          },
+          {
+            "he": "השורה הראשונה: `255 : 2 = 127`, שארית `1`. בסוף קוראים את השאריות מלמטה למעלה.",
+            "ru": "Первая строка: `255 : 2 = 127`, остаток `1`. В конце читаем остатки снизу вверх.",
+            "en": "First line: `255 : 2 = 127`, remainder `1`. At the end read the remainders from bottom to top."
+          }
+        ],
+        "solution": [
+          {
+            "he": "מחלקים ב־2 שוב ושוב, עד שהשלם מגיע ל־0. רושמים כל שארית:",
+            "ru": "Делим на 2 снова и снова, пока целая часть не станет 0. Записываем каждый остаток:",
+            "en": "Divide by 2 again and again until the quotient is 0. Write down each remainder:"
+          },
+          {
+            "he": "`255 : 2 = 127`, שארית `1`",
+            "ru": "`255 : 2 = 127`, остаток `1`",
+            "en": "`255 : 2 = 127`, remainder `1`"
+          },
+          {
+            "he": "`127 : 2 = 63`, שארית `1`",
+            "ru": "`127 : 2 = 63`, остаток `1`",
+            "en": "`127 : 2 = 63`, remainder `1`"
+          },
+          {
+            "he": "`63 : 2 = 31`, שארית `1`",
+            "ru": "`63 : 2 = 31`, остаток `1`",
+            "en": "`63 : 2 = 31`, remainder `1`"
+          },
+          {
+            "he": "`31 : 2 = 15`, שארית `1`",
+            "ru": "`31 : 2 = 15`, остаток `1`",
+            "en": "`31 : 2 = 15`, remainder `1`"
+          },
+          {
+            "he": "`15 : 2 = 7`, שארית `1`",
+            "ru": "`15 : 2 = 7`, остаток `1`",
+            "en": "`15 : 2 = 7`, remainder `1`"
+          },
+          {
+            "he": "`7 : 2 = 3`, שארית `1`",
+            "ru": "`7 : 2 = 3`, остаток `1`",
+            "en": "`7 : 2 = 3`, remainder `1`"
+          },
+          {
+            "he": "`3 : 2 = 1`, שארית `1`",
+            "ru": "`3 : 2 = 1`, остаток `1`",
+            "en": "`3 : 2 = 1`, remainder `1`"
+          },
+          {
+            "he": "`1 : 2 = 0`, שארית `1`",
+            "ru": "`1 : 2 = 0`, остаток `1`",
+            "en": "`1 : 2 = 0`, remainder `1`"
+          },
+          {
+            "he": "קוראים את השאריות מלמטה למעלה: `11111111`",
+            "ru": "Читаем остатки снизу вверх: `11111111`",
+            "en": "Read the remainders from bottom to top: `11111111`"
+          },
+          {
+            "he": "תשובה: `255₁₀ = 11111111₂`",
+            "ru": "Ответ: `255₁₀ = 11111111₂`",
+            "en": "Answer: `255₁₀ = 11111111₂`"
+          },
+          {
+            "he": "בדיקה: ממירים בחזרה — `11111111₂ = 255`",
+            "ru": "Проверка: переводим обратно — `11111111₂ = 255`",
+            "en": "Check: convert back — `11111111₂ = 255`"
+          }
+        ]
+      },
+      {
+        "id": "ai3-2",
+        "level": 3,
+        "label": "3.2",
+        "kind": "text",
+        "text": {
+          "he": "המירו את `1000` לבסיס 2 בשיטה הטבלאית.",
+          "ru": "Переведите `1000` в двоичную систему методом таблицы.",
+          "en": "Convert `1000` to base 2 using the table method."
+        },
+        "answer": {
+          "accept": [
+            "1111101000",
+            "001111101000",
+            "0000001111101000"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כותבים את המשקלים: `512 256 128 64 32 16 8 4 2 1`. מתחילים מהגדול.",
+            "ru": "Выпиши веса: `512 256 128 64 32 16 8 4 2 1`. Начни с самого большого.",
+            "en": "Write the weights: `512 256 128 64 32 16 8 4 2 1`. Start with the largest."
+          },
+          {
+            "he": "`1000 − 512 = 488` → 1. ממשיכים עם `488` למשקל הבא.",
+            "ru": "`1000 − 512 = 488` → 1. Дальше с `488` к следующему весу.",
+            "en": "`1000 − 512 = 488` → 1. Continue with `488` at the next weight."
+          }
+        ],
+        "solution": [
+          {
+            "he": "המשקל הגדול ביותר שלא גדול מ־`1000` הוא `512`.",
+            "ru": "Самый большой вес, не больше `1000`, это `512`.",
+            "en": "The largest weight not bigger than `1000` is `512`."
+          },
+          "1000 − 512 = 488 → 1",
+          "488 − 256 = 232 → 1",
+          "232 − 128 = 104 → 1",
+          "104 − 64 = 40 → 1",
+          "40 − 32 = 8 → 1",
+          "16 > 8 → 0",
+          "8 − 8 = 0 → 1",
+          "4, 2, 1 > 0 → 0, 0, 0",
+          {
+            "he": "קוראים את ה־1 וה־0 משמאל לימין: `1111101000`",
+            "ru": "Читаем 1 и 0 слева направо: `1111101000`",
+            "en": "Read the 1s and 0s from left to right: `1111101000`"
+          },
+          {
+            "he": "תשובה: `1000₁₀ = 1111101000₂`",
+            "ru": "Ответ: `1000₁₀ = 1111101000₂`",
+            "en": "Answer: `1000₁₀ = 1111101000₂`"
+          }
+        ]
+      },
+      {
+        "id": "ai3-3",
+        "level": 3,
+        "label": "3.3",
+        "kind": "number",
+        "text": {
+          "he": "המירו את `10101010₂` לבסיס 10.",
+          "ru": "Переведите `10101010₂` в десятичную систему.",
+          "en": "Convert `10101010₂` to base 10."
+        },
+        "answer": {
+          "value": "170"
+        },
+        "hints": [
+          {
+            "he": "המשקלים מימין: `1, 2, 4, 8, 16, 32, 64, 128`. מכפילים כל ספרה במשקל שלה.",
+            "ru": "Веса справа налево: `1, 2, 4, 8, 16, 32, 64, 128`. Каждую цифру умножаем на её вес.",
+            "en": "Weights from the right: `1, 2, 4, 8, 16, 32, 64, 128`. Multiply each digit by its weight."
+          },
+          {
+            "he": "עכשיו מחברים: `1 × 128 + 0 × 64 + 1 × 32 + 0 × 16 + 1 × 8 + 0 × 4 + 1 × 2 + 0 × 1`",
+            "ru": "Теперь сложи: `1 × 128 + 0 × 64 + 1 × 32 + 0 × 16 + 1 × 8 + 0 × 4 + 1 × 2 + 0 × 1`",
+            "en": "Now add: `1 × 128 + 0 × 64 + 1 × 32 + 0 × 16 + 1 × 8 + 0 × 4 + 1 × 2 + 0 × 1`"
+          }
+        ],
+        "solution": [
+          {
+            "he": "מעל כל ספרה כותבים את המשקל שלה, מימין לשמאל: `2⁷  2⁶  2⁵  2⁴  2³  2²  2¹  2⁰`",
+            "ru": "Над каждой цифрой пишем её вес (справа налево): `2⁷  2⁶  2⁵  2⁴  2³  2²  2¹  2⁰`",
+            "en": "Write each digit's weight above it, from the right: `2⁷  2⁶  2⁵  2⁴  2³  2²  2¹  2⁰`"
+          },
+          {
+            "he": "מכפילים כל ספרה במשקל שלה ומחברים:",
+            "ru": "Умножаем каждую цифру на её вес и складываем:",
+            "en": "Multiply each digit by its weight and add:"
+          },
+          "1 × 2⁷ + 0 × 2⁶ + 1 × 2⁵ + 0 × 2⁴ + 1 × 2³ + 0 × 2² + 1 × 2¹ + 0 × 2⁰",
+          "= 1 × 128 + 0 × 64 + 1 × 32 + 0 × 16 + 1 × 8 + 0 × 4 + 1 × 2 + 0 × 1",
+          "= 128 + 0 + 32 + 0 + 8 + 0 + 2 + 0",
+          "= 170",
+          {
+            "he": "תשובה: `10101010₂ = 170₁₀`",
+            "ru": "Ответ: `10101010₂ = 170₁₀`",
+            "en": "Answer: `10101010₂ = 170₁₀`"
+          }
+        ]
+      },
+      {
+        "id": "ai3-4",
+        "level": 3,
+        "label": "3.4",
+        "kind": "text",
+        "text": {
+          "he": "כתבו את המספר `5` כבייט שלם (8 ביטים).",
+          "ru": "Запишите число `5` как целый байт (8 бит).",
+          "en": "Write the number `5` as a full byte (8 bits)."
+        },
+        "answer": {
+          "accept": [
+            "00000101"
+          ]
+        },
+        "hints": [
+          {
+            "he": "קודם ממירים: `5 = 4 + 1`.",
+            "ru": "Сначала переведи: `5 = 4 + 1`.",
+            "en": "First convert: `5 = 4 + 1`."
+          },
+          {
+            "he": "`5 = 101₂`. בבייט יש 8 מקומות: משלימים אפסים משמאל.",
+            "ru": "`5 = 101₂`. В байте 8 мест: слева дописываем нули.",
+            "en": "`5 = 101₂`. A byte has 8 places: fill zeros on the left."
+          }
+        ],
+        "solution": [
+          "5 = 4 + 1",
+          "5 = 1 × 4 + 0 × 2 + 1 × 1 = 101₂",
+          {
+            "he": "ל־`101` יש 3 ספרות. חסרות 5 עד 8.",
+            "ru": "В `101` три цифры. До 8 не хватает 5.",
+            "en": "`101` has 3 digits. 5 are missing to make 8."
+          },
+          {
+            "he": "משלימים 5 אפסים משמאל: `00000101`",
+            "ru": "Дописываем 5 нулей слева: `00000101`",
+            "en": "Add 5 zeros on the left: `00000101`"
+          },
+          {
+            "he": "אפסים משמאל לא משנים את הערך.",
+            "ru": "Нули слева значение не меняют.",
+            "en": "Zeros on the left don't change the value."
+          }
+        ]
+      }
+    ]
+  }
+};
