@@ -48,7 +48,7 @@ async function appServer() {
     rows = await db("app_secrets?key=eq.vapid&select=value");
   }
   const vapidKeys = await webpush.importVapidKeys(JSON.parse(rows[0].value), { extractable: false });
-  server = await webpush.ApplicationServer.new({ contactInformation: "https://denisv1.github.io/aac-study/", vapidKeys });
+  server = await webpush.ApplicationServer.new({ contactInformation: "https://aac-study.github.io/", vapidKeys });
   publicKey = await webpush.exportApplicationServerKey(vapidKeys);
   return server;
 }
