@@ -1,7 +1,7 @@
 /* Service worker: пуш-уведомления и офлайн-уроки.
    Сайт всегда грузится из сети (свежая версия). Только если сети нет — отдаём то, что человек сам
    скачал кнопкой «Скачать для офлайна» (кэш aac-offline-v1, его заполняет js/offline.js). */
-var SW_VERSION = '2026-11-02.13';
+var SW_VERSION = '2026-11-02.14';
 var OFFLINE_CACHE = 'aac-offline-v1';
 self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });
@@ -46,7 +46,8 @@ function show(msg) {
      Поэтому у сообщений чата метка уникальная: «chat-<чат>-<время>». Когда открываешь чат, сайт убирает его уведомления. */
   var tag = msg.tag || '';
   var chat = /^chat-/.test(tag) ? tag.slice(5) : '';
-  if (chat) tag = 'chat-' + chat + '-' + Date.now();
+  // у всех, кроме проверочных, метка уникальная — уведомления не заменяют друг друга
+  if (tag && tag !== 'test' && tag !== 'goal') tag = tag + '-' + Date.now();
   return self.registration.showNotification(msg.title || 'AAC', {
     body: msg.body || '',
     icon: 'img/icon-192.png',

@@ -11,21 +11,21 @@
       adm_people: 'משתתפים', adm_people_hint: 'חסימה: האדם לא יוכל להיכנס, לכתוב או לקבל התראות. אפשר לבטל בכל רגע.',
       adm_ban: 'לחסום', adm_unban: 'לבטל חסימה', adm_banned: 'חסום', adm_ban_sure: 'לחסום את {name}?', adm_you: 'את/ה',
       adm_admin: 'מנהל', adm_issues: 'דיווחים על בעיות', adm_ban_done: '{name} נחסם/ה', adm_unban_done: 'החסימה של {name} בוטלה',
-      nav_admin: 'ניהול', err_banned: 'החשבון נחסם על ידי מנהל האתר', sc_err_banned: 'החשבון נחסם על ידי מנהל האתר' },
+      adm_announce: 'התראה על שיעור חדש', adm_announce_hint: 'אחרי שהשיעור עלה לאתר: בחרו אותו ושלחו. תגיע רק למי שהמקצוע פתוח אצלו.', adm_announce_btn: 'לשלוח', adm_announce_done: 'נשלח: {n}', adm_announce_again: 'על השיעור הזה כבר נשלחה התראה', nav_admin: 'ניהול', err_banned: 'החשבון נחסם על ידי מנהל האתר', sc_err_banned: 'החשבון נחסם על ידי מנהל האתר' },
     ru: { adm_head: 'Админка', adm_lead: 'Код приглашения, участники и сообщения о проблемах.', adm_invite: 'Код приглашения',
       adm_invite_hint: 'Без этого кода нельзя зарегистрироваться. Если код утёк — смени его. Тех, кто уже зарегистрирован, это не затронет.',
       adm_invite_save: 'Сохранить', adm_invite_saved: 'Новый код сохранён', adm_invite_bad: 'Код должен быть от 6 до 64 символов',
       adm_people: 'Участники', adm_people_hint: 'Бан: человек не сможет войти, писать и получать уведомления. Снять бан можно в любой момент.',
       adm_ban: 'Забанить', adm_unban: 'Снять бан', adm_banned: 'Забанен', adm_ban_sure: 'Забанить {name}?', adm_you: 'Ты',
       adm_admin: 'Админ', adm_issues: 'Сообщения о проблемах', adm_ban_done: '{name}: бан', adm_unban_done: '{name}: бан снят',
-      nav_admin: 'Админка', err_banned: 'Аккаунт заблокирован администратором сайта', sc_err_banned: 'Аккаунт заблокирован администратором сайта' },
+      adm_announce: 'Уведомление о новом уроке', adm_announce_hint: 'Когда урок появился на сайте: выбери его и отправь. Придёт только тем, у кого включён этот предмет.', adm_announce_btn: 'Разослать', adm_announce_done: 'Отправлено: {n}', adm_announce_again: 'Об этом уроке уже рассылали', nav_admin: 'Админка', err_banned: 'Аккаунт заблокирован администратором сайта', sc_err_banned: 'Аккаунт заблокирован администратором сайта' },
     en: { adm_head: 'Admin', adm_lead: 'Invite code, members and problem reports.', adm_invite: 'Invite code',
       adm_invite_hint: 'Nobody can sign up without this code. If it leaked, change it. People who already joined are not affected.',
       adm_invite_save: 'Save', adm_invite_saved: 'New code saved', adm_invite_bad: 'The code needs 6–64 characters',
       adm_people: 'Members', adm_people_hint: 'Ban: the person cannot sign in, write or get notifications. You can lift it any time.',
       adm_ban: 'Ban', adm_unban: 'Unban', adm_banned: 'Banned', adm_ban_sure: 'Ban {name}?', adm_you: 'You',
       adm_admin: 'Admin', adm_issues: 'Problem reports', adm_ban_done: '{name} is banned', adm_unban_done: '{name} is unbanned',
-      nav_admin: 'Admin', err_banned: 'This account was blocked by the site admin', sc_err_banned: 'This account was blocked by the site admin' }
+      adm_announce: 'New lesson notification', adm_announce_hint: 'Once the lesson is on the site: pick it and send. Only people with that subject turned on get it.', adm_announce_btn: 'Send', adm_announce_done: 'Sent: {n}', adm_announce_again: 'This lesson was already announced', nav_admin: 'Admin', err_banned: 'This account was blocked by the site admin', sc_err_banned: 'This account was blocked by the site admin' }
   });
 
   var sb = function () { return Store.sb; };
@@ -112,9 +112,30 @@
     return el('div', { class: 'card adm-card' }, [el('h2', { class: 'adm-h' }, t('adm_people')), el('p', { class: 'muted' }, t('adm_people_hint')), list]);
   }
 
+  function announceCard() {
+    var idx = (window.LESSON_INDEX || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+    if (!idx.length || !window.Push || !Push.announceLesson) return null;
+    var lang = I18N.lang;
+    var sel = el('select', { class: 'input', 'aria-label': t('adm_announce') }, idx.map(function (l) {
+      var sj = (window.SUBJECTS || []).filter(function (x) { return x.id === l.subject; })[0];
+      return el('option', { value: l.id }, l.date + ' · ' + (sj ? (sj.name[lang] || sj.name.he) : l.subject) + ' · ' + (l.title[lang] || l.title.he));
+    }));
+    var btn = el('button', { type: 'button', class: 'btn btn--primary', 'data-act': 'announce' }, t('adm_announce_btn'));
+    btn.addEventListener('click', function () {
+      var l = idx.filter(function (x) { return x.id === sel.value; })[0]; if (!l) return;
+      btn.disabled = true;
+      Push.announceLesson(l).then(function (r) {
+        btn.disabled = false;
+        U.toast(r && r.again ? t('adm_announce_again') : t('adm_announce_done', { n: (r && r.sent) || 0 }));
+      }, function (e) { btn.disabled = false; U.toast(errText(e), 'err'); });
+    });
+    return el('div', { class: 'card adm-card' }, [el('h2', { class: 'adm-h' }, t('adm_announce')), el('p', { class: 'muted' }, t('adm_announce_hint')),
+      el('div', { class: 'adm-invite' }, [sel, btn])]);
+  }
+
   window.Admin = {
     api: api,
     isBannedMock: function (id) { return !!mockBanned()[id]; },
-    tools: function () { return el('div', { class: 'adm-tools' }, [inviteCard(), peopleCard(), el('h2', { class: 'adm-h adm-h--issues' }, t('adm_issues'))]); }
+    tools: function () { return el('div', { class: 'adm-tools' }, [inviteCard(), announceCard(), peopleCard(), el('h2', { class: 'adm-h adm-h--issues' }, t('adm_issues'))]); }
   };
 })();

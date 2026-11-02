@@ -10,7 +10,7 @@
   var el = U.el, t = function (k, p) { return I18N.t(k, p); };
 
   I18N.add({
-    he: { push_title: 'התראות', push_switch: 'התראות פוש', push_switch_hint: 'יגיעו גם כשהאתר סגור. בכל מכשיר מפעילים פעם אחת.',
+    he: { push_topics: 'שיעורים חדשים לפי מקצוע', push_topics_hint: 'כשמתפרסם שיעור חדש — תגיע התראה. כבו מקצועות שלא מעניינים אתכם.', push_title: 'התראות', push_switch: 'התראות פוש', push_switch_hint: 'יגיעו גם כשהאתר סגור. בכל מכשיר מפעילים פעם אחת.',
       push_test: 'בדיקת התראה', push_test_hint: 'לוחצים, סוגרים את האתר, וההתראה מגיעה בעוד 10 שניות.', push_now: 'עכשיו', push_in10: 'בעוד 10 שנ׳',
       push_goal: 'מטרת בדיקה: ללחוץ על 3 כפתורים', push_goal_hint: 'כשכל ה-3 דולקים, תגיע התראה כמו על הישג אמיתי.',
       push_sent: 'נשלח. אפשר לסגור את האתר', push_nosub: 'השרת לא מצא את המכשיר הזה. כבו את ההתראות והפעילו שוב.', push_sent_local: 'ההתראה תופיע בעוד רגע', push_on: 'התראות הופעלו', push_off: 'התראות כבויות',
@@ -19,7 +19,7 @@
       push_fail: 'לא הצלחנו להפעיל התראות', push_demo_note: 'גרסת ניסיון: ההתראה מגיעה רק כשהאתר פתוח. עם הבסיס האמיתי היא תגיע גם כשהאתר סגור.',
       push_offer_title: 'להפעיל התראות?', push_offer_text: 'נודיע על תשובות, הישגים ושיעורים חדשים. אפשר לכבות בהגדרות.', push_offer_yes: 'להפעיל', push_offer_later: 'לא עכשיו', push_offer_never: 'לא לשאול שוב',
       push_goal_done: 'המטרה הושגה!', push_site_only: 'רק באתר האמיתי', push_blocked_chip: 'חסום בדפדפן' },
-    ru: { push_title: 'Уведомления', push_switch: 'Пуш-уведомления', push_switch_hint: 'Приходят, даже когда сайт закрыт. На каждом устройстве включается один раз.',
+    ru: { push_topics: 'Новые уроки по предметам', push_topics_hint: 'Когда выходит новый урок, придёт уведомление. Выключи предметы, которые не нужны.', push_title: 'Уведомления', push_switch: 'Пуш-уведомления', push_switch_hint: 'Приходят, даже когда сайт закрыт. На каждом устройстве включается один раз.',
       push_test: 'Проверить уведомление', push_test_hint: 'Нажми, закрой сайт, и через 10 секунд придёт уведомление.', push_now: 'Сейчас', push_in10: 'Через 10 сек',
       push_goal: 'Тестовая цель: нажми 3 кнопки', push_goal_hint: 'Когда загорятся все 3, придёт уведомление, как за настоящее достижение.',
       push_sent: 'Отправлено. Можно закрыть сайт', push_nosub: 'Сервер не нашёл это устройство. Выключи уведомления и включи снова.', push_sent_local: 'Уведомление появится через пару секунд', push_on: 'Уведомления включены', push_off: 'Уведомления выключены',
@@ -28,7 +28,7 @@
       push_fail: 'Не удалось включить уведомления', push_demo_note: 'Пробная версия: уведомление приходит, только пока сайт открыт. С настоящей базой придёт и при закрытом сайте.',
       push_offer_title: 'Включить уведомления?', push_offer_text: 'Сообщим об ответах, достижениях и новых уроках. Выключить можно в настройках.', push_offer_yes: 'Включить', push_offer_later: 'Не сейчас', push_offer_never: 'Больше не спрашивать',
       push_goal_done: 'Цель выполнена!', push_site_only: 'Только на настоящем сайте', push_blocked_chip: 'Запрещено в браузере' },
-    en: { push_title: 'Notifications', push_switch: 'Push notifications', push_switch_hint: 'Arrive even when the site is closed. Turn on once per device.',
+    en: { push_topics: 'New lessons by subject', push_topics_hint: 'You get a notification when a new lesson is posted. Turn off subjects you do not need.', push_title: 'Notifications', push_switch: 'Push notifications', push_switch_hint: 'Arrive even when the site is closed. Turn on once per device.',
       push_test: 'Test notification', push_test_hint: 'Tap, close the site, and a notification arrives in 10 seconds.', push_now: 'Now', push_in10: 'In 10 s',
       push_goal: 'Test goal: press 3 buttons', push_goal_hint: 'When all 3 light up, you get a notification like a real achievement.',
       push_sent: 'Sent. You can close the site', push_nosub: 'The server could not find this device. Turn notifications off and on again.', push_sent_local: 'The notification will appear in a moment', push_on: 'Notifications on', push_off: 'Notifications off',
@@ -150,6 +150,12 @@
       if (!server() || !Store.auth.current() || Date.now() - warmAt < 60e3) return;
       warmAt = Date.now();
       fn({ action: 'warm' }).catch(function () {});
+    },
+    /* админ: разослать «новый урок» тем, у кого включён этот предмет */
+    announceLesson: function (lesson) {
+      if (!server()) return Promise.resolve({ sent: 0 });
+      var sj = (window.SUBJECTS || []).filter(function (x) { return x.id === lesson.subject; })[0];
+      return fn({ action: 'lesson', id: lesson.id, subject: lesson.subject, title: lesson.title, subjectName: sj ? sj.name : null });
     },
     notifyAdmin: function (issueId) {
       if (!server() || !issueId) return;
@@ -298,6 +304,26 @@
     });
     card.appendChild(row('star', t('push_goal'), t('push_goal_hint'), el('div', { class: 'goal-btns' }, goalBtns)));
     if (Store.mode === 'mock' && !r) card.appendChild(el('p', { class: 'muted push-note' }, t('push_demo_note')));
+    /* уведомления о новых уроках по предметам (по умолчанию все включены) */
+    var me = Store.auth.current();
+    if (me && window.SUBJECTS && window.SUBJECTS.length) {
+      var topics = (me.prefs && me.prefs.pushTopics) || {};
+      var tl = el('div', { class: 'push-topics' });
+      window.SUBJECTS.forEach(function (sj) {
+        var on = topics[sj.id] !== false;
+        var i = el('input', { type: 'checkbox', 'data-subject': sj.id }); i.checked = on;   // настройка аккаунта — работает на всех устройствах
+        i.addEventListener('change', function () {
+          var cur = Store.auth.current(); if (!cur) return;
+          var p = JSON.parse(JSON.stringify(cur.prefs || {})); p.pushTopics = p.pushTopics || {};
+          p.pushTopics[sj.id] = i.checked;
+          Store.profile.update({ prefs: p }).catch(function () { i.checked = !i.checked; U.toast(t('push_fail'), 'err'); });
+        });
+        tl.appendChild(el('label', { class: 'push-topic' }, [el('span', { class: 'push-topic__ic', style: '--h:' + sj.hue, html: Icons.get(sj.icon) }),
+          el('span', { class: 'push-topic__name' }, sj.name[I18N.lang] || sj.name.he), el('span', { class: 'switch' }, [i, el('span')])]));
+      });
+      card.appendChild(row('book', t('push_topics'), t('push_topics_hint'), null));
+      card.appendChild(tl);
+    }
     var ver = el('p', { class: 'muted push-note push-ver' });
     card.appendChild(ver);
     Push.swVersion().then(function (v) { if (v) ver.textContent = 'sw ' + v; });

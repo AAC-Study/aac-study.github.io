@@ -412,3 +412,11 @@ body.no-scroll { overflow: hidden; }
 .adm-row__sp { flex: 1; }
 .chip--danger { color: var(--bad); border-color: var(--bad); }
 @media (max-width: 420px) { .adm-invite { flex-direction: column; } }
+
+/* уведомления по предметам */
+.push-topics { display: grid; gap: 4px; margin: 4px 0 8px; }
+.push-topic { display: flex; align-items: center; gap: 10px; padding: 6px 2px; cursor: pointer; }
+.push-topic__ic { width: 30px; height: 30px; border-radius: 9px; display: inline-grid; place-items: center; flex: none;
+  background: hsl(var(--h) 80% 60% / .16); color: hsl(var(--h) 70% 45%); }
+.push-topic__ic .ic { width: 18px; height: 18px; }
+.push-topic__name { flex: 1; min-width: 0; }

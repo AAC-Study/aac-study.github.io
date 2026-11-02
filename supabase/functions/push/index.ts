@@ -64,7 +64,8 @@ async function currentUser(req: Request): Promise<string | null> {
 
 type Msg = { title: string; body: string; url?: string; tag?: string };
 // x — подробности: имя, группа, текст, задержка
-type X = { name?: string; chat?: string | null; text?: string; mkind?: string; delay?: number; support?: boolean; url?: string; tag?: string };
+type X = { name?: string; chat?: string | null; text?: string; mkind?: string; delay?: number; support?: boolean; url?: string; tag?: string;
+  ls?: Record<string, string>; sjn?: Record<string, string> };
 const clip = (s: string, n = 140) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
 function msgBody(x: X, media: Record<string, string>) {
   const t = x.mkind && x.mkind !== "text" ? (media[x.mkind] || "") + (x.text ? " " + x.text : "") : (x.text || "");
@@ -79,6 +80,7 @@ const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
     accepted: (x) => ({ title: "חבר חדש 🤝", body: `${x.name} אישר/ה את בקשת החברות`, tag: "friends" }),
     added: (x) => ({ title: "קבוצה חדשה 👥", body: `הוסיפו אותך לקבוצה «${x.chat || ""}»`, tag: "group" }),
     message: (x) => ({ title: x.support ? "תמיכה" : (x.chat || x.name || ""), body: msgBody(x, { photo: "📷 תמונה", file: "📎 קובץ", sticker: "מדבקה" }) }),
+    lesson: (x) => ({ title: `שיעור חדש 📚 ${x.sjn?.he || ""}`.trim(), body: x.ls?.he || "", tag: "lesson" }),
   },
   ru: {
     test: (x) => ({ title: "Проверка 🔔", body: "Уведомления на этом устройстве работают." + (x.delay ? ` (через ${x.delay} сек)` : ""), tag: "test" }),
@@ -88,6 +90,7 @@ const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
     accepted: (x) => ({ title: "Новый друг 🤝", body: `${x.name} принял(а) твою заявку`, tag: "friends" }),
     added: (x) => ({ title: "Новая группа 👥", body: `Тебя добавили в группу «${x.chat || ""}»`, tag: "group" }),
     message: (x) => ({ title: x.support ? "Поддержка" : (x.chat || x.name || ""), body: msgBody(x, { photo: "📷 Фото", file: "📎 Файл", sticker: "Стикер" }) }),
+    lesson: (x) => ({ title: `Новый урок 📚 ${x.sjn?.ru || ""}`.trim(), body: x.ls?.ru || "", tag: "lesson" }),
   },
   en: {
     test: (x) => ({ title: "Test 🔔", body: "Notifications work on this device." + (x.delay ? ` (after ${x.delay} s)` : ""), tag: "test" }),
@@ -97,6 +100,7 @@ const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
     accepted: (x) => ({ title: "New friend 🤝", body: `${x.name} accepted your request`, tag: "friends" }),
     added: (x) => ({ title: "New group 👥", body: `You were added to the group “${x.chat || ""}”`, tag: "group" }),
     message: (x) => ({ title: x.support ? "Support" : (x.chat || x.name || ""), body: msgBody(x, { photo: "📷 Photo", file: "📎 File", sticker: "Sticker" }) }),
+    lesson: (x) => ({ title: `New lesson 📚 ${x.sjn?.en || ""}`.trim(), body: x.ls?.en || "", tag: "lesson" }),
   },
 };
 
@@ -222,6 +226,23 @@ Deno.serve(async (req) => {
         return json({ queued: true, delay });
       }
       return json({ sent: await job });
+    }
+    if (action === "lesson") {   // админ: «вышел новый урок» → всем, у кого включён этот предмет (один раз на урок)
+      const meRow = (await db(`profiles?id=eq.${uid}&select=role,banned`))[0];
+      if (!meRow || meRow.role !== "admin" || meRow.banned) return json({ error: "not admin" }, 403);
+      const id = String(body.id || ""), subject = String(body.subject || "");
+      if (!/^[a-z0-9-]{1,80}$/i.test(id) || !/^[a-z0-9-]{1,40}$/i.test(subject)) return json({ error: "bad lesson" }, 400);
+      if (!(await claim([`l:${id}`])).size) return json({ sent: 0, again: true });
+      const pickLangs = (o: unknown, n: number) => {
+        const r: Record<string, string> = {};
+        for (const l of ["he", "ru", "en"]) r[l] = clip(String(((o || {}) as Record<string, unknown>)[l] || ""), n);
+        return r;
+      };
+      const people = await db(`profiles?banned=is.false&select=id,prefs`);
+      const ids = people.filter((p: { prefs?: { pushTopics?: Record<string, boolean> } }) => !(p.prefs?.pushTopics && p.prefs.pushTopics[subject] === false))
+        .map((p: { id: string }) => p.id);
+      const sent = await sendTo(ids, "lesson", { ls: pickLangs(body.title, 120), sjn: pickLangs(body.subjectName, 40), url: `#/lesson/${id}` });
+      return json({ sent });
     }
     if (action === "issue") {   // друг сообщил о проблеме → пуш всем админам (один раз)
       const id = Number(body.id);
