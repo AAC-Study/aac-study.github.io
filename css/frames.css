@@ -1,0 +1,319 @@
+/* ===== Аватар с рамкой =====
+   Размер задаётся через font-size корня (= размер в px), поэтому всё внутри в em и масштабируется
+   одинаково на 32, 44, 96 и 160 px. Анимации — только transform/opacity. */
+.fr {
+  position: relative; display: inline-block; flex: none; vertical-align: middle;
+  border-radius: 50%; line-height: 1; -webkit-user-select: none; user-select: none;
+  --t: .047em;            /* толщина рамки */
+  --gap: .026em;          /* зазор между фото и рамкой */
+}
+.fr--s { --t: .055em; --gap: .03em; }
+.fr__fx, .fr__ring, .fr__deco, .fr__deco2 {
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%; pointer-events: none;
+}
+.fr__deco, .fr__deco2 { z-index: 2; }
+.fr__deco svg, .fr__deco2 svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.fr__face {
+  position: absolute; z-index: 1; top: var(--t); left: var(--t); right: var(--t); bottom: var(--t);
+  border-radius: 50%; overflow: hidden; background: var(--surface-2, #eee);
+  box-shadow: 0 0 0 var(--gap) var(--fr-gap, var(--surface, #fff));
+  -webkit-mask-image: -webkit-radial-gradient(white, black); /* старый Safari: скругление + overflow */
+}
+.fr__face img { width: 100%; height: 100%; max-width: none; object-fit: cover; display: block; }
+.fr__ini {
+  display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
+  color: #fff; font-weight: 600; font-size: .34em; letter-spacing: .02em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .18);
+}
+.fr--none .fr__face { top: 0; left: 0; right: 0; bottom: 0; box-shadow: none; }
+.fr--s .fr__ini { font-size: .38em; }
+
+/* ---------- общие анимации ---------- */
+@keyframes fr-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes fr-spin-rev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+@keyframes fr-breathe { 0%, 100% { opacity: .45; transform: scale(.97); } 50% { opacity: 1; transform: scale(1.035); } }
+@keyframes fr-twinkle { 0%, 100% { opacity: .25; } 50% { opacity: 1; } }
+@keyframes fr-flicker { 0%, 100% { opacity: 1; } 45% { opacity: .78; } 55% { opacity: .9; } }
+@keyframes fr-ripple { 0% { opacity: 0; transform: scale(.94); } 18% { opacity: .9; } 100% { opacity: 0; transform: scale(1.2); } }
+@keyframes fr-flame { 0% { transform: rotate(0deg) scale(1.05); } 50% { transform: rotate(180deg) scale(1.12); } 100% { transform: rotate(360deg) scale(1.05); } }
+
+/* ===================== СТАТИЧНЫЕ ===================== */
+
+/* Классика: мягкий градиент фирменных цветов */
+.fr--classic .fr__ring {
+  background: linear-gradient(135deg, #7b6cff 0%, #5a8dff 50%, #17c2b0 100%);
+  box-shadow: 0 .02em .07em rgba(60, 50, 160, .28);
+}
+
+/* Мята: двойное кольцо — тонкое внешнее и плотное внутреннее */
+.fr--mint { --t: .055em; }
+.fr--mint .fr__ring { border: .02em solid #2fc79d; }
+.fr--mint .fr__ring::before {
+  content: ''; position: absolute; top: .02em; left: .02em; right: .02em; bottom: .02em; border-radius: 50%;
+  background: linear-gradient(160deg, #7af5cf, #19b394 60%, #0f9b8e);
+}
+
+/* Закат */
+.fr--sunset .fr__ring {
+  background: linear-gradient(135deg, #ff5f8f, #ff8a5c 45%, #ffc46b);
+  background: conic-gradient(from 210deg, #ff5f8f, #ff7a59, #ffc46b, #ffd98a, #ff8a5c, #ff5f8f);
+  box-shadow: 0 .03em .08em rgba(255, 110, 90, .3);
+}
+
+/* Жемчуг: бусины рисует SVG */
+.fr--pearls .fr__ring { background: linear-gradient(160deg, #d9cdef, #bfaedf); }
+.fr--pearls .fr__ring::after {
+  content: ''; position: absolute; top: .035em; left: .035em; right: .035em; bottom: .035em; border-radius: 50%;
+  box-shadow: 0 0 0 .012em rgba(255, 255, 255, .6);
+}
+
+/* Океан: глубокое кольцо + пунктирная орбита */
+.fr--ocean .fr__ring {
+  top: .042em; left: .042em; right: .042em; bottom: .042em;
+  background: linear-gradient(160deg, #1f6dff, #18a7e8 55%, #3fe0d0);
+}
+
+/* Лавровый венок */
+.fr--laurel { --t: .061em; }
+.fr--laurel .fr__ring {
+  top: .072em; left: .072em; right: .072em; bottom: .072em;
+  background: linear-gradient(135deg, #f7d774, #c9962a 50%, #f3cf63);
+}
+.fr--s.fr--laurel { --t: .066em; }
+
+/* Аметист: гранёный камень */
+.fr--amethyst { --t: .055em; }
+.fr--amethyst .fr__ring {
+  overflow: hidden;
+  background: linear-gradient(135deg, #c7a6ff, #7a4fe0 50%, #b48cff);
+  background: conic-gradient(from 7deg, #c6abff 0.00%, #c6abff 4.17%, #9c75f4 4.17%, #9c75f4 8.33%, #d4bdff 8.33%, #d4bdff 12.50%, #8c63ea 12.50%, #8c63ea 16.67%, #bc9dff 16.67%, #bc9dff 20.83%, #a27cf6 20.83%, #a27cf6 25.00%, #cdb3ff 25.00%, #cdb3ff 29.17%, #8159e2 29.17%, #8159e2 33.33%, #c6abff 33.33%, #c6abff 37.50%, #9c75f4 37.50%, #9c75f4 41.67%, #d4bdff 41.67%, #d4bdff 45.83%, #8c63ea 45.83%, #8c63ea 50.00%, #bc9dff 50.00%, #bc9dff 54.17%, #a27cf6 54.17%, #a27cf6 58.33%, #cdb3ff 58.33%, #cdb3ff 62.50%, #8159e2 62.50%, #8159e2 66.67%, #c6abff 66.67%, #c6abff 70.83%, #9c75f4 70.83%, #9c75f4 75.00%, #d4bdff 75.00%, #d4bdff 79.17%, #8c63ea 79.17%, #8c63ea 83.33%, #bc9dff 83.33%, #bc9dff 87.50%, #a27cf6 87.50%, #a27cf6 91.67%, #cdb3ff 91.67%, #cdb3ff 95.83%, #8159e2 95.83%, #8159e2 100.00%);
+  box-shadow: 0 .02em .08em rgba(110, 60, 210, .35);
+}
+.fr--amethyst .fr__ring::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%;
+  background: linear-gradient(140deg, rgba(255, 255, 255, .55) 0%, rgba(255, 255, 255, 0) 38%, rgba(255, 255, 255, 0) 62%, rgba(60, 20, 140, .28) 100%);
+}
+.fr--amethyst .fr__ring::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%;
+  box-shadow: inset 0 0 0 .008em rgba(255, 255, 255, .7), inset 0 0 0 .02em rgba(120, 70, 220, .35);
+}
+
+/* Сакура */
+.fr--sakura .fr__ring {
+  top: .03em; left: .03em; right: .03em; bottom: .03em;
+  background: linear-gradient(150deg, #ffe0ec, #ffb3cf 55%, #ff9cc0);
+}
+
+/* Звёздная ночь */
+.fr--starry { --t: .055em; }
+.fr--starry .fr__ring {
+  background: linear-gradient(160deg, #1b1f5e, #3a2a8c 55%, #16306e);
+  box-shadow: 0 .02em .08em rgba(30, 30, 110, .35);
+}
+
+/* Королевское золото */
+.fr--golden { --t: .055em; }
+.fr--golden .fr__ring {
+  background: linear-gradient(135deg, #b8860b, #ffe08a 40%, #c99a2e 70%, #fff2b8);
+  background: conic-gradient(from 20deg, #b8860b, #ffe08a, #c99a2e, #fff4c2, #b07d10, #f5d06f, #a87912, #ffe9a0, #b8860b);
+  box-shadow: 0 .02em .09em rgba(160, 110, 10, .38);
+}
+.fr--golden .fr__ring::after {
+  content: ''; position: absolute; top: .075em; left: .075em; right: .075em; bottom: .075em; border-radius: 50%;
+  box-shadow: 0 0 0 .01em rgba(120, 80, 0, .45);
+}
+
+/* ===================== АНИМИРОВАННЫЕ ===================== */
+.fr--anim .fr__ring, .fr--anim .fr__fx, .fr--anim .fr__deco, .fr--anim .fr__deco2 { will-change: transform, opacity; }
+
+/* Северное сияние: медленно вращающийся конический градиент + мягкое свечение */
+.fr--aurora .fr__ring, .fr--aurora .fr__fx {
+  background: linear-gradient(135deg, #34e3a4, #2fb8ff 50%, #8b6cff);
+  background: conic-gradient(#34e3a4, #2fb8ff, #8b6cff, #e86cff, #2fb8ff, #34e3a4);
+  animation: fr-spin 9s linear infinite;
+}
+.fr--aurora .fr__fx { -webkit-filter: blur(.05em); filter: blur(.05em); opacity: .55; }
+
+/* Пульс: мягко «дышащее» свечение */
+.fr--pulse .fr__ring { background: linear-gradient(135deg, #8b6cff, #c06cff 60%, #ff7ad9); }
+.fr--pulse .fr__fx {
+  background: linear-gradient(135deg, #8b6cff, #ff7ad9);
+  box-shadow: 0 0 .09em .03em rgba(160, 108, 255, .65);
+  opacity: .75; animation: fr-breathe 3.2s ease-in-out infinite;
+}
+
+/* Орбита: тонкое кольцо и два «спутника» */
+.fr--orbit .fr__ring {
+  top: .04em; left: .04em; right: .04em; bottom: .04em;
+  background: linear-gradient(160deg, #31d0ff, #5a7bff);
+}
+.fr--orbit .fr__fx { box-shadow: inset 0 0 0 .008em rgba(90, 150, 255, .45); }
+.fr--orbit .fr__deco, .fr--orbit .fr__fx { animation: fr-spin 6s linear infinite; }
+.fr--orbit .fr__fx { animation: fr-spin-rev 10s linear infinite; }
+.fr--orbit .fr__deco::before, .fr--orbit .fr__deco::after, .fr--orbit .fr__fx::before {
+  content: ''; position: absolute; border-radius: 50%; left: 50%;
+}
+.fr--orbit .fr__deco::before {
+  top: -.005em; width: .075em; height: .075em; margin-left: -.0375em;
+  background: #fff; box-shadow: 0 0 .04em .015em #59d6ff, 0 0 0 .008em #59d6ff;
+}
+.fr--orbit .fr__deco::after {
+  bottom: .004em; width: .05em; height: .05em; margin-left: -.025em;
+  background: #b3c1ff; box-shadow: 0 0 .03em #7a8cff;
+}
+.fr--orbit .fr__fx::before {
+  top: 50%; left: auto; right: -.01em; width: .045em; height: .045em; margin-top: -.0225em;
+  background: #7ff0d6; box-shadow: 0 0 .03em #3fe0c0;
+}
+
+/* Серебряный блеск: бегущий отблеск по кольцу */
+.fr--shimmer .fr__ring {
+  overflow: hidden;
+  background: linear-gradient(135deg, #eef1f8, #a9b0c4 35%, #f7f9fd 55%, #8f98b0 85%, #dfe3ee);
+  box-shadow: 0 .02em .06em rgba(70, 80, 110, .25);
+}
+.fr--shimmer .fr__ring::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%;
+  background: transparent;
+  background: conic-gradient(rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, .95) 82%, rgba(255, 255, 255, 0) 94%, rgba(255, 255, 255, 0) 100%);
+  animation: fr-spin 3.6s cubic-bezier(.45, .05, .55, .95) infinite;
+}
+
+/* Неон: две светящиеся линии */
+.fr--neon { --t: .055em; }
+.fr--neon .fr__ring {
+  border: .022em solid #ff5fd8;
+  box-shadow: 0 0 .05em #ff5fd8, inset 0 0 .03em #ff5fd8;
+}
+.fr--neon .fr__ring::before {
+  content: ''; position: absolute; top: .032em; left: .032em; right: .032em; bottom: .032em; border-radius: 50%;
+  border: .016em solid #45f0ff; box-shadow: 0 0 .04em #45f0ff, inset 0 0 .02em #45f0ff;
+}
+.fr--neon .fr__fx {
+  box-shadow: 0 0 .1em .02em rgba(255, 95, 216, .55), 0 0 .06em .01em rgba(69, 240, 255, .4) inset;
+  animation: fr-flicker 4.5s ease-in-out infinite;
+}
+
+/* Радуга */
+.fr--rainbow .fr__ring {
+  background: linear-gradient(135deg, #ff5e5e, #ffd84d 30%, #5ee67a 50%, #4dc3ff 70%, #c45eff);
+  background: conic-gradient(#ff5e5e, #ffb84d, #ffe94d, #5ee67a, #4dc3ff, #7a6cff, #e15eff, #ff5e5e);
+  animation: fr-spin 7s linear infinite;
+}
+.fr--rainbow .fr__ring::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%;
+  box-shadow: inset 0 0 0 .008em rgba(255, 255, 255, .55);
+}
+
+/* Пламя: два размытых слоя крутятся навстречу */
+.fr--flame .fr__ring {
+  background: linear-gradient(160deg, #ffd25a, #ff8a1f 50%, #e8410f);
+  background: conic-gradient(from 180deg, #e8410f, #ff8a1f, #ffd25a, #ff8a1f, #e8410f, #ffb03a, #e8410f);
+}
+.fr--flame .fr__fx, .fr--flame .fr__fx::before {
+  background: transparent;
+  background: conic-gradient(rgba(255, 90, 20, 0), rgba(255, 120, 30, .9) 8%, rgba(255, 90, 20, 0) 17%, rgba(255, 200, 60, .85) 27%, rgba(255, 90, 20, 0) 36%,
+    rgba(255, 110, 25, .9) 47%, rgba(255, 90, 20, 0) 57%, rgba(255, 210, 70, .8) 68%, rgba(255, 90, 20, 0) 77%, rgba(255, 120, 30, .9) 88%, rgba(255, 90, 20, 0));
+  -webkit-filter: blur(.035em); filter: blur(.035em);
+}
+.fr--flame .fr__fx { animation: fr-flame 5s linear infinite; }
+.fr--flame .fr__fx::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%;
+  animation: fr-spin-rev 3.4s linear infinite; opacity: .8;
+}
+
+/* Галактика: туманность, вращающиеся звёзды и мерцание */
+.fr--galaxy { --t: .055em; }
+.fr--galaxy .fr__ring {
+  background: linear-gradient(160deg, #2a1b5e, #5b2a8c 50%, #1e3a7a);
+  background: conic-gradient(from 30deg, #241a5c, #5b2a8c, #1e3a7a, #7a2a86, #2a2470, #3b5fb0, #241a5c);
+  box-shadow: 0 0 .06em rgba(120, 80, 220, .45);
+}
+.fr--galaxy .fr__deco { animation: fr-spin 40s linear infinite; }
+.fr--galaxy .fr__deco2 { animation: fr-twinkle 3s ease-in-out infinite; }
+
+/* Волны: расходящиеся круги */
+.fr--ripple .fr__ring { background: linear-gradient(160deg, #3fd8c8, #3a8dff); }
+.fr--ripple .fr__fx::before, .fr--ripple .fr__fx::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 50%;
+  border: .018em solid #3fc3e0; opacity: 0;
+  animation: fr-ripple 3.4s ease-out infinite;
+}
+.fr--ripple .fr__fx::after { animation-delay: 1.7s; }
+
+/* Небесная: золотое вращающееся кольцо, свечение и искры на орбите */
+.fr--celestial { --t: .052em; }
+.fr--celestial .fr__ring {
+  background: linear-gradient(135deg, #ffe7a0, #c79bff 50%, #ffd36b);
+  background: conic-gradient(#ffc23d, #ffe9a8, #b48cff, #6cc6ff, #fff0bf, #ff9f4d, #ffc23d);
+  animation: fr-spin 12s linear infinite;
+}
+.fr--celestial .fr__fx {
+  background: linear-gradient(135deg, #ffd36b, #c79bff);
+  box-shadow: 0 0 .1em .02em rgba(255, 205, 110, .6);
+  -webkit-filter: blur(.03em); filter: blur(.03em);
+  opacity: .7; animation: fr-breathe 4s ease-in-out infinite;
+}
+.fr--celestial .fr__deco { animation: fr-spin-rev 16s linear infinite; }
+
+/* ---------- меньше движения ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .fr *, .fr *::before, .fr *::after { -webkit-animation: none !important; animation: none !important; }
+}
+:root[data-motion="reduce"] .fr *, :root[data-motion="reduce"] .fr *::before, :root[data-motion="reduce"] .fr *::after {
+  -webkit-animation: none !important; animation: none !important;
+}
+
+/* ===================== ВЫБОР РАМКИ ===================== */
+.frp { --fr-gap: var(--surface); }
+.frp__head { font-size: 14px; font-weight: 600; color: var(--text-2); margin: 4px 2px 10px; }
+.frp__grid + .frp__head { margin-top: 20px; }
+.frp__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 10px; }
+.frp__item {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  gap: 6px; min-height: 44px; padding: 14px 6px 10px; margin: 0;
+  background: var(--surface); border: 1.5px solid var(--border); border-radius: 14px;
+  color: var(--text); text-align: center; font: inherit; line-height: 1.25;
+  transition: border-color .2s, box-shadow .2s, transform .15s var(--ease, ease), background-color .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.frp__item:hover { border-color: var(--accent); }
+.frp__item:active { transform: scale(.97); }
+.frp__item.is-current {
+  border-color: var(--accent); background: var(--accent-soft);
+  box-shadow: 0 0 0 3px var(--accent-soft), 0 4px 14px rgba(102, 86, 245, .18);
+}
+.frp__item.is-current { --fr-gap: var(--accent-soft); }
+.frp__prev { position: relative; display: block; width: 64px; height: 64px; }
+.frp__name { display: block; font-size: 13px; font-weight: 500; max-width: 100%; overflow-wrap: break-word; }
+.frp__req { display: block; font-size: 11.5px; color: var(--text-3); line-height: 1.25; }
+.frp__item.is-locked { cursor: default; background: var(--surface-2); --fr-gap: var(--surface-2); }
+.frp__item.is-locked:hover { border-color: var(--border); }
+.frp__item.is-locked:active { transform: none; }
+.frp__item.is-locked .fr { opacity: .4; -webkit-filter: saturate(.55); filter: saturate(.55); }
+.frp__item.is-locked .frp__name { color: var(--text-2); }
+.frp__lock {
+  position: absolute; top: 50%; left: 50%; width: 30px; height: 30px; margin: -15px 0 0 -15px; z-index: 3;
+  display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  background: var(--surface); color: var(--text-2); box-shadow: 0 2px 8px rgba(23, 26, 46, .18);
+}
+.frp__lock svg, .frp__check svg, .frp__anim svg { width: 16px; height: 16px; display: block; }
+.frp__check {
+  position: absolute; bottom: -2px; right: -4px; z-index: 3; width: 22px; height: 22px;
+  display: none; align-items: center; justify-content: center; border-radius: 50%;
+  background: var(--accent); color: var(--accent-text, #fff); box-shadow: 0 0 0 2px var(--surface);
+}
+.frp__check svg { width: 13px; height: 13px; stroke-width: 3; }
+.frp__item.is-current .frp__check { display: flex; }
+.frp__anim {
+  position: absolute; top: -8px; right: -14px; z-index: 3; width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center; border-radius: 50%;
+  color: var(--accent); background: var(--surface); box-shadow: 0 1px 4px rgba(23, 26, 46, .14);
+}
+.frp__anim svg { width: 13px; height: 13px; }
+[dir="rtl"] .frp__check { right: auto; left: -4px; }
+[dir="rtl"] .frp__anim { right: auto; left: -14px; }
+@media (max-width: 360px) {
+  .frp__grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .frp__item { padding: 12px 4px 8px; }
+}

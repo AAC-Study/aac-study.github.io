@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Avatar &amp; frames test</title>
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/frames.css">
+<link rel="stylesheet" href="../css/avatar.css">
+<style>
+  /* Тестовая страница: минимальная обёртка и запасной App.modal (настоящий — в js/app.js). */
+  .wrap { max-width: 980px; margin: 0 auto; padding: 16px; }
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+  .bar select, .bar input { min-height: 44px; font-size: 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface); padding: 0 10px; }
+  .bar input { width: 80px; }
+  section.card { margin-bottom: 16px; }
+  .sizes { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+  #result-info { font-size: 13px; color: var(--text-3); word-break: break-all; }
+  .tm-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 200; background: rgba(10, 12, 25, .5);
+    display: flex; align-items: center; justify-content: center; padding: 16px; }
+  .tm-dialog { background: var(--surface); color: var(--text); border-radius: 20px; box-shadow: var(--shadow-lg);
+    width: 100%; max-width: 440px; max-height: calc(100vh - 32px); overflow: auto; padding: 0 18px 18px; }
+  .tm-dialog.is-wide { max-width: 600px; }
+  .tm-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 0 8px;
+    position: sticky; top: 0; background: var(--surface); z-index: 5; }
+  .tm-head h2 { font-size: 18px; margin: 0; }
+  @media (max-width: 600px) {
+    .tm-overlay { padding: 0; align-items: stretch; }
+    .tm-dialog, .tm-dialog.is-wide { max-width: none; max-height: none; height: 100%; border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+<div id="toasts"></div>
+<div class="wrap">
+  <div class="bar">
+    <select id="lang" aria-label="lang"><option value="he">עברית</option><option value="ru">Русский</option><option value="en">English</option></select>
+    <button class="btn" id="theme" type="button">theme</button>
+    <label>Level <input id="level" type="number" min="1" max="30" value="1"></label>
+    <label><input id="photo" type="checkbox" checked style="width:auto;min-height:0"> photo</label>
+    <button class="btn btn--primary" id="open-avatar" type="button">Avatar.open()</button>
+  </div>
+
+  <section class="card">
+    <h3>Result</h3>
+    <div class="sizes" id="result"></div>
+    <div id="result-info"></div>
+  </section>
+  <section class="card">
+    <h3>Sizes 32 / 44 / 96 / 160</h3>
+    <div class="sizes" id="sizes"></div>
+  </section>
+  <section class="card">
+    <h3 id="picker-title"></h3>
+    <div id="picker"></div>
+  </section>
+</div>
+
+<script src="../js/config.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/icons.js"></script>
+<script src="../js/store.js"></script>
+<script src="../js/frames.js"></script>
+<script src="../js/avatar.js"></script>
+<script>
+(function () {
+  'use strict';
+  /* ---- запасной App.modal ---- */
+  if (!window.App || !window.App.modal) {
+    window.App = window.App || {};
+    App.modal = function (o) {
+      var closed = false;
+      var ov = U.el('div', { class: 'tm-overlay' });
+      var dlg = U.el('div', { class: 'tm-dialog' + (o.wide ? ' is-wide' : ''), role: 'dialog', 'aria-modal': 'true', 'aria-label': o.title });
+      var x = U.el('button', { class: 'btn btn--ghost icon-btn tm-close', type: 'button', 'aria-label': 'close', html: Icons.get('close'), onclick: function () { close(); } });
+      dlg.appendChild(U.el('div', { class: 'tm-head' }, [U.el('h2', { text: o.title }), x]));
+      dlg.appendChild(o.content);
+      ov.appendChild(dlg);
+      ov.addEventListener('click', function (e) { if (e.target === ov) close(); });
+      function onKey(e) { if (e.key === 'Escape') close(); }
+      document.addEventListener('keydown', onKey);
+      document.body.appendChild(ov);
+      function close() {
+        if (closed) return; closed = true;
+        document.removeEventListener('keydown', onKey);
+        if (ov.parentNode) ov.parentNode.removeChild(ov);
+        if (o.onClose) o.onClose();
+      }
+      return { el: dlg, close: close };
+    };
+  }
+
+  /* ---- параметры из адреса: ?lang=ru&theme=dark&level=20&frame=aurora&photo=0 ---- */
+  var q = {};
+  location.search.replace(/^\?/, '').split('&').forEach(function (kv) { if (kv) { var p = kv.split('='); q[p[0]] = decodeURIComponent(p[1] || ''); } });
+  var lang = q.lang || 'he';
+  I18N.set(lang);
+  if (q.theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  if (q.motion === 'reduce') document.documentElement.setAttribute('data-motion', 'reduce');
+  var level = +q.level || 1;
+  var frame = q.frame || 'classic';
+  var usePhoto = q.photo !== '0';
+  var saved = null;
+
+  /* Нарисованная «фотография» для превью */
+  function samplePhoto() {
+    var c = document.createElement('canvas'); c.width = c.height = 256;
+    var x = c.getContext('2d');
+    var g = x.createLinearGradient(0, 0, 256, 256); g.addColorStop(0, '#9fd8ff'); g.addColorStop(1, '#f5c9ff');
+    x.fillStyle = g; x.fillRect(0, 0, 256, 256);
+    x.fillStyle = '#3b2a20'; x.beginPath(); x.arc(128, 112, 62, Math.PI, 0); x.fill();
+    x.fillStyle = '#f2c9a5'; x.beginPath(); x.arc(128, 122, 52, 0, Math.PI * 2); x.fill();
+    x.fillStyle = '#5667d8'; x.beginPath(); x.ellipse(128, 262, 96, 80, 0, 0, Math.PI * 2); x.fill();
+    x.fillStyle = '#2b2b3a'; x.beginPath(); x.arc(108, 120, 5, 0, 7); x.arc(148, 120, 5, 0, 7); x.fill();
+    x.strokeStyle = '#c0605a'; x.lineWidth = 4; x.lineCap = 'round'; x.beginPath(); x.arc(128, 136, 16, .2 * Math.PI, .8 * Math.PI); x.stroke();
+    return c.toDataURL('image/jpeg', .9);
+  }
+  var PHOTO = samplePhoto();
+  function img() { return saved || (usePhoto ? PHOTO : null); }
+
+  function $(id) { return document.getElementById(id); }
+  function draw() {
+    $('lang').value = I18N.lang; $('level').value = level; $('photo').checked = usePhoto;
+    $('theme').textContent = document.documentElement.getAttribute('data-theme') === 'dark' ? t('theme_light') : t('theme_dark');
+    var s = $('sizes'); s.innerHTML = '';
+    [32, 44, 96, 160].forEach(function (n) { s.appendChild(Frames.render({ img: img(), name: 'Denis Levi', frame: frame, size: n })); });
+    [32, 44, 96].forEach(function (n) { s.appendChild(Frames.render({ img: null, name: 'דניס לוי', frame: frame, size: n })); });
+    $('picker-title').textContent = t('choose_frame') + ' · ' + t('level', { n: level });
+    var p = $('picker'); p.innerHTML = '';
+    p.appendChild(Frames.picker({ current: frame, level: level, img: img(), name: 'Denis Levi', onPick: function (id) { frame = id; window.__picked = id; draw(); } }));
+  }
+  $('lang').addEventListener('change', function () { I18N.set(this.value); draw(); });
+  $('theme').addEventListener('click', function () {
+    var r = document.documentElement;
+    if (r.getAttribute('data-theme') === 'dark') r.removeAttribute('data-theme'); else r.setAttribute('data-theme', 'dark');
+    draw();
+  });
+  $('level').addEventListener('change', function () { level = +this.value || 1; draw(); });
+  $('photo').addEventListener('change', function () { usePhoto = this.checked; draw(); });
+  $('open-avatar').addEventListener('click', function () {
+    window.__avatar = Avatar.open({
+      current: img(), frame: frame, name: 'Denis Levi',
+      onSave: function (dataURL) {
+        saved = dataURL; window.__saved = dataURL;
+        var r = $('result'); r.innerHTML = '';
+        r.appendChild(Frames.render({ img: dataURL, name: 'Denis', frame: frame, size: 160 }));
+        var raw = U.el('img', { src: dataURL, alt: 'raw', width: 128, height: 128, style: 'border-radius:8px' });
+        r.appendChild(raw);
+        $('result-info').textContent = dataURL.slice(0, 30) + '… ' + Math.round(dataURL.length * 3 / 4 / 1024) + ' KB';
+        U.toast(t('saved'));
+        draw();
+      },
+      onRemove: function () { saved = null; usePhoto = false; draw(); }
+    });
+  });
+  draw();
+})();
+</script>
+</body>
+</html>

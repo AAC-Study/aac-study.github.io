@@ -1,0 +1,103 @@
+/* ===== Выбор и редактор аватарки (содержимое окна App.modal) ===== */
+.av { width: 100%; min-width: 0; }
+.av__screen { display: flex; flex-direction: column; align-items: stretch; }
+
+/* --- шаг 1: источник --- */
+.av__src { align-items: center; text-align: center; padding: 4px 0 2px; }
+.av__hero { margin: 4px 0 14px; }
+.av__lead { color: var(--text-2); font-size: 15px; max-width: 400px; margin: 0 auto 14px; }
+.av__msg-slot { width: 100%; max-width: 420px; }
+.av__msg-slot:empty { display: none; }
+.av__msg {
+  text-align: start; border-radius: 12px; padding: 10px 14px; margin: 0 0 14px; font-size: 14.5px; line-height: 1.45;
+  background: var(--accent-soft); color: var(--text);
+  border: 1px solid transparent;
+}
+.av__msg--warn { background: var(--warn-soft, #fff4dc); border-color: rgba(217, 139, 5, .25); }
+.av__msg--bad { background: var(--bad-soft, #fde8e8); border-color: rgba(214, 69, 69, .22); }
+.av__msg-title { font-weight: 600; }
+.av__msg-hint { color: var(--text-2); margin-top: 4px; font-size: 13.5px; }
+.av__actions { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 340px; }
+.av__big { position: relative; width: 100%; min-height: 52px; font-size: 16px; border-radius: 14px; overflow: hidden; }
+.av__big-ic { display: inline-flex; }
+.av__big-ic svg { width: 22px; height: 22px; }
+.av__choose { cursor: pointer; }
+.av__choose.is-busy { opacity: .7; pointer-events: none; }
+.av__choose:focus-within { outline: 3px solid var(--accent); outline-offset: 2px; }
+/* Поле выбора файла остаётся в документе (так надёжнее на iOS), но невидимо */
+.av__file {
+  position: absolute; top: 0; left: 0; width: 1px; height: 1px; opacity: 0; overflow: hidden;
+  font-size: 16px; pointer-events: none;
+}
+.av__take[hidden] { display: none; }
+.av__note {
+  margin: 14px auto 0; max-width: 360px; font-size: 13.5px; color: var(--text-2); line-height: 1.45;
+  padding: 10px 12px; border-radius: 12px; background: var(--surface-2); border: 1px dashed var(--border);
+}
+.av__remove { margin-top: 10px; color: var(--bad); }
+.av__remove svg { width: 18px; height: 18px; }
+
+/* --- шаг 2: камера --- */
+.av__stage {
+  position: relative; width: 100%; height: 72vw; max-height: 420px; min-height: 240px;
+  background: #0b0d1a; border-radius: 16px; overflow: hidden;
+}
+.av__video {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; background: #0b0d1a;
+}
+.av__video.is-mirror { -webkit-transform: scaleX(-1); transform: scaleX(-1); }
+.av__guide { position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; }
+.av__guide svg { width: 100%; height: 100%; display: block; }
+.av__status {
+  position: absolute; left: 0; right: 0; top: 50%; margin-top: -12px; text-align: center;
+  color: #fff; font-size: 15px; text-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+}
+.av__status[hidden] { display: none; }
+.av__bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 4px 2px; gap: 12px; }
+.av__bar > .btn { flex: none; }
+.av__bar .av__switch[hidden] { display: inline-flex; visibility: hidden; }
+.av__back svg { -webkit-transform: rotate(180deg); transform: rotate(180deg); }
+[dir="rtl"] .av__back svg { -webkit-transform: none; transform: none; }
+.av__shutter {
+  width: 72px; height: 72px; border-radius: 50%; padding: 0; flex: none;
+  border: 4px solid var(--accent); background: var(--surface);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(102, 86, 245, .3); -webkit-tap-highlight-color: transparent;
+  transition: transform .15s var(--ease, ease), opacity .2s;
+}
+.av__shutter-in { width: 52px; height: 52px; border-radius: 50%; background: var(--accent); display: block; }
+.av__shutter:active { transform: scale(.93); }
+.av__shutter[disabled] { opacity: .4; pointer-events: none; }
+
+/* --- шаг 3: редактор --- */
+.av__crop {
+  position: relative; width: 100%; height: 72vw; max-height: 400px; min-height: 240px;
+  background: #0b0d1a; border-radius: 16px; overflow: hidden;
+  touch-action: none; -ms-touch-action: none;
+}
+.av__crop .av__img { display: block; max-width: 100%; opacity: 0; }
+.av__crop.is-ready .av__spin { display: none; }
+.av__spin {
+  position: absolute; top: 50%; left: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px;
+  border-radius: 50%; border: 3px solid rgba(255, 255, 255, .2); border-top-color: #fff;
+  animation: av-spin .9s linear infinite;
+}
+@keyframes av-spin { to { transform: rotate(360deg); } }
+/* Круглый предпросмотр: Cropper затемняет всё (.cropper-modal), а яркой остаётся
+   только картинка внутри круглого .cropper-view-box — углы квадрата тоже затемнены. */
+.av__crop .cropper-modal { background-color: #0b0d1a; opacity: .6; }
+.av__crop .cropper-view-box { border-radius: 50%; outline: 0; }
+.av__crop .cropper-face { border-radius: 50%; background-color: transparent; opacity: 1; box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .95); }
+.av__crop .cropper-line, .av__crop .cropper-point { display: none; }
+.av__hint { text-align: center; color: var(--text-3); font-size: 13.5px; margin: 10px 0 6px; }
+.av__tools { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin: 4px 0 4px; }
+.av__tool svg { width: 22px; height: 22px; }
+.av__reset { padding: 0 14px; }
+.av__foot { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 14px; }
+.av__save { min-width: 140px; }
+.av__save svg { width: 20px; height: 20px; }
+
+@media (max-width: 400px) {
+  .av__save { min-width: 0; flex: 1; }
+  .av__lead { font-size: 14.5px; }
+}

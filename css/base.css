@@ -1,0 +1,89 @@
+/* ===== Цвета (светлая и тёмная тема) ===== */
+:root {
+  --bg: #f5f6fb; --bg-2: #eceef7; --surface: #ffffff; --surface-2: #f8f9fd; --border: #e2e5f0;
+  --text: #171a2e; --text-2: #4b5170; --text-3: #7c829e;
+  --accent: #6656f5; --accent-2: #12b5a6; --accent-soft: #ecebff; --accent-text: #ffffff;
+  --ok: #18a058; --ok-soft: #e3f6eb; --warn: #d98b05; --warn-soft: #fff4dc; --bad: #d64545; --bad-soft: #fde8e8;
+  --shadow: 0 1px 2px rgba(23,26,46,.06), 0 6px 24px rgba(23,26,46,.07);
+  --shadow-lg: 0 12px 40px rgba(23,26,46,.16);
+  --radius: 16px; --radius-sm: 10px;
+  --side-w: 76px; --side-w-open: 252px; --top-h: 64px;
+  --ease: cubic-bezier(.22,.8,.24,1);
+  --font: 'Rubik', -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #0e1020; --bg-2: #151832; --surface: #171a30; --surface-2: #1d2140; --border: #2a2f52;
+  --text: #eef0ff; --text-2: #b8bddb; --text-3: #8389ad;
+  --accent: #8b7dff; --accent-2: #2fd3c2; --accent-soft: #262a52; --accent-text: #0e1020;
+  --ok: #3ccf82; --ok-soft: #13352a; --warn: #f2b33d; --warn-soft: #3a2f14; --bad: #ff7676; --bad-soft: #3d1c22;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px rgba(0,0,0,.35);
+  --shadow-lg: 0 16px 50px rgba(0,0,0,.5);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg); color: var(--text); font-family: var(--font); font-size: 16px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; overflow-x: hidden;
+  transition: background-color .35s var(--ease), color .35s var(--ease);
+}
+a { color: var(--accent); text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; font-weight: 700; }
+h1 { font-size: 28px; } h2 { font-size: 22px; } h3 { font-size: 18px; }
+p { margin: 0 0 .8em; }
+code, .mono { font-family: var(--mono); font-size: .92em; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+
+/* ===== Кнопки и поля ===== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 18px;
+  border-radius: 12px; border: 1px solid var(--border); background: var(--surface); color: var(--text); font-weight: 500;
+  transition: transform .15s var(--ease), background-color .2s, box-shadow .2s, border-color .2s, opacity .2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn:hover { border-color: var(--accent); }
+.btn:active { transform: scale(.97); }
+.btn--primary { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.btn--primary:hover { box-shadow: 0 6px 20px rgba(102,86,245,.35); }
+.btn--ok { background: var(--ok); border-color: var(--ok); color: #fff; }
+.btn--ghost { background: transparent; border-color: transparent; }
+.btn--ghost:hover { background: var(--accent-soft); border-color: transparent; }
+.btn[disabled] { opacity: .45; pointer-events: none; }
+.btn svg { width: 20px; height: 20px; flex: none; }
+.icon-btn { width: 44px; height: 44px; padding: 0; border-radius: 12px; }
+
+.field { display: block; margin-bottom: 14px; }
+.field__label { display: block; font-size: 14px; color: var(--text-2); margin-bottom: 6px; font-weight: 500; }
+.field__hint { display: block; font-size: 13px; color: var(--text-3); margin-top: 4px; }
+.input {
+  width: 100%; min-height: 46px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--surface-2); outline: none; transition: border-color .2s, box-shadow .2s; font-size: 16px; /* 16px: iPhone не зумит */
+}
+.input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.form-error { color: var(--bad); background: var(--bad-soft); padding: 10px 14px; border-radius: 10px; font-size: 14px; margin-bottom: 12px; }
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); padding: 20px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 99px; font-size: 13px; background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+.muted { color: var(--text-3); }
+
+/* ===== Всплывающие сообщения ===== */
+#toasts { position: fixed; z-index: 300; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none; }
+.toast { background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 99px; box-shadow: var(--shadow-lg); font-weight: 500; animation: toast-in .35s var(--ease); }
+.toast--xp { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; }
+.toast--level { background: linear-gradient(135deg, #f7b733, #fc4a1a); color: #fff; }
+.toast--out { opacity: 0; transform: translateY(8px); transition: all .45s var(--ease); }
+@keyframes toast-in { from { opacity: 0; transform: translateY(12px) scale(.96); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+:root[data-motion="reduce"] *, :root[data-motion="reduce"] *::before, :root[data-motion="reduce"] *::after {
+  animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important;
+}

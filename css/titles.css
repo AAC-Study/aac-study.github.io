@@ -1,0 +1,31 @@
+/* ===== Титулы ===== */
+.ttl { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 99px; font-size: 13px; font-weight: 700; letter-spacing: .02em; white-space: nowrap; border: 1px solid transparent; }
+.ttl--plain { background: var(--bg-2); color: var(--text-2); border-color: var(--border); }
+.ttl--mint { background: #dcf7ee; color: #0b7a5f; }
+.ttl--blue { background: #e1edff; color: #2457c5; }
+.ttl--night { background: #1d2246; color: #b9c2ff; border-color: #343b75; }
+.ttl--violet { background: #ece7ff; color: #5b3fd6; }
+.ttl--sunset { background: linear-gradient(135deg, #ffe0d1, #ffd6e4); color: #b8442a; }
+.ttl--pink { background: #ffe1ef; color: #b81f6a; }
+.ttl--gold { background: linear-gradient(135deg, #fff1c7, #ffe08a); color: #8a5a00; border-color: #f1c75b; }
+:root[data-theme="dark"] .ttl--mint { background: #123a31; color: #6ff0c6; }
+:root[data-theme="dark"] .ttl--blue { background: #16274d; color: #8cb6ff; }
+:root[data-theme="dark"] .ttl--violet { background: #2a2357; color: #b9a8ff; }
+:root[data-theme="dark"] .ttl--sunset { background: #3d2219; color: #ffb08f; }
+:root[data-theme="dark"] .ttl--pink { background: #3d1730; color: #ff8cc3; }
+:root[data-theme="dark"] .ttl--gold { background: #3a2c0a; color: #ffd36b; border-color: #6b5214; }
+.ttl--anim { color: #fff; background-size: 300% 100%; animation: ttl-flow 6s linear infinite; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+.ttl--anim-aurora { background-image: linear-gradient(90deg, #12b5a6, #6656f5, #d946ef, #12b5a6); }
+.ttl--anim-neon { background-image: linear-gradient(90deg, #0f172a, #1e3a8a, #0f172a); color: #7df9ff; text-shadow: 0 0 6px rgba(125,249,255,.8); border-color: #38bdf8; }
+.ttl--anim-gold { background-image: linear-gradient(90deg, #b8860b, #ffd700, #fff3b0, #ffd700, #b8860b); color: #3d2a00; }
+.ttl--anim-rainbow { background-image: linear-gradient(90deg, #ff5f6d, #ffc371, #47e891, #3fa9f5, #a259ff, #ff5f6d); }
+@keyframes ttl-flow { from { background-position: 0% 50%; } to { background-position: 300% 50%; } }
+@media (prefers-reduced-motion: reduce) { .ttl--anim { animation: none; } }
+
+.ttl-pick { display: flex; flex-wrap: wrap; gap: 8px; }
+.ttl-opt { position: relative; border: 2px solid transparent; background: none; padding: 3px; border-radius: 99px; min-height: 44px; display: inline-flex; align-items: center; transition: border-color .2s, transform .2s var(--ease); }
+.ttl-opt:hover { transform: translateY(-1px); }
+.ttl-opt.is-on { border-color: var(--accent); }
+.ttl-opt.is-locked { opacity: .45; cursor: not-allowed; }
+.ttl-opt.is-locked::after { content: attr(data-lvl); position: absolute; top: -6px; right: -4px; font-size: 10px; font-weight: 700; background: var(--text-3); color: var(--surface); border-radius: 99px; padding: 1px 6px; }
+[dir="rtl"] .ttl-opt.is-locked::after { right: auto; left: -4px; }

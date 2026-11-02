@@ -1,0 +1,66 @@
+/* ===== Поле с оформлением (RichText) ===== */
+.rte { border: 1.5px solid var(--border); border-radius: 14px; background: var(--surface); overflow: hidden; transition: border-color .2s, box-shadow .2s; }
+.rte:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.rte__bar { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; padding: 6px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
+.rte__btn { width: 40px; height: 40px; border: 0; border-radius: 10px; background: transparent; color: var(--text-2); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s, color .15s; }
+.rte__btn .ic { width: 19px; height: 19px; }
+.rte__btn:hover { background: var(--accent-soft); color: var(--accent); }
+.rte__btn[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.rte__sep { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
+.rte__area { min-height: 110px; max-height: 45vh; overflow-y: auto; padding: 12px 14px; outline: none; line-height: 1.55; font-size: 15px; word-break: break-word; white-space: pre-wrap; }
+.rte__area.is-empty::before { content: attr(data-ph); color: var(--text-2); opacity: .7; pointer-events: none; float: left; height: 0; }
+[dir="rtl"] .rte__area.is-empty::before { float: right; }
+.rte__area.is-drop { background: var(--accent-soft); }
+.rte__area code, .issue__text code { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .92em; background: var(--surface-2); border: 1px solid var(--border); border-radius: 6px; padding: 1px 5px; }
+.rte__thumbs { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 12px; }
+.rte__thumbs:not(:empty) { padding: 0 12px 12px; }
+.rte__thumb { position: relative; width: 76px; height: 76px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); background: var(--surface-2); }
+.rte__thumb img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; display: block; }
+.rte__thumb.is-loading { background: linear-gradient(90deg, var(--surface-2), var(--accent-soft), var(--surface-2)); background-size: 200% 100%; animation: rte-load 1s linear infinite; }
+@keyframes rte-load { to { background-position: -200% 0; } }
+.rte__thumb-x { position: absolute; top: 4px; right: 4px; width: 26px; height: 26px; border-radius: 50%; border: 0; background: rgba(0,0,0,.6); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.rte__thumb-x .ic { width: 14px; height: 14px; }
+[dir="rtl"] .rte__thumb-x { right: auto; left: 4px; }
+.rte__hint { font-size: 12.5px; padding: 8px 12px; border-top: 1px dashed var(--border); }
+.rte__full { display: block; max-width: 100%; max-height: 75vh; margin: 0 auto; border-radius: 12px; }
+
+/* всплывающая панель над выделением (как в Telegram) */
+.rte__bubble { position: fixed; z-index: 3000; display: flex; gap: 2px; padding: 4px; border-radius: 12px; background: #1d1b2e; box-shadow: 0 8px 24px rgba(0,0,0,.3); animation: rte-pop .15s var(--ease, ease-out); }
+.rte__bubble[hidden] { display: none; }
+.rte__bubble .rte__btn { color: #e8e6f5; width: 38px; height: 38px; }
+.rte__bubble .rte__btn:hover { background: rgba(255,255,255,.12); color: #fff; }
+.rte__bubble .rte__btn[aria-pressed="true"] { background: var(--accent); color: #fff; }
+@keyframes rte-pop { from { opacity: 0; transform: translateY(4px) scale(.96); } }
+
+/* картинки в сообщениях для админа */
+.issue__text b { font-weight: 700; }
+.issue__imgs { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
+.issue__img { width: 96px; height: 96px; padding: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; cursor: zoom-in; background: var(--surface-2); }
+.issue__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ===== Пуш: предложение включить ===== */
+.push-offer { position: fixed; z-index: 2500; bottom: 20px; right: 20px; max-width: 400px; width: calc(100% - 32px); display: grid; grid-template-columns: auto 1fr; gap: 12px 14px; padding: 16px; border-radius: 18px; background: var(--surface); border: 1px solid var(--border); box-shadow: 0 16px 40px rgba(20,16,60,.25); animation: push-in .4s var(--ease, ease-out); }
+[dir="rtl"] .push-offer { right: auto; left: 20px; }
+.push-offer.is-out { opacity: 0; transform: translateY(16px); transition: opacity .25s, transform .25s; }
+.push-offer__ic { width: 44px; height: 44px; border-radius: 14px; background: var(--accent-soft); color: var(--accent); display: flex; align-items: center; justify-content: center; }
+.push-offer__ic .ic { width: 22px; height: 22px; }
+.push-offer__text .muted { font-size: 13.5px; margin-top: 2px; }
+.push-offer__btns { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.push-offer__never { border: 0; background: none; color: var(--text-2); font: inherit; font-size: 13px; text-decoration: underline; cursor: pointer; padding: 10px 4px; margin-inline-start: auto; }
+@keyframes push-in { from { opacity: 0; transform: translateY(24px); } }
+@media (max-width: 600px) { .push-offer { right: 16px; left: 16px; bottom: 16px; width: auto; max-width: none; } [dir="rtl"] .push-offer { left: 16px; } }
+
+.push-test { display: flex; gap: 8px; flex-wrap: wrap; }
+.push-note { font-size: 13px; margin: 10px 0 0; }
+.goal-btns { display: flex; gap: 10px; }
+.goal-btn { width: 48px; height: 48px; border-radius: 14px; border: 2px solid var(--border); background: var(--surface-2); color: var(--text-2); font: inherit; font-weight: 800; font-size: 18px; cursor: pointer; box-shadow: 0 2px 0 var(--border); transition: background .2s, color .2s, border-color .2s, transform .1s, box-shadow .2s; }
+.goal-btn:active { transform: translateY(2px); box-shadow: none; }
+.goal-btn[aria-pressed="true"] { background: #22c55e; border-color: #16a34a; color: #fff; box-shadow: 0 0 0 4px rgba(34,197,94,.25), 0 2px 0 #15803d; }
+.goal-btn:disabled { opacity: .5; cursor: not-allowed; }
+:root[data-motion="reduce"] .push-offer, :root[data-motion="reduce"] .rte__bubble { animation: none; }
+@media (prefers-reduced-motion: reduce) { .push-offer, .rte__bubble { animation: none; } }
+
+/* уведомления недоступны: показываем замок вместо переключателя и приглушаем проверки */
+.push-lock { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.push-lock .ic { width: 15px; height: 15px; }
+.push-card--off .settings-row:not(:first-child) { opacity: .45; }

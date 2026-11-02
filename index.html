@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f6fb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>לומדים ביחד</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/icon-32.png">
+  <link rel="apple-touch-icon" href="img/icon-180.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/frames.css">
+  <link rel="stylesheet" href="css/avatar.css">
+  <link rel="stylesheet" href="css/lesson.css">
+  <link rel="stylesheet" href="css/titles.css">
+  <link rel="stylesheet" href="css/report.css">
+  <link rel="stylesheet" href="css/social.css">
+  <script>
+    /* тема ставится до отрисовки, чтобы не мигало */
+    try { var th = JSON.parse(localStorage.getItem('theme')); if (!th) th = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; document.documentElement.setAttribute('data-theme', th); } catch (e) {}
+  </script>
+</head>
+<body>
+  <div id="app" class="app"></div>
+  <div id="toasts" aria-live="polite"></div>
+  <noscript>Please enable JavaScript.</noscript>
+
+  <script src="js/config.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/icons.js"></script>
+  <script src="js/store.js"></script>
+  <script src="data/subjects.js"></script>
+  <script src="data/lessons/index.js"></script>
+  <script src="js/titles.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/frames.js"></script>
+  <script src="js/avatar.js"></script>
+  <script src="js/reading.js"></script>
+  <script src="js/draft.js"></script>
+  <script src="js/tasks.js"></script>
+  <script src="js/social.js"></script>
+  <script src="js/people.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/lesson.js"></script>
+  <script src="js/report.js"></script>
+  <script src="js/push.js"></script>
+</body>
+</html>

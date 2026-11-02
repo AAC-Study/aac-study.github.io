@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lesson module test</title>
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/lesson.css">
+<style>
+  /* Minimal stand-in for the shell (app.css) — only for this test page. */
+  .t-bar { position: sticky; top: 0; z-index: 50; height: var(--top-h); display: flex; align-items: center; gap: 8px; padding: 0 16px;
+    background: var(--surface); border-bottom: 1px solid var(--border); }
+  .t-bar b { flex: 1; }
+  .t-bar select, .t-bar button { min-height: 40px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); padding: 0 10px; font-size: 16px; }
+  #view { padding: 16px; }
+  .t-modal { position: fixed; z-index: 200; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .t-modal__bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,12,28,.5); }
+  .t-modal__box { position: relative; width: 100%; max-width: 560px; max-height: calc(100vh - 48px); display: flex; flex-direction: column;
+    background: var(--bg); border-radius: 20px; box-shadow: var(--shadow-lg); animation: ls-pop .3s var(--ease); }
+  .t-modal--wide .t-modal__box { max-width: 860px; }
+  .t-modal__head { display: flex; align-items: center; gap: 8px; padding: 12px 12px 12px 20px; border-bottom: 1px solid var(--border); }
+  [dir="rtl"] .t-modal__head { padding: 12px 20px 12px 12px; }
+  .t-modal__head h2 { flex: 1; margin: 0; font-size: 18px; }
+  .t-modal__body { overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 18px 20px 24px; }
+  @media (max-width: 640px) {
+    .t-modal { padding: 0; }
+    .t-modal__box { max-width: none; height: 100%; max-height: none; border-radius: 0; }
+    .t-modal__body { padding: 14px 16px 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="t-bar">
+  <b>Lesson test</b>
+  <select id="lang" aria-label="lang"><option value="he">HE</option><option value="ru">RU</option><option value="en">EN</option></select>
+  <button id="theme" type="button">◐</button>
+</div>
+<main id="view"></main>
+<div id="toasts"></div>
+
+<script src="../js/config.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/i18n.js"></script>
+<script src="../js/icons.js"></script>
+<script src="../js/store.js"></script>
+<script src="../data/subjects.js"></script>
+<script src="../data/lessons/index.js"></script>
+<script>
+/* Fallback App (the real one lives in js/app.js). */
+(function () {
+  if (window.App) return;
+  var routes = [], cleanup = null;
+  window.App = {
+    registerRoute: function (pattern, fn) { routes.push({ pattern: pattern, fn: fn }); },
+    loadScript: function (src) {
+      return new Promise(function (resolve, reject) {
+        var s = document.createElement('script');
+        s.src = '../' + src; s.onload = resolve; s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    },
+    go: function (path) { location.hash = '#' + path; },
+    modal: function (o) {
+      var last = document.activeElement;
+      var box = U.el('div', { class: 't-modal' + (o.wide ? ' t-modal--wide' : ''), role: 'dialog', 'aria-modal': 'true' });
+      var closeBtn = U.el('button', { type: 'button', class: 'btn btn--ghost icon-btn', 'aria-label': 'close', html: Icons.get('close') });
+      var body = U.el('div', { class: 't-modal__body' }, o.content);
+      box.appendChild(U.el('div', { class: 't-modal__bg' }));
+      box.appendChild(U.el('div', { class: 't-modal__box' }, [U.el('div', { class: 't-modal__head' }, [U.el('h2', null, o.title || ''), closeBtn]), body]));
+      document.body.appendChild(box);
+      document.body.style.overflow = 'hidden';
+      function close() {
+        if (!box.parentNode) return;
+        box.parentNode.removeChild(box);
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', onKey);
+        if (o.onClose) o.onClose();
+        if (last && last.focus) last.focus();
+      }
+      function onKey(e) { if (e.key === 'Escape') close(); }
+      closeBtn.addEventListener('click', close);
+      box.firstChild.addEventListener('click', close);
+      document.addEventListener('keydown', onKey);
+      closeBtn.focus();
+      return { el: box, close: close };
+    },
+    _route: function () {
+      var path = (location.hash || '#/lesson/math-2026-11-01').slice(1);
+      if (cleanup) { cleanup(); cleanup = null; }
+      var view = document.getElementById('view');
+      view.innerHTML = '';
+      routes.some(function (r) {
+        var names = [];
+        var re = new RegExp('^' + r.pattern.replace(/:(\w+)/g, function (m, n) { names.push(n); return '([^/]+)'; }) + '$');
+        var m = re.exec(path);
+        if (!m) return false;
+        var params = {};
+        names.forEach(function (n, i) { params[n] = decodeURIComponent(m[i + 1]); });
+        cleanup = r.fn(params, view) || null;
+        return true;
+      }) || (view.textContent = 'No route: ' + path);
+    }
+  };
+})();
+</script>
+<script src="../js/draft.js"></script>
+<script src="../js/tasks.js"></script>
+<script src="../js/reading.js"></script>
+<script src="../js/lesson.js"></script>
+<script>
+(function () {
+  var qs = {};
+  location.search.slice(1).split('&').forEach(function (p) { var kv = p.split('='); if (kv[0]) qs[kv[0]] = decodeURIComponent(kv[1] || ''); });
+  if (qs.lang) U.storage.set('lang', qs.lang);
+  I18N.init();
+  var theme = qs.theme || U.storage.get('theme', 'light');
+  document.documentElement.setAttribute('data-theme', theme);
+  var sel = document.getElementById('lang');
+  sel.value = I18N.lang;
+  sel.addEventListener('change', function () { I18N.set(sel.value); });
+  document.getElementById('theme').addEventListener('click', function () {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    U.storage.set('theme', theme);
+  });
+  // test user (mock mode)
+  if (!Store.auth.current() && qs.nouser !== '1') {
+    Store.auth.signUp({ email: 'tester@example.com', password: 'secret1', name: 'Tester', invite: 'AAC2026' })
+      .catch(function () { return Store.auth.signIn({ email: 'tester@example.com', password: 'secret1' }); });
+  }
+  window.addEventListener('hashchange', App._route);
+  App._route();
+})();
+</script>
+</body>
+</html>
