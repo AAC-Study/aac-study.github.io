@@ -336,6 +336,8 @@ create table if not exists public.chat_members (
   primary key (chat_id, user_id)
 );
 create index if not exists chat_members_user on public.chat_members(user_id);
+-- «без уведомлений»: свой переключатель у каждого участника чата
+alter table public.chat_members add column if not exists muted boolean not null default false;
 
 create table if not exists public.chat_bans (
   chat_id uuid not null references public.chats(id) on delete cascade,
@@ -574,7 +576,7 @@ revoke execute on function public.sc_system(uuid, uuid, text, uuid) from public,
 create or replace function public.sc_my_chats() returns json
 language sql stable security definer set search_path = public as $$
   select coalesce(json_agg(x order by x.last_msg_at desc), '[]'::json) from (
-    select c.id, c.kind, c.title, c.bg, c.pinned_msg_id, c.last_msg_at, me.role, c.owner_id,
+    select c.id, c.kind, c.title, c.bg, c.pinned_msg_id, c.last_msg_at, me.role, me.muted, c.owner_id,
       (select count(*) from public.chat_members k where k.chat_id = c.id) as member_count,
       (select k.user_id from public.chat_members k where k.chat_id = c.id and k.user_id <> me.user_id limit 1) as other_id,
       (select row_to_json(l) from (
@@ -586,6 +588,11 @@ language sql stable security definer set search_path = public as $$
           and (mm.expires_at is null or mm.expires_at > now())) as unread
     from public.chats c join public.chat_members me on me.chat_id = c.id and me.user_id = auth.uid()
   ) x;
+$$;
+
+create or replace function public.sc_mute(p_chat uuid, p_on boolean) returns void
+language sql security definer set search_path = public as $$
+  update public.chat_members set muted = coalesce(p_on, true) where chat_id = p_chat and user_id = auth.uid();
 $$;
 
 create or replace function public.sc_mark_read(p_chat uuid) returns void
@@ -896,7 +903,7 @@ begin
     'sc_public_stats(uuid)', 'sc_my_chats()', 'sc_mark_read(uuid)', 'sc_open_direct(uuid)', 'sc_create_group(text, uuid[])',
     'sc_group_add(uuid, uuid[])', 'sc_member_action(uuid, uuid, text, timestamptz, jsonb)', 'sc_leave(uuid)',
     'sc_group_delete(uuid)', 'sc_group_update(uuid, jsonb)', 'sc_pin_message(uuid, bigint)', 'sc_delete_message(bigint)',
-    'sc_react(bigint, text)', 'sc_notif_seen()', 'sc_support_open()'] loop
+    'sc_react(bigint, text)', 'sc_notif_seen()', 'sc_support_open()', 'sc_mute(uuid, boolean)'] loop
     execute format('revoke execute on function public.%s from public, anon', f);
     execute format('grant execute on function public.%s to authenticated', f);
   end loop;

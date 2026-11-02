@@ -680,3 +680,9 @@ button.sc-chat__who:hover { background: var(--accent-soft); }
 :root[data-motion="reduce"] .sc-bub::after, :root[data-motion="reduce"] .sc-bg__layer::before, :root[data-motion="reduce"] .sc-bg__layer::after,
 :root[data-motion="reduce"] .sc-empty-hero__ic, :root[data-motion="reduce"] .sc-hello__ic, :root[data-motion="reduce"] .sc-skel div,
 :root[data-motion="reduce"] .sc-row, :root[data-motion="reduce"] .sc-crow, :root[data-motion="reduce"] .sc-msg { animation: none !important; }
+
+/* чат «без уведомлений» */
+.sc-crow__muted { flex: none; display: inline-flex; color: var(--text-2); opacity: .8; }
+.sc-crow__muted .ic { width: 15px; height: 15px; }
+.sc-crow.is-muted .sc-badge { background: var(--text-2); opacity: .75; }
+.icon-btn.is-on { color: var(--text-2); }

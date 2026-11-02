@@ -86,6 +86,8 @@
     try { document.dispatchEvent(new CustomEvent('socialchange', { detail: what || null })); } catch (e) { /* старые браузеры */ }
   }
   function myId() { var u = Store.auth.current(); return u ? u.id : null; }
+  /* чат, открытый сейчас на экране: его новые сообщения не попадают в колокольчик и точки */
+  function openChatId() { var m = /^#\/chat\/([^/?#]+)/.exec(location.hash || ''); return m && !document.hidden ? decodeURIComponent(m[1]) : null; }
   function hasBanned(words, text) {
     if (!text || !words || !words.length) return false;
     var low = String(text).toLowerCase();
@@ -273,7 +275,7 @@
     out.members = Object.keys(mem).map(function (uid) {
       var m = mem[uid];
       return { user_id: uid, user: users[uid] || ghost(uid), role: m.role, rights: m.rights || {}, promoted_by: m.promoted_by || null,
-               restricted_until: m.restricted_until || null, last_read_at: m.last_read_at, last_sent_at: m.last_sent_at || null, joined_at: m.joined_at };
+               restricted_until: m.restricted_until || null, last_read_at: m.last_read_at, last_sent_at: m.last_sent_at || null, joined_at: m.joined_at, muted: !!m.muted };
     });
     var bans = d.bans[id] || {};
     out.bans = Object.keys(bans).filter(function (uid) { var b = bans[uid]; return !b.until || tms(b.until) > Date.now(); })
@@ -406,7 +408,7 @@
           out.push({ id: id, kind: c.kind, title: c.title, bg: c.bg || null, owner_id: c.owner_id || null, pinned_msg_id: c.pinned_msg_id || null, role: my.role,
             member_count: Object.keys(mem).length, other: c.kind === 'direct' && other ? (users[other] || ghost(other)) : null,
             last: last ? { id: last.id, sender_id: last.sender_id, kind: last.kind, body: last.body, file_name: last.file_name, created_at: last.created_at } : null,
-            unread: unread, last_msg_at: c.last_msg_at });
+            unread: unread, muted: !!my.muted, last_msg_at: c.last_msg_at });
         });
         return out.sort(function (a, b) { return tms(b.last_msg_at) - tms(a.last_msg_at); });
       });
@@ -553,6 +555,14 @@
         if (d.reacts[id][me] === emoji) { delete d.reacts[id][me]; r = 'removed'; } else { d.reacts[id][me] = emoji; r = 'added'; }
         m.updated_at = nowIso();
         W(d); return r;
+      });
+    },
+    mute: function (chatId, on) {
+      return ask(function () {
+        var me = needMe(), d = D(), my = (d.members[chatId] || {})[me];
+        if (!my) throw scErr('sc_err_not_member');
+        my.muted = on !== false; W(d);
+        return my.muted;
       });
     },
     markRead: function (chatId) {
@@ -735,7 +745,7 @@
     c.members = (mems || []).map(function (m) {
       var r = {}; RIGHT_KEYS.forEach(function (k) { r[k] = !!m['r_' + k]; });
       return { user_id: m.user_id, user: users[m.user_id] || ghost(m.user_id), role: m.role, rights: r, promoted_by: m.promoted_by,
-               restricted_until: m.restricted_until, last_read_at: m.last_read_at, last_sent_at: m.last_sent_at, joined_at: m.joined_at };
+               restricted_until: m.restricted_until, last_read_at: m.last_read_at, last_sent_at: m.last_sent_at, joined_at: m.joined_at, muted: !!m.muted };
     });
     c.bans = (bans || []).filter(function (b) { return !b.until || tms(b.until) > Date.now(); })
       .map(function (b) { return { user_id: b.user_id, user: users[b.user_id] || ghost(b.user_id), until: b.until }; });
@@ -795,7 +805,7 @@
         return (r[0] || []).map(function (c) {
           return { id: c.id, kind: c.kind, title: c.title, bg: c.bg, pinned_msg_id: c.pinned_msg_id, role: c.role, member_count: c.member_count, owner_id: c.owner_id || null,
                    other: c.kind === 'direct' && c.other_id ? (r[1][c.other_id] || ghost(c.other_id)) : null,
-                   last: c.last || null, unread: c.unread || 0, last_msg_at: c.last_msg_at };
+                   last: c.last || null, unread: c.unread || 0, muted: !!c.muted, last_msg_at: c.last_msg_at };
         });
       });
     },
@@ -865,6 +875,7 @@
     },
     react: function (id, emoji) { return rpc('sc_react', { p_msg: id, p_emoji: emoji }); },
     markRead: function (chatId) { return rpc('sc_mark_read', { p_chat: chatId }); },
+    mute: function (chatId, on) { return rpc('sc_mute', { p_chat: chatId, p_on: on !== false }).then(function () { return on !== false; }); },
     pinMessage: function (chatId, msgId) { return rpc('sc_pin_message', { p_chat: chatId, p_msg: msgId == null ? null : msgId }); },
     groupUpdate: function (chatId, patch) {
       var p = {};
@@ -906,7 +917,7 @@
      ПУБЛИЧНЫЙ API
      ===================================================================== */
   var B = Store.mode === 'supabase' ? SB : MOCK;
-  var mutating = { request: 1, cancel: 1, accept: 1, decline: 1, unfriend: 1, removeMsg: 1, restore: 1, block: 1, pinUser: 1, openDirect: 1, createGroup: 1,
+  var mutating = { mute: 1, request: 1, cancel: 1, accept: 1, decline: 1, unfriend: 1, removeMsg: 1, restore: 1, block: 1, pinUser: 1, openDirect: 1, createGroup: 1,
     openSupport: 1, send: 1, edit: 1, react: 1, pinMessage: 1, groupUpdate: 1, groupAdd: 1, memberAction: 1, leave: 1, groupDelete: 1 };
   /* после этих действий просим сервер разослать пуш (заявка, принятие, группа, сообщение) */
   var PUSH_HINT = { request: 1, accept: 1, createGroup: 1, groupAdd: 1, send: 1 };
@@ -935,7 +946,7 @@
     invalidate: function () { profCache = null; }
   };
   ['users', 'people', 'user', 'request', 'cancel', 'accept', 'decline', 'restore', 'block', 'pinUser',
-   'chats', 'openDirect', 'openSupport', 'createGroup', 'chat', 'messages', 'send', 'edit', 'react', 'markRead', 'pinMessage',
+   'chats', 'openDirect', 'openSupport', 'createGroup', 'chat', 'messages', 'send', 'edit', 'react', 'markRead', 'mute', 'pinMessage',
    'groupUpdate', 'groupAdd', 'memberAction', 'leave', 'groupDelete', 'notifSeen', 'mediaUrl'].forEach(function (n) { Social[n] = wrap(n); });
   Social.removeFriend = wrap('unfriend');
   Social.removeMessage = wrap('removeMsg');
@@ -967,7 +978,7 @@
       .then(function (r) {
         var users = r[2], items = [];
         r[1].forEach(function (c) {
-          if (!c.unread) return;
+          if (!c.unread || c.muted || c.id === openChatId()) return;   // «без уведомлений» и открытый сейчас чат в колокольчик не попадают
           var name = c.kind === 'direct' ? (c.other ? c.other.name : '…') : c.title;
           items.push({ id: 'm' + c.id, kind: 'message', user: c.other, chat_id: c.id, title: c.title, count: c.unread, seen: false, at: c.last_msg_at,
                        text: t('sc_n_message', { name: name, n: c.unread }), href: '#/chat/' + c.id });
@@ -1224,7 +1235,8 @@
     busy = true;
     return Promise.all([B.chats(), B.notifications()]).then(function (r) {
       busy = false;
-      var unread = 0; r[0].forEach(function (c) { unread += c.unread || 0; });
+      var oc = openChatId();
+      var unread = 0; r[0].forEach(function (c) { if (!c.muted && c.id !== oc) unread += c.unread || 0; });
       var notifs = r[1].filter(function (n) { return !n.seen; });
       var prev = last.unread;
       last = { unread: unread, requests: notifs.filter(function (n) { return n.kind === 'request'; }).length, notifs: notifs.length };
@@ -1257,9 +1269,15 @@
       /* надпись «Новых уведомлений нет» показываем только одну: свою, а старую из шапки прячем */
       var pop = box.parentNode;
       if (pop) U.$$('p.muted', pop).forEach(function (p) { if (!box.contains(p) && p.textContent === t('no_notifications')) p.style.display = 'none'; });
-      if (!items.length) { box.appendChild(el('p', { class: 'muted sc-notif__empty' }, t('no_notifications'))); return; }
+      /* в колокольчике только новое; вся история — на странице «Все уведомления» */
+      items = items.filter(function (n) { return !n.seen; });
+      if (!items.length) { box.appendChild(el('p', { class: 'muted sc-notif__empty' }, t('no_notifications'))); }
       items.slice(0, 12).forEach(function (n) {
-        box.appendChild(el('a', { class: 'sc-notif__item' + (n.seen ? '' : ' is-new'), href: n.href }, [
+        box.appendChild(el('a', { class: 'sc-notif__item is-new', href: n.href, onclick: function () {
+          var a = this; if (a.parentNode) a.parentNode.removeChild(a);
+          if (!box.querySelector('.sc-notif__item') && !box.querySelector('.sc-notif__empty')) box.insertBefore(el('p', { class: 'muted sc-notif__empty' }, t('no_notifications')), box.firstChild);
+          Social.markNotificationsSeen();
+        } }, [
           n.user ? App.avatar(n.user, 36) : el('span', { class: 'sc-notif__ic', html: Icons.get('chat') }),
           el('span', { class: 'sc-notif__text' }, [el('span', null, n.text), el('small', { class: 'muted' }, fmtAgo(n.at))])
         ]));

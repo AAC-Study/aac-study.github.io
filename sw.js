@@ -2,19 +2,33 @@
 self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });
 
+/* iPhone/Safari требует показывать каждое уведомление, иначе отключает подписку */
+var MUST_SHOW = /iPhone|iPad|iPod|Macintosh.*Safari/.test(self.navigator.userAgent || '') && !/Chrome|Chromium|Edg|Firefox/.test(self.navigator.userAgent || '');
+
 self.addEventListener('push', function (e) {
   var msg = {};
   try { msg = e.data ? e.data.json() : {}; } catch (err) { msg = { title: 'AAC', body: e.data ? e.data.text() : '' }; }
-  e.waitUntil(self.registration.showNotification(msg.title || 'AAC', {
+  var isTest = msg.tag === 'test' || msg.tag === 'goal';
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function (list) {
+    var onSite = list.filter(function (c) { return c.focused && c.visibilityState === 'visible'; });
+    /* человек сейчас на сайте: системное уведомление не нужно, сайт сам обновит колокольчик и чат */
+    list.forEach(function (c) { try { c.postMessage({ type: 'push', tag: msg.tag || '', url: msg.url || '' }); } catch (err) { /* */ } });
+    if (onSite.length && !isTest && !MUST_SHOW) return null;
+    return show(msg);
+  }));
+});
+
+function show(msg) {
+  return self.registration.showNotification(msg.title || 'AAC', {
     body: msg.body || '',
     icon: 'img/icon-192.png',
-    badge: 'img/icon-192.png',
+    badge: 'img/badge-96.png',      // значок в строке состояния Android: только белый силуэт на прозрачном фоне
     tag: msg.tag || undefined,
     renotify: !!msg.tag,
     silent: true,           // без звука, как просили
     data: { url: msg.url || '' }
-  }));
-});
+  });
+}
 
 self.addEventListener('notificationclick', function (e) {
   e.notification.close();

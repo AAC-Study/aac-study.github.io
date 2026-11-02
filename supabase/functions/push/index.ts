@@ -48,7 +48,7 @@ async function appServer() {
     rows = await db("app_secrets?key=eq.vapid&select=value");
   }
   const vapidKeys = await webpush.importVapidKeys(JSON.parse(rows[0].value), { extractable: false });
-  server = await webpush.ApplicationServer.new({ contactInformation: "mailto:admin@example.com", vapidKeys });
+  server = await webpush.ApplicationServer.new({ contactInformation: "https://denisv1.github.io/aac-study/", vapidKeys });
   publicKey = await webpush.exportApplicationServerKey(vapidKeys);
   return server;
 }
@@ -100,12 +100,14 @@ const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
   },
 };
 
+const host = (u: string) => { try { return new globalThis.URL(u).host; } catch (_) { return "?"; } };
 async function sendTo(userIds: string[], kind: string, x: X = {}, onlyEndpoint?: string) {
   if (!userIds.length) return 0;
   const as = await appServer();
   let q = `push_subs?user_id=in.(${userIds.join(",")})&select=endpoint,p256dh,auth,lang`;
   if (onlyEndpoint) q += `&endpoint=eq.${encodeURIComponent(onlyEndpoint)}`;
   const subs = await db(q);
+  if (!subs.length) console.log(`push ${kind}: у получателя нет ни одного устройства с уведомлениями`);
   let sent = 0;
   await Promise.all(subs.map(async (s: { endpoint: string; p256dh: string; auth: string; lang: string }) => {
     const msg = (TEXT[s.lang] || TEXT.he)[kind](x);
@@ -115,11 +117,20 @@ async function sendTo(userIds: string[], kind: string, x: X = {}, onlyEndpoint?:
       await as.subscribe({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } })
         .pushTextMessage(JSON.stringify(msg), { ttl: 24 * 3600, urgency: webpush.Urgency.High });
       sent++;
+      console.log(`push ok ${kind} → ${host(s.endpoint)}`);
     } catch (e) {
       // устройство отписалось или подписка устарела — удаляем
       if (e instanceof webpush.PushMessageError && e.isGone()) {
+        console.log(`push gone ${host(s.endpoint)} — подписка удалена`);
         await db(`push_subs?endpoint=eq.${encodeURIComponent(s.endpoint)}`, { method: "DELETE" });
-      } else console.error("push failed", String(e));
+      } else {
+        let detail = "";
+        try {
+          const r = (e as { response?: Response }).response;
+          if (r) detail = ` status=${r.status} ${(await r.text()).slice(0, 300)}`;
+        } catch (_) { /* */ }
+        console.error(`push failed ${kind} → ${host(s.endpoint)}: ${String(e)}${detail}`);
+      }
     }
   }));
   return sent;
@@ -220,7 +231,8 @@ Deno.serve(async (req) => {
         const recent = await db(`issues?user_id=eq.${uid}&created_at=gt.${ago(2 * 60e3)}&select=id&limit=1`);
         if (recent.length) return json({ sent: 0 });
       }
-      const members = (await db(`chat_members?chat_id=eq.${m.chat_id}&user_id=neq.${uid}&select=user_id`)).map((x: { user_id: string }) => x.user_id);
+      // не шлём тем, кто выключил уведомления чата, и тем, кто прямо сейчас сидит в этом чате (сайт отмечает это раз в 15 с)
+      const members = (await db(`chat_members?chat_id=eq.${m.chat_id}&user_id=neq.${uid}&muted=is.false&last_read_at=lt.${ago(25e3)}&select=user_id`)).map((x: { user_id: string }) => x.user_id);
       const sent = await sendTo(members, "message", {
         name: await nameOf(uid), chat: chat.kind === "group" ? chat.title : null, support: chat.kind === "support",
         text: String(m.body || ""), mkind: m.kind, url: `#/chat/${m.chat_id}`, tag: `chat-${m.chat_id}`,

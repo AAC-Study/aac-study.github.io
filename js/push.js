@@ -121,7 +121,7 @@
     local: function (kind) {
       var tx = LOCAL_TEXT[kind][I18N.lang] || LOCAL_TEXT[kind].he;
       return reg().then(function (r) {
-        return r.showNotification(tx[0], { body: tx[1], icon: 'img/icon-192.png', badge: 'img/icon-192.png', tag: kind, silent: true });
+        return r.showNotification(tx[0], { body: tx[1], icon: 'img/icon-192.png', badge: 'img/badge-96.png', tag: kind, silent: true });
       });
     },
     /* kind: 'test' | 'goal'; delay в секундах */
@@ -158,6 +158,15 @@
   document.addEventListener('langchange', syncLang);
   document.addEventListener('userchange', syncLang);
   Push.syncLang = syncLang;
+
+  /* пришёл пуш, а сайт открыт: сразу обновляем колокольчик, чаты и список */
+  if ('serviceWorker' in navigator && navigator.serviceWorker.addEventListener) {
+    navigator.serviceWorker.addEventListener('message', function (e) {
+      if (!e.data || e.data.type !== 'push') return;
+      if (window.Social && Social.refreshBadges) Social.refreshBadges();
+      try { document.dispatchEvent(new CustomEvent('socialchange', { detail: 'push' })); } catch (err) { /* */ }
+    });
+  }
 
   window.Push = Push;
 

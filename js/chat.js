@@ -30,6 +30,13 @@
     draw(current);
     return box;
   }
+  /* «без уведомлений» для чата: пуш и колокольчик молчат */
+  function toggleMute(chatId, nowMuted, after) {
+    Social.mute(chatId, !nowMuted).then(function (on) {
+      U.toast(t(on ? 'sc_muted_on' : 'sc_muted_off'));
+      if (after) after(on);
+    }, fail);
+  }
   function hashHue(s) { var h = 0; s = String(s || ''); for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360; return h; }
   function firstGlyph(s) {
     s = String(s || '?').trim();
@@ -226,10 +233,13 @@
           var nameNode = isG ? el('span', { class: 'sc-crow__gname' }, [el('span', { class: 'sc-crow__gic', html: ic('users') }), el('bdi', { dir: 'auto' }, c.title)])
                        : isS ? el('span', { class: 'sc-crow__gname' }, [el('span', { class: 'sc-crow__gic', html: ic('question') }), el('bdi', { dir: 'auto' }, supportTitle(c, users, myId))])
                        : Social.nameEl(c.other || {});
-          host.appendChild(el('a', { class: 'sc-crow' + (c.unread ? ' has-unread' : ''), href: '#/chat/' + c.id, 'data-cid': c.id }, [
+          host.appendChild(el('a', { class: 'sc-crow' + (c.unread ? ' has-unread' : '') + (c.muted ? ' is-muted' : ''), href: '#/chat/' + c.id, 'data-cid': c.id,
+            title: t('sc_mute_hint'),
+            oncontextmenu: function (e) { e.preventDefault(); toggleMute(c.id, c.muted, function () { load(); }); } }, [
             el('span', { class: 'sc-crow__ava' }, isG ? groupAva(c, 52) : isS ? supportAva(52) : App.avatar(c.other || {}, 52)),
             el('span', { class: 'sc-crow__body' }, [
-              el('span', { class: 'sc-crow__top' }, [nameNode, el('span', { class: 'sc-crow__time' }, c.last ? Social.fmt.short(c.last.created_at) : '')]),
+              el('span', { class: 'sc-crow__top' }, [nameNode, c.muted ? el('span', { class: 'sc-crow__muted', title: t('sc_muted'), html: ic('bellOff') }) : null,
+                el('span', { class: 'sc-crow__time' }, c.last ? Social.fmt.short(c.last.created_at) : '')]),
               el('span', { class: 'sc-crow__bottom' }, [
                 el('bdi', { class: 'sc-crow__prev', dir: 'auto' }, c.last ? preview(c.last, users, myId, isG || isS) : t('sc_no_messages')),
                 c.unread ? el('span', { class: 'sc-badge' }, c.unread > 99 ? '99+' : String(c.unread)) : null
@@ -285,6 +295,17 @@
     }
 
     /* ---------- шапка ---------- */
+    function myMuted() { var mm = (S.chat.members || []).filter(function (m) { return m.user_id === S.myId; })[0]; return !!(mm && mm.muted); }
+    function muteBtn() {
+      var on = myMuted();
+      return iconBtn(on ? 'bellOff' : 'bell', t(on ? 'sc_unmute' : 'sc_mute'), function () {
+        this.blur && this.blur();
+        toggleMute(S.chat.id, on, function (now) {
+          (S.chat.members || []).forEach(function (m) { if (m.user_id === S.myId) m.muted = now; });
+          drawHead();
+        });
+      }, on ? 'is-on' : '', 'mute');
+    }
     function drawHead() {
       var c = S.chat; headSlot.innerHTML = '';
       if (c.kind === 'support') {
@@ -292,6 +313,7 @@
         headSlot.appendChild(iconBtn('back', t('sc_back'), function () { App.go('/chats'); }, 'sc-chat__back', 'back'));
         headSlot.appendChild(el('div', { class: 'sc-chat__who' }, [el('span', { class: 'sc-chat__ava' }, supportAva(42)),
           el('span', { class: 'sc-chat__titles' }, [el('bdi', { class: 'sc-chat__gtitle', dir: 'auto' }, st), el('span', { class: 'sc-chat__sub' }, t('sc_support_sub'))])]));
+        headSlot.appendChild(muteBtn());
         headSlot.appendChild(iconBtn('palette', t('sc_chat_style'), function () { openChatStyle(function () { applyBg(); renderList(true); }); }, '', 'chat-style'));
         App.setTitle(st);
         return;
@@ -309,6 +331,7 @@
       ]);
       headSlot.appendChild(iconBtn('back', t('sc_back'), function () { App.go('/chats'); }, 'sc-chat__back', 'back'));
       headSlot.appendChild(who);
+      headSlot.appendChild(muteBtn());
       headSlot.appendChild(iconBtn('palette', t('sc_chat_style'), function () { openChatStyle(function () { applyBg(); renderList(true); }); }, '', 'chat-style'));
       if (c.kind === 'group') headSlot.appendChild(iconBtn('settings', t('sc_group_settings'), function () { openGroupInfo('info'); }, '', 'group-settings'));
       App.setTitle(c.kind === 'group' ? c.title : (other ? other.name : t('sc_chats')));
@@ -722,9 +745,15 @@
         if (e.code === 'sc_err_not_member' && S.alive) { U.toast(t('sc_err_not_member')); App.go('/chats'); }
       });
     }
-    function onSocial(e) { if (e && (e.detail === 'storage')) poll(); }
+    function onSocial(e) { if (e && (e.detail === 'storage' || e.detail === 'push')) poll(); }
     document.addEventListener('socialchange', onSocial);
-    var timer = setInterval(function () { if (!document.hidden) poll(); }, 3000);
+    /* «я сейчас в этом чате»: раз в 15 секунд отмечаем прочитанным — сервер не шлёт пуш ни на одно моё устройство */
+    var beats = 0;
+    var timer = setInterval(function () {
+      if (document.hidden) return;
+      poll();
+      if (++beats % 5 === 0 && (!document.hasFocus || document.hasFocus()) && atBottom(200)) Social.markRead(S.id).catch(function () {});
+    }, 3000);
 
     Promise.all([refreshChat(), Social.messages(S.id, { limit: 60 })]).then(function (r) {
       if (!S.alive) return;
@@ -997,6 +1026,8 @@
 
   I18N.add({
     he: {
+      sc_mute: 'השתקה', sc_unmute: 'ביטול השתקה', sc_muted: 'מושתק', sc_muted_on: 'הצ׳אט הושתק', sc_muted_off: 'ההתראות של הצ׳אט הופעלו',
+      sc_mute_hint: 'קליק ימני או לחיצה ארוכה: השתקה',
       sc_nav_chats: 'צ׳אטים', sc_chats: 'צ׳אטים', sc_chats_lead: 'שיחות עם חברים וקבוצות לימוד.', sc_new_chat: 'צ׳אט חדש', sc_new_group: 'קבוצה חדשה',
       sc_chat_style: 'עיצוב צ׳אט', sc_chat_style_lead: 'סגנון הבועות שלך רואים כולם. הרקע — רק אצלך.', sc_bubble_style: 'בועות', sc_chat_bg: 'רקע',
       sc_sample_q: 'מתי המבחן? 🤔', sc_sample_a: 'ביום ראשון! בהצלחה 💪',
@@ -1027,6 +1058,8 @@
       sc_sys_created: '{a} יצר/ה את הקבוצה', sc_sys_added: '{a} הוסיף/ה את {b}', sc_sys_kicked: '{a} הוציא/ה את {b}', sc_sys_banned: '{a} חסם/ה את {b}', sc_sys_left: '{a} יצא/ה מהקבוצה'
     },
     ru: {
+      sc_mute: 'Без уведомлений', sc_unmute: 'Включить уведомления', sc_muted: 'Без уведомлений', sc_muted_on: 'Уведомления этого чата выключены', sc_muted_off: 'Уведомления этого чата включены',
+      sc_mute_hint: 'Правая кнопка мыши или долгое нажатие: без уведомлений',
       sc_nav_chats: 'Чаты', sc_chats: 'Чаты', sc_chats_lead: 'Переписка с друзьями и учебные группы.', sc_new_chat: 'Новый чат', sc_new_group: 'Новая группа',
       sc_chat_style: 'Оформление чата', sc_chat_style_lead: 'Стиль твоих сообщений видят все. Фон — только ты.', sc_bubble_style: 'Сообщения', sc_chat_bg: 'Фон',
       sc_sample_q: 'Когда контрольная? 🤔', sc_sample_a: 'В воскресенье! Удачи 💪',
@@ -1057,6 +1090,8 @@
       sc_sys_created: '{a} создал(а) группу', sc_sys_added: '{a} добавил(а) {b}', sc_sys_kicked: '{a} удалил(а) {b}', sc_sys_banned: '{a} заблокировал(а) {b}', sc_sys_left: '{a} вышел(ла) из группы'
     },
     en: {
+      sc_mute: 'Mute', sc_unmute: 'Unmute', sc_muted: 'Muted', sc_muted_on: 'This chat is muted', sc_muted_off: 'This chat is unmuted',
+      sc_mute_hint: 'Right-click or long-press: mute',
       sc_nav_chats: 'Chats', sc_chats: 'Chats', sc_chats_lead: 'Messages with friends and study groups.', sc_new_chat: 'New chat', sc_new_group: 'New group',
       sc_chat_style: 'Chat style', sc_chat_style_lead: 'Everyone sees your bubble style. The background is just for you.', sc_bubble_style: 'Bubbles', sc_chat_bg: 'Background',
       sc_sample_q: 'When is the test? 🤔', sc_sample_a: 'On Sunday! Good luck 💪',
