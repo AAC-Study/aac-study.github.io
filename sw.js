@@ -1,7 +1,7 @@
 /* Service worker: пуш-уведомления и офлайн-уроки.
    Сайт всегда грузится из сети (свежая версия). Только если сети нет — отдаём то, что человек сам
    скачал кнопкой «Скачать для офлайна» (кэш aac-offline-v1, его заполняет js/offline.js). */
-var SW_VERSION = '2026-11-02.17';
+var SW_VERSION = '2026-11-02.18';
 var OFFLINE_CACHE = 'aac-offline-v1';
 self.addEventListener('install', function () { self.skipWaiting(); });
 self.addEventListener('activate', function (e) { e.waitUntil(self.clients.claim()); });

@@ -269,3 +269,36 @@ language sql stable security definer set search_path = public as $$
           and split_part(p_key, ':', 3) in ('he', 'ru', 'offline'));
 $$;
 revoke execute on function public.award_key_ok(text) from public, anon, authenticated;
+
+-- ============ Пароль: менять можно не чаще раза в 24 часа (просьба 02.11) ============
+-- Работает и для «Забыл пароль?», и для смены пароля. Время последней смены видит только сам человек.
+create table if not exists public.pass_changes (
+  user_id uuid primary key references auth.users(id) on delete cascade,
+  changed_at timestamptz not null default now()
+);
+alter table public.pass_changes enable row level security;
+drop policy if exists "pass_changes: read own" on public.pass_changes;
+create policy "pass_changes: read own" on public.pass_changes for select to authenticated using (user_id = auth.uid());
+revoke insert, update, delete on public.pass_changes from anon, authenticated;
+grant select on public.pass_changes to authenticated;
+
+create or replace function public.pass_cooldown() returns trigger
+language plpgsql security definer set search_path = public as $$
+declare last timestamptz;
+begin
+  -- первый пароль (регистрация) не считается; считается только замена старого
+  if new.encrypted_password is distinct from old.encrypted_password
+     and coalesce(old.encrypted_password, '') <> '' then
+    select changed_at into last from public.pass_changes where user_id = new.id;
+    if last is not null and last > now() - interval '24 hours' then
+      raise exception 'pass_cooldown';
+    end if;
+    insert into public.pass_changes(user_id, changed_at) values (new.id, now())
+      on conflict (user_id) do update set changed_at = excluded.changed_at;
+  end if;
+  return new;
+end $$;
+revoke execute on function public.pass_cooldown() from public, anon, authenticated;
+drop trigger if exists pass_cooldown on auth.users;
+create trigger pass_cooldown before update of encrypted_password on auth.users
+  for each row execute function public.pass_cooldown();

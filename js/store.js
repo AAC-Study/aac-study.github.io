@@ -59,7 +59,16 @@
         sessionEmail = email; U.storage.set('mock_session', email); emit();
         return Promise.resolve(pub(u));
       },
-      signOut: function () { sessionEmail = null; U.storage.set('mock_session', null); emit(); return Promise.resolve(); }
+      signOut: function () { sessionEmail = null; U.storage.set('mock_session', null); emit(); return Promise.resolve(); },
+      /* «Забыл пароль?»: в пробном режиме письма нет, просто делаем вид */
+      recover: function () { return Promise.resolve(); },
+      passChangedAt: function () { var u = users[sessionEmail]; return Promise.resolve(u && u.passAt ? new Date(u.passAt) : null); },
+      setPassword: function (pw) {
+        var u = users[sessionEmail]; if (!u) return err('no_session');
+        if (String(pw || '').length < 6) return err('err_short_pass');
+        if (u.passAt && Date.now() - u.passAt < 24 * 3600 * 1000) return err('err_pass_cooldown');
+        u.pass = pw; u.passAt = Date.now(); saveUsers(); return Promise.resolve();
+      }
     },
     profile: {
       /* patch: {name?, avatar? (dataURL), frame?, prefs?} */
@@ -211,7 +220,8 @@
         .then(function (u) {
           saveSess({ access_token: q.access_token, refresh_token: q.refresh_token,
             expires_at: Number(q.expires_at) || Math.floor(Date.now() / 1000) + (Number(q.expires_in) || 3600), user: { id: u.id, email: u.email } });
-          Store.linkNote = 'auth_confirmed';
+          if (q.type === 'recovery') { Store.pendingReset = true; Store.linkNote = null; }
+          else Store.linkNote = 'auth_confirmed';
         })
         .catch(function () { Store.linkNote = 'auth_link_bad'; });
     }
@@ -242,6 +252,37 @@
         return http('POST', '/auth/v1/token?grant_type=password', body, { auth: false })
           .then(function (r) { saveSess(sessFrom(r)); return loadMe(); }, function (e) { throw mapAuthErr(e); })
           .then(function () { emit(); return toPub(me); });
+      },
+      /* «Забыл пароль?»: Supabase присылает письмо со ссылкой; ссылка возвращает сюда же */
+      recover: function (p) {
+        var email = String(p.email || '').trim().toLowerCase();
+        if (!email) return err('err_fields');
+        var body = { email: email };
+        if (p.captcha) body.gotrue_meta_security = { captcha_token: p.captcha };
+        return http('POST', '/auth/v1/recover?redirect_to=' + encodeURIComponent(location.origin + location.pathname), body, { auth: false })
+          .then(function () {}, function (e) {
+            if (e && e.status === 429) { var x = new Error('err_too_often'); x.code = 'err_too_often'; throw x; }
+            throw mapAuthErr(e);
+          });
+      },
+      /* когда пароль меняли в последний раз (не чаще раза в 24 часа — проверяет база) */
+      passChangedAt: function () {
+        if (!sess) return Promise.resolve(null);
+        return api('GET', '/rest/v1/pass_changes?select=changed_at&user_id=eq.' + sess.user.id)
+          .then(function (r) { return r && r[0] ? new Date(r[0].changed_at) : null; }, function () { return null; });
+      },
+      setPassword: function (pw) {
+        if (!sess) return err('no_session');
+        if (String(pw || '').length < 6) return err('err_short_pass');
+        return fresh().then(function () { return http('PUT', '/auth/v1/user', { password: pw }); }).then(function () { Store.pendingReset = false; }, function (e) {
+          var m = String((e && e.message) || '').toLowerCase() + ' ' + String((e && e.data && e.data.error_code) || '');
+          var code = 'err_pass_save';
+          if (/pass_cooldown|database error|unexpected/.test(m) || (e && e.status >= 500)) code = 'err_pass_cooldown';
+          else if (/different from the old|same_password/.test(m)) code = 'err_same_pass';
+          else if (/weak|at least|6 char/.test(m)) code = 'err_short_pass';
+          else if (e && e.status === 0) code = 'err_network';
+          var x = new Error(code); x.code = code; throw x;
+        });
       },
       signOut: function () {
         var p = sess ? http('POST', '/auth/v1/logout', {}).catch(function () {}) : Promise.resolve();

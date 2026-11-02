@@ -257,6 +257,7 @@
     app.innerHTML = '';
     document.title = t('app_name');
     var errBox = el('div', { class: 'form-error', role: 'alert', style: 'display:none' });
+    if (mode === 'forgot') return renderForgot(app, errBox);
     var isReg = mode === 'register';
     function field(id, label, type, extra) {
       var input = el('input', { class: 'input', id: id, name: id, type: type, autocomplete: extra && extra.ac, required: true, dir: extra && extra.dir });
@@ -274,6 +275,7 @@
       isReg ? field('f-name', t('display_name'), 'text', { ac: 'nickname' }) : null,
       field('f-email', t('email'), 'email', { ac: 'email', dir: 'ltr' }),
       field('f-pass', t('password'), 'password', { ac: isReg ? 'new-password' : 'current-password', dir: 'ltr' }),
+      isReg ? null : el('button', { type: 'button', class: 'auth-forgot', onclick: function () { renderAuth('forgot'); } }, t('pw_forgot')),
       isReg ? field('f-invite', t('invite_code'), 'text', { ac: 'off', dir: 'ltr', hint: t('invite_hint') + (Store.mode === 'mock' ? ' (demo: ' + APP_CONFIG.MOCK_INVITE_CODE + ')' : '') }) : null,
       cfBox(showErr),
       el('button', { class: 'btn btn--primary', type: 'submit', style: 'width:100%;margin-top:6px' }, isReg ? t('btn_register') : t('btn_login'))
@@ -323,6 +325,102 @@
     ]));
     var first = $('input', card); if (first && window.innerWidth > 860) first.focus();
   }
+
+  /* ---------- «Забыл пароль?» и новый пароль ---------- */
+  function authShell(app, inner) {
+    var card = el('div', { class: 'auth__card' }, [
+      el('div', { class: 'auth__top' }, [langSwitch(), themeBtn()]),
+      el('div', { class: 'auth__brand' }, [el('div', { class: 'side__logo' }, el('img', { src: 'img/favicon.svg', alt: '' })), el('div', null, [el('b', null, t('app_name')), el('span', null, t('app_sub'))])])
+    ].concat(inner));
+    app.appendChild(el('div', { class: 'auth' }, [
+      el('div', { class: 'auth__bg' }, [el('div', { class: 'blob blob--1' }), el('div', { class: 'blob blob--2' }), el('div', { class: 'blob blob--3' })]),
+      card
+    ]));
+    return card;
+  }
+  function renderForgot(app, errBox) {
+    document.title = t('app_name');
+    var email = el('input', { class: 'input', id: 'f-email', type: 'email', autocomplete: 'email', dir: 'ltr', required: true });
+    function showErr(txt) { errBox.textContent = txt; errBox.style.display = 'block'; }
+    var form = el('form', { novalidate: true }, [
+      errBox,
+      el('p', { class: 'muted' }, t('pw_forgot_hint')),
+      el('label', { class: 'field', for: 'f-email' }, [el('span', { class: 'field__label' }, t('email')), email]),
+      cfBox(showErr),
+      el('button', { class: 'btn btn--primary', type: 'submit', style: 'width:100%;margin-top:6px' }, t('pw_send'))
+    ]);
+    var busy = false;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (busy) return;
+      errBox.style.display = 'none';
+      if (cfKey() && !cf.token) { showErr(t('err_captcha_wait')); return; }
+      busy = true;
+      Store.auth.recover({ email: email.value, captcha: cf.token }).then(function () {
+        busy = false;
+        form.innerHTML = '';
+        form.appendChild(el('div', { class: 'auth-mail' }, [
+          el('div', { class: 'auth-mail__icon', html: Icons.get('mail') }),
+          el('h2', { class: 'auth-mail__h' }, t('auth_mail_h')),
+          el('p', null, [t('pw_sent_1'), ' ', el('b', { dir: 'ltr' }, String(email.value).trim())]),
+          el('p', { class: 'muted' }, t('pw_sent_2'))
+        ]));
+      }, function (er) { busy = false; cfReset(); showErr(t(er.code || 'err_network')); });
+    });
+    authShell(app, [
+      el('h1', { style: 'font-size:24px' }, t('pw_forgot_title')),
+      form,
+      el('div', { class: 'auth__switch' }, [el('button', { type: 'button', onclick: function () { renderAuth('login'); } }, t('pw_back'))])
+    ]);
+    if (window.innerWidth > 860) email.focus();
+  }
+  /* форма нового пароля: после ссылки из письма (страница) и в настройках (окно) */
+  function newPassForm(onDone) {
+    var errBox = el('div', { class: 'form-error', role: 'alert', style: 'display:none' });
+    var a = el('input', { class: 'input', id: 'f-np1', type: 'password', autocomplete: 'new-password', dir: 'ltr', minlength: '6' });
+    var b = el('input', { class: 'input', id: 'f-np2', type: 'password', autocomplete: 'new-password', dir: 'ltr', minlength: '6' });
+    var btn = el('button', { class: 'btn btn--primary', type: 'submit', style: 'width:100%;margin-top:6px' }, t('pw_save'));
+    var note = el('p', { class: 'muted pw-note' }, t('pw_rule'));
+    function showErr(txt) { errBox.textContent = txt; errBox.style.display = 'block'; }
+    var form = el('form', { novalidate: true, class: 'pw-form' }, [errBox, note,
+      el('label', { class: 'field', for: 'f-np1' }, [el('span', { class: 'field__label' }, t('pw_new')), a]),
+      el('label', { class: 'field', for: 'f-np2' }, [el('span', { class: 'field__label' }, t('pw_new2')), b]),
+      btn]);
+    Store.auth.passChangedAt().then(function (d) {
+      if (!d) return;
+      var left = d.getTime() + 24 * 3600 * 1000 - Date.now();
+      if (left <= 0) return;
+      var h = Math.ceil(left / 3600000);
+      note.textContent = t('pw_wait', { h: h });
+      note.classList.add('pw-note--wait');
+      btn.disabled = true;
+    });
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      errBox.style.display = 'none';
+      if (a.value.length < 6) { showErr(t('err_short_pass')); return; }
+      if (a.value !== b.value) { showErr(t('pw_mismatch')); return; }
+      btn.disabled = true;
+      Store.auth.setPassword(a.value).then(function () {
+        U.toast(t('pw_done'));
+        onDone();
+      }, function (er) { btn.disabled = false; showErr(t(er.code || 'err_pass_save')); });
+    });
+    return form;
+  }
+  function renderNewPass() {
+    var app = $('#app');
+    app.innerHTML = '';
+    document.title = t('app_name');
+    authShell(app, [
+      el('h1', { style: 'font-size:24px' }, t('pw_new_title')),
+      newPassForm(function () { Store.pendingReset = false; App.go('/'); render(); }),
+      el('div', { class: 'auth__switch' }, [el('button', { type: 'button', onclick: function () { Store.pendingReset = false; App.go('/'); render(); } }, t('pw_later'))])
+    ]);
+  }
+  App.changePassword = function () {
+    var m = App.modal({ title: t('pw_change'), content: newPassForm(function () { m.close(); }) });
+  };
 
   /* ---------- страницы ---------- */
   function lessonsOf(subjectId) {
@@ -618,6 +716,10 @@
       })),
       row('question', t('rp_title'), t('rp_cta_text'), el('button', { class: 'btn', type: 'button', onclick: reportProblem }, t('rp_open')))
     ]));
+    view.appendChild(el('div', { class: 'section-label' }, t('pw_section')));
+    view.appendChild(el('div', { class: 'card' }, [
+      row('lock', t('pw_change'), t('pw_rule'), el('button', { class: 'btn', type: 'button', 'data-act': 'change-pass', onclick: function () { App.changePassword(); } }, t('pw_change_btn')))
+    ]));
     if (window.Push) {
       view.appendChild(el('div', { class: 'section-label' }, t('push_title')));
       view.appendChild(Push.settingsCard(row, sw));
@@ -643,6 +745,7 @@
     if (cleanup) { try { cleanup(); } catch (e) { /* ignore */ } cleanup = null; }
     var user = Store.auth.current();
     if (!user) { renderAuth('login'); return; }
+    if (Store.pendingReset) { renderNewPass(); return; }
     buildShell(user);
     var path = App.path();
     var view = $('#view');
