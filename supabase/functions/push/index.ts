@@ -24,7 +24,8 @@ const json = (body: unknown, status = 200) =>
 async function db(path: string, init: RequestInit = {}) {
   const res = await fetch(`${URL}/rest/v1/${path}`, {
     ...init,
-    headers: { apikey: SECRET, Authorization: `Bearer ${SECRET}`, "Content-Type": "application/json", ...(init.headers || {}) },
+    // новый ключ sb_secret_… передаётся только в apikey; старый JWT-ключ — ещё и в Authorization
+    headers: { apikey: SECRET, ...(SECRET.startsWith("eyJ") ? { Authorization: `Bearer ${SECRET}` } : {}), "Content-Type": "application/json", ...(init.headers || {}) },
   });
   const txt = await res.text();
   if (!res.ok) throw new Error(`db ${res.status}: ${txt}`);
