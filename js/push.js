@@ -106,7 +106,7 @@
         }).then(function (sub) {
           return fn({ action: 'save', sub: sub.toJSON(), lang: I18N.lang, ua: ua });
         });
-      }).then(function () { U.storage.set('push_on', true); U.storage.set('push_offer', 'done'); });
+      }).then(function () { U.storage.set('push_on', true); syncedLang = I18N.lang; U.storage.set('push_offer', 'done'); });
     },
     disable: function () {
       U.storage.set('push_on', false);
@@ -138,6 +138,22 @@
       fn({ action: 'issue', id: issueId }).catch(function () { /* сообщение уже сохранено, пуш не обязателен */ });
     }
   };
+  /* язык уведомлений = язык сайта: при смене языка и при входе обновляем его на сервере */
+  var syncedLang = null;
+  function syncLang() {
+    if (!server() || reason() || Notification.permission !== 'granted') return;
+    if (U.storage.get('push_on', false) === false || !Store.auth.current()) return;
+    if (syncedLang === I18N.lang) return;
+    var lang = I18N.lang;
+    mySub().then(function (s) {
+      if (!s) return null;
+      return fn({ action: 'save', sub: s.toJSON(), lang: lang, ua: ua }).then(function () { syncedLang = lang; });
+    }).catch(function () { /* попробуем при следующей смене */ });
+  }
+  document.addEventListener('langchange', syncLang);
+  document.addEventListener('userchange', syncLang);
+  Push.syncLang = syncLang;
+
   window.Push = Push;
 
   /* ---------- Предложение: не чаще раза в день, в случайный момент визита ---------- */
