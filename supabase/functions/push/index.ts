@@ -13,6 +13,10 @@ function secretKey(): string {
   return Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
 }
 const SECRET = secretKey();
+// Адреса сайта. Пуш открывается на том адресе, где человек включил уведомления,
+// поэтому на подписки с других (старых) адресов не шлём и удаляем их. Новый домен — добавить сюда первым.
+const SITES = ["https://aac-study.github.io"];
+
 const CORS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, apikey, content-type, x-client-info",
@@ -48,7 +52,7 @@ async function appServer() {
     rows = await db("app_secrets?key=eq.vapid&select=value");
   }
   const vapidKeys = await webpush.importVapidKeys(JSON.parse(rows[0].value), { extractable: false });
-  server = await webpush.ApplicationServer.new({ contactInformation: "https://aac-study.github.io/", vapidKeys });
+  server = await webpush.ApplicationServer.new({ contactInformation: SITES[0] + "/", vapidKeys });
   publicKey = await webpush.exportApplicationServerKey(vapidKeys);
   return server;
 }
@@ -120,7 +124,7 @@ async function takeSlot(uid: string): Promise<number> {
   catch (e) { console.error("push_take", String(e)); return 0; }   // если что-то не так с базой — лучше отправить
 }
 
-type Sub = { user_id: string; endpoint: string; p256dh: string; auth: string; lang: string };
+type Sub = { user_id: string; endpoint: string; p256dh: string; auth: string; lang: string; origin?: string | null };
 async function deliver(subs: Sub[], kind: string, x: X): Promise<number> {
   const as = await appServer();
   let sent = 0;
@@ -156,9 +160,15 @@ async function deliver(subs: Sub[], kind: string, x: X): Promise<number> {
 // (пуши, отложенные защитой от спама, уходят в фоне).
 async function sendTo(userIds: string[], kind: string, x: X = {}, onlyEndpoint?: string) {
   if (!userIds.length) return 0;
-  let q = `push_subs?user_id=in.(${userIds.join(",")})&select=user_id,endpoint,p256dh,auth,lang`;
+  let q = `push_subs?user_id=in.(${userIds.join(",")})&select=user_id,endpoint,p256dh,auth,lang,origin`;
   if (onlyEndpoint) q += `&endpoint=eq.${encodeURIComponent(onlyEndpoint)}`;
-  const [subs] = await Promise.all([db(q) as Promise<Sub[]>, appServer()]);
+  const [all] = await Promise.all([db(q) as Promise<Sub[]>, appServer()]);
+  const subs: Sub[] = [];
+  for (const s of all) {
+    if (!s.origin || SITES.includes(s.origin)) { subs.push(s); continue; }
+    console.log(`push: подписка со старого адреса ${s.origin} удалена`);
+    await db(`push_subs?endpoint=eq.${encodeURIComponent(s.endpoint)}`, { method: "DELETE" });
+  }
   if (!subs.length) { console.log(`push ${kind}: у получателя нет ни одного устройства с уведомлениями`); return 0; }
   const byUser = new Map<string, Sub[]>();
   for (const s of subs) byUser.set(s.user_id, [...(byUser.get(s.user_id) || []), s]);
@@ -213,7 +223,8 @@ Deno.serve(async (req) => {
         method: "POST",
         headers: { Prefer: "resolution=merge-duplicates" },
         body: JSON.stringify({ endpoint: s.endpoint, user_id: uid, p256dh: s.keys.p256dh, auth: s.keys.auth,
-          lang: ["he", "ru", "en"].includes(body.lang) ? body.lang : "he", ua: String(body.ua || "").slice(0, 300) }),
+          lang: ["he", "ru", "en"].includes(body.lang) ? body.lang : "he", ua: String(body.ua || "").slice(0, 300),
+          origin: String(req.headers.get("origin") || "").slice(0, 200) || null }),
       });
       return json({ ok: true });
     }

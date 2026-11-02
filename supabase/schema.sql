@@ -243,6 +243,11 @@ end $$;
 drop trigger if exists push_subs_limit on public.push_subs;
 create trigger push_subs_limit before insert on public.push_subs for each row execute function public.push_subs_limit();
 
+-- С какого адреса сайта подписано устройство. Пуш открывает тот адрес, где подписались,
+-- поэтому подписки со старого адреса (denisv1.github.io/aac-study, до переезда 02.11 ~18:48 UTC) удаляем.
+alter table public.push_subs add column if not exists origin text;
+delete from public.push_subs where origin is null and created_at < '2026-11-02 18:48:00+00';
+
 -- 2) Сообщения о проблемах: не больше ~4 МБ (4 фото), 10 в час и 300 всего от одного человека.
 alter table public.issues drop constraint if exists issues_info_size;
 alter table public.issues add constraint issues_info_size check (octet_length(info::text) <= 4500000) not valid;
