@@ -60,6 +60,75 @@
   }
 
   /* ---------- сжатие картинки: до maxSide пикселей, JPEG ---------- */
+  /* ---------- камера прямо на странице (браузер сам спросит разрешение) ---------- */
+  function canLiveCamera() {
+    return !!(window.isSecureContext && navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function' && window.App && App.modal);
+  }
+  function dataUrlToFile(data) {
+    var parts = String(data).split(','), mime = (parts[0].match(/data:([^;]+)/) || [])[1] || 'image/jpeg';
+    var bin = atob(parts[1] || ''), u8 = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) u8[i] = bin.charCodeAt(i);
+    try { return new File([u8], 'photo.jpg', { type: mime }); } catch (e) { var b = new Blob([u8], { type: mime }); b.name = 'photo.jpg'; return b; }
+  }
+  function camError(err) {
+    var n = (err && (err.name || err.code)) || '';
+    if (/NotFound|DevicesNotFound/i.test(n)) return t('av_err_notfound');
+    if (/NotAllowed|PermissionDenied|Security/i.test(n)) return t('av_err_denied') + ' ' + t('av_err_denied_hint');
+    if (/NotReadable|TrackStart/i.test(n)) return t('av_err_busy');
+    return t('av_err_generic');
+  }
+  /* resolve(dataURL) после снимка или resolve(null), если закрыли окно */
+  function snapPhoto(onPickFile) {
+    return new Promise(function (resolve) {
+      var md = navigator.mediaDevices, stream = null, token = 0, done = false, facing = 'environment';
+      var video = el('video', { class: 'rte-cam__video', autoplay: true, muted: true, playsinline: true });
+      video.muted = true;
+      var status = el('p', { class: 'rte-cam__status muted' }, t('av_camera_starting'));
+      var shutter = el('button', { type: 'button', class: 'btn btn--primary rte-cam__shutter', disabled: true, html: Icons.get('camera') + '<span>' + U.esc(t('av_shutter')) + '</span>' });
+      var flip = el('button', { type: 'button', class: 'btn', title: t('av_switch'), 'aria-label': t('av_switch') }, t('av_switch'));
+      var pick = el('button', { type: 'button', class: 'btn btn--ghost' }, t('av_choose'));
+      var m = App.modal({ title: t('rt_camera'), wide: true, onClose: function () { stop(); finish(null); },
+        content: el('div', { class: 'rte-cam' }, [el('div', { class: 'rte-cam__frame' }, video), status, el('div', { class: 'rte-cam__btns' }, [flip, shutter, pick])]) });
+      function finish(v) { if (done) return; done = true; resolve(v); }
+      function stop() {
+        token++;
+        if (stream) { try { stream.getTracks().forEach(function (tr) { tr.stop(); }); } catch (e) { /* */ } stream = null; }
+        try { video.srcObject = null; } catch (e) { /* */ }
+      }
+      function start() {
+        stop();
+        var my = token;
+        shutter.disabled = true; status.hidden = false; status.textContent = t('av_camera_starting');
+        Promise.resolve(md.getUserMedia({ video: { facingMode: { ideal: facing }, width: { ideal: 1920 }, height: { ideal: 1920 } }, audio: false }))
+          .catch(function (e) {
+            if (e && /Overconstrained|ConstraintNotSatisfied/.test(e.name || '')) return md.getUserMedia({ video: true, audio: false });
+            throw e;
+          })
+          .then(function (s) {
+            if (my !== token || done) { s.getTracks().forEach(function (tr) { tr.stop(); }); return; }
+            stream = s;
+            try { video.srcObject = s; } catch (e) { /* */ }
+            var p = video.play && video.play(); if (p && p.catch) p.catch(function () { /* */ });
+            status.hidden = true; shutter.disabled = false;
+          }, function (e) {
+            if (my !== token || done) return;
+            status.hidden = false; status.textContent = camError(e); shutter.disabled = true;
+          });
+      }
+      shutter.addEventListener('click', function () {
+        var w = video.videoWidth, h = video.videoHeight;
+        if (!w || !h) return;
+        var c = document.createElement('canvas'); c.width = w; c.height = h;
+        c.getContext('2d').drawImage(video, 0, 0, w, h);
+        var data = c.toDataURL('image/jpeg', 0.9);
+        stop(); finish(data); m.close();
+      });
+      flip.addEventListener('click', function () { facing = facing === 'environment' ? 'user' : 'environment'; start(); });
+      pick.addEventListener('click', function () { stop(); finish(null); m.close(); if (onPickFile) onPickFile(); });
+      start();
+    });
+  }
+
   function compress(file, maxSide, quality) {
     return new Promise(function (resolve, reject) {
       var fr = new FileReader();
@@ -117,13 +186,17 @@
         html: Icons.get(tl.icon) });
       /* mousedown, чтобы не терять выделение при нажатии */
       b.addEventListener('mousedown', function (e) { e.preventDefault(); });
-      b.addEventListener('click', function () { exec(tl.cmd); if (small) placeBubble(); });
+      b.addEventListener('click', function () { exec(tl.cmd); if (small) placeBubble(); if (isTouch) b.blur(); });
       return b;
     }
     var bar = el('div', { class: 'rte__bar', role: 'toolbar' }, TOOLS.map(function (tl) { return toolBtn(tl); }).concat([
       el('span', { class: 'rte__sep' }),
-      el('button', { type: 'button', class: 'rte__btn', title: t('rt_attach'), 'aria-label': t('rt_attach'), html: Icons.get('paperclip'), onclick: function () { fileIn.click(); } }),
-      isTouch ? el('button', { type: 'button', class: 'rte__btn', title: t('rt_camera'), 'aria-label': t('rt_camera'), html: Icons.get('camera'), onclick: function () { camIn.click(); } }) : null
+      el('button', { type: 'button', class: 'rte__btn', title: t('rt_attach'), 'aria-label': t('rt_attach'), html: Icons.get('paperclip'), onclick: function () { this.blur(); fileIn.click(); } }),
+      isTouch ? el('button', { type: 'button', class: 'rte__btn', title: t('rt_camera'), 'aria-label': t('rt_camera'), html: Icons.get('camera'), onclick: function () {
+        this.blur();
+        if (!canLiveCamera()) { camIn.click(); return; }
+        snapPhoto(function () { fileIn.click(); }).then(function (data) { if (data) addFiles([dataUrlToFile(data)]); });
+      } }) : null
     ]));
     /* всплывающая панель над выделением */
     var bubble = el('div', { class: 'rte__bubble', hidden: true, role: 'toolbar' }, TOOLS.slice(0, 5).map(function (tl) { return toolBtn(tl, true); }));

@@ -13,7 +13,7 @@
     he: { push_title: 'התראות', push_switch: 'התראות פוש', push_switch_hint: 'יגיעו גם כשהאתר סגור. בכל מכשיר מפעילים פעם אחת.',
       push_test: 'בדיקת התראה', push_test_hint: 'לוחצים, סוגרים את האתר, וההתראה מגיעה בעוד 10 שניות.', push_now: 'עכשיו', push_in10: 'בעוד 10 שנ׳',
       push_goal: 'מטרת בדיקה: ללחוץ על 3 כפתורים', push_goal_hint: 'כשכל ה-3 דולקים, תגיע התראה כמו על הישג אמיתי.',
-      push_sent: 'נשלח. אפשר לסגור את האתר', push_sent_local: 'ההתראה תופיע בעוד רגע', push_on: 'התראות הופעלו', push_off: 'התראות כבויות',
+      push_sent: 'נשלח. אפשר לסגור את האתר', push_nosub: 'השרת לא מצא את המכשיר הזה. כבו את ההתראות והפעילו שוב.', push_sent_local: 'ההתראה תופיע בעוד רגע', push_on: 'התראות הופעלו', push_off: 'התראות כבויות',
       push_need_https: 'התראות יעבדו באתר האמיתי (GitHub Pages). כאן, בגרסת הניסיון או מקובץ, הן לא זמינות.', push_ios_home: 'באייפון: שתפו ← «הוספה למסך הבית», ופתחו את האתר מהסמל.',
       push_old: 'הדפדפן הזה לא תומך בהתראות. נסו Chrome, Edge, Firefox או Safari חדש.', push_denied: 'ההתראות חסומות בדפדפן. לחצו על המנעול ליד הכתובת ← התראות ← לאפשר.',
       push_fail: 'לא הצלחנו להפעיל התראות', push_demo_note: 'גרסת ניסיון: ההתראה מגיעה רק כשהאתר פתוח. עם הבסיס האמיתי היא תגיע גם כשהאתר סגור.',
@@ -22,7 +22,7 @@
     ru: { push_title: 'Уведомления', push_switch: 'Пуш-уведомления', push_switch_hint: 'Приходят, даже когда сайт закрыт. На каждом устройстве включается один раз.',
       push_test: 'Проверить уведомление', push_test_hint: 'Нажми, закрой сайт, и через 10 секунд придёт уведомление.', push_now: 'Сейчас', push_in10: 'Через 10 сек',
       push_goal: 'Тестовая цель: нажми 3 кнопки', push_goal_hint: 'Когда загорятся все 3, придёт уведомление, как за настоящее достижение.',
-      push_sent: 'Отправлено. Можно закрыть сайт', push_sent_local: 'Уведомление появится через пару секунд', push_on: 'Уведомления включены', push_off: 'Уведомления выключены',
+      push_sent: 'Отправлено. Можно закрыть сайт', push_nosub: 'Сервер не нашёл это устройство. Выключи уведомления и включи снова.', push_sent_local: 'Уведомление появится через пару секунд', push_on: 'Уведомления включены', push_off: 'Уведомления выключены',
       push_need_https: 'Уведомления заработают на настоящем сайте (GitHub Pages). В пробной ссылке и из файла на компьютере их нет.', push_ios_home: 'На iPhone: «Поделиться» → «На экран Домой», и открыть сайт со значка.',
       push_old: 'Этот браузер не умеет уведомления. Попробуй Chrome, Edge, Firefox или новый Safari.', push_denied: 'Уведомления запрещены в браузере. Нажми на замок у адреса → Уведомления → Разрешить.',
       push_fail: 'Не удалось включить уведомления', push_demo_note: 'Пробная версия: уведомление приходит, только пока сайт открыт. С настоящей базой придёт и при закрытом сайте.',
@@ -31,7 +31,7 @@
     en: { push_title: 'Notifications', push_switch: 'Push notifications', push_switch_hint: 'Arrive even when the site is closed. Turn on once per device.',
       push_test: 'Test notification', push_test_hint: 'Tap, close the site, and a notification arrives in 10 seconds.', push_now: 'Now', push_in10: 'In 10 s',
       push_goal: 'Test goal: press 3 buttons', push_goal_hint: 'When all 3 light up, you get a notification like a real achievement.',
-      push_sent: 'Sent. You can close the site', push_sent_local: 'The notification will appear in a moment', push_on: 'Notifications on', push_off: 'Notifications off',
+      push_sent: 'Sent. You can close the site', push_nosub: 'The server could not find this device. Turn notifications off and on again.', push_sent_local: 'The notification will appear in a moment', push_on: 'Notifications on', push_off: 'Notifications off',
       push_need_https: 'Notifications will work on the real site (GitHub Pages). They are not available in this demo link or from a file.', push_ios_home: 'On iPhone: Share → “Add to Home Screen”, then open the site from the icon.',
       push_old: 'This browser does not support notifications. Try Chrome, Edge, Firefox or a recent Safari.', push_denied: 'Notifications are blocked. Click the lock next to the address → Notifications → Allow.',
       push_fail: 'Could not turn on notifications', push_demo_note: 'Demo: the notification only arrives while the site is open. With the real database it arrives even when closed.',
@@ -133,6 +133,11 @@
         return fn({ action: kind, delay: delay || 0, endpoint: s ? s.endpoint : '' });
       });
     },
+    /* подсказка серверу: «я сделал действие — разошли пуш» (сервер сам проверяет, что это правда) */
+    hint: function (body) {
+      if (!server() || !Store.auth.current()) return;
+      fn(body).catch(function () { /* действие уже сохранено, пуш не обязателен */ });
+    },
     notifyAdmin: function (issueId) {
       if (!server() || !issueId) return;
       fn({ action: 'issue', id: issueId }).catch(function () { /* сообщение уже сохранено, пуш не обязателен */ });
@@ -216,7 +221,10 @@
         b.disabled = true;
         U.toast(t(Store.mode === 'supabase' ? 'push_sent' : 'push_sent_local'));
         return Push.send('test', delay);
-      }).then(function () { b.disabled = false; }, function (e) {
+      }).then(function (res) {
+        b.disabled = false;
+        if (res && res.sent === 0) U.toast(t('push_nosub'), 'err');
+      }, function (e) {
         b.disabled = false; U.toast(t(e && /^push_/.test(e.message) ? e.message : 'push_fail'), 'err');
       });
     }

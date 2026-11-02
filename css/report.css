@@ -4,7 +4,8 @@
 .rte__bar { display: flex; flex-wrap: wrap; align-items: center; gap: 2px; padding: 6px; border-bottom: 1px solid var(--border); background: var(--surface-2); }
 .rte__btn { width: 40px; height: 40px; border: 0; border-radius: 10px; background: transparent; color: var(--text-2); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: background .15s, color .15s; }
 .rte__btn .ic { width: 19px; height: 19px; }
-.rte__btn:hover { background: var(--accent-soft); color: var(--accent); }
+@media (hover: hover) { .rte__btn:hover { background: var(--accent-soft); color: var(--accent); } }
+.rte__btn:active { background: var(--accent-soft); color: var(--accent); }
 .rte__btn[aria-pressed="true"] { background: var(--accent); color: #fff; }
 .rte__sep { width: 1px; height: 24px; background: var(--border); margin: 0 4px; }
 .rte__area { min-height: 110px; max-height: 45vh; overflow-y: auto; padding: 12px 14px; outline: none; line-height: 1.55; font-size: 15px; word-break: break-word; white-space: pre-wrap; }
@@ -64,3 +65,12 @@
 .push-lock { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
 .push-lock .ic { width: 15px; height: 15px; }
 .push-card--off .settings-row:not(:first-child) { opacity: .45; }
+
+/* камера на странице (Сообщить о проблеме) */
+.rte-cam { display: flex; flex-direction: column; gap: 12px; }
+.rte-cam__frame { position: relative; width: 100%; aspect-ratio: 3 / 4; max-height: 62vh; border-radius: 16px; overflow: hidden; background: #000; }
+.rte-cam__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rte-cam__status { margin: 0; }
+.rte-cam__btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.rte-cam__shutter { min-width: 140px; }
+.rte-cam__shutter .ic { width: 18px; height: 18px; }

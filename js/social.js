@@ -908,11 +908,16 @@
   var B = Store.mode === 'supabase' ? SB : MOCK;
   var mutating = { request: 1, cancel: 1, accept: 1, decline: 1, unfriend: 1, removeMsg: 1, restore: 1, block: 1, pinUser: 1, openDirect: 1, createGroup: 1,
     openSupport: 1, send: 1, edit: 1, react: 1, pinMessage: 1, groupUpdate: 1, groupAdd: 1, memberAction: 1, leave: 1, groupDelete: 1 };
+  /* после этих действий просим сервер разослать пуш (заявка, принятие, группа, сообщение) */
+  var PUSH_HINT = { request: 1, accept: 1, createGroup: 1, groupAdd: 1, send: 1 };
   function wrap(name) {
     return function () {
       var args = arguments;
       return new Promise(function (res) { res(B[name].apply(null, args)); }).then(function (v) {
         if (Store.mode === 'supabase' && mutating[name]) { emitChange(name); setTimeout(refreshBadges, 300); }
+        if (Store.mode === 'supabase' && PUSH_HINT[name] && window.Push && Push.hint) {
+          Push.hint(name === 'send' ? { action: 'message', id: v && v.id } : { action: 'social' });
+        }
         if (Store.mode === 'mock' && mutating[name]) setTimeout(refreshBadges, 0);
         return v;
       }, function (e) { throw normErr(e); });
@@ -1249,9 +1254,10 @@
     var box = el('div', { class: 'sc-notif' }, el('div', { class: 'sc-notif__loading muted' }, '…'));
     Social.notifications().then(function (items) {
       box.innerHTML = '';
-      if (!items.length) { box.appendChild(el('p', { class: 'muted sc-notif__empty' }, t('no_notifications'))); return; }
+      /* надпись «Новых уведомлений нет» показываем только одну: свою, а старую из шапки прячем */
       var pop = box.parentNode;
       if (pop) U.$$('p.muted', pop).forEach(function (p) { if (!box.contains(p) && p.textContent === t('no_notifications')) p.style.display = 'none'; });
+      if (!items.length) { box.appendChild(el('p', { class: 'muted sc-notif__empty' }, t('no_notifications'))); return; }
       items.slice(0, 12).forEach(function (n) {
         box.appendChild(el('a', { class: 'sc-notif__item' + (n.seen ? '' : ' is-new'), href: n.href }, [
           n.user ? App.avatar(n.user, 36) : el('span', { class: 'sc-notif__ic', html: Icons.get('chat') }),

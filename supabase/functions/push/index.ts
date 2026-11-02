@@ -63,25 +63,44 @@ async function currentUser(req: Request): Promise<string | null> {
 }
 
 type Msg = { title: string; body: string; url?: string; tag?: string };
-const TEXT: Record<string, Record<string, (x?: string) => Msg>> = {
+// x — подробности: имя, группа, текст, задержка
+type X = { name?: string; chat?: string | null; text?: string; mkind?: string; delay?: number; support?: boolean; url?: string; tag?: string };
+const clip = (s: string, n = 140) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
+function msgBody(x: X, media: Record<string, string>) {
+  const t = x.mkind && x.mkind !== "text" ? (media[x.mkind] || "") + (x.text ? " " + x.text : "") : (x.text || "");
+  return clip(x.chat ? `${x.name}: ${t}` : t);
+}
+const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
   he: {
-    test: (x) => ({ title: "בדיקה 🔔", body: "התראות עובדות במכשיר הזה." + (x ? ` (אחרי ${x} שניות)` : ""), tag: "test" }),
+    test: (x) => ({ title: "בדיקה 🔔", body: "התראות עובדות במכשיר הזה." + (x.delay ? ` (אחרי ${x.delay} שניות)` : ""), tag: "test" }),
     goal: () => ({ title: "המטרה הושגה! 🎯", body: "לחצת על 3 הכפתורים. ככה יגיעו התראות על הישגים.", tag: "goal" }),
-    issue: (x) => ({ title: "דיווח חדש על בעיה", body: x || "", url: "#/admin", tag: "issue" }),
+    issue: (x) => ({ title: "דיווח חדש על בעיה", body: x.text || "", url: "#/admin", tag: "issue" }),
+    request: (x) => ({ title: "בקשת חברות 👋", body: `${x.name} רוצה להוסיף אותך לחברים`, tag: "friends" }),
+    accepted: (x) => ({ title: "חבר חדש 🤝", body: `${x.name} אישר/ה את בקשת החברות`, tag: "friends" }),
+    added: (x) => ({ title: "קבוצה חדשה 👥", body: `הוסיפו אותך לקבוצה «${x.chat || ""}»`, tag: "group" }),
+    message: (x) => ({ title: x.support ? "תמיכה" : (x.chat || x.name || ""), body: msgBody(x, { photo: "📷 תמונה", file: "📎 קובץ", sticker: "מדבקה" }) }),
   },
   ru: {
-    test: (x) => ({ title: "Проверка 🔔", body: "Уведомления на этом устройстве работают." + (x ? ` (через ${x} сек)` : ""), tag: "test" }),
+    test: (x) => ({ title: "Проверка 🔔", body: "Уведомления на этом устройстве работают." + (x.delay ? ` (через ${x.delay} сек)` : ""), tag: "test" }),
     goal: () => ({ title: "Цель выполнена! 🎯", body: "Все 3 кнопки нажаты. Так будут приходить уведомления о достижениях.", tag: "goal" }),
-    issue: (x) => ({ title: "Новое сообщение о проблеме", body: x || "", url: "#/admin", tag: "issue" }),
+    issue: (x) => ({ title: "Новое сообщение о проблеме", body: x.text || "", url: "#/admin", tag: "issue" }),
+    request: (x) => ({ title: "Заявка в друзья 👋", body: `${x.name} хочет добавить тебя в друзья`, tag: "friends" }),
+    accepted: (x) => ({ title: "Новый друг 🤝", body: `${x.name} принял(а) твою заявку`, tag: "friends" }),
+    added: (x) => ({ title: "Новая группа 👥", body: `Тебя добавили в группу «${x.chat || ""}»`, tag: "group" }),
+    message: (x) => ({ title: x.support ? "Поддержка" : (x.chat || x.name || ""), body: msgBody(x, { photo: "📷 Фото", file: "📎 Файл", sticker: "Стикер" }) }),
   },
   en: {
-    test: (x) => ({ title: "Test 🔔", body: "Notifications work on this device." + (x ? ` (after ${x} s)` : ""), tag: "test" }),
+    test: (x) => ({ title: "Test 🔔", body: "Notifications work on this device." + (x.delay ? ` (after ${x.delay} s)` : ""), tag: "test" }),
     goal: () => ({ title: "Goal reached! 🎯", body: "You pressed 3 buttons. Achievement alerts will arrive like this.", tag: "goal" }),
-    issue: (x) => ({ title: "New problem report", body: x || "", url: "#/admin", tag: "issue" }),
+    issue: (x) => ({ title: "New problem report", body: x.text || "", url: "#/admin", tag: "issue" }),
+    request: (x) => ({ title: "Friend request 👋", body: `${x.name} wants to add you as a friend`, tag: "friends" }),
+    accepted: (x) => ({ title: "New friend 🤝", body: `${x.name} accepted your request`, tag: "friends" }),
+    added: (x) => ({ title: "New group 👥", body: `You were added to the group “${x.chat || ""}”`, tag: "group" }),
+    message: (x) => ({ title: x.support ? "Support" : (x.chat || x.name || ""), body: msgBody(x, { photo: "📷 Photo", file: "📎 File", sticker: "Sticker" }) }),
   },
 };
 
-async function sendTo(userIds: string[], kind: string, extra?: string, onlyEndpoint?: string) {
+async function sendTo(userIds: string[], kind: string, x: X = {}, onlyEndpoint?: string) {
   if (!userIds.length) return 0;
   const as = await appServer();
   let q = `push_subs?user_id=in.(${userIds.join(",")})&select=endpoint,p256dh,auth,lang`;
@@ -89,10 +108,12 @@ async function sendTo(userIds: string[], kind: string, extra?: string, onlyEndpo
   const subs = await db(q);
   let sent = 0;
   await Promise.all(subs.map(async (s: { endpoint: string; p256dh: string; auth: string; lang: string }) => {
-    const msg = (TEXT[s.lang] || TEXT.he)[kind](extra);
+    const msg = (TEXT[s.lang] || TEXT.he)[kind](x);
+    if (x.url) msg.url = x.url;
+    if (x.tag) msg.tag = x.tag;
     try {
       await as.subscribe({ endpoint: s.endpoint, keys: { p256dh: s.p256dh, auth: s.auth } })
-        .pushTextMessage(JSON.stringify(msg), { ttl: 24 * 3600, urgency: webpush.Urgency.High, topic: msg.tag || "msg" });
+        .pushTextMessage(JSON.stringify(msg), { ttl: 24 * 3600, urgency: webpush.Urgency.High });
       sent++;
     } catch (e) {
       // устройство отписалось или подписка устарела — удаляем
@@ -102,6 +123,22 @@ async function sendTo(userIds: string[], kind: string, extra?: string, onlyEndpo
     }
   }));
   return sent;
+}
+
+// «Занять» отправку: каждое событие пушится только один раз, даже если сайт попросит дважды.
+async function claim(keys: string[]): Promise<Set<string>> {
+  if (!keys.length) return new Set();
+  const rows = await db("push_log?on_conflict=key", {
+    method: "POST",
+    headers: { Prefer: "resolution=ignore-duplicates,return=representation" },
+    body: JSON.stringify(keys.map((key) => ({ key }))),
+  });
+  return new Set((rows || []).map((r: { key: string }) => r.key));
+}
+const ago = (ms: number) => new Date(Date.now() - ms).toISOString();
+async function nameOf(uid: string) {
+  const r = await db(`profiles?id=eq.${uid}&select=name`);
+  return (r[0]?.name as string) || "";
 }
 
 Deno.serve(async (req) => {
@@ -133,7 +170,7 @@ Deno.serve(async (req) => {
       const delay = Math.max(0, Math.min(30, Number(body.delay) || 0));   // до 30 секунд: успеть закрыть сайт
       const job = (async () => {
         if (delay) await new Promise((r) => setTimeout(r, delay * 1000));
-        return await sendTo([uid], action, delay ? String(delay) : undefined, body.endpoint || undefined);
+        return await sendTo([uid], action, { delay }, body.endpoint || undefined);
       })();
       // С задержкой отвечаем сразу, а отправляем в фоне: человек может закрыть сайт,
       // и запрос оборвётся, но фоновая задача Supabase (EdgeRuntime.waitUntil) доработает.
@@ -144,14 +181,50 @@ Deno.serve(async (req) => {
       }
       return json({ sent: await job });
     }
-    if (action === "issue") {   // друг сообщил о проблеме → пуш всем админам
-      const rows = await db(`issues?id=eq.${Number(body.id)}&user_id=eq.${uid}&select=info,profiles(name)`);
+    if (action === "issue") {   // друг сообщил о проблеме → пуш всем админам (один раз)
+      const id = Number(body.id);
+      const rows = await db(`issues?id=eq.${id}&user_id=eq.${uid}&select=info,profiles(name)`);
       if (!rows.length) return json({ error: "not found" }, 404);
+      if (!(await claim([`i:${id}`])).size) return json({ sent: 0 });
       const info = rows[0].info || {};
       const who = rows[0].profiles?.name ? rows[0].profiles.name + ": " : "";
       const admins = (await db("profiles?role=eq.admin&select=id")).map((x: { id: string }) => x.id);
       const pics = info.images?.length ? ` 📷${info.images.length}` : "";
-      const sent = await sendTo(admins, "issue", (who + String(info.text || "")).slice(0, 140) + pics);
+      const sent = await sendTo(admins, "issue", { text: clip(who + String(info.text || "")) + pics });
+      return json({ sent });
+    }
+    if (action === "social") {   // заявка в друзья, принятая заявка, добавление в группу
+      const rows: { id: number; user_id: string; kind: string; chat_id: string | null }[] =
+        await db(`sc_notifications?actor_id=eq.${uid}&created_at=gt.${ago(5 * 60e3)}&select=id,user_id,kind,chat_id`);
+      const got = await claim(rows.map((r) => `n:${r.id}`));
+      const todo = rows.filter((r) => got.has(`n:${r.id}`));
+      if (!todo.length) return json({ sent: 0 });
+      const name = await nameOf(uid);
+      const chatIds = [...new Set(todo.map((r) => r.chat_id).filter(Boolean))];
+      const titles: Record<string, string> = {};
+      if (chatIds.length) for (const c of await db(`chats?id=in.(${chatIds.join(",")})&select=id,title`)) titles[c.id] = c.title || "";
+      const counts = await Promise.all(todo.map((r) => sendTo([r.user_id], r.kind, {
+        name, chat: r.chat_id ? titles[r.chat_id] : null,
+        url: r.kind === "added" && r.chat_id ? `#/chat/${r.chat_id}` : (r.kind === "request" ? "#/people" : `#/user/${uid}`),
+      })));
+      return json({ sent: counts.reduce((a, b) => a + b, 0) });
+    }
+    if (action === "message") {   // новое сообщение в чате → всем остальным участникам
+      const rows = await db(`messages?id=eq.${Number(body.id)}&sender_id=eq.${uid}&deleted=is.false&created_at=gt.${ago(2 * 60e3)}&select=id,chat_id,kind,body`);
+      if (!rows.length) return json({ sent: 0 });
+      const m = rows[0];
+      if (!(await claim([`m:${m.id}`])).size) return json({ sent: 0 });
+      const chat = (await db(`chats?id=eq.${m.chat_id}&select=kind,title`))[0];
+      if (!chat) return json({ sent: 0 });
+      if (chat.kind === "support") {   // «Сообщить о проблеме» уже прислало админу свой пуш
+        const recent = await db(`issues?user_id=eq.${uid}&created_at=gt.${ago(2 * 60e3)}&select=id&limit=1`);
+        if (recent.length) return json({ sent: 0 });
+      }
+      const members = (await db(`chat_members?chat_id=eq.${m.chat_id}&user_id=neq.${uid}&select=user_id`)).map((x: { user_id: string }) => x.user_id);
+      const sent = await sendTo(members, "message", {
+        name: await nameOf(uid), chat: chat.kind === "group" ? chat.title : null, support: chat.kind === "support",
+        text: String(m.body || ""), mkind: m.kind, url: `#/chat/${m.chat_id}`, tag: `chat-${m.chat_id}`,
+      });
       return json({ sent });
     }
     return json({ error: "unknown action" }, 400);

@@ -937,3 +937,9 @@ create policy "chat files: delete own" on storage.objects for delete to authenti
 --
 -- Проверить: select * from cron.job;   Отключить: select cron.unschedule('sc-autodelete');
 -- =====================================================================
+
+-- ---------- пуш-уведомления: отметки «уже отправлено» ----------
+-- Пишет только функция push (секретным ключом): каждое событие пушится один раз.
+create table if not exists public.push_log (key text primary key, at timestamptz not null default now());
+alter table public.push_log enable row level security;
+revoke all on public.push_log from anon, authenticated;
