@@ -509,7 +509,7 @@
 
     var readTimer = null;
     function markRead() {
-      if (document.hidden) return;
+      if (document.hidden) return;   // отметим в onVisible, когда экран станет видимым
       clearTimeout(readTimer);
       readTimer = setTimeout(function () { if (S.alive) Social.markRead(S.id).catch(function () {}); }, 600);
     }
@@ -721,23 +721,32 @@
         drawHead(); applyBg(); drawComposer(); drawPin();
       });
     }
+    function readSig() {
+      return ((S.chat && S.chat.members) || []).filter(function (m) { return m.user_id !== S.myId; })
+        .map(function (m) { return m.user_id + ':' + m.last_read_at; }).join('|');
+    }
     var polling = false;
     function poll() {
       if (!S.alive || polling) return Promise.resolve();
       polling = true;
       S.polls++;
-      var extra = S.polls % 5 === 0 ? refreshChat().catch(function () {}) : Promise.resolve();
+      /* участники (а с ними и «прочитано» ✓✓) обновляются: в личном чате раз в 6 с, в группе раз в 15 с */
+      var every = S.chat && S.chat.kind === 'direct' ? 2 : 5;
+      var extra = S.polls % every === 0 ? refreshChat().catch(function () {}) : Promise.resolve();
       return Promise.all([Social.messages(S.id, S.since ? { since: S.since } : { limit: 60 }), extra]).then(function (r) {
         polling = false;
         if (!S.alive) return;
         var fresh = r[0], wasBottom = atBottom(80);
         var newFromOthers = fresh.filter(function (m) { return !S.msgs[m.id] && m.sender_id !== S.myId && m.kind !== 'system'; }).length;
         var sys = fresh.some(function (m) { return !S.msgs[m.id] && m.kind === 'system'; });
+        var rs = readSig();
         if (merge(fresh)) {
-          renderList(S.polls % 5 === 0);
+          renderList(S.polls % 5 === 0 || rs !== S.readSig);
           if (newFromOthers && !wasBottom) { jump.hidden = false; jump.classList.add('has-n'); jump.querySelector('.sc-jump__n').textContent = String(newFromOthers); }
           if (newFromOthers && wasBottom) markRead();
         }
+        else if (rs !== S.readSig) renderList(true);   // собеседник прочитал — перерисовать галочки
+        S.readSig = rs;
         if (sys) refreshChat().catch(function () {});
       }, function (e) {
         polling = false;
@@ -747,6 +756,10 @@
     }
     function onSocial(e) { if (e && (e.detail === 'storage' || e.detail === 'push')) poll(); }
     document.addEventListener('socialchange', onSocial);
+    /* вернулся в приложение (например, нажал на уведомление) — сразу отмечаем прочитанным */
+    function onVisible() { if (!document.hidden && S.alive) { poll(); if (atBottom(200)) markRead(); } }
+    document.addEventListener('visibilitychange', onVisible);
+    window.addEventListener('focus', onVisible);
     /* «я сейчас в этом чате»: раз в 15 секунд отмечаем прочитанным — сервер не шлёт пуш ни на одно моё устройство */
     var beats = 0;
     var timer = setInterval(function () {
@@ -1006,6 +1019,8 @@
       S.alive = false;
       clearInterval(timer); clearTimeout(readTimer); clearTimeout(cdTimer);
       document.removeEventListener('socialchange', onSocial);
+      document.removeEventListener('visibilitychange', onVisible);
+      window.removeEventListener('focus', onVisible);
       window.removeEventListener('resize', onVV);
       if (window.visualViewport) window.visualViewport.removeEventListener('resize', onVV);
       document.body.classList.remove('sc-chat-open');
