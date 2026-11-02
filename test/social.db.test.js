@@ -259,6 +259,15 @@ step('admin: ban blocks everything, unban restores; users cannot ban or unban th
   assert.strictEqual(admin("select banned_until is null from auth.users where id = " + q(C)), 't');
   assert.ok(Number(ok(C, "select count(*) from public.chats")) > 0, 'after unban C sees chats again');
 });
+step('drafts: own rows only, upsert works, limit counts only new keys', function () {
+  ok(B, "insert into public.drafts(user_id, key, data) values (" + q(B) + ", 'solve:l:t1', '{\"text\":\"x\"}') on conflict (user_id, key) do update set data = excluded.data");
+  ok(B, "insert into public.drafts(user_id, key, data) values (" + q(B) + ", 'solve:l:t1', '{\"text\":\"y\"}') on conflict (user_id, key) do update set data = excluded.data");
+  assert.strictEqual(ok(B, "select data->>'text' from public.drafts"), 'y');
+  assert.strictEqual(ok(D, "select count(*) from public.drafts"), '0', 'D does not see B drafts');
+  fails(D, "insert into public.drafts(user_id, key, data) values (" + q(B) + ", 'k', '{}')", 'row-level security');
+  ok(D, "update public.drafts set data = '{}' where user_id = " + q(B));
+  assert.strictEqual(admin("select data->>'text' from public.drafts where user_id = " + q(B)), 'y', 'D cannot change B drafts');
+});
 step('anon gets nothing', function () {
   const r = as('', "set role anon; select count(*) from public.messages");
   assert.ok(!r.ok && /permission denied/.test(r.err), r.err || r.out);

@@ -662,16 +662,18 @@
   function loadDraft(key) {
     var d = U.storage.get(draftKey(key), null) || {};
     return { strokes: Array.isArray(d.strokes) ? d.strokes : [], text: d.text || '', mode: d.mode === 'type' ? 'type' : 'draw',
-             answer: d.answer != null ? d.answer : U.storage.get('tk_ans:' + key, '') };
+             answer: d.answer != null ? d.answer : U.storage.get('tk_ans:' + key, ''), at: d.at || 0 };
   }
   var saveTimers = {};
   function saveDraft(key, st) {
     clearTimeout(saveTimers[key]);
     saveTimers[key] = setTimeout(function () {
-      var data = { strokes: st.strokes, text: st.text, mode: st.mode, answer: st.answer, at: Date.now() };
+      st.at = Date.now();
+      var data = { strokes: st.strokes, text: st.text, mode: st.mode, answer: st.answer, at: st.at };
       if (!U.storage.set(draftKey(key), data)) {          // места мало: сохраняем хотя бы текст и ответ
-        data.strokes = []; U.storage.set(draftKey(key), data);
+        U.storage.set(draftKey(key), { strokes: [], text: st.text, mode: st.mode, answer: st.answer, at: st.at });
       }
+      if (window.DraftSync) DraftSync.push(key, data);   // и на сервер — чтобы открыть на другом устройстве
     }, 400);
   }
 
@@ -999,6 +1001,19 @@
 
     setMode(st.mode || 'draw');
     updateCheck();
+
+    /* черновик с другого устройства новее — подставляем его (рисунок, текст, ответ) */
+    if (window.DraftSync) DraftSync.pull(key).then(function (r) {
+      if (!r || closed || !(r.at > (st.at || 0))) return;
+      if (!r.big) st.strokes = Array.isArray(r.strokes) ? r.strokes : [];   // слишком большой рисунок на сервер не уходит — оставляем свой
+      st.text = r.text || ''; st.answer = r.answer != null ? r.answer : st.answer; st.at = r.at;
+      draft.setStrokes(st.strokes);
+      textArea.value = st.text;
+      if (answerInput) { answerInput.value = st.answer || ''; U.storage.set('tk_ans:' + key, st.answer || ''); }
+      U.storage.set(draftKey(key), { strokes: st.strokes, text: st.text, mode: r.mode === 'type' ? 'type' : 'draw', answer: st.answer, at: st.at });
+      setMode(r.mode === 'type' ? 'type' : 'draw');
+      updateCheck();
+    });
 
     var title = isAI ? t('tk_ai_task', { label: taskLabel(task, lang) }) : t('tk_task', { label: taskLabel(task, lang) });
     openCount++;

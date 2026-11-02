@@ -194,3 +194,33 @@ create policy "issues: anyone signed in can report" on public.issues for insert 
 
 revoke execute on function public.me_ok(), public.is_admin(), public.admin_invite_get(), public.admin_invite_set(text), public.admin_ban(uuid, boolean) from public, anon;
 grant execute on function public.me_ok(), public.is_admin(), public.admin_invite_get(), public.admin_invite_set(text), public.admin_ban(uuid, boolean) to authenticated;
+
+-- ---------- черновики задач: перенос между устройствами ----------
+-- Каждый видит и меняет только свои черновики. Не больше 500 черновиков и ~400 КБ на один.
+create table if not exists public.drafts (
+  user_id uuid not null default auth.uid() references public.profiles(id) on delete cascade,
+  key text not null check (char_length(key) between 1 and 200),
+  data jsonb not null check (octet_length(data::text) <= 400000),
+  updated_at timestamptz not null default now(),
+  primary key (user_id, key)
+);
+alter table public.drafts enable row level security;
+drop policy if exists "drafts: own read" on public.drafts;
+create policy "drafts: own read" on public.drafts for select to authenticated using (user_id = auth.uid());
+drop policy if exists "drafts: own insert" on public.drafts;
+create policy "drafts: own insert" on public.drafts for insert to authenticated with check (user_id = auth.uid() and public.me_ok());
+drop policy if exists "drafts: own update" on public.drafts;
+create policy "drafts: own update" on public.drafts for update to authenticated using (user_id = auth.uid()) with check (user_id = auth.uid() and public.me_ok());
+drop policy if exists "drafts: own delete" on public.drafts;
+create policy "drafts: own delete" on public.drafts for delete to authenticated using (user_id = auth.uid());
+revoke all on public.drafts from anon;
+
+create or replace function public.drafts_limit() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if exists(select 1 from public.drafts where user_id = new.user_id and key = new.key) then return new; end if;   -- это обновление
+  if (select count(*) from public.drafts where user_id = new.user_id) >= 500 then raise exception 'too_many_drafts'; end if;
+  return new;
+end $$;
+drop trigger if exists drafts_limit on public.drafts;
+create trigger drafts_limit before insert on public.drafts for each row execute function public.drafts_limit();

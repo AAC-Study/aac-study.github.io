@@ -223,6 +223,8 @@
       setColor: function (c) { color = c; },
       setSize: function (s) { size = s; },
       setTool: function (t) { tool = t === 'eraser' ? 'eraser' : 'pen'; canvas.classList.toggle('is-eraser', tool === 'eraser'); },
+      /* заменить рисунок целиком (черновик пришёл с другого устройства) */
+      setStrokes: function (arr) { strokes = Array.isArray(arr) ? arr.slice() : []; history = []; redraw(); },
       undo: function () {
         var last = history.pop();
         if (!last) return;
