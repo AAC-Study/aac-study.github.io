@@ -22,6 +22,10 @@
   button:disabled { opacity:.5; }
   button.done { background:var(--ok); }
   .err { color:#dc2626; font-size:14px; min-height:1em; }
+  .mail { border-top:1px solid var(--border); padding:12px 0 4px; }
+  .mail b { display:block; margin-bottom:6px; }
+  .mail .row { display:flex; gap:8px; }
+  .mail button { padding:11px; font-size:15px; }
 </style>
 </head>
 <body>
@@ -43,6 +47,14 @@
     <button id="copyFn" disabled>Скопировать код функции push</button>
     <div class="err" id="err2"></div>
     <p>В Supabase: <b>Edge Functions</b> → <b>Deploy a new function</b> → <b>Via Editor</b> → стереть всё → вставить. Имя функции: <b>push</b></p>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">3</span>Красивые письма (по желанию)</h2>
+    <p>В Supabase: <b>Authentication</b> → <b>Emails</b> → вкладка письма. В поле <b>Subject</b> вставить тему, в поле с текстом письма вставить письмо → <b>Save</b>.</p>
+    <p>На новых бесплатных проектах Supabase даёт менять письма только после подключения своей почты (SMTP).</p>
+    <div id="mails"></div>
+    <div class="err" id="err3"></div>
   </div>
 </main>
 <script>
@@ -94,6 +106,23 @@
   load('fn', 'supabase/functions/push/index.ts')
     .then(function () { fnBtn.disabled = false; })
     .catch(function (e) { document.getElementById('err2').textContent = 'Не удалось загрузить: ' + e.message; });
+
+  /* письма: тема и HTML для каждой вкладки Authentication → Emails */
+  fetch('supabase/email/index.json?v=' + Date.now()).then(function (r) { return r.json(); }).then(function (list) {
+    var box = document.getElementById('mails');
+    return Promise.all(list.map(function (m) { return load('mail_' + m.id, 'supabase/email/' + m.id + '.html').then(function () { return m; }); })).then(function (ms) {
+      ms.forEach(function (m) {
+        var row = document.createElement('div'); row.className = 'mail';
+        var name = document.createElement('b'); name.textContent = 'Вкладка «' + m.tab + '»';
+        var line = document.createElement('div'); line.className = 'row';
+        var b1 = document.createElement('button'); b1.textContent = 'Тема';
+        var b2 = document.createElement('button'); b2.textContent = 'Письмо';
+        b1.addEventListener('click', function () { copy(m.subject, b1, 'Тема'); });
+        b2.addEventListener('click', function () { copy(files['mail_' + m.id], b2, 'Письмо'); });
+        line.appendChild(b1); line.appendChild(b2); row.appendChild(name); row.appendChild(line); box.appendChild(row);
+      });
+    });
+  }).catch(function (e) { document.getElementById('err3').textContent = 'Не удалось загрузить письма: ' + e.message; });
 
   dbBtn.addEventListener('click', function () {
     var code = codeEl.value.trim();

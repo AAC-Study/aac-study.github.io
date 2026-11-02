@@ -1,0 +1,22 @@
+[
+ {
+  "id": "confirm_signup",
+  "tab": "Confirm signup",
+  "subject": "✨ Welcome to AAC Study — confirm your email"
+ },
+ {
+  "id": "reset_password",
+  "tab": "Reset password",
+  "subject": "🔐 AAC Study — reset your password"
+ },
+ {
+  "id": "change_email",
+  "tab": "Change email address",
+  "subject": "✉️ AAC Study — confirm your new email"
+ },
+ {
+  "id": "password_changed",
+  "tab": "Password changed (Security)",
+  "subject": "🔒 AAC Study — your password was changed"
+ }
+]
