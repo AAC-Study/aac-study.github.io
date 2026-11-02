@@ -65,17 +65,17 @@ async function currentUser(req: Request): Promise<string | null> {
 type Msg = { title: string; body: string; url?: string; tag?: string };
 const TEXT: Record<string, Record<string, (x?: string) => Msg>> = {
   he: {
-    test: () => ({ title: "בדיקה 🔔", body: "התראות עובדות במכשיר הזה.", tag: "test" }),
+    test: (x) => ({ title: "בדיקה 🔔", body: "התראות עובדות במכשיר הזה." + (x ? ` (אחרי ${x} שניות)` : ""), tag: "test" }),
     goal: () => ({ title: "המטרה הושגה! 🎯", body: "לחצת על 3 הכפתורים. ככה יגיעו התראות על הישגים.", tag: "goal" }),
     issue: (x) => ({ title: "דיווח חדש על בעיה", body: x || "", url: "#/admin", tag: "issue" }),
   },
   ru: {
-    test: () => ({ title: "Проверка 🔔", body: "Уведомления на этом устройстве работают.", tag: "test" }),
+    test: (x) => ({ title: "Проверка 🔔", body: "Уведомления на этом устройстве работают." + (x ? ` (через ${x} сек)` : ""), tag: "test" }),
     goal: () => ({ title: "Цель выполнена! 🎯", body: "Все 3 кнопки нажаты. Так будут приходить уведомления о достижениях.", tag: "goal" }),
     issue: (x) => ({ title: "Новое сообщение о проблеме", body: x || "", url: "#/admin", tag: "issue" }),
   },
   en: {
-    test: () => ({ title: "Test 🔔", body: "Notifications work on this device.", tag: "test" }),
+    test: (x) => ({ title: "Test 🔔", body: "Notifications work on this device." + (x ? ` (after ${x} s)` : ""), tag: "test" }),
     goal: () => ({ title: "Goal reached! 🎯", body: "You pressed 3 buttons. Achievement alerts will arrive like this.", tag: "goal" }),
     issue: (x) => ({ title: "New problem report", body: x || "", url: "#/admin", tag: "issue" }),
   },
@@ -131,9 +131,18 @@ Deno.serve(async (req) => {
     }
     if (action === "test" || action === "goal") {
       const delay = Math.max(0, Math.min(30, Number(body.delay) || 0));   // до 30 секунд: успеть закрыть сайт
-      if (delay) await new Promise((r) => setTimeout(r, delay * 1000));
-      const sent = await sendTo([uid], action, undefined, body.endpoint || undefined);
-      return json({ sent });
+      const job = (async () => {
+        if (delay) await new Promise((r) => setTimeout(r, delay * 1000));
+        return await sendTo([uid], action, delay ? String(delay) : undefined, body.endpoint || undefined);
+      })();
+      // С задержкой отвечаем сразу, а отправляем в фоне: человек может закрыть сайт,
+      // и запрос оборвётся, но фоновая задача Supabase (EdgeRuntime.waitUntil) доработает.
+      const rt = (globalThis as { EdgeRuntime?: { waitUntil(p: Promise<unknown>): void } }).EdgeRuntime;
+      if (delay && rt) {
+        rt.waitUntil(job.catch((e) => console.error("delayed push failed", String(e))));
+        return json({ queued: true, delay });
+      }
+      return json({ sent: await job });
     }
     if (action === "issue") {   // друг сообщил о проблеме → пуш всем админам
       const rows = await db(`issues?id=eq.${Number(body.id)}&user_id=eq.${uid}&select=info,profiles(name)`);
