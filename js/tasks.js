@@ -657,6 +657,24 @@
   var drafts = {};          // черновики в памяти: key → {strokes, text, mode, answer}
   var solvedLocal = {};     // решённые в этой сессии (если нет входа)
 
+  /* Черновик (рисунок, текст, ответ) хранится в этом браузере: после F5 или обновления сайта ничего не пропадает. */
+  function draftKey(key) { var u = window.Store && Store.auth.current(); return 'tk_draft:' + (u ? u.id : 'guest') + ':' + key; }
+  function loadDraft(key) {
+    var d = U.storage.get(draftKey(key), null) || {};
+    return { strokes: Array.isArray(d.strokes) ? d.strokes : [], text: d.text || '', mode: d.mode === 'type' ? 'type' : 'draw',
+             answer: d.answer != null ? d.answer : U.storage.get('tk_ans:' + key, '') };
+  }
+  var saveTimers = {};
+  function saveDraft(key, st) {
+    clearTimeout(saveTimers[key]);
+    saveTimers[key] = setTimeout(function () {
+      var data = { strokes: st.strokes, text: st.text, mode: st.mode, answer: st.answer, at: Date.now() };
+      if (!U.storage.set(draftKey(key), data)) {          // места мало: сохраняем хотя бы текст и ответ
+        data.strokes = []; U.storage.set(draftKey(key), data);
+      }
+    }, 400);
+  }
+
   function solveKey(lesson, task) { return 'solve:' + lesson.id + ':' + task.id; }
   function isSolved(lesson, task) {
     var k = solveKey(lesson, task);
@@ -673,7 +691,7 @@
     opts = opts || {};
     var lang = I18N.lang;
     var key = solveKey(lesson, task);
-    var st = drafts[key] || (drafts[key] = { strokes: [], text: '', mode: 'draw', answer: U.storage.get('tk_ans:' + key, '') });
+    var st = drafts[key] || (drafts[key] = loadDraft(key));
     var attempts = 0, hintsShown = 0, hintUsed = false, solved = isSolved(lesson, task);
     var hints = task.hints || [];
     var isAI = !!task.level;
@@ -754,7 +772,7 @@
     work.appendChild(textArea);
     work.appendChild(symRow);
 
-    var draft = Draft.create(canvasHost, { strokes: st.strokes, onChange: function (strokes) { st.strokes = strokes; } });
+    var draft = Draft.create(canvasHost, { strokes: st.strokes, onChange: function (strokes) { st.strokes = strokes; saveDraft(key, st); } });
 
     function setTool(tool) {
       draft.setTool(tool);
@@ -770,10 +788,11 @@
     clearBtn.addEventListener('click', function () {
       if (st.mode === 'draw') draft.clear();
       else { textArea.value = ''; st.text = ''; }
+      saveDraft(key, st);
     });
 
     function setMode(m) {
-      st.mode = m;
+      st.mode = m; saveDraft(key, st);
       modeDraw.setAttribute('aria-pressed', m === 'draw' ? 'true' : 'false');
       modeType.setAttribute('aria-pressed', m === 'type' ? 'true' : 'false');
       work.classList.toggle('is-type', m === 'type');
@@ -785,7 +804,7 @@
     }
     modeDraw.addEventListener('click', function () { setMode('draw'); });
     modeType.addEventListener('click', function () { setMode('type'); textArea.focus(); });
-    textArea.addEventListener('input', function () { st.text = textArea.value; });
+    textArea.addEventListener('input', function () { st.text = textArea.value; saveDraft(key, st); });
 
     /* ---- answer ---- */
     var ansWrap = el('div', { class: 'tk-answer' });
@@ -818,6 +837,7 @@
       answerInput.addEventListener('input', function () {
         st.answer = answerInput.value;
         U.storage.set('tk_ans:' + key, st.answer);
+        saveDraft(key, st);
         updateCheck();
         if (promptPanel.isOpen()) refreshPrompt();
       });

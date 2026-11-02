@@ -253,6 +253,26 @@
       ctl.cleanups = [];
     }
 
+    /* место в уроке запоминается: после F5 или обновления сайта человек остаётся там же */
+    var posKey = 'ls_pos:' + id, posTimer = 0;
+    function savePos() {
+      clearTimeout(posTimer);
+      posTimer = setTimeout(function () {
+        if (!ctl.alive) return;
+        var se = document.scrollingElement || document.documentElement;
+        U.storage.set(posKey, { y: se.scrollTop, h: se.scrollHeight, at: Date.now() });
+      }, 300);
+    }
+    function restorePos() {
+      var p = U.storage.get(posKey, null);
+      if (!p || !p.y || location.hash.indexOf('#sec-') >= 0) return;
+      var se = document.scrollingElement || document.documentElement;
+      requestAnimationFrame(function () { se.scrollTop = p.y; });
+    }
+    document.addEventListener('scroll', savePos, true);
+    var firstDraw = draw;
+    draw = function (keep) { firstDraw(keep); if (!keep) restorePos(); };
+
     if (window.LESSONS && window.LESSONS[id]) draw();
     else {
       view.appendChild(el('div', { class: 'ls-loading' }, [el('span', { class: 'ls-spinner' }), t('ls_loading')]));
@@ -266,6 +286,8 @@
 
     return function cleanup() {
       ctl.alive = false;
+      document.removeEventListener('scroll', savePos, true);
+      clearTimeout(posTimer);
       document.removeEventListener('langchange', onLang);
       teardown();
     };
