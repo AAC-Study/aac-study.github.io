@@ -26,9 +26,14 @@
 
   /* ---------- безопасный HTML: оставляем только простое оформление ---------- */
   var MAP = { B: 'b', STRONG: 'b', I: 'i', EM: 'i', U: 'u', S: 's', STRIKE: 's', DEL: 's', CODE: 'code' };
+  /* Разбираем HTML в «мёртвом» документе (DOMParser): там картинки не грузятся и onerror/onload не срабатывают.
+     Обычный div.innerHTML запустил бы <img onerror=…> ещё до очистки — это была дыра (XSS) в списке сообщений админа. */
+  function inertBody(html) {
+    if (window.DOMParser) return new DOMParser().parseFromString('<!doctype html><body>' + String(html || '') + '</body>', 'text/html').body;
+    var d = document.implementation.createHTMLDocument(''); d.body.innerHTML = String(html || ''); return d.body;
+  }
   function sanitize(html) {
-    var box = document.createElement('div');
-    box.innerHTML = String(html || '');
+    var box = inertBody(html);
     function walk(node) {
       var out = '';
       for (var c = node.firstChild; c; c = c.nextSibling) {
@@ -54,9 +59,7 @@
     return walk(box).replace(/(<br>)+$/, '').replace(/(<br>){3,}/g, '<br><br>');
   }
   function toText(html) {
-    var box = document.createElement('div');
-    box.innerHTML = sanitize(html).replace(/<br>/g, '\n');
-    return (box.textContent || '').trim();
+    return (inertBody(sanitize(html).replace(/<br>/g, '\n')).textContent || '').trim();
   }
 
   /* ---------- сжатие картинки: до maxSide пикселей, JPEG ---------- */
