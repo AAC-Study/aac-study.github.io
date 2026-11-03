@@ -516,3 +516,5 @@ body.no-scroll { overflow: hidden; }
 .hw-ai__chev { margin-inline-start: auto; transition: transform .25s var(--ease); }
 .hw-ai[open] .hw-ai__chev { transform: rotate(180deg); }
 .hw-ai__body { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+.settings-row.set-row--wide { flex-wrap: wrap; }
+.settings-row.set-row--wide .th-pick { flex: 1 1 100%; }

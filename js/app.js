@@ -784,6 +784,7 @@
       row('moon', t('set_theme'), null, seg([{ id: 'light', icon: 'sun', label: t('set_light') }, { id: 'dark', icon: 'moon', label: t('set_dark') }, { id: 'system', icon: 'monitor', label: t('set_system') }], themeNow,
         function (m) { U.storage.set('theme_mode', m); App.setTheme(m === 'system' ? ((window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light') : m); })),
       (function () { var r = row('star', t('set_accent'), null, accents.dots); r.appendChild(accents.panel); return r; })(),
+      window.SiteThemes ? (function () { var r = row('palette', t('th_title'), t('th_hint'), null); r.classList.add('set-row--wide'); r.appendChild(SiteThemes.picker()); return r; })() : null,
       row('file', t('set_textsize'), null, seg([{ id: 's', label: 'A' }, { id: 'm', label: 'A+' }, { id: 'l', label: 'A++' }], sizeNow, function (s) { App.setTextSize(s); })),
       row('repeat', t('reduce_motion'), t('set_motion_hint'), sw(U.storage.get('motion', '') === 'reduce', function (on) {
         U.storage.set('motion', on ? 'reduce' : '');

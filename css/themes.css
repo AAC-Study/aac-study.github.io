@@ -1,0 +1,148 @@
+/* ===== Темы сайта: фон + частицы (js/themes.js). Только transform/opacity — плавно и на телефоне. ===== */
+.site-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; contain: strict; }
+:root[data-site-theme] .app { position: relative; z-index: 1; }
+:root[data-site-theme] body { background: transparent; }
+.sp { position: absolute; display: block; line-height: 1; font-size: var(--sz, 20px); will-change: transform; user-select: none;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
+
+/* ---------- фоны (светлая / тёмная тема сайта) ---------- */
+:root[data-site-theme="autumn"] .site-bg { background: radial-gradient(ellipse at 80% -10%, #ffd9a8 0%, transparent 55%), linear-gradient(170deg, #fff4e3 0%, #ffe6cc 45%, #fbd9c0 100%); }
+:root[data-site-theme="autumn"][data-theme="dark"] .site-bg { background: radial-gradient(ellipse at 80% -10%, #5a3214 0%, transparent 55%), linear-gradient(170deg, #1d130c 0%, #26170e 50%, #2e1a10 100%); }
+:root[data-site-theme="halloween"] .site-bg { background: radial-gradient(ellipse at 50% 120%, #ff7a1a 0%, rgba(255,122,26,0) 45%), linear-gradient(180deg, #2a1240 0%, #3b1752 45%, #5a2148 100%); }
+:root[data-site-theme="halloween"][data-theme="light"] .site-bg { background: radial-gradient(ellipse at 50% 120%, #ffb36b 0%, rgba(255,179,107,0) 50%), linear-gradient(180deg, #efe4fb 0%, #f6e9f3 50%, #ffe8d6 100%); }
+:root[data-site-theme="autumnween"] .site-bg { background: radial-gradient(ellipse at 15% -10%, #ffcf8f 0%, transparent 50%), linear-gradient(175deg, #fff0e0 0%, #fbdcc8 45%, #eecde6 100%); }
+:root[data-site-theme="autumnween"][data-theme="dark"] .site-bg { background: radial-gradient(ellipse at 15% -10%, #6b3a12 0%, transparent 50%), linear-gradient(175deg, #20130d 0%, #2a1520 55%, #2a1236 100%); }
+:root[data-site-theme="christmas"] .site-bg { background: radial-gradient(ellipse at 50% 0%, #ffffff 0%, transparent 60%), linear-gradient(180deg, #e9f2ff 0%, #eaf6f0 60%, #fbecec 100%); }
+:root[data-site-theme="christmas"][data-theme="dark"] .site-bg { background: radial-gradient(ellipse at 50% -10%, #213a6b 0%, transparent 60%), linear-gradient(180deg, #0c1530 0%, #0e1c2a 60%, #1c1020 100%); }
+:root[data-site-theme="space"] .site-bg { background: radial-gradient(ellipse at 20% 10%, #3a2d7a 0%, transparent 50%), radial-gradient(ellipse at 90% 90%, #1d3d7a 0%, transparent 45%), linear-gradient(180deg, #0b0d24 0%, #10133a 100%); }
+:root[data-site-theme="space"][data-theme="light"] .site-bg { background: radial-gradient(ellipse at 20% 10%, #d9d2ff 0%, transparent 55%), radial-gradient(ellipse at 90% 90%, #cfe2ff 0%, transparent 50%), linear-gradient(180deg, #eef0ff 0%, #f3f0ff 100%); }
+:root[data-site-theme="ocean"] .site-bg { background: linear-gradient(180deg, #dff6ff 0%, #c2ecfb 45%, #a9dcf2 100%); }
+:root[data-site-theme="ocean"][data-theme="dark"] .site-bg { background: linear-gradient(180deg, #072235 0%, #06314a 55%, #041a2b 100%); }
+:root[data-site-theme="sakura"] .site-bg { background: radial-gradient(ellipse at 85% 0%, #ffd6e7 0%, transparent 55%), linear-gradient(170deg, #fff6fa 0%, #fde9f1 55%, #f4ecff 100%); }
+:root[data-site-theme="sakura"][data-theme="dark"] .site-bg { background: radial-gradient(ellipse at 85% 0%, #5a2140 0%, transparent 55%), linear-gradient(170deg, #1d1220 0%, #24142a 60%, #1a1430 100%); }
+:root[data-site-theme="aurora"] .site-bg { background: linear-gradient(180deg, #0a1226 0%, #0c1a30 60%, #0f1a2a 100%); }
+:root[data-site-theme="aurora"][data-theme="light"] .site-bg { background: linear-gradient(180deg, #e8f4ff 0%, #eef6f6 60%, #f4f2ff 100%); }
+
+/* ---------- виды движения ---------- */
+/* падает сверху вниз и покачивается (листья, лепестки) */
+.sp--fall { left: var(--x); top: -60px; opacity: var(--o); animation: sp-fall var(--d) linear var(--dl) infinite; }
+@keyframes sp-fall {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  25% { transform: translate3d(calc(var(--sw) * .6), 27vh, 0) rotate(calc(var(--rot) * .25)); }
+  50% { transform: translate3d(calc(var(--sw) * -.4), 55vh, 0) rotate(calc(var(--rot) * .5)); }
+  75% { transform: translate3d(var(--sw), 82vh, 0) rotate(calc(var(--rot) * .75)); }
+  100% { transform: translate3d(calc(var(--sw) * .2), 112vh, 0) rotate(var(--rot)); }
+}
+/* снег: белые точки */
+.sp--snow { left: var(--x); top: -12px; width: var(--sz); height: var(--sz); border-radius: 50%; background: #fff; opacity: var(--o);
+  box-shadow: 0 0 6px rgba(255,255,255,.9); animation: sp-fall calc(var(--d) * .9) linear var(--dl) infinite; }
+:root[data-theme="light"] .sp--snow { background: #fff; box-shadow: 0 0 0 1px rgba(120,150,200,.25), 0 0 6px rgba(160,190,230,.9); }
+/* летучие мыши: летят поперёк экрана волной */
+.sp--fly { top: calc(6% + var(--y) * .45); left: -60px; animation: sp-fly calc(var(--d) * 1.2) linear var(--dl) infinite; }
+@keyframes sp-fly {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  20% { transform: translate3d(22vw, -28px, 0) scale(.92); }
+  40% { transform: translate3d(44vw, 18px, 0) scale(1.05); }
+  60% { transform: translate3d(66vw, -22px, 0) scale(.95); }
+  80% { transform: translate3d(88vw, 14px, 0) scale(1.02); }
+  100% { transform: translate3d(calc(100vw + 120px), -10px, 0) scale(1); }
+}
+[dir="rtl"] .sp--fly { animation-direction: reverse; }
+/* привидения: плавают и тают */
+.sp--ghost { left: calc(8% + var(--x) * .84); top: calc(18% + var(--y) * .5); animation: sp-ghost calc(var(--d) * .8) ease-in-out var(--dl) infinite; }
+@keyframes sp-ghost { 0%, 100% { transform: translate3d(0, 0, 0); opacity: 0; } 15% { opacity: .75; } 50% { transform: translate3d(var(--sw), -50px, 0); opacity: .55; } 85% { opacity: .7; } }
+/* стоят внизу и чуть покачиваются (тыквы, ёлки) */
+.sp--ground { bottom: 10px; left: calc(4% + var(--i) * 30%); animation: sp-bob 3.6s ease-in-out calc(var(--i) * -.9s) infinite; transform-origin: 50% 100%; }
+@keyframes sp-bob { 0%, 100% { transform: rotate(-4deg); } 50% { transform: rotate(4deg) translateY(-3px); } }
+/* луна */
+.sp--moon { right: 8%; top: 9%; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle at 38% 38%, #fff8d6, #ffe08a 60%, #f4c04a);
+  box-shadow: 0 0 50px 18px rgba(255,214,120,.35); animation: sp-glow 6s ease-in-out infinite; }
+[dir="rtl"] .sp--moon { right: auto; left: 8%; }
+:root[data-theme="light"] .sp--moon { opacity: .8; }
+@keyframes sp-glow { 0%, 100% { box-shadow: 0 0 50px 18px rgba(255,214,120,.3); } 50% { box-shadow: 0 0 70px 26px rgba(255,214,120,.45); } }
+/* паутина в углу */
+.sp--web { top: calc(var(--top-h, 60px) + 4px); left: 0; font-size: 64px; opacity: .45; transform-origin: 0 0; animation: sp-sway 7s ease-in-out infinite; }
+[dir="rtl"] .sp--web { left: auto; right: 0; }
+@keyframes sp-sway { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+/* гирлянда сверху */
+.sp--lights { left: 0; right: 0; top: var(--top-h, 60px); height: 26px;
+  background:
+    radial-gradient(circle, #ff4d4d 0 4px, transparent 5px) 0 10px / 64px 20px repeat-x,
+    radial-gradient(circle, #ffd23f 0 4px, transparent 5px) 16px 14px / 64px 20px repeat-x,
+    radial-gradient(circle, #3ddc84 0 4px, transparent 5px) 32px 10px / 64px 20px repeat-x,
+    radial-gradient(circle, #4da3ff 0 4px, transparent 5px) 48px 14px / 64px 20px repeat-x;
+  animation: sp-twinkle-strip 1.6s steps(2, jump-none) infinite; }
+@keyframes sp-twinkle-strip { 0% { opacity: 1; filter: saturate(1.4) brightness(1.15); } 100% { opacity: .65; filter: saturate(.9); } }
+/* звёзды: мерцают на месте */
+.sp--star { left: var(--x); top: var(--y); width: var(--sz); height: var(--sz); border-radius: 50%; background: #fff;
+  box-shadow: 0 0 6px rgba(255,255,255,.8); animation: sp-twinkle calc(var(--d) * .25) ease-in-out var(--dl) infinite; }
+:root[data-theme="light"] .sp--star { background: #8a7dff; box-shadow: 0 0 6px rgba(138,125,255,.7); }
+@keyframes sp-twinkle { 0%, 100% { opacity: .15; transform: scale(.7); } 50% { opacity: var(--o); transform: scale(1.2); } }
+/* падающая звезда */
+.sp--shoot { top: calc(5% + var(--i) * 22%); left: 60%; width: 140px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,0), #fff); opacity: 0; transform: rotate(-24deg);
+  animation: sp-shoot 9s ease-in calc(var(--i) * -4.5s) infinite; }
+@keyframes sp-shoot { 0%, 82% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-24deg); } 85% { opacity: 1; } 100% { opacity: 0; transform: translate3d(-45vw, 22vh, 0) rotate(-24deg); } }
+.sp--planet { right: 6%; bottom: 8%; animation: sp-bob 9s ease-in-out infinite; opacity: .9; }
+[dir="rtl"] .sp--planet { right: auto; left: 6%; }
+/* пузыри: поднимаются снизу */
+.sp--bubble { left: var(--x); bottom: -30px; width: var(--sz); height: var(--sz); border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.95), rgba(255,255,255,.15) 45%, rgba(255,255,255,.05) 70%);
+  border: 1px solid rgba(255,255,255,.6); animation: sp-rise var(--d) ease-in var(--dl) infinite; }
+:root[data-theme="light"] .sp--bubble { border-color: rgba(40,140,200,.45); }
+@keyframes sp-rise { 0% { transform: translate3d(0, 0, 0); opacity: 0; } 10% { opacity: .9; } 50% { transform: translate3d(calc(var(--sw) * .3), -55vh, 0); } 100% { transform: translate3d(calc(var(--sw) * -.2), -112vh, 0); opacity: 0; } }
+.sp--rays { inset: -20% -10% auto -10%; height: 90%;
+  background: repeating-linear-gradient(100deg, rgba(255,255,255,0) 0 60px, rgba(255,255,255,.16) 60px 110px, rgba(255,255,255,0) 110px 190px);
+  animation: sp-rays 12s ease-in-out infinite alternate; transform-origin: 50% 0; }
+@keyframes sp-rays { from { transform: skewX(-6deg) translateX(-3%); opacity: .7; } to { transform: skewX(6deg) translateX(3%); opacity: 1; } }
+.sp--swim { top: calc(25% + var(--i) * 17%); left: -60px; animation: sp-swim calc(var(--d) * 1.6) linear calc(var(--i) * -7s) infinite; }
+@keyframes sp-swim { 0% { transform: translate3d(0, 0, 0) scaleX(-1); } 50% { transform: translate3d(55vw, 20px, 0) scaleX(-1); } 100% { transform: translate3d(calc(100vw + 120px), 0, 0) scaleX(-1); } }
+/* северное сияние: большие размытые полосы */
+.sp--aurora { left: -25%; width: 150%; height: 55vh; top: calc(-10% + var(--i) * 12%); border-radius: 50%; filter: blur(48px); opacity: .55;
+  animation: sp-aurora calc(14s + var(--i) * 5s) ease-in-out calc(var(--i) * -4s) infinite alternate; }
+.sp--aurora:nth-child(1) { background: linear-gradient(90deg, transparent, #2df5b0, #1fb6ff, transparent); }
+.sp--aurora:nth-child(2) { background: linear-gradient(90deg, transparent, #8a5bff, #2de0f5, transparent); }
+.sp--aurora:nth-child(3) { background: linear-gradient(90deg, transparent, #ff5bd2, #7a5bff, transparent); opacity: .35; }
+:root[data-theme="light"] .sp--aurora { opacity: .3; }
+@keyframes sp-aurora { from { transform: translate3d(-8%, 0, 0) rotate(-6deg) scaleY(.8); } to { transform: translate3d(8%, 6vh, 0) rotate(5deg) scaleY(1.15); } }
+
+/* меньше движения: всё стоит, частицы разложены по экрану */
+:root[data-motion="reduce"] .sp { animation: none !important; }
+:root[data-motion="reduce"] .sp--fall, :root[data-motion="reduce"] .sp--snow { top: var(--y); }
+:root[data-motion="reduce"] .sp--fly { left: var(--x); }
+:root[data-motion="reduce"] .sp--bubble { bottom: var(--y); }
+:root[data-motion="reduce"] .sp--ghost { opacity: .6; }
+@media (prefers-reduced-motion: reduce) {
+  .sp { animation: none !important; }
+  .sp--fall, .sp--snow { top: var(--y); }
+  .sp--fly { left: var(--x); }
+  .sp--bubble { bottom: var(--y); }
+  .sp--ghost { opacity: .6; }
+}
+
+/* верхняя панель чуть прозрачнее, чтобы фон было видно */
+:root[data-site-theme] .topbar { background: rgba(255,255,255,.7); }
+:root[data-site-theme][data-theme="dark"] .topbar { background: rgba(14,16,32,.68); }
+
+/* ---------- выбор темы в настройках ---------- */
+.th-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(118px, 1fr)); gap: 10px; padding: 4px 0 6px; }
+.th-opt { display: flex; flex-direction: column; align-items: stretch; gap: 6px; padding: 6px; border-radius: 16px; border: 2px solid var(--border); background: var(--surface);
+  cursor: pointer; transition: border-color .2s, transform .2s var(--ease), box-shadow .2s; min-height: 44px; }
+.th-opt:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.th-opt[aria-checked="true"] { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.th-opt__prev { position: relative; height: 64px; border-radius: 11px; display: flex; align-items: center; justify-content: center; overflow: hidden; font-size: 30px; background: var(--bg-2); }
+.th-opt__ic { display: inline-block; animation: th-ic 3s ease-in-out infinite; font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif; }
+.th-opt__ic--2 { margin-inline-start: -6px; animation-delay: -1.5s; }
+@keyframes th-ic { 0%, 100% { transform: translateY(0) rotate(-6deg); } 50% { transform: translateY(-5px) rotate(6deg); } }
+.th-opt__name { font-size: 13px; font-weight: 700; text-align: center; line-height: 1.25; }
+.th-opt--none .th-opt__prev { color: var(--text-2); font-size: 26px; }
+.th-opt--autumn .th-opt__prev { background: linear-gradient(160deg, #fff1de, #ffc99a); }
+.th-opt--halloween .th-opt__prev { background: radial-gradient(ellipse at 50% 120%, #ff7a1a, transparent 60%), linear-gradient(180deg, #2a1240, #5a2148); }
+.th-opt--autumnween .th-opt__prev { background: linear-gradient(160deg, #ffd9a8, #e8b9d9 60%, #5a2148); }
+.th-opt--christmas .th-opt__prev { background: linear-gradient(180deg, #dbe9ff, #e6f6ec 60%, #ffdede); }
+.th-opt--space .th-opt__prev { background: radial-gradient(ellipse at 30% 20%, #4a3c9a, transparent 60%), #0b0d24; }
+.th-opt--ocean .th-opt__prev { background: linear-gradient(180deg, #bfeaff, #5fbfe8); }
+.th-opt--sakura .th-opt__prev { background: linear-gradient(160deg, #fff0f6, #ffc4dc); }
+.th-opt--aurora .th-opt__prev { background: linear-gradient(160deg, #0a1226 20%, #1fd6a0 55%, #7a5bff 85%); }
+@media (prefers-reduced-motion: reduce) { .th-opt__ic { animation: none; } }
+:root[data-motion="reduce"] .th-opt__ic { animation: none; }
