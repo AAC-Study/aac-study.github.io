@@ -3,7 +3,7 @@
    with exact fraction arithmetic (the solution substituted back into each line) — 302 lines.
    Multiplication sign is "×". */
 window.LESSONS = window.LESSONS || {};
-window.LESSONS['math-2026-10-25'] = {
+window.LESSONS["math-2026-10-25"] = {
   "id": "math-2026-10-25",
   "subject": "math",
   "date": "2026-10-25",
@@ -18,7 +18,12 @@ window.LESSONS['math-2026-10-25'] = {
     "en": "Two-equation systems where both equations are multiplied, a system of three equations in three unknowns, and the short way — an augmented matrix and Gaussian elimination."
   },
   "timeline": [
-    { "why": {"he": "בשיטת החיבור צריך שאחד הנעלמים ייעלם. זה קורה רק כשהמקדמים שלו שווים בגודל ומנוגדים בסימן. כשהם לא כאלה — יוצרים אותם בעצמנו בעזרת כפל, כי כפל של כל המשוואה במספר לא משנה את הפתרון.", "ru": "В методе сложения одно неизвестное должно исчезнуть. Это бывает, только когда его коэффициенты равны по модулю и противоположны по знаку. Если это не так — делаем их такими сами, умножением, потому что умножение всего уравнения на число не меняет решения.", "en": "In the elimination method one unknown must disappear. That happens only when its coefficients are equal in size and opposite in sign. If they are not, we make them so by multiplying, because multiplying a whole equation by a number does not change its solution."},
+    {
+      "why": {
+        "he": "בשיטת החיבור צריך שאחד הנעלמים ייעלם. זה קורה רק כשהמקדמים שלו שווים בגודל ומנוגדים בסימן. כשהם לא כאלה — יוצרים אותם בעצמנו בעזרת כפל, כי כפל של כל המשוואה במספר לא משנה את הפתרון.",
+        "ru": "В методе сложения одно неизвестное должно исчезнуть. Это бывает, только когда его коэффициенты равны по модулю и противоположны по знаку. Если это не так — делаем их такими сами, умножением, потому что умножение всего уравнения на число не меняет решения.",
+        "en": "In the elimination method one unknown must disappear. That happens only when its coefficients are equal in size and opposite in sign. If they are not, we make them so by multiplying, because multiplying a whole equation by a number does not change its solution."
+      },
       "kind": "talk",
       "title": {
         "he": "ממשיכים: מערכות של שתי משוואות",
@@ -31,7 +36,12 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "Exercise 26: six systems solved by the addition method. Here almost nothing cancels right away, so multiply the equations by numbers until the coefficients of one unknown are equal in size."
       }
     },
-    { "why": {"he": "למה 3 ו-2? המקדמים של y הם 2 ו-3, והמספר הקטן ביותר שמתחלק בשניהם הוא 6. לכן הראשונה × 3 (נותן `6y`) והשנייה × 2 (נותן `−6y`). אפשר גם לבטל את x, אבל המספרים יהיו גדולים יותר (35).\nבדיקה — `5 × 5 + 2 × 1 = 27` וגם `7 × 5 − 3 × 1 = 32`.", "ru": "Почему 3 и 2? Коэффициенты при y — 2 и 3, а самое маленькое число, которое делится на оба, — 6. Поэтому первое × 3 (получается `6y`), второе × 2 (получается `−6y`). Можно убрать и x, но числа будут больше (35).\nПроверка — `5 × 5 + 2 × 1 = 27` и `7 × 5 − 3 × 1 = 32`.", "en": "Why 3 and 2? The y coefficients are 2 and 3, and the smallest number both divide is 6. So the first × 3 (gives `6y`) and the second × 2 (gives `−6y`). You could remove x instead, but the numbers would be bigger (35).\nCheck — `5 × 5 + 2 × 1 = 27` and `7 × 5 − 3 × 1 = 32`."},
+    {
+      "why": {
+        "he": "למה 3 ו-2? המקדמים של y הם 2 ו-3, והמספר הקטן ביותר שמתחלק בשניהם הוא 6. לכן הראשונה × 3 (נותן `6y`) והשנייה × 2 (נותן `−6y`). אפשר גם לבטל את x, אבל המספרים יהיו גדולים יותר (35).\nבדיקה — `5 × 5 + 2 × 1 = 27` וגם `7 × 5 − 3 × 1 = 32`.",
+        "ru": "Почему 3 и 2? Коэффициенты при y — 2 и 3, а самое маленькое число, которое делится на оба, — 6. Поэтому первое × 3 (получается `6y`), второе × 2 (получается `−6y`). Можно убрать и x, но числа будут больше (35).\nПроверка — `5 × 5 + 2 × 1 = 27` и `7 × 5 − 3 × 1 = 32`.",
+        "en": "Why 3 and 2? The y coefficients are 2 and 3, and the smallest number both divide is 6. So the first × 3 (gives `6y`) and the second × 2 (gives `−6y`). You could remove x instead, but the numbers would be bigger (35).\nCheck — `5 × 5 + 2 × 1 = 27` and `7 × 5 − 3 × 1 = 32`."
+      },
       "kind": "board",
       "title": {
         "he": "תרגיל 26א על הלוח",
@@ -51,7 +61,12 @@ window.LESSONS['math-2026-10-25'] = {
         "y = 1"
       ]
     },
-    { "why": {"he": "שלושה נעלמים צריכים שלוש משוואות, כמו ששניים צריכים שתיים. מבטלים את אותו נעלם (x) משני זוגות, כדי ששתי המשוואות החדשות יהיו עם אותם שני נעלמים (y ו-z) — ואז זו כבר מערכת מוכרת משיעור 18.10.", "ru": "Трём неизвестным нужны три уравнения, как двум — два. Убираем одно и то же неизвестное (x) из двух пар, чтобы два новых уравнения были с одними и теми же двумя неизвестными (y и z), — и это уже знакомая система с урока 18.10.", "en": "Three unknowns need three equations, just as two need two. Remove the same unknown (x) from two pairs, so the two new equations have the same two unknowns (y and z) — and that is the familiar system from the 18.10 lesson."},
+    {
+      "why": {
+        "he": "שלושה נעלמים צריכים שלוש משוואות, כמו ששניים צריכים שתיים. מבטלים את אותו נעלם (x) משני זוגות, כדי ששתי המשוואות החדשות יהיו עם אותם שני נעלמים (y ו-z) — ואז זו כבר מערכת מוכרת משיעור 18.10.",
+        "ru": "Трём неизвестным нужны три уравнения, как двум — два. Убираем одно и то же неизвестное (x) из двух пар, чтобы два новых уравнения были с одними и теми же двумя неизвестными (y и z), — и это уже знакомая система с урока 18.10.",
+        "en": "Three unknowns need three equations, just as two need two. Remove the same unknown (x) from two pairs, so the two new equations have the same two unknowns (y and z) — and that is the familiar system from the 18.10 lesson."
+      },
       "kind": "talk",
       "title": {
         "he": "שלוש משוואות, שלושה נעלמים",
@@ -69,7 +84,19 @@ window.LESSONS['math-2026-10-25'] = {
         "III: 4x + 5y − 2z = 18"
       ]
     },
-    { "why": {"he": "בדיקה של הצעד הראשון: `I × 3 − II × 2`.", "ru": "Проверка первого шага — `I × 3 − II × 2`.", "en": "Checking the first step — `I × 3 − II × 2`."}, "whyMath": ["6x − 6x = 0", "9y − (−4y) = 13y", "12z − 10z = 2z", "60 − 26 = 34", "13y + 2z = 34"],
+    {
+      "why": {
+        "he": "בדיקה של הצעד הראשון `I × 3 − II × 2`.",
+        "ru": "Проверка первого шага — `I × 3 − II × 2`.",
+        "en": "Checking the first step — `I × 3 − II × 2`."
+      },
+      "whyMath": [
+        "6x − 6x = 0",
+        "9y − (−4y) = 13y",
+        "12z − 10z = 2z",
+        "60 − 26 = 34",
+        "13y + 2z = 34"
+      ],
       "kind": "board",
       "title": {
         "he": "הדרך הארוכה",
@@ -77,9 +104,9 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "The long way"
       },
       "text": {
-        "he": "I כפול 3 ו־II כפול 2, ואז מחסירים: x נעלם. אחר כך I כפול 2 פחות III. מהמערכת החדשה מצמצמים את y:",
-        "ru": "I умножаем на 3, II на 2 и вычитаем: x исчезает. Потом I × 2 минус III. Из новой системы убираем y:",
-        "en": "I times 3 and II times 2, then subtract: x disappears. Then I times 2 minus III. From the new system eliminate y:"
+        "he": "I כפול 3 ו־II כפול 2, ואז מחסירים: x נעלם. אחר כך I כפול 2 פחות III. מהמערכת החדשה מצמצמים את y",
+        "ru": "I умножаем на 3, II на 2 и вычитаем: x исчезает. Потом I × 2 минус III. Из новой системы убираем y",
+        "en": "I times 3 and II times 2, then subtract: x disappears. Then I times 2 minus III. From the new system eliminate y"
       },
       "math": [
         "6x + 9y + 12z = 60",
@@ -92,7 +119,12 @@ window.LESSONS['math-2026-10-25'] = {
         "z ≈ 1.969"
       ]
     },
-    { "why": {"he": "במטריצה המקום של המספר אומר איזה נעלם הוא: עמודה ראשונה — x, שנייה — y, שלישית — z. לכן לא צריך לכתוב את האותיות, וכל החשבון נראה נקי יותר. \"מדרגות\" (אפסים מתחת לאלכסון) פירושן שבשורה האחרונה נשאר נעלם אחד בלבד — ומשם מתחילים.", "ru": "В матрице место числа говорит, какое это неизвестное: первый столбец — x, второй — y, третий — z. Поэтому буквы писать не нужно, и всё выглядит чище. «Ступеньки» (нули под диагональю) значат, что в последней строке остаётся одно неизвестное, — с неё и начинаем.", "en": "In a matrix the position of a number says which unknown it is: column one is x, two is y, three is z. So you do not write the letters, and everything looks cleaner. The \"staircase\" (zeros under the diagonal) means the last row has only one unknown left — that is where you start."},
+    {
+      "why": {
+        "he": "במטריצה המקום של המספר אומר איזה נעלם הוא: עמודה ראשונה — x, שנייה — y, שלישית — z. לכן לא צריך לכתוב את האותיות, וכל החשבון נראה נקי יותר. \"מדרגות\" (אפסים מתחת לאלכסון) פירושן שבשורה האחרונה נשאר נעלם אחד בלבד — ומשם מתחילים.",
+        "ru": "В матрице место числа говорит, какое это неизвестное: первый столбец — x, второй — y, третий — z. Поэтому буквы писать не нужно, и всё выглядит чище. «Ступеньки» (нули под диагональю) значат, что в последней строке остаётся одно неизвестное, — с неё и начинаем.",
+        "en": "In a matrix the position of a number says which unknown it is: column one is x, two is y, three is z. So you do not write the letters, and everything looks cleaner. The \"staircase\" (zeros under the diagonal) means the last row has only one unknown left — that is where you start."
+      },
       "kind": "talk",
       "title": {
         "he": "הדרך הקצרה: מטריצה (שיטת גאוס)",
@@ -105,7 +137,18 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "Write only the coefficients in an augmented matrix: each row is an equation, and the number after the bar is the right-hand side. Do the same things with rows as with equations: multiply a row by a number, add or subtract rows. The goal is staircase form: zeros below the diagonal."
       }
     },
-    { "why": {"he": "בדיקה של הצעד `R2 ← 2R2 − 3R1`, מספר אחרי מספר.", "ru": "Проверка шага `R2 ← 2R2 − 3R1` число за числом.", "en": "Checking the step `R2 ← 2R2 − 3R1` number by number."}, "whyMath": ["2 × 3 − 3 × 2 = 0", "2 × (−2) − 3 × 3 = −13", "2 × 5 − 3 × 4 = −2", "2 × 13 − 3 × 20 = −34"],
+    {
+      "why": {
+        "he": "בדיקה של הצעד `R2 ← 2R2 − 3R1`, מספר אחרי מספר.",
+        "ru": "Проверка шага `R2 ← 2R2 − 3R1` число за числом.",
+        "en": "Checking the step `R2 ← 2R2 − 3R1` number by number."
+      },
+      "whyMath": [
+        "2 × 3 − 3 × 2 = 0",
+        "2 × (−2) − 3 × 3 = −13",
+        "2 × 5 − 3 × 4 = −2",
+        "2 × 13 − 3 × 20 = −34"
+      ],
       "kind": "board",
       "title": {
         "he": "המטריצה מהלוח",
@@ -113,23 +156,28 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "The matrix from the board"
       },
       "text": {
-        "he": "אותה מערכת מתרגיל 1, בשלושה צעדים:",
-        "ru": "Та же система из задания 1, за три шага:",
-        "en": "The same system from exercise 1, in three steps:"
+        "he": "אותה מערכת מתרגיל 1, בשלושה צעדים",
+        "ru": "Та же система из задания 1, за три шага",
+        "en": "The same system from exercise 1, in three steps"
       },
       "math": [
-        "R1: ( 2   3   4 | 20 )",
-        "R2: ( 3  −2   5 | 13 )",
-        "R3: ( 4   5  −2 | 18 )",
+        "R1  ( 2   3   4 | 20 )",
+        "R2  ( 3  −2   5 | 13 )",
+        "R3  ( 4   5  −2 | 18 )",
         "R2 ← 2R2 − 3R1",
-        "R2: ( 0  −13  −2 | −34 )",
+        "R2  ( 0  −13  −2 | −34 )",
         "R3 ← R3 − 2R1",
-        "R3: ( 0  −1  −10 | −22 )",
+        "R3  ( 0  −1  −10 | −22 )",
         "R3 ← −13R3 + R2",
-        "R3: ( 0   0  128 | 252 )"
+        "R3  ( 0   0  128 | 252 )"
       ]
     },
-    { "why": {"he": "למה מלמטה למעלה? בשורה האחרונה יש רק z, ולכן מוצאים אותו מיד. בשורה השנייה יש y ו-z — z כבר ידוע, נשאר רק y. בשורה הראשונה נשאר רק x. כל שורה נותנת נעלם אחד חדש.", "ru": "Почему снизу вверх? В последней строке есть только z, поэтому его находим сразу. Во второй строке — y и z, а z уже известен, остаётся только y. В первой строке остаётся только x. Каждая строка даёт одно новое неизвестное.", "en": "Why bottom up? The last row has only z, so we find it at once. The second row has y and z — z is already known, only y is left. In the first row only x is left. Each row gives one new unknown."},
+    {
+      "why": {
+        "he": "למה מלמטה למעלה? בשורה האחרונה יש רק z, ולכן מוצאים אותו מיד. בשורה השנייה יש y ו-z — z כבר ידוע, נשאר רק y. בשורה הראשונה נשאר רק x. כל שורה נותנת נעלם אחד חדש.",
+        "ru": "Почему снизу вверх? В последней строке есть только z, поэтому его находим сразу. Во второй строке — y и z, а z уже известен, остаётся только y. В первой строке остаётся только x. Каждая строка даёт одно новое неизвестное.",
+        "en": "Why bottom up? The last row has only z, so we find it at once. The second row has y and z — z is already known, only y is left. In the first row only x is left. Each row gives one new unknown."
+      },
       "kind": "board",
       "title": {
         "he": "חזרה מלמטה למעלה",
@@ -137,9 +185,9 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "Back substitution: bottom to top"
       },
       "text": {
-        "he": "מהשורה האחרונה מוצאים את z, מהשנייה את y, ומהראשונה את x. על הלוח התקבל בעיגול: `z ≈ 1.96`, `y ≈ 2.31`, `x ≈ 2.61`.",
-        "ru": "Из последней строки находим z, из второй — y, из первой — x. На доске с округлением получилось: `z ≈ 1.96`, `y ≈ 2.31`, `x ≈ 2.61`.",
-        "en": "From the last row find z, from the second y, from the first x. On the board, with rounding: `z ≈ 1.96`, `y ≈ 2.31`, `x ≈ 2.61`."
+        "he": "מהשורה האחרונה מוצאים את z, מהשנייה את y, ומהראשונה את x. על הלוח התקבל בעיגול `z ≈ 1.96`, `y ≈ 2.31`, `x ≈ 2.61`.",
+        "ru": "Из последней строки находим z, из второй — y, из первой — x. На доске с округлением получилось `z ≈ 1.96`, `y ≈ 2.31`, `x ≈ 2.61`.",
+        "en": "From the last row find z, from the second y, from the first x. On the board, with rounding `z ≈ 1.96`, `y ≈ 2.31`, `x ≈ 2.61`."
       },
       "math": [
         "128z = 252",
@@ -147,7 +195,12 @@ window.LESSONS['math-2026-10-25'] = {
         "2x + 3y + 4z = 20"
       ]
     },
-    { "why": {"he": "כל מספר מעוגל \"סוחב\" טעות קטנה, והיא נכנסת לחישוב הבא וגדלה. בסוף שלושה צעדים הטעות כבר נראית בספרה השנייה. שברים מדויקים לא סוחבים טעות בכלל, ולכן עדיף לעגל רק בתשובה הסופית.", "ru": "Каждое округлённое число «тащит» маленькую ошибку, и она попадает в следующий расчёт и растёт. Через три шага ошибка видна уже во второй цифре. Точные дроби не тащат ошибку вообще, поэтому округлять лучше только в последнем ответе.", "en": "Every rounded number \"carries\" a small error, which goes into the next step and grows. After three steps the error shows in the second digit. Exact fractions carry no error at all, so round only the final answer."},
+    {
+      "why": {
+        "he": "כל מספר מעוגל \"סוחב\" טעות קטנה, והיא נכנסת לחישוב הבא וגדלה. בסוף שלושה צעדים הטעות כבר נראית בספרה השנייה. שברים מדויקים לא סוחבים טעות בכלל, ולכן עדיף לעגל רק בתשובה הסופית.",
+        "ru": "Каждое округлённое число «тащит» маленькую ошибку, и она попадает в следующий расчёт и растёт. Через три шага ошибка видна уже во второй цифре. Точные дроби не тащат ошибку вообще, поэтому округлять лучше только в последнем ответе.",
+        "en": "Every rounded number \"carries\" a small error, which goes into the next step and grows. After three steps the error shows in the second digit. Exact fractions carry no error at all, so round only the final answer."
+      },
       "kind": "tip",
       "title": {
         "he": "זהירות עם עיגול",
@@ -155,12 +208,17 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "Careful with rounding"
       },
       "text": {
-        "he": "התשובה המדויקת היא שברים: `z = 63/32 = 1.96875`, `y = 37/16 = 2.3125`, `x = 83/32 = 2.59375`. כשמעגלים באמצע הדרך, הטעות גדלה בכל צעד — לכן על הלוח יצא `x ≈ 2.61` במקום `2.59`. כדאי להשאיר שברים (או כמה ספרות אחרי הנקודה) עד הסוף, ולבדוק בהצבה.",
-        "ru": "Точный ответ — дроби: `z = 63/32 = 1.96875`, `y = 37/16 = 2.3125`, `x = 83/32 = 2.59375`. Если округлять по ходу, ошибка растёт с каждым шагом — поэтому на доске вышло `x ≈ 2.61` вместо `2.59`. Лучше держать дроби (или больше знаков после точки) до конца и проверять подстановкой.",
-        "en": "The exact answer is fractions: `z = 63/32 = 1.96875`, `y = 37/16 = 2.3125`, `x = 83/32 = 2.59375`. Rounding along the way makes the error grow at each step — that is why the board shows `x ≈ 2.61` instead of `2.59`. Keep fractions (or more decimal places) until the end, and check by substitution."
+        "he": "התשובה המדויקת היא שברים `z = 63/32 = 1.96875`, `y = 37/16 = 2.3125`, `x = 83/32 = 2.59375`. כשמעגלים באמצע הדרך, הטעות גדלה בכל צעד — לכן על הלוח יצא `x ≈ 2.61` במקום `2.59`. כדאי להשאיר שברים (או כמה ספרות אחרי הנקודה) עד הסוף, ולבדוק בהצבה.",
+        "ru": "Точный ответ — дроби `z = 63/32 = 1.96875`, `y = 37/16 = 2.3125`, `x = 83/32 = 2.59375`. Если округлять по ходу, ошибка растёт с каждым шагом — поэтому на доске вышло `x ≈ 2.61` вместо `2.59`. Лучше держать дроби (или больше знаков после точки) до конца и проверять подстановкой.",
+        "en": "The exact answer is fractions `z = 63/32 = 1.96875`, `y = 37/16 = 2.3125`, `x = 83/32 = 2.59375`. Rounding along the way makes the error grow at each step — that is why the board shows `x ≈ 2.61` instead of `2.59`. Keep fractions (or more decimal places) until the end, and check by substitution."
       }
     },
-    { "why": {"he": "תשובה בשברים זה לא סימן לטעות. במערכות כאלה זה נפוץ (כאן `x = 95/37`). הדרך לדעת שהתשובה נכונה היא להציב בכל שלוש המשוואות ולא \"לראות שהמספר יפה\".", "ru": "Ответ в дробях — не признак ошибки. В таких системах это обычно (здесь `x = 95/37`). Узнать, что ответ верный, можно подстановкой во все три уравнения, а не по тому, «красивое ли число».", "en": "An answer in fractions is not a sign of a mistake. In systems like these it is normal (here `x = 95/37`). The way to know it is right is to substitute into all three equations, not to see whether the number \"looks nice\"."},
+    {
+      "why": {
+        "he": "תשובה בשברים זה לא סימן לטעות. במערכות כאלה זה נפוץ (כאן `x = 95/37`). הדרך לדעת שהתשובה נכונה היא להציב בכל שלוש המשוואות ולא \"לראות שהמספר יפה\".",
+        "ru": "Ответ в дробях — не признак ошибки. В таких системах это обычно (здесь `x = 95/37`). Узнать, что ответ верный, можно подстановкой во все три уравнения, а не по тому, «красивое ли число».",
+        "en": "An answer in fractions is not a sign of a mistake. In systems like these it is normal (here `x = 95/37`). The way to know it is right is to substitute into all three equations, not to see whether the number \"looks nice\"."
+      },
       "kind": "talk",
       "title": {
         "he": "תרגיל 4",
@@ -178,7 +236,12 @@ window.LESSONS['math-2026-10-25'] = {
         "2x − 3y + 5z = 10"
       ]
     },
-    { "why": {"he": "הקבצים האלה כבר נמצאים אצלנו. מהדף \"מערכות עם פתרון יחיד\" לקחנו לאתר את מערכות 1, 4, 2, 8, 23 ו-25 עם פתרון מלא. \"מבוא לווקטורים\" הוא הנושא הבא בקורס, ועוד לא למדנו אותו.", "ru": "Эти файлы уже есть у нас. С листа «системы с единственным решением» на сайт взяты системы 1, 4, 2, 8, 23 и 25 с полным решением. «Введение в векторы» — следующая тема курса, её ещё не проходили.", "en": "These files are already with us. From the \"systems with a unique solution\" sheet, systems 1, 4, 2, 8, 23 and 25 are on the site with full solutions. \"Intro to vectors\" is the next topic of the course; we have not learned it yet."},
+    {
+      "why": {
+        "he": "הקבצים האלה כבר נמצאים אצלנו. מהדף \"מערכות עם פתרון יחיד\" לקחנו לאתר את מערכות 1, 4, 2, 8, 23 ו-25 עם פתרון מלא. \"מבוא לווקטורים\" הוא הנושא הבא בקורס, ועוד לא למדנו אותו.",
+        "ru": "Эти файлы уже есть у нас. С листа «системы с единственным решением» на сайт взяты системы 1, 4, 2, 8, 23 и 25 с полным решением. «Введение в векторы» — следующая тема курса, её ещё не проходили.",
+        "en": "These files are already with us. From the \"systems with a unique solution\" sheet, systems 1, 4, 2, 8, 23 and 25 are on the site with full solutions. \"Intro to vectors\" is the next topic of the course; we have not learned it yet."
+      },
       "kind": "talk",
       "title": {
         "he": "חומרים באתר הקורס",
@@ -191,7 +254,12 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "A new teaching unit (יחידת הוראה חדשה) is open on the course site (Moodle) with the files: \"מבוא לווקטורים – טכנאים\" (intro to vectors), \"תרגיל כיתה 2 – גאוס\" (class exercise 2 — Gauss) and \"מערכות משוואות ליניאריות עם פתרון יחיד\" (linear systems with a unique solution)."
       }
     },
-    { "why": {"he": "למה דווקא מספר שונה מ-0? כפל ב-0 הופך את השורה ל-`0 = 0` — זה נכון, אבל המידע של המשוואה הלך לאיבוד, ונשארות פחות משוואות מנעלמים.", "ru": "Почему именно число, не равное 0? Умножение на 0 превращает строку в `0 = 0` — это верно, но информация уравнения пропала, и уравнений становится меньше, чем неизвестных.", "en": "Why a number other than 0? Multiplying by 0 turns the row into `0 = 0` — true, but the information of the equation is lost, and you are left with fewer equations than unknowns."},
+    {
+      "why": {
+        "he": "למה דווקא מספר שונה מ-0? כפל ב-0 הופך את השורה ל-`0 = 0` — זה נכון, אבל המידע של המשוואה הלך לאיבוד, ונשארות פחות משוואות מנעלמים.",
+        "ru": "Почему именно число, не равное 0? Умножение на 0 превращает строку в `0 = 0` — это верно, но информация уравнения пропала, и уравнений становится меньше, чем неизвестных.",
+        "en": "Why a number other than 0? Multiplying by 0 turns the row into `0 = 0` — true, but the information of the equation is lost, and you are left with fewer equations than unknowns."
+      },
       "kind": "faq",
       "q": {
         "he": "למה מותר לכפול שורה ולחבר שורות?",
@@ -204,7 +272,12 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "Because each row is an equation. Multiplying an equation (both sides) by a nonzero number, and adding two equations, does not change the solution — exactly as in the addition method."
       }
     },
-    { "why": {"he": "זה כמו לכתוב רשימת קניות בטבלה במקום בטקסט: אותו מידע, רק מסודר. בגלל הסדר הקבוע קשה לשכוח צעד, ולכן במבחן עדיף להשתמש במטריצה.", "ru": "Это как вести список покупок таблицей, а не текстом: та же информация, только упорядоченная. Из-за постоянного порядка трудно пропустить шаг, поэтому на экзамене удобнее матрица.", "en": "It is like writing a shopping list as a table instead of text: the same information, just organised. Because the order is fixed it is hard to skip a step, so on the exam the matrix is handier."},
+    {
+      "why": {
+        "he": "זה כמו לכתוב רשימת קניות בטבלה במקום בטקסט: אותו מידע, רק מסודר. בגלל הסדר הקבוע קשה לשכוח צעד, ולכן במבחן עדיף להשתמש במטריצה.",
+        "ru": "Это как вести список покупок таблицей, а не текстом: та же информация, только упорядоченная. Из-за постоянного порядка трудно пропустить шаг, поэтому на экзамене удобнее матрица.",
+        "en": "It is like writing a shopping list as a table instead of text: the same information, just organised. Because the order is fixed it is hard to skip a step, so on the exam the matrix is handier."
+      },
       "kind": "faq",
       "q": {
         "he": "מה ההבדל בין הדרך הארוכה למטריצה?",
@@ -216,6 +289,32 @@ window.LESSONS['math-2026-10-25'] = {
         "ru": "Действия те же самые. В матрице не нужно каждый раз писать x, y, z, и порядок постоянный: сначала нули в первом столбце, потом во втором. Поэтому легче не запутаться.",
         "en": "The operations are the same. In a matrix you don't rewrite x, y, z each time, and the order is fixed: first zeros in column one, then in column two. So it is easier not to get lost."
       }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "מתרגיל כיתה 2: מה אם בשורה יוצא 0 = מספר?",
+        "ru": "Из «תרגיל כיתה 2»: а если в строке выходит 0 = число?",
+        "en": "From class exercise 2: what if a row becomes 0 = a number?"
+      },
+      "text": {
+        "he": "בדף של המרצה יש שתי מערכות \"מיוחדות\" (4 ו-5). שם גאוס לא נגמר במספר ל-z, אלא בשורה שכולה אפסים משמאל\n• `0 = −3` — שקר. אין x, y, z שיעשו את זה נכון, ולכן אין פתרון.\n• `0 = 0` — תמיד נכון. משוואה אחת \"נעלמה\", נשארו פחות משוואות מנעלמים, ולכן אינסוף פתרונות.\nבשיעור עבדנו על מערכות עם פתרון יחיד — זה מבט קדימה.",
+        "ru": "На листе преподавателя есть две «особые» системы (4 и 5). Там Гаусс заканчивается не числом для z, а строкой, где слева одни нули.\n• `0 = −3` — ложь. Нет таких x, y, z, чтобы это стало верным, поэтому решений нет.\n• `0 = 0` — верно всегда. Одно уравнение «исчезло», уравнений меньше, чем неизвестных, поэтому решений бесконечно много.\nНа уроке мы решали системы с единственным решением — это взгляд вперёд.",
+        "en": "The teacher's sheet has two \"special\" systems (4 and 5). There Gauss does not end with a number for z but with a row of zeros on the left.\n• `0 = −3` — false. No x, y, z can make it true, so no solution.\n• `0 = 0` — always true. One equation \"vanished\", there are fewer equations than unknowns, so infinitely many solutions.\nIn class we solved systems with a unique solution — this is a look ahead."
+      },
+      "math": [
+        "R2  ( 2  4  −6 | −5 )",
+        "R3  ( 1  2  −3 | −1 )",
+        "R2 ← R2 − 2R3",
+        "R2  ( 0  0  0 | −3 )",
+        "0 = −3"
+      ],
+      "why": {
+        "he": "למה זה קורה? במערכת 4 השורה השנייה היא \"כמעט פי 2\" מהשלישית: אגף שמאל בדיוק פי 2, אבל אגף ימין לא (−5 ולא −2). שתי דרישות שסותרות זו את זו. במערכת 5 השורה השלישית היא בדיוק סכום של שתי הראשונות, ולכן היא לא מוסיפה מידע חדש. גאוס \"מגלה\" את זה לבד — וזה אחד היתרונות שלו.",
+        "ru": "Почему так? В системе 4 вторая строка — «почти вдвое» третья: левая часть ровно в 2 раза больше, а правая — нет (−5, а не −2). Два требования противоречат друг другу. В системе 5 третья строка — ровно сумма первых двух, поэтому новой информации она не даёт. Гаусс сам это «обнаруживает» — и это одно из его достоинств.",
+        "en": "Why does it happen? In system 4 the second row is \"almost twice\" the third: the left side is exactly 2 times, but the right is not (−5, not −2). Two demands that contradict each other. In system 5 the third row is exactly the sum of the first two, so it adds no new information. Gauss \"discovers\" this by itself — one of its strengths."
+      },
+      "_src": "pass-0311"
     }
   ],
   "review": [
@@ -313,6 +412,11 @@ window.LESSONS['math-2026-10-25'] = {
         "he": "עוד מערכות מדף התרגילים של המרצה",
         "ru": "Ещё системы с листа преподавателя",
         "en": "More systems from the teacher's sheet"
+      },
+      "cls2": {
+        "he": "תרגיל כיתה 2 של המרצה (גאוס)",
+        "ru": "Лист преподавателя «תרגיל כיתה 2» (Гаусс)",
+        "en": "Teacher's class exercise 2 (Gauss)"
       }
     },
     "teacher": [
@@ -322,9 +426,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "26א",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`5x + 2y = 27`\n`7x − 3y = 32`\nכתבו את התשובה כך: x = …, y = …",
-          "ru": "Реши систему уравнений:\n`5x + 2y = 27`\n`7x − 3y = 32`\nЗапиши ответ так: x = …, y = …",
-          "en": "Solve the system of equations:\n`5x + 2y = 27`\n`7x − 3y = 32`\nWrite the answer like this: x = …, y = …"
+          "he": "פתרו את מערכת המשוואות\n`5x + 2y = 27`\n`7x − 3y = 32`\nכתבו את התשובה כך: x = …, y = …",
+          "ru": "Реши систему уравнений\n`5x + 2y = 27`\n`7x − 3y = 32`\nЗапиши ответ так: x = …, y = …",
+          "en": "Solve the system of equations\n`5x + 2y = 27`\n`7x − 3y = 32`\nWrite the answer like this: x = …, y = …"
         },
         "answer": {
           "accept": [
@@ -350,14 +454,14 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Nothing cancels right away. Pick an unknown and multiply each equation by a number so that its coefficients become equal in size."
           },
           {
-            "he": "צעד ראשון: `15x + 6y = 81`",
-            "ru": "Первый шаг: `15x + 6y = 81`",
-            "en": "First step: `15x + 6y = 81`"
+            "he": "צעד ראשון `15x + 6y = 81`",
+            "ru": "Первый шаг `15x + 6y = 81`",
+            "en": "First step `15x + 6y = 81`"
           },
           {
-            "he": "בהמשך מקבלים: `14x − 6y = 64`",
-            "ru": "Дальше получится: `14x − 6y = 64`",
-            "en": "Next you get: `14x − 6y = 64`"
+            "he": "בהמשך מקבלים `14x − 6y = 64`",
+            "ru": "Дальше получится `14x − 6y = 64`",
+            "en": "Next you get `14x − 6y = 64`"
           }
         ],
         "solution": [
@@ -367,41 +471,41 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Eliminate y: the coefficients are 2 and 3, the common number is `6`."
           },
           {
-            "he": "כופלים את משוואה 1 ב־`3`:",
-            "ru": "Умножаем уравнение 1 на `3`:",
-            "en": "Multiply equation 1 by `3`:"
+            "he": "כופלים את משוואה 1 ב־`3`",
+            "ru": "Умножаем уравнение 1 на `3`",
+            "en": "Multiply equation 1 by `3`"
           },
           "15x + 6y = 81",
           {
-            "he": "כופלים את משוואה 2 ב־`2`:",
-            "ru": "Умножаем уравнение 2 на `2`:",
-            "en": "Multiply equation 2 by `2`:"
+            "he": "כופלים את משוואה 2 ב־`2`",
+            "ru": "Умножаем уравнение 2 на `2`",
+            "en": "Multiply equation 2 by `2`"
           },
           "14x − 6y = 64",
           {
-            "he": "`+6y` ו־`−6y` — מחברים:",
-            "ru": "`+6y` и `−6y` — складываем:",
-            "en": "`+6y` and `−6y` — add:"
+            "he": "`+6y` ו־`−6y` — מחברים",
+            "ru": "`+6y` и `−6y` — складываем",
+            "en": "`+6y` and `−6y` — add"
           },
           "29x = 145",
           {
-            "he": "מחלקים את שני האגפים ב־`29`:",
-            "ru": "Делим обе части на `29`:",
-            "en": "Divide both sides by `29`:"
+            "he": "מחלקים את שני האגפים ב־`29`",
+            "ru": "Делим обе части на `29`",
+            "en": "Divide both sides by `29`"
           },
           "x = 5",
           {
-            "he": "מציבים `x = 5` במשוואה הראשונה:",
-            "ru": "Подставляем `x = 5` в первое уравнение:",
-            "en": "Substitute `x = 5` into the first equation:"
+            "he": "מציבים `x = 5` במשוואה הראשונה",
+            "ru": "Подставляем `x = 5` в первое уравнение",
+            "en": "Substitute `x = 5` into the first equation"
           },
           "25 + 2y = 27",
           "2y = 2",
           "y = 1",
           {
-            "he": "תשובה: `x = 5,  y = 1`",
-            "ru": "Ответ: `x = 5,  y = 1`",
-            "en": "Answer: `x = 5,  y = 1`"
+            "he": "תשובה `x = 5,  y = 1`",
+            "ru": "Ответ `x = 5,  y = 1`",
+            "en": "Answer `x = 5,  y = 1`"
           }
         ]
       },
@@ -411,9 +515,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "26ב",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`7x − 4y = 5`\n`10x + 3y = 42`\nכתבו את התשובה כך: x = …, y = …",
-          "ru": "Реши систему уравнений:\n`7x − 4y = 5`\n`10x + 3y = 42`\nЗапиши ответ так: x = …, y = …",
-          "en": "Solve the system of equations:\n`7x − 4y = 5`\n`10x + 3y = 42`\nWrite the answer like this: x = …, y = …"
+          "he": "פתרו את מערכת המשוואות\n`7x − 4y = 5`\n`10x + 3y = 42`\nכתבו את התשובה כך: x = …, y = …",
+          "ru": "Реши систему уравнений\n`7x − 4y = 5`\n`10x + 3y = 42`\nЗапиши ответ так: x = …, y = …",
+          "en": "Solve the system of equations\n`7x − 4y = 5`\n`10x + 3y = 42`\nWrite the answer like this: x = …, y = …"
         },
         "answer": {
           "accept": [
@@ -439,14 +543,14 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Nothing cancels right away. Pick an unknown and multiply each equation by a number so that its coefficients become equal in size."
           },
           {
-            "he": "צעד ראשון: `21x − 12y = 15`",
-            "ru": "Первый шаг: `21x − 12y = 15`",
-            "en": "First step: `21x − 12y = 15`"
+            "he": "צעד ראשון `21x − 12y = 15`",
+            "ru": "Первый шаг `21x − 12y = 15`",
+            "en": "First step `21x − 12y = 15`"
           },
           {
-            "he": "בהמשך מקבלים: `40x + 12y = 168`",
-            "ru": "Дальше получится: `40x + 12y = 168`",
-            "en": "Next you get: `40x + 12y = 168`"
+            "he": "בהמשך מקבלים `40x + 12y = 168`",
+            "ru": "Дальше получится `40x + 12y = 168`",
+            "en": "Next you get `40x + 12y = 168`"
           }
         ],
         "solution": [
@@ -456,41 +560,41 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Eliminate y: the coefficients are 4 and 3, the common number is `12`."
           },
           {
-            "he": "כופלים את משוואה 1 ב־`3`:",
-            "ru": "Умножаем уравнение 1 на `3`:",
-            "en": "Multiply equation 1 by `3`:"
+            "he": "כופלים את משוואה 1 ב־`3`",
+            "ru": "Умножаем уравнение 1 на `3`",
+            "en": "Multiply equation 1 by `3`"
           },
           "21x − 12y = 15",
           {
-            "he": "כופלים את משוואה 2 ב־`4`:",
-            "ru": "Умножаем уравнение 2 на `4`:",
-            "en": "Multiply equation 2 by `4`:"
+            "he": "כופלים את משוואה 2 ב־`4`",
+            "ru": "Умножаем уравнение 2 на `4`",
+            "en": "Multiply equation 2 by `4`"
           },
           "40x + 12y = 168",
           {
-            "he": "מחברים את המשוואות:",
-            "ru": "Складываем уравнения:",
-            "en": "Add the equations:"
+            "he": "מחברים את המשוואות",
+            "ru": "Складываем уравнения",
+            "en": "Add the equations"
           },
           "61x = 183",
           {
-            "he": "מחלקים את שני האגפים ב־`61`:",
-            "ru": "Делим обе части на `61`:",
-            "en": "Divide both sides by `61`:"
+            "he": "מחלקים את שני האגפים ב־`61`",
+            "ru": "Делим обе части на `61`",
+            "en": "Divide both sides by `61`"
           },
           "x = 3",
           {
-            "he": "מציבים `x = 3` במשוואה הראשונה:",
-            "ru": "Подставляем `x = 3` в первое уравнение:",
-            "en": "Substitute `x = 3` into the first equation:"
+            "he": "מציבים `x = 3` במשוואה הראשונה",
+            "ru": "Подставляем `x = 3` в первое уравнение",
+            "en": "Substitute `x = 3` into the first equation"
           },
           "21 − 4y = 5",
           "−4y = −16",
           "y = 4",
           {
-            "he": "תשובה: `x = 3,  y = 4`",
-            "ru": "Ответ: `x = 3,  y = 4`",
-            "en": "Answer: `x = 3,  y = 4`"
+            "he": "תשובה `x = 3,  y = 4`",
+            "ru": "Ответ `x = 3,  y = 4`",
+            "en": "Answer `x = 3,  y = 4`"
           }
         ]
       },
@@ -500,9 +604,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "26ג",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`11x − 6y = 80`\n`12x + 4y = 24`\nכתבו את התשובה כך: x = …, y = …",
-          "ru": "Реши систему уравнений:\n`11x − 6y = 80`\n`12x + 4y = 24`\nЗапиши ответ так: x = …, y = …",
-          "en": "Solve the system of equations:\n`11x − 6y = 80`\n`12x + 4y = 24`\nWrite the answer like this: x = …, y = …"
+          "he": "פתרו את מערכת המשוואות\n`11x − 6y = 80`\n`12x + 4y = 24`\nכתבו את התשובה כך: x = …, y = …",
+          "ru": "Реши систему уравнений\n`11x − 6y = 80`\n`12x + 4y = 24`\nЗапиши ответ так: x = …, y = …",
+          "en": "Solve the system of equations\n`11x − 6y = 80`\n`12x + 4y = 24`\nWrite the answer like this: x = …, y = …"
         },
         "answer": {
           "accept": [
@@ -528,14 +632,14 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Nothing cancels right away. Pick an unknown and multiply each equation by a number so that its coefficients become equal in size."
           },
           {
-            "he": "צעד ראשון: `22x − 12y = 160`",
-            "ru": "Первый шаг: `22x − 12y = 160`",
-            "en": "First step: `22x − 12y = 160`"
+            "he": "צעד ראשון `22x − 12y = 160`",
+            "ru": "Первый шаг `22x − 12y = 160`",
+            "en": "First step `22x − 12y = 160`"
           },
           {
-            "he": "בהמשך מקבלים: `36x + 12y = 72`",
-            "ru": "Дальше получится: `36x + 12y = 72`",
-            "en": "Next you get: `36x + 12y = 72`"
+            "he": "בהמשך מקבלים `36x + 12y = 72`",
+            "ru": "Дальше получится `36x + 12y = 72`",
+            "en": "Next you get `36x + 12y = 72`"
           }
         ],
         "solution": [
@@ -545,41 +649,41 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Eliminate y: the coefficients are 6 and 4, the common number is `12`."
           },
           {
-            "he": "כופלים את משוואה 1 ב־`2`:",
-            "ru": "Умножаем уравнение 1 на `2`:",
-            "en": "Multiply equation 1 by `2`:"
+            "he": "כופלים את משוואה 1 ב־`2`",
+            "ru": "Умножаем уравнение 1 на `2`",
+            "en": "Multiply equation 1 by `2`"
           },
           "22x − 12y = 160",
           {
-            "he": "כופלים את משוואה 2 ב־`3`:",
-            "ru": "Умножаем уравнение 2 на `3`:",
-            "en": "Multiply equation 2 by `3`:"
+            "he": "כופלים את משוואה 2 ב־`3`",
+            "ru": "Умножаем уравнение 2 на `3`",
+            "en": "Multiply equation 2 by `3`"
           },
           "36x + 12y = 72",
           {
-            "he": "מחברים את המשוואות:",
-            "ru": "Складываем уравнения:",
-            "en": "Add the equations:"
+            "he": "מחברים את המשוואות",
+            "ru": "Складываем уравнения",
+            "en": "Add the equations"
           },
           "58x = 232",
           {
-            "he": "מחלקים את שני האגפים ב־`58`:",
-            "ru": "Делим обе части на `58`:",
-            "en": "Divide both sides by `58`:"
+            "he": "מחלקים את שני האגפים ב־`58`",
+            "ru": "Делим обе части на `58`",
+            "en": "Divide both sides by `58`"
           },
           "x = 4",
           {
-            "he": "מציבים `x = 4` במשוואה השנייה:",
-            "ru": "Подставляем `x = 4` в второе уравнение:",
-            "en": "Substitute `x = 4` into the second equation:"
+            "he": "מציבים `x = 4` במשוואה השנייה",
+            "ru": "Подставляем `x = 4` в второе уравнение",
+            "en": "Substitute `x = 4` into the second equation"
           },
           "48 + 4y = 24",
           "4y = −24",
           "y = −6",
           {
-            "he": "תשובה: `x = 4,  y = −6`",
-            "ru": "Ответ: `x = 4,  y = −6`",
-            "en": "Answer: `x = 4,  y = −6`"
+            "he": "תשובה `x = 4,  y = −6`",
+            "ru": "Ответ `x = 4,  y = −6`",
+            "en": "Answer `x = 4,  y = −6`"
           }
         ]
       },
@@ -589,9 +693,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "26ד",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`9x + 5y = −38`\n`7x + 2y = −39`\nכתבו את התשובה כך: x = …, y = …",
-          "ru": "Реши систему уравнений:\n`9x + 5y = −38`\n`7x + 2y = −39`\nЗапиши ответ так: x = …, y = …",
-          "en": "Solve the system of equations:\n`9x + 5y = −38`\n`7x + 2y = −39`\nWrite the answer like this: x = …, y = …"
+          "he": "פתרו את מערכת המשוואות\n`9x + 5y = −38`\n`7x + 2y = −39`\nכתבו את התשובה כך: x = …, y = …",
+          "ru": "Реши систему уравнений\n`9x + 5y = −38`\n`7x + 2y = −39`\nЗапиши ответ так: x = …, y = …",
+          "en": "Solve the system of equations\n`9x + 5y = −38`\n`7x + 2y = −39`\nWrite the answer like this: x = …, y = …"
         },
         "answer": {
           "accept": [
@@ -617,14 +721,14 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Nothing cancels right away. Pick an unknown and multiply each equation by a number so that its coefficients become equal in size."
           },
           {
-            "he": "צעד ראשון: `18x + 10y = −76`",
-            "ru": "Первый шаг: `18x + 10y = −76`",
-            "en": "First step: `18x + 10y = −76`"
+            "he": "צעד ראשון `18x + 10y = −76`",
+            "ru": "Первый шаг `18x + 10y = −76`",
+            "en": "First step `18x + 10y = −76`"
           },
           {
-            "he": "בהמשך מקבלים: `−35x − 10y = 195`",
-            "ru": "Дальше получится: `−35x − 10y = 195`",
-            "en": "Next you get: `−35x − 10y = 195`"
+            "he": "בהמשך מקבלים `−35x − 10y = 195`",
+            "ru": "Дальше получится `−35x − 10y = 195`",
+            "en": "Next you get `−35x − 10y = 195`"
           }
         ],
         "solution": [
@@ -634,41 +738,41 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Eliminate y: the coefficients are 5 and 2, the common number is `10`. Multiply the second by a negative number, then add."
           },
           {
-            "he": "כופלים את משוואה 1 ב־`2`:",
-            "ru": "Умножаем уравнение 1 на `2`:",
-            "en": "Multiply equation 1 by `2`:"
+            "he": "כופלים את משוואה 1 ב־`2`",
+            "ru": "Умножаем уравнение 1 на `2`",
+            "en": "Multiply equation 1 by `2`"
           },
           "18x + 10y = −76",
           {
-            "he": "כופלים את משוואה 2 ב־`−5`:",
-            "ru": "Умножаем уравнение 2 на `−5`:",
-            "en": "Multiply equation 2 by `−5`:"
+            "he": "כופלים את משוואה 2 ב־`−5`",
+            "ru": "Умножаем уравнение 2 на `−5`",
+            "en": "Multiply equation 2 by `−5`"
           },
           "−35x − 10y = 195",
           {
-            "he": "מחברים את המשוואות:",
-            "ru": "Складываем уравнения:",
-            "en": "Add the equations:"
+            "he": "מחברים את המשוואות",
+            "ru": "Складываем уравнения",
+            "en": "Add the equations"
           },
           "−17x = 119",
           {
-            "he": "מחלקים את שני האגפים ב־`−17`:",
-            "ru": "Делим обе части на `−17`:",
-            "en": "Divide both sides by `−17`:"
+            "he": "מחלקים את שני האגפים ב־`−17`",
+            "ru": "Делим обе части на `−17`",
+            "en": "Divide both sides by `−17`"
           },
           "x = −7",
           {
-            "he": "מציבים `x = −7` במשוואה השנייה:",
-            "ru": "Подставляем `x = −7` в второе уравнение:",
-            "en": "Substitute `x = −7` into the second equation:"
+            "he": "מציבים `x = −7` במשוואה השנייה",
+            "ru": "Подставляем `x = −7` в второе уравнение",
+            "en": "Substitute `x = −7` into the second equation"
           },
           "−49 + 2y = −39",
           "2y = 10",
           "y = 5",
           {
-            "he": "תשובה: `x = −7,  y = 5`",
-            "ru": "Ответ: `x = −7,  y = 5`",
-            "en": "Answer: `x = −7,  y = 5`"
+            "he": "תשובה `x = −7,  y = 5`",
+            "ru": "Ответ `x = −7,  y = 5`",
+            "en": "Answer `x = −7,  y = 5`"
           }
         ]
       },
@@ -678,9 +782,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "26ה",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`−12x + 8y = −72`\n`17x + 4y = 56`\nכתבו את התשובה כך: x = …, y = …",
-          "ru": "Реши систему уравнений:\n`−12x + 8y = −72`\n`17x + 4y = 56`\nЗапиши ответ так: x = …, y = …",
-          "en": "Solve the system of equations:\n`−12x + 8y = −72`\n`17x + 4y = 56`\nWrite the answer like this: x = …, y = …"
+          "he": "פתרו את מערכת המשוואות\n`−12x + 8y = −72`\n`17x + 4y = 56`\nכתבו את התשובה כך: x = …, y = …",
+          "ru": "Реши систему уравнений\n`−12x + 8y = −72`\n`17x + 4y = 56`\nЗапиши ответ так: x = …, y = …",
+          "en": "Solve the system of equations\n`−12x + 8y = −72`\n`17x + 4y = 56`\nWrite the answer like this: x = …, y = …"
         },
         "answer": {
           "accept": [
@@ -706,47 +810,47 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Maybe multiplying just one equation is enough: look for a coefficient that is divisible by the matching one in the other equation."
           },
           {
-            "he": "צעד ראשון: `−34x − 8y = −112`",
-            "ru": "Первый шаг: `−34x − 8y = −112`",
-            "en": "First step: `−34x − 8y = −112`"
+            "he": "צעד ראשון `−34x − 8y = −112`",
+            "ru": "Первый шаг `−34x − 8y = −112`",
+            "en": "First step `−34x − 8y = −112`"
           },
           {
-            "he": "בהמשך מקבלים: `−46x = −184`",
-            "ru": "Дальше получится: `−46x = −184`",
-            "en": "Next you get: `−46x = −184`"
+            "he": "בהמשך מקבלים `−46x = −184`",
+            "ru": "Дальше получится `−46x = −184`",
+            "en": "Next you get `−46x = −184`"
           }
         ],
         "solution": [
           {
-            "he": "`8` מתחלק ב־`4`, לכן מספיק לכפול רק את המשוואה השנייה. כופלים ב־`−2` כדי לקבל `−8y`:",
-            "ru": "`8` делится на `4`, поэтому хватит умножить только второе уравнение. Умножаем на `−2`, чтобы получить `−8y`:",
-            "en": "`8` is divisible by `4`, so only the second equation needs multiplying. Multiply by `−2` to get `−8y`:"
+            "he": "`8` מתחלק ב־`4`, לכן מספיק לכפול רק את המשוואה השנייה. כופלים ב־`−2` כדי לקבל `−8y`",
+            "ru": "`8` делится на `4`, поэтому хватит умножить только второе уравнение. Умножаем на `−2`, чтобы получить `−8y`",
+            "en": "`8` is divisible by `4`, so only the second equation needs multiplying. Multiply by `−2` to get `−8y`"
           },
           "−34x − 8y = −112",
           {
-            "he": "מחברים את המשוואות:",
-            "ru": "Складываем уравнения:",
-            "en": "Add the equations:"
+            "he": "מחברים את המשוואות",
+            "ru": "Складываем уравнения",
+            "en": "Add the equations"
           },
           "−46x = −184",
           {
-            "he": "מחלקים את שני האגפים ב־`−46`:",
-            "ru": "Делим обе части на `−46`:",
-            "en": "Divide both sides by `−46`:"
+            "he": "מחלקים את שני האגפים ב־`−46`",
+            "ru": "Делим обе части на `−46`",
+            "en": "Divide both sides by `−46`"
           },
           "x = 4",
           {
-            "he": "מציבים `x = 4` במשוואה השנייה:",
-            "ru": "Подставляем `x = 4` в второе уравнение:",
-            "en": "Substitute `x = 4` into the second equation:"
+            "he": "מציבים `x = 4` במשוואה השנייה",
+            "ru": "Подставляем `x = 4` в второе уравнение",
+            "en": "Substitute `x = 4` into the second equation"
           },
           "68 + 4y = 56",
           "4y = −12",
           "y = −3",
           {
-            "he": "תשובה: `x = 4,  y = −3`",
-            "ru": "Ответ: `x = 4,  y = −3`",
-            "en": "Answer: `x = 4,  y = −3`"
+            "he": "תשובה `x = 4,  y = −3`",
+            "ru": "Ответ `x = 4,  y = −3`",
+            "en": "Answer `x = 4,  y = −3`"
           }
         ]
       },
@@ -756,9 +860,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "26ו",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`−4x + 16y = 12`\n`10x + 23y = 96`\nכתבו את התשובה כך: x = …, y = …",
-          "ru": "Реши систему уравнений:\n`−4x + 16y = 12`\n`10x + 23y = 96`\nЗапиши ответ так: x = …, y = …",
-          "en": "Solve the system of equations:\n`−4x + 16y = 12`\n`10x + 23y = 96`\nWrite the answer like this: x = …, y = …"
+          "he": "פתרו את מערכת המשוואות\n`−4x + 16y = 12`\n`10x + 23y = 96`\nכתבו את התשובה כך: x = …, y = …",
+          "ru": "Реши систему уравнений\n`−4x + 16y = 12`\n`10x + 23y = 96`\nЗапиши ответ так: x = …, y = …",
+          "en": "Solve the system of equations\n`−4x + 16y = 12`\n`10x + 23y = 96`\nWrite the answer like this: x = …, y = …"
         },
         "answer": {
           "accept": [
@@ -784,14 +888,14 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Nothing cancels right away. Pick an unknown and multiply each equation by a number so that its coefficients become equal in size."
           },
           {
-            "he": "צעד ראשון: `−20x + 80y = 60`",
-            "ru": "Первый шаг: `−20x + 80y = 60`",
-            "en": "First step: `−20x + 80y = 60`"
+            "he": "צעד ראשון `−20x + 80y = 60`",
+            "ru": "Первый шаг `−20x + 80y = 60`",
+            "en": "First step `−20x + 80y = 60`"
           },
           {
-            "he": "בהמשך מקבלים: `20x + 46y = 192`",
-            "ru": "Дальше получится: `20x + 46y = 192`",
-            "en": "Next you get: `20x + 46y = 192`"
+            "he": "בהמשך מקבלים `20x + 46y = 192`",
+            "ru": "Дальше получится `20x + 46y = 192`",
+            "en": "Next you get `20x + 46y = 192`"
           }
         ],
         "solution": [
@@ -801,41 +905,41 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Eliminate x: the coefficients are 4 and 10, the common number is `20`."
           },
           {
-            "he": "כופלים את משוואה 1 ב־`5`:",
-            "ru": "Умножаем уравнение 1 на `5`:",
-            "en": "Multiply equation 1 by `5`:"
+            "he": "כופלים את משוואה 1 ב־`5`",
+            "ru": "Умножаем уравнение 1 на `5`",
+            "en": "Multiply equation 1 by `5`"
           },
           "−20x + 80y = 60",
           {
-            "he": "כופלים את משוואה 2 ב־`2`:",
-            "ru": "Умножаем уравнение 2 на `2`:",
-            "en": "Multiply equation 2 by `2`:"
+            "he": "כופלים את משוואה 2 ב־`2`",
+            "ru": "Умножаем уравнение 2 на `2`",
+            "en": "Multiply equation 2 by `2`"
           },
           "20x + 46y = 192",
           {
-            "he": "מחברים את המשוואות:",
-            "ru": "Складываем уравнения:",
-            "en": "Add the equations:"
+            "he": "מחברים את המשוואות",
+            "ru": "Складываем уравнения",
+            "en": "Add the equations"
           },
           "126y = 252",
           {
-            "he": "מחלקים את שני האגפים ב־`126`:",
-            "ru": "Делим обе части на `126`:",
-            "en": "Divide both sides by `126`:"
+            "he": "מחלקים את שני האגפים ב־`126`",
+            "ru": "Делим обе части на `126`",
+            "en": "Divide both sides by `126`"
           },
           "y = 2",
           {
-            "he": "מציבים `y = 2` במשוואה הראשונה:",
-            "ru": "Подставляем `y = 2` в первое уравнение:",
-            "en": "Substitute `y = 2` into the first equation:"
+            "he": "מציבים `y = 2` במשוואה הראשונה",
+            "ru": "Подставляем `y = 2` в первое уравнение",
+            "en": "Substitute `y = 2` into the first equation"
           },
           "−4x + 32 = 12",
           "−4x = −20",
           "x = 5",
           {
-            "he": "תשובה: `x = 5,  y = 2`",
-            "ru": "Ответ: `x = 5,  y = 2`",
-            "en": "Answer: `x = 5,  y = 2`"
+            "he": "תשובה `x = 5,  y = 2`",
+            "ru": "Ответ `x = 5,  y = 2`",
+            "en": "Answer `x = 5,  y = 2`"
           }
         ]
       },
@@ -845,9 +949,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "1",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`2x + 3y + 4z = 20`\n`3x − 2y + 5z = 13`\n`4x + 5y − 2z = 18`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
-          "ru": "Реши систему уравнений:\n`2x + 3y + 4z = 20`\n`3x − 2y + 5z = 13`\n`4x + 5y − 2z = 18`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
-          "en": "Solve the system of equations:\n`2x + 3y + 4z = 20`\n`3x − 2y + 5z = 13`\n`4x + 5y − 2z = 18`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+          "he": "פתרו את מערכת המשוואות\n`2x + 3y + 4z = 20`\n`3x − 2y + 5z = 13`\n`4x + 5y − 2z = 18`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
+          "ru": "Реши систему уравнений\n`2x + 3y + 4z = 20`\n`3x − 2y + 5z = 13`\n`4x + 5y − 2z = 18`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
+          "en": "Solve the system of equations\n`2x + 3y + 4z = 20`\n`3x − 2y + 5z = 13`\n`4x + 5y − 2z = 18`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
         },
         "answer": {
           "accept": [
@@ -964,50 +1068,50 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Write the augmented matrix and make zeros under the diagonal: first in column one, then in column two."
           },
           {
-            "he": "צעד ראשון: `R2 ← 2R2 − 3R1`",
-            "ru": "Первый шаг: `R2 ← 2R2 − 3R1`",
-            "en": "First step: `R2 ← 2R2 − 3R1`"
+            "he": "צעד ראשון `R2 ← 2R2 − 3R1`",
+            "ru": "Первый шаг `R2 ← 2R2 − 3R1`",
+            "en": "First step `R2 ← 2R2 − 3R1`"
           },
           {
-            "he": "בהמשך מקבלים: `R2: ( 0  −13  −2 | −34 )`",
-            "ru": "Дальше получится: `R2: ( 0  −13  −2 | −34 )`",
-            "en": "Next you get: `R2: ( 0  −13  −2 | −34 )`"
+            "he": "בהמשך מקבלים `R2  ( 0  −13  −2 | −34 )`",
+            "ru": "Дальше получится `R2  ( 0  −13  −2 | −34 )`",
+            "en": "Next you get `R2  ( 0  −13  −2 | −34 )`"
           }
         ],
         "solution": [
           {
-            "he": "כותבים את המקדמים במטריצה מורחבת:",
-            "ru": "Записываем коэффициенты в расширенную матрицу:",
-            "en": "Write the coefficients as an augmented matrix:"
+            "he": "כותבים את המקדמים במטריצה מורחבת",
+            "ru": "Записываем коэффициенты в расширенную матрицу",
+            "en": "Write the coefficients as an augmented matrix"
           },
-          "R1: ( 2   3   4 | 20 )",
-          "R2: ( 3  −2   5 | 13 )",
-          "R3: ( 4   5  −2 | 18 )",
+          "R1  ( 2   3   4 | 20 )",
+          "R2  ( 3  −2   5 | 13 )",
+          "R3  ( 4   5  −2 | 18 )",
           {
-            "he": "מאפסים את x בשורה 2:",
-            "ru": "Обнуляем x во второй строке:",
-            "en": "Make x zero in row 2:"
+            "he": "מאפסים את x בשורה 2",
+            "ru": "Обнуляем x во второй строке",
+            "en": "Make x zero in row 2"
           },
           "R2 ← 2R2 − 3R1",
-          "R2: ( 0  −13  −2 | −34 )",
+          "R2  ( 0  −13  −2 | −34 )",
           {
-            "he": "מאפסים את x בשורה 3:",
-            "ru": "Обнуляем x в третьей строке:",
-            "en": "Make x zero in row 3:"
+            "he": "מאפסים את x בשורה 3",
+            "ru": "Обнуляем x в третьей строке",
+            "en": "Make x zero in row 3"
           },
           "R3 ← R3 − 2R1",
-          "R3: ( 0  −1  −10 | −22 )",
+          "R3  ( 0  −1  −10 | −22 )",
           {
-            "he": "מאפסים את y בשורה 3:",
-            "ru": "Обнуляем y в третьей строке:",
-            "en": "Make y zero in row 3:"
+            "he": "מאפסים את y בשורה 3",
+            "ru": "Обнуляем y в третьей строке",
+            "en": "Make y zero in row 3"
           },
           "R3 ← −13R3 + R2",
-          "R3: ( 0   0  128 | 252 )",
+          "R3  ( 0   0  128 | 252 )",
           {
-            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה:",
-            "ru": "Возвращаемся к уравнениям, снизу вверх:",
-            "en": "Back to equations, from the bottom row up:"
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
           },
           "128z = 252",
           "z = 252/128",
@@ -1025,14 +1129,14 @@ window.LESSONS['math-2026-10-25'] = {
           "2x = 83/16",
           "x = 83/32",
           {
-            "he": "תשובה: `x = 83/32,  y = 37/16,  z = 63/32`",
-            "ru": "Ответ: `x = 83/32,  y = 37/16,  z = 63/32`",
-            "en": "Answer: `x = 83/32,  y = 37/16,  z = 63/32`"
+            "he": "תשובה `x = 83/32,  y = 37/16,  z = 63/32`",
+            "ru": "Ответ `x = 83/32,  y = 37/16,  z = 63/32`",
+            "en": "Answer `x = 83/32,  y = 37/16,  z = 63/32`"
           },
           {
-            "he": "בעשרוני: `x ≈ 2.59`, `y ≈ 2.31`, `z ≈ 1.97`.",
-            "ru": "В десятичных: `x ≈ 2.59`, `y ≈ 2.31`, `z ≈ 1.97`.",
-            "en": "As decimals: `x ≈ 2.59`, `y ≈ 2.31`, `z ≈ 1.97`."
+            "he": "בעשרוני `x ≈ 2.59`, `y ≈ 2.31`, `z ≈ 1.97`.",
+            "ru": "В десятичных `x ≈ 2.59`, `y ≈ 2.31`, `z ≈ 1.97`.",
+            "en": "As decimals `x ≈ 2.59`, `y ≈ 2.31`, `z ≈ 1.97`."
           }
         ]
       },
@@ -1042,9 +1146,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "4",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`6x + 2y − 3z = 13`\n`3x + 4y + 2z = 23`\n`2x − 3y + 5z = 10`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
-          "ru": "Реши систему уравнений:\n`6x + 2y − 3z = 13`\n`3x + 4y + 2z = 23`\n`2x − 3y + 5z = 10`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
-          "en": "Solve the system of equations:\n`6x + 2y − 3z = 13`\n`3x + 4y + 2z = 23`\n`2x − 3y + 5z = 10`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+          "he": "פתרו את מערכת המשוואות\n`6x + 2y − 3z = 13`\n`3x + 4y + 2z = 23`\n`2x − 3y + 5z = 10`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
+          "ru": "Реши систему уравнений\n`6x + 2y − 3z = 13`\n`3x + 4y + 2z = 23`\n`2x − 3y + 5z = 10`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
+          "en": "Solve the system of equations\n`6x + 2y − 3z = 13`\n`3x + 4y + 2z = 23`\n`2x − 3y + 5z = 10`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
         },
         "answer": {
           "accept": [
@@ -1070,50 +1174,50 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Write the augmented matrix and make zeros under the diagonal: first in column one, then in column two."
           },
           {
-            "he": "צעד ראשון: `R2 ← 2R2 − R1`",
-            "ru": "Первый шаг: `R2 ← 2R2 − R1`",
-            "en": "First step: `R2 ← 2R2 − R1`"
+            "he": "צעד ראשון `R2 ← 2R2 − R1`",
+            "ru": "Первый шаг `R2 ← 2R2 − R1`",
+            "en": "First step `R2 ← 2R2 − R1`"
           },
           {
-            "he": "בהמשך מקבלים: `R2: ( 0  6  7 | 33 )`",
-            "ru": "Дальше получится: `R2: ( 0  6  7 | 33 )`",
-            "en": "Next you get: `R2: ( 0  6  7 | 33 )`"
+            "he": "בהמשך מקבלים `R2  ( 0  6  7 | 33 )`",
+            "ru": "Дальше получится `R2  ( 0  6  7 | 33 )`",
+            "en": "Next you get `R2  ( 0  6  7 | 33 )`"
           }
         ],
         "solution": [
           {
-            "he": "מטריצה מורחבת:",
-            "ru": "Расширенная матрица:",
-            "en": "The augmented matrix:"
+            "he": "מטריצה מורחבת",
+            "ru": "Расширенная матрица",
+            "en": "The augmented matrix"
           },
-          "R1: ( 6   2  −3 | 13 )",
-          "R2: ( 3   4   2 | 23 )",
-          "R3: ( 2  −3   5 | 10 )",
+          "R1  ( 6   2  −3 | 13 )",
+          "R2  ( 3   4   2 | 23 )",
+          "R3  ( 2  −3   5 | 10 )",
           {
-            "he": "מאפסים את x בשורה 2:",
-            "ru": "Обнуляем x во второй строке:",
-            "en": "Make x zero in row 2:"
+            "he": "מאפסים את x בשורה 2",
+            "ru": "Обнуляем x во второй строке",
+            "en": "Make x zero in row 2"
           },
           "R2 ← 2R2 − R1",
-          "R2: ( 0  6  7 | 33 )",
+          "R2  ( 0  6  7 | 33 )",
           {
-            "he": "מאפסים את x בשורה 3:",
-            "ru": "Обнуляем x в третьей строке:",
-            "en": "Make x zero in row 3:"
+            "he": "מאפסים את x בשורה 3",
+            "ru": "Обнуляем x в третьей строке",
+            "en": "Make x zero in row 3"
           },
           "R3 ← 3R3 − R1",
-          "R3: ( 0  −11  18 | 17 )",
+          "R3  ( 0  −11  18 | 17 )",
           {
-            "he": "מאפסים את y בשורה 3:",
-            "ru": "Обнуляем y в третьей строке:",
-            "en": "Make y zero in row 3:"
+            "he": "מאפסים את y בשורה 3",
+            "ru": "Обнуляем y в третьей строке",
+            "en": "Make y zero in row 3"
           },
           "R3 ← 6R3 + 11R2",
-          "R3: ( 0   0  185 | 465 )",
+          "R3  ( 0   0  185 | 465 )",
           {
-            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה:",
-            "ru": "Возвращаемся к уравнениям, снизу вверх:",
-            "en": "Back to equations, from the bottom row up:"
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
           },
           "185z = 465",
           "z = 465/185",
@@ -1131,14 +1235,14 @@ window.LESSONS['math-2026-10-25'] = {
           "6x = 570/37",
           "x = 95/37",
           {
-            "he": "תשובה: `x = 95/37,  y = 95/37,  z = 93/37`",
-            "ru": "Ответ: `x = 95/37,  y = 95/37,  z = 93/37`",
-            "en": "Answer: `x = 95/37,  y = 95/37,  z = 93/37`"
+            "he": "תשובה `x = 95/37,  y = 95/37,  z = 93/37`",
+            "ru": "Ответ `x = 95/37,  y = 95/37,  z = 93/37`",
+            "en": "Answer `x = 95/37,  y = 95/37,  z = 93/37`"
           },
           {
-            "he": "בעשרוני: `x ≈ 2.57`, `y ≈ 2.57`, `z ≈ 2.51`.",
-            "ru": "В десятичных: `x ≈ 2.57`, `y ≈ 2.57`, `z ≈ 2.51`.",
-            "en": "As decimals: `x ≈ 2.57`, `y ≈ 2.57`, `z ≈ 2.51`."
+            "he": "בעשרוני `x ≈ 2.57`, `y ≈ 2.57`, `z ≈ 2.51`.",
+            "ru": "В десятичных `x ≈ 2.57`, `y ≈ 2.57`, `z ≈ 2.51`.",
+            "en": "As decimals `x ≈ 2.57`, `y ≈ 2.57`, `z ≈ 2.51`."
           }
         ]
       },
@@ -1148,9 +1252,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "2",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`5x + 2y + 3z = 26`\n`2x + 4y − 2z = 4`\n`3x − 3y + 4z = 11`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
-          "ru": "Реши систему уравнений:\n`5x + 2y + 3z = 26`\n`2x + 4y − 2z = 4`\n`3x − 3y + 4z = 11`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
-          "en": "Solve the system of equations:\n`5x + 2y + 3z = 26`\n`2x + 4y − 2z = 4`\n`3x − 3y + 4z = 11`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+          "he": "פתרו את מערכת המשוואות\n`5x + 2y + 3z = 26`\n`2x + 4y − 2z = 4`\n`3x − 3y + 4z = 11`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
+          "ru": "Реши систему уравнений\n`5x + 2y + 3z = 26`\n`2x + 4y − 2z = 4`\n`3x − 3y + 4z = 11`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
+          "en": "Solve the system of equations\n`5x + 2y + 3z = 26`\n`2x + 4y − 2z = 4`\n`3x − 3y + 4z = 11`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
         },
         "answer": {
           "accept": [
@@ -1251,57 +1355,57 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Write the augmented matrix and make zeros under the diagonal: first in column one, then in column two."
           },
           {
-            "he": "צעד ראשון: `R2 ← 5R2 − 2R1`",
-            "ru": "Первый шаг: `R2 ← 5R2 − 2R1`",
-            "en": "First step: `R2 ← 5R2 − 2R1`"
+            "he": "צעד ראשון `R2 ← 5R2 − 2R1`",
+            "ru": "Первый шаг `R2 ← 5R2 − 2R1`",
+            "en": "First step `R2 ← 5R2 − 2R1`"
           }
         ],
         "solution": [
           {
-            "he": "מטריצה מורחבת:",
-            "ru": "Расширенная матрица:",
-            "en": "The augmented matrix:"
+            "he": "מטריצה מורחבת",
+            "ru": "Расширенная матрица",
+            "en": "The augmented matrix"
           },
-          "R1: ( 5  2  3 | 26 )",
-          "R2: ( 2  4  −2 | 4 )",
-          "R3: ( 3  −3  4 | 11 )",
+          "R1  ( 5  2  3 | 26 )",
+          "R2  ( 2  4  −2 | 4 )",
+          "R3  ( 3  −3  4 | 11 )",
           {
-            "he": "מאפסים את x בשורה 2:",
-            "ru": "Обнуляем x во второй строке:",
-            "en": "Make x zero in row 2:"
+            "he": "מאפסים את x בשורה 2",
+            "ru": "Обнуляем x во второй строке",
+            "en": "Make x zero in row 2"
           },
           "R2 ← 5R2 − 2R1",
-          "R2: ( 0  16  −16 | −32 )",
+          "R2  ( 0  16  −16 | −32 )",
           {
-            "he": "מחלקים את השורה ב-16:",
-            "ru": "Делим строку на 16:",
-            "en": "Divide the row by 16:"
+            "he": "מחלקים את השורה ב-16",
+            "ru": "Делим строку на 16",
+            "en": "Divide the row by 16"
           },
-          "R2: ( 0  1  −1 | −2 )",
+          "R2  ( 0  1  −1 | −2 )",
           {
-            "he": "מאפסים את x בשורה 3:",
-            "ru": "Обнуляем x в третьей строке:",
-            "en": "Make x zero in row 3:"
+            "he": "מאפסים את x בשורה 3",
+            "ru": "Обнуляем x в третьей строке",
+            "en": "Make x zero in row 3"
           },
           "R3 ← 5R3 − 3R1",
-          "R3: ( 0  −21  11 | −23 )",
+          "R3  ( 0  −21  11 | −23 )",
           {
-            "he": "מאפסים את y בשורה 3:",
-            "ru": "Обнуляем y в третьей строке:",
-            "en": "Make y zero in row 3:"
+            "he": "מאפסים את y בשורה 3",
+            "ru": "Обнуляем y в третьей строке",
+            "en": "Make y zero in row 3"
           },
           "R3 ← R3 + 21R2",
-          "R3: ( 0  0  −10 | −65 )",
+          "R3  ( 0  0  −10 | −65 )",
           {
-            "he": "מחלקים את השורה ב-5:",
-            "ru": "Делим строку на 5:",
-            "en": "Divide the row by 5:"
+            "he": "מחלקים את השורה ב-5",
+            "ru": "Делим строку на 5",
+            "en": "Divide the row by 5"
           },
-          "R3: ( 0  0  −2 | −13 )",
+          "R3  ( 0  0  −2 | −13 )",
           {
-            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה:",
-            "ru": "Возвращаемся к уравнениям, снизу вверх:",
-            "en": "Back to equations, from the bottom row up:"
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
           },
           "−2z = −13",
           "z = 13/2",
@@ -1315,9 +1419,9 @@ window.LESSONS['math-2026-10-25'] = {
           "5x = −5/2",
           "x = −1/2",
           {
-            "he": "תשובה: `x = −1/2,  y = 9/2,  z = 13/2`",
-            "ru": "Ответ: `x = −1/2,  y = 9/2,  z = 13/2`",
-            "en": "Answer: `x = −1/2,  y = 9/2,  z = 13/2`"
+            "he": "תשובה `x = −1/2,  y = 9/2,  z = 13/2`",
+            "ru": "Ответ `x = −1/2,  y = 9/2,  z = 13/2`",
+            "en": "Answer `x = −1/2,  y = 9/2,  z = 13/2`"
           }
         ]
       },
@@ -1327,9 +1431,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "8",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`5x + 3y + 2z = 28`\n`2x + 4y + 3z = 26`\n`3x + 2y + 5z = 30`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
-          "ru": "Реши систему уравнений:\n`5x + 3y + 2z = 28`\n`2x + 4y + 3z = 26`\n`3x + 2y + 5z = 30`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
-          "en": "Solve the system of equations:\n`5x + 3y + 2z = 28`\n`2x + 4y + 3z = 26`\n`3x + 2y + 5z = 30`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+          "he": "פתרו את מערכת המשוואות\n`5x + 3y + 2z = 28`\n`2x + 4y + 3z = 26`\n`3x + 2y + 5z = 30`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
+          "ru": "Реши систему уравнений\n`5x + 3y + 2z = 28`\n`2x + 4y + 3z = 26`\n`3x + 2y + 5z = 30`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
+          "en": "Solve the system of equations\n`5x + 3y + 2z = 28`\n`2x + 4y + 3z = 26`\n`3x + 2y + 5z = 30`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
         },
         "answer": {
           "accept": [
@@ -1353,51 +1457,51 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Write the augmented matrix and make zeros under the diagonal: first in column one, then in column two."
           },
           {
-            "he": "צעד ראשון: `R2 ← 5R2 − 2R1`",
-            "ru": "Первый шаг: `R2 ← 5R2 − 2R1`",
-            "en": "First step: `R2 ← 5R2 − 2R1`"
+            "he": "צעד ראשון `R2 ← 5R2 − 2R1`",
+            "ru": "Первый шаг `R2 ← 5R2 − 2R1`",
+            "en": "First step `R2 ← 5R2 − 2R1`"
           }
         ],
         "solution": [
           {
-            "he": "מטריצה מורחבת:",
-            "ru": "Расширенная матрица:",
-            "en": "The augmented matrix:"
+            "he": "מטריצה מורחבת",
+            "ru": "Расширенная матрица",
+            "en": "The augmented matrix"
           },
-          "R1: ( 5  3  2 | 28 )",
-          "R2: ( 2  4  3 | 26 )",
-          "R3: ( 3  2  5 | 30 )",
+          "R1  ( 5  3  2 | 28 )",
+          "R2  ( 2  4  3 | 26 )",
+          "R3  ( 3  2  5 | 30 )",
           {
-            "he": "מאפסים את x בשורה 2:",
-            "ru": "Обнуляем x во второй строке:",
-            "en": "Make x zero in row 2:"
+            "he": "מאפסים את x בשורה 2",
+            "ru": "Обнуляем x во второй строке",
+            "en": "Make x zero in row 2"
           },
           "R2 ← 5R2 − 2R1",
-          "R2: ( 0  14  11 | 74 )",
+          "R2  ( 0  14  11 | 74 )",
           {
-            "he": "מאפסים את x בשורה 3:",
-            "ru": "Обнуляем x в третьей строке:",
-            "en": "Make x zero in row 3:"
+            "he": "מאפסים את x בשורה 3",
+            "ru": "Обнуляем x в третьей строке",
+            "en": "Make x zero in row 3"
           },
           "R3 ← 5R3 − 3R1",
-          "R3: ( 0  1  19 | 66 )",
+          "R3  ( 0  1  19 | 66 )",
           {
-            "he": "מאפסים את y בשורה 3:",
-            "ru": "Обнуляем y в третьей строке:",
-            "en": "Make y zero in row 3:"
+            "he": "מאפסים את y בשורה 3",
+            "ru": "Обнуляем y в третьей строке",
+            "en": "Make y zero in row 3"
           },
           "R3 ← 14R3 − R2",
-          "R3: ( 0  0  255 | 850 )",
+          "R3  ( 0  0  255 | 850 )",
           {
-            "he": "מחלקים את השורה ב-85:",
-            "ru": "Делим строку на 85:",
-            "en": "Divide the row by 85:"
+            "he": "מחלקים את השורה ב-85",
+            "ru": "Делим строку на 85",
+            "en": "Divide the row by 85"
           },
-          "R3: ( 0  0  3 | 10 )",
+          "R3  ( 0  0  3 | 10 )",
           {
-            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה:",
-            "ru": "Возвращаемся к уравнениям, снизу вверх:",
-            "en": "Back to equations, from the bottom row up:"
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
           },
           "3z = 10",
           "z = 10/3",
@@ -1413,9 +1517,9 @@ window.LESSONS['math-2026-10-25'] = {
           "5x = 40/3",
           "x = 8/3",
           {
-            "he": "תשובה: `x = 8/3,  y = 8/3,  z = 10/3`",
-            "ru": "Ответ: `x = 8/3,  y = 8/3,  z = 10/3`",
-            "en": "Answer: `x = 8/3,  y = 8/3,  z = 10/3`"
+            "he": "תשובה `x = 8/3,  y = 8/3,  z = 10/3`",
+            "ru": "Ответ `x = 8/3,  y = 8/3,  z = 10/3`",
+            "en": "Answer `x = 8/3,  y = 8/3,  z = 10/3`"
           }
         ]
       },
@@ -1425,9 +1529,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "23",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`3x + 4y + 5z = 26`\n`4x + 5y + 3z = 25`\n`5x + 3y + 4z = 21`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
-          "ru": "Реши систему уравнений:\n`3x + 4y + 5z = 26`\n`4x + 5y + 3z = 25`\n`5x + 3y + 4z = 21`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
-          "en": "Solve the system of equations:\n`3x + 4y + 5z = 26`\n`4x + 5y + 3z = 25`\n`5x + 3y + 4z = 21`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+          "he": "פתרו את מערכת המשוואות\n`3x + 4y + 5z = 26`\n`4x + 5y + 3z = 25`\n`5x + 3y + 4z = 21`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
+          "ru": "Реши систему уравнений\n`3x + 4y + 5z = 26`\n`4x + 5y + 3z = 25`\n`5x + 3y + 4z = 21`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
+          "en": "Solve the system of equations\n`3x + 4y + 5z = 26`\n`4x + 5y + 3z = 25`\n`5x + 3y + 4z = 21`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
         },
         "answer": {
           "accept": [
@@ -1451,51 +1555,51 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Write the augmented matrix and make zeros under the diagonal: first in column one, then in column two."
           },
           {
-            "he": "צעד ראשון: `R2 ← 3R2 − 4R1`",
-            "ru": "Первый шаг: `R2 ← 3R2 − 4R1`",
-            "en": "First step: `R2 ← 3R2 − 4R1`"
+            "he": "צעד ראשון `R2 ← 3R2 − 4R1`",
+            "ru": "Первый шаг `R2 ← 3R2 − 4R1`",
+            "en": "First step `R2 ← 3R2 − 4R1`"
           }
         ],
         "solution": [
           {
-            "he": "מטריצה מורחבת:",
-            "ru": "Расширенная матрица:",
-            "en": "The augmented matrix:"
+            "he": "מטריצה מורחבת",
+            "ru": "Расширенная матрица",
+            "en": "The augmented matrix"
           },
-          "R1: ( 3  4  5 | 26 )",
-          "R2: ( 4  5  3 | 25 )",
-          "R3: ( 5  3  4 | 21 )",
+          "R1  ( 3  4  5 | 26 )",
+          "R2  ( 4  5  3 | 25 )",
+          "R3  ( 5  3  4 | 21 )",
           {
-            "he": "מאפסים את x בשורה 2:",
-            "ru": "Обнуляем x во второй строке:",
-            "en": "Make x zero in row 2:"
+            "he": "מאפסים את x בשורה 2",
+            "ru": "Обнуляем x во второй строке",
+            "en": "Make x zero in row 2"
           },
           "R2 ← 3R2 − 4R1",
-          "R2: ( 0  −1  −11 | −29 )",
+          "R2  ( 0  −1  −11 | −29 )",
           {
-            "he": "מאפסים את x בשורה 3:",
-            "ru": "Обнуляем x в третьей строке:",
-            "en": "Make x zero in row 3:"
+            "he": "מאפסים את x בשורה 3",
+            "ru": "Обнуляем x в третьей строке",
+            "en": "Make x zero in row 3"
           },
           "R3 ← 3R3 − 5R1",
-          "R3: ( 0  −11  −13 | −67 )",
+          "R3  ( 0  −11  −13 | −67 )",
           {
-            "he": "מאפסים את y בשורה 3:",
-            "ru": "Обнуляем y в третьей строке:",
-            "en": "Make y zero in row 3:"
+            "he": "מאפסים את y בשורה 3",
+            "ru": "Обнуляем y в третьей строке",
+            "en": "Make y zero in row 3"
           },
           "R3 ← R3 − 11R2",
-          "R3: ( 0  0  108 | 252 )",
+          "R3  ( 0  0  108 | 252 )",
           {
-            "he": "מחלקים את השורה ב-36:",
-            "ru": "Делим строку на 36:",
-            "en": "Divide the row by 36:"
+            "he": "מחלקים את השורה ב-36",
+            "ru": "Делим строку на 36",
+            "en": "Divide the row by 36"
           },
-          "R3: ( 0  0  3 | 7 )",
+          "R3  ( 0  0  3 | 7 )",
           {
-            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה:",
-            "ru": "Возвращаемся к уравнениям, снизу вверх:",
-            "en": "Back to equations, from the bottom row up:"
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
           },
           "3z = 7",
           "z = 7/3",
@@ -1511,9 +1615,9 @@ window.LESSONS['math-2026-10-25'] = {
           "3x = 1",
           "x = 1/3",
           {
-            "he": "תשובה: `x = 1/3,  y = 10/3,  z = 7/3`",
-            "ru": "Ответ: `x = 1/3,  y = 10/3,  z = 7/3`",
-            "en": "Answer: `x = 1/3,  y = 10/3,  z = 7/3`"
+            "he": "תשובה `x = 1/3,  y = 10/3,  z = 7/3`",
+            "ru": "Ответ `x = 1/3,  y = 10/3,  z = 7/3`",
+            "en": "Answer `x = 1/3,  y = 10/3,  z = 7/3`"
           }
         ]
       },
@@ -1523,9 +1627,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "25",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`4x + 3y + 2z = 25`\n`3x + 2y + 4z = 24`\n`2x + 4y + 3z = 23`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
-          "ru": "Реши систему уравнений:\n`4x + 3y + 2z = 25`\n`3x + 2y + 4z = 24`\n`2x + 4y + 3z = 23`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
-          "en": "Solve the system of equations:\n`4x + 3y + 2z = 25`\n`3x + 2y + 4z = 24`\n`2x + 4y + 3z = 23`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+          "he": "פתרו את מערכת המשוואות\n`4x + 3y + 2z = 25`\n`3x + 2y + 4z = 24`\n`2x + 4y + 3z = 23`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
+          "ru": "Реши систему уравнений\n`4x + 3y + 2z = 25`\n`3x + 2y + 4z = 24`\n`2x + 4y + 3z = 23`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
+          "en": "Solve the system of equations\n`4x + 3y + 2z = 25`\n`3x + 2y + 4z = 24`\n`2x + 4y + 3z = 23`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
         },
         "answer": {
           "accept": [
@@ -1549,51 +1653,51 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Write the augmented matrix and make zeros under the diagonal: first in column one, then in column two."
           },
           {
-            "he": "צעד ראשון: `R2 ← 4R2 − 3R1`",
-            "ru": "Первый шаг: `R2 ← 4R2 − 3R1`",
-            "en": "First step: `R2 ← 4R2 − 3R1`"
+            "he": "צעד ראשון `R2 ← 4R2 − 3R1`",
+            "ru": "Первый шаг `R2 ← 4R2 − 3R1`",
+            "en": "First step `R2 ← 4R2 − 3R1`"
           }
         ],
         "solution": [
           {
-            "he": "מטריצה מורחבת:",
-            "ru": "Расширенная матрица:",
-            "en": "The augmented matrix:"
+            "he": "מטריצה מורחבת",
+            "ru": "Расширенная матрица",
+            "en": "The augmented matrix"
           },
-          "R1: ( 4  3  2 | 25 )",
-          "R2: ( 3  2  4 | 24 )",
-          "R3: ( 2  4  3 | 23 )",
+          "R1  ( 4  3  2 | 25 )",
+          "R2  ( 3  2  4 | 24 )",
+          "R3  ( 2  4  3 | 23 )",
           {
-            "he": "מאפסים את x בשורה 2:",
-            "ru": "Обнуляем x во второй строке:",
-            "en": "Make x zero in row 2:"
+            "he": "מאפסים את x בשורה 2",
+            "ru": "Обнуляем x во второй строке",
+            "en": "Make x zero in row 2"
           },
           "R2 ← 4R2 − 3R1",
-          "R2: ( 0  −1  10 | 21 )",
+          "R2  ( 0  −1  10 | 21 )",
           {
-            "he": "מאפסים את x בשורה 3:",
-            "ru": "Обнуляем x в третьей строке:",
-            "en": "Make x zero in row 3:"
+            "he": "מאפסים את x בשורה 3",
+            "ru": "Обнуляем x в третьей строке",
+            "en": "Make x zero in row 3"
           },
           "R3 ← 2R3 − R1",
-          "R3: ( 0  5  4 | 21 )",
+          "R3  ( 0  5  4 | 21 )",
           {
-            "he": "מאפסים את y בשורה 3:",
-            "ru": "Обнуляем y в третьей строке:",
-            "en": "Make y zero in row 3:"
+            "he": "מאפסים את y בשורה 3",
+            "ru": "Обнуляем y в третьей строке",
+            "en": "Make y zero in row 3"
           },
           "R3 ← R3 + 5R2",
-          "R3: ( 0  0  54 | 126 )",
+          "R3  ( 0  0  54 | 126 )",
           {
-            "he": "מחלקים את השורה ב-18:",
-            "ru": "Делим строку на 18:",
-            "en": "Divide the row by 18:"
+            "he": "מחלקים את השורה ב-18",
+            "ru": "Делим строку на 18",
+            "en": "Divide the row by 18"
           },
-          "R3: ( 0  0  3 | 7 )",
+          "R3  ( 0  0  3 | 7 )",
           {
-            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה:",
-            "ru": "Возвращаемся к уравнениям, снизу вверх:",
-            "en": "Back to equations, from the bottom row up:"
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
           },
           "3z = 7",
           "z = 7/3",
@@ -1609,11 +1713,328 @@ window.LESSONS['math-2026-10-25'] = {
           "4x = 40/3",
           "x = 10/3",
           {
-            "he": "תשובה: `x = 10/3,  y = 7/3,  z = 7/3`",
-            "ru": "Ответ: `x = 10/3,  y = 7/3,  z = 7/3`",
-            "en": "Answer: `x = 10/3,  y = 7/3,  z = 7/3`"
+            "he": "תשובה `x = 10/3,  y = 7/3,  z = 7/3`",
+            "ru": "Ответ `x = 10/3,  y = 7/3,  z = 7/3`",
+            "en": "Answer `x = 10/3,  y = 7/3,  z = 7/3`"
           }
         ]
+      },
+      {
+        "id": "k1",
+        "group": "cls2",
+        "label": "1",
+        "kind": "text",
+        "text": {
+          "he": "מתרגיל כיתה 2 של המרצה. פתרו בשיטת גאוס\n`5x + 9y = 16`\n`x + 2y = 4`\nכתבו כך: x = …, y = …",
+          "ru": "Из «תרגיל כיתה 2» преподавателя. Реши методом Гаусса\n`5x + 9y = 16`\n`x + 2y = 4`\nЗапиши так: x = …, y = …",
+          "en": "From the teacher's class exercise 2. Solve by Gaussian elimination\n`5x + 9y = 16`\n`x + 2y = 4`\nWrite like: x = …, y = …"
+        },
+        "answer": {
+          "accept": [
+            "x = −4, y = 4",
+            "x=−4, y=4",
+            "x = −4; y = 4",
+            "x=−4,y=4",
+            "x = −4, у = 4",
+            "(−4, 4)",
+            "(−4,4)",
+            "−4, 4",
+            "−4,4",
+            "−4; 4",
+            "x = -4, y = 4",
+            "x=-4, y=4",
+            "x = -4; y = 4",
+            "x=-4,y=4",
+            "x = -4, у = 4",
+            "(-4, 4)",
+            "(-4,4)",
+            "-4, 4",
+            "-4,4",
+            "-4; 4"
+          ]
+        },
+        "hints": [
+          {
+            "he": "נוח להחליף שורות, כדי ש-1 יעמוד בהתחלה.",
+            "ru": "Удобно поменять строки местами, чтобы в начале стояла 1.",
+            "en": "Swap the rows so a 1 is at the start."
+          }
+        ],
+        "solution": [
+          "R1  ( 1  2 | 4 )",
+          "R2  ( 5  9 | 16 )",
+          "R2 ← R2 − 5R1",
+          "R2  ( 0  −1 | −4 )",
+          "−y = −4",
+          "y = 4",
+          "x + 2 × 4 = 4",
+          "x = 4 − 8",
+          "x = −4",
+          {
+            "he": "תשובה `x = −4,  y = 4`",
+            "ru": "Ответ `x = −4,  y = 4`",
+            "en": "Answer `x = −4,  y = 4`"
+          }
+        ],
+        "_src": "pass-0311"
+      },
+      {
+        "id": "k2",
+        "group": "cls2",
+        "label": "2",
+        "kind": "text",
+        "text": {
+          "he": "מתרגיל כיתה 2 של המרצה. פתרו בשיטת גאוס\n`13x + 19y = 29`\n`−12x + 45y = −13`\nכתבו כך: x = …, y = … (שברים מותר)",
+          "ru": "Из «תרגיל כיתה 2» преподавателя. Реши методом Гаусса\n`13x + 19y = 29`\n`−12x + 45y = −13`\nЗапиши так: x = …, y = … (можно дробями)",
+          "en": "From the teacher's class exercise 2. Solve by Gaussian elimination\n`13x + 19y = 29`\n`−12x + 45y = −13`\nWrite like: x = …, y = … (fractions are fine)"
+        },
+        "answer": {
+          "accept": [
+            "x = 1552/813, y = 179/813",
+            "x=1552/813, y=179/813",
+            "x = 1552/813; y = 179/813",
+            "x=1552/813,y=179/813",
+            "x = 1552/813, у = 179/813",
+            "(1552/813, 179/813)",
+            "(1552/813,179/813)",
+            "1552/813, 179/813",
+            "1552/813,179/813",
+            "1552/813; 179/813"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כאן התשובה בשברים — זה בסדר. מאפסים את x: `R2 ← 13R2 + 12R1`.",
+            "ru": "Здесь ответ в дробях — это нормально. Обнуляем x — `R2 ← 13R2 + 12R1`.",
+            "en": "The answer is in fractions here — that is fine. Zero out x — `R2 ← 13R2 + 12R1`."
+          }
+        ],
+        "solution": [
+          "R1  ( 13  19 | 29 )",
+          "R2  ( −12  45 | −13 )",
+          "R2 ← 13R2 + 12R1",
+          "13 × 45 + 12 × 19 = 585 + 228 = 813",
+          "13 × (−13) + 12 × 29 = −169 + 348 = 179",
+          "R2  ( 0  813 | 179 )",
+          "y = 179/813",
+          "13x = 29 − 19 × 179/813",
+          "13x = (23577 − 3401)/813",
+          "13x = 20176/813",
+          "x = 1552/813",
+          {
+            "he": "תשובה `x = 1552/813,  y = 179/813`",
+            "ru": "Ответ `x = 1552/813,  y = 179/813`",
+            "en": "Answer `x = 1552/813,  y = 179/813`"
+          }
+        ],
+        "_src": "pass-0311"
+      },
+      {
+        "id": "k3",
+        "group": "cls2",
+        "label": "3",
+        "kind": "text",
+        "text": {
+          "he": "מתרגיל כיתה 2 של המרצה. פתרו בשיטת גאוס\n`2x − 5y + 2z = 7`\n`x + 2y − 4z = 3`\n`3x − 4y − 6z = 10`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
+          "ru": "Из «תרגיל כיתה 2» преподавателя. Реши методом Гаусса\n`2x − 5y + 2z = 7`\n`x + 2y − 4z = 3`\n`3x − 4y − 6z = 10`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
+          "en": "From the teacher's class exercise 2. Solve by Gaussian elimination\n`2x − 5y + 2z = 7`\n`x + 2y − 4z = 3`\n`3x − 4y − 6z = 10`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+        },
+        "answer": {
+          "accept": [
+            "x = 75/23, y = −2/23, z = 1/46",
+            "x=75/23, y=−2/23, z=1/46",
+            "x = 75/23; y = −2/23; z = 1/46",
+            "x=75/23,y=−2/23,z=1/46",
+            "x = 75/23, у = −2/23, z = 1/46",
+            "x=75/23, у=−2/23, z=1/46",
+            "(75/23, −2/23, 1/46)",
+            "(75/23,−2/23,1/46)",
+            "75/23, −2/23, 1/46",
+            "75/23,−2/23,1/46",
+            "75/23; −2/23; 1/46"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כותבים מטריצה מורחבת ומאפסים את מה שמתחת לאלכסון: קודם בעמודה הראשונה, אחר כך בשנייה.",
+            "ru": "Записываем расширенную матрицу и обнуляем всё под диагональю: сначала в первом столбце, потом во втором.",
+            "en": "Write the augmented matrix and make zeros under the diagonal: first in column one, then in column two."
+          },
+          {
+            "he": "צעד ראשון: `R2 ← 2R2 − R1`",
+            "ru": "Первый шаг: `R2 ← 2R2 − R1`",
+            "en": "First step: `R2 ← 2R2 − R1`"
+          }
+        ],
+        "solution": [
+          {
+            "he": "מטריצה מורחבת",
+            "ru": "Расширенная матрица",
+            "en": "The augmented matrix"
+          },
+          "R1  ( 2  −5  2 | 7 )",
+          "R2  ( 1  2  −4 | 3 )",
+          "R3  ( 3  −4  −6 | 10 )",
+          {
+            "he": "מאפסים את x בשורה 2",
+            "ru": "Обнуляем x во второй строке",
+            "en": "Make x zero in row 2"
+          },
+          "R2 ← 2R2 − R1",
+          "R2  ( 0  9  −10 | −1 )",
+          {
+            "he": "מאפסים את x בשורה 3",
+            "ru": "Обнуляем x в третьей строке",
+            "en": "Make x zero in row 3"
+          },
+          "R3 ← 2R3 − 3R1",
+          "R3  ( 0  7  −18 | −1 )",
+          {
+            "he": "מאפסים את y בשורה 3",
+            "ru": "Обнуляем y в третьей строке",
+            "en": "Make y zero in row 3"
+          },
+          "R3 ← 9R3 − 7R2",
+          "R3  ( 0  0  −92 | −2 )",
+          {
+            "he": "מחלקים את השורה ב-2",
+            "ru": "Делим строку на 2",
+            "en": "Divide the row by 2"
+          },
+          "R3  ( 0  0  −46 | −1 )",
+          {
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
+          },
+          "−46z = −1",
+          "z = 1/46",
+          "9y − 10z = −1",
+          "9y − 10 × 1/46 = −1",
+          "9y − 5/23 = −1",
+          "9y = −18/23",
+          "y = −2/23",
+          "2x − 5y + 2z = 7",
+          "2x − 5 × (−2/23) + 2 × 1/46 = 7",
+          "2x + 10/23 + 1/23 = 7",
+          "2x + 11/23 = 7",
+          "2x = 150/23",
+          "x = 75/23",
+          {
+            "he": "תשובה: `x = 75/23,  y = −2/23,  z = 1/46`",
+            "ru": "Ответ: `x = 75/23,  y = −2/23,  z = 1/46`",
+            "en": "Answer: `x = 75/23,  y = −2/23,  z = 1/46`"
+          }
+        ],
+        "_src": "pass-0311"
+      },
+      {
+        "id": "k4",
+        "group": "cls2",
+        "label": {
+          "he": "4 — מבט קדימה",
+          "ru": "4 — взгляд вперёд",
+          "en": "4 — a look ahead"
+        },
+        "kind": "choice",
+        "text": {
+          "he": "מתרגיל כיתה 2 של המרצה. מה יוצא בשיטת גאוס?\n`2x − 3y + 5z = 8`\n`2x + 4y − 6z = −5`\n`x + 2y − 3z = −1`",
+          "ru": "Из «תרגיל כיתה 2» преподавателя. Что получится методом Гаусса?\n`2x − 3y + 5z = 8`\n`2x + 4y − 6z = −5`\n`x + 2y − 3z = −1`",
+          "en": "From the teacher's class exercise 2. What does Gaussian elimination give?\n`2x − 3y + 5z = 8`\n`2x + 4y − 6z = −5`\n`x + 2y − 3z = −1`"
+        },
+        "options": [
+          {
+            "he": "פתרון יחיד",
+            "ru": "Одно решение",
+            "en": "One solution"
+          },
+          {
+            "he": "אין פתרון",
+            "ru": "Решений нет",
+            "en": "No solution"
+          },
+          {
+            "he": "אינסוף פתרונות",
+            "ru": "Бесконечно много решений",
+            "en": "Infinitely many solutions"
+          }
+        ],
+        "answer": {
+          "index": 1
+        },
+        "hints": [
+          {
+            "he": "השוו את שורה 2 לשורה 3 כפול 2.",
+            "ru": "Сравни строку 2 со строкой 3, умноженной на 2.",
+            "en": "Compare row 2 with row 3 times 2."
+          }
+        ],
+        "solution": [
+          "2 × R3  ( 2  4  −6 | −2 )",
+          "R2 ← R2 − 2R3",
+          "R2  ( 0  0  0 | −3 )",
+          "0 = −3",
+          {
+            "he": "תשובה: אין פתרון",
+            "ru": "Ответ — решений нет",
+            "en": "Answer — no solution"
+          }
+        ],
+        "_src": "pass-0311"
+      },
+      {
+        "id": "k5",
+        "group": "cls2",
+        "label": {
+          "he": "5 — מבט קדימה",
+          "ru": "5 — взгляд вперёд",
+          "en": "5 — a look ahead"
+        },
+        "kind": "choice",
+        "text": {
+          "he": "מתרגיל כיתה 2 של המרצה. מה יוצא בשיטת גאוס?\n`2x + 3y − 4z = −2`\n`x − 2y + z = 7`\n`3x + y − 3z = 5`",
+          "ru": "Из «תרגיל כיתה 2» преподавателя. Что получится методом Гаусса?\n`2x + 3y − 4z = −2`\n`x − 2y + z = 7`\n`3x + y − 3z = 5`",
+          "en": "From the teacher's class exercise 2. What does Gaussian elimination give?\n`2x + 3y − 4z = −2`\n`x − 2y + z = 7`\n`3x + y − 3z = 5`"
+        },
+        "options": [
+          {
+            "he": "פתרון יחיד",
+            "ru": "Одно решение",
+            "en": "One solution"
+          },
+          {
+            "he": "אין פתרון",
+            "ru": "Решений нет",
+            "en": "No solution"
+          },
+          {
+            "he": "אינסוף פתרונות",
+            "ru": "Бесконечно много решений",
+            "en": "Infinitely many solutions"
+          }
+        ],
+        "answer": {
+          "index": 2
+        },
+        "hints": [
+          {
+            "he": "חברו את שורה 1 ושורה 2 ותשוו לשורה 3.",
+            "ru": "Сложи строки 1 и 2 и сравни со строкой 3.",
+            "en": "Add rows 1 and 2 and compare with row 3."
+          }
+        ],
+        "solution": [
+          "R1 + R2  ( 3  1  −3 | 5 )",
+          "R3 ← R3 − R1 − R2",
+          "R3  ( 0  0  0 | 0 )",
+          "0 = 0",
+          {
+            "he": "נשארו 2 משוואות ל-3 נעלמים. תשובה: אינסוף פתרונות",
+            "ru": "Осталось 2 уравнения на 3 неизвестных. Ответ — бесконечно много решений",
+            "en": "2 equations are left for 3 unknowns. Answer — infinitely many solutions"
+          }
+        ],
+        "_src": "pass-0311"
       }
     ],
     "ai": [
@@ -1623,9 +2044,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "1.1",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`3x + 2y = 18`\n`x − 2y = −2`\nכתבו את התשובה כך: x = …, y = …",
-          "ru": "Реши систему уравнений:\n`3x + 2y = 18`\n`x − 2y = −2`\nЗапиши ответ так: x = …, y = …",
-          "en": "Solve the system of equations:\n`3x + 2y = 18`\n`x − 2y = −2`\nWrite the answer like this: x = …, y = …"
+          "he": "פתרו את מערכת המשוואות\n`3x + 2y = 18`\n`x − 2y = −2`\nכתבו את התשובה כך: x = …, y = …",
+          "ru": "Реши систему уравнений\n`3x + 2y = 18`\n`x − 2y = −2`\nЗапиши ответ так: x = …, y = …",
+          "en": "Solve the system of equations\n`3x + 2y = 18`\n`x − 2y = −2`\nWrite the answer like this: x = …, y = …"
         },
         "answer": {
           "accept": [
@@ -1651,41 +2072,41 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Maybe multiplying just one equation is enough: look for a coefficient that is divisible by the matching one in the other equation."
           },
           {
-            "he": "צעד ראשון: `4x = 16`",
-            "ru": "Первый шаг: `4x = 16`",
-            "en": "First step: `4x = 16`"
+            "he": "צעד ראשון `4x = 16`",
+            "ru": "Первый шаг `4x = 16`",
+            "en": "First step `4x = 16`"
           },
           {
-            "he": "בהמשך מקבלים: `x = 4`",
-            "ru": "Дальше получится: `x = 4`",
-            "en": "Next you get: `x = 4`"
+            "he": "בהמשך מקבלים `x = 4`",
+            "ru": "Дальше получится `x = 4`",
+            "en": "Next you get `x = 4`"
           }
         ],
         "solution": [
           {
-            "he": "כאן `+2y` ו־`−2y` כבר נגדיים — מחברים בלי לכפול:",
-            "ru": "Здесь `+2y` и `−2y` уже противоположны — складываем без умножения:",
-            "en": "Here `+2y` and `−2y` are already opposite — add without multiplying:"
+            "he": "כאן `+2y` ו־`−2y` כבר נגדיים — מחברים בלי לכפול",
+            "ru": "Здесь `+2y` и `−2y` уже противоположны — складываем без умножения",
+            "en": "Here `+2y` and `−2y` are already opposite — add without multiplying"
           },
           "4x = 16",
           {
-            "he": "מחלקים את שני האגפים ב־`4`:",
-            "ru": "Делим обе части на `4`:",
-            "en": "Divide both sides by `4`:"
+            "he": "מחלקים את שני האגפים ב־`4`",
+            "ru": "Делим обе части на `4`",
+            "en": "Divide both sides by `4`"
           },
           "x = 4",
           {
-            "he": "מציבים `x = 4` במשוואה הראשונה:",
-            "ru": "Подставляем `x = 4` в первое уравнение:",
-            "en": "Substitute `x = 4` into the first equation:"
+            "he": "מציבים `x = 4` במשוואה הראשונה",
+            "ru": "Подставляем `x = 4` в первое уравнение",
+            "en": "Substitute `x = 4` into the first equation"
           },
           "12 + 2y = 18",
           "2y = 6",
           "y = 3",
           {
-            "he": "תשובה: `x = 4,  y = 3`",
-            "ru": "Ответ: `x = 4,  y = 3`",
-            "en": "Answer: `x = 4,  y = 3`"
+            "he": "תשובה `x = 4,  y = 3`",
+            "ru": "Ответ `x = 4,  y = 3`",
+            "en": "Answer `x = 4,  y = 3`"
           }
         ]
       },
@@ -1695,9 +2116,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "1.2",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`4x + 3y = 5`\n`2x − 5y = 9`\nכתבו את התשובה כך: x = …, y = …",
-          "ru": "Реши систему уравнений:\n`4x + 3y = 5`\n`2x − 5y = 9`\nЗапиши ответ так: x = …, y = …",
-          "en": "Solve the system of equations:\n`4x + 3y = 5`\n`2x − 5y = 9`\nWrite the answer like this: x = …, y = …"
+          "he": "פתרו את מערכת המשוואות\n`4x + 3y = 5`\n`2x − 5y = 9`\nכתבו את התשובה כך: x = …, y = …",
+          "ru": "Реши систему уравнений\n`4x + 3y = 5`\n`2x − 5y = 9`\nЗапиши ответ так: x = …, y = …",
+          "en": "Solve the system of equations\n`4x + 3y = 5`\n`2x − 5y = 9`\nWrite the answer like this: x = …, y = …"
         },
         "answer": {
           "accept": [
@@ -1723,48 +2144,48 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Maybe multiplying just one equation is enough: look for a coefficient that is divisible by the matching one in the other equation."
           },
           {
-            "he": "צעד ראשון: `4x − 10y = 18`",
-            "ru": "Первый шаг: `4x − 10y = 18`",
-            "en": "First step: `4x − 10y = 18`"
+            "he": "צעד ראשון `4x − 10y = 18`",
+            "ru": "Первый шаг `4x − 10y = 18`",
+            "en": "First step `4x − 10y = 18`"
           },
           {
-            "he": "בהמשך מקבלים: `13y = −13`",
-            "ru": "Дальше получится: `13y = −13`",
-            "en": "Next you get: `13y = −13`"
+            "he": "בהמשך מקבלים `13y = −13`",
+            "ru": "Дальше получится `13y = −13`",
+            "en": "Next you get `13y = −13`"
           }
         ],
         "solution": [
           {
-            "he": "`4x` מתחלק ב־`2x`: כופלים את השנייה ב־`2`:",
-            "ru": "`4x` делится на `2x`: умножаем второе на `2`:",
-            "en": "`4x` is divisible by `2x`: multiply the second by `2`:"
+            "he": "`4x` מתחלק ב־`2x` כופלים את השנייה ב־`2`",
+            "ru": "`4x` делится на `2x` умножаем второе на `2`",
+            "en": "`4x` is divisible by `2x` multiply the second by `2`"
           },
           "4x − 10y = 18",
           {
-            "he": "`4x` ו־`4x` — אותו סימן, לכן מחסירים (הראשונה פחות החדשה):",
-            "ru": "`4x` и `4x` — знак одинаковый, поэтому вычитаем (первое минус новое):",
-            "en": "`4x` and `4x` — same sign, so subtract (the first minus the new one):"
+            "he": "`4x` ו־`4x` — אותו סימן, לכן מחסירים (הראשונה פחות החדשה)",
+            "ru": "`4x` и `4x` — знак одинаковый, поэтому вычитаем (первое минус новое)",
+            "en": "`4x` and `4x` — same sign, so subtract (the first minus the new one)"
           },
           "(4x + 3y) − (4x − 10y) = 5 − 18",
           "13y = −13",
           {
-            "he": "מחלקים את שני האגפים ב־`13`:",
-            "ru": "Делим обе части на `13`:",
-            "en": "Divide both sides by `13`:"
+            "he": "מחלקים את שני האגפים ב־`13`",
+            "ru": "Делим обе части на `13`",
+            "en": "Divide both sides by `13`"
           },
           "y = −1",
           {
-            "he": "מציבים `y = −1` במשוואה הראשונה:",
-            "ru": "Подставляем `y = −1` в первое уравнение:",
-            "en": "Substitute `y = −1` into the first equation:"
+            "he": "מציבים `y = −1` במשוואה הראשונה",
+            "ru": "Подставляем `y = −1` в первое уравнение",
+            "en": "Substitute `y = −1` into the first equation"
           },
           "4x − 3 = 5",
           "4x = 8",
           "x = 2",
           {
-            "he": "תשובה: `x = 2,  y = −1`",
-            "ru": "Ответ: `x = 2,  y = −1`",
-            "en": "Answer: `x = 2,  y = −1`"
+            "he": "תשובה `x = 2,  y = −1`",
+            "ru": "Ответ `x = 2,  y = −1`",
+            "en": "Answer `x = 2,  y = −1`"
           }
         ]
       },
@@ -1812,16 +2233,16 @@ window.LESSONS['math-2026-10-25'] = {
         ],
         "solution": [
           {
-            "he": "המקדמים של y: `2` ו־`−3`. המספר המשותף: `6`.",
-            "ru": "Коэффициенты при y: `2` и `−3`. Общее число: `6`.",
-            "en": "The y coefficients: `2` and `−3`. Common number: `6`."
+            "he": "המקדמים של y `2` ו־`−3`. המספר המשותף `6`.",
+            "ru": "Коэффициенты при y `2` и `−3`. Общее число `6`.",
+            "en": "The y coefficients `2` and `−3`. Common number `6`."
           },
           "15x + 6y = 81",
           "14x − 6y = 64",
           {
-            "he": "`+6y` ו־`−6y` — סימנים שונים, לכן מחברים:",
-            "ru": "`+6y` и `−6y` — знаки разные, поэтому складываем:",
-            "en": "`+6y` and `−6y` — different signs, so add:"
+            "he": "`+6y` ו־`−6y` — סימנים שונים, לכן מחברים",
+            "ru": "`+6y` и `−6y` — знаки разные, поэтому складываем",
+            "en": "`+6y` and `−6y` — different signs, so add"
           },
           "29x = 145",
           {
@@ -1837,9 +2258,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "2.1",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`x + y + z = 6`\n`2x − y + z = 3`\n`x + 2y − z = 2`\nכתבו את התשובה כך: x = …, y = …, z = …",
-          "ru": "Реши систему уравнений:\n`x + y + z = 6`\n`2x − y + z = 3`\n`x + 2y − z = 2`\nЗапиши ответ так: x = …, y = …, z = …",
-          "en": "Solve the system of equations:\n`x + y + z = 6`\n`2x − y + z = 3`\n`x + 2y − z = 2`\nWrite the answer like this: x = …, y = …, z = …"
+          "he": "פתרו את מערכת המשוואות\n`x + y + z = 6`\n`2x − y + z = 3`\n`x + 2y − z = 2`\nכתבו את התשובה כך: x = …, y = …, z = …",
+          "ru": "Реши систему уравнений\n`x + y + z = 6`\n`2x − y + z = 3`\n`x + 2y − z = 2`\nЗапиши ответ так: x = …, y = …, z = …",
+          "en": "Solve the system of equations\n`x + y + z = 6`\n`2x − y + z = 3`\n`x + 2y − z = 2`\nWrite the answer like this: x = …, y = …, z = …"
         },
         "answer": {
           "accept": [
@@ -1865,14 +2286,14 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Eliminate the same unknown from two pairs of equations. You get a system of two equations in two unknowns."
           },
           {
-            "he": "צעד ראשון: `2x + 3y = 8`",
-            "ru": "Первый шаг: `2x + 3y = 8`",
-            "en": "First step: `2x + 3y = 8`"
+            "he": "צעד ראשון `2x + 3y = 8`",
+            "ru": "Первый шаг `2x + 3y = 8`",
+            "en": "First step `2x + 3y = 8`"
           },
           {
-            "he": "בהמשך מקבלים: `3x + y = 5`",
-            "ru": "Дальше получится: `3x + y = 5`",
-            "en": "Next you get: `3x + y = 5`"
+            "he": "בהמשך מקבלים `3x + y = 5`",
+            "ru": "Дальше получится `3x + y = 5`",
+            "en": "Next you get `3x + y = 5`"
           }
         ],
         "solution": [
@@ -1882,43 +2303,43 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "z has coefficients `+1`, `+1`, `−1` — it is easy to eliminate."
           },
           {
-            "he": "משוואה 1 + משוואה 3:",
-            "ru": "Уравнение 1 + уравнение 3:",
-            "en": "Equation 1 + equation 3:"
+            "he": "משוואה 1 + משוואה 3",
+            "ru": "Уравнение 1 + уравнение 3",
+            "en": "Equation 1 + equation 3"
           },
           "2x + 3y = 8",
           {
-            "he": "משוואה 2 + משוואה 3:",
-            "ru": "Уравнение 2 + уравнение 3:",
-            "en": "Equation 2 + equation 3:"
+            "he": "משוואה 2 + משוואה 3",
+            "ru": "Уравнение 2 + уравнение 3",
+            "en": "Equation 2 + equation 3"
           },
           "3x + y = 5",
           {
-            "he": "עכשיו מערכת של שתי משוואות. כופלים את `3x + y = 5` ב־`3`:",
-            "ru": "Теперь система из двух уравнений. Умножаем `3x + y = 5` на `3`:",
-            "en": "Now a system of two equations. Multiply `3x + y = 5` by `3`:"
+            "he": "עכשיו מערכת של שתי משוואות. כופלים את `3x + y = 5` ב־`3`",
+            "ru": "Теперь система из двух уравнений. Умножаем `3x + y = 5` на `3`",
+            "en": "Now a system of two equations. Multiply `3x + y = 5` by `3`"
           },
           "9x + 3y = 15",
           {
-            "he": "מחסירים ממנה את `2x + 3y = 8`:",
-            "ru": "Вычитаем из него `2x + 3y = 8`:",
-            "en": "Subtract `2x + 3y = 8` from it:"
+            "he": "מחסירים ממנה את `2x + 3y = 8`",
+            "ru": "Вычитаем из него `2x + 3y = 8`",
+            "en": "Subtract `2x + 3y = 8` from it"
           },
           "7x = 7",
           "x = 1",
           "3 + y = 5",
           "y = 2",
           {
-            "he": "מציבים במשוואה 1:",
-            "ru": "Подставляем в уравнение 1:",
-            "en": "Substitute into equation 1:"
+            "he": "מציבים במשוואה 1",
+            "ru": "Подставляем в уравнение 1",
+            "en": "Substitute into equation 1"
           },
           "1 + 2 + z = 6",
           "z = 3",
           {
-            "he": "תשובה: `x = 1,  y = 2,  z = 3`",
-            "ru": "Ответ: `x = 1,  y = 2,  z = 3`",
-            "en": "Answer: `x = 1,  y = 2,  z = 3`"
+            "he": "תשובה `x = 1,  y = 2,  z = 3`",
+            "ru": "Ответ `x = 1,  y = 2,  z = 3`",
+            "en": "Answer `x = 1,  y = 2,  z = 3`"
           }
         ]
       },
@@ -1928,9 +2349,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "2.2",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`2x + y − z = 3`\n`x − y + 2z = 5`\n`3x + 2y + z = 10`\nכתבו את התשובה כך: x = …, y = …, z = …",
-          "ru": "Реши систему уравнений:\n`2x + y − z = 3`\n`x − y + 2z = 5`\n`3x + 2y + z = 10`\nЗапиши ответ так: x = …, y = …, z = …",
-          "en": "Solve the system of equations:\n`2x + y − z = 3`\n`x − y + 2z = 5`\n`3x + 2y + z = 10`\nWrite the answer like this: x = …, y = …, z = …"
+          "he": "פתרו את מערכת המשוואות\n`2x + y − z = 3`\n`x − y + 2z = 5`\n`3x + 2y + z = 10`\nכתבו את התשובה כך: x = …, y = …, z = …",
+          "ru": "Реши систему уравнений\n`2x + y − z = 3`\n`x − y + 2z = 5`\n`3x + 2y + z = 10`\nЗапиши ответ так: x = …, y = …, z = …",
+          "en": "Solve the system of equations\n`2x + y − z = 3`\n`x − y + 2z = 5`\n`3x + 2y + z = 10`\nWrite the answer like this: x = …, y = …, z = …"
         },
         "answer": {
           "accept": [
@@ -1956,61 +2377,61 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Eliminate the same unknown from two pairs of equations. You get a system of two equations in two unknowns."
           },
           {
-            "he": "צעד ראשון: `3x + z = 8`",
-            "ru": "Первый шаг: `3x + z = 8`",
-            "en": "First step: `3x + z = 8`"
+            "he": "צעד ראשון `3x + z = 8`",
+            "ru": "Первый шаг `3x + z = 8`",
+            "en": "First step `3x + z = 8`"
           },
           {
-            "he": "בהמשך מקבלים: `x − 3z = −4`",
-            "ru": "Дальше получится: `x − 3z = −4`",
-            "en": "Next you get: `x − 3z = −4`"
+            "he": "בהמשך מקבלים `x − 3z = −4`",
+            "ru": "Дальше получится `x − 3z = −4`",
+            "en": "Next you get `x − 3z = −4`"
           }
         ],
         "solution": [
           {
-            "he": "מצמצמים את y. משוואה 1 + משוואה 2:",
-            "ru": "Убираем y. Уравнение 1 + уравнение 2:",
-            "en": "Eliminate y. Equation 1 + equation 2:"
+            "he": "מצמצמים את y. משוואה 1 + משוואה 2",
+            "ru": "Убираем y. Уравнение 1 + уравнение 2",
+            "en": "Eliminate y. Equation 1 + equation 2"
           },
           "3x + z = 8",
           {
-            "he": "כופלים את משוואה 1 ב־`2`:",
-            "ru": "Умножаем уравнение 1 на `2`:",
-            "en": "Multiply equation 1 by `2`:"
+            "he": "כופלים את משוואה 1 ב־`2`",
+            "ru": "Умножаем уравнение 1 на `2`",
+            "en": "Multiply equation 1 by `2`"
           },
           "4x + 2y − 2z = 6",
           {
-            "he": "מחסירים ממנה את משוואה 3:",
-            "ru": "Вычитаем из него уравнение 3:",
-            "en": "Subtract equation 3 from it:"
+            "he": "מחסירים ממנה את משוואה 3",
+            "ru": "Вычитаем из него уравнение 3",
+            "en": "Subtract equation 3 from it"
           },
           "x − 3z = −4",
           {
-            "he": "כופלים את `3x + z = 8` ב־`3`:",
-            "ru": "Умножаем `3x + z = 8` на `3`:",
-            "en": "Multiply `3x + z = 8` by `3`:"
+            "he": "כופלים את `3x + z = 8` ב־`3`",
+            "ru": "Умножаем `3x + z = 8` на `3`",
+            "en": "Multiply `3x + z = 8` by `3`"
           },
           "9x + 3z = 24",
           {
-            "he": "מחברים עם `x − 3z = −4`:",
-            "ru": "Складываем с `x − 3z = −4`:",
-            "en": "Add `x − 3z = −4`:"
+            "he": "מחברים עם `x − 3z = −4`",
+            "ru": "Складываем с `x − 3z = −4`",
+            "en": "Add `x − 3z = −4`"
           },
           "10x = 20",
           "x = 2",
           "6 + z = 8",
           "z = 2",
           {
-            "he": "מציבים במשוואה 1:",
-            "ru": "Подставляем в уравнение 1:",
-            "en": "Substitute into equation 1:"
+            "he": "מציבים במשוואה 1",
+            "ru": "Подставляем в уравнение 1",
+            "en": "Substitute into equation 1"
           },
           "4 + y − 2 = 3",
           "y = 1",
           {
-            "he": "תשובה: `x = 2,  y = 1,  z = 2`",
-            "ru": "Ответ: `x = 2,  y = 1,  z = 2`",
-            "en": "Answer: `x = 2,  y = 1,  z = 2`"
+            "he": "תשובה `x = 2,  y = 1,  z = 2`",
+            "ru": "Ответ `x = 2,  y = 1,  z = 2`",
+            "en": "Answer `x = 2,  y = 1,  z = 2`"
           }
         ]
       },
@@ -2020,9 +2441,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "2.3",
         "kind": "choice",
         "text": {
-          "he": "במטריצה המורחבת `R1: ( 1  2  −1 | 4 )`, `R2: ( 3  1  2 | 13 )` עושים `R2 ← R2 − 3R1`. מה השורה החדשה R2?",
-          "ru": "В расширенной матрице `R1: ( 1  2  −1 | 4 )`, `R2: ( 3  1  2 | 13 )` делаем `R2 ← R2 − 3R1`. Какой стала строка R2?",
-          "en": "In the augmented matrix `R1: ( 1  2  −1 | 4 )`, `R2: ( 3  1  2 | 13 )` we do `R2 ← R2 − 3R1`. What is the new row R2?"
+          "he": "במטריצה המורחבת `R1  ( 1  2  −1 | 4 )`, `R2  ( 3  1  2 | 13 )` עושים `R2 ← R2 − 3R1`. מה השורה החדשה R2?",
+          "ru": "В расширенной матрице `R1  ( 1  2  −1 | 4 )`, `R2  ( 3  1  2 | 13 )` делаем `R2 ← R2 − 3R1`. Какой стала строка R2?",
+          "en": "In the augmented matrix `R1  ( 1  2  −1 | 4 )`, `R2  ( 3  1  2 | 13 )` we do `R2 ← R2 − 3R1`. What is the new row R2?"
         },
         "options": [
           "( 0  −5  5 | 1 )",
@@ -2046,24 +2467,24 @@ window.LESSONS['math-2026-10-25'] = {
         ],
         "solution": [
           {
-            "he": "כופלים את R1 ב־3:",
-            "ru": "Умножаем R1 на 3:",
-            "en": "Multiply R1 by 3:"
+            "he": "כופלים את R1 ב־3",
+            "ru": "Умножаем R1 на 3",
+            "en": "Multiply R1 by 3"
           },
           "3R1 = ( 3  6  −3 | 12 )",
           {
-            "he": "מחסירים איבר־איבר:",
-            "ru": "Вычитаем поэлементно:",
-            "en": "Subtract entry by entry:"
+            "he": "מחסירים איבר־איבר",
+            "ru": "Вычитаем поэлементно",
+            "en": "Subtract entry by entry"
           },
           "3 − 3 = 0",
           "1 − 6 = −5",
           "2 − (−3) = 5",
           "13 − 12 = 1",
           {
-            "he": "תשובה: `( 0  −5  5 | 1 )`",
-            "ru": "Ответ: `( 0  −5  5 | 1 )`",
-            "en": "Answer: `( 0  −5  5 | 1 )`"
+            "he": "תשובה `( 0  −5  5 | 1 )`",
+            "ru": "Ответ `( 0  −5  5 | 1 )`",
+            "en": "Answer `( 0  −5  5 | 1 )`"
           }
         ]
       },
@@ -2073,9 +2494,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "3.1",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`x + y + z = 2`\n`2x + 3y + z = 1`\n`x − y + 2z = 7`\nכתבו את התשובה כך: x = …, y = …, z = …",
-          "ru": "Реши систему уравнений:\n`x + y + z = 2`\n`2x + 3y + z = 1`\n`x − y + 2z = 7`\nЗапиши ответ так: x = …, y = …, z = …",
-          "en": "Solve the system of equations:\n`x + y + z = 2`\n`2x + 3y + z = 1`\n`x − y + 2z = 7`\nWrite the answer like this: x = …, y = …, z = …"
+          "he": "פתרו את מערכת המשוואות\n`x + y + z = 2`\n`2x + 3y + z = 1`\n`x − y + 2z = 7`\nכתבו את התשובה כך: x = …, y = …, z = …",
+          "ru": "Реши систему уравнений\n`x + y + z = 2`\n`2x + 3y + z = 1`\n`x − y + 2z = 7`\nЗапиши ответ так: x = …, y = …, z = …",
+          "en": "Solve the system of equations\n`x + y + z = 2`\n`2x + 3y + z = 1`\n`x − y + 2z = 7`\nWrite the answer like this: x = …, y = …, z = …"
         },
         "answer": {
           "accept": [
@@ -2101,35 +2522,35 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Write the augmented matrix and make zeros under the diagonal: first in column one, then in column two."
           },
           {
-            "he": "צעד ראשון: `R2 ← R2 − 2R1`",
-            "ru": "Первый шаг: `R2 ← R2 − 2R1`",
-            "en": "First step: `R2 ← R2 − 2R1`"
+            "he": "צעד ראשון `R2 ← R2 − 2R1`",
+            "ru": "Первый шаг `R2 ← R2 − 2R1`",
+            "en": "First step `R2 ← R2 − 2R1`"
           },
           {
-            "he": "בהמשך מקבלים: `R2: ( 0  1  −1 | −3 )`",
-            "ru": "Дальше получится: `R2: ( 0  1  −1 | −3 )`",
-            "en": "Next you get: `R2: ( 0  1  −1 | −3 )`"
+            "he": "בהמשך מקבלים `R2  ( 0  1  −1 | −3 )`",
+            "ru": "Дальше получится `R2  ( 0  1  −1 | −3 )`",
+            "en": "Next you get `R2  ( 0  1  −1 | −3 )`"
           }
         ],
         "solution": [
           {
-            "he": "מטריצה מורחבת:",
-            "ru": "Расширенная матрица:",
-            "en": "The augmented matrix:"
+            "he": "מטריצה מורחבת",
+            "ru": "Расширенная матрица",
+            "en": "The augmented matrix"
           },
-          "R1: ( 1   1   1 | 2 )",
-          "R2: ( 2   3   1 | 1 )",
-          "R3: ( 1  −1   2 | 7 )",
+          "R1  ( 1   1   1 | 2 )",
+          "R2  ( 2   3   1 | 1 )",
+          "R3  ( 1  −1   2 | 7 )",
           "R2 ← R2 − 2R1",
-          "R2: ( 0  1  −1 | −3 )",
+          "R2  ( 0  1  −1 | −3 )",
           "R3 ← R3 − R1",
-          "R3: ( 0  −2  1 | 5 )",
+          "R3  ( 0  −2  1 | 5 )",
           "R3 ← R3 + 2R2",
-          "R3: ( 0  0  −1 | −1 )",
+          "R3  ( 0  0  −1 | −1 )",
           {
-            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה:",
-            "ru": "Возвращаемся к уравнениям, снизу вверх:",
-            "en": "Back to equations, from the bottom row up:"
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
           },
           "−z = −1",
           "z = 1",
@@ -2140,9 +2561,9 @@ window.LESSONS['math-2026-10-25'] = {
           "x − 2 + 1 = 2",
           "x = 3",
           {
-            "he": "תשובה: `x = 3,  y = −2,  z = 1`",
-            "ru": "Ответ: `x = 3,  y = −2,  z = 1`",
-            "en": "Answer: `x = 3,  y = −2,  z = 1`"
+            "he": "תשובה `x = 3,  y = −2,  z = 1`",
+            "ru": "Ответ `x = 3,  y = −2,  z = 1`",
+            "en": "Answer `x = 3,  y = −2,  z = 1`"
           }
         ]
       },
@@ -2152,9 +2573,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "3.2",
         "kind": "text",
         "text": {
-          "he": "פתרו את מערכת המשוואות:\n`3x + y − 2z = −9`\n`2x − 3y + z = −4`\n`x + 4y + 3z = 19`\nכתבו את התשובה כך: x = …, y = …, z = …",
-          "ru": "Реши систему уравнений:\n`3x + y − 2z = −9`\n`2x − 3y + z = −4`\n`x + 4y + 3z = 19`\nЗапиши ответ так: x = …, y = …, z = …",
-          "en": "Solve the system of equations:\n`3x + y − 2z = −9`\n`2x − 3y + z = −4`\n`x + 4y + 3z = 19`\nWrite the answer like this: x = …, y = …, z = …"
+          "he": "פתרו את מערכת המשוואות\n`3x + y − 2z = −9`\n`2x − 3y + z = −4`\n`x + 4y + 3z = 19`\nכתבו את התשובה כך: x = …, y = …, z = …",
+          "ru": "Реши систему уравнений\n`3x + y − 2z = −9`\n`2x − 3y + z = −4`\n`x + 4y + 3z = 19`\nЗапиши ответ так: x = …, y = …, z = …",
+          "en": "Solve the system of equations\n`3x + y − 2z = −9`\n`2x − 3y + z = −4`\n`x + 4y + 3z = 19`\nWrite the answer like this: x = …, y = …, z = …"
         },
         "answer": {
           "accept": [
@@ -2180,35 +2601,35 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Write the augmented matrix and make zeros under the diagonal: first in column one, then in column two."
           },
           {
-            "he": "צעד ראשון: `R2 ← 3R2 − 2R1`",
-            "ru": "Первый шаг: `R2 ← 3R2 − 2R1`",
-            "en": "First step: `R2 ← 3R2 − 2R1`"
+            "he": "צעד ראשון `R2 ← 3R2 − 2R1`",
+            "ru": "Первый шаг `R2 ← 3R2 − 2R1`",
+            "en": "First step `R2 ← 3R2 − 2R1`"
           },
           {
-            "he": "בהמשך מקבלים: `R2: ( 0  −11  7 | 6 )`",
-            "ru": "Дальше получится: `R2: ( 0  −11  7 | 6 )`",
-            "en": "Next you get: `R2: ( 0  −11  7 | 6 )`"
+            "he": "בהמשך מקבלים `R2  ( 0  −11  7 | 6 )`",
+            "ru": "Дальше получится `R2  ( 0  −11  7 | 6 )`",
+            "en": "Next you get `R2  ( 0  −11  7 | 6 )`"
           }
         ],
         "solution": [
           {
-            "he": "מטריצה מורחבת:",
-            "ru": "Расширенная матрица:",
-            "en": "The augmented matrix:"
+            "he": "מטריצה מורחבת",
+            "ru": "Расширенная матрица",
+            "en": "The augmented matrix"
           },
-          "R1: ( 3   1  −2 | −9 )",
-          "R2: ( 2  −3   1 | −4 )",
-          "R3: ( 1   4   3 | 19 )",
+          "R1  ( 3   1  −2 | −9 )",
+          "R2  ( 2  −3   1 | −4 )",
+          "R3  ( 1   4   3 | 19 )",
           "R2 ← 3R2 − 2R1",
-          "R2: ( 0  −11  7 | 6 )",
+          "R2  ( 0  −11  7 | 6 )",
           "R3 ← 3R3 − R1",
-          "R3: ( 0  11  11 | 66 )",
+          "R3  ( 0  11  11 | 66 )",
           "R3 ← R3 + R2",
-          "R3: ( 0  0  18 | 72 )",
+          "R3  ( 0  0  18 | 72 )",
           {
-            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה:",
-            "ru": "Возвращаемся к уравнениям, снизу вверх:",
-            "en": "Back to equations, from the bottom row up:"
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
           },
           "18z = 72",
           "z = 4",
@@ -2221,9 +2642,9 @@ window.LESSONS['math-2026-10-25'] = {
           "3x = −3",
           "x = −1",
           {
-            "he": "תשובה: `x = −1,  y = 2,  z = 4`",
-            "ru": "Ответ: `x = −1,  y = 2,  z = 4`",
-            "en": "Answer: `x = −1,  y = 2,  z = 4`"
+            "he": "תשובה `x = −1,  y = 2,  z = 4`",
+            "ru": "Ответ `x = −1,  y = 2,  z = 4`",
+            "en": "Answer `x = −1,  y = 2,  z = 4`"
           }
         ]
       },
@@ -2233,9 +2654,9 @@ window.LESSONS['math-2026-10-25'] = {
         "label": "3.3",
         "kind": "number",
         "text": {
-          "he": "אחרי שיטת גאוס התקבלה מטריצה מדורגת:\n`R1: ( 1  2  −1 | 3 )`\n`R2: ( 0  1   3 | 11 )`\n`R3: ( 0  0   2 | 6 )`\nמצאו את x.",
-          "ru": "После метода Гаусса получилась ступенчатая матрица:\n`R1: ( 1  2  −1 | 3 )`\n`R2: ( 0  1   3 | 11 )`\n`R3: ( 0  0   2 | 6 )`\nНайди x.",
-          "en": "After Gaussian elimination we got a staircase matrix:\n`R1: ( 1  2  −1 | 3 )`\n`R2: ( 0  1   3 | 11 )`\n`R3: ( 0  0   2 | 6 )`\nFind x."
+          "he": "אחרי שיטת גאוס התקבלה מטריצה מדורגת\n`R1  ( 1  2  −1 | 3 )`\n`R2  ( 0  1   3 | 11 )`\n`R3  ( 0  0   2 | 6 )`\nמצאו את x.",
+          "ru": "После метода Гаусса получилась ступенчатая матрица\n`R1  ( 1  2  −1 | 3 )`\n`R2  ( 0  1   3 | 11 )`\n`R3  ( 0  0   2 | 6 )`\nНайди x.",
+          "en": "After Gaussian elimination we got a staircase matrix\n`R1  ( 1  2  −1 | 3 )`\n`R2  ( 0  1   3 | 11 )`\n`R3  ( 0  0   2 | 6 )`\nFind x."
         },
         "answer": {
           "value": "2"
@@ -2247,21 +2668,21 @@ window.LESSONS['math-2026-10-25'] = {
             "en": "Start from the bottom row: it has only z."
           },
           {
-            "he": "צעד ראשון: `2z = 6`",
-            "ru": "Первый шаг: `2z = 6`",
-            "en": "First step: `2z = 6`"
+            "he": "צעד ראשון `2z = 6`",
+            "ru": "Первый шаг `2z = 6`",
+            "en": "First step `2z = 6`"
           },
           {
-            "he": "בהמשך מקבלים: `y + 3z = 11`",
-            "ru": "Дальше получится: `y + 3z = 11`",
-            "en": "Next you get: `y + 3z = 11`"
+            "he": "בהמשך מקבלים `y + 3z = 11`",
+            "ru": "Дальше получится `y + 3z = 11`",
+            "en": "Next you get `y + 3z = 11`"
           }
         ],
         "solution": [
           {
-            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה:",
-            "ru": "Возвращаемся к уравнениям, снизу вверх:",
-            "en": "Back to equations, from the bottom row up:"
+            "he": "חוזרים למשוואות, מהשורה התחתונה למעלה",
+            "ru": "Возвращаемся к уравнениям, снизу вверх",
+            "en": "Back to equations, from the bottom row up"
           },
           "2z = 6",
           "z = 3",
@@ -2272,9 +2693,9 @@ window.LESSONS['math-2026-10-25'] = {
           "x + 4 − 3 = 3",
           "x = 2",
           {
-            "he": "תשובה: `x = 2`",
-            "ru": "Ответ: `x = 2`",
-            "en": "Answer: `x = 2`"
+            "he": "תשובה `x = 2`",
+            "ru": "Ответ `x = 2`",
+            "en": "Answer `x = 2`"
           }
         ]
       }
