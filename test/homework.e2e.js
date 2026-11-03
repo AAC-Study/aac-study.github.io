@@ -38,7 +38,7 @@ async function step(name, fn) {
     await p.goto('http://localhost:8765/index.html#/homework/sql-2026-10-29-ptiha'); await p.waitForSelector('.hw-steps');
     assert.strictEqual(await p.locator('.hw-steps li').count(), 7);
     assert(/Moodle/.test(await p.locator('.hw-submit').innerText()));
-    await p.click('.hw-ai summary');
+    await p.click('.hw-ai summary'); await p.click('.hw-mode .tk-seg__btn[data-mode="tutor"]');
     const pr1 = await p.inputValue('.hw-ai textarea');
     assert(/^You are a patient tutor/.test(pr1) && /answer me in Hebrew/.test(pr1) && /הגדר מסד נתונים/.test(pr1) && /FIRST ask me to send a photo or screenshot/.test(pr1), pr1.slice(0, 300));
     await p.click('.hw-ai .tk-seg__btn[data-lang="ru"]');
@@ -58,12 +58,12 @@ async function step(name, fn) {
     assert(/Never write the solution or code for me/.test(await p.inputValue('.hw-ai textarea')));
     assert.deepStrictEqual(errs, []); await ctx.close();
   });
-  await step('"Do it all" mode: full solution, explanation file starts with the AI line, remembered; tutor mode is the default', async () => {
+  await step('"Do it all" mode: full solution, explanation file starts with the AI line, remembered; default full, tutor on AI-banned courses', async () => {
     const { ctx, p, errs } = await mk(390, 'ru');
     await p.goto('http://localhost:8765/index.html#/homework/sql-2026-10-29-ptiha'); await p.waitForSelector('.hw-ai');
     await p.click('.hw-ai summary');
-    assert.strictEqual(await p.getAttribute('.hw-mode .tk-seg__btn[data-mode="tutor"]', 'aria-pressed'), 'true');
-    await p.click('.hw-mode .tk-seg__btn[data-mode="full"]');
+    assert.strictEqual(await p.getAttribute('.hw-mode .tk-seg__btn[data-mode="full"]', 'aria-pressed'), 'true', 'full is the default');
+    await p.click('.hw-mode .tk-seg__btn[data-mode="tutor"]'); await p.click('.hw-mode .tk-seg__btn[data-mode="full"]');
     const pr = await p.inputValue('.hw-ai textarea');
     assert(/Do the WHOLE homework for me/.test(pr) && /explanation\.txt/.test(pr), pr.slice(0, 200));
     assert(/VERY FIRST line of this file must be exactly, in Hebrew: "העבודה נעשתה בעזרת בינה מלאכותית/.test(pr), 'AI line');
@@ -80,6 +80,29 @@ async function step(name, fn) {
     assert(/работу могут не принять/.test(await p.locator('.hw-ai__body').innerText()), 'banned warning in full mode');
     await p.click('.hw-mode .tk-seg__btn[data-mode="tutor"]');
     assert(/Never write the solution or code for me/.test(await p.inputValue('.hw-ai textarea')));
+    assert.deepStrictEqual(errs, []); await ctx.close();
+  });
+  await step('lessons: prompt for any task (no context) on the subject page and in a lesson; asks for context first, every why, warns once', async () => {
+    const { ctx, p, errs } = await mk(390, 'ru');
+    await p.goto('http://localhost:8765/index.html#/homework'); await p.waitForSelector('.hw-card');
+    assert.strictEqual(await p.locator('.tk-any').count(), 0, 'not on the homework page');
+    await p.goto('http://localhost:8765/index.html#/lesson/math-2026-11-01'); await p.waitForSelector('.ls-tasks--ai');
+    assert.strictEqual(await p.locator('.tk-any').count(), 1, 'in a lesson');
+    await p.goto('http://localhost:8765/index.html#/subject/math'); await p.waitForSelector('.tk-any');
+    assert(/без контекста/.test(await p.locator('.tk-any summary').innerText()));
+    await p.click('.tk-any summary');
+    const pr = await p.inputValue('.tk-any textarea');
+    assert(/You do not know what I am working on yet\. Before anything else, ask me to send the context/.test(pr), pr.slice(0, 300));
+    assert(!/Homework:|Topic:/.test(pr), 'no context inside');
+    assert(/why \+ and not -/.test(pr) && /moves to the other side of =/.test(pr) && /fastest effective way/.test(pr));
+    assert(/very first reply with ONE short line warning me that you are an AI/.test(pr) && /answer me in Russian/.test(pr));
+    await p.click('.tk-any .tk-seg__btn[data-lang="en"]');
+    assert(/answer me in English/.test(await p.inputValue('.tk-any textarea')));
+    /* the same detail rules in the homework tutor prompt and in lesson prompts */
+    assert(/why \+ and not -/.test(await p.evaluate(() => Homework.buildPrompt(HOMEWORK[0], 'ru', 'tutor'))));
+    assert(/why \+ and not -/.test(await p.evaluate(() => Homework.buildPrompt(HOMEWORK[0], 'ru', 'full'))));
+    assert(/why \+ and not -/.test(await p.evaluate(() => Tasks.DETAIL.join(' '))));
+    await p.screenshot({ path: SP + '/lesson-any.png', fullPage: true });
     assert.deepStrictEqual(errs, []); await ctx.close();
   });
   await b.close();

@@ -126,7 +126,8 @@
   }
 
   /* ---------- промпт ---------- */
-  function aiMode() { return U.storage.get('hw_ai_mode', 'tutor') === 'full' ? 'full' : 'tutor'; }
+  /* по умолчанию «Сделать целиком»; на курсе, где ИИ запрещён, по умолчанию «Помощь по шагам» */
+  function aiMode(h) { var d = h && h.aiRule === 'banned' ? 'tutor' : 'full'; var v = U.storage.get('hw_ai_mode', d); return v === 'tutor' || v === 'full' ? v : d; }
 
   /* «Сделать целиком»: всё решение + отдельное объяснение, первая строка которого честно говорит, что это сделал ИИ */
   function buildFullPrompt(h, replyLang) {
@@ -158,7 +159,7 @@
     lines = lines.concat([
       'Then, in ' + rl + ' and in simple words:',
       'a) What the teacher asked for in this homework.',
-      'b) How the solution works, part by part. For code: line by line, what each line does and why.',
+      'b) How the solution works, part by part. For code: line by line, what each line does and why. For math: every operation on its own line with why it is done.',
       'c) Which files to upload, where, and how (' + sub + ').',
       'd) How to present it to the teacher in 1-2 minutes: a short plan of what to say.',
       'e) 5 questions the teacher is likely to ask, each with a short answer I can say in my own words.',
@@ -166,12 +167,14 @@
     ]);
     if (h.selfPrompt) lines.push('', 'The teacher asked us to write a prompt ourselves: write it as its own file, and in the explanation say why each part of the prompt is there.');
     lines.push('', 'If I later send you an error or a teacher comment you cannot fully understand, FIRST ask me for a photo or screenshot (or the pasted text), then fix exactly that.');
+    lines = lines.concat([''], Tasks.DETAIL);
+    lines.push('', Tasks.WARN_FIRST);
     lines.push('', Tasks.replyLine(replyLang) + ' The work files themselves stay in the language the teacher expects.');
     return lines.join('\n');
   }
 
   function buildPrompt(h, replyLang, mode) {
-    if ((mode || aiMode()) === 'full') return buildFullPrompt(h, replyLang);
+    if ((mode || aiMode(h)) === 'full') return buildFullPrompt(h, replyLang);
     var s = subject(h.subject);
     var L = 'en';
     var langName = { he: 'Hebrew', ru: 'Russian', en: 'English' }[(h.original && h.original.lang) || 'he'] || 'Hebrew';
@@ -190,12 +193,25 @@
       '3. Check what I send. If something is wrong, show exactly where and why, and give a hint before any solution.',
       '4. Show a small example only if I ask for it, and keep it at our level.',
       '5. If I am short on time, tell me which parts matter most and plan the remaining time with me.',
-      '6. At the end, help me get ready to present my work to the teacher: ask me 3-5 questions the teacher may ask about it, and check that I can explain every part in my own words.'
+      '6. At the end, help me get ready to present my work to the teacher: ask me 3-5 questions the teacher may ask about it, and check that I can explain every part in my own words.',
+      'I am short on time: always show me the fastest effective way to do it myself, most important parts first.'
     ];
     if (h.selfPrompt) lines.push('7. The teacher asked us to write a prompt ourselves. Do not write it for me: ask me questions, help me improve my own draft, and explain what makes a prompt good.');
     if (h.aiRule === 'banned') lines.push('', 'Note: the teacher does not allow AI-written work in this course. Never write the solution or code for me; only explain, give hints and check my own work.');
-    lines = lines.concat([''], Tasks.ASK_FIRST, ['', Tasks.replyLine(replyLang)]);
+    lines = lines.concat([''], Tasks.DETAIL, [''], Tasks.ASK_FIRST, ['', Tasks.WARN_FIRST, '', Tasks.replyLine(replyLang)]);
     return lines.join('\n');
+  }
+
+  /* копирование промпта (общее) */
+  function copyBtn(area, refresh) {
+    var copy = el('button', { type: 'button', class: 'btn btn--primary', html: Icons.get('copy') + '<span>' + U.esc(t('tk_copy')) + '</span>' });
+    copy.addEventListener('click', function () {
+      refresh();
+      var done = function () { U.toast(t('tk_copied')); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(area.value).then(done, function () { area.focus(); area.select(); });
+      else { area.focus(); area.select(); try { document.execCommand('copy'); done(); } catch (e) { /* */ } }
+    });
+    return copy;
   }
 
   function aiBox(h) {
@@ -205,7 +221,7 @@
     var area = el('textarea', { class: 'input tk-prompt', readonly: true, rows: 12, dir: 'ltr', 'aria-label': t('hw_ai') });
     var lead = el('p', { class: 'tk-note' }), warn = el('p', { class: 'tk-note ai-warn' }), ban = el('p', { class: 'tk-note ai-warn' });
     function refresh() {
-      var m = aiMode();
+      var m = aiMode(h);
       area.value = buildPrompt(h, Tasks.aiLang(), m);
       lead.textContent = t(m === 'full' ? 'hw_full_lead' : 'hw_ai_lead');
       warn.textContent = t(m === 'full' ? 'hw_full_warn' : 'hw_ai_warn');
@@ -215,7 +231,7 @@
     var modeRow = el('div', { class: 'ai-lang hw-mode', role: 'group', 'aria-label': t('hw_mode') }, [el('span', { class: 'ai-lang__label' }, t('hw_mode'))]);
     var modeSeg = el('div', { class: 'tk-seg ai-lang__seg' });
     ['tutor', 'full'].forEach(function (m) {
-      var b = el('button', { type: 'button', class: 'tk-seg__btn', 'data-mode': m, 'aria-pressed': m === aiMode() ? 'true' : 'false' }, t('hw_mode_' + m));
+      var b = el('button', { type: 'button', class: 'tk-seg__btn', 'data-mode': m, 'aria-pressed': m === aiMode(h) ? 'true' : 'false' }, t('hw_mode_' + m));
       b.addEventListener('click', function () {
         U.storage.set('hw_ai_mode', m);
         U.$$('.tk-seg__btn', modeSeg).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });

@@ -505,6 +505,15 @@
     'IMPORTANT, before you explain anything: you cannot see my screen or my notebook. If my answer is wrong, or I mention an error you cannot fully understand from this message,',
     'FIRST ask me to send a photo or screenshot of my work (or to paste it as text), and wait for it. Then explain exactly what happened in MY work, not in general.'
   ];
+  /* Первая строка ответа ИИ: честно предупредить, что это ИИ. Больше таких приписок не надо. */
+  var WARN_FIRST = 'Start your very first reply with ONE short line warning me that you are an AI and can make mistakes, so I should check everything. After that line, no more such remarks.';
+  /* Объяснять «глупые» вопросы: почему плюс, а не минус; почему меняется знак за «=»; что значит каждый символ. */
+  var DETAIL = [
+    'HOW TO EXPLAIN (very important for me): explain every step in full detail, as if I have never seen this before. Never skip a step because it seems "obvious".',
+    'For every step say WHAT you do and WHY: why this operation and not another one (why + and not -, why × and not ÷), why a sign changes when a term moves to the other side of =, why we are allowed to do this step at all, and where every number came from.',
+    'The first time a symbol or word appears, say what it means (for example ; { } == in code, or : and × in formulas). One operation per line, and show the result after each line.',
+    'Use × for multiplication (never a dot) and do not put ":" right next to a formula, because it looks like division. If I ask a "simple" why-question, answer it seriously and fully.'
+  ];
   var PROMPT_MATH = [
     'You are a patient private math tutor. I am a beginner college student (practical engineering / software technician program, first semester).',
     'Topic: {topic} (subject: {subject}, lesson of {date}). Only use what is taught at this level; no advanced shortcuts.', '',
@@ -512,8 +521,8 @@
     'What I need:', '1. Check whether my answer is correct.', '2. Explain the solution step by step, one operation per line.', '{method}',
     '4. If I made a mistake, find exactly where it is and explain it calmly and simply.',
     '5. Give me a hint first and let me try again. Give the final answer only if I ask for it.',
-    '6. Use × for multiplication (not a dot) and write formulas plainly.', '',
-  ].concat(ASK_FIRST);
+    '6. Write formulas plainly.', '',
+  ].concat(DETAIL, [''], ASK_FIRST, ['', WARN_FIRST]);
   var METHOD_QUAD = '3. Use the method from class: write down a, b, c → D = b² − 4ac → √D → x₁,₂ = (−b ± √D) / (2a).';
   var METHOD_OTHER = '3. Use the standard school method, no advanced shortcuts.';
   var PROMPT_CODE = [
@@ -524,7 +533,7 @@
     '2. If there is a mistake, show exactly which line and why, in plain words.',
     '3. Walk through the code line by line (and in a loop, round by round), showing what happens at each step.',
     '4. Give a hint first and let me try again. Show full code only if I ask for it.', '',
-  ].concat(ASK_FIRST);
+  ].concat(DETAIL, [''], ASK_FIRST, ['', WARN_FIRST]);
   var NO_ANSWER = 'I have not answered yet.';
   var NO_CODE = '(I have not written code yet. If you need my code, ask me to paste it or send a screenshot.)';
 
@@ -559,6 +568,51 @@
     row.appendChild(seg);
     return row;
   }
+
+  /* ---------- Промпт «без контекста» для уроков: ИИ сначала просит прислать задание и то, что уже сделано ---------- */
+  I18N.add({
+    he: { tk_any: 'פרומפט לכל משימה (בלי הקשר)', tk_any_lead: 'כשהמשימה לא באתר, או שיש שגיאה לא ברורה. מדביקים בכל AI: קודם הוא יבקש לשלוח את המשימה (תמונה או טקסט) ואת מה שכבר עשיתם, ואז יסביר צעד אחר צעד, כולל כל ״למה״.', tk_any_warn: 'זה AI: הוא יכול לטעות. בדקו כל דבר בעצמכם.' },
+    ru: { tk_any: 'Промпт для любого задания (без контекста)', tk_any_lead: 'Если задания нет на сайте или ошибка непонятная. Вставь в любой ИИ: сначала он попросит прислать задание (фото или текст) и то, что ты уже сделал. Потом объяснит по шагам, с каждым «почему».', tk_any_warn: 'Это ИИ: он может ошибаться. Проверяй всё сам.' },
+    en: { tk_any: 'Prompt for any task (no context)', tk_any_lead: 'When the task is not on the site or an error is unclear. Paste it into any AI: first it asks you to send the task (photo or text) and what you have done so far, then it explains step by step, with every "why".', tk_any_warn: 'This is AI: it can make mistakes. Check everything yourself.' }
+  });
+  function buildAnyPrompt(replyLang) {
+    return [
+      'You are a patient tutor for a beginner college student (software technician program in Israel, first semester: math, Java, SQL, HTML, computers, AI and more).', '',
+      'You do not know what I am working on yet. Before anything else, ask me to send the context and wait for it:',
+      'a photo or screenshot of the task or the board (or its text), what the teacher explained, and what I have already done (my code, my solution, my draft, the error I got). If it is a writing task, ask me to paste what I wrote.',
+      'If something is still unclear after that, ask me short questions first. Do not guess.', '',
+      'When you have the context:',
+      '1. Explain in simple words what the task asks for.',
+      '2. Show me the fastest effective way to understand it and do it MYSELF, as a short plan of steps.',
+      '3. Go one step at a time: tell me what to do, wait until I do it and send my result, then check it. If something is wrong, show exactly where and why, and give a hint before any solution.',
+      '4. Stay at the level of what we have learned. If you are not sure what we learned, ask me.',
+      '5. If I need to explain it to the teacher, help me say it in my own words and ask me the questions the teacher may ask.', ''
+    ].concat(DETAIL, ['', 'If I mention an error you cannot fully understand, FIRST ask me for a photo or screenshot (or the pasted text), then explain exactly what happened in MY work.', '', WARN_FIRST, '', replyLine(replyLang)]).join('\n');
+  }
+  function anyBox() {
+    var box = el('details', { class: 'card hw-ai tk-any' });
+    box.appendChild(el('summary', { class: 'hw-ai__head' }, [el('span', { class: 'hw-ai__icon', html: Icons.get('robot') }), el('span', null, t('tk_any')), el('span', { class: 'hw-ai__chev', html: Icons.get('chevronDown') })]));
+    var area = el('textarea', { class: 'input tk-any__area', readonly: true, rows: 12, dir: 'ltr', 'aria-label': t('tk_any') });
+    function refresh() { area.value = buildAnyPrompt(aiLang()); }
+    var copy = el('button', { type: 'button', class: 'btn btn--primary', html: Icons.get('copy') + '<span>' + U.esc(t('tk_copy')) + '</span>' });
+    copy.addEventListener('click', function () {
+      refresh();
+      var done = function () { U.toast(t('tk_copied')); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(area.value).then(done, function () { area.focus(); area.select(); });
+      else { area.focus(); area.select(); try { document.execCommand('copy'); done(); } catch (e) { /* */ } }
+    });
+    box.appendChild(el('div', { class: 'hw-ai__body' }, [
+      el('p', { class: 'tk-note' }, t('tk_any_lead')),
+      aiLangSwitch(refresh),
+      el('p', { class: 'tk-note ai-warn' }, t('tk_any_warn')),
+      area,
+      el('div', { class: 'tk-any__btns' }, [copy])
+    ]));
+    box.addEventListener('toggle', function () { if (box.open) refresh(); });
+    refresh();
+    return box;
+  }
+
 
   function buildPrompt(lesson, task, studentAnswer, replyLang, myCode) {
     var codeLang = codeLangOf(lesson);
@@ -1100,7 +1154,7 @@
     isOpen: function () { return openCount > 0; },
     isSolved: isSolved,
     solveKey: solveKey,
-    buildPrompt: buildPrompt, aiLang: aiLang, aiLangSwitch: aiLangSwitch, replyLine: replyLine, ASK_FIRST: ASK_FIRST,
+    buildPrompt: buildPrompt, aiLang: aiLang, aiLangSwitch: aiLangSwitch, replyLine: replyLine, ASK_FIRST: ASK_FIRST, DETAIL: DETAIL, WARN_FIRST: WARN_FIRST, buildAnyPrompt: buildAnyPrompt, anyBox: anyBox,
     answerText: answerText,
     taskText: taskText,
     taskLabel: taskLabel,

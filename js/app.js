@@ -564,6 +564,7 @@
     setTitle(U.tr(s.name));
     view.appendChild(el('div', { class: 'page-head' }, [el('h1', null, U.tr(s.name)), el('p', null, t('lessons_title'))]));
     var list = lessonsOf(s.id);
+    if (window.Tasks && Tasks.anyBox) view.appendChild(Tasks.anyBox());
     if (!list.length) { view.appendChild(el('div', { class: 'empty card' }, t('no_lessons_yet'))); return; }
     var months = { he: ['ינו', 'פבר', 'מרץ', 'אפר', 'מאי', 'יוני', 'יולי', 'אוג', 'ספט', 'אוק', 'נוב', 'דצמ'],
                    ru: ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'],

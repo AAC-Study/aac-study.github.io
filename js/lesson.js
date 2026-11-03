@@ -545,7 +545,7 @@
     aiWrap.appendChild(el('p', { class: 'ls-caption', html: Icons.get('pencil') + '<span>' + U.esc(t('ls_tap_task')) + '</span>' }));
     levels.forEach(function (lv) { aiWrap.appendChild(panes[lv]); });
     if (levels.length) selectLevel(curLevel, false);
-    section(SECTIONS[5], [aiWrap], counter(ai));
+    section(SECTIONS[5], [aiWrap, Tasks.anyBox()], counter(ai));
     refreshTiles();
 
     /* ---------- TOC ---------- */
