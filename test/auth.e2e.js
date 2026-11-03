@@ -145,7 +145,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     await ctx.close();
   });
   await step('signup errors never say "wrong email or password"', async () => {
-    for (const [err, re] of [[{ code: 400, error_code: 'validation_failed', msg: 'Something odd' }, /Не получилось зарегистрироваться.*Something odd/],
+    for (const [err, re] of [[{ code: 400, error_code: 'validation_failed', msg: 'Something odd' }, /Не получилось зарегистрироваться[\s\S]*R-400 · validation_failed/],
                              [{ code: 429, error_code: 'over_email_send_rate_limit', msg: 'email rate limit exceeded' }, /Слишком много писем/],
                              [{ code: 500, error_code: 'unexpected_failure', msg: 'Database error saving new user' }, /Неверный код приглашения/]]) {
       const { ctx, p } = await mk({ key: false, signupErr: err });
@@ -156,6 +156,8 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
       await p.waitForFunction(() => document.querySelector('.form-error').style.display === 'block');
       const e = await p.locator('.form-error').innerText();
       assert(re.test(e), e); assert(!/Неверный email или пароль/.test(e), e);
+      if (err.code === 400) { assert.strictEqual(await p.getAttribute('.err-code', 'title'), 'Something odd');
+        await p.click('.err-code'); assert(/Something odd/.test(await p.locator('.err-code').innerText())); }
       await ctx.close();
     }
   });

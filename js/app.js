@@ -252,6 +252,21 @@
   function cfReset() { cf.token = ''; if (cf.id != null && window.turnstile) { try { window.turnstile.reset(cf.id); } catch (e) { /* */ } } }
 
   /* ---------- вход и регистрация ---------- */
+  /* Ошибка входа/регистрации: понятный текст + маленький код для Claude/админа (R = регистрация, L = вход, F = «забыл пароль»).
+     Подробности — при наведении мышкой или по нажатию на код (на телефоне). */
+  function fillErr(box, txt, er, where) {
+    box.innerHTML = '';
+    box.appendChild(document.createTextNode(txt));
+    var tech = er && er.tech;
+    if (tech) {
+      var code = where + '-' + (tech.s || 0) + (tech.c ? ' · ' + tech.c : '');
+      var more = tech.m && tech.m !== tech.c ? tech.m : '';
+      var c = el('span', { class: 'err-code', dir: 'ltr', title: more || code, tabindex: '0' }, code);
+      c.addEventListener('click', function () { if (more && !c.getAttribute('data-open')) { c.setAttribute('data-open', '1'); c.textContent = code + ' · ' + more; } });
+      box.appendChild(c);
+    }
+    box.style.display = 'block';
+  }
   function renderAuth(mode, opts) {
     opts = opts || {};
     var app = $('#app');
@@ -309,7 +324,7 @@
         busy = false; cfReset();
         var code = er.code || (isReg ? 'err_signup' : 'err_login');
         if (isReg && code === 'err_login') code = 'err_signup';
-        showErr(t(code) + (isReg && er.detail && code !== 'err_invite' && code !== 'err_exists' ? ' (' + er.detail + ')' : ''));
+        fillErr(errBox, t(code), er, isReg ? 'R' : 'L');
       });
     });
     /* после регистрации, если сервер просит подтвердить почту */
@@ -383,7 +398,7 @@
         ]));
       }, function (er) {
         busy = false; cfReset();
-        showErr(t(er.code || 'err_network') + (er.detail && er.code !== 'err_too_often' && er.code !== 'err_network' ? ' (' + er.detail + ')' : ''));
+        fillErr(errBox, t(er.code || 'err_network'), er, 'F');
       });
     });
     authShell(app, [

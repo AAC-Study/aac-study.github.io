@@ -42,7 +42,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     await p.click('.auth-forgot'); await p.fill('#f-email', 'x@y.z'); await p.click('form button[type=submit]');
     await p.waitForFunction(() => /Сервер не смог отправить письмо/.test(document.body.innerText));
     const txt = await p.evaluate(() => document.body.innerText);
-    assert(!/пароль\b.*Неверный|Неверный email или пароль/.test(txt)); assert(/Error sending recovery email/.test(txt));
+    assert(!/пароль\b.*Неверный|Неверный email или пароль/.test(txt)); assert(/F-500 · unexpected_failure/.test(txt), txt); assert.strictEqual(await p.getAttribute('.err-code', 'title'), 'Error sending recovery email');
     await ctx.close();
   });
   await step('recovery link -> new password screen -> saved -> home', async () => {

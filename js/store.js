@@ -220,7 +220,10 @@
       else if (m.indexOf('already') >= 0) code = 'err_exists';
       else if (m.indexOf('password') >= 0 && m.indexOf('6') >= 0) code = 'err_short_pass';
       else if (e && e.status === 0) code = 'err_network';
-      var er = new Error(code); er.code = code; return er;
+      var er = new Error(code); er.code = code;
+      // технический код для Claude/админа: показывается мелко под ошибкой, подробности при наведении
+      er.tech = { s: (e && e.status) || 0, c: String((e && e.data && e.data.error_code) || ''), m: String((e && e.message) || '').slice(0, 200) };
+      return er;
     }
 
     Store.sb = { url: URL, key: KEY, api: api, uid: function () { return sess && sess.user.id; },
@@ -285,8 +288,7 @@
             if (e && e.status === 429 || /rate limit/.test(m)) er.code = 'err_too_often';
             // при регистрации пароль «неверным» быть не может: говорим про email и код приглашения
             else if (er.code === 'err_login') er.code = 'err_signup';
-            if (er.code !== 'err_network') er.detail = (e && e.status ? e.status + ' ' : '') + String((e && e.message) || '').slice(0, 120);
-            try { console.warn('signup failed:', er.detail); } catch (x2) { /* */ }
+            try { console.warn('signup failed:', er.tech); } catch (x2) { /* */ }
             throw er;
           });
       },
@@ -306,12 +308,11 @@
         if (p.captcha) body.gotrue_meta_security = { captcha_token: p.captcha };
         return http('POST', '/auth/v1/recover?redirect_to=' + encodeURIComponent(location.origin + location.pathname), body, { auth: false })
           .then(function () {}, function (e) {
-            if (e && e.status === 429) { var x = new Error('err_too_often'); x.code = 'err_too_often'; throw x; }
+            if (e && e.status === 429) { var x = mapAuthErr(e); x.code = 'err_too_often'; throw x; }
             var er = mapAuthErr(e);
             // здесь нет пароля: «неверный email или пароль» не подходит
             if (er.code === 'err_login') { er.code = e && e.status >= 500 ? 'err_mail_send' : 'err_recover'; }
-            er.detail = (e && e.status ? e.status + ' ' : '') + String((e && e.message) || '').slice(0, 120);
-            try { console.warn('recover failed:', er.detail); } catch (x2) { /* */ }
+            try { console.warn('recover failed:', er.tech); } catch (x2) { /* */ }
             throw er;
           });
       },
