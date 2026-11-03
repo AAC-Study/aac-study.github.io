@@ -37,6 +37,7 @@ process.argv.slice(2).forEach(function (id) {
     else if (!it.text && !it.math) fail(id, w + ' has no text/math');
     if (it.title) tri(id, w + '.title', it.title);
     if (it.text) tri(id, w + '.text', it.text);
+    if (it.why) tri(id, w + '.why', it.why);
   });
   if (!(L.timeline || []).length) fail(id, 'empty timeline');
   (L.review || []).forEach(function (r, i) { tri(id, 'review[' + i + '].title', r.title); tri(id, 'review[' + i + '].text', r.text); });

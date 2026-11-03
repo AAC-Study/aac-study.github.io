@@ -524,3 +524,15 @@
 .ls-part__body[hidden] { display: none; }
 .ls-part__foot { display: flex; justify-content: flex-end; margin-top: 8px; }
 .ls-part__next { min-height: 44px; }
+
+/* "Why is it so?" under a lesson step */
+.ls-why { margin-top: 12px; border-top: 1px dashed var(--border); padding-top: 8px; }
+.ls-why__sum { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; list-style: none; color: var(--accent); font-weight: 600; font-size: .92rem; padding: 4px 2px; border-radius: 8px; user-select: none; }
+.ls-why__sum::-webkit-details-marker { display: none; }
+.ls-why__sum::marker { content: ''; }
+.ls-why__sum:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ls-why__ic, .ls-why__chev { display: inline-flex; width: 16px; height: 16px; }
+.ls-why__ic svg, .ls-why__chev svg { width: 16px; height: 16px; }
+.ls-why__chev { transition: transform .2s; }
+.ls-why[open] .ls-why__chev { transform: rotate(180deg); }
+.ls-why__body { margin-top: 6px; color: var(--text); line-height: 1.6; }

@@ -65,14 +65,14 @@ window.LESSONS['math-2026-11-01'] = {
   },
 
   timeline: [
-    { kind: 'talk',
+    { "why": {"he": "למה `a ≠ 0`? אם `a = 0`, ה-`x²` נעלם ונשארת משוואה ממעלה ראשונה — את זה כבר יודעים לפתור. למה צד אחד שווה 0? כי נוסחת השורשים נבנתה בדיוק לצורה `ax² + bx + c = 0`. בלי זה a, b, c יוצאים לא נכונים.", "ru": "Почему `a ≠ 0`? Если `a = 0`, `x²` пропадает, и остаётся линейное уравнение — его мы уже умеем решать. Почему одна часть равна 0? Потому что формула корней сделана ровно для вида `ax² + bx + c = 0`. Без этого a, b, c выпишутся неверно.", "en": "Why `a ≠ 0`? If `a = 0`, the `x²` vanishes and a first-degree equation is left — we can already solve that. Why is one side 0? Because the quadratic formula is built exactly for the form `ax² + bx + c = 0`. Without it, a, b, c come out wrong."}, kind: 'talk',
       title: { he: 'מהי משוואה ריבועית', ru: 'Что такое квадратное уравнение', en: 'What a quadratic equation is' },
       text: {
         he: 'משוואה ריבועית היא משוואה מהצורה `ax² + bx + c = 0`, כאשר `a ≠ 0`. המספרים a, b, c נקראים מקדמים: a עומד ליד x², b עומד ליד x, ו־c הוא המספר החופשי. לפני שפותרים, מסדרים את המשוואה כך שבצד אחד יהיה 0.',
         ru: 'Квадратное уравнение — это уравнение вида `ax² + bx + c = 0`, где `a ≠ 0`. Числа a, b, c называются коэффициентами: a стоит при x², b — при x, c — свободный член. Перед решением приводим уравнение к виду, где с одной стороны 0.',
         en: 'A quadratic equation has the form `ax² + bx + c = 0`, where `a ≠ 0`. The numbers a, b, c are the coefficients: a goes with x², b goes with x, and c is the constant term. Before solving, arrange the equation so that one side is 0.'
       } },
-    { kind: 'faq',
+    { "why": {"he": "במשוואה ממעלה ראשונה x מופיע רק בחזקה 1, ולכן מעבירים ומחלקים. כש-`x²` נשאר, אי אפשר \"לבודד\" את x בחילוק אחד, כי x מופיע פעמיים בצורות שונות — לכן צריך שיטה חדשה: נוסחת השורשים.", "ru": "В линейном уравнении x есть только в первой степени, поэтому переносим и делим. Когда `x²` остаётся, x не получится «выделить» одним делением: он стоит дважды и в разном виде — поэтому нужен новый способ, формула корней.", "en": "In a first-degree equation x appears only to the power 1, so you move and divide. When `x²` stays, you cannot isolate x with one division, because x appears twice in different forms — so you need a new method: the quadratic formula."}, kind: 'faq',
       q: {
         he: 'מה עושים כש־x² לא מצטמצם ונשאר במשוואה?',
         ru: 'Что делать, если x² не сокращается и остаётся в уравнении?',
@@ -83,7 +83,7 @@ window.LESSONS['math-2026-11-01'] = {
         ru: 'Это и есть квадратное уравнение. Переносим всё в одну сторону, выписываем a, b, c и решаем по формуле корней — этому посвящён урок.',
         en: 'That is exactly a quadratic equation. Move all terms to one side, find a, b, c and use the quadratic formula — that is what this lesson is about.'
       } },
-    { kind: 'board',
+    { "why": {"he": "בדיקה — מציבים את שני השורשים.", "ru": "Проверка — подставляем оба корня.", "en": "Check — substitute both roots."}, "whyMath": ["x = −1", "(−1)² + 6 × (−1) + 5", "= 1 − 6 + 5 = 0", "x = −5", "(−5)² + 6 × (−5) + 5", "= 25 − 30 + 5 = 0"], kind: 'board',
       title: { he: 'דוגמה מהלוח: `x² + 6x + 5 = 0`', ru: 'Пример с доски: `x² + 6x + 5 = 0`', en: 'Board example: `x² + 6x + 5 = 0`' },
       text: {
         he: 'המקדמים: `a = 1`, `b = 6`, `c = 5`.\nכאן `a + c = 1 + 5 = 6`, וזה בדיוק b. במקרה כזה יש דרך קצרה, והפתרונות יוצאים מיד:',
@@ -91,14 +91,14 @@ window.LESSONS['math-2026-11-01'] = {
         en: 'The coefficients: `a = 1`, `b = 6`, `c = 5`.\nHere `a + c = 1 + 5 = 6`, which is exactly b. In that case there is a shortcut and the roots come out at once:'
       },
       math: ['x₁ = −1', 'x₂ = −c/a = −5/1 = −5'] },
-    { kind: 'tip',
+    { "why": {"he": "למה זה עובד? מציבים `x = −1` בצורה הכללית ומקבלים `a − b + c`. אם `a + c = b`, זה בדיוק 0 — ולכן `−1` תמיד שורש. השורש השני יוצא מכך שמכפלת השורשים שווה תמיד `c/a`.", "ru": "Почему это работает? Подставим `x = −1` в общий вид и получим `a − b + c`. Если `a + c = b`, это ровно 0 — значит `−1` всегда корень. Второй корень следует из того, что произведение корней всегда равно `c/a`.", "en": "Why does it work? Put `x = −1` into the general form and you get `a − b + c`. If `a + c = b`, that is exactly 0 — so `−1` is always a root. The second root follows because the product of the roots always equals `c/a`."}, "whyMath": ["a × (−1)² + b × (−1) + c", "= a − b + c", "= (a + c) − b = 0", "x₁ × x₂ = c/a", "(−1) × x₂ = c/a", "x₂ = −c/a"], kind: 'tip',
       title: { he: 'הדרך הקצרה: כש־`a + c = b`', ru: 'Короткий способ: когда `a + c = b`', en: 'The shortcut: when `a + c = b`' },
       text: {
         he: 'אם `a + c = b`, אז פתרון אחד הוא תמיד `x₁ = −1`, והשני `x₂ = −c/a`.\nהדרך הזו עובדת רק כשהתנאי מתקיים. למשל ב־`x² + 6x + 8 = 0`: `1 + 8 = 9`, וזה לא 6 — לכן פותרים בנוסחה (תרגיל 2ב).',
         ru: 'Если `a + c = b`, то один корень всегда `x₁ = −1`, а второй `x₂ = −c/a`.\nСпособ работает только при этом условии. Например, в `x² + 6x + 8 = 0`: `1 + 8 = 9`, а не 6 — значит решаем по формуле (задание 2ב).',
         en: 'If `a + c = b`, one root is always `x₁ = −1` and the other is `x₂ = −c/a`.\nThis only works when the condition holds. For example, in `x² + 6x + 8 = 0`: `1 + 8 = 9`, not 6 — so use the formula (exercise 2ב).'
       } },
-    { kind: 'talk',
+    { "why": {"he": "למה `±`? כי לכל מספר חיובי יש שני שורשים: גם `3 × 3 = 9` וגם `(−3) × (−3) = 9`. לכן פעם מחברים את `√D` ופעם מחסירים — ומקבלים שני פתרונות. הנוסחה מגיעה מ\"השלמה לריבוע\", ולכן היא עובדת לכל משוואה ריבועית.", "ru": "Почему `±`? Потому что у положительного числа два квадратных корня: и `3 × 3 = 9`, и `(−3) × (−3) = 9`. Поэтому один раз прибавляем `√D`, другой — вычитаем, и получаем два решения. Формула выводится «выделением полного квадрата», поэтому работает для любого квадратного уравнения.", "en": "Why `±`? Because a positive number has two square roots: `3 × 3 = 9` and `(−3) × (−3) = 9`. So once you add `√D` and once you subtract it — two solutions. The formula comes from \"completing the square\", so it works for every quadratic."}, kind: 'talk',
       title: { he: 'נוסחת השורשים', ru: 'Формула корней', en: 'The quadratic formula' },
       text: {
         he: 'הדרך הכללית עובדת תמיד. קודם מחשבים את הדיסקרימיננטה D, אחר כך מוציאים ממנה שורש ומציבים בנוסחה — פעם עם פלוס ופעם עם מינוס:',
@@ -106,7 +106,7 @@ window.LESSONS['math-2026-11-01'] = {
         en: 'The general method always works. First compute the discriminant D, then take its square root and substitute into the formula — once with plus, once with minus:'
       },
       math: ['D = b² − 4ac', 'x₁,₂ = (−b ± √D) / (2a)', 'x = (−b ± √(b² − 4 × a × c)) / (2 × a)'] },
-    { kind: 'qa',
+    { "why": {"he": "המחשבון מבצע לפי סדר פעולות: `√` פועל רק על מה שבא מיד אחריו. `√b² − 4ac` בלי סוגריים זה `√(b²)` ואז מינוס `4ac`. סוגריים או `=` לפני — מבטיחים שהשורש יחול על כל `D`.", "ru": "Калькулятор считает по порядку действий: `√` действует только на то, что идёт сразу после него. `√b² − 4ac` без скобок — это `√(b²)` и потом минус `4ac`. Скобки или `=` перед корнем гарантируют, что корень возьмётся из всего `D`.", "en": "The calculator follows the order of operations: `√` acts only on what comes right after it. `√b² − 4ac` without brackets is `√(b²)` and then minus `4ac`. Brackets, or pressing `=` first, make sure the root covers all of `D`."}, kind: 'qa',
       q: {
         he: 'איך מקלידים את זה נכון במחשבון?',
         ru: 'Как правильно набрать это на калькуляторе?',
@@ -117,22 +117,22 @@ window.LESSONS['math-2026-11-01'] = {
         ru: 'Сначала считаем `b² − 4ac` и нажимаем `=`. Только потом нажимаем √ от результата (Ans). Можно и сразу, но со скобками: `√(b² − 4ac)`.\nЕсли нажать √ в начале без скобок, калькулятор извлечёт корень только из b², и результат будет неверным.',
         en: 'First compute `b² − 4ac` and press `=`. Only then press √ on the result (Ans). You can do it in one go, but with brackets: `√(b² − 4ac)`.\nIf you press √ first without brackets, the calculator takes the root of b² only, and the result is wrong.'
       } },
-    {"kind": "tip", "title": {"he": "כש-b שלילי, ‎−b חיובי", "ru": "Если b отрицательное, то −b положительное", "en": "When b is negative, −b is positive"}, "text": {"he": "בנוסחה כתוב `−b`. אם b עצמו שלילי, שני המינוסים נותנים פלוס: כש-`b = −5`, אז `−b = −(−5) = 5`.\nגם בריבוע: `(−5)² = 25` — תמיד חיובי.", "ru": "В формуле стоит `−b`. Если само b отрицательное, два минуса дают плюс: при `b = −5` получается `−b = −(−5) = 5`.\nИ в квадрате тоже: `(−5)² = 25` — всегда положительное.", "en": "The formula has `−b`. If b itself is negative, the two minuses make a plus: with `b = −5`, `−b = −(−5) = 5`.\nThe square too: `(−5)² = 25` — always positive."}, "math": ["b = −5", "−b = −(−5) = 5", "b² = (−5)² = 25"]},
-    { kind: 'tip',
+    { "why": {"he": "`−b` פירושו \"ההפך של b\", לא \"מספר שלילי\". אם b כבר שלילי, ההפך שלו חיובי. לכן כותבים בטיוטה שורה נפרדת `−b = …` לפני ההצבה — זה מונע את רוב טעויות הסימן.", "ru": "`−b` значит «число, противоположное b», а не «отрицательное число». Если b уже отрицательное, противоположное ему — положительное. Поэтому в черновике пиши отдельную строку `−b = …` перед подстановкой — это убирает большинство ошибок со знаком.", "en": "`−b` means \"the opposite of b\", not \"a negative number\". If b is already negative, its opposite is positive. So on scrap paper write a separate line `−b = …` before substituting — it prevents most sign mistakes."},"kind": "tip", "title": {"he": "כש-b שלילי, ‎−b חיובי", "ru": "Если b отрицательное, то −b положительное", "en": "When b is negative, −b is positive"}, "text": {"he": "בנוסחה כתוב `−b`. אם b עצמו שלילי, שני המינוסים נותנים פלוס: כש-`b = −5`, אז `−b = −(−5) = 5`.\nגם בריבוע: `(−5)² = 25` — תמיד חיובי.", "ru": "В формуле стоит `−b`. Если само b отрицательное, два минуса дают плюс: при `b = −5` получается `−b = −(−5) = 5`.\nИ в квадрате тоже: `(−5)² = 25` — всегда положительное.", "en": "The formula has `−b`. If b itself is negative, the two minuses make a plus: with `b = −5`, `−b = −(−5) = 5`.\nThe square too: `(−5)² = 25` — always positive."}, "math": ["b = −5", "−b = −(−5) = 5", "b² = (−5)² = 25"]},
+    { "why": {"he": "D מחליט כמה פתרונות יש, ולכן טעות ב-D משנה את כל התשובה: מ\"שני פתרונות\" ל\"אין פתרון\". בגלל זה כדאי לחשב את D לבד, בשורה נפרדת, לפני הנוסחה.", "ru": "D решает, сколько будет решений, поэтому ошибка в D меняет весь ответ: с «двух решений» на «нет решений». Поэтому D лучше посчитать отдельно, отдельной строкой, до формулы.", "en": "D decides how many solutions there are, so a mistake in D changes the whole answer: from \"two solutions\" to \"no solution\". That is why it is worth computing D on its own line before the formula."}, kind: 'tip',
       title: { he: 'טעות נפוצה: לשכוח את הריבוע של b', ru: 'Частая ошибка: забыть возвести b в квадрат', en: 'Common mistake: forgetting to square b' },
       text: {
         he: 'ב־`6x² + 5x + 1 = 0`: `D = 5² − 4 × 6 × 1 = 25 − 24 = 1`.\nמי ששוכח את הריבוע מקבל `5 − 24 = −19`, ואז נדמה שאין פתרון. במחשבון — לוחצים x² מיד אחרי b.',
         ru: 'В `6x² + 5x + 1 = 0`: `D = 5² − 4 × 6 × 1 = 25 − 24 = 1`.\nЕсли забыть квадрат, получится `5 − 24 = −19`, и покажется, что решений нет. На калькуляторе нажимай x² сразу после b.',
         en: 'In `6x² + 5x + 1 = 0`: `D = 5² − 4 × 6 × 1 = 25 − 24 = 1`.\nForget the square and you get `5 − 24 = −19`, which looks like "no solution". On the calculator, press x² right after b.'
       } },
-    { kind: 'talk',
+    { "why": {"he": "כש-`D = 0`, `+√0` ו-`−√0` זה אותו דבר, ולכן שני השורשים מתלכדים לאחד. כש-`D < 0` אין מספר ממשי שבריבוע נותן שלילי (כל מספר בריבוע ≥ 0), ולכן אין פתרון.", "ru": "При `D = 0` `+√0` и `−√0` — одно и то же, поэтому два корня сливаются в один. При `D < 0` нет такого обычного числа, которое в квадрате даёт отрицательное (любое число в квадрате ≥ 0), поэтому решений нет.", "en": "When `D = 0`, `+√0` and `−√0` are the same, so the two roots merge into one. When `D < 0` there is no real number whose square is negative (every square is ≥ 0), so there is no solution."}, kind: 'talk',
       title: { he: 'כמה פתרונות יש? (תרגיל 3)', ru: 'Сколько решений? (задание 3)', en: 'How many solutions? (exercise 3)' },
       text: {
         he: 'הסימן של D אומר כמה פתרונות יש:\n`D > 0` — שני פתרונות\n`D = 0` — פתרון אחד: `x = −b / (2a)`\n`D < 0` — אין פתרון, כי אי אפשר להוציא שורש ממספר שלילי',
         ru: 'Знак D говорит, сколько решений:\n`D > 0` — два корня\n`D = 0` — один корень: `x = −b / (2a)`\n`D < 0` — решений нет, потому что корень из отрицательного числа не извлекается',
         en: 'The sign of D tells you how many solutions there are:\n`D > 0` — two roots\n`D = 0` — one root: `x = −b / (2a)`\n`D < 0` — no solution, because you can\'t take the square root of a negative number'
       } },
-    { kind: 'board',
+    { "why": {"he": "כש-`b = 0` יש גם דרך קצרה, בלי נוסחה.", "ru": "Когда `b = 0`, есть и короткий путь, без формулы.", "en": "When `b = 0` there is also a short way, without the formula."}, "whyMath": ["4x² − 4 = 0", "4x² = 4", "x² = 1", "x₁ = 1", "x₂ = −1"], kind: 'board',
       title: { he: 'דוגמה מהלוח: `4x² − 4 = 0`', ru: 'Пример с доски: `4x² − 4 = 0`', en: 'Board example: `4x² − 4 = 0`' },
       text: {
         he: 'כאן אין איבר עם x, ולכן `b = 0`. המקדמים: `a = 4`, `b = 0`, `c = −4`. מציבים בנוסחה:',
@@ -140,14 +140,14 @@ window.LESSONS['math-2026-11-01'] = {
         en: 'There is no x term here, so `b = 0`. The coefficients: `a = 4`, `b = 0`, `c = −4`. Substitute into the formula:'
       },
       math: ['D = 0² − 4 × 4 × (−4)', 'D = 64', '√D = 8', 'x₁ = (0 + 8) / (2 × 4) = 1', 'x₂ = (0 − 8) / (2 × 4) = −1'] },
-    { kind: 'tip',
+    { "why": {"he": "a הוא תמיד המספר שליד `x²`, לא משנה איפה הוא כתוב או מה כתוב ליד הדוגמה. טעות ב-a משנה גם את D וגם את המכנה `2a`, ולכן היא מקלקלת את שני השורשים.", "ru": "a — это всегда число при `x²`, где бы оно ни стояло и что бы ни было написано рядом с примером. Ошибка в a меняет и D, и знаменатель `2a`, поэтому портит оба корня.", "en": "a is always the number next to `x²`, wherever it is written and whatever is written next to the example. A mistake in a changes both D and the denominator `2a`, so it spoils both roots."}, kind: 'tip',
       title: { he: 'שימו לב מהו a', ru: 'Внимательно с a', en: 'Check what a is' },
       text: {
         he: 'על הלוח נכתב ליד הדוגמה `a = 1`, אבל המקדם של x² כאן הוא 4, ולכן `a = 4` — וכך גם הוצב בנוסחה. תמיד בודקים איזה מספר עומד ליד x².',
         ru: 'На доске рядом с примером было написано `a = 1`, но коэффициент при x² здесь 4, значит `a = 4` — так и подставлено в формулу. Всегда смотри, какое число стоит при x².',
         en: 'Next to this example the board said `a = 1`, but the coefficient of x² is 4, so `a = 4` — and that is what goes into the formula. Always check which number stands next to x².'
       } },
-    { kind: 'faq',
+    { "why": {"he": "כש-`c = 0` יש קיצור: מוציאים x מחוץ לסוגריים. מכפלה שווה 0 רק אם אחד הגורמים 0.", "ru": "Когда `c = 0`, есть короткий путь — выносим x за скобку. Произведение равно 0, только если один из множителей равен 0.", "en": "When `c = 0` there is a shortcut: take x out of the bracket. A product is 0 only if one of its factors is 0."}, "whyMath": ["ax² + bx = 0", "x(ax + b) = 0", "x = 0", "ax + b = 0  →  x = −b/a"], kind: 'faq',
       q: {
         he: 'הנוסחה עובדת גם כש־b = 0 או c = 0?',
         ru: 'Формула работает, если b = 0 или c = 0?',
@@ -158,7 +158,7 @@ window.LESSONS['math-2026-11-01'] = {
         ru: 'Да. Просто подставляем 0 вместо недостающего коэффициента. В `4x² − 4 = 0` мы подставили `b = 0` и получили `x = 1` и `x = −1`.',
         en: 'Yes. Just put 0 in place of the missing coefficient. In `4x² − 4 = 0` we used `b = 0` and got `x = 1` and `x = −1`.'
       } },
-    { kind: 'talk',
+    { "why": {"he": "למה מעבירים הכול שמאלה? כי הנוסחה צריכה \"= 0\". אם משאירים איברים בשני הצדדים, a, b ו-c שתרשמו לא יהיו נכונים. אחרי ההעברה מכנסים איברים דומים — ורק אז רושמים a, b, c.", "ru": "Зачем переносить всё влево? Потому что формуле нужно «= 0». Если оставить члены с обеих сторон, выписанные a, b и c будут неверными. После переноса приводим подобные — и только потом выписываем a, b, c.", "en": "Why move everything to the left? Because the formula needs \"= 0\". If terms stay on both sides, the a, b and c you write down will be wrong. After moving, combine like terms — and only then write a, b, c."}, kind: 'talk',
       title: { he: 'תרגיל 12: סוגריים שמובילים למשוואה ריבועית', ru: 'Задание 12: скобки, которые приводят к квадратному уравнению', en: 'Exercise 12: brackets that lead to a quadratic' },
       text: {
         he: 'כאן יש סוגריים כפול סוגריים, כמו בנושא "סוגריים כפול סוגריים" שלמדנו קודם: כל איבר כפול כל איבר.\nההבדל: בצד ימין יש `2x²`, ולכן x² לא מצטמצם. מעבירים את כל האיברים לצד שמאל, בצד ימין נשאר 0 — ומתקבלת משוואה ריבועית. דוגמה (לא מהתרגיל):',
@@ -166,30 +166,30 @@ window.LESSONS['math-2026-11-01'] = {
         en: 'Here a bracket multiplies a bracket, just like the earlier topic "bracket times bracket": every term times every term.\nThe difference: the right side has `2x²`, so x² does not cancel. Move every term to the left, 0 stays on the right — and you get a quadratic equation. An example (not from the exercise):'
       },
       math: ['(x + 1)(x − 3) = 2x² − 5x + 1', 'x² − 3x + x − 3 = 2x² − 5x + 1', 'x² − 2x − 3 − 2x² + 5x − 1 = 0', '−x² + 3x − 4 = 0'] },
-    { kind: 'tip',
+    { "why": {"he": "כפל של כל המשוואה ב-`(−1)` לא משנה את השורשים: `0 × (−1)` עדיין 0, והאגף השמאלי שווה 0 באותם x בדיוק. מספרים חיוביים פשוט נוחים יותר ומקטינים טעויות.", "ru": "Умножение всего уравнения на `(−1)` не меняет корней: `0 × (−1)` — всё ещё 0, и левая часть равна 0 ровно при тех же x. Положительные числа просто удобнее и дают меньше ошибок.", "en": "Multiplying the whole equation by `(−1)` does not change the roots: `0 × (−1)` is still 0, and the left side is 0 for exactly the same x. Positive numbers are just handier and lead to fewer mistakes."}, kind: 'tip',
       title: { he: 'כש־a שלילי', ru: 'Когда a отрицательное', en: 'When a is negative' },
       text: {
         he: 'אפשר לעבוד עם a שלילי כמו שהוא (למשל `a = −1`) — רק לזכור שגם המכנה `2a` יוצא שלילי. אפשר גם לכפול את כל המשוואה ב־(−1) ולהפוך את כל הסימנים. התשובה יוצאת אותו דבר.',
         ru: 'С отрицательным a можно работать как есть (например, `a = −1`) — только помни, что знаменатель `2a` тоже отрицательный. Можно и умножить всё уравнение на (−1), поменяв все знаки. Ответ получится тот же.',
         en: 'You can work with a negative a as it is (for example `a = −1`) — just remember that the denominator `2a` is negative too. Or multiply the whole equation by (−1) and flip every sign. The answer is the same.'
       } },
-    { kind: 'tip',
+    { "why": {"he": "לפי סדר הפעולות, חזקה לפני הסימן מינוס. לכן `−0.5²` זה \"מינוס של (0.5 בריבוע)\" = `−0.25`. הסוגריים אומרים \"את המספר השלילי כולו בריבוע\".", "ru": "По порядку действий степень считается раньше знака минус. Поэтому `−0.5²` — это «минус от (0.5 в квадрате)» = `−0.25`. Скобки говорят: «в квадрат возводим всё отрицательное число».", "en": "By the order of operations, the power comes before the minus sign. So `−0.5²` is \"minus (0.5 squared)\" = `−0.25`. The brackets say \"square the whole negative number\"."}, kind: 'tip',
       title: { he: 'בדיקה בהצבה — ומספר שלילי תמיד בסוגריים', ru: 'Проверка подстановкой — и отрицательное число всегда в скобках', en: 'Check by substitution — and always bracket negative numbers' },
       text: {
         he: 'כדי לבדוק פתרון, מציבים אותו במשוואה המקורית ובודקים ששני הצדדים שווים.\nמספר שלילי מקלידים תמיד בסוגריים: `(−0.5)² = 0.25`, אבל `−0.5²` במחשבון נותן `−0.25`, כי המחשבון מעלה בריבוע רק את 0.5.',
         ru: 'Чтобы проверить корень, подставь его в исходное уравнение и убедись, что обе части равны.\nОтрицательное число всегда набирай в скобках: `(−0.5)² = 0.25`, а `−0.5²` на калькуляторе даёт `−0.25`, потому что в квадрат возводится только 0.5.',
         en: 'To check a root, substitute it into the original equation and make sure both sides are equal.\nAlways type a negative number in brackets: `(−0.5)² = 0.25`, but `−0.5²` on a calculator gives `−0.25`, because only 0.5 gets squared.'
       } },
-    {"kind": "tip", "title": {"he": "במחשבון: שני מקשי מינוס", "ru": "На калькуляторе две разные кнопки минуса", "en": "Two different minus keys on the calculator"}, "text": {"he": "ב-Casio יש מקש `(-)` — הסימן של מספר שלילי, ומקש `−` — פעולת החיסור. אלה לא אותו דבר. מספר שלילי מקלידים עם `(-)` ובסוגריים: `( (-) 5 ) x²` נותן 25.", "ru": "На Casio есть кнопка `(-)` — знак отрицательного числа, и кнопка `−` — вычитание. Это не одно и то же. Отрицательное число набираем через `(-)` и в скобках: `( (-) 5 ) x²` даёт 25.", "en": "A Casio has a `(-)` key, the sign of a negative number, and a `−` key, subtraction. They are not the same. Type a negative number with `(-)` and in brackets: `( (-) 5 ) x²` gives 25."}},
-    { kind: 'board',
+    { "why": {"he": "אלה שתי פעולות שונות: `−` (חיסור) צריך שני מספרים — \"7 פחות 3\". `(-)` (סימן) שייך למספר אחד ואומר שהוא שלילי. המחשבון מבחין ביניהם, ולכן מקש לא נכון יכול לתת תוצאה אחרת או שגיאה.", "ru": "Это две разные операции: `−` (вычитание) нужны два числа — «7 минус 3». `(-)` (знак) принадлежит одному числу и говорит, что оно отрицательное. Калькулятор их различает, поэтому не та кнопка может дать другой результат или ошибку.", "en": "These are two different operations: `−` (subtraction) needs two numbers — \"7 minus 3\". `(-)` (sign) belongs to one number and says it is negative. The calculator tells them apart, so the wrong key can give another result or an error."},"kind": "tip", "title": {"he": "במחשבון: שני מקשי מינוס", "ru": "На калькуляторе две разные кнопки минуса", "en": "Two different minus keys on the calculator"}, "text": {"he": "ב-Casio יש מקש `(-)` — הסימן של מספר שלילי, ומקש `−` — פעולת החיסור. אלה לא אותו דבר. מספר שלילי מקלידים עם `(-)` ובסוגריים: `( (-) 5 ) x²` נותן 25.", "ru": "На Casio есть кнопка `(-)` — знак отрицательного числа, и кнопка `−` — вычитание. Это не одно и то же. Отрицательное число набираем через `(-)` и в скобках: `( (-) 5 ) x²` даёт 25.", "en": "A Casio has a `(-)` key, the sign of a negative number, and a `−` key, subtraction. They are not the same. Type a negative number with `(-)` and in brackets: `( (-) 5 ) x²` gives 25."}},
+    { "why": {"he": "כאן x נמצא גם במכנה, ולכן המכנה המשותף כולל את `(x + 6)`. אחרי הכפל כל המכנים נעלמים, ובזכות ה-x שבמכנה מופיע `x²` — לכן התרגיל הזה נמצא בשיעור של משוואות ריבועיות.", "ru": "Здесь x есть и в знаменателе, поэтому общий знаменатель включает `(x + 6)`. После умножения все знаменатели пропадают, а из-за x в знаменателе появляется `x²` — поэтому это задание и стоит в уроке про квадратные уравнения.", "en": "Here x is also in a denominator, so the common denominator includes `(x + 6)`. After multiplying, all the denominators vanish, and because of the x in the denominator an `x²` appears — that is why this task is in the quadratics lesson."}, kind: 'board',
       title: { he: 'משוואה עם שברים', ru: 'Уравнение с дробями', en: 'An equation with fractions' },
       text: {
         he: 'ב־`(1 + 2x)/3 − (3x − 1)/4 = 1/(x + 6)` מוצאים מכנה משותף — `12(x + 6)` — וכופלים בו כל איבר. אחרי פתיחת הסוגריים מתקבלת משוואה ריבועית, ופותרים אותה כרגיל.\nלא לשכוח: `x ≠ −6`, כי אסור לחלק באפס.',
         ru: 'В `(1 + 2x)/3 − (3x − 1)/4 = 1/(x + 6)` находим общий знаменатель — `12(x + 6)` — и умножаем на него каждый член. После раскрытия скобок получается квадратное уравнение, решаем как обычно.\nНе забудь: `x ≠ −6`, на ноль делить нельзя.',
         en: 'In `(1 + 2x)/3 − (3x − 1)/4 = 1/(x + 6)` find the common denominator — `12(x + 6)` — and multiply every term by it. After expanding you get a quadratic equation; solve it as usual.\nDon\'t forget: `x ≠ −6`, no division by zero.'
       } },
-    {"kind": "tip", "title": {"he": "תחום הגדרה", "ru": "Область определения (תחום הגדרה)", "en": "The domain of definition"}, "text": {"he": "כשיש x במכנה, לפני הפתרון כותבים מה x לא יכול להיות: מכנה לא שווה ל-0. כאן `x + 6 ≠ 0`, ולכן `x ≠ −6`.\nבסוף בודקים: אם אחד הפתרונות יצא בדיוק הערך האסור, הוא נפסל.", "ru": "Когда x стоит в знаменателе, до решения записываем, чем x быть не может: знаменатель не равен 0. Здесь `x + 6 ≠ 0`, значит `x ≠ −6`.\nВ конце проверяем: если какой-то корень получился ровно запрещённым значением, его отбрасываем.", "en": "When x is in a denominator, before solving write what x cannot be: the denominator is not 0. Here `x + 6 ≠ 0`, so `x ≠ −6`.\nAt the end check: if a root comes out exactly as the forbidden value, it is thrown out."}, "math": ["x + 6 ≠ 0", "x ≠ −6"]},
-    { kind: 'faq',
+    { "why": {"he": "למה צריך לפסול? כשכופלים במשהו שיש בו x, ייתכן שכפלנו ב-0 בלי לשים לב — וכפל ב-0 הופך כל משוואה לנכונה. כך יכול להופיע \"שורש מזויף\" שלא מתאים למשוואה המקורית. תחום ההגדרה הוא הרשימה של מה שאסור, ונבדוק מולה בסוף.", "ru": "Зачем отбрасывать? Когда умножаем на выражение с x, могли незаметно умножить на 0 — а умножение на 0 делает любое уравнение верным. Так может появиться «лишний корень», который не подходит исходному уравнению. Область определения — это список запрещённого, и в конце сверяемся с ним.", "en": "Why throw it out? When you multiply by something with x in it, you may have multiplied by 0 without noticing — and multiplying by 0 makes any equation true. That can create a \"fake root\" that does not fit the original equation. The domain is the list of what is forbidden, and we check against it at the end."},"kind": "tip", "title": {"he": "תחום הגדרה", "ru": "Область определения (תחום הגדרה)", "en": "The domain of definition"}, "text": {"he": "כשיש x במכנה, לפני הפתרון כותבים מה x לא יכול להיות: מכנה לא שווה ל-0. כאן `x + 6 ≠ 0`, ולכן `x ≠ −6`.\nבסוף בודקים: אם אחד הפתרונות יצא בדיוק הערך האסור, הוא נפסל.", "ru": "Когда x стоит в знаменателе, до решения записываем, чем x быть не может: знаменатель не равен 0. Здесь `x + 6 ≠ 0`, значит `x ≠ −6`.\nВ конце проверяем: если какой-то корень получился ровно запрещённым значением, его отбрасываем.", "en": "When x is in a denominator, before solving write what x cannot be: the denominator is not 0. Here `x + 6 ≠ 0`, so `x ≠ −6`.\nAt the end check: if a root comes out exactly as the forbidden value, it is thrown out."}, "math": ["x + 6 ≠ 0", "x ≠ −6"]},
+    { "why": {"he": "`4(…)` פירושו \"4 פעמים כל מה שבסוגריים\". אם יש 4 שקיות ובכל אחת תפוח וגם בננה — יש 4 תפוחים וגם 4 בננות, לא רק 4 תפוחים. לכן כל איבר בפנים מוכפל.", "ru": "`4(…)` значит «4 раза всё, что в скобке». Если есть 4 пакета, и в каждом яблоко и банан, — то это 4 яблока и 4 банана, а не только 4 яблока. Поэтому умножается каждый член внутри.", "en": "`4(…)` means \"4 times everything in the bracket\". If there are 4 bags, each with an apple and a banana, you have 4 apples and 4 bananas, not just 4 apples. So every term inside is multiplied."}, kind: 'faq',
       q: {
         he: 'כשכופלים מספר בסוגריים — מה בדיוק כופלים?',
         ru: 'Когда число умножается на скобку — что именно умножать?',

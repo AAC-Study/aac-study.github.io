@@ -18,7 +18,7 @@ window.LESSONS['math-2026-10-25'] = {
     "en": "Two-equation systems where both equations are multiplied, a system of three equations in three unknowns, and the short way — an augmented matrix and Gaussian elimination."
   },
   "timeline": [
-    {
+    { "why": {"he": "בשיטת החיבור צריך שאחד הנעלמים ייעלם. זה קורה רק כשהמקדמים שלו שווים בגודל ומנוגדים בסימן. כשהם לא כאלה — יוצרים אותם בעצמנו בעזרת כפל, כי כפל של כל המשוואה במספר לא משנה את הפתרון.", "ru": "В методе сложения одно неизвестное должно исчезнуть. Это бывает, только когда его коэффициенты равны по модулю и противоположны по знаку. Если это не так — делаем их такими сами, умножением, потому что умножение всего уравнения на число не меняет решения.", "en": "In the elimination method one unknown must disappear. That happens only when its coefficients are equal in size and opposite in sign. If they are not, we make them so by multiplying, because multiplying a whole equation by a number does not change its solution."},
       "kind": "talk",
       "title": {
         "he": "ממשיכים: מערכות של שתי משוואות",
@@ -31,7 +31,7 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "Exercise 26: six systems solved by the addition method. Here almost nothing cancels right away, so multiply the equations by numbers until the coefficients of one unknown are equal in size."
       }
     },
-    {
+    { "why": {"he": "למה 3 ו-2? המקדמים של y הם 2 ו-3, והמספר הקטן ביותר שמתחלק בשניהם הוא 6. לכן הראשונה × 3 (נותן `6y`) והשנייה × 2 (נותן `−6y`). אפשר גם לבטל את x, אבל המספרים יהיו גדולים יותר (35).\nבדיקה — `5 × 5 + 2 × 1 = 27` וגם `7 × 5 − 3 × 1 = 32`.", "ru": "Почему 3 и 2? Коэффициенты при y — 2 и 3, а самое маленькое число, которое делится на оба, — 6. Поэтому первое × 3 (получается `6y`), второе × 2 (получается `−6y`). Можно убрать и x, но числа будут больше (35).\nПроверка — `5 × 5 + 2 × 1 = 27` и `7 × 5 − 3 × 1 = 32`.", "en": "Why 3 and 2? The y coefficients are 2 and 3, and the smallest number both divide is 6. So the first × 3 (gives `6y`) and the second × 2 (gives `−6y`). You could remove x instead, but the numbers would be bigger (35).\nCheck — `5 × 5 + 2 × 1 = 27` and `7 × 5 − 3 × 1 = 32`."},
       "kind": "board",
       "title": {
         "he": "תרגיל 26א על הלוח",
@@ -51,7 +51,7 @@ window.LESSONS['math-2026-10-25'] = {
         "y = 1"
       ]
     },
-    {
+    { "why": {"he": "שלושה נעלמים צריכים שלוש משוואות, כמו ששניים צריכים שתיים. מבטלים את אותו נעלם (x) משני זוגות, כדי ששתי המשוואות החדשות יהיו עם אותם שני נעלמים (y ו-z) — ואז זו כבר מערכת מוכרת משיעור 18.10.", "ru": "Трём неизвестным нужны три уравнения, как двум — два. Убираем одно и то же неизвестное (x) из двух пар, чтобы два новых уравнения были с одними и теми же двумя неизвестными (y и z), — и это уже знакомая система с урока 18.10.", "en": "Three unknowns need three equations, just as two need two. Remove the same unknown (x) from two pairs, so the two new equations have the same two unknowns (y and z) — and that is the familiar system from the 18.10 lesson."},
       "kind": "talk",
       "title": {
         "he": "שלוש משוואות, שלושה נעלמים",
@@ -69,7 +69,7 @@ window.LESSONS['math-2026-10-25'] = {
         "III: 4x + 5y − 2z = 18"
       ]
     },
-    {
+    { "why": {"he": "בדיקה של הצעד הראשון: `I × 3 − II × 2`.", "ru": "Проверка первого шага — `I × 3 − II × 2`.", "en": "Checking the first step — `I × 3 − II × 2`."}, "whyMath": ["6x − 6x = 0", "9y − (−4y) = 13y", "12z − 10z = 2z", "60 − 26 = 34", "13y + 2z = 34"],
       "kind": "board",
       "title": {
         "he": "הדרך הארוכה",
@@ -92,7 +92,7 @@ window.LESSONS['math-2026-10-25'] = {
         "z ≈ 1.969"
       ]
     },
-    {
+    { "why": {"he": "במטריצה המקום של המספר אומר איזה נעלם הוא: עמודה ראשונה — x, שנייה — y, שלישית — z. לכן לא צריך לכתוב את האותיות, וכל החשבון נראה נקי יותר. \"מדרגות\" (אפסים מתחת לאלכסון) פירושן שבשורה האחרונה נשאר נעלם אחד בלבד — ומשם מתחילים.", "ru": "В матрице место числа говорит, какое это неизвестное: первый столбец — x, второй — y, третий — z. Поэтому буквы писать не нужно, и всё выглядит чище. «Ступеньки» (нули под диагональю) значат, что в последней строке остаётся одно неизвестное, — с неё и начинаем.", "en": "In a matrix the position of a number says which unknown it is: column one is x, two is y, three is z. So you do not write the letters, and everything looks cleaner. The \"staircase\" (zeros under the diagonal) means the last row has only one unknown left — that is where you start."},
       "kind": "talk",
       "title": {
         "he": "הדרך הקצרה: מטריצה (שיטת גאוס)",
@@ -105,7 +105,7 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "Write only the coefficients in an augmented matrix: each row is an equation, and the number after the bar is the right-hand side. Do the same things with rows as with equations: multiply a row by a number, add or subtract rows. The goal is staircase form: zeros below the diagonal."
       }
     },
-    {
+    { "why": {"he": "בדיקה של הצעד `R2 ← 2R2 − 3R1`, מספר אחרי מספר.", "ru": "Проверка шага `R2 ← 2R2 − 3R1` число за числом.", "en": "Checking the step `R2 ← 2R2 − 3R1` number by number."}, "whyMath": ["2 × 3 − 3 × 2 = 0", "2 × (−2) − 3 × 3 = −13", "2 × 5 − 3 × 4 = −2", "2 × 13 − 3 × 20 = −34"],
       "kind": "board",
       "title": {
         "he": "המטריצה מהלוח",
@@ -129,7 +129,7 @@ window.LESSONS['math-2026-10-25'] = {
         "R3: ( 0   0  128 | 252 )"
       ]
     },
-    {
+    { "why": {"he": "למה מלמטה למעלה? בשורה האחרונה יש רק z, ולכן מוצאים אותו מיד. בשורה השנייה יש y ו-z — z כבר ידוע, נשאר רק y. בשורה הראשונה נשאר רק x. כל שורה נותנת נעלם אחד חדש.", "ru": "Почему снизу вверх? В последней строке есть только z, поэтому его находим сразу. Во второй строке — y и z, а z уже известен, остаётся только y. В первой строке остаётся только x. Каждая строка даёт одно новое неизвестное.", "en": "Why bottom up? The last row has only z, so we find it at once. The second row has y and z — z is already known, only y is left. In the first row only x is left. Each row gives one new unknown."},
       "kind": "board",
       "title": {
         "he": "חזרה מלמטה למעלה",
@@ -147,7 +147,7 @@ window.LESSONS['math-2026-10-25'] = {
         "2x + 3y + 4z = 20"
       ]
     },
-    {
+    { "why": {"he": "כל מספר מעוגל \"סוחב\" טעות קטנה, והיא נכנסת לחישוב הבא וגדלה. בסוף שלושה צעדים הטעות כבר נראית בספרה השנייה. שברים מדויקים לא סוחבים טעות בכלל, ולכן עדיף לעגל רק בתשובה הסופית.", "ru": "Каждое округлённое число «тащит» маленькую ошибку, и она попадает в следующий расчёт и растёт. Через три шага ошибка видна уже во второй цифре. Точные дроби не тащат ошибку вообще, поэтому округлять лучше только в последнем ответе.", "en": "Every rounded number \"carries\" a small error, which goes into the next step and grows. After three steps the error shows in the second digit. Exact fractions carry no error at all, so round only the final answer."},
       "kind": "tip",
       "title": {
         "he": "זהירות עם עיגול",
@@ -160,7 +160,7 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "The exact answer is fractions: `z = 63/32 = 1.96875`, `y = 37/16 = 2.3125`, `x = 83/32 = 2.59375`. Rounding along the way makes the error grow at each step — that is why the board shows `x ≈ 2.61` instead of `2.59`. Keep fractions (or more decimal places) until the end, and check by substitution."
       }
     },
-    {
+    { "why": {"he": "תשובה בשברים זה לא סימן לטעות. במערכות כאלה זה נפוץ (כאן `x = 95/37`). הדרך לדעת שהתשובה נכונה היא להציב בכל שלוש המשוואות ולא \"לראות שהמספר יפה\".", "ru": "Ответ в дробях — не признак ошибки. В таких системах это обычно (здесь `x = 95/37`). Узнать, что ответ верный, можно подстановкой во все три уравнения, а не по тому, «красивое ли число».", "en": "An answer in fractions is not a sign of a mistake. In systems like these it is normal (here `x = 95/37`). The way to know it is right is to substitute into all three equations, not to see whether the number \"looks nice\"."},
       "kind": "talk",
       "title": {
         "he": "תרגיל 4",
@@ -178,7 +178,7 @@ window.LESSONS['math-2026-10-25'] = {
         "2x − 3y + 5z = 10"
       ]
     },
-    {
+    { "why": {"he": "הקבצים האלה כבר נמצאים אצלנו. מהדף \"מערכות עם פתרון יחיד\" לקחנו לאתר את מערכות 1, 4, 2, 8, 23 ו-25 עם פתרון מלא. \"מבוא לווקטורים\" הוא הנושא הבא בקורס, ועוד לא למדנו אותו.", "ru": "Эти файлы уже есть у нас. С листа «системы с единственным решением» на сайт взяты системы 1, 4, 2, 8, 23 и 25 с полным решением. «Введение в векторы» — следующая тема курса, её ещё не проходили.", "en": "These files are already with us. From the \"systems with a unique solution\" sheet, systems 1, 4, 2, 8, 23 and 25 are on the site with full solutions. \"Intro to vectors\" is the next topic of the course; we have not learned it yet."},
       "kind": "talk",
       "title": {
         "he": "חומרים באתר הקורס",
@@ -191,7 +191,7 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "A new teaching unit (יחידת הוראה חדשה) is open on the course site (Moodle) with the files: \"מבוא לווקטורים – טכנאים\" (intro to vectors), \"תרגיל כיתה 2 – גאוס\" (class exercise 2 — Gauss) and \"מערכות משוואות ליניאריות עם פתרון יחיד\" (linear systems with a unique solution)."
       }
     },
-    {
+    { "why": {"he": "למה דווקא מספר שונה מ-0? כפל ב-0 הופך את השורה ל-`0 = 0` — זה נכון, אבל המידע של המשוואה הלך לאיבוד, ונשארות פחות משוואות מנעלמים.", "ru": "Почему именно число, не равное 0? Умножение на 0 превращает строку в `0 = 0` — это верно, но информация уравнения пропала, и уравнений становится меньше, чем неизвестных.", "en": "Why a number other than 0? Multiplying by 0 turns the row into `0 = 0` — true, but the information of the equation is lost, and you are left with fewer equations than unknowns."},
       "kind": "faq",
       "q": {
         "he": "למה מותר לכפול שורה ולחבר שורות?",
@@ -204,7 +204,7 @@ window.LESSONS['math-2026-10-25'] = {
         "en": "Because each row is an equation. Multiplying an equation (both sides) by a nonzero number, and adding two equations, does not change the solution — exactly as in the addition method."
       }
     },
-    {
+    { "why": {"he": "זה כמו לכתוב רשימת קניות בטבלה במקום בטקסט: אותו מידע, רק מסודר. בגלל הסדר הקבוע קשה לשכוח צעד, ולכן במבחן עדיף להשתמש במטריצה.", "ru": "Это как вести список покупок таблицей, а не текстом: та же информация, только упорядоченная. Из-за постоянного порядка трудно пропустить шаг, поэтому на экзамене удобнее матрица.", "en": "It is like writing a shopping list as a table instead of text: the same information, just organised. Because the order is fixed it is hard to skip a step, so on the exam the matrix is handier."},
       "kind": "faq",
       "q": {
         "he": "מה ההבדל בין הדרך הארוכה למטריצה?",

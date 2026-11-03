@@ -14,7 +14,7 @@ window.LESSONS['algo-2026-10-25'] = {
   },
 
   timeline: [
-    { kind: 'board',
+    { "why": {"he": "בלי קלט התוכנית תמיד עושה אותו דבר. עם `Scanner` אותו קוד עובד לכל מספר שהמשתמש יקליד. `System.in` זו המקלדת, ולכן כותבים `new Scanner(System.in)` פעם אחת בלבד.\nמלכודת ידועה: אחרי `nextInt()` נשאר ה-Enter, ו-`nextLine()` שבא מיד אחריו מחזיר מחרוזת ריקה.", "ru": "Без ввода программа всегда делает одно и то же. Со `Scanner` один и тот же код работает с любым числом, которое наберёт человек. `System.in` — это клавиатура, поэтому `new Scanner(System.in)` пишут один раз.\nИзвестная ловушка: после `nextInt()` остаётся нажатый Enter, и `nextLine()` сразу после него возвращает пустую строку.", "en": "Without input a program always does the same thing. With `Scanner` the same code works for any number the user types. `System.in` is the keyboard, so you write `new Scanner(System.in)` only once.\nA known trap: after `nextInt()` the Enter stays behind, and a `nextLine()` right after it returns an empty string."}, kind: 'board',
       title: { he: 'קלט מהמשתמש', ru: 'Ввод с клавиатуры', en: 'Input from the user' },
       text: {
         he: 'עד עכשיו המספרים היו כתובים בתוך הקוד. כדי שהתוכנית תשאל את המשתמש, משתמשים ב-`Scanner`. על הלוח זה נכתב בשני שלבים:\nשלב I — הגדרת אובייקט הקלט (פעם אחת, בתחילת `main`).\nשלב II — הגדרת המשתנה: התוכנית מחכה שהמשתמש יקליד ויקיש Enter.\nבראש הקובץ צריך `import java.util.Scanner;` (IntelliJ מוסיף אותו).',
@@ -22,7 +22,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'Until now the numbers were written inside the code. To make the program ask the user, we use `Scanner`. On the board it was written in two stages:\nStage I — create the input object (once, at the start of `main`).\nStage II — define the variable: the program waits for the user to type and press Enter.\nAt the top of the file you need `import java.util.Scanner;` (IntelliJ adds it).'
       },
       math: ['Scanner scanner = new Scanner(System.in);', 'int x = scanner.nextInt();', 'double d = scanner.nextDouble();', 'String s = scanner.nextLine();'] },
-    { kind: 'board',
+    { "why": {"he": "`+` עם טקסט מחבר טקסטים, ו-Java עובדת משמאל לימין. בלי סוגריים: `\"your age is \" + 2026` הופך לטקסט `\"your age is 2026\"`, ומטקסט אי אפשר להחסיר — שגיאה. עם סוגריים קודם מחשבים את המספר.\nלכן `\"a\" + 1 + 2` נותן `a12`, אבל `1 + 2 + \"a\"` נותן `3a`.", "ru": "`+` с текстом склеивает тексты, и Java идёт слева направо. Без скобок `\"your age is \" + 2026` превращается в текст `\"your age is 2026\"`, а из текста вычитать нельзя — ошибка. Со скобками сначала считается число.\nПоэтому `\"a\" + 1 + 2` даёт `a12`, а `1 + 2 + \"a\"` даёт `3a`.", "en": "`+` with text joins texts, and Java goes left to right. Without brackets `\"your age is \" + 2026` becomes the text `\"your age is 2026\"`, and you cannot subtract from text — an error. With brackets the number is computed first.\nSo `\"a\" + 1 + 2` gives `a12`, but `1 + 2 + \"a\"` gives `3a`."}, kind: 'board',
       title: { he: 'פתרון על המסך: חישוב גיל (שאלה 4)', ru: 'Решение на экране: возраст (задание 4)', en: 'Solved on screen: age (question 4)' },
       text: {
         he: 'המרצה פתר על המסך את שאלה 4 מדף העבודה. בקלט 1998 התוכנית הדפיסה `your age is 28.`\nהסוגריים סביב `(2026 - year)` חובה: בלעדיהם Java קודם מדביקה את הטקסט ל-2026, ומטקסט אי אפשר לחסר.',
@@ -30,7 +30,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'The teacher solved question 4 of the worksheet on screen. With input 1998 the program printed `your age is 28.`\nThe brackets around `(2026 - year)` are required: without them Java first glues the text to 2026, and you cannot subtract from text.'
       },
       math: ['System.out.println("Please enter year of birth: ");', 'int year = scanner.nextInt();', 'System.out.println("your age is " + (2026 - year) + ".");'] },
-    { kind: 'board',
+    { "why": {"he": "תוכנית אמיתית צריכה להחליט: לתת הנחה או לא, לקבל סיסמה או לא. לכן התנאי חייב להיות `true` או `false`.\nלמה סוגריים מסולסלים? בלעדיהם רק הפקודה הראשונה אחרי ה-`if` שייכת לו, והשנייה תרוץ תמיד — באג נפוץ. עדיף תמיד לשים `{ }`.", "ru": "Настоящая программа должна решать: дать скидку или нет, принять пароль или нет. Поэтому условие обязано быть `true` или `false`.\nЗачем фигурные скобки? Без них к `if` относится только первая команда после него, а вторая выполнится всегда — частая ошибка. Лучше всегда ставить `{ }`.", "en": "A real program must decide: give a discount or not, accept a password or not. So the condition must be `true` or `false`.\nWhy curly braces? Without them only the first command after the `if` belongs to it, and the second always runs — a common bug. Better to always write `{ }`."}, kind: 'board',
       title: { he: 'משפטי תנאי: if / else', ru: 'Условия: if / else', en: 'Conditions: if / else' },
       text: {
         he: 'על הלוח: רוצים לבצע קוד בתנאי מסוים, ואת התנאי רושמים כ-`boolean` — ביטוי שנותן `true` או `false`.\nהתנאי בסוגריים עגולים, הקוד בסוגריים מסולסלים. החלק של `else` אופציונלי.',
@@ -38,7 +38,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'On the board: we want to run code under a certain condition, and the condition is written as a `boolean` — an expression that gives `true` or `false`.\nThe condition goes in round brackets, the code in curly brackets. The `else` part is optional.'
       },
       math: ['if (condition) {', '    // runs when condition is true', '} else {', '    // other instructions (optional)', '}'] },
-    { kind: 'board',
+    { "why": {"he": "ב-`else if` הסדר קובע: Java עוצרת בענף הראשון שמתקיים. לכן תמיד בודקים את הגבולות: 18 בדיוק, 0 בדיוק. ערכי גבול הם המקום שבו רוב הטעויות מסתתרות — גם במבחן.", "ru": "В цепочке `else if` порядок решает: Java останавливается на первой ветке, которая выполнилась. Поэтому всегда проверяй границы: ровно 18, ровно 0. Граничные значения — то место, где прячется большинство ошибок, и на экзамене тоже.", "en": "In an `else if` chain the order decides: Java stops at the first branch that holds. So always test the edges: exactly 18, exactly 0. Edge values are where most mistakes hide — on the exam too."}, kind: 'board',
       title: { he: 'דוגמאות מהמסך: גיל', ru: 'Примеры с экрана: возраст', en: 'Screen examples: age' },
       text: {
         he: 'קודם `if (age > 18)` עם `Yes` / `No`. אחר כך שרשרת עם `else if`: Java בודקת מלמעלה למטה ומבצעת רק את הענף הראשון שבו התנאי `true`.\nקלט 25 → `Yes`, קלט 0 → `No`, קלט 10 → `ll`. שימו לב: 18 נותן `No` בדוגמה הראשונה, כי `18 > 18` הוא `false`.',
@@ -46,7 +46,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'First `if (age > 18)` with `Yes` / `No`. Then a chain with `else if`: Java checks from top to bottom and runs only the first branch whose condition is `true`.\nInput 25 → `Yes`, input 0 → `No`, input 10 → `ll`. Note: 18 gives `No` in the first example, because `18 > 18` is `false`.'
       },
       math: ['int age = sca.nextInt();', 'if (age > 18) {', '    System.out.println("Yes");', '} else if (age == 0) {', '    System.out.println("No");', '} else {', '    System.out.println("ll");', '}'] },
-    { kind: 'board',
+    { "why": {"he": "דרך קלה לזכור: `&&` — `true` רק אם שניהם `true`. `||` — `false` רק אם שניהם `false`.\nעוד דבר חשוב: Java מפסיקה לבדוק ברגע שהתשובה ידועה. ב-`x != 0 && 10 / x > 1`, אם `x` שווה 0, החלק השני לא מחושב בכלל — ואין חילוק ב-0.", "ru": "Легко запомнить: `&&` — `true`, только если оба `true`. `||` — `false`, только если оба `false`.\nЕщё важно: Java перестаёт проверять, как только ответ уже известен. В `x != 0 && 10 / x > 1` при `x` = 0 вторая часть вообще не считается — и деления на 0 нет.", "en": "An easy way to remember: `&&` is `true` only if both are `true`. `||` is `false` only if both are `false`.\nAlso important: Java stops checking as soon as the answer is known. In `x != 0 && 10 / x > 1`, if `x` is 0 the second part is not computed at all — so there is no division by 0."}, kind: 'board',
       title: { he: 'אופרטורים לוגיים וטבלת אמת', ru: 'Логические операторы и таблица истинности', en: 'Logical operators and the truth table' },
       text: {
         he: 'כדי לבדוק שני תנאים יחד מחברים אותם:\n`&&` (וגם) — `true` רק כששניהם `true`.\n`||` (או) — `true` כשלפחות אחד `true`.\n`!` (לא) — הופך: `!true` הוא `false`.\nטבלת האמת מהלוח (α, β — שני תנאים):',
@@ -54,7 +54,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'To check two conditions together, join them:\n`&&` (and) — `true` only when both are `true`.\n`||` (or) — `true` when at least one is `true`.\n`!` (not) — flips: `!true` is `false`.\nThe truth table from the board (α, β are two conditions):'
       },
       math: ['α      β      α && β    α || β', 'T      T        T         T', 'T      F        F         T', 'F      T        F         T', 'F      F        F         F'] },
-    { kind: 'board',
+    { "why": {"he": "למה `7 <= age <= 10` לא עובד? Java מחשבת משמאל: `7 <= age` נותן `true` או `false`, ואז היא מנסה לבדוק `true <= 10` — להשוות ערך אמת למספר אי אפשר. לכן מפרקים לשתי שאלות ומחברים ב-`&&`.", "ru": "Почему `7 <= age <= 10` не работает? Java считает слева: `7 <= age` даёт `true` или `false`, а потом пытается проверить `true <= 10` — сравнивать истину с числом нельзя. Поэтому делим на два вопроса и соединяем через `&&`.", "en": "Why does `7 <= age <= 10` not work? Java computes from the left: `7 <= age` gives `true` or `false`, then it tries `true <= 10` — you cannot compare a truth value with a number. So split it into two questions joined with `&&`."}, kind: 'board',
       title: { he: 'טווח: "בין 7 ל-10"', ru: 'Промежуток: «от 7 до 10»', en: 'A range: "between 7 and 10"' },
       text: {
         he: 'במתמטיקה כותבים `7 ≤ age ≤ 10`, אבל ב-Java צריך שתי השוואות ו-`&&`.',
@@ -62,7 +62,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'In maths we write `7 ≤ age ≤ 10`, but in Java you need two comparisons and `&&`.'
       },
       math: ['if (age >= 7 && age <= 10) {', '    System.out.println("Yes");', '} else {', '    System.out.println("No");', '}'] },
-    { kind: 'board',
+    { "why": {"he": "תנאי הוא פשוט ערך, ולכן אפשר להדפיס אותו או לשמור אותו כמו מספר. `if` לא חייב לבוא אחרי כל השוואה — הוא צריך רק כשרוצים לבחור מה לעשות.", "ru": "Условие — это просто значение, поэтому его можно напечатать или сохранить, как число. `if` не обязан стоять после каждого сравнения — он нужен, только когда надо выбрать, что делать.", "en": "A condition is just a value, so you can print it or store it like a number. An `if` does not have to follow every comparison — you need it only when you want to choose what to do."}, kind: 'board',
       title: { he: 'זוגי או אי-זוגי: 87 ו-8', ru: 'Чётное или нечётное: 87 и 8', en: 'Even or odd: 87 and 8' },
       text: {
         he: 'המרצה הדפיס את התוצאה ישר כ-`boolean`, בלי `if`. `87 % 2` הוא 1, לכן `87 % 2 == 0` הוא `false`, ו-`8 % 2 == 0` הוא `true`.',
@@ -70,28 +70,28 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'The teacher printed the result directly as a `boolean`, without `if`. `87 % 2` is 1, so `87 % 2 == 0` is `false`, and `8 % 2 == 0` is `true`.'
       },
       math: ['int x = 87;', 'int y = 8;', 'boolean res = x % 2 == 0 || y % 2 == 0;   // true', 'res = x % 2 == 0 && y % 2 == 0;           // false', 'res = x % 2 != 0;                         // true (87 is odd)'] },
-    { kind: 'tip',
+    { "why": {"he": "בשפות אחרות (למשל C) מספר יכול לשמש כ\"אמת\" או \"שקר\". Java אוסרת את זה בכוונה: `&&` ו-`||` מקבלים רק `true`/`false`. זה תופס טעויות כבר בכתיבה, לפני שהתוכנית רצה.", "ru": "В других языках (например, в C) число может работать как «правда» или «ложь». Java запрещает это нарочно: `&&` и `||` принимают только `true`/`false`. Так ошибки ловятся ещё при написании, до запуска.", "en": "In other languages (like C) a number can act as \"true\" or \"false\". Java forbids this on purpose: `&&` and `||` accept only `true`/`false`. This catches mistakes while you write, before the program runs."}, kind: 'tip',
       title: { he: 'ככה אי אפשר: `x % 2 && 0`', ru: 'Так нельзя: `x % 2 && 0`', en: 'Not allowed: `x % 2 && 0`' },
       text: {
         he: 'המרצה הראה גם מה לא עובד: `boolean res = x % 2 && 0;` מסומן באדום. `x % 2` ו-`0` הם מספרים, ו-`&&` / `||` מחברים רק `true` / `false`. צריך לכתוב את ההשוואה עד הסוף: `x % 2 == 0`.',
         ru: 'Преподаватель показал и то, что не работает: `boolean res = x % 2 && 0;` подчёркнуто красным. `x % 2` и `0` — числа, а `&&` / `||` соединяют только `true` / `false`. Сравнение надо дописать: `x % 2 == 0`.',
         en: 'The teacher also showed what does not work: `boolean res = x % 2 && 0;` is underlined in red. `x % 2` and `0` are numbers, and `&&` / `||` only join `true` / `false`. Write the full comparison: `x % 2 == 0`.'
       } },
-    { kind: 'board',
+    { "why": {"he": "בזכות הסדר הזה `x % 2 == 0 && y > 3` עובד בלי סוגריים: קודם חשבון, אחר כך השוואות, ובסוף `&&`. וגם: `&&` לפני `||`, ולכן `a || b && c` הוא `a || (b && c)`. כשלא בטוחים — סוגריים. הם לא מזיקים.", "ru": "Благодаря этому порядку `x % 2 == 0 && y > 3` работает без скобок: сначала арифметика, потом сравнения, в конце `&&`. И ещё: `&&` раньше `||`, поэтому `a || b && c` — это `a || (b && c)`. Не уверен — ставь скобки, они не мешают.", "en": "Thanks to this order `x % 2 == 0 && y > 3` works without brackets: first arithmetic, then comparisons, and `&&` last. Also: `&&` comes before `||`, so `a || b && c` means `a || (b && c)`. When unsure, use brackets — they never hurt."}, kind: 'board',
       title: { he: 'סדר פעולות', ru: 'Порядок действий', en: 'Order of operations' },
       text: {
         he: 'הרשימה מהלוח, מהראשון לאחרון:\n1. סוגריים\n2. כפל / חילוק (`*`, `/`, `%`)\n3. חיבור / חיסור\n4. בדיקה לוגית — השוואות (`>`, `<`, `==`, `!=` ...)\n5. אופרטורים לוגיים (`&&`, `||`)\n6. השמה (`=`)',
         ru: 'Список с доски, от первого к последнему:\n1. Скобки\n2. Умножение / деление (`*`, `/`, `%`)\n3. Сложение / вычитание\n4. Логическая проверка — сравнения (`>`, `<`, `==`, `!=` ...)\n5. Логические операторы (`&&`, `||`)\n6. Присваивание (`=`)',
         en: 'The list from the board, first to last:\n1. Brackets\n2. Multiplication / division (`*`, `/`, `%`)\n3. Addition / subtraction\n4. Logical check — comparisons (`>`, `<`, `==`, `!=` ...)\n5. Logical operators (`&&`, `||`)\n6. Assignment (`=`)'
       } },
-    { kind: 'talk',
+    { "why": {"he": "למה בלי לולאות? כדי לתרגל קודם את היסודות: קלט, חישוב, תנאי. כל שאלה בדף היא שאלה שיכולה להופיע במבחן (\"כתבו קטע קוד הקולט...\"). ההמלצה לומר את הלוגיקה במילים לפני הקוד — זה מה שמונע את רוב הטעויות.", "ru": "Почему без циклов? Чтобы сначала натренировать основы: ввод, вычисления, условия. Каждое задание листа может попасться на экзамене («напиши код, который читает...»). Совет проговорить логику словами до кода — именно это убирает большинство ошибок.", "en": "Why no loops? To practise the basics first: input, computing, conditions. Every task on the sheet could appear on the exam (\"write code that reads...\"). The tip to say the logic in words before coding is what prevents most mistakes."}, kind: 'talk',
       title: { he: 'דף העבודה: 20 שאלות', ru: 'Рабочий лист: 20 заданий', en: 'The worksheet: 20 questions' },
       text: {
         he: 'דף העבודה "תכנות בסיסי ב-Java": חלק א׳ — קלט/פלט, משתנים ואופרטורים (1–9), חלק ב׳ — תנאים בסיסיים (10–14), חלק ג׳ — תנאים מורכבים ואופרטורים לוגיים (15–20).\nהכללים: כל הקוד בתוך `main`, קלט עם `Scanner`, ואסור להשתמש בלולאות, במערכים ובמתודות של `String`.\nהטיפ בסוף הדף: לתת למשתנים שמות משמעותיים (`salary` במקום `x`), ולפני תנאי מורכב לנסח את ההיגיון במילים ולהשתמש בסוגריים.',
         ru: 'Рабочий лист «תכנות בסיסי ב-Java»: часть א׳ — ввод/вывод, переменные и операторы (1–9), часть ב׳ — простые условия (10–14), часть ג׳ — сложные условия и логические операторы (15–20).\nПравила: весь код внутри `main`, ввод через `Scanner`, нельзя циклы, массивы и методы `String`.\nСовет внизу листа: давать переменным понятные имена (`salary`, а не `x`), а перед сложным условием проговорить логику словами и ставить скобки.',
         en: 'The worksheet "תכנות בסיסי ב-Java": part א׳ — input/output, variables and operators (1–9), part ב׳ — basic conditions (10–14), part ג׳ — complex conditions and logical operators (15–20).\nThe rules: all code inside `main`, input with `Scanner`, and no loops, arrays or `String` methods.\nThe tip at the bottom: give variables meaningful names (`salary` instead of `x`), and before a complex condition say the logic in words and use brackets.'
       } },
-    { kind: 'board',
+    { "why": {"he": "בדרך I ה-`else` האחרון מספיק, כי הגענו אליו רק אם x לא הכי גדול וגם y לא — אז נשאר רק z. בדרך II תמיד יש בדיוק שתי השוואות.\nאותו רעיון — \"שומרים את המנצח וממשיכים להשוות\" — הופך בשיעור 01.11 לתבנית המקסימום בלולאה.", "ru": "В способе I последнего `else` хватает, потому что до него доходим, только если x не самое большое и y тоже — остаётся только z. В способе II всегда ровно два сравнения.\nТа же идея — «держим победителя и сравниваем дальше» — на уроке 01.11 превращается в шаблон максимума в цикле.", "en": "In method I the last `else` is enough, because we reach it only if x is not the biggest and y is not either — only z is left. Method II always uses exactly two comparisons.\nThe same idea — \"keep the winner and keep comparing\" — becomes the maximum pattern in a loop in the 01.11 lesson."}, kind: 'board',
       title: { he: 'שאלה 15: המקסימום מבין 3 מספרים — שתי שיטות', ru: 'Задание 15: максимум из 3 чисел — два способа', en: 'Question 15: the maximum of 3 numbers — two methods' },
       text: {
         he: 'שיטה I — בדיקת כל המקרים עם `&&`: x הכי גדול אם `x >= y` וגם `x >= z`. אם לא — בודקים בין y ל-z. בענף האחרון מספיק `else`: אם הגענו אליו, z בטוח הכי גדול.\nשיטה II — תנאי מקונן: קודם משווים את x ו-y, ואת המנצח משווים עם z.',
@@ -99,14 +99,14 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'Method I — check all cases with `&&`: x is the largest if `x >= y` and `x >= z`. If not, compare y and z. In the last branch a plain `else` is enough: if we got there, z is surely the largest.\nMethod II — a nested condition: first compare x and y, then compare the winner with z.'
       },
       math: ['// I', 'if (x >= y && x >= z) System.out.println(x);', 'else if (y >= z) System.out.println(y);', 'else System.out.println(z);', '', '// II', 'if (x >= y) {', '    if (x >= z) System.out.println(x); else System.out.println(z);', '} else {', '    if (y >= z) System.out.println(y); else System.out.println(z);', '}'] },
-    { kind: 'tip',
+    { "why": {"he": "1. `%` נראה כמו אחוזים, אבל ב-Java זו שארית. אחוז = שבר: 10% = `0.10`.\n2. ב-`else if` בודקים מהקטן לגדול (או מהגדול לקטן) כדי שכל ענף יתפוס רק את התחום שלו.\n3. `println(y = ...)` עובד, אבל עושה שני דברים בשורה אחת — קשה לקרוא ולבדוק. פעולה אחת בשורה.", "ru": "1. `%` похож на проценты, но в Java это остаток. Процент — это дробь: 10% = `0.10`.\n2. В `else if` проверяем от меньшего к большему (или наоборот), чтобы каждая ветка ловила только свой промежуток.\n3. `println(y = ...)` работает, но делает два дела в одной строке — трудно читать и проверять. Одно действие в строке.", "en": "1. `%` looks like percent, but in Java it is the remainder. A percent is a fraction: 10% = `0.10`.\n2. In `else if` check from small to big (or big to small) so each branch catches only its own range.\n3. `println(y = ...)` works but does two things in one line — hard to read and check. One action per line."}, kind: 'tip',
       title: { he: 'טעויות נפוצות בדף העבודה', ru: 'Частые ошибки в листе', en: 'Common mistakes on the worksheet' },
       text: {
         he: '1. `%` ב-Java הוא שארית, לא אחוזים. 10% ממחיר זה `price * 0.10`, ומחיר אחרי הנחה של 10% הוא `price * 0.9`.\n2. `if` ואחריו `if` נפרד — שניהם נבדקים. `else if` נבדק רק אם כל מה שמעליו היה `false`. לכן בשרשרת `if (m > 6000) ... else if (m > 12000)` הענף השני לעולם לא יתבצע: כל מספר מעל 12000 כבר נכנס לראשון. בודקים מהקטן לגדול: `m <= 6000`, `m <= 12000`, אחרת.\n3. `System.out.println(y = x * 0.9);` גם שומר ב-y וגם מדפיס.',
         ru: '1. `%` в Java — это остаток, а не проценты. 10% от цены — это `price * 0.10`, а цена со скидкой 10% — `price * 0.9`.\n2. `if` и после него отдельный `if` — проверяются оба. `else if` проверяется, только если всё выше было `false`. Поэтому в цепочке `if (m > 6000) ... else if (m > 12000)` вторая ветка не выполнится никогда: любое число больше 12000 уже попало в первую. Проверяем от меньшего к большему: `m <= 6000`, `m <= 12000`, иначе.\n3. `System.out.println(y = x * 0.9);` и кладёт значение в y, и печатает его.',
         en: '1. `%` in Java is the remainder, not percent. 10% of a price is `price * 0.10`, and the price after a 10% discount is `price * 0.9`.\n2. An `if` followed by a separate `if` — both are checked. An `else if` is checked only when everything above it was `false`. So in the chain `if (m > 6000) ... else if (m > 12000)` the second branch never runs: every number above 12000 already went into the first one. Check from small to large: `m <= 6000`, `m <= 12000`, otherwise.\n3. `System.out.println(y = x * 0.9);` both stores the value in y and prints it.'
       } },
-    { kind: 'board',
+    { "why": {"he": "בלי לולאה, להדפיס 1 עד 200 זה 200 שורות. עם לולאה — 3. וגם: מספר החזרות יכול להיות תלוי בקלט, מה שאי אפשר עם העתק-הדבק.\n`i = 0; i < 30` נותן בדיוק 30 סיבובים (0 עד 29). זה המנהג ב-Java, ובהמשך זה יתאים בדיוק למערכים שמתחילים מ-0.", "ru": "Без цикла напечатать 1..200 — это 200 строк. С циклом — 3. И ещё: число повторов может зависеть от ввода, а копированием так не сделать.\n`i = 0; i < 30` даёт ровно 30 проходов (0..29). Это привычка Java, и позже она точно совпадёт с массивами, которые начинаются с 0.", "en": "Without a loop, printing 1 to 200 is 200 lines. With a loop it is 3. Also, the number of repeats can depend on the input, which copy-paste cannot do.\n`i = 0; i < 30` gives exactly 30 rounds (0 to 29). That is the Java habit, and later it matches arrays exactly, which start at 0."}, kind: 'board',
       title: { he: 'נושא חדש: לולאת for', ru: 'Новая тема: цикл for', en: 'New topic: the for loop' },
       text: {
         he: 'מהלוח: לולאה היא בלוק של קוד שמתבצע כמות פעמים. לולאת `for` מגדירה מספר איטרציות קבוע מראש בעזרת משתנה מקומי ואופרטור התקדמות, והלולאה יכולה להשתמש במשתנה.\n`int i = 0` — ערך התחלתי (אתחול), פעם אחת בהתחלה.\n`i < 30` — תנאי עצירה, נבדק לפני כל סיבוב.\n`i++` — התקדמות, אחרי כל סיבוב.\nהדוגמה על הלוח: הדפיסו את כל המספרים מ-1 עד 200.',
@@ -114,7 +114,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'From the board: a loop is a block of code that runs a number of times. A `for` loop sets a fixed number of iterations in advance with a local variable and a step operator, and the loop can use that variable.\n`int i = 0` — the starting value (initialisation), once at the start.\n`i < 30` — the stop condition, checked before every round.\n`i++` — the step, after every round.\nThe example on the board: print all the numbers from 1 to 200.'
       },
       math: ['for (int i = 0; i < 30; i++) {', '    // repeats 30 times: i = 0, 1, ..., 29', '}', '', 'for (int i = 1; i <= 200; i++) {', '    System.out.println(i);', '}'] },
-    { kind: 'board',
+    { "why": {"he": "למה `sum` לפני הלולאה? אם מגדירים אותו בתוך הלולאה, הוא מתאפס ל-0 בכל סיבוב, ואחרי הלולאה הוא בכלל לא קיים. משתנה חי רק בתוך הסוגריים `{ }` שבהם הוגדר.\nבדיקה: `2 + 4 + … + 20 = 2 × (1 + 2 + … + 10) = 2 × 55 = 110`.", "ru": "Почему `sum` до цикла? Если объявить её внутри цикла, она обнуляется в каждом проходе, а после цикла её вообще нет. Переменная живёт только внутри тех скобок `{ }`, где её объявили.\nПроверка: `2 + 4 + … + 20 = 2 × (1 + 2 + … + 10) = 2 × 55 = 110`.", "en": "Why `sum` before the loop? If you declare it inside, it resets to 0 every round, and after the loop it does not exist at all. A variable lives only inside the `{ }` where it was declared.\nCheck: `2 + 4 + … + 20 = 2 × (1 + 2 + … + 10) = 2 × 55 = 110`."}, kind: 'board',
       title: { he: 'סכום הזוגיים עד 20', ru: 'Сумма чётных до 20', en: 'The sum of even numbers up to 20' },
       text: {
         he: 'כאן הצעד הוא `i += 2`: מתחילים מ-2 וקופצים בשתיים. את `sum` מגדירים לפני הלולאה, כדי לצבור בו. על המסך יצא 110.',
@@ -122,7 +122,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'Here the step is `i += 2`: start at 2 and jump by two. `sum` is declared before the loop so it can collect the total. The screen showed 110.'
       },
       math: ['int sum = 0;', 'for (int i = 2; i <= 20; i += 2) {', '    sum += i;', '}', 'System.out.println(sum);   // 110'] },
-    { kind: 'board',
+    { "why": {"he": "התנאי נבדק לפני הסיבוב הראשון, ולכן את k חייבים לקלוט לפני ה-`for`. אם המשתמש מקליד 0, הלולאה לא תרוץ בכלל — וזה נכון: ביקשו 0 מספרים.", "ru": "Условие проверяется перед первым проходом, поэтому k обязательно читать до `for`. Если человек введёт 0, цикл не выполнится ни разу — и это правильно: просили 0 чисел.", "en": "The condition is checked before the first round, so k must be read before the `for`. If the user types 0, the loop does not run at all — and that is right: they asked for 0 numbers."}, kind: 'board',
       title: { he: 'כמות לפי המשתמש', ru: 'Количество задаёт пользователь', en: 'The user chooses how many' },
       text: {
         he: 'שאלה מהלוח: ואם רוצים להדפיס רצף של k מספרים לפי רצון המשתמש? כמות המספרים נתונה מראש, וחובה להשתמש במשתנה מחוץ ל-`for` (לא `i`): קולטים את k לפני הלולאה ושמים אותו בתנאי.',
@@ -130,7 +130,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'A question from the board: what if we want to print a run of k numbers chosen by the user? The amount is known in advance, and you must use a variable outside the `for` (not `i`): read k before the loop and put it in the condition.'
       },
       math: ['int k = scanner.nextInt();', 'for (int i = 1; i <= k; i++) {', '    System.out.println(i);', '}'] },
-    { kind: 'board',
+    { "why": {"he": "למה מספיק משתנה אחד `x` ל-8 מספרים? כי לא צריך לזכור את כולם — רק את הסכום. כל מספר חדש נכנס ל-`x`, מתווסף ל-`sum`, והקודם כבר לא נחוץ. כשצריך לזכור את כולם — לומדים מערכים, אבל זה עוד לא עכשיו.", "ru": "Почему хватает одной переменной `x` на 8 чисел? Потому что помнить их все не нужно — только сумму. Каждое новое число попадает в `x`, прибавляется к `sum`, и прежнее уже не нужно. Когда надо помнить все — изучают массивы, но это ещё впереди.", "en": "Why is one variable `x` enough for 8 numbers? Because you do not need to remember them all — only the sum. Each new number goes into `x`, is added to `sum`, and the previous one is no longer needed. When you need them all, you learn arrays — but that comes later."}, kind: 'board',
       title: { he: 'קלט בתוך הלולאה: 8 מספרים', ru: 'Ввод внутри цикла: 8 чисел', en: 'Input inside the loop: 8 numbers' },
       text: {
         he: 'בכל סיבוב אפשר לקלוט מספר. בדוגמה הראשונה כל מספר הודפס כפול 2 (קלט 61 → 122). בדוגמה השנייה צברו סכום וחישבו ממוצע. על המסך: `The sum is 160`, `The average is 20.0`. ה-`(double)` לפני `sum` — כדי שהחילוק יהיה עשרוני.',
@@ -138,7 +138,7 @@ window.LESSONS['algo-2026-10-25'] = {
         en: 'Each round can read a number. In the first example every number was printed times 2 (input 61 → 122). In the second one a sum was collected and the average calculated. The screen showed `The sum is 160`, `The average is 20.0`. The `(double)` before `sum` makes the division decimal.'
       },
       math: ['int x;', 'int sum = 0;', 'for (int i = 0; i < 8; i++) {', '    x = scanner.nextInt();', '    sum += x;', '}', 'System.out.println("The sum is " + sum);', 'double average = (double) sum / 8;', 'System.out.println("The average is " + average);'] },
-    { kind: 'faq',
+    { "why": {"he": "דוגמה: ציון 95.\n`if (g > 90) A; if (g > 80) B;` — יודפסו גם A וגם B.\n`if (g > 90) A; else if (g > 80) B;` — יודפס רק A.\nכשהמצבים לא יכולים לקרות יחד (ציון הוא A או B) — `else if`.", "ru": "Пример: оценка 95.\n`if (g > 90) A; if (g > 80) B;` — напечатаются и A, и B.\n`if (g > 90) A; else if (g > 80) B;` — напечатается только A.\nКогда случаи не могут быть одновременно (оценка либо A, либо B) — `else if`.", "en": "Example: a grade of 95.\n`if (g > 90) A; if (g > 80) B;` — both A and B are printed.\n`if (g > 90) A; else if (g > 80) B;` — only A is printed.\nWhen the cases cannot happen together (a grade is A or B) — use `else if`."}, kind: 'faq',
       q: { he: 'מה ההבדל בין שני `if` נפרדים לבין `if` ו-`else if`?', ru: 'Чем два отдельных `if` отличаются от `if` и `else if`?', en: 'What is the difference between two separate `if`s and `if` + `else if`?' },
       a: {
         he: 'שני `if` נפרדים נבדקים תמיד שניהם, ולכן יכולים להתבצע שניהם. ב-`if` / `else if` מתבצע רק הענף הראשון שהתנאי שלו `true`, והשאר מדולגים.',

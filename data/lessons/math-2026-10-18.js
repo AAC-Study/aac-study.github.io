@@ -18,7 +18,7 @@ window.LESSONS['math-2026-10-18'] = {
     "en": "Moving terms across \"=\", expanding brackets (including a minus), bracket times bracket, common denominators, and a system of two equations by the addition method."
   },
   "timeline": [
-    {
+    { "why": {"he": "למה מתחילים ממשוואות? כמעט כל נושא בהמשך (מערכות, משוואה ריבועית, סטטיסטיקה, ובתכנות — נוסחאות בקוד) מגיע בסוף למשוואה שצריך לפתור. מי ששולט בהעברת אגפים — רגוע בכל השאר.", "ru": "Зачем начинать с уравнений? Почти каждая тема дальше (системы, квадратные уравнения, статистика, а в программировании — формулы в коде) в конце сводится к уравнению, которое надо решить. Кто уверенно переносит через «=», тому спокойно и во всём остальном.", "en": "Why start with equations? Almost every later topic (systems, quadratics, statistics, and formulas in code) ends in an equation to solve. If you can move terms across \"=\" with confidence, the rest is calm."},
       "kind": "talk",
       "title": {
         "he": "פתיחת הקורס: מתחילים מהבסיס",
@@ -31,7 +31,7 @@ window.LESSONS['math-2026-10-18'] = {
         "en": "The lesson started with linear equations (משוואות ממעלה ראשונה) — the foundation of the whole course. Later in the course: geometry and 3D, statistics and probability. We learn what the profession needs."
       }
     },
-    {
+    { "why": {"he": "משוואה היא מאזניים בשיווי משקל. אם מורידים 8 רק מצד אחד — המאזניים נוטים. לכן כל פעולה עושים בשני האגפים. \"העברה\" היא רק קיצור: במקום לכתוב `+ 8` בשני הצדדים, ה-`− 8` \"עובר\" ומחליף סימן.", "ru": "Уравнение — это весы в равновесии. Если снять 8 только с одной чаши, весы перекосятся. Поэтому каждое действие делаем с обеими частями. «Перенос» — это просто сокращение: вместо того чтобы писать `+ 8` в обеих частях, `− 8` «переходит» на другую сторону и меняет знак.", "en": "An equation is a balanced scale. Take 8 off one side only and the scale tips. So every action is done to both sides. \"Moving\" a term is just a shortcut: instead of writing `+ 8` on both sides, the `− 8` \"moves over\" and changes sign."},
       "kind": "talk",
       "title": {
         "he": "משוואה היא מאזניים",
@@ -51,7 +51,7 @@ window.LESSONS['math-2026-10-18'] = {
         "x = 6"
       ]
     },
-    {
+    { "why": {"he": "למה מחלקים במספר יחד עם הסימן שלו? כי מה שעומד ליד x הוא `−3.5`, לא `3.5`. אם מחלקים רק ב-3.5, נשאר `−x`, ועוד צעד לטעות. במחשבון Casio את המספר השלילי מקלידים עם `(-)` ובסוגריים.", "ru": "Почему делим на число вместе с его знаком? Потому что рядом с x стоит `−3.5`, а не `3.5`. Если разделить только на 3.5, останется `−x` — и лишний шаг для ошибки. На Casio отрицательное число набираем через `(-)` и в скобках.", "en": "Why divide by the number together with its sign? Because what stands next to x is `−3.5`, not `3.5`. Dividing only by 3.5 leaves `−x` — one more step to get wrong. On a Casio type the negative number with `(-)` and in brackets."},
       "kind": "tip",
       "title": {
         "he": "מותר להשתמש במחשבון",
@@ -69,7 +69,7 @@ window.LESSONS['math-2026-10-18'] = {
         "x = −9"
       ]
     },
-    {
+    { "why": {"he": "בדיקה: מציבים `x = −2.5`.", "ru": "Проверка — подставляем `x = −2.5`.", "en": "Check: substitute `x = −2.5`."}, "whyMath": ["−12.3 − 1.6 × (−2.5)", "= −12.3 + 4", "= −8.3"],
       "kind": "board",
       "title": {
         "he": "דוגמה מהלוח: `−12.3 − 1.6x = −8.3`",
@@ -87,7 +87,7 @@ window.LESSONS['math-2026-10-18'] = {
         "x = −2.5"
       ]
     },
-    {
+    { "why": {"he": "אוספים את כל ה-x לצד אחד, כי רק כך אפשר לקבל \"מספר × x = מספר\" ולחלק. כינוס איברים דומים קודם מקטין את מספר האיברים, ולכן פחות מקום לטעות בסימן.", "ru": "Все x собираем в одну сторону, потому что только так получится «число × x = число», и можно разделить. Приведение подобных сначала уменьшает число членов — меньше места для ошибки в знаке.", "en": "Gather all the x terms on one side, because only then do you get \"number × x = number\" and can divide. Combining like terms first leaves fewer terms, so fewer chances for a sign mistake."},
       "kind": "talk",
       "title": {
         "he": "x בשני האגפים",
@@ -107,7 +107,7 @@ window.LESSONS['math-2026-10-18'] = {
         "x = 2"
       ]
     },
-    {
+    { "why": {"he": "הסימן לפני המספר שייך למספר. `−3(5 + x)` פירושו `(−3) × 5 + (−3) × x`. טעות נפוצה היא להכפיל רק את האיבר הראשון או לשכוח את המינוס באיבר השני.", "ru": "Знак перед числом принадлежит числу. `−3(5 + x)` означает `(−3) × 5 + (−3) × x`. Частая ошибка — умножить только первый член или забыть минус у второго.", "en": "The sign before the number belongs to the number. `−3(5 + x)` means `(−3) × 5 + (−3) × x`. A common mistake is multiplying only the first term, or forgetting the minus on the second."}, "whyMath": ["−3(5 + x)", "= (−3) × 5 + (−3) × x", "= −15 − 3x"],
       "kind": "tip",
       "title": {
         "he": "מינוס לפני סוגריים",
@@ -123,7 +123,7 @@ window.LESSONS['math-2026-10-18'] = {
         "−3(5 + x) = −15 − 3x"
       ]
     },
-    {
+    { "why": {"he": "למה לא `15 − 4 = 11`? כי ה-4 \"דבוק\" לסוגריים: זה כפל, וכפל לפני חיסור. אם מחסרים קודם, משנים את התרגיל. וגם: `−4 × (−3) = +12`, מינוס כפול מינוס.", "ru": "Почему нельзя `15 − 4 = 11`? Потому что 4 «приклеено» к скобке: это умножение, а умножение раньше вычитания. Если вычесть сначала, получится другое выражение. И ещё `−4 × (−3) = +12` — минус на минус.", "en": "Why not `15 − 4 = 11`? Because the 4 is \"stuck\" to the bracket: it is multiplication, and multiplication comes before subtraction. Subtracting first changes the problem. Also: `−4 × (−3) = +12`, minus times minus."},
       "kind": "board",
       "title": {
         "he": "סוגריים במשוואה: `15 − 4(2x − 3) = 43`",
@@ -142,7 +142,7 @@ window.LESSONS['math-2026-10-18'] = {
         "x = −2"
       ]
     },
-    {
+    { "why": {"he": "כל איבר בסוגריים הראשונים צריך \"לפגוש\" כל איבר בשניים — 2 × 2 = 4 מכפלות. כדי לא לשכוח: מכפילים את הראשון בשניהם, אחר כך את השני בשניהם. ה-`x²` מצטמצם רק כי הוא מופיע בשני האגפים עם אותו מקדם — אחרת זו משוואה ריבועית (שיעור 01.11).", "ru": "Каждый член первой скобки должен «встретиться» с каждым членом второй — 2 × 2 = 4 произведения. Чтобы не забыть: умножаем первый на оба, потом второй на оба. `x²` сокращается только потому, что он есть в обеих частях с одним и тем же коэффициентом — иначе это квадратное уравнение (урок 01.11).", "en": "Each term of the first bracket must \"meet\" each term of the second — 2 × 2 = 4 products. To not miss one: multiply the first by both, then the second by both. The `x²` cancels only because it is on both sides with the same coefficient — otherwise it is a quadratic (lesson 01.11)."}, "whyMath": ["(x + 3)(x + 4)", "= x × x + x × 4 + 3 × x + 3 × 4", "= x² + 7x + 12"],
       "kind": "talk",
       "title": {
         "he": "סוגריים כפול סוגריים",
@@ -161,7 +161,7 @@ window.LESSONS['math-2026-10-18'] = {
         "x = 42"
       ]
     },
-    {
+    { "why": {"he": "למה מכנה משותף? שברים קשה להעביר ולחבר. אם מכפילים את כל המשוואה במספר שמתחלק בכל המכנים, כל השברים נעלמים — ומקבלים משוואה רגילה. מותר, כי כופלים את שני האגפים באותו מספר (המאזניים נשארים מאוזנים).\nלמה סוגריים למונה? כי המינוס לפני השבר שייך לכל המונה, לא רק לאיבר הראשון.", "ru": "Зачем общий знаменатель? Дроби трудно переносить и складывать. Если умножить всё уравнение на число, которое делится на все знаменатели, все дроби исчезают — и получается обычное уравнение. Так можно, потому что обе части умножаем на одно и то же число (весы остаются в равновесии).\nЗачем скобки у числителя? Потому что минус перед дробью относится ко всему числителю, а не только к первому члену.", "en": "Why a common denominator? Fractions are hard to move and add. Multiply the whole equation by a number every denominator divides, and all the fractions vanish — you get an ordinary equation. It is allowed because both sides are multiplied by the same number (the scale stays balanced).\nWhy brackets on the numerator? Because the minus before the fraction belongs to the whole numerator, not only its first term."},
       "kind": "talk",
       "title": {
         "he": "משוואות עם מכנה",
@@ -174,7 +174,7 @@ window.LESSONS['math-2026-10-18'] = {
         "en": "Find a common denominator and multiply every term of the equation by it — even a term without a fraction. A minus before a fraction applies to the whole numerator, so put the numerator in brackets.\nThe method from class: take the largest denominator and multiply it by 2, 3, 4… until it divides by all the denominators. Multiplying all the denominators together also works, but the numbers get huge."
       }
     },
-    {
+    { "why": {"he": "למה 80? הוא המספר הקטן ביותר שמתחלק ב-5, 16, 20 ו-4. מכפלה של כל המכנים (`5 × 16 × 20 × 4 = 6400`) גם תעבוד, אבל המספרים יהיו ענקיים.\nבדיקה: מציבים `x = 4`.", "ru": "Почему 80? Это самое маленькое число, которое делится на 5, 16, 20 и 4. Произведение всех знаменателей (`5 × 16 × 20 × 4 = 6400`) тоже сработает, но числа будут огромными.\nПроверка — подставляем `x = 4`.", "en": "Why 80? It is the smallest number divisible by 5, 16, 20 and 4. The product of all the denominators (`5 × 16 × 20 × 4 = 6400`) also works, but the numbers get huge.\nCheck: substitute `x = 4`."}, "whyMath": ["(2 × 4 − 3)/5 = 1", "(5 × 4 + 12)/16 = 2", "(32 − 3 × 4)/20 = 1", "1 + 2 − 1 = 2", "(5 × 4 − 12)/4 = 2"],
       "kind": "board",
       "title": {
         "he": "דוגמה מהלוח: מכנה משותף 80",
@@ -193,7 +193,7 @@ window.LESSONS['math-2026-10-18'] = {
         "x = 4"
       ]
     },
-    {
+    { "why": {"he": "משוואה אחת עם שני נעלמים יש לה אינסוף פתרונות (`x + y = 8` — גם 7 ו-1, גם 5 ו-3). המשוואה השנייה בוחרת מתוכם את הזוג היחיד שמתאים לשתיהן. חיבור משוואות מותר, כי מוסיפים לשני האגפים דברים שווים.", "ru": "У одного уравнения с двумя неизвестными бесконечно много решений (`x + y = 8` — и 7 и 1, и 5 и 3). Второе уравнение выбирает из них единственную пару, которая подходит обоим. Складывать уравнения можно, потому что к обеим частям прибавляем равные вещи.", "en": "One equation with two unknowns has infinitely many solutions (`x + y = 8` — 7 and 1, 5 and 3...). The second equation picks the one pair that fits both. Adding equations is allowed because we add equal things to both sides."},
       "kind": "talk",
       "title": {
         "he": "מערכת של שתי משוואות: שיטת החיבור",
@@ -214,7 +214,7 @@ window.LESSONS['math-2026-10-18'] = {
         "y = 1"
       ]
     },
-    {
+    { "why": {"he": "המטרה היא שאחד המקדמים יהפוך ל-0. `3y + (−3y) = 0` — לכן מחברים כשהסימנים שונים. `3y − 3y = 0` — לכן מחסרים כשהסימנים שווים. העצה \"להכפיל במספר שלילי\" הופכת את המקרה השני לראשון, ואז תמיד מחברים — פחות דברים לזכור.", "ru": "Цель — чтобы один из коэффициентов стал 0. `3y + (−3y) = 0` — поэтому складываем, когда знаки разные. `3y − 3y = 0` — поэтому вычитаем, когда знаки одинаковые. Совет «умножить на отрицательное число» превращает второй случай в первый, и тогда всегда складываем — меньше запоминать.", "en": "The goal is to make one coefficient 0. `3y + (−3y) = 0` — so add when the signs differ. `3y − 3y = 0` — so subtract when the signs are the same. The tip \"multiply by a negative number\" turns the second case into the first, so you always add — less to remember."},
       "kind": "tip",
       "title": {
         "he": "מתי מחברים ומתי מחסירים",
@@ -227,7 +227,7 @@ window.LESSONS['math-2026-10-18'] = {
         "en": "Same coefficient with different signs — add. Same coefficient with the same sign — subtract.\nIf the coefficients are not equal, multiply an equation by a number — the whole equation, every term. You don't have to multiply the other equation.\nThe tip from class: multiply by a negative number — then you always add."
       }
     },
-    {
+    { "why": {"he": "למה להכפיל דווקא ב-2? כי ב-y יש `1` ו-`−2`: אחרי כפל ב-2 מקבלים `2y` ו-`−2y`, שמתבטלים בחיבור. מכפילים את כל המשוואה — גם את 9 — אחרת היא כבר לא אותה משוואה.\nבדיקה במשוואה השנייה: `3 × 2 − 2 × 1 = 4`.", "ru": "Почему умножаем именно на 2? Потому что у y стоят `1` и `−2`: после умножения на 2 получаем `2y` и `−2y`, которые при сложении сокращаются. Умножаем всё уравнение — и 9 тоже, иначе это уже другое уравнение.\nПроверка во втором уравнении — `3 × 2 − 2 × 1 = 4`.", "en": "Why multiply by 2? Because y has `1` and `−2`: after multiplying by 2 we get `2y` and `−2y`, which cancel when added. Multiply the whole equation — the 9 too — otherwise it is no longer the same equation.\nCheck in the second equation: `3 × 2 − 2 × 1 = 4`."},
       "kind": "board",
       "title": {
         "he": "תרגיל 24 מהלוח",
@@ -247,7 +247,7 @@ window.LESSONS['math-2026-10-18'] = {
         "y = 1"
       ]
     },
-    {
+    { "why": {"he": "הפתרון אותו פתרון, כי זה אותו זוג מספרים. בוחרים את מה שקל יותר: את הנעלם שהמקדמים שלו כבר שווים, או שצריך להכפיל רק משוואה אחת במספר קטן.", "ru": "Ответ получится тот же, потому что это та же пара чисел. Выбирай, что проще: неизвестное, у которого коэффициенты уже равны, или где нужно умножить только одно уравнение на маленькое число.", "en": "The answer is the same, because it is the same pair of numbers. Pick what is easier: the unknown whose coefficients are already equal, or where only one equation needs a small multiplier."},
       "kind": "qa",
       "q": {
         "he": "את מה מצמצמים — את x או את y?",
@@ -260,7 +260,7 @@ window.LESSONS['math-2026-10-18'] = {
         "en": "It doesn't matter. The main thing is that one unknown disappears in the first step; then find it and substitute to get the other."
       }
     },
-    {
+    { "why": {"he": "בבחינה אין AI. אם הוא פותר במקומכם, נשארת תשובה בלי מיומנות. כשמבקשים רמז — \"מה הצעד הבא?\" — אתם עושים את החשבון בעצמכם, וזה מה שנשאר בראש.", "ru": "На экзамене ИИ нет. Если он решает за тебя, остаётся ответ без навыка. Когда просишь подсказку — «какой следующий шаг?» — считаешь сам, и именно это остаётся в голове.", "en": "There is no AI in the exam. If it solves for you, you are left with an answer and no skill. When you ask for a hint — \"what is the next step?\" — you do the work yourself, and that is what stays."},
       "kind": "tip",
       "title": {
         "he": "שימוש ב־AI",
@@ -273,7 +273,7 @@ window.LESSONS['math-2026-10-18'] = {
         "en": "You may use AI for math, but ask it for a hint — how to think about the solution — not for a ready answer."
       }
     },
-    {
+    { "why": {"he": "מציבים במשוואה המקורית ולא בשורה אחרונה של הפתרון — כי אם טעיתם באמצע, גם השורה האחרונה כבר שגויה, והבדיקה בה \"תאשר\" את הטעות.", "ru": "Подставляем в исходное уравнение, а не в последнюю строку решения: если ошибка была посередине, последняя строка уже неверная, и проверка по ней «подтвердит» ошибку.", "en": "Substitute into the original equation, not the last line of your work: if you slipped in the middle, the last line is already wrong, and checking it would \"confirm\" the mistake."},
       "kind": "faq",
       "q": {
         "he": "איך בודקים שהתשובה נכונה?",

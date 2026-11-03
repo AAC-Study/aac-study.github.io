@@ -14,7 +14,7 @@ window.LESSONS['algo-2026-10-18'] = {
   },
 
   timeline: [
-    { kind: 'talk',
+    { "why": {"he": "המחשב לא מבין Java ישירות. ה-JDK כולל את המהדר (`javac`), שמתרגם את הקוד לשפה של המכונה הווירטואלית, ואת ה-JVM שמריץ אותו. IntelliJ הוא רק העורך: הוא קורא ל-JDK בשבילכם כשלוחצים על המשולש. בלי JDK — IntelliJ לא יכול להריץ כלום.\n`println` מדפיס ויורד שורה, `print` מדפיס בלי לרדת שורה.", "ru": "Компьютер не понимает Java напрямую. В JDK есть компилятор (`javac`), который переводит код на язык виртуальной машины, и сама JVM, которая его запускает. IntelliJ — только редактор: когда жмёшь треугольник, он сам вызывает JDK. Без JDK IntelliJ ничего не запустит.\n`println` печатает и переходит на новую строку, `print` — печатает без перехода.", "en": "A computer does not understand Java directly. The JDK has the compiler (`javac`), which translates code for the virtual machine, and the JVM that runs it. IntelliJ is only the editor: when you press the triangle it calls the JDK for you. Without a JDK, IntelliJ cannot run anything.\n`println` prints and moves to a new line, `print` prints without moving."}, kind: 'talk',
       title: { he: 'סביבת העבודה: IntelliJ ו-JDK', ru: 'Рабочая среда: IntelliJ и JDK', en: 'The tools: IntelliJ and JDK' },
       text: {
         he: 'JDK היא הפלטפורמה של Java, ו-IntelliJ IDEA היא התוכנה שבה כותבים ומריצים את הקוד. הגרסה החינמית (Community) מספיקה לכל הקורס.\nהתוכנית הראשונה מדפיסה טקסט. מריצים עם המשולש הירוק או `Shift+F10`.',
@@ -22,14 +22,14 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'JDK is the Java platform, and IntelliJ IDEA is the program where you write and run code. The free Community version is enough for the whole course.\nThe first program prints text. Run it with the green triangle or `Shift+F10`.'
       },
       math: ['System.out.println("Hello World");'] },
-    { kind: 'tip',
+    { "why": {"he": "`sout` זה קיצור של IntelliJ, לא של Java. המהדר לא מכיר את המילה `sout` — רק העורך מחליף אותה. במבחן על דף אין עורך, ולכן `sout` שם הוא פשוט שגיאה.", "ru": "`sout` — это сокращение IntelliJ, а не Java. Компилятор слова `sout` не знает, его подменяет только редактор. На бумажном экзамене редактора нет, поэтому `sout` там — просто ошибка.", "en": "`sout` is an IntelliJ shortcut, not Java. The compiler does not know the word `sout`; only the editor replaces it. On a paper exam there is no editor, so `sout` is simply a mistake."}, kind: 'tip',
       title: { he: 'במבחן כותבים את הפקודה במלואה', ru: 'На экзамене команду пишут полностью', en: 'Write the full command in the exam' },
       text: {
         he: 'ב-IntelliJ אפשר להקליד `sout` ולקבל `System.out.println();`. אבל המבחן הוא על דף, ומי שכותב את הקיצור מאבד נקודות. התאמנו לכתוב `System.out.println(...)` בשלמותו.',
         ru: 'В IntelliJ можно набрать `sout` и получить `System.out.println();`. Но экзамен на бумаге, и за сокращение снимают баллы. Тренируйся писать `System.out.println(...)` целиком.',
         en: 'In IntelliJ you can type `sout` and get `System.out.println();`. But the exam is on paper, and writing the shortcut loses points. Practise writing `System.out.println(...)` in full.'
       } },
-    { kind: 'board',
+    { "why": {"he": "הסדר כמו במתמטיקה, כי Java בנויה לחשב נוסחאות כמו שאנחנו כותבים אותן. אם רוצים סדר אחר — סוגריים: `(2 + 5) * 7 = 49`.\n`2 / 7` נותן 0, כי כששני המספרים `int`, גם התוצאה `int` והשבר נזרק (לא מעוגל!).", "ru": "Порядок как в математике, потому что Java сделана считать формулы так, как мы их пишем. Нужен другой порядок — ставь скобки: `(2 + 5) * 7 = 49`.\n`2 / 7` даёт 0, потому что оба числа `int`, значит и результат `int`, а дробь отбрасывается (не округляется!).", "en": "The order is the same as in math, because Java is built to compute formulas the way we write them. Want another order? Use brackets: `(2 + 5) * 7 = 49`.\n`2 / 7` gives 0 because both numbers are `int`, so the result is `int` and the fraction is dropped (not rounded!)."}, kind: 'board',
       title: { he: 'חשבון ב-Java וסדר פעולות', ru: 'Арифметика в Java и порядок действий', en: 'Arithmetic in Java and order of operations' },
       text: {
         he: 'Java יודעת לחשב: `+`, `-`, `*` (כפל), `/` (חילוק). קודם כפל וחילוק, אחר כך חיבור וחיסור.\nבדוגמה הראשונה `2/7` נותן `0`, כי זה חילוק של שני מספרים שלמים.',
@@ -37,7 +37,7 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'Java can calculate: `+`, `-`, `*` (multiply), `/` (divide). Multiplication and division first, then addition and subtraction.\nIn the first example `2/7` gives `0`, because it divides two whole numbers.'
       },
       math: ['System.out.println(2 + 5 * 7 - 2 / 7);   // 2 + 35 - 0 = 37', 'System.out.println(2 + 3 * 4 - 8 / 2);   // 2 + 12 - 4 = 10'] },
-    { kind: 'talk',
+    { "why": {"he": "למה לכתוב סוג? כדי שהמחשב ידע כמה זיכרון לשמור ומה מותר לעשות עם הערך. Java בודקת את זה עוד לפני ההרצה ותופסת טעויות מוקדם.\nשימו לב: `'a'` (תו, `char`) ו-`\"a\"` (מחרוזת, `String`) הם שני דברים שונים — גרש אחד מול מירכאות.", "ru": "Зачем писать тип? Чтобы компьютер знал, сколько памяти отвести и что можно делать с этим значением. Java проверяет это ещё до запуска и ловит ошибки заранее.\nВнимание: `'a'` (символ, `char`) и `\"a\"` (строка, `String`) — разные вещи: одинарные кавычки против двойных.", "en": "Why write a type? So the computer knows how much memory to keep and what is allowed with the value. Java checks this before running and catches mistakes early.\nNote: `'a'` (a character, `char`) and `\"a\"` (a string, `String`) are different things: single quotes vs double quotes."}, kind: 'talk',
       title: { he: 'טיפוסי נתונים', ru: 'Типы данных', en: 'Data types' },
       text: {
         he: 'לפני שם המשתנה כותבים את הטיפוס שלו, וכל פקודה נגמרת ב-`;`.\n`int` — מספר שלם (גם שלילי), בלי שברים.\n`double` — מספר עם נקודה עשרונית.\n`char` — תו אחד בגרש בודד: `\'a\'`.\n`boolean` — `true` או `false`.\n`String` — מחרוזת, רצף של תווים בגרשיים: `"htf"`.',
@@ -45,14 +45,14 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'Before the variable name you write its type, and every command ends with `;`.\n`int` — a whole number (negative too), no fractions.\n`double` — a number with a decimal point.\n`char` — one character in single quotes: `\'a\'`.\n`boolean` — `true` or `false`.\n`String` — a sequence of characters in double quotes: `"htf"`.'
       },
       math: ['int x = 6;', 'int c = -6;', 'double g = 0.5;', 'char f = \'a\';', 'boolean b = true;', 'String l = "htf";'] },
-    { kind: 'board',
+    { "why": {"he": "למה שגיאה ולא פשוט לזרוק את השבר? כי אובדן מידע בשקט מסתיר באגים. Java מכריחה אתכם להחליט: או `double`, או להמיר במפורש `(int) 0.5` — ואז אתם יודעים שיצא 0.", "ru": "Почему ошибка, а не просто отбросить дробь? Потому что тихая потеря данных прячет баги. Java заставляет решить самому: или `double`, или явное приведение `(int) 0.5` — и тогда ты знаешь, что получится 0.", "en": "Why an error instead of just dropping the fraction? Because losing data silently hides bugs. Java makes you decide: either `double`, or an explicit `(int) 0.5` — and then you know you get 0."}, kind: 'board',
       title: { he: 'שגיאה: אי אפשר לשים 0.5 ב-int', ru: 'Ошибка: 0.5 нельзя положить в int', en: 'Error: 0.5 cannot go into an int' },
       text: {
         he: 'הפקודה `int z = 0.5;` מסומנת באדום. Java לא זורקת את השבר בעצמה, ומדפיסה שגיאה:\n`incompatible types: possible lossy conversion from double to int`.\nלמספר עם נקודה משתמשים ב-`double`.',
         ru: 'Команда `int z = 0.5;` подчёркнута красным. Java сама не отбрасывает дробь и выдаёт ошибку:\n`incompatible types: possible lossy conversion from double to int`.\nДля числа с точкой нужен `double`.',
         en: 'The command `int z = 0.5;` is underlined in red. Java will not drop the fraction by itself and shows an error:\n`incompatible types: possible lossy conversion from double to int`.\nFor a number with a point use `double`.'
       } },
-    { kind: 'talk',
+    { "why": {"he": "`int` תופס 32 ביטים, ולכן יש לו גבול: מ-`−2147483648` עד `2147483647`. אם עוברים את הגבול — אין שגיאה! המספר \"מתגלגל\" לשלילי: `Integer.MAX_VALUE + 1` שווה ל-`Integer.MIN_VALUE`. לכן למספרים גדולים (למשל אוכלוסיית העולם) לוקחים `long`.", "ru": "`int` занимает 32 бита, поэтому у него есть предел: от `−2147483648` до `2147483647`. Если выйти за предел — ошибки не будет! Число «перекатится» в отрицательное: `Integer.MAX_VALUE + 1` равно `Integer.MIN_VALUE`. Поэтому для больших чисел (например, население Земли) берут `long`.", "en": "An `int` takes 32 bits, so it has a limit: from `−2147483648` to `2147483647`. Going past it gives no error! The number \"wraps around\" to negative: `Integer.MAX_VALUE + 1` equals `Integer.MIN_VALUE`. So for big numbers (like the world population) use `long`."}, kind: 'talk',
       title: { he: 'כמה גדול יכול להיות int', ru: 'Насколько большим может быть int', en: 'How big an int can be' },
       text: {
         he: 'יש ארבעה טיפוסים של מספרים שלמים: `byte`, `short`, `int`, `long`. בקורס משתמשים בעיקר ב-`int`, וחשוב לדעת שהוא מוגבל. למספרים גדולים יותר יש `long`.',
@@ -60,7 +60,7 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'There are four whole-number types: `byte`, `short`, `int`, `long`. The course mostly uses `int`, and it is important to know that it is limited. For bigger numbers there is `long`.'
       },
       math: ['System.out.println(Integer.MAX_VALUE);   // 2147483647'] },
-    { kind: 'board',
+    { "why": {"he": "`=` זו פקודה: \"שים את הערך מימין במשתנה משמאל\". `==` זו שאלה: \"האם שווים?\", והתשובה היא `true` או `false`. בגלל ההבדל הזה Java לא תיתן לכתוב `if (x = 5)` — זה תופס טעות נפוצה מאוד.", "ru": "`=` — это команда: «положи значение справа в переменную слева». `==` — это вопрос: «равны ли?», и ответ `true` или `false`. Из-за этой разницы Java не даст написать `if (x = 5)` — так она ловит очень частую ошибку.", "en": "`=` is a command: \"put the value on the right into the variable on the left\". `==` is a question: \"are they equal?\", and the answer is `true` or `false`. Because of this, Java will not let you write `if (x = 5)` — it catches a very common mistake."}, kind: 'board',
       title: { he: 'השוואה: == נותן true או false', ru: 'Сравнение: == даёт true или false', en: 'Comparison: == gives true or false' },
       text: {
         he: '`=` אחד שם ערך במשתנה. `==` שואל "האם שווה?" ומחזיר `true` או `false`.',
@@ -68,7 +68,7 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'One `=` puts a value into a variable. `==` asks "is it equal?" and returns `true` or `false`.'
       },
       math: ['int x = 5;', 'int y = 10;', 'System.out.println(x == 10);   // false', 'System.out.println(x == y);    // false'] },
-    { kind: 'board',
+    { "why": {"he": "המחשב שומר רק מספרים, ולכן לכל תו יש מספר בטבלה (Unicode): `'a'` = 97, `'A'` = 65, `'0'` = 48. האותיות ברצף, ולכן `'f' + 3` נותן את האות שבאה 3 מקומות אחרי — `'i'`.\nזהירות: עם משתנה (`char c = ch + 3;`) צריך המרה: `(char) (ch + 3)`.", "ru": "Компьютер хранит только числа, поэтому у каждого символа есть номер в таблице (Unicode): `'a'` = 97, `'A'` = 65, `'0'` = 48. Буквы идут подряд, поэтому `'f' + 3` даёт букву через 3 места — `'i'`.\nОсторожно: с переменной (`char c = ch + 3;`) нужно приведение: `(char) (ch + 3)`.", "en": "A computer stores only numbers, so every character has a number in a table (Unicode): `'a'` = 97, `'A'` = 65, `'0'` = 48. Letters come in a row, so `'f' + 3` is the letter 3 places later: `'i'`.\nCareful: with a variable (`char c = ch + 3;`) you need a cast: `(char) (ch + 3)`."}, kind: 'board',
       title: { he: 'לכל תו יש מספר', ru: 'У каждого символа есть номер', en: 'Every character has a number' },
       text: {
         he: 'כשמחלקים שני `double`, התוצאה עשרונית. אם שמים תו ב-`double`, מקבלים את המספר שלו: `\'f\'` הוא 102. ו-`\'f\' + 3` הוא 105, כלומר האות `i`.',
@@ -76,14 +76,14 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'Dividing two `double` values gives a decimal result. Put a character into a `double` and you get its number: `\'f\'` is 102. And `\'f\' + 3` is 105, which is the letter `i`.'
       },
       math: ['double x = 5; double y = 10;', 'System.out.println(x / y);   // 0.5', 'double z = \'f\';', 'System.out.println(z);       // 102.0', 'char c = \'f\' + 3;', 'System.out.println(c);       // i'] },
-    { kind: 'talk',
+    { "why": {"he": "קוד קוראים הרבה יותר פעמים ממה שכותבים אותו — גם אתם בעוד שבוע. שם טוב מסביר את עצמו בלי הערות. אסור: להתחיל בספרה, רווחים, מילים שמורות (`int`, `class`). `sum` ו-`Sum` — שני משתנים שונים.", "ru": "Код читают гораздо чаще, чем пишут, — и ты сам через неделю тоже. Хорошее имя объясняет себя без комментариев. Нельзя: начинать с цифры, пробелы, служебные слова (`int`, `class`). `sum` и `Sum` — две разные переменные.", "en": "Code is read much more often than it is written — by you too, a week later. A good name explains itself without comments. Not allowed: starting with a digit, spaces, reserved words (`int`, `class`). `sum` and `Sum` are two different variables."}, kind: 'talk',
       title: { he: 'שמות למשתנים', ru: 'Имена переменных', en: 'Variable names' },
       text: {
         he: 'השם צריך להגיד מה יש במשתנה: `grade1`, `sum`, `mean` ולא סתם `x`.\nהשם הוא מילה אחת בלי רווחים, מתחיל באות, ו-Java מבדילה בין אותיות גדולות לקטנות.\nכשיש כמה מילים — camelCase: המילה הראשונה באות קטנה, וכל מילה הבאה מתחילה באות גדולה: `gradeOfMath`.',
         ru: 'Имя должно говорить, что лежит в переменной: `grade1`, `sum`, `mean`, а не просто `x`.\nИмя — одно слово без пробелов, начинается с буквы, и Java различает большие и маленькие буквы.\nЕсли слов несколько — camelCase: первое слово с маленькой буквы, каждое следующее с большой: `gradeOfMath`.',
         en: 'A name should say what the variable holds: `grade1`, `sum`, `mean` — not just `x`.\nA name is one word with no spaces, starts with a letter, and Java treats upper and lower case as different.\nFor several words use camelCase: the first word in lower case, each next word starting with a capital: `gradeOfMath`.'
       } },
-    { kind: 'board',
+    { "why": {"he": "כאן יצא בדיוק 90, ולכן קשה לראות את הבעיה. נסו 82, 90, 97: הסכום 269, ו-`269 / 3` בשלמים נותן 89 במקום 89.67. ה-`3.0` הופך את החילוק לעשרוני, כי מספיק שאחד המספרים הוא `double`.", "ru": "Здесь вышло ровно 90, поэтому проблему трудно заметить. Попробуй 82, 90, 97: сумма 269, и `269 / 3` в целых даёт 89 вместо 89.67. `3.0` делает деление дробным, потому что достаточно, чтобы одно из чисел было `double`.", "en": "Here the result is exactly 90, so the problem is hard to see. Try 82, 90, 97: the sum is 269, and `269 / 3` in integers gives 89 instead of 89.67. The `3.0` makes the division decimal, because it is enough for one number to be `double`."}, kind: 'board',
       title: { he: 'ממוצע של שלושה ציונים', ru: 'Среднее трёх оценок', en: 'The average of three grades' },
       text: {
         he: 'שלושה סטודנטים קיבלו ציונים. הציונים הם `int`, אבל הממוצע צריך להיות `double`: גם ממוצע של מספרים שלמים יכול לצאת עם שבר.\nאם מחלקים ב-`3`, זה חילוק בשלמים (IntelliJ מסמן אזהרה צהובה). לכן מחלקים ב-`3.0`.',
@@ -91,7 +91,7 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'Three students got grades. The grades are `int`, but the average must be `double`: even the average of whole numbers can have a fraction.\nDividing by `3` is integer division (IntelliJ shows a yellow warning). So divide by `3.0`.'
       },
       math: ['int gread1 = 82;', 'int gread2 = 90;', 'int gread3 = 98;', 'int sum = gread1 + gread2 + gread3;   // 270', 'double mean = (gread1 + gread2 + gread3) / 3.0;   // 90.0'] },
-    { kind: 'talk',
+    { "why": {"he": "מ-`int` ל-`double` לא מאבדים כלום, ולכן Java עושה את זה לבד. בכיוון ההפוך מאבדים את השבר, ולכן צריך לכתוב במפורש: `(int) 4.9` נותן 4 (חותך, לא מעגל).\nה-`(double)` פועל רק על הערך שמיד אחריו.", "ru": "Из `int` в `double` ничего не теряется, поэтому Java делает это сама. В обратную сторону теряется дробь, поэтому надо писать явно: `(int) 4.9` даёт 4 (отрезает, а не округляет).\n`(double)` действует только на значение сразу после него.", "en": "From `int` to `double` nothing is lost, so Java does it alone. The other way the fraction is lost, so you must write it: `(int) 4.9` gives 4 (it cuts, it does not round).\nThe `(double)` acts only on the value right after it."}, kind: 'talk',
       title: { he: 'המרת טיפוס (casting)', ru: 'Приведение типа (casting)', en: 'Casting' },
       text: {
         he: 'מ-`int` ל-`double` Java ממירה לבד: `int x = 3; double y = 2 * x;` נותן `6.0`.\nכשמחלקים שני שלמים, `17 / 4` נותן `4`. כדי לקבל `4.25` כותבים לפני המספר את הטיפוס בסוגריים: `(double)`.',
@@ -99,7 +99,7 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'From `int` to `double` Java converts by itself: `int x = 3; double y = 2 * x;` gives `6.0`.\nDividing two whole numbers, `17 / 4` gives `4`. To get `4.25`, write the type in brackets before the number: `(double)`.'
       },
       math: ['int x = 17;', 'System.out.println(x / 4);            // 4', 'System.out.println((double) x / 4);   // 4.25'] },
-    { kind: 'tip',
+    { "why": {"he": "Java מחשבת קודם את מה שבסוגריים. ב-`(double) (sum / count)` החילוק כבר נעשה בשלמים והשבר כבר אבד — ה-`double` מגיע מאוחר מדי. ב-`(double) sum / count` קודם `sum` הופך ל-`double`, ורק אז מחלקים.", "ru": "Java сначала считает то, что в скобках. В `(double) (sum / count)` деление уже прошло в целых, и дробь уже потеряна — `double` приходит слишком поздно. В `(double) sum / count` сначала `sum` становится `double`, и только потом делим.", "en": "Java computes the brackets first. In `(double) (sum / count)` the division is already done in integers and the fraction is gone — the `double` comes too late. In `(double) sum / count` first `sum` becomes `double`, and only then we divide."}, kind: 'tip',
       title: { he: 'טעות נפוצה: הסוגריים במקום הלא נכון', ru: 'Частая ошибка: скобки не там', en: 'Common mistake: brackets in the wrong place' },
       text: {
         he: '`(double) (sum / count)` לא עוזר: מה שבתוך הסוגריים מחושב קודם, כחילוק בשלמים, והשבר כבר נזרק. רק אחר כך התוצאה הופכת ל-`double`. כותבים `(double) sum / count`.',
@@ -107,7 +107,7 @@ window.LESSONS['algo-2026-10-18'] = {
         en: '`(double) (sum / count)` does not help: what is inside the brackets is calculated first, as integer division, and the fraction is already lost. Only then does the result become `double`. Write `(double) sum / count`.'
       },
       math: ['(double) (17 / 4)   →   4.0', '(double) 17 / 4     →   4.25'] },
-    { kind: 'board',
+    { "why": {"he": "`%` עונה על \"מה נשאר?\". בגלל זה הוא שימושי לזוגי/אי-זוגי, להתחלקות, לספרה האחרונה ולמחזורים (שעון: `hour % 12`).\nבאוטובוסים: אם `97 % 40` לא 0, צריך עוד אוטובוס — 3 ולא 2.\nזהירות: ב-Java `-7 % 2` שווה `-1`, ולכן לבדיקת אי-זוגי כתבו `x % 2 != 0` ולא `x % 2 == 1`.", "ru": "`%` отвечает на вопрос «что осталось?». Поэтому он нужен для чётности, делимости, последней цифры и циклов (часы: `hour % 12`).\nС автобусами: если `97 % 40` не 0, нужен ещё один автобус — 3, а не 2.\nОсторожно: в Java `-7 % 2` равно `-1`, поэтому нечётность проверяй так: `x % 2 != 0`, а не `x % 2 == 1`.", "en": "`%` answers \"what is left?\". That is why it is useful for even/odd, divisibility, the last digit and cycles (a clock: `hour % 12`).\nWith the buses: if `97 % 40` is not 0, you need one more bus — 3, not 2.\nCareful: in Java `-7 % 2` is `-1`, so check odd with `x % 2 != 0`, not `x % 2 == 1`."}, kind: 'board',
       title: { he: 'שארית החלוקה: %', ru: 'Остаток от деления: %', en: 'The remainder: %' },
       text: {
         he: '`%` (מודולו) נותן את השארית של חילוק בשלמים.\nדוגמה מהשיעור: באוטובוס יש מקום ל-40 ילדים, ויש 97 ילדים. `97 / 40 = 2` אוטובוסים מלאים, ו-`97 % 40 = 17` ילדים נשארים — צריך עוד אוטובוס.\nמספר זוגי: `x % 2 == 0`. מתחלק ב-7: `x % 7 == 0`.\nספרת האחדות: `% 10`.',
@@ -115,7 +115,7 @@ window.LESSONS['algo-2026-10-18'] = {
         en: '`%` (modulo) gives the remainder of integer division.\nExample from the lesson: a bus holds 40 children and there are 97 children. `97 / 40 = 2` full buses, and `97 % 40 = 17` children are left — one more bus is needed.\nEven number: `x % 2 == 0`. Divisible by 7: `x % 7 == 0`.\nThe units digit: `% 10`.'
       },
       math: ['int x = 48; int y = 8;', 'System.out.println(x % y);      // 0', 'System.out.println(x % 2);      // 0  → even', 'System.out.println(149 % 10);   // 9', 'System.out.println(149 % 100);  // 49'] },
-    { kind: 'talk',
+    { "why": {"he": "`x + 5` רק מחשב ערך, אבל לא שומר אותו בשום מקום — כמו לחשב בראש ולשכוח. `=` אומר: \"חשב את הצד הימני ושים בשמאלי\". לכן `x = x + 5` זה לא משוואה מתמטית, אלא פקודה: הערך החדש = הישן + 5.", "ru": "`x + 5` только считает значение, но никуда его не сохраняет — как посчитать в уме и забыть. `=` говорит: «посчитай правую часть и положи в левую». Поэтому `x = x + 5` — это не уравнение из математики, а команда: новое значение = старое + 5.", "en": "`x + 5` only computes a value, but stores it nowhere — like counting in your head and forgetting. `=` says: \"compute the right side and put it into the left\". So `x = x + 5` is not a math equation but a command: new value = old value + 5."}, kind: 'talk',
       title: { he: 'לשנות את המשתנה עצמו', ru: 'Изменить саму переменную', en: 'Changing the variable itself' },
       text: {
         he: 'השורה `x + 5;` לבדה לא משנה את x (ו-Java מסמנת אותה כשגיאה). כדי לשנות שומרים את התוצאה: `x = x + 5;` או בקיצור `x += 5;`.\nבאותה דרך: `-=`, `*=`, `/=`, `%=`.',
@@ -123,14 +123,14 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'The line `x + 5;` alone does not change x (and Java marks it as an error). To change it, store the result: `x = x + 5;` or shorter `x += 5;`.\nThe same way: `-=`, `*=`, `/=`, `%=`.'
       },
       math: ['int x = 48;', 'x += 5;   // 53', 'x %= 5;   // 48 % 5 = 3  (starting again from 48)', 'x /= 5;   // 48 / 5 = 9  (starting again from 48)'] },
-    { kind: 'tip',
+    { "why": {"he": "`x++` נותן קודם את הערך הישן ורק אחר כך מגדיל; `++x` קודם מגדיל. בתוך `println` קל להתבלבל, ולכן העצה: פעולה אחת בשורה — `x++;` לבד, ואז `println(x)`. במבחן לדוגמה יש בדיוק שאלה כזאת על `x++` ו-`++x`.", "ru": "`x++` сначала отдаёт старое значение и только потом увеличивает; `++x` сначала увеличивает. Внутри `println` легко запутаться, поэтому совет: одно действие в строке — `x++;` отдельно, потом `println(x)`. В пробном экзамене есть ровно такой вопрос про `x++` и `++x`.", "en": "`x++` first gives the old value and only then adds 1; `++x` adds first. Inside `println` it is easy to get confused, so the advice is: one action per line — `x++;` alone, then `println(x)`. The sample exam has exactly this question about `x++` and `++x`."}, kind: 'tip',
       title: { he: '++ ו-- : הגדלה והקטנה ב-1', ru: '++ и --: плюс и минус 1', en: '++ and --: add or subtract 1' },
       text: {
         he: '`x++` מגדיל את x ב-1, ו-`x--` מקטין ב-1. ב-Python אין דבר כזה.\n`println(x++)` מדפיס את הערך הישן ורק אחר כך מגדיל; `println(++x)` קודם מגדיל ואז מדפיס. המרצה המליץ לא לשים `++` בתוך `println`, אלא לכתוב `x++;` בשורה נפרדת.',
         ru: '`x++` увеличивает x на 1, а `x--` уменьшает на 1. В Python такого нет.\n`println(x++)` печатает старое значение и только потом увеличивает; `println(++x)` сначала увеличивает, потом печатает. Преподаватель советовал не ставить `++` внутрь `println`, а писать `x++;` отдельной строкой.',
         en: '`x++` adds 1 to x, and `x--` subtracts 1. Python has nothing like it.\n`println(x++)` prints the old value and only then adds 1; `println(++x)` adds first and then prints. The teacher recommended not putting `++` inside `println` — write `x++;` on its own line.'
       } },
-    { kind: 'board',
+    { "why": {"he": "תוצאה של השוואה היא ערך כמו כל ערך אחר, ואפשר לשמור אותה. זה נוח כשבודקים אותו תנאי כמה פעמים, ושם טוב (`isEven`) הופך את ה-`if` לקריא: `if (isEven)`.", "ru": "Результат сравнения — такое же значение, как любое другое, и его можно сохранить. Это удобно, когда одно условие проверяют несколько раз, а хорошее имя (`isEven`) делает `if` понятным: `if (isEven)`.", "en": "The result of a comparison is a value like any other, and you can store it. This is handy when you check the same condition several times, and a good name (`isEven`) makes the `if` readable: `if (isEven)`."}, kind: 'board',
       title: { he: 'ביטויים בוליאניים', ru: 'Логические выражения', en: 'Boolean expressions' },
       text: {
         he: 'השוואה אפשר לשמור במשתנה `boolean`. עם `x = 48`:',
@@ -138,7 +138,7 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'A comparison can be stored in a `boolean` variable. With `x = 48`:'
       },
       math: ['boolean b = x >= 50;   // false', 'x != 50                // true', 'x % 2 == 0             // true  (even)', 'x % 10 > 5             // true  (8 > 5)'] },
-    { kind: 'board',
+    { "why": {"he": "למה זה עובד? בשיטה העשרונית כל מקום שווה פי 10 מהמקום שמימינו: `736 = 7 × 100 + 3 × 10 + 6`. חילוק ב-10 \"מזיז\" את המספר מקום אחד ימינה (6 נופל), והשארית היא בדיוק הספרה שנפלה.\nאותו רעיון בדיוק כמו המרה לבינארי במבוא למחשב — שם מחלקים ב-2.", "ru": "Почему это работает? В десятичной системе каждое место в 10 раз больше места справа: `736 = 7 × 100 + 3 × 10 + 6`. Деление на 10 «сдвигает» число на одно место вправо (6 выпадает), а остаток — это ровно выпавшая цифра.\nТа же идея, что и перевод в двоичную систему на מבוא למחשב — там делят на 2.", "en": "Why does it work? In the decimal system each place is 10 times the place on its right: `736 = 7 × 100 + 3 × 10 + 6`. Dividing by 10 \"shifts\" the number one place right (the 6 falls off), and the remainder is exactly the digit that fell.\nThe same idea as converting to binary in Intro to Computers — there we divide by 2."}, kind: 'board',
       title: { he: 'פירוק מספר לספרות: 736', ru: 'Разбор числа на цифры: 736', en: 'Splitting a number into digits: 736' },
       text: {
         he: 'המשימה העיקרית של השיעור. `% 10` נותן את הספרה האחרונה, ו-`/ 10` מוחק אותה. הכלל: מודולו מוחק את הספרות הגדולות, וחילוק — את הקטנות.',
@@ -146,14 +146,14 @@ window.LESSONS['algo-2026-10-18'] = {
         en: 'The main task of the lesson. `% 10` gives the last digit, and `/ 10` removes it. The rule: modulo removes the big digits, division removes the small ones.'
       },
       math: ['int number = 736;', 'int r = number % 10;          // 6', 'r = number % 100;  r = r / 10;   // 36 → 3', '', 'int sumDigit = 0;', 'sumDigit += number % 10;  number /= 10;   // 6,  number = 73', 'sumDigit += number % 10;  number /= 10;   // 9,  number = 7', 'sumDigit += number;                       // 16'] },
-    { kind: 'talk',
+    { "why": {"he": "למה לתרגל לבד? במבחן יש \"טבלת מעקב\": צריך לדעת מה יודפס בלי להריץ. התרגיל הכי טוב: קודם לנחש את הפלט, אחר כך להריץ ולבדוק. כל פעם שהניחוש לא נכון — למדתם משהו.", "ru": "Зачем тренироваться самому? На экзамене есть «таблица отслеживания»: надо знать, что напечатается, без запуска. Лучшая тренировка: сначала угадай вывод, потом запусти и проверь. Каждый раз, когда не угадал, — ты чему-то научился.", "en": "Why practise alone? The exam has a \"tracing table\": you must know what is printed without running. The best practice: guess the output first, then run and check. Every wrong guess teaches you something."}, kind: 'talk',
       title: { he: 'דף התרגול', ru: 'Лист упражнений', en: 'The practice sheet' },
       text: {
         he: 'בסוף פתרו בכיתה תרגילים 21–24: ספרת האחדות, הספרות של 482, סכום הספרות של 621 (= 9) וספרת המאות של 905. שיעורי בית לא היו. לתרגול יש באתר הקורס את הדף "תרגול סוגי משתנים": בחלקים א–ג פשוט מקלידים את הקוד ובודקים מה יוצא.',
         ru: 'В конце в классе решали упражнения 21–24: цифра единиц, цифры числа 482, сумма цифр 621 (= 9) и цифра сотен 905. Домашнего задания не было. Для практики на сайте курса есть лист «תרגול סוגי משתנים»: в частях א–ג просто набираешь код и смотришь, что выйдет.',
         en: 'At the end the class solved exercises 21–24: the units digit, the digits of 482, the digit sum of 621 (= 9) and the hundreds digit of 905. There was no homework. For practice, the course site has the sheet "תרגול סוגי משתנים": in parts א–ג you just type the code and see what comes out.'
       } },
-    { kind: 'faq',
+    { "why": {"he": "Java לא מעגלת, אלא חותכת לכיוון 0. לכן גם `7 / 2` נותן 3 (לא 4), ו-`-7 / 2` נותן `-3` (לא `-4`). אם צריך עיגול אמיתי, לומדים בהמשך את `Math.round`.", "ru": "Java не округляет, а отрезает в сторону нуля. Поэтому `7 / 2` даёт 3 (не 4), а `-7 / 2` даёт `-3` (не `-4`). Если нужно настоящее округление, позже будет `Math.round`.", "en": "Java does not round, it cuts toward zero. So `7 / 2` gives 3 (not 4), and `-7 / 2` gives `-3` (not `-4`). If you need real rounding, `Math.round` comes later."}, kind: 'faq',
       q: { he: 'למה `7 / 2` נותן 3 ולא 3.5?', ru: 'Почему `7 / 2` даёт 3, а не 3.5?', en: 'Why does `7 / 2` give 3 and not 3.5?' },
       a: {
         he: 'כששני המספרים `int`, גם התוצאה `int`, והשבר פשוט נזרק (לא מעוגל). מספיק שאחד מהם יהיה `double`: `7 / 2.0` או `(double) 7 / 2` נותנים `3.5`.',

@@ -18,7 +18,7 @@
       ls_ai_note: 'את המשימות האלה המציא AI לפי נושא השיעור. הן לא מהמורה, אבל בדיוק על אותו חומר.',
       ls_read_done: 'השיעור נקרא ✓', ls_reading: 'קריאה: {p}', ls_not_found: 'השיעור לא נמצא', ls_loading: 'טוען את השיעור…',
       ls_back: 'לכל השיעורים', ls_questions_lead: 'כל השאלות מהשיעור במקום אחד. לחצו על שאלה כדי לראות את התשובה.',
-      ls_show_in_flow: 'להראות במהלך השיעור', ls_part: 'חלק {i} מתוך {n}', ls_min: '~{m} דק׳', ls_next_part: 'הלאה: חלק {i}', ls_to_review: 'לחזרה', ls_close: 'סגירה', ls_tasks_count: '{n} משימות'
+      ls_show_in_flow: 'להראות במהלך השיעור', ls_part: 'חלק {i} מתוך {n}', ls_min: '~{m} דק׳', ls_next_part: 'הלאה: חלק {i}', ls_to_review: 'לחזרה', ls_close: 'סגירה', ls_tasks_count: '{n} משימות', ls_why: 'למה ככה?'
     },
     ru: {
       ls_files: 'Файлы', ls_flow: 'Ход урока', ls_questions: 'Вопросы', ls_review: 'Повторение',
@@ -31,7 +31,7 @@
       ls_ai_note: 'Эти задачи придумал ИИ по теме урока. Они не от преподавателя, но ровно по тому же материалу.',
       ls_read_done: 'Урок прочитан ✓', ls_reading: 'Прочитано: {p}', ls_not_found: 'Урок не найден', ls_loading: 'Загружаю урок…',
       ls_back: 'Ко всем урокам', ls_questions_lead: 'Все вопросы урока в одном месте. Нажми на вопрос, чтобы увидеть ответ.',
-      ls_show_in_flow: 'Показать в ходе урока', ls_part: 'Часть {i} из {n}', ls_min: '~{m} мин', ls_next_part: 'Дальше: часть {i}', ls_to_review: 'К повторению', ls_close: 'Закрыть', ls_tasks_count: 'Задач: {n}'
+      ls_show_in_flow: 'Показать в ходе урока', ls_part: 'Часть {i} из {n}', ls_min: '~{m} мин', ls_next_part: 'Дальше: часть {i}', ls_to_review: 'К повторению', ls_close: 'Закрыть', ls_tasks_count: 'Задач: {n}', ls_why: 'Почему так?'
     },
     en: {
       ls_files: 'Files', ls_flow: 'Lesson flow', ls_questions: 'Questions', ls_review: 'Review',
@@ -44,7 +44,7 @@
       ls_ai_note: 'These tasks were invented by AI on the lesson topic. They are not from the teacher, but cover exactly the same material.',
       ls_read_done: 'Lesson read ✓', ls_reading: 'Reading: {p}', ls_not_found: 'Lesson not found', ls_loading: 'Loading the lesson…',
       ls_back: 'All lessons', ls_questions_lead: 'All the questions from the lesson in one place. Tap a question to see the answer.',
-      ls_show_in_flow: 'Show in the lesson flow', ls_part: 'Part {i} of {n}', ls_min: '~{m} min', ls_next_part: 'Next: part {i}', ls_to_review: 'To the review', ls_close: 'Close', ls_tasks_count: '{n} tasks'
+      ls_show_in_flow: 'Show in the lesson flow', ls_part: 'Part {i} of {n}', ls_min: '~{m} min', ls_next_part: 'Next: part {i}', ls_to_review: 'To the review', ls_close: 'Close', ls_tasks_count: '{n} tasks', ls_why: 'Why is it so?'
     }
   });
 
@@ -438,6 +438,20 @@
     ]);
     section(SECTIONS[0], [fileCard]);
 
+    // "Why is it so?" — a short explanation under a step, closed by default
+    function whyBox(it) {
+      var d = el('details', { class: 'ls-why' });
+      d.appendChild(el('summary', { class: 'ls-why__sum' }, [
+        el('span', { class: 'ls-why__ic', html: Icons.get('question') }),
+        el('span', null, t('ls_why')),
+        el('span', { class: 'ls-why__chev', html: Icons.get('chevronDown') })
+      ]));
+      var body = el('div', { class: 'ls-why__body' }, [rich(pick(it.why, lang))]);
+      if (it.whyMath && it.whyMath.length) body.appendChild(mathBlock(it.whyMath));
+      d.appendChild(body);
+      return d;
+    }
+
     // Flow
     var flow = el('ol', { class: 'ls-flow' });
     var questions = [], stepEls = [], stepSec = [];
@@ -469,6 +483,7 @@
         if (it.text) card.appendChild(el('p', { class: 'ls-step__text' }, [rich(pick(it.text, lang))]));
         if (it.math && it.math.length) card.appendChild(mathBlock(it.math));
       }
+      if (it.why) card.appendChild(whyBox(it));
       li.appendChild(card);
       flow.appendChild(li);
       stepEls.push(li); stepSec.push(stepSeconds(it, lang));
