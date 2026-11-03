@@ -47,7 +47,11 @@
       S('bubbles', 20, true, 'בועות', 'Пузырьки', 'Bubbles'), S('flow', 25, true, 'זרימה', 'Поток', 'Flow'),
       S('rain', 30, true, 'גשם', 'Дождь', 'Rain'), S('snow', 40, true, 'שלג', 'Снег', 'Snow'),
       S('nebula', 50, true, 'ערפילית', 'Туманность', 'Nebula'), S('pulse', 60, true, 'דופק', 'Пульс', 'Pulse'),
-      S('tide', 75, true, 'גאות', 'Прилив', 'Tide'), S('petals', 90, true, 'עלי כותרת', 'Лепестки', 'Petals')
+      S('tide', 75, true, 'גאות', 'Прилив', 'Tide'), S('petals', 90, true, 'עלי כותרת', 'Лепестки', 'Petals'),
+      /* праздничные */
+      S('pumpkin', 3, false, '🎃 דלעות', '🎃 Тыквы', '🎃 Pumpkins'), S('xmas', 5, false, '🎄 חג המולד', '🎄 Рождество', '🎄 Christmas'),
+      S('bats', 12, true, '🦇 עטלפים', '🦇 Летучие мыши', '🦇 Bats'), S('garland', 14, true, '✨ שרשרת אורות', '✨ Гирлянда', '✨ Fairy lights'),
+      S('ghosts', 22, true, '👻 רוחות', '👻 Привидения', '👻 Ghosts'), S('blizzard', 26, true, '❄️ סופת שלג', '❄️ Метель', '❄️ Blizzard')
     ]
   };
   var STYLE_BY = {};

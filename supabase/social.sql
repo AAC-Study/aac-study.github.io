@@ -48,7 +48,8 @@ insert into public.sc_style_levels(kind, id, lvl) values
   ('bg','plain',0),('bg','dots',0),('bg','grid',2),('bg','waves',4),('bg','dawn',6),
   ('bg','mint',8),('bg','night',10),('bg','paper',13),('bg','stripes',16),('bg','prism',20),
   ('bg','aurora',10),('bg','stars',15),('bg','bubbles',20),('bg','flow',25),('bg','rain',30),
-  ('bg','snow',40),('bg','nebula',50),('bg','pulse',60),('bg','tide',75),('bg','petals',90)
+  ('bg','snow',40),('bg','nebula',50),('bg','pulse',60),('bg','tide',75),('bg','petals',90),
+  ('bg','pumpkin',3),('bg','xmas',5),('bg','bats',12),('bg','garland',14),('bg','ghosts',22),('bg','blizzard',26)
 on conflict (kind, id) do update set lvl = excluded.lvl;
 
 -- закрытый стиль нельзя выбрать даже через консоль: проверка при изменении prefs

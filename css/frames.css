@@ -256,6 +256,97 @@
 }
 .fr--celestial .fr__deco { animation: fr-spin-rev 16s linear infinite; }
 
+/* ===================== УЛУЧШЕННЫЕ АНИМАЦИИ (03.11) ===================== */
+@keyframes fr-glint { 0%, 100% { opacity: 0; transform: scale(.3) rotate(0deg); } 40% { opacity: 1; transform: scale(1.1) rotate(45deg); } 70% { opacity: 0; transform: scale(.4) rotate(90deg); } }
+@keyframes fr-wave { 0% { opacity: .85; transform: scale(1); } 100% { opacity: 0; transform: scale(1.28); } }
+@keyframes fr-ember { 0% { opacity: 0; transform: translate(0, 0) scale(1); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(0, -9px) scale(.4); } }
+@keyframes fr-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2px); } }
+@keyframes fr-blink { 0%, 45% { opacity: 1; } 50%, 95% { opacity: .25; } 100% { opacity: 1; } }
+@keyframes fr-jack { 0%, 100% { opacity: .95; } 40% { opacity: .55; } 60% { opacity: 1; } 80% { opacity: .7; } }
+.fr-glint, .fr-ember, .fr-bulb, .fr-glowface { transform-box: fill-box; transform-origin: center; }
+.fr-glint { animation: fr-glint 2.6s ease-in-out infinite; }
+.fr-glint--2 { animation-delay: -.9s; }
+.fr-glint--3 { animation-delay: -1.7s; }
+
+/* Северное сияние: второй слой крутится навстречу + искры */
+.fr--aurora .fr__fx::before { content: ''; position: absolute; inset: -.03em; border-radius: 50%;
+  background: conic-gradient(from 90deg, rgba(52,227,164,0), rgba(232,108,255,.75), rgba(47,184,255,0) 40%, rgba(52,227,164,.7) 70%, rgba(52,227,164,0));
+  -webkit-filter: blur(.06em); filter: blur(.06em); animation: fr-spin-rev 6s linear infinite; }
+
+/* Пульс: от рамки расходятся мягкие волны */
+.fr--pulse .fr__fx::before, .fr--pulse .fr__fx::after { content: ''; position: absolute; inset: 0; border-radius: 50%;
+  border: .02em solid rgba(192,108,255,.8); box-shadow: 0 0 .04em rgba(255,122,217,.6); opacity: 0; animation: fr-wave 2.4s ease-out infinite; }
+.fr--pulse .fr__fx::after { animation-delay: 1.2s; }
+
+/* Орбита: у главного спутника светящийся хвост */
+.fr--orbit .fr__deco2, .fr--orbit .fr__ring::after { pointer-events: none; }
+.fr--orbit .fr__ring::after { content: ''; position: absolute; inset: -.02em; border-radius: 50%;
+  background: conic-gradient(from 270deg, rgba(89,214,255,0) 0deg, rgba(89,214,255,0) 20deg, rgba(160,235,255,.95) 90deg, rgba(89,214,255,0) 91deg);
+  -webkit-mask: radial-gradient(circle, transparent 60%, #000 61%); mask: radial-gradient(circle, transparent 60%, #000 61%);
+  animation: fr-spin 6s linear infinite; }
+
+/* Неон: по кольцу бегает яркая искра */
+.fr--neon .fr__deco { animation: fr-spin 3.2s linear infinite; }
+
+/* Радуга: размытое свечение крутится навстречу */
+.fr--rainbow .fr__fx { background: conic-gradient(#ff5e5e, #ffe94d, #5ee67a, #4dc3ff, #e15eff, #ff5e5e);
+  -webkit-filter: blur(.07em); filter: blur(.07em); opacity: .6; animation: fr-spin-rev 5s linear infinite; }
+
+/* Пламя: вверх летят искры */
+.fr-ember { animation: fr-ember 1.8s ease-out infinite; }
+.fr-ember--1 { animation-delay: -.6s; animation-duration: 2.2s; }
+.fr-ember--2 { animation-delay: -1.2s; animation-duration: 1.6s; }
+
+/* Волны: третья волна и блик */
+.fr--ripple .fr__ring::after { content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: conic-gradient(rgba(255,255,255,0) 0 75%, rgba(255,255,255,.8) 85%, rgba(255,255,255,0) 95%);
+  -webkit-mask: radial-gradient(circle, transparent 62%, #000 63%); mask: radial-gradient(circle, transparent 62%, #000 63%);
+  animation: fr-spin 4s linear infinite; }
+.fr--ripple .fr__deco::before { content: ''; position: absolute; inset: 0; border-radius: 50%; border: .014em solid #7fe6ff; opacity: 0; animation: fr-ripple 3.4s ease-out infinite; animation-delay: .85s; }
+
+/* ===================== ХЭЛЛОУИН ===================== */
+.fr--pumpkins { --t: .058em; }
+.fr--pumpkins .fr__ring { background: conic-gradient(from 0deg, #ff8a1f, #c4511a, #ffb347, #8a3b12, #ff8a1f); box-shadow: 0 .02em .08em rgba(200, 90, 20, .35); }
+.fr--pumpkins .fr__ring::after { content: ''; position: absolute; top: .05em; left: .05em; right: .05em; bottom: .05em; border-radius: 50%; box-shadow: 0 0 0 .008em rgba(60, 20, 0, .5); }
+
+.fr--spiderweb { --t: .055em; }
+.fr--spiderweb .fr__ring { background: linear-gradient(160deg, #3a1d5c, #1b0f2e 60%, #4b1f6e); box-shadow: 0 0 .06em rgba(120, 60, 200, .45); }
+.fr--spiderweb .fr__ring::after { content: ''; position: absolute; inset: .012em; border-radius: 50%; border: .006em dashed rgba(233, 228, 255, .45); }
+
+.fr--haunted { --t: .055em; }
+.fr--haunted .fr__ring { background: conic-gradient(#6b2fb3, #2fe08a, #3a1d5c, #9b5cff, #1f9e63, #6b2fb3); animation: fr-spin 10s linear infinite; }
+.fr--haunted .fr__fx { background: radial-gradient(circle, rgba(47, 224, 138, .7), rgba(107, 47, 179, 0) 70%); -webkit-filter: blur(.05em); filter: blur(.05em); animation: fr-breathe 3s ease-in-out infinite; }
+.fr--haunted .fr__deco { animation: fr-spin 12s linear infinite; }
+.fr--haunted .fr__deco svg { animation: fr-bob 1.6s ease-in-out infinite; }
+
+.fr--jackolantern { --t: .058em; }
+.fr--jackolantern .fr__ring { background: conic-gradient(from 180deg, #ff7a00, #ffb000, #c43c00, #ff9a1f, #7a2a00, #ff7a00); }
+.fr--jackolantern .fr__fx { box-shadow: 0 0 .1em .03em rgba(255, 140, 0, .75); animation: fr-jack 2.2s ease-in-out infinite; }
+.fr--jackolantern .fr-glowface { animation: fr-jack 1.7s ease-in-out infinite; }
+.fr--jackolantern .fr__deco2 { animation: fr-spin-rev 9s linear infinite; }
+
+/* ===================== РОЖДЕСТВО ===================== */
+.fr--candycane { --t: .058em; }
+.fr--candycane .fr__ring { background: repeating-conic-gradient(#e3243b 0deg 12deg, #ffffff 12deg 24deg); box-shadow: 0 .02em .08em rgba(200, 30, 50, .35); }
+.fr--candycane .fr__ring::after { content: ''; position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 30% 25%, rgba(255,255,255,.55), transparent 45%); }
+
+.fr--holly { --t: .055em; }
+.fr--holly .fr__ring { background: linear-gradient(160deg, #1f8a3c, #0f5a25 55%, #2aa04a); box-shadow: 0 .02em .08em rgba(20, 100, 40, .35); }
+.fr--holly .fr__ring::after { content: ''; position: absolute; top: .045em; left: .045em; right: .045em; bottom: .045em; border-radius: 50%; box-shadow: 0 0 0 .008em #d8b04a; }
+
+.fr--garland { --t: .06em; }
+.fr--garland .fr__ring { background: linear-gradient(160deg, #17502c, #0c3019); }
+.fr--garland .fr__fx { box-shadow: 0 0 .08em .02em rgba(255, 210, 63, .45); animation: fr-breathe 2s ease-in-out infinite; }
+.fr-bulb { animation: fr-blink 1.4s steps(1, end) infinite; }
+.fr-bulb--1 { animation-delay: -.7s; }
+.fr--garland .fr__deco svg { -webkit-filter: drop-shadow(0 0 1.2px rgba(255, 255, 255, .7)); filter: drop-shadow(0 0 1.2px rgba(255, 255, 255, .7)); }
+
+.fr--snowfall { --t: .055em; }
+.fr--snowfall .fr__ring { background: conic-gradient(#bfe6ff, #5aa9e6, #e9f6ff, #7fc3f0, #ffffff, #4d94d6, #bfe6ff); animation: fr-spin 14s linear infinite; }
+.fr--snowfall .fr__fx { box-shadow: 0 0 .08em .02em rgba(170, 220, 255, .65); }
+.fr--snowfall .fr__deco { animation: fr-spin 20s linear infinite; }
+.fr--snowfall .fr__deco2 { animation: fr-twinkle 2.4s ease-in-out infinite; }
+
 /* ---------- меньше движения ---------- */
 @media (prefers-reduced-motion: reduce) {
   .fr *, .fr *::before, .fr *::after { -webkit-animation: none !important; animation: none !important; }
