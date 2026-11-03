@@ -384,20 +384,27 @@
     Store.profile = {
       update: function (patch) {
         if (!me) return err('no_session');
-        var row = {}, chain = Promise.resolve();
+        var row = {}, chain = Promise.resolve(), afterSave = null;
         if ('name' in patch) row.name = patch.name;
         if ('frame' in patch) row.frame = patch.frame;
         if ('prefs' in patch) row.prefs = patch.prefs;
         if ('avatar' in patch) {
           if (patch.avatar && String(patch.avatar).indexOf('data:') === 0) {
+            /* имя файла каждый раз новое, поэтому без «x-upsert»: upsert требует ещё и SELECT-правило в Storage, без него — 403 */
             var path = me.id + '/avatar-' + Date.now() + '.jpg';
-            chain = api('POST', '/storage/v1/object/avatars/' + path, dataUrlToBlob(patch.avatar), { raw: true, contentType: 'image/jpeg', headers: { 'x-upsert': 'true' } })
+            var oldUrl = me.avatar_url || '', ownPrefix = URL + '/storage/v1/object/public/avatars/' + me.id + '/';
+            chain = api('POST', '/storage/v1/object/avatars/' + path, dataUrlToBlob(patch.avatar), { raw: true, contentType: 'image/jpeg' })
               .then(function () { row.avatar_url = URL + '/storage/v1/object/public/avatars/' + path; });
+            afterSave = function () {   /* старую свою картинку убираем, чтобы не копились (если не вышло — не страшно) */
+              if (oldUrl.indexOf(ownPrefix) !== 0) return;
+              var oldPath = oldUrl.slice(URL.length + '/storage/v1/object/public/avatars/'.length);
+              if (/^[0-9a-f-]{36}\/avatar-\d+\.jpg$/.test(oldPath)) api('DELETE', '/storage/v1/object/avatars/' + oldPath).catch(function () {});
+            };
           } else row.avatar_url = patch.avatar || null;
         }
         return chain.then(function () {
           return api('PATCH', '/rest/v1/profiles?id=eq.' + me.id, row, { headers: { Prefer: 'return=representation' } });
-        }).then(function (r) { if (r && r[0]) me = r[0]; emit(); return toPub(me); });
+        }).then(function (r) { if (r && r[0]) me = r[0]; if (afterSave) afterSave(); emit(); return toPub(me); });
       }
     };
     Store.progress = {

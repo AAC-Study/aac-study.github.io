@@ -511,7 +511,9 @@
         save.querySelector('.av__save-l').textContent = tt('av_saving');
         var r;
         try { r = typeof opts.onSave === 'function' ? opts.onSave(data) : null; } catch (e) { r = Promise.reject(e); }
-        Promise.resolve(r).then(function () { close(); }, function () {
+        Promise.resolve(r).then(function () { close(); }, function (e) {
+          /* причину отправляем админу, чтобы её было видно в «Сообщениях о проблемах» */
+          try { if (window.Store && Store.reportIssue) Store.reportIssue({ route: 'avatar-save', error: String(e && (e.code || e.message) || e).slice(0, 300) }); } catch (x) { /* */ }
           if (st.closed) return;
           enable(true);
           save.querySelector('.av__save-l').textContent = tt('av_save');
