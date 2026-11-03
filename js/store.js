@@ -138,6 +138,11 @@
       if (!U.storage.set('issue_log', log) && info.images) { delete info.images; U.storage.set('issue_log', log); }
       document.dispatchEvent(new CustomEvent('issueschange'));
       return Promise.resolve({ at: row.at });
+    },
+    /* гость (экран входа/регистрации) сообщает о проблеме */
+    reportGuest: function (info) {
+      var x = JSON.parse(JSON.stringify(info)); x.type = 'guest';
+      return Store.reportIssue(x);
     }
   };
 
@@ -423,6 +428,18 @@
       return api('POST', '/rest/v1/issues', { info: info }, { headers: { Prefer: 'return=representation' } })
         .then(function (rows) { document.dispatchEvent(new CustomEvent('issueschange')); var r = rows && rows[0]; return r ? { id: r.id, at: r.created_at } : {}; })
         .catch(function (e) { if (info.type === 'user') throw e; return {}; });   // автоматические ошибки молча
+    };
+    Store.reportGuest = function (info) {
+      return http('POST', '/rest/v1/rpc/report_issue_guest', { p: info }, { auth: false }).then(function (id) {
+        // пуш админу: функция сама проверит, что это свежее гостевое сообщение (без пуша сообщение всё равно сохранено)
+        fetch(URL + '/functions/v1/push', { method: 'POST', headers: { apikey: KEY, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'issue_guest', id: id }) }).catch(function () {});
+        return { id: id };
+      }, function (e) {
+        var m = String((e && e.message) || '');
+        var code = /too_many_reports/.test(m) ? 'err_too_often' : /too_big/.test(m) ? 'rp_too_big' : (e && e.status === 0 ? 'err_network' : 'rp_send_fail');
+        var x = new Error(code); x.code = code; throw x;
+      });
     };
     Store.listIssues = function () {
       if (!me || me.role !== 'admin') return Promise.resolve([]);

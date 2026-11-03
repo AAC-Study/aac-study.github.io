@@ -15,6 +15,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
       const u = new URL(r.request().url()); const body = r.request().postData(); calls.push({ path: u.pathname + u.search, body: body ? JSON.parse(body) : null, auth: r.request().headers().authorization });
       const j = (s, o) => r.fulfill({ status: s, contentType: 'application/json', body: JSON.stringify(o) });
       if (u.pathname === '/auth/v1/signup' && opts.signupErr) return j(opts.signupErr.code, opts.signupErr);
+      if (u.pathname === '/rest/v1/rpc/report_issue_guest') return j(200, 77);
       if (u.pathname === '/auth/v1/signup' && opts.taken) return j(200, { id: 'fake', email: 'a@gmail.com', identities: [] });
       if (u.pathname === '/auth/v1/signup' && opts.signupSession) return j(200, { access_token: 'ATS', refresh_token: 'RTS', expires_in: 3600, user: { id: 'u1', email: 'a@gmail.com' } });
       if (u.pathname === '/auth/v1/signup') return j(200, { id: 'u1', email: 'a@gmail.com', identities: [{ id: 'i1' }] });
@@ -146,7 +147,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     await ctx.close();
   });
   await step('signup errors never say "wrong email or password"', async () => {
-    for (const [err, re] of [[{ code: 400, error_code: 'validation_failed', msg: 'Something odd' }, /Не получилось зарегистрироваться[\s\S]*R-400 · validation_failed/],
+    for (const [err, re] of [[{ code: 400, error_code: 'validation_failed', msg: 'Something odd' }, /^Не получилось зарегистрироваться\. Проверь email и код приглашения$/],
                              [{ code: 429, error_code: 'over_email_send_rate_limit', msg: 'email rate limit exceeded' }, /Слишком много писем/],
                              [{ code: 500, error_code: 'unexpected_failure', msg: 'Database error saving new user' }, /Неверный код приглашения/]]) {
       const { ctx, p } = await mk({ key: false, signupErr: err });
@@ -155,10 +156,15 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
       await p.fill('#f-name', 'A'); await p.fill('#f-email', 'a@gmail.com'); await p.fill('#f-pass', 'secret1'); await p.fill('#f-invite', 'X123456');
       await p.click('form button[type=submit]');
       await p.waitForFunction(() => document.querySelector('.form-error').style.display === 'block');
-      const e = await p.locator('.form-error').innerText();
+      const e = (await p.evaluate(() => document.querySelector('.form-error').firstChild.textContent));
       assert(re.test(e), e); assert(!/Неверный email или пароль/.test(e), e);
-      if (err.code === 400) { assert.strictEqual(await p.getAttribute('.err-code', 'title'), 'Something odd');
-        await p.click('.err-code'); assert(/Something odd/.test(await p.locator('.err-code').innerText())); }
+      if (err.code === 400) {
+        assert(!(await p.isVisible('.err-tip')), 'code hidden at first');
+        await p.click('.form-error'); await p.waitForSelector('.err-tip', { state: 'visible' });
+        assert.strictEqual(await p.locator('.err-tip code').innerText(), 'R-400 · validation_failed · Something odd');
+        await p.click('.form-error'); assert(!(await p.isVisible('.err-tip')), 'tap again hides');
+        await p.mouse.move(5, 5); await p.waitForTimeout(100); await p.hover('.form-error'); await p.waitForSelector('.err-tip', { state: 'visible' });
+      }
       await ctx.close();
     }
   });
@@ -186,6 +192,30 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     assert(!calls.some(x => x.path.startsWith('/auth/v1/signup')), 'nothing sent');
     await p.fill('#f-email', 'Someone@Mail.RU'); await p.click('form button[type=submit]');
     await p.waitForSelector('.auth-mail');
+    await ctx.close();
+  });
+  await step('guest report from the sign-up screen: red guide, last error attached, sent without account', async () => {
+    const { ctx, p, calls } = await mk({ key: false, signupErr: { code: 500, error_code: 'unexpected_failure', msg: 'Database error saving new user' } });
+    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); }); await p.reload();
+    await p.click('.auth__switch button');
+    await p.fill('#f-name', 'A'); await p.fill('#f-email', 'a@gmail.com'); await p.fill('#f-pass', 'secret1'); await p.fill('#f-invite', 'WRONG1');
+    await p.click('form button[type=submit]');
+    await p.waitForFunction(() => document.querySelector('.form-error').style.display === 'block');
+    await p.click('.auth-report');
+    await p.waitForSelector('.rp-important');
+    const txt = await p.locator('.modal').innerText();
+    assert(/Важно!/.test(txt) && /Никогда не пиши сюда свой пароль/.test(txt), txt);
+    assert(/R-500 · unexpected_failure · Database error saving new user/.test(await p.locator('.rp-attached').innerText()));
+    assert.strictEqual(await p.inputValue('#rp-email'), 'a@gmail.com');
+    await p.click('.modal .rte__area'); await p.keyboard.type('Не могу зарегистрироваться');
+    await p.click('.modal .btn--primary');
+    await p.waitForSelector('.toast');
+    const c = calls.find(x => x.path === '/rest/v1/rpc/report_issue_guest');
+    assert(c && c.body.p.email === 'a@gmail.com' && /R-500/.test(c.body.p.err) && c.body.p.where === 'register' && /Не могу/.test(c.body.p.text), JSON.stringify(c && c.body));
+    assert(!c.body.p.password && !JSON.stringify(c.body).includes('secret1'), 'no password sent');
+    await p.waitForTimeout(300);
+    const f = calls.find(x => x.path === '/functions/v1/push'); assert(f && f.body.action === 'issue_guest' && f.body.id === 77);
+    await p.screenshot({ path: require('os').tmpdir() + '/guest-report.png' });
     await ctx.close();
   });
   await step('expired link -> login page + message', async () => {

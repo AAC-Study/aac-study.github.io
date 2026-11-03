@@ -207,6 +207,20 @@ Deno.serve(async (req) => {
   try {
     const t0 = Date.now();
     const [uid, body] = await Promise.all([currentUser(req), req.json().catch(() => ({}))]);
+    // гость (ещё без аккаунта) сообщил о проблеме на экране входа/регистрации → пуш админам, один раз и только свежее сообщение
+    if (!uid && body.action === "issue_guest") {
+      const id = Number(body.id);
+      if (!Number.isFinite(id) || id <= 0) return json({ error: "bad id" }, 400);
+      const rows = await db(`issues?id=eq.${id}&user_id=is.null&created_at=gt.${ago(2 * 60e3)}&select=info`);
+      if (!rows.length || rows[0].info?.type !== "guest") return json({ error: "not found" }, 404);
+      if (!(await claim([`i:${id}`])).size) return json({ sent: 0 });
+      const info = rows[0].info || {};
+      const admins = (await db("profiles?role=eq.admin&select=id")).map((x: { id: string }) => x.id);
+      const pics = info.images?.length ? ` 📷${info.images.length}` : "";
+      const who = "👤 " + String(info.email || "?").slice(0, 60) + (info.err ? " [" + String(info.err).slice(0, 60) + "]" : "") + ": ";
+      const sent = await sendTo(admins, "issue", { text: clip(who + String(info.text || "")) + pics });
+      return json({ sent });
+    }
     if (!uid) return json({ error: "not signed in" }, 401);
     // «разогрев»: сайт зовёт это, когда человек начинает печатать, чтобы пуш потом ушёл без задержки на запуск функции
     if (body.action === "warm") { await appServer(); return json({ ok: true }); }

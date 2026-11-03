@@ -284,6 +284,26 @@ end $$;
 drop trigger if exists issues_limit on public.issues;
 create trigger issues_limit before insert on public.issues for each row execute function public.issues_limit();
 
+-- Сообщение о проблеме от гостя (экран входа/регистрации, ещё без аккаунта). Просьба Дениса 03.11.
+-- Защита от спама: до ~1,5 МБ (2 фото), 20 гостевых сообщений в час на весь сайт, 300 непрочитанных максимум.
+create or replace function public.report_issue_guest(p jsonb) returns bigint
+language plpgsql security definer set search_path = public as $$
+declare new_id bigint;
+begin
+  if p is null or jsonb_typeof(p) <> 'object' then raise exception 'bad_report'; end if;
+  if octet_length(p::text) > 1600000 then raise exception 'report_too_big'; end if;
+  if (select count(*) from public.issues i where i.user_id is null and i.info->>'type' = 'guest' and i.created_at > now() - interval '1 hour') >= 20
+    then raise exception 'too_many_reports'; end if;
+  if (select count(*) from public.issues i where i.user_id is null and i.info->>'type' = 'guest' and not i.resolved) >= 300
+    then raise exception 'too_many_reports'; end if;
+  insert into public.issues(user_id, info)
+  values (null, (p - 'type') || jsonb_build_object('type', 'guest'))
+  returning id into new_id;
+  return new_id;
+end $$;
+revoke execute on function public.report_issue_guest(jsonb) from public;
+grant execute on function public.report_issue_guest(jsonb) to anon, authenticated;
+
 -- 3) Очки только за то, что есть на сайте: список ключей (уроки, задачи) заполняет страница setup.html.
 --    Пока список пуст (старая настройка), проверка не включается — чтобы ничего не сломать.
 create table if not exists public.award_keys (key text primary key);

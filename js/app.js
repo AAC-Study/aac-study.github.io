@@ -252,20 +252,45 @@
   function cfReset() { cf.token = ''; if (cf.id != null && window.turnstile) { try { window.turnstile.reset(cf.id); } catch (e) { /* */ } } }
 
   /* ---------- вход и регистрация ---------- */
-  /* Ошибка входа/регистрации: понятный текст + маленький код для Claude/админа (R = регистрация, L = вход, F = «забыл пароль»).
-     Подробности — при наведении мышкой или по нажатию на код (на телефоне). */
+  /* Ошибка входа/регистрации (просьба Дениса 03.11): человек видит только понятный текст.
+     Технический код спрятан: всплывает при наведении мышкой (через полсекунды) или по нажатию на красную ошибку.
+     Буква: R — регистрация, L — вход, F — «Забыл пароль?». Последняя ошибка сама прикрепляется к «Сообщить о проблеме». */
+  var lastAuthErr = null;
+  function copyText(text) {
+    var done = function () { U.toast(t('copied')); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text); done(); });
+    else { fallbackCopy(text); done(); }
+  }
   function fillErr(box, txt, er, where) {
-    box.innerHTML = '';
+    box.innerHTML = ''; box.className = 'form-error'; box.onmouseenter = box.onmouseleave = box.onclick = null; box.removeAttribute('data-pinned');
     box.appendChild(document.createTextNode(txt));
-    var tech = er && er.tech;
-    if (tech) {
-      var code = where + '-' + (tech.s || 0) + (tech.c ? ' · ' + tech.c : '');
-      var more = tech.m && tech.m !== tech.c ? tech.m : '';
-      var c = el('span', { class: 'err-code', dir: 'ltr', title: more || code, tabindex: '0' }, code);
-      c.addEventListener('click', function () { if (more && !c.getAttribute('data-open')) { c.setAttribute('data-open', '1'); c.textContent = code + ' · ' + more; } });
-      box.appendChild(c);
-    }
     box.style.display = 'block';
+    var tech = er && er.tech;
+    if (!tech) { lastAuthErr = null; return; }
+    var code = where + '-' + (tech.s || 0) + (tech.c ? ' · ' + tech.c : '') + (tech.m && tech.m !== tech.c ? ' · ' + tech.m : '');
+    lastAuthErr = { where: where, code: code, text: txt, at: new Date().toISOString() };
+    var copy = el('button', { type: 'button', class: 'err-tip__copy' }, t('err_copy'));
+    var tip = el('div', { class: 'err-tip', role: 'tooltip' }, [el('b', null, t('err_code_label')), el('code', { dir: 'ltr' }, code), copy]);
+    box.classList.add('has-tech'); box.appendChild(tip);
+    var timer = null;
+    box.onmouseenter = function () { clearTimeout(timer); timer = setTimeout(function () { box.classList.add('tip-open'); }, 500); };
+    box.onmouseleave = function () { clearTimeout(timer); if (!box.getAttribute('data-pinned')) box.classList.remove('tip-open'); };
+    box.onclick = function (e) {
+      if (e.target === copy) { copyText(code); return; }
+      if (e.target.closest && e.target.closest('.err-tip')) return;
+      clearTimeout(timer);
+      var open = !box.getAttribute('data-pinned');
+      if (open) { box.setAttribute('data-pinned', '1'); box.classList.add('tip-open'); } else { box.removeAttribute('data-pinned'); box.classList.remove('tip-open'); }
+    };
+  }
+  /* «Сообщить о проблеме» на экранах входа: гость ещё без аккаунта */
+  function authReportBtn(where) {
+    return el('button', { type: 'button', class: 'auth-report', html: Icons.get('question') + '<span>' + U.esc(t('rp_guest_btn')) + '</span>', onclick: function () {
+      var em = $('#f-email');
+      if (!window.Report) return;
+      if (Store.auth.current()) { Report.open(); return; }
+      Report.openGuest({ where: where(), email: em ? em.value : '', err: lastAuthErr });
+    } });
   }
   function renderAuth(mode, opts) {
     opts = opts || {};
@@ -346,7 +371,8 @@
       Store.mode === 'mock' ? el('div', { class: 'mock-banner' }, t('mock_banner')) : null,
       form,
       el('div', { class: 'auth__switch' }, [isReg ? t('have_account') : t('no_account'), ' ',
-        el('button', { type: 'button', onclick: function () { renderAuth(isReg ? 'login' : 'register'); } }, isReg ? t('btn_login') : t('btn_register'))])
+        el('button', { type: 'button', onclick: function () { renderAuth(isReg ? 'login' : 'register'); } }, isReg ? t('btn_login') : t('btn_register'))]),
+      authReportBtn(function () { return $('.auth-mail', card) ? 'confirm-mail' : (isReg ? 'register' : 'login'); })
     ]);
     app.appendChild(el('div', { class: 'auth' }, [
       el('div', { class: 'auth__bg' }, [el('div', { class: 'blob blob--1' }), el('div', { class: 'blob blob--2' }), el('div', { class: 'blob blob--3' })]),
@@ -362,7 +388,7 @@
     var card = el('div', { class: 'auth__card' }, [
       el('div', { class: 'auth__top' }, [langSwitch(), themeBtn()]),
       el('div', { class: 'auth__brand' }, [el('div', { class: 'side__logo' }, el('img', { src: 'img/favicon.svg', alt: '' })), el('div', null, [el('b', null, t('app_name')), el('span', null, t('app_sub'))])])
-    ].concat(inner));
+    ].concat(inner, [authReportBtn(function () { return Store.pendingReset ? 'new-password' : 'forgot'; })]));
     app.appendChild(el('div', { class: 'auth' }, [
       el('div', { class: 'auth__bg' }, [el('div', { class: 'blob blob--1' }), el('div', { class: 'blob blob--2' }), el('div', { class: 'blob blob--3' })]),
       card
@@ -649,7 +675,8 @@
           onclick: function () { Store.resolveIssue(it.at).then(App.render); } });
         var info = it.info || {};
         list.appendChild(el('div', { class: 'card issue' + (it.resolved ? ' issue--done' : '') }, [
-          el('div', { class: 'issue__meta' }, [el('span', { class: 'chip' }, info.type === 'user' ? t('admin_kind_user') : t('admin_kind_error')), el('span', { class: 'muted' }, new Date(it.at).toLocaleString() + (it.who ? ' · ' + it.who : ''))]),
+          el('div', { class: 'issue__meta' }, [el('span', { class: 'chip' }, info.type === 'user' ? t('admin_kind_user') : info.type === 'guest' ? t('admin_kind_guest') : t('admin_kind_error')), el('span', { class: 'muted' }, new Date(it.at).toLocaleString() + (it.who ? ' · ' + it.who : '') + (info.type === 'guest' && info.email ? ' · ' + info.email : ''))]),
+          info.type === 'guest' && info.err ? el('div', { class: 'issue__err', dir: 'ltr' }, [el('b', null, info.where || ''), ' ', el('code', null, info.err)]) : null,
           info.html && window.RichText ? el('div', { class: 'issue__text', dir: 'auto', html: RichText.sanitize(info.html) }) : el('div', { class: 'issue__text', dir: 'auto' }, info.text || info.error || info.input || JSON.stringify(info)),
           info.images && info.images.length ? el('div', { class: 'issue__imgs' }, info.images.map(function (src) {
             return el('button', { type: 'button', class: 'issue__img', 'aria-label': 'image', onclick: function () { RichText.view(src); } }, el('img', { src: src, alt: '' }));

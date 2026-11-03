@@ -246,6 +246,23 @@ step('signup only with @gmail.com / @mail.ru (when set); email change too', func
   admin("delete from auth.users where id in ('" + g + "', '" + m + "')");
   admin("update public.app_secrets set value = '' where key = 'email_domains'");
 });
+step('guest problem report: anon can send, limits, nobody but admin reads it', function () {
+  const anon = (sql) => { try { return { ok: true, out: psql(['-d', DB], 'set role anon;\n' + sql).trim() }; } catch (e) { return { ok: false, err: String(e.stderr || e.message) }; } };
+  const r = anon("select public.report_issue_guest('{\"type\":\"user\",\"text\":\"cannot sign up\",\"email\":\"g@gmail.com\"}'::jsonb)");
+  assert(r.ok, r.err); const id = r.out;
+  assert.strictEqual(admin("select info->>'type' || '|' || coalesce(user_id::text, 'null') from public.issues where id = " + id), 'guest|null');
+  assert(!anon("select count(*) from public.issues").ok || anon("select count(*) from public.issues").out === '0', 'anon reads nothing');
+  assert.strictEqual(ok(B, "select count(*) from public.issues where id = " + id), '0', 'student does not see guest report');
+  assert.strictEqual(ok(A, "select count(*) from public.issues where id = " + id), '1', 'admin sees it');
+  const big = anon("select public.report_issue_guest(jsonb_build_object('text', repeat('x', 1700000)))");
+  assert(!big.ok && /report_too_big/.test(big.err), 'too big refused');
+  for (let i = 0; i < 19; i++) assert(anon("select public.report_issue_guest('{\"text\":\"n" + i + "\"}'::jsonb)").ok);
+  const over = anon("select public.report_issue_guest('{\"text\":\"one too many\"}'::jsonb)");
+  assert(!over.ok && /too_many_reports/.test(over.err), '21st in an hour refused');
+  const ins = anon("insert into public.issues(info) values ('{\"text\":\"direct\"}')");
+  assert(!ins.ok, 'anon cannot insert directly');
+  admin("delete from public.issues where user_id is null");
+});
 step('admin: invite code get/set, only for admin', function () {
   assert.strictEqual(ok(A, rpc('admin_invite_get', '')), 'TEST');
   fails(B, rpc('admin_invite_get', ''), 'not_admin');

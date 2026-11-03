@@ -447,3 +447,28 @@ body.no-scroll { overflow: hidden; }
 /* маленький технический код под ошибкой (для Claude/админа) */
 .err-code { display: block; margin-top: 6px; font-family: var(--mono); font-size: 11px; opacity: .6; cursor: help; word-break: break-word; }
 .err-code:hover, .err-code:focus { opacity: .9; }
+
+/* скрытый код ошибки: всплывает при наведении или нажатии на красную ошибку */
+.form-error.has-tech { position: relative; cursor: help; -webkit-tap-highlight-color: transparent; }
+.err-tip { display: none; position: absolute; left: 0; right: 0; top: calc(100% + 6px); z-index: 30; background: #1b1e30; color: #eef0ff;
+  border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 10px 12px; box-shadow: var(--shadow-lg); font-size: 12px; line-height: 1.45; cursor: auto; }
+.form-error.tip-open .err-tip { display: block; animation: tipIn .15s var(--ease); }
+.err-tip b { display: block; font-weight: 600; opacity: .8; }
+.err-tip code { display: block; font-family: var(--mono); font-size: 12px; margin: 4px 0 8px; word-break: break-word; user-select: all; -webkit-user-select: all; }
+.err-tip__copy { border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: inherit; border-radius: 8px; padding: 5px 10px; font: inherit; font-size: 12px; cursor: pointer; }
+@keyframes tipIn { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+.err-code { display: none; }
+
+/* «Сообщить о проблеме» на экранах входа */
+.auth-report { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 10px auto 0; border: 0; background: none; color: var(--text-3); font: inherit; font-size: 13px; cursor: pointer; padding: 6px 8px; }
+.auth-report svg { width: 16px; height: 16px; }
+.auth-report:hover { color: var(--accent); }
+.rp-important { border: 1px solid var(--bad); background: var(--bad-soft); color: var(--text); border-radius: 12px; padding: 12px 14px; font-size: 14px; line-height: 1.5; }
+.rp-important__h { display: block; color: var(--bad); font-size: 15px; margin-bottom: 6px; }
+.rp-important ol { margin: 0; padding-inline-start: 20px; }
+.rp-important li { margin: 3px 0; }
+.rp-important__no { margin: 8px 0 0; color: var(--bad); }
+.rp-attached { margin-top: 10px; font-size: 13px; color: var(--text-2); }
+.rp-attached code { display: block; margin-top: 3px; font-family: var(--mono); font-size: 12px; background: var(--bg-2, var(--accent-soft)); padding: 6px 8px; border-radius: 8px; word-break: break-word; }
+.issue__err { font-size: 12px; margin: 4px 0 6px; color: var(--bad); }
+.issue__err code { font-family: var(--mono); }

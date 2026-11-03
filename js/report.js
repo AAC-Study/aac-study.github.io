@@ -337,5 +337,46 @@
     });
     setTimeout(rt.focus, 300);
   }
-  window.Report = { open: open };
+  /* «Сообщить о проблеме» для гостя на экранах входа/регистрации (просьба Дениса 03.11).
+     Наверху красная памятка: что написать, чтобы мы смогли помочь. Код последней ошибки прикрепляется сам. */
+  function boldify(str) {   // **слово** → жирное
+    return String(str).split('**').map(function (part, i) { return i % 2 ? el('b', null, part) : document.createTextNode(part); });
+  }
+  function openGuest(o) {
+    o = o || {};
+    var err = o.err || null;
+    var rt = create({ placeholder: t('rp_guest_ph'), maxImages: 2, maxSide: 1400, quality: 0.72, minHeight: 110 });
+    var email = el('input', { class: 'input', id: 'rp-email', type: 'email', dir: 'ltr', autocomplete: 'email' });
+    email.value = String(o.email || '').trim();
+    var fail = el('div', { class: 'form-error', role: 'alert', style: 'display:none' });
+    var send = el('button', { class: 'btn btn--primary', type: 'button', style: 'width:100%;margin-top:12px', html: Icons.get('send') + '<span>' + U.esc(t('rp_send')) + '</span>' });
+    var m = App.modal({ title: t('rp_guest_btn'), onClose: rt.destroy, content: el('div', null, [
+      el('div', { class: 'rp-important' }, [
+        el('b', { class: 'rp-important__h' }, t('rp_g_h')),
+        el('ol', null, ['rp_g_1', 'rp_g_2', 'rp_g_3', 'rp_g_4'].map(function (k) { return el('li', null, boldify(t(k))); })),
+        el('p', { class: 'rp-important__no' }, boldify(t('rp_g_nopass')))
+      ]),
+      err ? el('div', { class: 'rp-attached' }, [el('span', null, t('rp_g_attached')), el('code', { dir: 'ltr' }, err.code)]) : null,
+      el('p', { class: 'muted', style: 'font-size:13px;margin:8px 0' }, t('rp_g_auto')),
+      fail,
+      el('label', { class: 'field', for: 'rp-email' }, [el('span', { class: 'field__label' }, t('rp_g_email')), email]),
+      rt.el,
+      send
+    ]) });
+    function showFail(txt) { fail.textContent = txt; fail.style.display = 'block'; }
+    send.addEventListener('click', function () {
+      fail.style.display = 'none';
+      var em = email.value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) { showFail(t('rp_g_need_email')); email.focus(); return; }
+      if (rt.isEmpty() && !err) { rt.focus(); return; }
+      if (rt.busy()) { setTimeout(function () { send.click(); }, 300); return; }
+      send.disabled = true;
+      var info = { text: rt.text(), html: rt.html(), images: rt.images(), email: em, where: o.where || '', err: err ? err.code : '', errText: err ? err.text : '',
+                   errAt: err ? err.at : '', page: 'auth:' + (o.where || ''), ua: navigator.userAgent, lang: I18N.lang, screen: window.innerWidth + 'x' + window.innerHeight };
+      Store.reportGuest(info).then(function () { m.close(); U.toast(t('rp_thanks')); },
+        function (e) { send.disabled = false; showFail(t((e && e.code) || 'rp_send_fail')); });
+    });
+    setTimeout(function () { (email.value ? rt : { focus: function () { email.focus(); } }).focus(); }, 300);
+  }
+  window.Report = { open: open, openGuest: openGuest };
 })();
