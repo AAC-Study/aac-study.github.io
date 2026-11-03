@@ -289,6 +289,18 @@ step('security 03.11: drafts total size, prefs size, message chat id hidden from
     if (outsider) assert.strictEqual(ok(outsider, "select coalesce(public.sc_msg_chat(" + mid + ")::text, 'none')"), 'none');
   }
 });
+step('presence: sc_seen marks me, sc_presence shows others, not to blocked people, not to anon', function () {
+  ok(B, "select public.sc_seen()");
+  const t1 = admin("select last_seen is not null from public.profiles where id = '" + B + "'");
+  assert.strictEqual(t1, 't');
+  const seen = ok(C, "select count(*) from public.sc_presence(array['" + B + "'::uuid])");
+  assert.strictEqual(seen, '1');
+  const anon = (() => { try { psql(['-d', DB], "set role anon;\nselect public.sc_presence(array['" + B + "'::uuid]);"); return 'ran'; } catch (e) { return String(e.stderr || e.message); } })();
+  assert(/permission denied/.test(anon), 'anon refused: ' + anon.slice(0, 120));
+  admin("insert into public.user_marks(owner_id, target_id, blocked) values ('" + B + "', '" + D + "', true) on conflict (owner_id, target_id) do update set blocked = true");
+  assert.strictEqual(ok(D, "select count(*) from public.sc_presence(array['" + B + "'::uuid])"), '0', 'blocked person does not see it');
+  admin("update public.user_marks set blocked = false where owner_id = '" + B + "' and target_id = '" + D + "'");
+});
 step('admin: invite code get/set, only for admin', function () {
   assert.strictEqual(ok(A, rpc('admin_invite_get', '')), 'TEST');
   fails(B, rpc('admin_invite_get', ''), 'not_admin');

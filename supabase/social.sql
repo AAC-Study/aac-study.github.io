@@ -994,3 +994,27 @@ end;
 $$;
 revoke execute on function public.push_take(uuid) from public, anon, authenticated;
 grant execute on function public.push_take(uuid) to service_role;
+
+
+-- =====================================================================
+-- «В СЕТИ / НЕ В СЕТИ» (03.11)
+-- Сайт раз в минуту отмечает «я тут», пока вкладка открыта. Чужой статус спрашивают только
+-- страницы «Люди», профиль и личный чат. Заблокированные друг другу не видят статус.
+-- =====================================================================
+alter table public.profiles add column if not exists last_seen timestamptz;
+create or replace function public.sc_seen() returns void
+language sql security definer set search_path = public as $$
+  update public.profiles set last_seen = now()
+  where id = auth.uid() and not banned and (last_seen is null or last_seen < now() - interval '40 seconds');
+$$;
+revoke execute on function public.sc_seen() from public, anon;
+grant execute on function public.sc_seen() to authenticated;
+create or replace function public.sc_presence(p_ids uuid[]) returns table(id uuid, last_seen timestamptz)
+language sql stable security definer set search_path = public as $$
+  select p.id, p.last_seen from public.profiles p
+  where p.id = any(coalesce(p_ids, '{}')) and cardinality(coalesce(p_ids, '{}')) <= 200
+    and exists(select 1 from public.profiles me where me.id = auth.uid() and not me.banned)
+    and not public.sc_blocked_either(auth.uid(), p.id);
+$$;
+revoke execute on function public.sc_presence(uuid[]) from public, anon;
+grant execute on function public.sc_presence(uuid[]) to authenticated;

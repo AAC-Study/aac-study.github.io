@@ -325,7 +325,8 @@
         el('span', { class: 'sc-chat__ava' }, other ? App.avatar(other, 42) : groupAva(c, 42)),
         el('span', { class: 'sc-chat__titles' }, [
           other ? Social.nameEl(other) : el('bdi', { class: 'sc-chat__gtitle', dir: 'auto' }, c.title),
-          el('span', { class: 'sc-chat__sub' }, other ? (S.chat.ctx && S.chat.ctx.blocked ? t('sc_rel_blocked') : (S.chat.ctx && !S.chat.ctx.friends ? t('sc_not_friends_now') : t('sc_direct')))
+          el('span', { class: 'sc-chat__sub' }, other ? (S.chat.ctx && S.chat.ctx.blocked ? t('sc_rel_blocked') : (S.chat.ctx && !S.chat.ctx.friends ? t('sc_not_friends_now')
+              : (window.Presence ? Presence.badge(other.id) : t('sc_direct'))))
             : subLine(c))
         ])
       ]);
@@ -1055,8 +1056,10 @@
       cm.el.classList.add('sc-sheet-modal');
     }
 
+    var presW = window.Presence ? Presence.watch(headSlot) : null;   // «в сети» собеседника — только в шапке чата
     return function () {
       S.alive = false;
+      if (presW) presW.stop();
       clearInterval(timer); clearTimeout(readTimer); clearTimeout(cdTimer);
       here(false);
       document.removeEventListener('socialchange', onSocial);

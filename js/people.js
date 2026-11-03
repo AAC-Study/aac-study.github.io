@@ -95,7 +95,7 @@
       el('span', { class: 'sc-row__ava' }, [App.avatar(u, 48), p.pinned && !red ? el('span', { class: 'sc-row__pin', html: ic('pin') }) : null]),
       el('span', { class: 'sc-row__text' }, [
         Social.nameEl(u, { red: red }),
-        el('span', { class: 'sc-row__sub' }, [titleBadge(u), p.rel !== 'none' && p.rel !== 'friend' && p.rel !== 'incoming' ? relChip(p) : null])
+        el('span', { class: 'sc-row__sub' }, [p.rel !== 'blocked' && window.Presence ? Presence.badge(u.id) : null, titleBadge(u), p.rel !== 'none' && p.rel !== 'friend' && p.rel !== 'incoming' ? relChip(p) : null])
       ])
     ]);
     var side = el('span', { class: 'sc-row__side' });
@@ -186,11 +186,12 @@
     }
     search.addEventListener('input', draw);
     load();
+    var pres = window.Presence ? Presence.watch(host) : null;   // «в сети» — только пока открыта эта страница
     var tmr = null;
     function onChange(e) { if (e && e.detail === 'read') return; clearTimeout(tmr); tmr = setTimeout(load, 120); }
     document.addEventListener('socialchange', onChange);
     var poll = setInterval(function () { if (!document.hidden) load(); }, Store.mode === 'mock' ? 5000 : 30000);
-    return function () { alive = false; clearInterval(poll); document.removeEventListener('socialchange', onChange); };
+    return function () { alive = false; clearInterval(poll); document.removeEventListener('socialchange', onChange); if (pres) pres.stop(); };
   });
 
   /* ---------- /user/:id — то, что видят другие ---------- */
@@ -229,6 +230,7 @@
             el('div', { class: 'profile-top__info' }, [
               el('h1', { class: 'sc-pub__name' }, Social.nameEl(u, { size: 'xl', red: p.rel === 'blocked' || p.rel === 'removed' })),
               el('div', { class: 'profile-top__title' }, [titleBadge(u), p.rel !== 'none' && p.rel !== 'self' ? relChip(p) : null]),
+              p.rel !== 'blocked' && window.Presence ? el('div', { class: 'sc-pub__pres' }, Presence.badge(u.id)) : null,
               actions
             ]),
             App.levelBlock(u.xp, 'card')
@@ -240,7 +242,8 @@
       }, function (e) { host.innerHTML = ''; host.appendChild(el('div', { class: 'card empty' }, Social.errText(e))); });
     }
     load();
-    return function () { alive = false; };
+    var pres = window.Presence ? Presence.watch(host) : null;
+    return function () { alive = false; if (pres) pres.stop(); };
   });
 
   /* ---------- /notifications ---------- */
