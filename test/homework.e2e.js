@@ -154,6 +154,18 @@ async function step(name, fn) {
     await p.click('.hw-done__undo'); await p.waitForSelector('.hw-done__btn:not(.is-done)');
     assert.deepStrictEqual(errs, []); await ctx.close();
   });
+  await step('home: «Продолжить» card for the last opened unread lesson, with its part; gone when nothing is in progress', async () => {
+    const { ctx, p, errs } = await mk(390);
+    await p.goto('http://localhost:8765/index.html#/'); await p.waitForSelector('.side');
+    assert.strictEqual(await p.locator('.cont-card').count(), 0, 'nothing started yet → no card');
+    await p.goto('http://localhost:8765/index.html#/lesson/math-2026-11-01'); await p.waitForSelector('.ls-part');
+    await p.click('.ls-part.is-open .ls-part__next'); await p.waitForTimeout(300);
+    await p.goto('http://localhost:8765/index.html#/'); await p.waitForSelector('.cont-card');
+    const txt = await p.locator('.cont-card').innerText();
+    assert.ok(/Продолжить/i.test(txt) && /Квадратные уравнения/.test(txt) && /Часть 2 из/.test(txt), txt);
+    await p.click('.cont-card'); await p.waitForSelector('.ls-part.is-open[data-part="1"]');
+    assert.deepStrictEqual(errs, []); await ctx.close();
+  });
   await b.close();
   console.log('\n' + passed + ' passed, ' + failures + ' failed');
   process.exit(failures ? 1 : 0);

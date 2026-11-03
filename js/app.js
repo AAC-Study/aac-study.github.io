@@ -536,6 +536,26 @@
   function reportProblem() { if (window.Report) Report.open(); }
   App.reportProblem = reportProblem;
 
+  /* «Продолжить с того же места»: последний открытый и ещё не прочитанный урок (за 3 недели) */
+  function continueCard(u) {
+    var last = U.storage.get('ls_last:' + u.id, null);
+    if (!last || !last.id || Date.now() - (last.at || 0) > 21 * 864e5 || Store.progress.has('read:' + last.id)) return null;
+    var l = (window.LESSON_INDEX || []).filter(function (x) { return x.id === last.id; })[0];
+    if (!l) return null;
+    var s = (window.SUBJECTS || []).filter(function (x) { return x.id === l.subject; })[0] || { hue: 240, icon: 'book', name: '' };
+    var pt = U.storage.get('ls_part:' + l.id, null);
+    var sub = pt && pt.n > 1 ? t('ls_part', { i: (pt.open | 0) + 1, n: pt.n }) : U.tr(s.name);
+    return el('a', { class: 'cont-card', href: '#/lesson/' + l.id, style: '--card-grad:' + subjectGrad(s) }, [
+      el('span', { class: 'cont-card__icon', html: Icons.get(s.icon || 'book') }),
+      el('span', { class: 'cont-card__body' }, [
+        el('span', { class: 'cont-card__cap' }, t('continue_learning')),
+        el('b', { class: 'cont-card__title' }, U.tr(l.title)),
+        el('span', { class: 'cont-card__sub' }, sub)
+      ]),
+      el('span', { class: 'cont-card__go', html: Icons.get('chevron') })
+    ]);
+  }
+
   App.registerRoute('/', function (params, view) {
     var u = Store.auth.current();
     setTitle(t('nav_home'));
@@ -544,6 +564,8 @@
       levelBlock(u.xp, 'hero')
     ]));
     if (Store.mode === 'mock') view.insertBefore(el('div', { class: 'mock-banner' }, t('mock_banner')), view.firstChild);
+    var cont = continueCard(u);
+    if (cont) view.appendChild(cont);
     view.appendChild(el('div', { class: 'page-head' }, el('h2', null, t('subjects_title'))));
     view.appendChild(subjectCards());
     view.appendChild(el('div', { class: 'report-cta' }, [

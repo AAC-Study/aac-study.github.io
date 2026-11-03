@@ -18,7 +18,7 @@
       ls_ai_note: 'את המשימות האלה המציא AI לפי נושא השיעור. הן לא מהמורה, אבל בדיוק על אותו חומר.',
       ls_read_done: 'השיעור נקרא ✓', ls_reading: 'קריאה: {p}', ls_not_found: 'השיעור לא נמצא', ls_loading: 'טוען את השיעור…',
       ls_back: 'לכל השיעורים', ls_questions_lead: 'כל השאלות מהשיעור במקום אחד. לחצו על שאלה כדי לראות את התשובה.',
-      ls_show_in_flow: 'להראות במהלך השיעור', ls_close: 'סגירה', ls_tasks_count: '{n} משימות'
+      ls_show_in_flow: 'להראות במהלך השיעור', ls_part: 'חלק {i} מתוך {n}', ls_min: '~{m} דק׳', ls_next_part: 'הלאה: חלק {i}', ls_to_review: 'לחזרה', ls_close: 'סגירה', ls_tasks_count: '{n} משימות'
     },
     ru: {
       ls_files: 'Файлы', ls_flow: 'Ход урока', ls_questions: 'Вопросы', ls_review: 'Повторение',
@@ -31,7 +31,7 @@
       ls_ai_note: 'Эти задачи придумал ИИ по теме урока. Они не от преподавателя, но ровно по тому же материалу.',
       ls_read_done: 'Урок прочитан ✓', ls_reading: 'Прочитано: {p}', ls_not_found: 'Урок не найден', ls_loading: 'Загружаю урок…',
       ls_back: 'Ко всем урокам', ls_questions_lead: 'Все вопросы урока в одном месте. Нажми на вопрос, чтобы увидеть ответ.',
-      ls_show_in_flow: 'Показать в ходе урока', ls_close: 'Закрыть', ls_tasks_count: 'Задач: {n}'
+      ls_show_in_flow: 'Показать в ходе урока', ls_part: 'Часть {i} из {n}', ls_min: '~{m} мин', ls_next_part: 'Дальше: часть {i}', ls_to_review: 'К повторению', ls_close: 'Закрыть', ls_tasks_count: 'Задач: {n}'
     },
     en: {
       ls_files: 'Files', ls_flow: 'Lesson flow', ls_questions: 'Questions', ls_review: 'Review',
@@ -44,7 +44,7 @@
       ls_ai_note: 'These tasks were invented by AI on the lesson topic. They are not from the teacher, but cover exactly the same material.',
       ls_read_done: 'Lesson read ✓', ls_reading: 'Reading: {p}', ls_not_found: 'Lesson not found', ls_loading: 'Loading the lesson…',
       ls_back: 'All lessons', ls_questions_lead: 'All the questions from the lesson in one place. Tap a question to see the answer.',
-      ls_show_in_flow: 'Show in the lesson flow', ls_close: 'Close', ls_tasks_count: '{n} tasks'
+      ls_show_in_flow: 'Show in the lesson flow', ls_part: 'Part {i} of {n}', ls_min: '~{m} min', ls_next_part: 'Next: part {i}', ls_to_review: 'To the review', ls_close: 'Close', ls_tasks_count: '{n} tasks'
     }
   });
 
@@ -200,6 +200,75 @@
     award('download:' + lesson.id + ':' + lang, Store.POINTS.download);
   }
 
+  /* ---------- короткие части урока (по 2–5 минут) ----------
+     Ход урока делится на части: открыта одна, внизу «Дальше: часть N». Если весь урок короткий — частей нет. */
+  var PART_MIN = 120, PART_MAX = 300, WPM = 130;
+  function words(x) { return x ? String(x).split(/\s+/).filter(Boolean).length : 0; }
+  function stepSeconds(it, lang) {
+    var w = words(it.title && pick(it.title, lang)) + words(it.text && pick(it.text, lang)) + words(it.q && pick(it.q, lang)) + words(it.a && pick(it.a, lang));
+    return w / WPM * 60 + (it.math ? it.math.length * 8 : 0);
+  }
+  function splitParts(secs) {
+    var parts = [], cur = null;
+    secs.forEach(function (sec, i) {
+      if (cur && cur.sec >= PART_MIN && cur.sec + sec > PART_MAX) { parts.push(cur); cur = null; }
+      if (!cur) cur = { from: i, to: i, sec: 0 };
+      cur.to = i; cur.sec += sec;
+    });
+    if (cur) {
+      var prev = parts[parts.length - 1];
+      if (prev && cur.sec < 90 && prev.sec + cur.sec <= PART_MAX + 60) { prev.to = cur.to; prev.sec += cur.sec; } else parts.push(cur);
+    }
+    return parts;
+  }
+  function partsView(lessonId, parts, stepEls, reviewEl) {
+    var key = 'ls_part:' + lessonId;
+    var st = U.storage.get(key, null) || {};
+    var open = Math.min(Math.max(0, st.open | 0), parts.length - 1), done = st.done || {};
+    var root = el('div', { class: 'ls-parts' }), boxes = [];
+    function keep() { U.storage.set(key, { open: open, done: done, n: parts.length }); }
+    parts.forEach(function (pt, i) {
+      var ol = el('ol', { class: 'ls-flow' });
+      for (var k = pt.from; k <= pt.to; k++) ol.appendChild(stepEls[k]);
+      var last = i === parts.length - 1;
+      var next = el('button', { type: 'button', class: 'btn btn--primary ls-part__next' }, last ? t('ls_to_review') + ' →' : t('ls_next_part', { i: i + 2 }) + ' →');
+      next.addEventListener('click', function () {
+        done[i] = true;
+        if (last) { keep(); paint(); var r = reviewEl(); if (r) r.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
+        show(i + 1, true);
+      });
+      var head = el('button', { type: 'button', class: 'ls-part__head', 'aria-expanded': 'false' }, [
+        el('span', { class: 'ls-part__n' }, String(i + 1)),
+        el('span', { class: 'ls-part__t' }, t('ls_part', { i: i + 1, n: parts.length })),
+        el('span', { class: 'ls-part__min' }, t('ls_min', { m: Math.max(1, Math.round(pt.sec / 60)) }))
+      ]);
+      head.addEventListener('click', function () { show(i, false); });
+      var body = el('div', { class: 'ls-part__body' }, [ol, el('div', { class: 'ls-part__foot' }, next)]);
+      var box = el('div', { class: 'ls-part', 'data-part': String(i) }, [head, body]);
+      boxes.push({ box: box, head: head, body: body });
+      root.appendChild(box);
+    });
+    function paint() {
+      boxes.forEach(function (b, i) {
+        var on = i === open;
+        b.box.classList.toggle('is-open', on);
+        b.box.classList.toggle('is-done', !!done[i] && !on);
+        b.head.setAttribute('aria-expanded', on ? 'true' : 'false');
+        b.body.hidden = !on;
+        b.head.querySelector('.ls-part__n').innerHTML = done[i] && !on ? Icons.get('check') : String(i + 1);
+      });
+    }
+    function show(i, scroll) {
+      open = i; keep(); paint();
+      if (scroll) boxes[i].box.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    paint();
+    return {
+      root: root,
+      openFor: function (stepEl) { for (var i = 0; i < boxes.length; i++) if (boxes[i].box.contains(stepEl)) { if (i !== open) show(i, false); return; } }
+    };
+  }
+
   /* =====================================================================
      PAGE
      ===================================================================== */
@@ -272,6 +341,10 @@
     document.addEventListener('scroll', savePos, true);
     var firstDraw = draw;
     draw = function (keep) { firstDraw(keep); if (!keep) restorePos(); };
+
+    /* «Продолжить» на главной: последний открытый урок */
+    var who = Store.auth.current();
+    if (who) U.storage.set('ls_last:' + who.id, { id: id, at: Date.now() });
 
     if (window.LESSONS && window.LESSONS[id]) draw();
     else {
@@ -367,7 +440,7 @@
 
     // Flow
     var flow = el('ol', { class: 'ls-flow' });
-    var questions = [];
+    var questions = [], stepEls = [], stepSec = [];
     (lesson.timeline || []).forEach(function (it, i) {
       var kind = it.kind || 'talk';
       var li = el('li', { class: 'ls-step ls-step--' + kind, id: 'ls-step-' + i, 'data-read-section': 'flow-' + i });
@@ -398,8 +471,11 @@
       }
       li.appendChild(card);
       flow.appendChild(li);
+      stepEls.push(li); stepSec.push(stepSeconds(it, lang));
     });
-    section(SECTIONS[1], [flow]);
+    var parts = splitParts(stepSec);
+    var partsUi = parts.length > 1 ? partsView(lesson.id, parts, stepEls, function () { return secEls.review; }) : null;
+    section(SECTIONS[1], [partsUi ? partsUi.root : flow]);
 
     // Questions (accordion, answer right under the question)
     var qList = el('div', { class: 'ls-qlist' });
@@ -418,6 +494,7 @@
       jump.addEventListener('click', function () {
         var target = document.getElementById('ls-step-' + q.idx);
         if (!target) return;
+        if (partsUi) partsUi.openFor(target);
         scrollToEl(target);
         target.classList.remove('is-flash'); target.offsetWidth; target.classList.add('is-flash');
       });

@@ -302,8 +302,11 @@ function watchErrors(page, list) {
     // read: scroll slowly from top to bottom with activity, then back up
     await page.evaluate(() => window.scrollTo(0, 0));
     let read = false, seconds = 0;
-    const H = await page.evaluate(() => document.documentElement.scrollHeight);
+    // the lesson flow is in short parts: each pass reads the next part (like pressing «Next: part N»)
+    const openPart = (n) => page.evaluate(n => { const h = document.querySelectorAll('.ls-part__head')[n]; if (h) h.click(); }, n);
     for (let pass = 0; pass < 6 && !read; pass++) {
+      await openPart(pass);
+      const H = await page.evaluate(() => document.documentElement.scrollHeight);
       for (let y = 0; y < H && !read; y += 120) {
         await page.evaluate(yy => window.scrollTo(0, yy), y);
         await page.mouse.move(400 + (y % 50), 300);
@@ -319,6 +322,34 @@ function watchErrors(page, list) {
     await ctx.close();
   });
 
+  /* ---------- 6c. short parts (2–5 min) and «continue» ---------- */
+  await step('lesson flow in short parts: one open, «Next: part 2» opens the next, remembered after reload', async () => {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 860 } });
+    const page = await ctx.newPage(); const errs = []; watchErrors(page, errs);
+    await page.goto(URL('ru', 'light')); await page.waitForSelector('.ls-part');
+    const n = await page.locator('.ls-part').count();
+    assert.ok(n >= 2, 'parts: ' + n);
+    assert.strictEqual(await page.locator('.ls-part.is-open').count(), 1);
+    assert.ok(/Часть 1 из/.test(await page.locator('.ls-part.is-open').innerText()));
+    const mins = await page.locator('.ls-part__min').allInnerTexts();
+    mins.forEach(m => { const v = +m.replace(/\D/g, ''); assert.ok(v >= 1 && v <= 6, m); });
+    assert.strictEqual(await page.locator('.ls-flow .ls-step').count(), await page.evaluate(() => window.LESSONS['math-2026-11-01'].timeline.length));
+    await page.click('.ls-part.is-open .ls-part__next');
+    await page.waitForTimeout(400);
+    assert.ok(/Часть 2 из/.test(await page.locator('.ls-part.is-open').innerText()));
+    assert.ok(await page.locator('.ls-part.is-done[data-part="0"]').count() === 1, 'part 1 marked done');
+    await page.screenshot({ path: path.join(SHOTS, 'parts.png') });
+    await page.reload(); await page.waitForSelector('.ls-part');
+    assert.strictEqual(await page.getAttribute('.ls-part.is-open', 'data-part'), '1');
+    // "show in the lesson flow" from the questions opens the right part
+    await page.evaluate(() => { document.querySelectorAll('.ls-q')[0].open = true; });
+    await page.locator('.ls-q').first().locator('.ls-link').click();
+    await page.waitForTimeout(300);
+    const id = await page.evaluate(() => { const st = document.querySelector('.ls-step.is-flash'); return st && st.closest('.ls-part').classList.contains('is-open'); });
+    assert.ok(id, 'question jump opens its part');
+    assert.deepStrictEqual(errs, []); await ctx.close();
+  });
+
   /* ---------- 6b. old-browser fallbacks: no IntersectionObserver, no PointerEvent ---------- */
   await step('fallbacks: reading without IntersectionObserver, drawing without PointerEvent', async () => {
     const ctx = await browser.newContext({ viewport: { width: 1280, height: 860 } });
@@ -328,9 +359,8 @@ function watchErrors(page, list) {
     await page.goto(URL('ru', 'light'));
     await page.waitForSelector('.ls-tile');
     assert.strictEqual(await page.evaluate(() => typeof window.IntersectionObserver), 'undefined');
-    const H = await page.evaluate(() => document.documentElement.scrollHeight);
     let read = false;
-    for (let pass = 0; pass < 6 && !read; pass++) for (let y = 0; y < H && !read; y += 120) {
+    for (let pass = 0; pass < 6 && !read; pass++) for (let y = 0, H = await page.evaluate(n => { const h = document.querySelectorAll('.ls-part__head')[n]; if (h) h.click(); return document.documentElement.scrollHeight; }, pass); y < H && !read; y += 120) {
       await page.evaluate(yy => window.scrollTo(0, yy), y);
       await page.keyboard.press('Shift');
       await page.clock.runFor(1000);
