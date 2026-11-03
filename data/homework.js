@@ -45,14 +45,35 @@ window.HOMEWORK = [
     original: { lang: 'he', text: 'שיעורי בית למפגש הבא\nתרגול: כתבו תוכנית המחשבת את ציונו הסופי של סטודנט (השקלול הוא: 40% בוחן, 60% מבחן). השתמשו בטיפוסים עשרוניים ואופרטורים.\nקריאה: התחילו לקרוא על מבני בקרה בסיסיים: if-else ו-switch.' },
     steps: [
       { he: 'צרו ב-IntelliJ מחלקה חדשה עם main.', ru: 'Создай в IntelliJ новый класс с main.', en: 'Create a new class with main in IntelliJ.' },
-      { he: 'קלטו עם Scanner שני ציונים למשתנים מסוג double: בוחן ומבחן.', ru: 'Прочитай через Scanner две оценки в переменные типа double: квиз и экзамен.', en: 'Read two grades with Scanner into double variables: quiz and exam.' },
+      { he: 'הגדירו שני משתנים מסוג double עם ציונים: בוחן ומבחן (למשל `double quiz = 80;`). קלט עם Scanner נלמד רק ב-25.10, אחר כך אפשר להוסיף.', ru: 'Объяви две переменные типа double с оценками: квиз и экзамен (например, `double quiz = 80;`). Ввод через Scanner проходили только 25.10, его можно добавить потом.', en: 'Declare two double variables with grades: quiz and exam (e.g. `double quiz = 80;`). Scanner input came only on 25 Oct; you can add it later.' },
       { he: 'חשבו: ציון סופי = בוחן × 0.4 + מבחן × 0.6.', ru: 'Посчитай: итог = квиз × 0.4 + экзамен × 0.6.', en: 'Compute: final = quiz × 0.4 + exam × 0.6.' },
       { he: 'הדפיסו את הציון הסופי. בדיקה: בוחן 80 ומבחן 90 נותנים 86.0.', ru: 'Напечатай итоговую оценку. Проверка: квиз 80 и экзамен 90 дают 86.0.', en: 'Print the final grade. Check: quiz 80 and exam 90 give 86.0.' },
       { he: 'קריאה: if-else (עברנו בשיעור 25.10). את switch עוד לא עברנו.', ru: 'Чтение: if-else (прошли на уроке 25.10). switch на уроках ещё не было.', en: 'Reading: if-else (covered on 25 Oct). switch has not been covered yet.' }
     ],
     submit: { he: 'לא נאמר שצריך להגיש. זה תרגול למפגש הבא.', ru: 'Сдавать не говорили. Это тренировка к следующей встрече.', en: 'No submission was mentioned. It is practice for the next meeting.' },
     links: [],
-    level: 'So far in Java we learned: IntelliJ, a first program with main, System.out.println, variables of types int, double, char, boolean and String, Scanner input, arithmetic operators including / and %, casting, and comparison and logical operators.'
+    level: 'So far in Java we learned: IntelliJ, a first program with main, System.out.println, variables of types int, double, char, boolean and String (values written in the code; Scanner input was not taught yet), arithmetic operators including / and %, casting, and comparison and logical operators.'
+  },
+  {
+    id: 'ai-2026-10-26-balls', subject: 'ai', selfPrompt: true,
+    title: { he: 'שיעורי בית: למצוא את הכשל באלגוריתם הכדורים בעזרת AI', ru: 'Домашнее задание: найти ошибку в алгоритме шаров с помощью ИИ', en: 'Homework: find the flaw in the balls algorithm with AI' },
+    given: '2026-10-26T08:45:00+02:00', givenDateOnly: true, due: '2026-11-02T08:45:00+02:00',
+    summary: {
+      he: 'מהשקופית "אתגר לוגי": לכתוב פרומפט שבו ה-AI מנחה ולא פותר, ולמצוא לבד למה האלגוריתם לא מוצא את הכדור הכבד ביותר.',
+      ru: 'Со слайда «Логическая задача»: написать промпт, в котором ИИ направляет, а не решает, и самому найти, почему алгоритм не находит самый тяжёлый шар.',
+      en: 'From the "logic challenge" slide: write a prompt where the AI guides rather than solves, and find yourself why the algorithm misses the heaviest ball.'
+    },
+    original: { lang: 'he', text: 'אתגר לוגי: האלגוריתם רץ — אבל טועה\nלפניך 10 כדורים, ולכל כדור משקל משלו. האלגוריתם אמור להדפיס את משקל הכדור הכבד ביותר.\nאתחול: קח את כדור מס\' 1 והנח אותו על המדף הזמני ("הכדור הכבד ביותר עד כה").\nלולאת השוואה: עבור כל כדור N מ-2 עד 10: שקול את כדור N. השווה את משקלו של כדור N למשקלו של כדור N-1 (הכדור הקודם בסדרה). אם משקלו של כדור N גדול ממשקלו של כדור N-1, החלף את הכדור שעל המדף בכדור N. אחרת, השאר את המדף ללא שינוי.\nפלט: הצג את הכדור שנשאר על המדף.\nגלו את הכשל בלי לבקש את הפתרון. כתבו פרומפט שיגרום ל־AI להנחות את החשיבה שלכם. מנחה — לא פותר.\nבפרומפט שלכם דרשו:\n• שאלה מכוונת אחת בכל פעם\n• מעקב ידני עם 3 משקלים לדוגמה\n• רמז רק אחרי ניסיון שלכם\n• בלי קוד מתוקן ובלי חשיפת השגיאה\nהצג בעיות קצה והנחה איך לפתור אותם.\nהמטרה: להסביר בעצמכם מה האלגוריתם באמת עושה.' },
+    steps: [
+      { he: 'פתחו ChatGPT, Gemini או Claude והדביקו את האלגוריתם מהשקופית.', ru: 'Открой ChatGPT, Gemini или Claude и вставь алгоритм со слайда.', en: 'Open ChatGPT, Gemini or Claude and paste the algorithm from the slide.' },
+      { he: 'כתבו בפרומפט את 4 הדרישות מהשקופית: שאלה אחת בכל פעם, מעקב ידני עם 3 משקלים, רמז רק אחרי ניסיון, בלי פתרון ובלי לחשוף את השגיאה.', ru: 'Впиши в промпт 4 требования со слайда: один вопрос за раз, ручная проверка на 3 весах, подсказка только после твоей попытки, без решения и без раскрытия ошибки.', en: 'Put the 4 demands from the slide in the prompt: one question at a time, a hand trace with 3 weights, a hint only after your try, no solution and no revealing the error.' },
+      { he: 'ענו על השאלות של ה-AI ועקבו ביד אחרי המדף, כדור אחרי כדור.', ru: 'Отвечай на вопросы ИИ и сам следи за полкой, шар за шаром.', en: 'Answer the AI\'s questions and trace the shelf by hand, ball by ball.' },
+      { he: 'כתבו במשפט אחד במילים שלכם: מה האלגוריתם באמת עושה, ולמה זה לא הכדור הכבד ביותר.', ru: 'Запиши одной фразой своими словами: что алгоритм делает на самом деле и почему это не самый тяжёлый шар.', en: 'Write in one sentence in your own words what the algorithm really does and why that is not the heaviest ball.' },
+      { he: 'בואו לשיעור הבא עם התשובה.', ru: 'Приходи на следующий урок с ответом.', en: 'Come to the next lesson with the answer.' }
+    ],
+    submit: { he: 'לא נאמר שצריך להגיש. מביאים את התשובה לשיעור הבא.', ru: 'Сдавать не говорили. Ответ приносим на следующий урок.', en: 'No submission was mentioned. Bring the answer to the next lesson.' },
+    links: [],
+    level: 'So far in Intro to AI we learned: what AI is, a regular program (clear if/else instructions) vs. AI that learns from examples, neurons and neural networks, tokens and the context window, chatbots, a verbal algorithm, syntax vs. logic errors, and the prompt-engineering rule that the AI should guide, not solve.'
   },
   {
     id: 'fullstack-2026-10-28-mesakem', subject: 'fullstack',
