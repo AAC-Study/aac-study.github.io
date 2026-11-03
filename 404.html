@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AAC Study</title>
+<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:system-ui,sans-serif;background:#f5f6fb;color:#1c1f2e}a{color:#6656f5}</style>
+<script>
+/* Ссылка без «#» (например aac-study.github.io/math или /profile) — GitHub показал бы ошибку 404.
+   Переводим на нужную страницу сайта: /math → #/subject/math, /lesson/... → #/lesson/..., /profile → #/profile. */
+(function () {
+  var subjects = { algo: 1, math: 1, fullstack: 1, computer: 1, sql: 1, ai: 1 };
+  var pages = { profile: 1, settings: 1, people: 1, chats: 1, homework: 1, subjects: 1, notifications: 1, admin: 1 };
+  var p = location.pathname.replace(/\/+$/, '').replace(/^\/+/, '').replace(/\/index\.html$/i, '');
+  var parts = p.split('/').filter(Boolean).map(function (x) { try { return decodeURIComponent(x).toLowerCase(); } catch (e) { return ''; } });
+  var to = '#/';
+  if (parts.length === 1 && subjects[parts[0]]) to = '#/subject/' + parts[0];
+  else if (parts.length === 1 && pages[parts[0]]) to = '#/' + parts[0];
+  else if (parts.length === 2 && /^(lesson|subject|homework|user|chat)$/.test(parts[0]) && /^[a-z0-9-]{1,80}$/.test(parts[1])) to = '#/' + parts[0] + '/' + parts[1];
+  location.replace('/' + to);
+})();
+</script>
+</head>
+<body><a href="/">AAC Study</a></body>
+</html>
