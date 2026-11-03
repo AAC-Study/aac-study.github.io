@@ -116,7 +116,11 @@ async function step(name, fn) {
     assert.ok(/11:00/.test(await p.locator('.hw-rem__hint').innerText()));
     await p.click('.hw-rem__zone');
     const opts = await p.locator('.hw-rem__opt').allInnerTexts();
-    assert.ok(/Израиль/.test(opts[0]) && /телефон/.test(opts[1]) && /Израиль/.test(opts[2]) && /Россия/.test(opts[3]) && /Украина/.test(opts[4]) && /США/.test(opts[5]), opts.slice(0, 6).join(' | '));
+    assert.ok(/По умолчанию \(Израиль\)/.test(opts[0]) && /Как на телефоне \(/.test(opts[1]), opts.slice(0, 2).join(' | '));
+    assert.deepStrictEqual(opts.slice(2, 7).map(x => x.trim()), ['IL', 'RU', 'UA', 'US·NY', 'US·LA']);   // short code + drawn flag, no long names
+    assert.strictEqual(await p.locator('.hw-rem__opt--flag svg.flag').count(), 14);
+    assert.strictEqual(await p.getAttribute('.hw-rem__opt[data-zone="de"]', 'title'), 'Германия');
+    assert.ok(!/🇮🇱|IL/.test(await p.locator('.hw-rem__zone').innerText()), 'default button: no "IL"');
     await p.screenshot({ path: SP + '/hw-remind-list.png' });
     await p.click('.hw-rem__opt[data-zone="us-ny"]');
     await p.locator('.hw-rem__time').fill('09:30'); await p.locator('.hw-rem__time').dispatchEvent('change');
@@ -124,7 +128,7 @@ async function step(name, fn) {
     const c = await p.evaluate(() => Store.auth.current().prefs.hwRemind);
     assert.deepStrictEqual([c.on, c.zone, c.tz, c.time], [true, 'us-ny', 'America/New_York', '09:30']);
     await p.reload(); await p.waitForSelector('.hw-rem');
-    assert.ok(/США/.test(await p.locator('.hw-rem__zone').innerText()));
+    assert.strictEqual((await p.locator('.hw-rem__zone').innerText()).trim(), 'US·NY');
     assert.strictEqual(await p.locator('.hw-rem__time').inputValue(), '09:30');
     await p.click('.hw-rem .switch span'); await p.waitForTimeout(200);
     assert.strictEqual(await p.evaluate(() => Store.auth.current().prefs.hwRemind.on), false);
