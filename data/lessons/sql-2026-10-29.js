@@ -16,6 +16,13 @@ window.LESSONS["sql-2026-10-29"] = {
   },
 
   timeline: [
+    { kind: "talk", time: "12:44",
+      title: { he: "char או varchar", ru: "char или varchar", en: "char or varchar" },
+      text: {
+        he: "`char(20)` תופס תמיד 20 תווים, גם אם שם החנות קצר יותר — זה בזבוז מקום.\n`varchar(20)` הוא דינמי: תופס רק כמה שצריך, עד 20. השם rehitim (7 אותיות) יתפוס 7, לא 20.\nלכן לטקסט כמו שם, כתובת ומייל משתמשים ב־`varchar` (או `nvarchar` — כשיש גם עברית).",
+        ru: "`char(20)` всегда занимает 20 символов, даже если название магазина короче, — это лишнее место.\n`varchar(20)` — динамический: занимает только сколько нужно, до 20. Название rehitim (7 букв) займёт 7, а не 20.\nПоэтому для текста вроде имени, адреса и почты берут `varchar` (или `nvarchar` — если есть и иврит).",
+        en: "`char(20)` always takes 20 characters, even if the shop name is shorter — wasted space.\n`varchar(20)` is dynamic: it takes only what it needs, up to 20. The name rehitim (7 letters) takes 7, not 20.\nSo for text like a name, address or email we use `varchar` (or `nvarchar` — when there is Hebrew too)."
+      } },
     { kind: "board",
       title: { he: "חזרה: where על טבלת shlifot", ru: "Повторение: where на таблице shlifot", en: "Recap: where on the shlifot table" },
       text: {
@@ -67,6 +74,13 @@ window.LESSONS["sql-2026-10-29"] = {
         "",
         "not true = false    not false = true"
       ] },
+    { kind: "tip", time: "13:12",
+      title: { he: "and — כפל לוגי, or — חיבור לוגי", ru: "and — логическое умножение, or — логическое сложение", en: "and is logical multiplication, or is logical addition" },
+      text: {
+        he: "אמת = `1`, שקר = `0` (ערך בוליאני).\n`and` עובד כמו כפל: `1 × 1 = 1`, ובכל מקרה אחר יוצא `0`. למשל: «אני מלמדת גם SQL וגם מתמטיקה» — אמת רק אם שניהם נכונים.\n`or` עובד כמו חיבור: מספיק `1` אחד כדי שיצא אמת. רק `0` ו־`0` נותנים `0`.",
+        ru: "Истина = `1`, ложь = `0` (логическое, «булево» значение).\n`and` работает как умножение: `1 × 1 = 1`, во всех остальных случаях выходит `0`. Например: «я преподаю и SQL, и математику» — истина, только если верно и то и другое.\n`or` работает как сложение: достаточно одной `1`, чтобы вышла истина. Только `0` и `0` дают `0`.",
+        en: "True = `1`, false = `0` (a boolean value).\n`and` works like multiplication: `1 × 1 = 1`, every other case gives `0`. For example: «I teach both SQL and maths» — true only if both are true.\n`or` works like addition: one `1` is enough for true. Only `0` and `0` give `0`."
+      } },
     { kind: "board",
       title: { he: "תרגיל פתיחה — הקמת מסד נתונים", ru: "Вводное упражнение — создание базы данных", en: "Opening exercise — building a database" },
       text: {
@@ -80,6 +94,13 @@ window.LESSONS["sql-2026-10-29"] = {
         he: "כל מה שהוא מספר שלם — `int`: מספר האומן, השניות, הלייקים. כל מה שהוא טקסט — `nvarchar(n)` עם n מספיק גדול: שם אומן, שם קטע, ולינק (לינקים ארוכים, אז n גדול, למשל 200).\nלקטע בלי לייקים כותבים ב־insert את המספר 0.\nשלב 5 זה בדיוק \"בחירת עמודות\": שתי עמודות אחרי select, ובלי where — כי רוצים את כל הרשומות.",
         ru: "Всё, что целое число, — `int`: номер артиста, секунды, лайки. Всё, что текст, — `nvarchar(n)` с достаточно большим n: имя артиста, название клипа и ссылка (ссылки длинные, так что n большой, например 200).\nДля клипа без лайков в insert пишем число 0.\nШаг 5 — это ровно «выбор столбцов»: два столбца после select и без where — ведь нужны все записи.",
         en: "Anything that is a whole number is `int`: artist number, seconds, likes. Anything that is text is `nvarchar(n)` with a big enough n: artist name, clip name and link (links are long, so a big n, e.g. 200).\nFor a clip with no likes, write the number 0 in the insert.\nStep 5 is exactly \"choosing columns\": two columns after select and no where — because we want all records."
+      } },
+    { kind: "tip", time: "13:33",
+      title: { he: "הערה: שני מקפים --", ru: "Комментарий: два минуса --", en: "A comment: two dashes --" },
+      text: {
+        he: "מה שכתוב אחרי `--` עד סוף השורה הוא הערה: SQL לא מריץ את זה.\n`-- כאן אני שולפת רק חנויות rehitim`\n`select * from shlifot where chanut = 'rehitim'`\nנוח לכתוב לעצמך מה כל שאילתה עושה, או לכבות שורה בלי למחוק אותה.",
+        ru: "Всё, что после `--` до конца строки, — комментарий: SQL это не выполняет.\n`-- тут достаю только магазины rehitim`\n`select * from shlifot where chanut = 'rehitim'`\nУдобно подписать себе, что делает каждый запрос, или выключить строку, не стирая её.",
+        en: "Everything after `--` to the end of the line is a comment: SQL does not run it.\n`-- here I fetch only rehitim shops`\n`select * from shlifot where chanut = 'rehitim'`\nHandy to note what each query does, or to switch a line off without deleting it."
       } }
   ],
 
@@ -582,6 +603,43 @@ window.LESSONS["sql-2026-10-29"] = {
           "select iskaot from shlifot where chanut = 'rehitim' and iskaot < 10",
           { he: "ל־rehitim יש iskaot: 9, 9, 110, 104. רק 9 ו־9 קטנים מ־10.", ru: "У rehitim iskaot: 9, 9, 110, 104. Меньше 10 только 9 и 9.", en: "rehitim has iskaot: 9, 9, 110, 104. Only 9 and 9 are below 10." },
           { he: "השאילתה מחזירה 2 שורות.", ru: "Запрос возвращает 2 строки.", en: "The query returns 2 rows." }
+        ]
+      },
+      {
+        id: "ai-13", level: 1,
+        label: { he: "varchar", ru: "varchar", en: "varchar" },
+        kind: "choice",
+        text: {
+          he: "איזה סוג תופס רק כמה מקום שהטקסט צריך (עד הגבול שכתבנו)?",
+          ru: "Какой тип занимает только столько места, сколько нужно тексту (до заданного предела)?",
+          en: "Which type takes only as much space as the text needs (up to the limit we set)?"
+        },
+        options: ["char(20)", "varchar(20)", "int"],
+        answer: { index: 1 },
+        hints: [
+          { he: "אחד מהם תמיד תופס את כל 20 התווים.", ru: "Один из них всегда занимает все 20 символов.", en: "One of them always takes all 20 characters." }
+        ],
+        solution: [
+          { he: "`char(20)` תמיד תופס 20 תווים.", ru: "`char(20)` всегда занимает 20 символов.", en: "`char(20)` always takes 20 characters." },
+          { he: "`varchar(20)` דינמי — רק כמה שצריך. התשובה: `varchar(20)`.", ru: "`varchar(20)` динамический — только сколько нужно. Ответ: `varchar(20)`.", en: "`varchar(20)` is dynamic — only what it needs. Answer: `varchar(20)`." }
+        ]
+      },
+      {
+        id: "ai-14", level: 2,
+        label: { he: "1 ו־0", ru: "1 и 0", en: "1 and 0" },
+        kind: "number",
+        text: {
+          he: "אמת = 1, שקר = 0. התנאי הראשון אמת, השני שקר. מה יוצא ב־`and`? (1 או 0)",
+          ru: "Истина = 1, ложь = 0. Первое условие истинно, второе ложно. Что получится с `and`? (1 или 0)",
+          en: "True = 1, false = 0. The first condition is true, the second false. What does `and` give? (1 or 0)"
+        },
+        answer: { value: "0" },
+        hints: [
+          { he: "`and` עובד כמו כפל.", ru: "`and` работает как умножение.", en: "`and` works like multiplication." }
+        ],
+        solution: [
+          "1 × 0 = 0",
+          { he: "התשובה: 0 — שקר. ב־`and` צריך ששני התנאים יהיו אמת.", ru: "Ответ: 0 — ложь. Для `and` нужно, чтобы оба условия были истинны.", en: "Answer: 0 — false. `and` needs both conditions to be true." }
         ]
       }
     ]

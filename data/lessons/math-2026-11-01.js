@@ -117,6 +117,7 @@ window.LESSONS['math-2026-11-01'] = {
         ru: 'Сначала считаем `b² − 4ac` и нажимаем `=`. Только потом нажимаем √ от результата (Ans). Можно и сразу, но со скобками: `√(b² − 4ac)`.\nЕсли нажать √ в начале без скобок, калькулятор извлечёт корень только из b², и результат будет неверным.',
         en: 'First compute `b² − 4ac` and press `=`. Only then press √ on the result (Ans). You can do it in one go, but with brackets: `√(b² − 4ac)`.\nIf you press √ first without brackets, the calculator takes the root of b² only, and the result is wrong.'
       } },
+    {"kind": "tip", "title": {"he": "כש-b שלילי, ‎−b חיובי", "ru": "Если b отрицательное, то −b положительное", "en": "When b is negative, −b is positive"}, "text": {"he": "בנוסחה כתוב `−b`. אם b עצמו שלילי, שני המינוסים נותנים פלוס: כש-`b = −5`, אז `−b = −(−5) = 5`.\nגם בריבוע: `(−5)² = 25` — תמיד חיובי.", "ru": "В формуле стоит `−b`. Если само b отрицательное, два минуса дают плюс: при `b = −5` получается `−b = −(−5) = 5`.\nИ в квадрате тоже: `(−5)² = 25` — всегда положительное.", "en": "The formula has `−b`. If b itself is negative, the two minuses make a plus: with `b = −5`, `−b = −(−5) = 5`.\nThe square too: `(−5)² = 25` — always positive."}, "math": ["b = −5", "−b = −(−5) = 5", "b² = (−5)² = 25"]},
     { kind: 'tip',
       title: { he: 'טעות נפוצה: לשכוח את הריבוע של b', ru: 'Частая ошибка: забыть возвести b в квадрат', en: 'Common mistake: forgetting to square b' },
       text: {
@@ -179,6 +180,7 @@ window.LESSONS['math-2026-11-01'] = {
         ru: 'Чтобы проверить корень, подставь его в исходное уравнение и убедись, что обе части равны.\nОтрицательное число всегда набирай в скобках: `(−0.5)² = 0.25`, а `−0.5²` на калькуляторе даёт `−0.25`, потому что в квадрат возводится только 0.5.',
         en: 'To check a root, substitute it into the original equation and make sure both sides are equal.\nAlways type a negative number in brackets: `(−0.5)² = 0.25`, but `−0.5²` on a calculator gives `−0.25`, because only 0.5 gets squared.'
       } },
+    {"kind": "tip", "title": {"he": "במחשבון: שני מקשי מינוס", "ru": "На калькуляторе две разные кнопки минуса", "en": "Two different minus keys on the calculator"}, "text": {"he": "ב-Casio יש מקש `(-)` — הסימן של מספר שלילי, ומקש `−` — פעולת החיסור. אלה לא אותו דבר. מספר שלילי מקלידים עם `(-)` ובסוגריים: `( (-) 5 ) x²` נותן 25.", "ru": "На Casio есть кнопка `(-)` — знак отрицательного числа, и кнопка `−` — вычитание. Это не одно и то же. Отрицательное число набираем через `(-)` и в скобках: `( (-) 5 ) x²` даёт 25.", "en": "A Casio has a `(-)` key, the sign of a negative number, and a `−` key, subtraction. They are not the same. Type a negative number with `(-)` and in brackets: `( (-) 5 ) x²` gives 25."}},
     { kind: 'board',
       title: { he: 'משוואה עם שברים', ru: 'Уравнение с дробями', en: 'An equation with fractions' },
       text: {
@@ -186,6 +188,7 @@ window.LESSONS['math-2026-11-01'] = {
         ru: 'В `(1 + 2x)/3 − (3x − 1)/4 = 1/(x + 6)` находим общий знаменатель — `12(x + 6)` — и умножаем на него каждый член. После раскрытия скобок получается квадратное уравнение, решаем как обычно.\nНе забудь: `x ≠ −6`, на ноль делить нельзя.',
         en: 'In `(1 + 2x)/3 − (3x − 1)/4 = 1/(x + 6)` find the common denominator — `12(x + 6)` — and multiply every term by it. After expanding you get a quadratic equation; solve it as usual.\nDon\'t forget: `x ≠ −6`, no division by zero.'
       } },
+    {"kind": "tip", "title": {"he": "תחום הגדרה", "ru": "Область определения (תחום הגדרה)", "en": "The domain of definition"}, "text": {"he": "כשיש x במכנה, לפני הפתרון כותבים מה x לא יכול להיות: מכנה לא שווה ל-0. כאן `x + 6 ≠ 0`, ולכן `x ≠ −6`.\nבסוף בודקים: אם אחד הפתרונות יצא בדיוק הערך האסור, הוא נפסל.", "ru": "Когда x стоит в знаменателе, до решения записываем, чем x быть не может: знаменатель не равен 0. Здесь `x + 6 ≠ 0`, значит `x ≠ −6`.\nВ конце проверяем: если какой-то корень получился ровно запрещённым значением, его отбрасываем.", "en": "When x is in a denominator, before solving write what x cannot be: the denominator is not 0. Here `x + 6 ≠ 0`, so `x ≠ −6`.\nAt the end check: if a root comes out exactly as the forbidden value, it is thrown out."}, "math": ["x + 6 ≠ 0", "x ≠ −6"]},
     { kind: 'faq',
       q: {
         he: 'כשכופלים מספר בסוגריים — מה בדיוק כופלים?',

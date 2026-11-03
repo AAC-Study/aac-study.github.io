@@ -14,6 +14,13 @@ window.LESSONS['fullstack-2026-10-28'] = {
   },
 
   timeline: [
+    { kind: 'talk', time: '08:39',
+      title: { he: 'id ו־class — מה ההבדל', ru: 'id и class — в чём разница', en: 'id and class — the difference' },
+      text: {
+        he: '`id` (מאנגלית identity — זהות) — שם ייחודי שנותנים לאלמנט אחד בלבד. בדף לא יהיו שני אלמנטים עם אותו `id`.\n`class` — שם שאפשר לתת להרבה אלמנטים יחד, למשל לכל השורות בטבלה.\nבהמשך הקורס (CSS) נשתמש בהם כדי לעצב אלמנט מסוים או קבוצה שלמה.',
+        ru: '`id` (от английского identity — «личность») — уникальное имя, которое дают только одному элементу. На странице не бывает двух элементов с одинаковым `id`.\n`class` — имя, которое можно дать многим элементам сразу, например всем строкам таблицы.\nДальше в курсе (CSS) по ним будем оформлять один конкретный элемент или целую группу.',
+        en: '`id` (from "identity") — a unique name given to one element only. A page never has two elements with the same `id`.\n`class` — a name many elements can share, e.g. all rows of a table.\nLater in the course (CSS) we use them to style one element or a whole group.'
+      } },
     { kind: 'talk',
       title: { he: 'תמונת רקע לכל הדף', ru: 'Фоновая картинка для всей страницы', en: 'A background image for the whole page' },
       text: {
@@ -65,12 +72,40 @@ window.LESSONS['fullstack-2026-10-28'] = {
         ru: 'В примере преподавателя: `<table id="sesameStreet" width="600px" border="1px" align="center">`.\n`width` — ширина таблицы (в пикселях или процентах). `border` — толщина рамки; без border линий не видно. `align="center"` — таблица по центру страницы.\nСтроке тоже можно дать атрибуты: `<tr class="rows" align="right">`. А ячейке — `style`, например цвет текста.\nВ ячейку можно положить что угодно: текст, ссылку `<a>`, картинку `<img width="40%">` (проценты — от ширины ячейки).',
         en: 'In the lecturer\'s example: `<table id="sesameStreet" width="600px" border="1px" align="center">`.\n`width` — table width (pixels or percent). `border` — frame thickness; without border no lines are visible. `align="center"` — the table sits in the middle of the page.\nA row can get attributes too: `<tr class="rows" align="right">`. A cell can get `style`, e.g. a text colour.\nA cell can hold anything: text, a link `<a>`, an image `<img width="40%">` (percent of the cell width).'
       } },
+    { kind: 'tip', time: '08:53',
+      title: { he: 'פיקסלים או אחוזים, ויישור בתא', ru: 'Пиксели или проценты, и выравнивание в ячейке', en: 'Pixels or percent, and alignment in a cell' },
+      text: {
+        he: '`width="600px"` — הטבלה תמיד ברוחב 600 פיקסלים. `width="50%"` — חצי מרוחב הדף: כשהחלון קטן, גם הטבלה קטנה.\n`<th>` מיושר למרכז מעצמו. בתא רגיל אפשר לבחור: `<td align="right">` — לימין, `align="left"` — לשמאל.\nתמונה עם `width="40%"` תופסת 40% מרוחב התא שלה ולא יוצאת ממנו.',
+        ru: '`width="600px"` — таблица всегда шириной 600 пикселей. `width="50%"` — половина ширины страницы: если окно меньше, таблица тоже меньше.\n`<th>` сам стоит по центру. В обычной ячейке можно выбрать: `<td align="right">` — вправо, `align="left"` — влево.\nКартинка с `width="40%"` занимает 40% ширины своей ячейки и не вылезает из неё.',
+        en: '`width="600px"` — the table is always 600 pixels wide. `width="50%"` — half the page width: a smaller window means a smaller table.\n`<th>` is centred by itself. In a normal cell you choose: `<td align="right">` — right, `align="left"` — left.\nAn image with `width="40%"` takes 40% of its cell width and stays inside it.'
+      } },
     { kind: 'board',
       title: { he: 'תרגילון: טבלה משלכם', ru: 'Упражнение: своя таблица', en: 'Mini-exercise: your own table' },
       text: {
         he: 'צרו טבלה דומה ככל האפשר לטבלה בדוגמה. הנושא — חופשי, אבל לפחות 3 שורות ואת העמודות:\n• עמודת טקסט (שם, שם משפחה וכו׳)\n• תמונה\n• היפר־קישור\n• כותרת (header)',
         ru: 'Сделайте таблицу, как можно более похожую на пример. Тема любая, но минимум 3 строки и столбцы:\n• текстовый столбец (имя, фамилия и т. п.)\n• картинка\n• гиперссылка\n• заголовок (header)',
         en: 'Make a table as close as possible to the example. Any topic, but at least 3 rows and these columns:\n• a text column (name, surname, etc.)\n• an image\n• a hyperlink\n• a header'
+      } },
+    { kind: 'board', time: '10:25',
+      title: { he: 'טופס: איך הוא בנוי', ru: 'Форма: как она устроена', en: 'A form: how it is built' },
+      text: {
+        he: 'טופס אוסף מידע מהמשתמש ושולח אותו. זו הדרך העיקרית לקבל מידע מהמשתמש באתר.\n`<form action="thanks.html">`\n`  <label>שם</label> <input type="text" name="fullname">`\n`  <input type="radio" name="gender"> זכר`\n`  <input type="radio" name="gender"> נקבה`\n`  <input type="checkbox" name="agree"> מסכים לתנאים`\n`  <input type="submit" value="שלח">`\n`</form>`\n`type` קובע איזה מידע מקבלים: `text` — טקסט, `radio` — אחת מכמה, `checkbox` — וי.\nלשני כפתורי ה־radio אותו `name="gender"`, ולכן אפשר לסמן רק אחד.',
+        ru: 'Форма собирает данные от пользователя и отправляет их. Это главный способ получить информацию от пользователя на сайте.\n`<form action="thanks.html">`\n`  <label>שם</label> <input type="text" name="fullname">`\n`  <input type="radio" name="gender"> זכר`\n`  <input type="radio" name="gender"> נקבה`\n`  <input type="checkbox" name="agree"> מסכים לתנאים`\n`  <input type="submit" value="שלח">`\n`</form>`\n`type` решает, что вводят: `text` — текст, `radio` — один вариант из нескольких, `checkbox` — галочка.\nУ обеих кнопок radio одно `name="gender"`, поэтому отметить можно только одну.',
+        en: 'A form collects data from the user and sends it. It is the main way a site gets information from the user.\n`<form action="thanks.html">`\n`  <label>שם</label> <input type="text" name="fullname">`\n`  <input type="radio" name="gender"> זכר`\n`  <input type="radio" name="gender"> נקבה`\n`  <input type="checkbox" name="agree"> מסכים לתנאים`\n`  <input type="submit" value="שלח">`\n`</form>`\n`type` decides what is entered: `text` — text, `radio` — one of several, `checkbox` — a tick.\nBoth radio buttons share `name="gender"`, so only one can be selected.'
+      } },
+    { kind: 'tip', time: '10:29',
+      title: { he: 'submit ו־action', ru: 'submit и action', en: 'submit and action' },
+      text: {
+        he: 'לחיצה על `<input type="submit">` מפעילה את `action` של הטופס: הדפדפן עובר לדף שכתוב בו, למשל `thanks.html` — דף "תודה על ההרשמה".\nבלי `action` המשתמש נשאר באותו דף ולא רואה שמשהו קרה.\nבתרגיל המסכם: "שלח" בדף ההרשמה מוביל לדף האישור.',
+        ru: 'Нажатие на `<input type="submit">` запускает `action` формы: браузер переходит на страницу, которая там написана, например `thanks.html` — страницу «спасибо за регистрацию».\nБез `action` пользователь остаётся на той же странице и не видит, что что-то произошло.\nВ итоговом задании: «Отправить» на странице регистрации ведёт на страницу подтверждения.',
+        en: 'Clicking `<input type="submit">` runs the form\'s `action`: the browser goes to the page written there, e.g. `thanks.html` — a "thanks for registering" page.\nWithout `action` the user stays on the same page and sees nothing happen.\nIn the summary exercise: "Send" on the registration page leads to the confirmation page.'
+      } },
+    { kind: 'tip', time: '10:30',
+      title: { he: 'כל הסוגים של input', ru: 'Все типы input', en: 'All input types' },
+      text: {
+        he: 'ב־VS Code כתבו `<input type="` — העורך יציע את כל הסוגים. יש הרבה ורובם מובנים מהשם: `color` — בחירת צבע, `password` — סיסמה בנקודות, `email` — מייל, `date` — תאריך, `reset` — מנקה את כל הטופס.',
+        ru: 'В VS Code напишите `<input type="` — редактор сам предложит все типы. Их много, и почти все понятны по названию: `color` — выбор цвета, `password` — пароль точками, `email` — почта, `date` — дата, `reset` — очищает всю форму.',
+        en: 'In VS Code type `<input type="` — the editor suggests every type. There are many, mostly clear from the name: `color` — a colour picker, `password` — a password shown as dots, `email` — email, `date` — a date, `reset` — clears the whole form.'
       } },
     { kind: 'talk', time: '10:31',
       title: { he: 'Form — אלמנטים חשובים', ru: 'Form — важные элементы', en: 'Form — important elements' },
@@ -96,6 +131,10 @@ window.LESSONS['fullstack-2026-10-28'] = {
   ],
 
   review: [
+    { title: { he: 'id ו־class', ru: 'id и class', en: 'id and class' },
+      text: { he: '`id` — לאלמנט אחד בלבד, `class` — להרבה אלמנטים.', ru: '`id` — только одному элементу, `class` — многим.', en: '`id` — one element only, `class` — many elements.' } },
+    { title: { he: 'submit ו־action', ru: 'submit и action', en: 'submit and action' },
+      text: { he: '`submit` מפעיל את `action` של הטופס ← הדפדפן עובר לדף שכתוב בו.', ru: '`submit` запускает `action` формы → браузер переходит на страницу из него.', en: '`submit` runs the form\'s `action` → the browser opens that page.' } },
     { title: { he: 'רקע לדף', ru: 'Фон страницы', en: 'Page background' },
       text: { he: 'ב־`<head>` → `<style>` → `body { background-image: url("…"); background-size: cover; }`.', ru: 'В `<head>` → `<style>` → `body { background-image: url("…"); background-size: cover; }`.', en: 'In `<head>` → `<style>` → `body { background-image: url("…"); background-size: cover; }`.' } },
     { title: { he: 'ארבע תגיות של טבלה', ru: 'Четыре тега таблицы', en: 'Four table tags' },
@@ -512,6 +551,71 @@ window.LESSONS['fullstack-2026-10-28'] = {
         solution: [
           'background-size: cover;',
           { he: 'התשובה: `cover`.', ru: 'Ответ: `cover`.', en: 'Answer: `cover`.' }
+        ]
+      },
+      {
+        id: 'ai-12', level: 1,
+        label: { he: 'action', ru: 'action', en: 'action' },
+        kind: 'choice',
+        text: {
+          he: 'מה קורה בלחיצה על `<input type="submit">` בטופס `<form action="thanks.html">`?',
+          ru: 'Что произойдёт при нажатии на `<input type="submit">` в форме `<form action="thanks.html">`?',
+          en: 'What happens when you click `<input type="submit">` in the form `<form action="thanks.html">`?'
+        },
+        options: [
+          { he: 'הדפדפן עובר לדף `thanks.html`', ru: 'Браузер перейдёт на страницу `thanks.html`', en: 'The browser goes to the page `thanks.html`' },
+          { he: 'הטופס מתנקה ונשארים באותו דף', ru: 'Форма очистится, и мы останемся на той же странице', en: 'The form is cleared and we stay on the same page' },
+          { he: 'נפתח חלון לבחירת צבע', ru: 'Откроется окно выбора цвета', en: 'A colour picker opens' },
+          { he: 'לא קורה כלום', ru: 'Ничего не произойдёт', en: 'Nothing happens' }
+        ],
+        answer: { index: 0 },
+        hints: [
+          { he: 'מה כתוב בתוך `action`?', ru: 'Что написано внутри `action`?', en: 'What is written inside `action`?' }
+        ],
+        solution: [
+          { he: '`submit` מפעיל את `action` של הטופס.', ru: '`submit` запускает `action` формы.', en: '`submit` runs the form\'s `action`.' },
+          { he: 'ב־`action` כתוב `thanks.html`, ולכן עוברים לדף הזה.', ru: 'В `action` написано `thanks.html`, поэтому переходим на эту страницу.', en: '`action` says `thanks.html`, so we go to that page.' }
+        ]
+      },
+      {
+        id: 'ai-13', level: 1,
+        label: { he: 'id', ru: 'id', en: 'id' },
+        kind: 'choice',
+        text: {
+          he: 'לכמה אלמנטים בדף אפשר לתת את אותו `id`?',
+          ru: 'Скольким элементам на странице можно дать один и тот же `id`?',
+          en: 'How many elements on a page can share the same `id`?'
+        },
+        options: [
+          { he: 'רק לאחד', ru: 'Только одному', en: 'Only one' },
+          { he: 'לשניים', ru: 'Двум', en: 'Two' },
+          { he: 'לכמה שרוצים', ru: 'Сколько угодно', en: 'As many as you like' }
+        ],
+        answer: { index: 0 },
+        hints: [
+          { he: '`id` בא מהמילה identity — זהות.', ru: '`id` — от слова identity, «личность».', en: '`id` comes from "identity".' }
+        ],
+        solution: [
+          { he: '`id` — שם ייחודי, רק לאלמנט אחד.', ru: '`id` — уникальное имя, только для одного элемента.', en: '`id` is a unique name, for one element only.' },
+          { he: 'שם לכמה אלמנטים יחד — זה `class`.', ru: 'Имя для многих элементов сразу — это `class`.', en: 'A name for many elements at once is a `class`.' }
+        ]
+      },
+      {
+        id: 'ai-14', level: 2,
+        label: { he: 'password', ru: 'password', en: 'password' },
+        kind: 'text',
+        text: {
+          he: 'בדף ההרשמה צריך שדה סיסמה שמראה נקודות במקום אותיות. מה כותבים ב־`type` של ה־`<input>`? (מילה אחת)',
+          ru: 'На странице регистрации нужно поле пароля, которое показывает точки вместо букв. Что пишут в `type` у `<input>`? (одно слово)',
+          en: 'The registration page needs a password field that shows dots instead of letters. What goes in the `type` of the `<input>`? (one word)'
+        },
+        answer: { accept: ['password', '"password"', 'type="password"'] },
+        hints: [
+          { he: 'באנגלית "סיסמה".', ru: 'По-английски «пароль».', en: 'The English word for it.' }
+        ],
+        solution: [
+          '<input type="password" name="pass">',
+          { he: 'התשובה: `password`.', ru: 'Ответ: `password`.', en: 'Answer: `password`.' }
         ]
       }
     ]
