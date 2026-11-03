@@ -81,7 +81,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
   await step('mock: change password in settings, then cooldown', async () => {
     const ctx = await b.newContext(); const p = await ctx.newPage(); const errs = []; p.on('pageerror', e => errs.push(e.message));
     await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); }); await p.reload();
-    await p.evaluate(() => Store.auth.signUp({ email: 'a@x.y', password: '123456', name: 'A', invite: 'AAC2026' }));
+    await p.evaluate(() => Store.auth.signUp({ email: 'a@x.y', password: '123456', name: 'A', invite: 'AAC2026' }).then(() => Store.auth.signIn({ email: 'a@x.y', password: '123456' })));
     await p.evaluate(() => App.go('/settings')); await p.click('[data-act=change-pass]');
     await p.fill('#f-np1', 'abcdef'); await p.fill('#f-np2', 'abcdef'); await p.click('.pw-form button[type=submit]');
     await p.waitForFunction(() => !document.querySelector('.pw-form'));

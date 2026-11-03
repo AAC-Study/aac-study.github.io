@@ -252,7 +252,8 @@
   function cfReset() { cf.token = ''; if (cf.id != null && window.turnstile) { try { window.turnstile.reset(cf.id); } catch (e) { /* */ } } }
 
   /* ---------- вход и регистрация ---------- */
-  function renderAuth(mode) {
+  function renderAuth(mode, opts) {
+    opts = opts || {};
     var app = $('#app');
     app.innerHTML = '';
     document.title = t('app_name');
@@ -270,11 +271,17 @@
       return el('label', { class: 'field', for: id }, [el('span', { class: 'field__label' }, label), wrap,
         extra && extra.hint ? el('span', { class: 'field__hint' }, extra.hint) : null]);
     }
+    var okBox = opts.note ? el('div', { class: 'form-ok', role: 'status' }, t(opts.note)) : null;
     var form = el('form', { novalidate: true }, [
+      okBox,
       errBox,
       isReg ? field('f-name', t('display_name'), 'text', { ac: 'nickname' }) : null,
       field('f-email', t('email'), 'email', { ac: 'email', dir: 'ltr' }),
       field('f-pass', t('password'), 'password', { ac: isReg ? 'new-password' : 'current-password', dir: 'ltr' }),
+      isReg ? null : el('label', { class: 'remember' }, [
+        el('input', { type: 'checkbox', id: 'f-remember' }),
+        el('span', null, [el('b', null, t('remember_me')), el('small', null, t('remember_hint'))])
+      ]),
       isReg ? null : el('button', { type: 'button', class: 'auth-forgot', onclick: function () { renderAuth('forgot'); } }, t('pw_forgot')),
       isReg ? field('f-invite', t('invite_code'), 'text', { ac: 'off', dir: 'ltr', hint: t('invite_hint') + (Store.mode === 'mock' ? ' (demo: ' + APP_CONFIG.MOCK_INVITE_CODE + ')' : '') }) : null,
       cfBox(showErr),
@@ -291,10 +298,12 @@
       var cap = cf.token;
       busy = true;
       var p = isReg ? Store.auth.signUp({ name: v('f-name'), email: v('f-email'), password: v('f-pass'), invite: v('f-invite'), captcha: cap })
-                    : Store.auth.signIn({ email: v('f-email'), password: v('f-pass'), captcha: cap });
+                    : Store.auth.signIn({ email: v('f-email'), password: v('f-pass'), captcha: cap, remember: !!($('#f-remember') || {}).checked });
       p.then(function (r) {
         busy = false;
         if (r && r.confirm) { checkMail(r.email); return; }
+        // после регистрации — на экран «Вход»: человек входит сам и выбирает «Запомнить меня»
+        if (r && r.registered) { cfReset(); renderAuth('login', { email: r.email, note: 'reg_done' }); return; }
         App.go('/');
       }).catch(function (er) { busy = false; cfReset(); showErr(t(er.code || 'err_login')); });
     });
@@ -323,7 +332,9 @@
       el('div', { class: 'auth__bg' }, [el('div', { class: 'blob blob--1' }), el('div', { class: 'blob blob--2' }), el('div', { class: 'blob blob--3' })]),
       card
     ]));
-    var first = $('input', card); if (first && window.innerWidth > 860) first.focus();
+    var pre = opts.email || (!isReg && Store.loginEmail) || '';
+    if (pre && $('#f-email', card)) { $('#f-email', card).value = pre; Store.loginEmail = null; }
+    var first = pre ? $('#f-pass', card) : $('input', card); if (first && window.innerWidth > 860) first.focus();
   }
 
   /* ---------- «Забыл пароль?» и новый пароль ---------- */
@@ -787,5 +798,6 @@
     var n = Store.linkNote; Store.linkNote = null;
     U.toast(t(n), n === 'auth_link_bad' ? 'err' : undefined);
   }
+  document.addEventListener('authexpired', function () { render(); linkNote(); });
   document.addEventListener('DOMContentLoaded', function () { I18N.init(); Store.ready.then(function () { render(); linkNote(); }, render); });
 })();

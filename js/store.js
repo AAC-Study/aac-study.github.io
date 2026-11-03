@@ -28,8 +28,28 @@
   }
   function err(code) { var e = new Error(code); e.code = code; return Promise.reject(e); }
 
+  /* «Запомнить меня» (просьба Дениса 03.11):
+     без галочки — выход, если человека нет на сайте 30 минут;
+     с галочкой — помним до 7 суток с момента входа (на 2 минуты раньше), потом войти заново. */
+  var IDLE_MS = 30 * 60 * 1000, LONG_MS = 7 * 24 * 3600 * 1000 - 2 * 60 * 1000;
+  var Policy = {
+    IDLE_MS: IDLE_MS, LONG_MS: LONG_MS,
+    get: function () { return U.storage.get('auth_pol', null); },
+    start: function (remember) { var n = Date.now(); U.storage.set('auth_pol', { r: !!remember, at: n, seen: n }); },
+    touch: function () { var x = Policy.get(); if (x) { x.seen = Date.now(); U.storage.set('auth_pol', x); } },
+    clear: function () { U.storage.set('auth_pol', null); },
+    expired: function () {
+      var x = Policy.get(), n = Date.now();
+      if (!x) return false;
+      return x.r ? n - x.at >= LONG_MS : n - x.seen >= IDLE_MS;
+    },
+    // вошёл до этой версии сайта: считаем, что галочка стоит, неделя с сегодняшнего дня
+    ensure: function () { if (!Policy.get()) Policy.start(true); }
+  };
+
   var Store = {
     mode: cfg.SUPABASE_URL ? 'supabase' : 'mock',
+    policy: Policy,
     POINTS: POINTS,
     levelInfo: levelInfo,
     MAX_LEVEL: MAX_LEVEL,
@@ -48,18 +68,18 @@
         var first = Object.keys(users).length === 0;
         users[email] = { id: 'u' + Date.now(), email: email, pass: p.password, name: String(p.name).trim(),
                          xp: 0, done: {}, frame: 'none', role: first ? 'admin' : 'student' };
-        saveUsers(); sessionEmail = email; U.storage.set('mock_session', email); emit();
-        return Promise.resolve(pub(users[email]));
+        saveUsers();
+        return Promise.resolve({ registered: true, email: email });   // входить отдельно, на экране «Вход»
       },
       signIn: function (p) {
         var email = String(p.email || '').trim().toLowerCase();
         var u = users[email];
         if (!u || u.pass !== p.password) return err('err_login');
         if ((U.storage.get('mock_banned', {}) || {})[u.id]) return err('err_banned');
-        sessionEmail = email; U.storage.set('mock_session', email); emit();
+        sessionEmail = email; U.storage.set('mock_session', email); Policy.start(p.remember); emit();
         return Promise.resolve(pub(u));
       },
-      signOut: function () { sessionEmail = null; U.storage.set('mock_session', null); emit(); return Promise.resolve(); },
+      signOut: function () { sessionEmail = null; U.storage.set('mock_session', null); Policy.clear(); emit(); return Promise.resolve(); },
       /* «Забыл пароль?»: в пробном режиме письма нет, просто делаем вид */
       recover: function () { return Promise.resolve(); },
       passChangedAt: function () { var u = users[sessionEmail]; return Promise.resolve(u && u.passAt ? new Date(u.passAt) : null); },
@@ -115,6 +135,8 @@
     }
   };
 
+  if (sessionEmail && Policy.expired()) { sessionEmail = null; U.storage.set('mock_session', null); Policy.clear(); Store.linkNote = 'auth_expired'; }
+  else if (sessionEmail) Policy.ensure();
   Store.ready = Promise.resolve();
 
   /* =====================================================================
@@ -220,14 +242,25 @@
       return fetch(URL + '/auth/v1/user', { headers: { apikey: KEY, Authorization: 'Bearer ' + q.access_token } })
         .then(function (r) { if (!r.ok) throw new Error('bad'); return r.json(); })
         .then(function (u) {
+          if (q.type !== 'recovery') {
+            // почта подтверждена — входить человек будет сам; вход из ссылки отзываем
+            Store.linkNote = 'auth_confirmed'; Store.loginEmail = u.email;
+            return fetch(URL + '/auth/v1/logout', { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + q.access_token } }).catch(function () {});
+          }
           saveSess({ access_token: q.access_token, refresh_token: q.refresh_token,
             expires_at: Number(q.expires_at) || Math.floor(Date.now() / 1000) + (Number(q.expires_in) || 3600), user: { id: u.id, email: u.email } });
-          if (q.type === 'recovery') { Store.pendingReset = true; Store.linkNote = null; }
-          else Store.linkNote = 'auth_confirmed';
+          Store.pendingReset = true; Store.linkNote = null; Policy.start(false);   // ссылка «сменить пароль»: короткий вход
         })
         .catch(function () { Store.linkNote = 'auth_link_bad'; });
     }
-    Store.ready = fromLink().then(loadMe).then(function (x) { setTimeout(flushAwards, 2000); return x; })
+    function expireAtStart() {
+      if (!sess) return Promise.resolve();
+      if (!Policy.expired()) { Policy.ensure(); return Promise.resolve(); }
+      Store.linkNote = 'auth_expired';
+      var p = http('POST', '/auth/v1/logout', {}).catch(function () {});   // отзываем вход и на сервере
+      return p.then(function () { saveSess(null); me = null; U.storage.set('sb_me_cache', null); Policy.clear(); });
+    }
+    Store.ready = expireAtStart().then(fromLink).then(loadMe).then(function (x) { setTimeout(flushAwards, 2000); return x; })
       .catch(function () { /* нет сети или сессия истекла */ });
 
     Store.auth = {
@@ -243,8 +276,9 @@
         return http('POST', '/auth/v1/signup?redirect_to=' + encodeURIComponent(back), body, { auth: false })
           .then(function (r) {
             if (!r || !r.access_token) return { confirm: true, email: email };   // ждём, пока подтвердит почту
-            saveSess(sessFrom(r));
-            return loadMe().then(function () { emit(); return toPub(me); });
+            // сразу не входим: человек входит сам на экране «Вход». Выданный сервером вход отзываем.
+            return fetch(URL + '/auth/v1/logout', { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + r.access_token } })
+              .catch(function () {}).then(function () { return { registered: true, email: email }; });
           }, function (e) { throw mapAuthErr(e); });
       },
       signIn: function (p) {
@@ -252,7 +286,7 @@
         var body = { email: email, password: p.password };
         if (p.captcha) body.gotrue_meta_security = { captcha_token: p.captcha };
         return http('POST', '/auth/v1/token?grant_type=password', body, { auth: false })
-          .then(function (r) { saveSess(sessFrom(r)); return loadMe(); }, function (e) { throw mapAuthErr(e); })
+          .then(function (r) { saveSess(sessFrom(r)); Policy.start(p.remember); return loadMe(); }, function (e) { throw mapAuthErr(e); })
           .then(function () { emit(); return toPub(me); });
       },
       /* «Забыл пароль?»: Supabase присылает письмо со ссылкой; ссылка возвращает сюда же */
@@ -293,7 +327,7 @@
       },
       signOut: function () {
         var p = sess ? http('POST', '/auth/v1/logout', {}).catch(function () {}) : Promise.resolve();
-        saveSess(null); me = null; done = {}; U.storage.set('sb_me_cache', null); emit(); return p;
+        saveSess(null); me = null; done = {}; U.storage.set('sb_me_cache', null); Policy.clear(); emit(); return p;
       }
     };
 
@@ -382,6 +416,29 @@
         .then(function () { document.dispatchEvent(new CustomEvent('issueschange')); });
     };
   })();
+
+  /* Следим за сроком входа, пока сайт открыт. Пока вкладка видна — человек «на сайте».
+     Сначала проверяем срок, потом отмечаем «был здесь» (иначе после 30 минут в фоне отметка его бы спасла). */
+  function watch() {
+    if (!Store.auth.current()) return;
+    if (Policy.expired()) {
+      Store.auth.signOut().then(function () {
+        Store.linkNote = 'auth_expired';
+        document.dispatchEvent(new CustomEvent('authexpired'));
+      });
+      return;
+    }
+    if (document.visibilityState !== 'hidden') Policy.touch();
+  }
+  Store.ready.then(function () {
+    watch();
+    setInterval(watch, 60 * 1000);
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'hidden') { if (Store.auth.current() && !Policy.expired()) Policy.touch(); }
+      else watch();
+    });
+    window.addEventListener('pagehide', function () { if (Store.auth.current() && !Policy.expired()) Policy.touch(); });
+  }, function () {});
 
   window.Store = Store;
 })();

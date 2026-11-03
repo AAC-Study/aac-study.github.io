@@ -27,6 +27,8 @@ async function step(name, fn) {
   await page.fill('#f-name', 'Rest Tester'); await page.fill('#f-email', 'rest@x.y');
   await page.fill('#f-pass', 'secret1'); await page.fill('#f-invite', 'AAC2026');
   await page.click('form button[type=submit]');
+  await page.waitForSelector('.form-ok');   // после регистрации — экран «Вход»
+  await page.fill('#f-pass', 'secret1'); await page.click('form button[type=submit]');
   await page.waitForSelector('.side');
 
   /* fake Store.sb: records every call; answers are configurable per path prefix */

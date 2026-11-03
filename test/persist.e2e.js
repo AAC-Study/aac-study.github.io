@@ -9,7 +9,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     const ctx = await b.newContext({ viewport: { width: 1280, height: 800 } }); const p = await ctx.newPage(); const errs = [];
     p.on('pageerror', e => errs.push(e.message));
     await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); }); await p.reload();
-    await p.evaluate(() => Store.auth.signUp({ email: 'a@x.y', password: '123456', name: 'A', invite: 'AAC2026' }));
+    await p.evaluate(() => Store.auth.signUp({ email: 'a@x.y', password: '123456', name: 'A', invite: 'AAC2026' }).then(() => Store.auth.signIn({ email: 'a@x.y', password: '123456' })));
     await p.evaluate(() => App.go('/lesson/math-2026-11-01'));
     await p.waitForSelector('.ls-step');
     for (let i = 0; i < 16; i++) { await p.mouse.move(100 + i * 10, 300); await p.mouse.wheel(0, 250); await p.waitForTimeout(400); }

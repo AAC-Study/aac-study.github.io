@@ -125,8 +125,10 @@
   });
   // test user (mock mode)
   if (!Store.auth.current() && qs.nouser !== '1') {
+    // регистрация больше не входит сама — входим отдельно
     Store.auth.signUp({ email: 'tester@example.com', password: 'secret1', name: 'Tester', invite: 'AAC2026' })
-      .catch(function () { return Store.auth.signIn({ email: 'tester@example.com', password: 'secret1' }); });
+      .catch(function () {})
+      .then(function () { return Store.auth.signIn({ email: 'tester@example.com', password: 'secret1' }); });
   }
   window.addEventListener('hashchange', App._route);
   App._route();

@@ -29,6 +29,8 @@ async function register(page, key) {
   await page.fill('#f-name', NAMES[key]); await page.fill('#f-email', key + '@x.y');
   await page.fill('#f-pass', 'secret1'); await page.fill('#f-invite', 'AAC2026');
   await page.click('form button[type=submit]');
+  await page.waitForSelector('.form-ok');   // после регистрации — экран «Вход»
+  await page.fill('#f-pass', 'secret1'); await page.click('form button[type=submit]');
   await page.waitForSelector('.side');
 }
 async function setSwitch(page, sel, on) {
