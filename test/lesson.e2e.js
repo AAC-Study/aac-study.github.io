@@ -201,7 +201,7 @@ function watchErrors(page, list) {
     await page.click('.tk-panel--ai .tk-panel__head');
     await page.waitForTimeout(400);
     const prompt = await page.inputValue('.tk-prompt');
-    ['6x² + 5x + 1 = 0', 'наверное минус треть', 'одно действие в строке', 'подсказку', 'на русском языке', 'D = b² − 4ac'].forEach(s => assert.ok(prompt.includes(s), 'prompt has ' + s));
+    ['6x² + 5x + 1 = 0', 'наверное минус треть', 'one operation per line', 'hint first', 'answer me in Russian', 'D = b² − 4ac', 'FIRST ask me to send a photo'].forEach(s => assert.ok(prompt.includes(s), 'prompt has ' + s));
     await page.click('.tk-prompt__btns .btn--primary');
     await page.waitForTimeout(300);
     const clip = await page.evaluate(() => navigator.clipboard.readText());

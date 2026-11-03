@@ -24,7 +24,7 @@ const URL = (id, lang) => `http://localhost:8765/test/lesson-test.html?lang=${la
   await step('Java task: code field, no drawing, code symbols, Tab = 4 spaces, code goes into the AI prompt', async () => {
     const { ctx, page, errs } = await openFirst('algo-2026-11-01');
     assert.strictEqual(await page.locator('.tk-canvas').count(), 0, 'no canvas');
-    assert.strictEqual(await page.locator('.tk-seg').count(), 0, 'no draw/type switch');
+    assert.strictEqual(await page.locator('.tk-work .tk-seg').count(), 0, 'no draw/type switch');
     assert(await page.locator('textarea.tk-code').isVisible(), 'code field visible');
     assert.strictEqual(await page.getAttribute('textarea.tk-code', 'dir'), 'ltr');
     const syms = await page.$$eval('.tk-sym', b => b.map(x => x.textContent));
@@ -37,7 +37,7 @@ const URL = (id, lang) => `http://localhost:8765/test/lesson-test.html?lang=${la
     assert(/s\+\+;\{$/.test(await page.inputValue('textarea.tk-code')), 'symbol goes into the code');
     await page.click('.tk-panel--ai .tk-panel__head'); await page.waitForTimeout(300);
     const pr = await page.inputValue('.tk-prompt');
-    assert(/репетитор по программированию \(Java\)/.test(pr) && /Мой код:/.test(pr) && /int s = 0;/.test(pr) && !/математике/.test(pr), pr.slice(0, 400));
+    assert(/patient programming tutor \(Java\)/.test(pr) && /My code:/.test(pr) && /int s = 0;/.test(pr) && /answer me in Russian/.test(pr) && !/math/.test(pr), pr.slice(0, 400));
     await page.screenshot({ path: SP + '/code-java.png' });
     // reload keeps the code
     await page.reload(); await page.waitForSelector('textarea.tk-code');   // the open task reopens by itself

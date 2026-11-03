@@ -274,7 +274,7 @@
       tk_hint: 'רמז', tk_hint_n: 'רמז {n}', tk_more_hint: 'עוד רמז', tk_hint_last: 'זה היה הרמז האחרון. הפתרון המלא נמצא למטה.',
       tk_hint_empty: 'הרמזים יופיעו כאן אחרי בדיקה — או פתחו את הראשון כבר עכשיו.', tk_show_hint: 'להציג רמז',
       tk_solution: 'תשובה ופתרון מלא', tk_open: 'לפתוח', tk_close: 'לסגור',
-      tk_prompt: 'פרומפט ל־AI', tk_prompt_lead: 'העתיקו והדביקו בכל AI (ChatGPT, Claude, Gemini…). הפרומפט כולל את המשימה ואת התשובה שלכם.',
+      tk_prompt: 'פרומפט ל־AI', tk_prompt_lead: 'העתיקו והדביקו בכל AI (ChatGPT, Claude, Gemini…), גם בצ׳אט חדש וריק. הפרומפט כולל את המשימה ואת התשובה שלכם.',
       tk_copy: 'העתקה', tk_copied: 'הועתק', tk_download: 'הורדה', tk_solved: 'נפתרה',
       tk_made_by_ai: 'נוצר על ידי AI', tk_level: 'רמה {n}',
       tk_level_1: 'כמו בשיעור', tk_level_2: 'קצת יותר קשה', tk_level_3: 'עוד קצת יותר קשה',
@@ -291,6 +291,7 @@
       tk_diag_said_none: 'למשוואה הזו יש פתרון. חשבו שוב את D — זכרו ש־b² אף פעם לא שלילי, גם כש־b שלילי.',
       tk_diag_number: 'זה לא המספר הנכון. בדקו את החישוב שלב אחרי שלב.',
       tk_diag_choice: 'זו לא התשובה הנכונה. הרמז יעזור.',
+      tk_ai_reply: 'ה־AI יענה ב:', tk_ai_warn: 'זה AI: הוא יכול לטעות. בדקו בעצמכם כל דבר שהוא כותב.',
       tk_code: 'הקוד שלך', tk_code_ph_java: 'כתבו כאן את הקוד ב־Java…', tk_code_ph_html: 'כתבו כאן את קוד ה־HTML…', tk_code_ph_sql: 'כתבו כאן את השאילתה ב־SQL…',
       tk_code_note: 'כתבו את הקוד כאן, הריצו אותו אצלכם (IntelliJ / VS Code / SSMS) והכניסו למטה מה יצא.',
       tk_preview: 'להציג את הדף', tk_preview_hide: 'להסתיר את הדף', tk_preview_note: 'תמונות מהאינטרנט לא מוצגות כאן, רק הקוד שלכם.',
@@ -308,7 +309,7 @@
       tk_hint: 'Подсказка', tk_hint_n: 'Подсказка {n}', tk_more_hint: 'Ещё подсказка', tk_hint_last: 'Это была последняя подсказка. Полное решение — ниже.',
       tk_hint_empty: 'Подсказки появятся здесь после проверки — или открой первую прямо сейчас.', tk_show_hint: 'Показать подсказку',
       tk_solution: 'Ответ и полное решение', tk_open: 'Открыть', tk_close: 'Закрыть',
-      tk_prompt: 'Промпт для ИИ', tk_prompt_lead: 'Скопируй и вставь в любой ИИ (ChatGPT, Claude, Gemini…). В промпте есть задача и твой ответ.',
+      tk_prompt: 'Промпт для ИИ', tk_prompt_lead: 'Скопируй и вставь в любой ИИ (ChatGPT, Claude, Gemini…), даже в новый пустой чат. В промпте есть задача и твой ответ.',
       tk_copy: 'Копировать', tk_copied: 'Скопировано', tk_download: 'Скачать', tk_solved: 'Решено',
       tk_made_by_ai: 'Придумано ИИ', tk_level: 'Уровень {n}',
       tk_level_1: 'Как на уроке', tk_level_2: 'Чуть сложнее', tk_level_3: 'Ещё чуть сложнее',
@@ -325,6 +326,7 @@
       tk_diag_said_none: 'У этого уравнения есть решение. Пересчитай D — b² никогда не бывает отрицательным, даже если b отрицательное.',
       tk_diag_number: 'Это не то число. Проверь вычисления шаг за шагом.',
       tk_diag_choice: 'Это неверный ответ. Подсказка поможет.',
+      tk_ai_reply: 'ИИ ответит на:', tk_ai_warn: 'Это ИИ: он может ошибаться. Проверяй сам всё, что он пишет.',
       tk_code: 'Твой код', tk_code_ph_java: 'Пиши здесь код на Java…', tk_code_ph_html: 'Пиши здесь HTML-код…', tk_code_ph_sql: 'Пиши здесь запрос SQL…',
       tk_code_note: 'Напиши код здесь, запусти у себя (IntelliJ / VS Code / SSMS) и впиши ниже, что получилось.',
       tk_preview: 'Показать страницу', tk_preview_hide: 'Скрыть страницу', tk_preview_note: 'Картинки из интернета здесь не показываются, только твой код.',
@@ -342,7 +344,7 @@
       tk_hint: 'Hint', tk_hint_n: 'Hint {n}', tk_more_hint: 'Another hint', tk_hint_last: 'That was the last hint. The full solution is below.',
       tk_hint_empty: 'Hints appear here after you check — or open the first one now.', tk_show_hint: 'Show a hint',
       tk_solution: 'Answer and full solution', tk_open: 'Open', tk_close: 'Close',
-      tk_prompt: 'Prompt for AI', tk_prompt_lead: 'Copy and paste into any AI (ChatGPT, Claude, Gemini…). The prompt includes the task and your answer.',
+      tk_prompt: 'Prompt for AI', tk_prompt_lead: 'Copy and paste into any AI (ChatGPT, Claude, Gemini…), even a brand-new empty chat. The prompt includes the task and your answer.',
       tk_copy: 'Copy', tk_copied: 'Copied', tk_download: 'Download', tk_solved: 'Solved',
       tk_made_by_ai: 'Made by AI', tk_level: 'Level {n}',
       tk_level_1: 'Like the lesson', tk_level_2: 'A bit harder', tk_level_3: 'A bit harder still',
@@ -359,6 +361,7 @@
       tk_diag_said_none: 'This equation does have a solution. Recompute D — b² is never negative, even when b is negative.',
       tk_diag_number: 'That is not the right number. Check your working step by step.',
       tk_diag_choice: 'That is not the right answer. The hint will help.',
+      tk_ai_reply: 'The AI will answer in:', tk_ai_warn: 'This is AI: it can make mistakes. Check everything it writes yourself.',
       tk_code: 'Your code', tk_code_ph_java: 'Write your Java code here…', tk_code_ph_html: 'Write your HTML here…', tk_code_ph_sql: 'Write your SQL query here…',
       tk_code_note: 'Write the code here, run it on your computer (IntelliJ / VS Code / SSMS) and enter below what came out.',
       tk_preview: 'Show the page', tk_preview_hide: 'Hide the page', tk_preview_note: 'Images from the internet are not shown here, only your code.',
@@ -491,77 +494,39 @@
   /* =====================================================================
      4. PROMPT FOR AI
      ===================================================================== */
-  var PROMPT = {
-    he: {
-      lang: 'עברית',
-      body: [
-        'את/ה מורה פרטי/ת סבלני/ת למתמטיקה. אני סטודנט/ית במכללה (מסלול הנדסאים).',
-        'נושא: {topic} (מקצוע: {subject}, שיעור מתאריך {date}).',
-        '',
-        'המשימה:',
-        '{instr}{task}',
-        '',
-        'התשובה שלי: {answer}',
-        '',
-        'מה אני מבקש/ת:',
-        '1. בדוק/י אם התשובה שלי נכונה.',
-        '2. הסבר/י את הפתרון צעד אחר צעד — פעולה אחת בכל שורה.',
-        '{method}',
-        '4. אם טעיתי — מצא/י איפה בדיוק הטעות והסבר/י אותה בעדינות.',
-        '5. קודם תן/י לי רמז ותן/י לי לנסות שוב. את התשובה הסופית — רק אם אבקש.',
-        '6. לכפל השתמש/י בסימן ×. ענה/י ב{lang}.'
-      ],
-      method: '3. השתמש/י בשיטה שלמדנו: מזהים a, b, c ← מחשבים D = b² − 4ac ← מוציאים √D ← x₁,₂ = (−b ± √D) / (2a).',
-      methodOther: '3. השתמש/י בשיטה הרגילה של בית הספר, בלי קיצורי דרך מתקדמים.',
-      noAnswer: 'עוד לא עניתי.', instrRoots: 'פתרו את המשוואה: '
-    },
-    ru: {
-      lang: 'русском языке',
-      body: [
-        'Ты — терпеливый репетитор по математике. Я студент колледжа (программа техников-инженеров).',
-        'Тема: {topic} (предмет: {subject}, урок от {date}).',
-        '',
-        'Задача:',
-        '{instr}{task}',
-        '',
-        'Мой ответ: {answer}',
-        '',
-        'Что мне нужно:',
-        '1. Проверь, верен ли мой ответ.',
-        '2. Объясни решение шаг за шагом — одно действие в строке.',
-        '{method}',
-        '4. Если я ошибся — найди, где именно ошибка, и объясни её спокойно.',
-        '5. Сначала дай подсказку и дай мне попробовать ещё раз. Окончательный ответ — только если я попрошу.',
-        '6. Для умножения используй знак ×. Отвечай на {lang}.'
-      ],
-      method: '3. Используй способ, который мы проходили: выписываем a, b, c → D = b² − 4ac → √D → x₁,₂ = (−b ± √D) / (2a).',
-      methodOther: '3. Используй обычный школьный способ, без продвинутых приёмов.',
-      noAnswer: 'Я ещё не ответил.', instrRoots: 'Реши уравнение: '
-    },
-    en: {
-      lang: 'English',
-      body: [
-        'You are a patient math tutor. I am a college student (practical engineering / technician program).',
-        'Topic: {topic} (subject: {subject}, lesson of {date}).',
-        '',
-        'The task:',
-        '{instr}{task}',
-        '',
-        'My answer: {answer}',
-        '',
-        'What I need:',
-        '1. Check whether my answer is correct.',
-        '2. Explain the solution step by step — one operation per line.',
-        '{method}',
-        '4. If I made a mistake, find exactly where it is and explain it gently.',
-        '5. Give me a hint first and let me try again. Give the final answer only if I ask for it.',
-        '6. Use × for multiplication. Answer in {lang}.'
-      ],
-      method: '3. Use the method from class: write down a, b, c → D = b² − 4ac → √D → x₁,₂ = (−b ± √D) / (2a).',
-      methodOther: '3. Use the standard school method, no advanced shortcuts.',
-      noAnswer: 'I have not answered yet.', instrRoots: 'Solve the equation: '
-    }
-  };
+  /* Промпт всегда на английском (его лучше всего понимает любой ИИ, даже бесплатный и без контекста).
+     Язык ответа выбирает человек переключателем над промптом: иврит, русский или английский. */
+  var REPLY_LANG = { he: 'Hebrew', ru: 'Russian', en: 'English' };
+  function replyLine(rl) {
+    var name = REPLY_LANG[rl] || 'English';
+    return 'LANGUAGE: Always answer me in ' + name + ', even if earlier messages in this chat were in another language.';
+  }
+  var ASK_FIRST = [
+    'IMPORTANT, before you explain anything: you cannot see my screen or my notebook. If my answer is wrong, or I mention an error you cannot fully understand from this message,',
+    'FIRST ask me to send a photo or screenshot of my work (or to paste it as text), and wait for it. Then explain exactly what happened in MY work, not in general.'
+  ];
+  var PROMPT_MATH = [
+    'You are a patient private math tutor. I am a beginner college student (practical engineering / software technician program, first semester).',
+    'Topic: {topic} (subject: {subject}, lesson of {date}). Only use what is taught at this level; no advanced shortcuts.', '',
+    'The task:', '{instr}{task}', '', 'My answer: {answer}', '',
+    'What I need:', '1. Check whether my answer is correct.', '2. Explain the solution step by step, one operation per line.', '{method}',
+    '4. If I made a mistake, find exactly where it is and explain it calmly and simply.',
+    '5. Give me a hint first and let me try again. Give the final answer only if I ask for it.',
+    '6. Use × for multiplication (not a dot) and write formulas plainly.', '',
+  ].concat(ASK_FIRST);
+  var METHOD_QUAD = '3. Use the method from class: write down a, b, c → D = b² − 4ac → √D → x₁,₂ = (−b ± √D) / (2a).';
+  var METHOD_OTHER = '3. Use the standard school method, no advanced shortcuts.';
+  var PROMPT_CODE = [
+    'You are a patient programming tutor ({code}). I am a beginner college student (software technician program, first semester).',
+    'Topic: {topic} (subject: {subject}, lesson of {date}). Only use what we have learned up to this lesson; nothing advanced.', '',
+    'The task:', '{task}', '', 'My code:', '{mycode}', '', 'My answer: {answer}', '',
+    'What I need:', '1. Check whether my code and my answer are correct.',
+    '2. If there is a mistake, show exactly which line and why, in plain words.',
+    '3. Walk through the code line by line (and in a loop, round by round), showing what happens at each step.',
+    '4. Give a hint first and let me try again. Show full code only if I ask for it.', '',
+  ].concat(ASK_FIRST);
+  var NO_ANSWER = 'I have not answered yet.';
+  var NO_CODE = '(I have not written code yet. If you need my code, ask me to paste it or send a screenshot.)';
 
   /* Предметы программирования: вместо рисования и формул — поле для кода. */
   var PROG = { algo: 'Java', fullstack: 'HTML', sql: 'SQL' };
@@ -571,55 +536,54 @@
     HTML: ['<', '>', '/', '=', '"', '</', '#', ';', ':'],
     SQL: ['(', ')', ',', ';', "'", '=', '<>', '<', '>', '*', '%']
   };
-  var PROMPT_CODE = {
-    he: ['את/ה מורה פרטי/ת סבלני/ת לתכנות ({code}). אני סטודנט/ית במכללה (מסלול הנדסאי תוכנה), מתחיל/ה.',
-      'נושא: {topic} (מקצוע: {subject}, שיעור מתאריך {date}).', '', 'המשימה:', '{task}', '', 'הקוד שלי:', '{mycode}', '', 'התשובה שלי: {answer}', '',
-      'מה אני מבקש/ת:', '1. בדוק/י אם הקוד והתשובה שלי נכונים.', '2. אם יש טעות — הראה/י באיזו שורה בדיוק ולמה, בשפה פשוטה.',
-      '3. עבור/י על הקוד שורה אחרי שורה (ובלולאה — סיבוב אחרי סיבוב) ומה קורה בכל שלב.',
-      '4. השתמש/י רק במה שלמדנו עד השיעור הזה, בלי נושאים מתקדמים.', '5. קודם רמז ותן/י לי לנסות שוב. קוד מלא — רק אם אבקש.', '6. ענה/י ב{lang}.'],
-    ru: ['Ты — терпеливый репетитор по программированию ({code}). Я студент колледжа (программа техник-программист), начинающий.',
-      'Тема: {topic} (предмет: {subject}, урок от {date}).', '', 'Задача:', '{task}', '', 'Мой код:', '{mycode}', '', 'Мой ответ: {answer}', '',
-      'Что мне нужно:', '1. Проверь, верны ли мой код и ответ.', '2. Если есть ошибка — покажи, в какой именно строке и почему, простыми словами.',
-      '3. Пройди по коду строка за строкой (а в цикле — круг за кругом) и покажи, что происходит на каждом шаге.',
-      '4. Используй только то, что мы прошли до этого урока, без продвинутых тем.', '5. Сначала подсказка, дай мне попробовать ещё раз. Готовый код — только если я попрошу.', '6. Отвечай на {lang}.'],
-    en: ['You are a patient programming tutor ({code}). I am a beginner college student (software technician program).',
-      'Topic: {topic} (subject: {subject}, lesson of {date}).', '', 'The task:', '{task}', '', 'My code:', '{mycode}', '', 'My answer: {answer}', '',
-      'What I need:', '1. Check whether my code and answer are correct.', '2. If there is a mistake, show exactly which line and why, in plain words.',
-      '3. Walk through the code line by line (and in a loop, round by round), showing what happens at each step.',
-      '4. Use only what we have learned up to this lesson, nothing advanced.', '5. Give a hint first and let me try again. Full code only if I ask.', '6. Answer in {lang}.']
-  };
-  var NO_CODE = { he: '(עוד לא כתבתי קוד)', ru: '(я ещё не написал код)', en: '(I have not written code yet)' };
-
   function quadLesson(lesson) {
     var tk = (lesson && lesson.tasks) || {};
     return (tk.teacher || []).concat(tk.ai || []).some(function (x) { return x.kind === 'roots'; });
   }
-  function buildPrompt(lesson, task, studentAnswer, lang, myCode) {
-    var P = PROMPT[lang] || PROMPT.en;
+  /* Переключатель «ИИ ответит на: עברית / Русский / English». Выбор запоминается. */
+  function aiLang() { var v = U.storage.get('ai_lang', ''); return REPLY_LANG[v] ? v : (REPLY_LANG[I18N.lang] ? I18N.lang : 'en'); }
+  function aiLangSwitch(onChange) {
+    var names = { he: 'עברית', ru: 'Русский', en: 'English' };
+    var row = el('div', { class: 'ai-lang', role: 'group', 'aria-label': t('tk_ai_reply') });
+    row.appendChild(el('span', { class: 'ai-lang__label' }, t('tk_ai_reply')));
+    var seg = el('div', { class: 'tk-seg ai-lang__seg' });
+    ['he', 'ru', 'en'].forEach(function (l) {
+      var b = el('button', { type: 'button', class: 'tk-seg__btn', 'data-lang': l, lang: l, dir: l === 'he' ? 'rtl' : 'ltr', 'aria-pressed': l === aiLang() ? 'true' : 'false' }, names[l]);
+      b.addEventListener('click', function () {
+        U.storage.set('ai_lang', l);
+        U.$$('.tk-seg__btn', seg).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        if (onChange) onChange(l);
+      });
+      seg.appendChild(b);
+    });
+    row.appendChild(seg);
+    return row;
+  }
+
+  function buildPrompt(lesson, task, studentAnswer, replyLang, myCode) {
     var codeLang = codeLangOf(lesson);
-    var instr = '';
-    if (typeof task.text === 'string' && task.kind === 'roots') instr = P.instrRoots;
-    var text = taskText(task, lang);
+    var L = 'en';   // текст задачи для ИИ — по-английски
+    var instr = (typeof task.text === 'string' && task.kind === 'roots') ? 'Solve the equation: ' : '';
+    var text = taskText(task, L);
     if (task.kind === 'choice') {
-      text += '\n' + (task.options || []).map(function (o, i) { return String.fromCharCode(65 + i) + ') ' + pick(o, lang); }).join('\n');
+      text += '\n' + (task.options || []).map(function (o, i) { return String.fromCharCode(65 + i) + ') ' + pick(o, L); }).join('\n');
     }
     var ans = String(studentAnswer == null ? '' : studentAnswer).trim();
     var vars = {
-      topic: pick(lesson.title, lang), subject: subjectName(lesson.subject, lang), date: fmtDate(lesson.date),
-      instr: instr, task: text, answer: ans ? '"' + ans + '"' : P.noAnswer,
+      topic: pick(lesson.title, L), subject: subjectName(lesson.subject, L), date: fmtDate(lesson.date),
+      instr: instr, task: text, answer: ans ? '"' + ans + '"' : NO_ANSWER,
       /* способ решения: свой у урока/задачи (method: {he,ru,en}); формула корней — только в уроках про квадратные уравнения */
-      method: (task.method || lesson.method) ? '3. ' + pick(task.method || lesson.method, lang)
-        : (quadLesson(lesson) && (task.kind === 'roots' || task.kind === 'number' || task.kind === 'choice') ? P.method : P.methodOther),
-      lang: P.lang
+      method: (task.method || lesson.method) ? '3. ' + pick(task.method || lesson.method, L)
+        : (quadLesson(lesson) && (task.kind === 'roots' || task.kind === 'number' || task.kind === 'choice') ? METHOD_QUAD : METHOD_OTHER)
     };
-    var body = P.body;
+    var body = PROMPT_MATH;
     if (codeLang) {
-      body = PROMPT_CODE[lang] || PROMPT_CODE.en;
+      body = PROMPT_CODE;
       vars.code = codeLang;
-      vars.mycode = String(myCode || '').trim() ? '```\n' + String(myCode).replace(/\s+$/, '') + '\n```' : (NO_CODE[lang] || NO_CODE.en);
-      if (task.method || lesson.method) body = body.concat(['', pick(task.method || lesson.method, lang)]);
+      vars.mycode = String(myCode || '').trim() ? '```\n' + String(myCode).replace(/\s+$/, '') + '\n```' : NO_CODE;
+      if (task.method || lesson.method) body = body.concat(['', pick(task.method || lesson.method, L)]);
     }
-    return body.map(function (line) {
+    return body.concat(['', replyLine(replyLang || I18N.lang)]).map(function (line) {
       return line.replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; });
     }).join('\n');
   }
@@ -1017,13 +981,15 @@
     var copyBtn = el('button', { type: 'button', class: 'btn btn--primary', html: Icons.get('copy') + '<span>' + U.esc(t('tk_copy')) + '</span>' });
     var dlBtn = el('button', { type: 'button', class: 'btn', html: Icons.get('download') + '<span>' + U.esc(t('tk_download')) + '</span>' });
     promptPanel.inner.appendChild(el('p', { class: 'tk-note' }, t('tk_prompt_lead')));
+    promptPanel.inner.appendChild(aiLangSwitch(function () { refreshPrompt(); }));
+    promptPanel.inner.appendChild(el('p', { class: 'tk-note ai-warn' }, t('tk_ai_warn')));
     promptPanel.inner.appendChild(promptArea);
     promptPanel.inner.appendChild(el('div', { class: 'tk-prompt__btns' }, [copyBtn, dlBtn]));
     function answerForPrompt() {
       if (task.kind === 'choice') return choiceVal === '' ? '' : pick((task.options || [])[Number(choiceVal)], lang);
       return currentAnswer();
     }
-    function refreshPrompt() { promptArea.value = buildPrompt(lesson, task, answerForPrompt(), lang, codeLang ? textArea.value : ''); }
+    function refreshPrompt() { promptArea.value = buildPrompt(lesson, task, answerForPrompt(), aiLang(), codeLang ? textArea.value : ''); }
     copyBtn.addEventListener('click', function () {
       refreshPrompt();
       copyText(promptArea.value).then(function () { U.toast(t('tk_copied')); }, function () {
@@ -1134,7 +1100,7 @@
     isOpen: function () { return openCount > 0; },
     isSolved: isSolved,
     solveKey: solveKey,
-    buildPrompt: buildPrompt,
+    buildPrompt: buildPrompt, aiLang: aiLang, aiLangSwitch: aiLangSwitch, replyLine: replyLine, ASK_FIRST: ASK_FIRST,
     answerText: answerText,
     taskText: taskText,
     taskLabel: taskLabel,

@@ -6,7 +6,7 @@
   var el = U.el;
   var CACHE = 'aac-offline-v1';
   var KEY = 'offline_lessons';          // { id: время скачивания }
-  var STATIC = ['./', 'index.html', 'manifest.webmanifest', 'version.json', 'data/subjects.js', 'data/lessons/index.js',
+  var STATIC = ['./', 'index.html', 'manifest.webmanifest', 'version.json', 'data/subjects.js', 'data/lessons/index.js', 'data/homework.js',
     'img/favicon.svg', 'img/icon-32.png', 'img/icon-180.png', 'img/icon-192.png', 'img/icon-512.png', 'img/badge-96.png',
     'vendor/cropper.min.css', 'vendor/cropper.min.js'];
 

@@ -1,0 +1,59 @@
+/* Домашние задания. Новые — сверху не обязательно: список сортируется сам (ближайший срок первым).
+   Поля:
+     id, subject (id из data/subjects.js), title {he,ru,en}
+     given / due — ISO с часовым поясом Израиля (+02:00 зимой, +03:00 летом); due: null, если срок неизвестен
+     summary {he,ru,en} — коротко, что это
+     original {lang, text} — текст задания, как его дал преподаватель
+     steps [{he,ru,en}] — что сделать, по шагам
+     submit {he,ru,en} — куда и как сдать; links [{label:{he,ru,en}, url}]
+     level — что уже прошли (по-английски, для промпта ИИ)
+     aiRule: 'banned' — преподаватель запретил ИИ на этом курсе
+     selfPrompt: true — преподаватель просит самому написать промпт (тогда ИИ помогает написать свой) */
+window.HOMEWORK = [
+  {
+    id: 'sql-2026-10-29-ptiha', subject: 'sql',
+    title: { he: 'תרגיל פתיחה – הקמת מסד נתונים', ru: 'Вводное упражнение: создать базу данных', en: 'Opening exercise: build a database' },
+    given: '2026-10-29T13:00:00+02:00', givenDateOnly: true, due: '2026-11-03T12:00:00+02:00',
+    summary: {
+      he: 'מסד נתונים לחברת "שטויות בע"מ": טבלה של קטעי וידאו מצחיקים, נתוני דמה ושתי שאילתות.',
+      ru: 'База данных для фирмы «Штуйот»: таблица смешных видеоклипов, выдуманные данные и два запроса.',
+      en: 'A database for the "Shtuyot Ltd." company: a table of funny video clips, dummy data and two queries.'
+    },
+    original: { lang: 'he', text: 'חברת שטויות בע"מ אוספת מרחבי האינטרנט קטעי צחוק בסרטוני וידאו. הם טרם סידרו את הנתונים שלהם במסד נתונים, וביקשו ממך, במסגרת התכנית "תכניתן נולד", ליצור להם אותו.\nהם מעוניינים ליצור מסד נתונים שיכיל את הנתונים הבאים:\n• מספר סידורי של אומן\n• שם האומן\n• שם הקטע\n• מספר שניות של אורך הקטע\n• לינק אל הקטע\n• מספר הלייקים שהקטע קיבל באתרים השונים (אם אין לייקים, ערך זה יהיה 0)\n\nמטלה:\n1. הגדר מסד נתונים, ותעבור אליו\n2. הגדר טבלה העונה על דרישת החברה\n3. תמלא את הטבלה בנתוני-דמה (מדמיונך הפורה)\n4. הגדר שאילתה המציגה את כל הנתונים שהוכנסו למסד הנתונים\n5. הגדר שאילתה המציגה את שם האומן וכן את מספר הלייקים של כל הרשומות' },
+    steps: [
+      { he: 'פתחו את SSMS והתחברו לשרת (כמו בשיעור).', ru: 'Открой SSMS и подключись к серверу (как на уроке).', en: 'Open SSMS and connect to the server (as in class).' },
+      { he: 'צרו מסד נתונים עם create database ועברו אליו עם use.', ru: 'Создай базу командой create database и перейди в неё командой use.', en: 'Create a database with create database and switch to it with use.' },
+      { he: 'צרו טבלה עם create table ובה 6 עמודות: מספר אומן (int), שם אומן (nvarchar), שם הקטע (nvarchar), אורך בשניות (int), לינק (nvarchar), לייקים (int).', ru: 'Создай таблицу create table с 6 столбцами: номер артиста (int), имя артиста (nvarchar), название клипа (nvarchar), длина в секундах (int), ссылка (nvarchar), лайки (int).', en: 'Create a table with create table and 6 columns: artist number (int), artist name (nvarchar), clip name (nvarchar), length in seconds (int), link (nvarchar), likes (int).' },
+      { he: 'הכניסו כמה שורות של נתוני דמה עם insert into … values. אם לקטע אין לייקים, כתבו 0.', ru: 'Добавь несколько строк выдуманных данных через insert into … values. Если у клипа нет лайков, пиши 0.', en: 'Insert a few rows of made-up data with insert into … values. If a clip has no likes, write 0.' },
+      { he: 'שאילתה שמציגה הכול: select * from …', ru: 'Запрос, который показывает всё: select * from …', en: 'A query that shows everything: select * from …' },
+      { he: 'שאילתה שמציגה רק את שם האומן ואת מספר הלייקים.', ru: 'Запрос, который показывает только имя артиста и число лайков.', en: 'A query that shows only the artist name and the number of likes.' },
+      { he: 'הריצו הכול, צלמו מסך של SSMS עם הקוד והתוצאה, והעלו ל־Moodle.', ru: 'Запусти всё, сделай скриншот SSMS с кодом и результатом и загрузи в Moodle.', en: 'Run everything, take a screenshot of SSMS with the code and the result, and upload it to Moodle.' }
+    ],
+    submit: { he: 'צילום מסך מ־SSMS (הקוד והתוצאה) ב־Moodle, עד 3.11 בשעה 12:00.', ru: 'Скриншот из SSMS (код и результат) в Moodle, до 03.11 в 12:00.', en: 'A screenshot from SSMS (code and result) in Moodle, by 3 Nov at 12:00.' },
+    links: [],
+    level: 'So far in SQL we learned: what a database and a table are, create database, use, create table with int and nvarchar columns, insert into ... values, select * from, selecting specific columns, and where with the operators and / or / not. We use SQL Server with SSMS.'
+  },
+  {
+    id: 'fullstack-2026-10-28-mesakem', subject: 'fullstack',
+    title: { he: 'תרגיל מסכם – HTML: אתר לעסק (4 דפים)', ru: 'Итоговое задание по HTML: сайт бизнеса (4 страницы)', en: 'HTML summary exercise: a business website (4 pages)' },
+    given: '2026-10-28T11:19:00+02:00', due: null, aiRule: 'banned',
+    summary: {
+      he: 'אתר לעסק דמיוני או אמיתי: דף הבית, דף הרשמה עם טופס, דף "תודה על הרשמתך" ודף מחירון עם טבלה.',
+      ru: 'Сайт выдуманного или настоящего бизнеса: главная, страница регистрации с формой, страница «Спасибо за регистрацию» и прайс-лист с таблицей.',
+      en: 'A site for an imaginary or real business: home page, sign-up page with a form, a "thank you" page and a price list with a table.'
+    },
+    original: { lang: 'he', text: 'צרו אתר דמיוני לעסק (העסק יכול להיות מדומיין או אמיתי), ובו לפחות 4 דפים: דף הבית, דף הרשמה, דף אישור הרשמה ודף מחירון.\n• בדף הבית יופיע שם העסק, הלוגו שלו, תמונת "קונספט" (תמונת סביבה או המוצרים שהוא מוכר), והסבר קצר על העסק. בדף יופיע גם תפריט שיקשר לשני הדפים האחרים.\n• דף ההרשמה יהיה טופס form ובו המשתמש יצטרך למלא את שמו, המייל שלו, סיסמה, טלפון, מגדר (בחירה בין זכר/נקבה/מעדיף לא לענות), פירוט על מוצרים אהובים (בתיבת טקסט או סימון בחירות), ותיבת סימון הסכמה לתנאי השימוש. לחיצה על שלח תוביל אותו לדף אישור הרשמה. ניתן גם לחזור לדף הבית מדף ההרשמה (ללא השלכות או מסירת מידע).\n• לדף אישור ההרשמה ("תודה על הרשמתך") יש לצרף קישור פשוט חזרה למסך הבית.\n• בדף המחירון יופיעו לפחות 5 מוצרים בפורמט של טבלה, בהם יפורטו החלקים הבאים: שם המוצר, מחיר, זמינות (קיים/לא קיים במלאי), תמונה. בדף המחירון תופיע האפשרות לחזור למסך הבית.\nשימו לב: יש ליצור לכל אלמנט class או ID משלו. יש להשתמש בקונבנציות נכונות ובשמות הגיוניים. אנחנו נתחיל להשתמש בהם החל מהתרגיל הבא. ב־FORM יש ליצור class.' },
+    steps: [
+      { he: 'צרו תיקייה לאתר ובה 4 קבצים: דף הבית, הרשמה, תודה, מחירון (שמות באנגלית, למשל index.html).', ru: 'Создай папку сайта и в ней 4 файла: главная, регистрация, спасибо, прайс-лист (имена на английском, например index.html).', en: 'Create a folder for the site with 4 files: home, sign-up, thank-you, price list (English names, e.g. index.html).' },
+      { he: 'דף הבית: שם העסק, לוגו, תמונת קונספט, הסבר קצר ותפריט קישורים לדפים האחרים.', ru: 'Главная: название бизнеса, логотип, картинка-«концепт», короткий текст и меню со ссылками на другие страницы.', en: 'Home: business name, logo, concept image, a short text and a menu of links to the other pages.' },
+      { he: 'דף הרשמה: form עם שם, מייל, סיסמה, טלפון, מגדר (3 אפשרויות), מוצרים אהובים ותיבת הסכמה. כפתור "שלח" מוביל לדף התודה. קישור חזרה לדף הבית.', ru: 'Регистрация: form с именем, email, паролем, телефоном, полом (3 варианта), любимыми товарами и галочкой согласия. Кнопка «Отправить» ведёт на страницу «Спасибо». Ссылка назад на главную.', en: 'Sign-up: a form with name, email, password, phone, gender (3 options), favorite products and a consent checkbox. "Send" leads to the thank-you page. A link back home.' },
+      { he: 'דף תודה: "תודה על הרשמתך" וקישור חזרה לדף הבית.', ru: 'Страница «Спасибо за регистрацию» и ссылка на главную.', en: 'Thank-you page: "Thanks for signing up" and a link back home.' },
+      { he: 'מחירון: טבלה עם לפחות 5 מוצרים ועמודות שם, מחיר, זמינות, תמונה. קישור חזרה לדף הבית.', ru: 'Прайс-лист: таблица минимум из 5 товаров со столбцами название, цена, наличие, картинка. Ссылка на главную.', en: 'Price list: a table with at least 5 products and columns name, price, availability, image. A link back home.' },
+      { he: 'לכל אלמנט class או id עם שם הגיוני, ול־form יש class.', ru: 'У каждого элемента свой class или id с понятным именем, у form обязательно class.', en: 'Every element gets its own class or id with a sensible name; the form must have a class.' },
+      { he: 'בדקו כל דף ב־Live Server וכל קישור.', ru: 'Проверь каждую страницу в Live Server и каждую ссылку.', en: 'Check every page and every link in Live Server.' }
+    ],
+    submit: { he: 'המועד ואופן ההגשה לא נמסרו עדיין. בדקו ב־Moodle או שאלו את המרצה.', ru: 'Срок и как сдавать пока не известны. Проверь Moodle или спроси преподавателя.', en: 'The deadline and how to submit are not known yet. Check Moodle or ask the teacher.' },
+    links: [],
+    level: 'So far in HTML we learned: the page skeleton, headings h1-h6, p, br, img (with width/height), a (links between pages), the attributes dir, align and style, a background image via style in the head, tables (table, tr, th, td, colspan, border), basic form elements, and class / id. We use VS Code with Live Server. No CSS files and no JavaScript yet.'
+  }
+];

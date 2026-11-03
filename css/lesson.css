@@ -502,3 +502,8 @@
 .tk-preview__frame { display: block; width: 100%; height: 340px; border: 1px solid var(--border); border-radius: 12px; background: #fff; }
 /* без лигатур: == и <= выглядят как набираются, а не как ═ и ≤ */
 .tk-code, .tk-work--code .tk-sym { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+
+/* выбор языка ответа ИИ (03.11) */
+.ai-lang { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin: 4px 0 8px; }
+.ai-lang__label { font-weight: 600; font-size: 14px; }
+.ai-warn { color: var(--bad, #c0392b); font-weight: 600; }

@@ -113,6 +113,7 @@
   var NAV = [
     { path: '/', icon: 'home', key: 'nav_home' },
     { path: '/subjects', icon: 'book', key: 'nav_subjects' },
+    { path: '/homework', icon: 'list', key: 'nav_homework' },
     { path: '/profile', icon: 'user', key: 'nav_profile' },
     { path: '/people', icon: 'users', key: 'sc_nav_people' },
     { path: '/chats', icon: 'chat', key: 'sc_nav_chats' },
