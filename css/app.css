@@ -472,3 +472,5 @@ body.no-scroll { overflow: hidden; }
 .rp-attached code { display: block; margin-top: 3px; font-family: var(--mono); font-size: 12px; background: var(--bg-2, var(--accent-soft)); padding: 6px 8px; border-radius: 8px; word-break: break-word; }
 .issue__err { font-size: 12px; margin: 4px 0 6px; color: var(--bad); }
 .issue__err code { font-family: var(--mono); }
+.auth-link-email { font-size: 17px; margin: 4px 0 10px; word-break: break-all; }
+.auth-link-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }

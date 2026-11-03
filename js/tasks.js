@@ -290,7 +290,11 @@
       tk_diag_expected_none: 'חשבו שוב את D ובדקו את הסימן שלו. מה הוא אומר על מספר הפתרונות?',
       tk_diag_said_none: 'למשוואה הזו יש פתרון. חשבו שוב את D — זכרו ש־b² אף פעם לא שלילי, גם כש־b שלילי.',
       tk_diag_number: 'זה לא המספר הנכון. בדקו את החישוב שלב אחרי שלב.',
-      tk_diag_choice: 'זו לא התשובה הנכונה. הרמז יעזור.'
+      tk_diag_choice: 'זו לא התשובה הנכונה. הרמז יעזור.',
+      tk_code: 'הקוד שלך', tk_code_ph_java: 'כתבו כאן את הקוד ב־Java…', tk_code_ph_html: 'כתבו כאן את קוד ה־HTML…', tk_code_ph_sql: 'כתבו כאן את השאילתה ב־SQL…',
+      tk_code_note: 'כתבו את הקוד כאן, הריצו אותו אצלכם (IntelliJ / VS Code / SSMS) והכניסו למטה מה יצא.',
+      tk_preview: 'להציג את הדף', tk_preview_hide: 'להסתיר את הדף', tk_preview_note: 'תמונות מהאינטרנט לא מוצגות כאן, רק הקוד שלכם.',
+      tk_diag_code: 'עוד לא. עברו על הקוד שורה אחרי שורה (או הריצו אותו שוב) ובדקו מה בדיוק הוא מדפיס.'
     },
     ru: {
       tk_task: 'Задача {label}', tk_ai_task: 'Задача от ИИ {label}', tk_solve_eq: 'Реши уравнение',
@@ -320,7 +324,11 @@
       tk_diag_expected_none: 'Пересчитай D и посмотри на его знак. Что он говорит о количестве корней?',
       tk_diag_said_none: 'У этого уравнения есть решение. Пересчитай D — b² никогда не бывает отрицательным, даже если b отрицательное.',
       tk_diag_number: 'Это не то число. Проверь вычисления шаг за шагом.',
-      tk_diag_choice: 'Это неверный ответ. Подсказка поможет.'
+      tk_diag_choice: 'Это неверный ответ. Подсказка поможет.',
+      tk_code: 'Твой код', tk_code_ph_java: 'Пиши здесь код на Java…', tk_code_ph_html: 'Пиши здесь HTML-код…', tk_code_ph_sql: 'Пиши здесь запрос SQL…',
+      tk_code_note: 'Напиши код здесь, запусти у себя (IntelliJ / VS Code / SSMS) и впиши ниже, что получилось.',
+      tk_preview: 'Показать страницу', tk_preview_hide: 'Скрыть страницу', tk_preview_note: 'Картинки из интернета здесь не показываются, только твой код.',
+      tk_diag_code: 'Пока нет. Пройди по коду строка за строкой (или запусти ещё раз) и проверь, что именно он печатает.'
     },
     en: {
       tk_task: 'Task {label}', tk_ai_task: 'AI task {label}', tk_solve_eq: 'Solve the equation',
@@ -350,7 +358,11 @@
       tk_diag_expected_none: 'Recompute D and look at its sign. What does it tell you about the number of roots?',
       tk_diag_said_none: 'This equation does have a solution. Recompute D — b² is never negative, even when b is negative.',
       tk_diag_number: 'That is not the right number. Check your working step by step.',
-      tk_diag_choice: 'That is not the right answer. The hint will help.'
+      tk_diag_choice: 'That is not the right answer. The hint will help.',
+      tk_code: 'Your code', tk_code_ph_java: 'Write your Java code here…', tk_code_ph_html: 'Write your HTML here…', tk_code_ph_sql: 'Write your SQL query here…',
+      tk_code_note: 'Write the code here, run it on your computer (IntelliJ / VS Code / SSMS) and enter below what came out.',
+      tk_preview: 'Show the page', tk_preview_hide: 'Hide the page', tk_preview_note: 'Images from the internet are not shown here, only your code.',
+      tk_diag_code: 'Not yet. Go through the code line by line (or run it again) and check exactly what it prints.'
     }
   });
 
@@ -551,12 +563,40 @@
     }
   };
 
+  /* Предметы программирования: вместо рисования и формул — поле для кода. */
+  var PROG = { algo: 'Java', fullstack: 'HTML', sql: 'SQL' };
+  function codeLangOf(lesson) { return (lesson && PROG[lesson.subject]) || ''; }
+  var CODE_SYMBOLS = {
+    Java: ['{', '}', '(', ')', ';', '"', '=', '==', '!=', '<', '>', '<=', '>=', '+', '-', '*', '/', '%', '++', '&&', '||', '!', '[', ']'],
+    HTML: ['<', '>', '/', '=', '"', '</', '#', ';', ':'],
+    SQL: ['(', ')', ',', ';', "'", '=', '<>', '<', '>', '*', '%']
+  };
+  var PROMPT_CODE = {
+    he: ['את/ה מורה פרטי/ת סבלני/ת לתכנות ({code}). אני סטודנט/ית במכללה (מסלול הנדסאי תוכנה), מתחיל/ה.',
+      'נושא: {topic} (מקצוע: {subject}, שיעור מתאריך {date}).', '', 'המשימה:', '{task}', '', 'הקוד שלי:', '{mycode}', '', 'התשובה שלי: {answer}', '',
+      'מה אני מבקש/ת:', '1. בדוק/י אם הקוד והתשובה שלי נכונים.', '2. אם יש טעות — הראה/י באיזו שורה בדיוק ולמה, בשפה פשוטה.',
+      '3. עבור/י על הקוד שורה אחרי שורה (ובלולאה — סיבוב אחרי סיבוב) ומה קורה בכל שלב.',
+      '4. השתמש/י רק במה שלמדנו עד השיעור הזה, בלי נושאים מתקדמים.', '5. קודם רמז ותן/י לי לנסות שוב. קוד מלא — רק אם אבקש.', '6. ענה/י ב{lang}.'],
+    ru: ['Ты — терпеливый репетитор по программированию ({code}). Я студент колледжа (программа техник-программист), начинающий.',
+      'Тема: {topic} (предмет: {subject}, урок от {date}).', '', 'Задача:', '{task}', '', 'Мой код:', '{mycode}', '', 'Мой ответ: {answer}', '',
+      'Что мне нужно:', '1. Проверь, верны ли мой код и ответ.', '2. Если есть ошибка — покажи, в какой именно строке и почему, простыми словами.',
+      '3. Пройди по коду строка за строкой (а в цикле — круг за кругом) и покажи, что происходит на каждом шаге.',
+      '4. Используй только то, что мы прошли до этого урока, без продвинутых тем.', '5. Сначала подсказка, дай мне попробовать ещё раз. Готовый код — только если я попрошу.', '6. Отвечай на {lang}.'],
+    en: ['You are a patient programming tutor ({code}). I am a beginner college student (software technician program).',
+      'Topic: {topic} (subject: {subject}, lesson of {date}).', '', 'The task:', '{task}', '', 'My code:', '{mycode}', '', 'My answer: {answer}', '',
+      'What I need:', '1. Check whether my code and answer are correct.', '2. If there is a mistake, show exactly which line and why, in plain words.',
+      '3. Walk through the code line by line (and in a loop, round by round), showing what happens at each step.',
+      '4. Use only what we have learned up to this lesson, nothing advanced.', '5. Give a hint first and let me try again. Full code only if I ask.', '6. Answer in {lang}.']
+  };
+  var NO_CODE = { he: '(עוד לא כתבתי קוד)', ru: '(я ещё не написал код)', en: '(I have not written code yet)' };
+
   function quadLesson(lesson) {
     var tk = (lesson && lesson.tasks) || {};
     return (tk.teacher || []).concat(tk.ai || []).some(function (x) { return x.kind === 'roots'; });
   }
-  function buildPrompt(lesson, task, studentAnswer, lang) {
+  function buildPrompt(lesson, task, studentAnswer, lang, myCode) {
     var P = PROMPT[lang] || PROMPT.en;
+    var codeLang = codeLangOf(lesson);
     var instr = '';
     if (typeof task.text === 'string' && task.kind === 'roots') instr = P.instrRoots;
     var text = taskText(task, lang);
@@ -572,7 +612,14 @@
         : (quadLesson(lesson) && (task.kind === 'roots' || task.kind === 'number' || task.kind === 'choice') ? P.method : P.methodOther),
       lang: P.lang
     };
-    return P.body.map(function (line) {
+    var body = P.body;
+    if (codeLang) {
+      body = PROMPT_CODE[lang] || PROMPT_CODE.en;
+      vars.code = codeLang;
+      vars.mycode = String(myCode || '').trim() ? '```\n' + String(myCode).replace(/\s+$/, '') + '\n```' : (NO_CODE[lang] || NO_CODE.en);
+      if (task.method || lesson.method) body = body.concat(['', pick(task.method || lesson.method, lang)]);
+    }
+    return body.map(function (line) {
       return line.replace(/\{(\w+)\}/g, function (m, k) { return vars[k] != null ? vars[k] : m; });
     }).join('\n');
   }
@@ -719,6 +766,7 @@
     var instr = typeof task.text === 'string' ? (task.kind === 'roots' ? t('tk_solve_eq') : '') : '';
     if (groupTitle) head.appendChild(el('div', { class: 'tk-head__group' }, groupTitle));
     else if (instr) head.appendChild(el('div', { class: 'tk-head__group' }, instr));
+    var codeLang = codeLangOf(lesson);
     var q = typeof task.text === 'string'
       ? el('div', { class: 'tk-head__q tk-head__q--math', dir: 'ltr' }, task.text)
       : el('div', { class: 'tk-head__q' }, [rich(pick(task.text, lang))]);
@@ -764,21 +812,60 @@
     var topRow = el('div', { class: 'tk-toolbar' }, [seg, el('div', { class: 'tk-toolbar__end' }, [undoBtn, clearBtn])]);
 
     var canvasHost = el('div', { class: 'tk-canvas' });
-    var textArea = el('textarea', { class: 'tk-text input', placeholder: t('tk_draft_ph'), rows: 8, dir: 'auto', 'aria-label': t('tk_draft') });
+    var textArea = codeLang
+      ? el('textarea', { class: 'tk-text tk-code input', placeholder: t('tk_code_ph_' + codeLang.toLowerCase()), rows: 10, dir: 'ltr', wrap: 'off',
+          spellcheck: 'false', autocapitalize: 'off', autocomplete: 'off', autocorrect: 'off', 'aria-label': t('tk_code') + ' (' + codeLang + ')' })
+      : el('textarea', { class: 'tk-text input', placeholder: t('tk_draft_ph'), rows: 8, dir: 'auto', 'aria-label': t('tk_draft') });
     textArea.value = st.text || '';
     var symRow = el('div', { class: 'tk-symbols', dir: 'ltr', role: 'group', 'aria-label': t('tk_symbols') });
-    SYMBOLS.forEach(function (s) {
+    (codeLang ? CODE_SYMBOLS[codeLang] : SYMBOLS).forEach(function (s) {
       var b = el('button', { type: 'button', class: 'tk-sym', dir: 'ltr' }, s);
       b.addEventListener('mousedown', function (e) { e.preventDefault(); });   // не терять фокус поля
       b.addEventListener('click', function () { insertSymbol(s); });
       symRow.appendChild(b);
     });
 
-    work.appendChild(topRow);
-    work.appendChild(drawTools);
-    work.appendChild(canvasHost);
-    work.appendChild(textArea);
-    work.appendChild(symRow);
+    var preview = null;
+    if (codeLang) {
+      /* программирование: только код — без рисования и математических символов */
+      topRow.replaceChild(el('div', { class: 'tk-code__label', html: Icons.get('keyboard') + '<span>' + U.esc(t('tk_code')) + ' · ' + U.esc(codeLang) + '</span>' }), seg);
+      work.classList.add('tk-work--code');
+      work.appendChild(topRow);
+      work.appendChild(textArea);
+      work.appendChild(symRow);
+      work.appendChild(el('p', { class: 'tk-note muted tk-code__note' }, t('tk_code_note')));
+      textArea.addEventListener('keydown', function (e) {
+        if ((e.key === 'Tab' || e.keyCode === 9) && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey) { e.preventDefault(); insertSymbol('    '); }
+      });
+      if (codeLang === 'HTML') {
+        /* живой просмотр: песочница без скриптов, без доступа к сайту */
+        var pvBtn = el('button', { type: 'button', class: 'btn btn--ghost tk-preview__btn', html: Icons.get('eye') + '<span>' + U.esc(t('tk_preview')) + '</span>' });
+        var pvBox = el('div', { class: 'tk-preview', hidden: true });
+        var pvFrame = el('iframe', { class: 'tk-preview__frame', sandbox: '', referrerpolicy: 'no-referrer', title: t('tk_preview') });
+        pvBox.appendChild(pvFrame);
+        pvBox.appendChild(el('p', { class: 'tk-note muted' }, t('tk_preview_note')));
+        var pvTimer = null;
+        function renderPreview() { pvFrame.srcdoc = textArea.value; }
+        pvBtn.addEventListener('click', function () {
+          pvBox.hidden = !pvBox.hidden;
+          pvBtn.querySelector('span').textContent = t(pvBox.hidden ? 'tk_preview' : 'tk_preview_hide');
+          if (!pvBox.hidden) renderPreview();
+        });
+        textArea.addEventListener('input', function () {
+          if (pvBox.hidden) return;
+          clearTimeout(pvTimer); pvTimer = setTimeout(renderPreview, 400);
+        });
+        work.appendChild(pvBtn);
+        work.appendChild(pvBox);
+        preview = pvBox;
+      }
+    } else {
+      work.appendChild(topRow);
+      work.appendChild(drawTools);
+      work.appendChild(canvasHost);
+      work.appendChild(textArea);
+      work.appendChild(symRow);
+    }
 
     var draft = Draft.create(canvasHost, { strokes: st.strokes, onChange: function (strokes) { st.strokes = strokes; saveDraft(key, st); } });
 
@@ -800,6 +887,7 @@
     });
 
     function setMode(m) {
+      if (codeLang) m = 'type';
       st.mode = m; saveDraft(key, st);
       modeDraw.setAttribute('aria-pressed', m === 'draw' ? 'true' : 'false');
       modeType.setAttribute('aria-pressed', m === 'type' ? 'true' : 'false');
@@ -855,7 +943,7 @@
       answerInput.addEventListener('focus', function () { lastField = answerInput; });
     }
     textArea.addEventListener('focus', function () { lastField = textArea; });
-    var lastField = answerInput || textArea;
+    var lastField = codeLang ? textArea : (answerInput || textArea);
 
     function currentAnswer() { return task.kind === 'choice' ? choiceVal : (answerInput ? answerInput.value : ''); }
     function updateCheck() {
@@ -868,6 +956,7 @@
       var f = lastField;
       if (!f) return;
       if (st.mode === 'draw' && f === textArea) { f = answerInput || textArea; }
+      if (codeLang && f === answerInput && s.length > 1 && /^ +$/.test(s)) return;
       var v = f.value, a = f.selectionStart, b = f.selectionEnd;
       if (typeof a !== 'number') { a = b = v.length; }
       f.value = v.slice(0, a) + s + v.slice(b);
@@ -934,7 +1023,7 @@
       if (task.kind === 'choice') return choiceVal === '' ? '' : pick((task.options || [])[Number(choiceVal)], lang);
       return currentAnswer();
     }
-    function refreshPrompt() { promptArea.value = buildPrompt(lesson, task, answerForPrompt(), lang); }
+    function refreshPrompt() { promptArea.value = buildPrompt(lesson, task, answerForPrompt(), lang, codeLang ? textArea.value : ''); }
     copyBtn.addEventListener('click', function () {
       refreshPrompt();
       copyText(promptArea.value).then(function () { U.toast(t('tk_copied')); }, function () {
@@ -987,9 +1076,10 @@
       }
       attempts++;
       showResult('bad', t('tk_wrong'), '');
-      result.appendChild(el('span', { class: 'sr-only' }, t(r.diag || 'tk_diag_generic')));
+      result.appendChild(el('span', { class: 'sr-only' }, t(codeLang && task.kind !== 'choice' ? 'tk_diag_code' : (r.diag || 'tk_diag_generic'))));
       diagBox.innerHTML = '';
-      diagBox.appendChild(el('p', { class: 'tk-diag__text' }, [rich(t(r.diag || 'tk_diag_generic'))]));
+      var diagKey = codeLang && (task.kind === 'number' || task.kind === 'text' || !r.diag) ? 'tk_diag_code' : (r.diag || 'tk_diag_generic');
+      diagBox.appendChild(el('p', { class: 'tk-diag__text' }, [rich(t(diagKey))]));
       diagBox.hidden = false;
       if (hints.length) { hintsShown = Math.max(hintsShown, Math.min(attempts, hints.length)); hintUsed = true; }
       renderHints();

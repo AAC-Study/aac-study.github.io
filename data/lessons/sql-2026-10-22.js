@@ -388,9 +388,9 @@ window.LESSONS["sql-2026-10-22"] = {
         label: { he: "בחר", ru: "Выбрать", en: "Choose" },
         kind: "text",
         text: {
-          he: "באיזו מילת מפתח מתחילה שאילתה ששולפת נתונים מטבלה?",
-          ru: "С какого ключевого слова начинается запрос, который достаёт данные из таблицы?",
-          en: "Which keyword starts a query that retrieves data from a table?"
+          he: "השלימו את מילת המפתח החסרה, כך שהשאילתה תשלוף את כל הנתונים מהטבלה:\n`___ * from shlifot`",
+          ru: "Допиши пропущенное ключевое слово, чтобы запрос достал все данные из таблицы:\n`___ * from shlifot`",
+          en: "Fill in the missing keyword so the query retrieves all the data from the table:\n`___ * from shlifot`"
         },
         answer: { accept: ["select", "select *"] },
         hints: [

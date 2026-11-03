@@ -89,7 +89,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     await p.waitForSelector('.toast'); assert(/Почта подтверждена/.test(await p.locator('.toast').first().innerText()));
     assert.strictEqual(await p.inputValue('#f-email'), 'a@gmail.com');
     assert(!JSON.parse(await p.evaluate(() => localStorage.getItem('sb_session') || 'null')), 'no session kept');
-    assert(calls.some(x => x.path === '/auth/v1/logout' && x.auth === 'Bearer AT2'), 'link session revoked');
+    assert(calls.some(x => x.path === '/auth/v1/logout?scope=local' && x.auth === 'Bearer AT2'), 'link session revoked');
     assert.deepStrictEqual(errs.filter(e => !/404/.test(e)), []); await ctx.close();
   });
   await step('signup does not sign in: login screen with note, server session revoked', async () => {
@@ -102,7 +102,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     assert(/Аккаунт создан/.test(await p.locator('.form-ok').innerText()));
     assert.strictEqual(await p.inputValue('#f-email'), 'a@gmail.com');
     assert(!(await p.$('.side')));
-    assert(calls.some(x => x.path === '/auth/v1/logout' && x.auth === 'Bearer ATS'));
+    assert(calls.some(x => x.path === '/auth/v1/logout?scope=local' && x.auth === 'Bearer ATS'));
     await p.fill('#f-pass', 'secret1'); await p.check('#f-remember'); await p.click('form button[type=submit]');
     await p.waitForSelector('.side');
     const pol = await p.evaluate(() => JSON.parse(localStorage.getItem('auth_pol')));
@@ -121,7 +121,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     await p.evaluate(() => { var x = JSON.parse(localStorage.getItem('auth_pol')); x.seen = Date.now() - 31 * 60e3; localStorage.setItem('auth_pol', JSON.stringify(x)); });
     await p.reload(); await p.waitForSelector('#f-email'); await p.waitForSelector('.toast');
     assert(/автоматически вышел/.test(await p.locator('.toast').first().innerText()));
-    assert(calls.filter(x => x.path === '/auth/v1/logout').length >= 1);
+    assert(calls.filter(x => x.path === '/auth/v1/logout?scope=local').length >= 1);
     await ctx.close();
   });
   await step('remember on: day 6 still in, after 7 days (minus 2 min) signed out, also while the tab is open', async () => {
@@ -226,6 +226,23 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     assert(/не действует/.test(await p.locator('.toast').first().innerText()));
     assert.strictEqual(await p.evaluate(() => location.hash), '#/');
     await ctx.close();
+  });
+  await step('admin list survives strange guest reports (object/array fields) and shows them as text', async () => {
+    const ctx = await b.newContext({ viewport: { width: 1280, height: 900 } }); const p = await ctx.newPage(); const errs = [];
+    p.on('pageerror', e => errs.push(e.message));
+    await ctx.route('**/js/config.js', r => r.fulfill({ contentType: 'application/javascript', body: "window.APP_CONFIG={SUPABASE_URL:'',SUPABASE_ANON_KEY:'',MOCK_INVITE_CODE:'AAC2026',TURNSTILE_SITE_KEY:''};" }));
+    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); }); await p.reload();
+    await p.evaluate(() => Store.auth.signUp({ email: 'adm@gmail.com', password: 'secret1', name: 'Adm', invite: 'AAC2026' }).then(() => Store.auth.signIn({ email: 'adm@gmail.com', password: 'secret1', remember: true })));
+    await p.evaluate(() => {
+      const log = [{ at: '2026-11-03T10:00:00.000Z', who: '', resolved: false, info: { type: 'guest', err: { x: 1 }, where: ['a'], text: { evil: '<img src=x onerror=alert(1)>' }, images: 'not-an-array', email: { e: 1 } } },
+                   { at: '2026-11-03T10:01:00.000Z', who: '', resolved: false, info: { type: 'guest', text: 'normal report', images: ['javascript:alert(1)', 'data:image/png;base64,iVBORw0KGgo='] } }];
+      localStorage.setItem('issue_log', JSON.stringify(log));
+    });
+    await p.goto('http://localhost:8765/index.html#/admin'); await p.waitForSelector('.issue');
+    assert.strictEqual(await p.locator('.issue').count(), 2, 'both reports shown');
+    assert(/onerror/.test(await p.locator('.issue').nth(1).innerText()), 'object text shown as plain text');
+    assert.strictEqual(await p.locator('.issue__img img').count(), 1, 'only data:image pictures');
+    assert.deepStrictEqual(errs, []); await ctx.close();
   });
   console.log(pass + ' passed'); await b.close();
 })().catch(e => { console.error(e); process.exit(1); });

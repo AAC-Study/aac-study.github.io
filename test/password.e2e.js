@@ -47,7 +47,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
   });
   await step('recovery link -> new password screen -> saved -> home', async () => {
     const { ctx, p, errs, calls } = await mk({});
-    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); });
+    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); localStorage.setItem('rec_req', JSON.stringify({ email: 'a@b.c', at: Date.now() })); });
     await p.goto('about:blank'); await p.goto(LINK);
     await p.waitForSelector('#f-np1');
     await p.screenshot({ path: process.env.SP + '/pw-new.png' });
@@ -59,9 +59,27 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     assert.strictEqual(await p.evaluate(() => location.hash), '#/');
     assert.deepStrictEqual(errs, []); await ctx.close();
   });
+  await step('someone else\'s reset link: asks "is this your account?" first; No = not signed in, Yes = new password', async () => {
+    const { ctx, p, errs, calls } = await mk({});
+    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); });
+    await p.goto('about:blank'); await p.goto(LINK);
+    await p.waitForSelector('.auth-link-email');
+    assert.strictEqual((await p.textContent('.auth-link-email')).trim(), 'a@b.c');
+    assert.strictEqual(await p.locator('#f-np1').count(), 0, 'no password form before the answer');
+    assert.strictEqual(await p.evaluate(() => localStorage.getItem('sb_session')), null, 'not signed in yet');
+    await p.screenshot({ path: process.env.SP + '/pw-link-confirm.png' });
+    await p.click('.auth-link-btns .btn:not(.btn--primary)');
+    await p.waitForSelector('#f-email');
+    assert(!(await p.evaluate(() => { const v = localStorage.getItem('sb_session'); return v && v !== 'null'; })), 'No keeps you signed out');
+    assert(calls.some(x => x.path.indexOf('/auth/v1/logout?scope=local') >= 0), 'link session revoked');
+    await p.goto('about:blank'); await p.goto(LINK);
+    await p.waitForSelector('.auth-link-email'); await p.click('.auth-link-btns .btn--primary');
+    await p.waitForSelector('#f-np1');
+    assert.deepStrictEqual(errs, []); await ctx.close();
+  });
   await step('cooldown: recent change disables button with hours left', async () => {
     const { ctx, p, errs } = await mk({ recent: true });
-    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); });
+    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); localStorage.setItem('rec_req', JSON.stringify({ email: 'a@b.c', at: Date.now() })); });
     await p.goto('about:blank'); await p.goto(LINK);
     await p.waitForSelector('.pw-note--wait');
     assert(/23 ч/.test(await p.locator('.pw-note').innerText()), await p.locator('.pw-note').innerText());
@@ -71,7 +89,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
   });
   await step('server refuses (cooldown) -> clear message', async () => {
     const { ctx, p, errs } = await mk({ putErr: true });
-    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); });
+    await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); localStorage.setItem('rec_req', JSON.stringify({ email: 'a@b.c', at: Date.now() })); });
     await p.goto('about:blank'); await p.goto(LINK);
     await p.waitForSelector('#f-np1'); await p.fill('#f-np1', 'newpass1'); await p.fill('#f-np2', 'newpass1'); await p.click('.pw-form button[type=submit]');
     await p.waitForFunction(() => document.querySelector('.pw-form .form-error').style.display === 'block');

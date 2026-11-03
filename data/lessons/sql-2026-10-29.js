@@ -138,18 +138,19 @@ window.LESSONS["sql-2026-10-29"] = {
         label: { he: "תרגיל 1 — כמה", ru: "Задание 1 — сколько", en: "Exercise 1 — how many" },
         kind: "number",
         text: {
-          he: "כמה כתובות תציג השאילתה של תרגיל 1 על טבלת shlifot?",
-          ru: "Сколько адресов покажет запрос задания 1 на таблице shlifot?",
-          en: "How many addresses does the exercise 1 query show on the shlifot table?"
+          he: "הריצו את השאילתה של תרגיל 1 על טבלת shlifot:\n`select ktovet from shlifot where menahel = 'moshe'`\nכמה שורות (כתובות) היא תחזיר?",
+          ru: "Выполни запрос задания 1 на таблице shlifot:\n`select ktovet from shlifot where menahel = 'moshe'`\nСколько строк (адресов) он вернёт?",
+          en: "Run the exercise 1 query on the shlifot table:\n`select ktovet from shlifot where menahel = 'moshe'`\nHow many rows (addresses) does it return?"
         },
         answer: { value: "5" },
         hints: [
-          { he: "ספרו את השורות שבהן הערך האחרון הוא 'moshe'.", ru: "Посчитай строки, где последнее значение — 'moshe'.", en: "Count the rows whose last value is 'moshe'." }
+          { he: "`where` בודק כל שורה: האם בעמודה menahel כתוב 'moshe'? (זה הערך האחרון ב־insert)", ru: "`where` проверяет каждую строку: в столбце menahel стоит 'moshe'? (это последнее значение в insert)", en: "`where` checks every row: is the menahel column 'moshe'? (it is the last value in the insert)" }
         ],
         solution: [
-          { he: "השורות של moshe:", ru: "Строки moshe:", en: "The moshe rows:" },
+          "select ktovet from shlifot where menahel = 'moshe'",
+          { he: "התוצאה — עמודה ktovet:", ru: "Результат — столбец ktovet:", en: "The result — the ktovet column:" },
           "dayan 11 rechovot · ezra 14 haifa · ofer 14 beer sheva · hanadiv 89 chadera · golda meir 89 chadera",
-          { he: "סה״כ 5 כתובות.", ru: "Итого 5 адресов.", en: "That is 5 addresses." }
+          { he: "סה״כ 5 שורות.", ru: "Итого 5 строк.", en: "That is 5 rows." }
         ]
       },
       {
@@ -182,16 +183,17 @@ window.LESSONS["sql-2026-10-29"] = {
         label: { he: "תרגיל 2 — כמה", ru: "Задание 2 — сколько", en: "Exercise 2 — how many" },
         kind: "number",
         text: {
-          he: "כמה שורות תחזיר השאילתה של תרגיל 2?",
-          ru: "Сколько строк вернёт запрос задания 2?",
-          en: "How many rows does the exercise 2 query return?"
+          he: "הריצו את השאילתה של תרגיל 2:\n`select iskaot from shlifot where chanut = 'rehitim'`\nכמה שורות היא תחזיר?",
+          ru: "Выполни запрос задания 2:\n`select iskaot from shlifot where chanut = 'rehitim'`\nСколько строк он вернёт?",
+          en: "Run the exercise 2 query:\n`select iskaot from shlifot where chanut = 'rehitim'`\nHow many rows does it return?"
         },
         answer: { value: "4" },
         hints: [
-          { he: "ספרו את החנויות rehitim בטבלה.", ru: "Посчитай магазины rehitim в таблице.", en: "Count the rehitim shops in the table." }
+          { he: "`where chanut = 'rehitim'` משאיר רק את השורות של rehitim ב־insert.", ru: "`where chanut = 'rehitim'` оставляет только строки rehitim из insert.", en: "`where chanut = 'rehitim'` keeps only the rehitim rows from the insert." }
         ],
         solution: [
-          { he: "ערכי iskaot של rehitim: 9, 9, 110, 104.", ru: "Значения iskaot у rehitim: 9, 9, 110, 104.", en: "rehitim iskaot values: 9, 9, 110, 104." },
+          "select iskaot from shlifot where chanut = 'rehitim'",
+          { he: "התוצאה — עמודה iskaot: 9, 9, 110, 104.", ru: "Результат — столбец iskaot: 9, 9, 110, 104.", en: "The result — the iskaot column: 9, 9, 110, 104." },
           { he: "סה״כ 4 שורות.", ru: "Итого 4 строки.", en: "That is 4 rows." }
         ]
       },
@@ -268,17 +270,24 @@ window.LESSONS["sql-2026-10-29"] = {
         label: { he: "כמה עמודות", ru: "Сколько столбцов", en: "How many columns" },
         kind: "number",
         text: {
-          he: "כמה עמודות צריכות להיות בטבלה לפי דרישות החברה?",
-          ru: "Сколько столбцов должно быть в таблице по требованиям компании?",
-          en: "How many columns must the table have according to the company's needs?"
+          he: "כתבו את הפקודה `create table clips (...)` לפי דרישות החברה — עמודה לכל פריט. כמה עמודות יהיו בתוך הסוגריים?",
+          ru: "Напиши команду `create table clips (...)` по требованиям компании — по столбцу на каждый пункт. Сколько столбцов будет в скобках?",
+          en: "Write the `create table clips (...)` command from the company's needs — one column per item. How many columns go inside the brackets?"
         },
         answer: { value: "6" },
         hints: [
-          { he: "כל פריט ברשימה של החברה הוא עמודה.", ru: "Каждый пункт в списке компании — это столбец.", en: "Each item in the company's list is a column." }
+          { he: "כל פריט ברשימה של החברה הופך לשורה \"שם טיפוס\" בתוך הסוגריים.", ru: "Каждый пункт из списка компании становится парой «имя тип» в скобках.", en: "Each item in the company's list becomes a \"name type\" pair inside the brackets." }
         ],
         solution: [
-          { he: "מספר אומן, שם אומן, שם הקטע, שניות, לינק, לייקים.", ru: "Номер артиста, имя артиста, название клипа, секунды, ссылка, лайки.", en: "Artist number, artist name, clip name, seconds, link, likes." },
-          { he: "סה״כ 6 עמודות.", ru: "Итого 6 столбцов.", en: "That is 6 columns." }
+          "create table clips (",
+          "  artist_num int,",
+          "  artist_name nvarchar(50),",
+          "  clip_name nvarchar(100),",
+          "  seconds int,",
+          "  link nvarchar(200),",
+          "  likes int",
+          ")",
+          { he: "סה״כ 6 עמודות (ובלי פסיק אחרי האחרונה).", ru: "Итого 6 столбцов (и без запятой после последнего).", en: "That is 6 columns (and no comma after the last one)." }
         ]
       },
       {
@@ -332,20 +341,22 @@ window.LESSONS["sql-2026-10-29"] = {
         label: "and",
         kind: "choice",
         text: {
-          he: "תנאי אחד אמת והשני שקר. מה התוצאה של `and` ביניהם?",
-          ru: "Одно условие истинно, другое ложно. Каков результат `and` между ними?",
-          en: "One condition is true and the other false. What is the result of `and`?"
+          he: "השורה ('rehitim', 'dayan 11 rechovot', 'a@gmail', 9, 'moshe'): בשבילה `chanut = 'rehitim'` אמת, ו־`iskaot >= 10` שקר. האם היא תופיע בתוצאה של\n`select * from shlifot where iskaot >= 10 and chanut = 'rehitim'`?",
+          ru: "Строка ('rehitim', 'dayan 11 rechovot', 'a@gmail', 9, 'moshe'): для неё `chanut = 'rehitim'` истинно, а `iskaot >= 10` ложно. Попадёт ли она в результат\n`select * from shlifot where iskaot >= 10 and chanut = 'rehitim'`?",
+          en: "The row ('rehitim', 'dayan 11 rechovot', 'a@gmail', 9, 'moshe'): for it `chanut = 'rehitim'` is true and `iskaot >= 10` is false. Will it be in the result of\n`select * from shlifot where iskaot >= 10 and chanut = 'rehitim'`?"
         },
         options: [
-          { he: "אמת", ru: "Истина", en: "True" },
-          { he: "שקר", ru: "Ложь", en: "False" }
+          { he: "כן", ru: "Да", en: "Yes" },
+          { he: "לא", ru: "Нет", en: "No" }
         ],
         answer: { index: 1 },
         hints: [
-          { he: "and צריך ששניהם יהיו אמת.", ru: "and требует, чтобы оба были истинны.", en: "and needs both to be true." }
+          { he: "`and` מכניס שורה לתוצאה רק אם שני התנאים אמת.", ru: "`and` пропускает строку в результат, только если оба условия истинны.", en: "`and` lets a row into the result only if both conditions are true." }
         ],
         solution: [
-          "true and false = false",
+          "9 >= 10  →  false",
+          "'rehitim' = 'rehitim'  →  true",
+          "false and true  →  false",
           { he: "השורה לא תיכנס לתוצאה.", ru: "Строка не попадёт в результат.", en: "The row will not be in the result." }
         ]
       },
@@ -354,16 +365,16 @@ window.LESSONS["sql-2026-10-29"] = {
         label: { he: "לפחות אחד", ru: "Хотя бы одно", en: "At least one" },
         kind: "text",
         text: {
-          he: "איזו מילה מחברת שני תנאים כך שמספיק שאחד מהם אמת?",
-          ru: "Какое слово соединяет два условия так, что хватает одного истинного?",
-          en: "Which word joins two conditions so that one true condition is enough?"
+          he: "השלימו את המילה החסרה בשאילתה, כך שמספיק שאחד התנאים אמת:\n`select * from shlifot where iskaot >= 10 ___ chanut = 'rehitim'`",
+          ru: "Допиши пропущенное слово в запросе так, чтобы хватало одного истинного условия:\n`select * from shlifot where iskaot >= 10 ___ chanut = 'rehitim'`",
+          en: "Fill in the missing word so that one true condition is enough:\n`select * from shlifot where iskaot >= 10 ___ chanut = 'rehitim'`"
         },
         answer: { accept: ["or"] },
         hints: [
           { he: "בעברית: \"או\".", ru: "По-русски «или».", en: "It is the partner of and in the truth table." }
         ],
         solution: [
-          "where iskaot >= 10 or chanut = 'rehitim'",
+          "select * from shlifot where iskaot >= 10 or chanut = 'rehitim'",
           { he: "התשובה: `or`.", ru: "Ответ: `or`.", en: "Answer: `or`." }
         ]
       },
@@ -555,20 +566,22 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         id: "ai-12", level: 3,
-        label: { he: "סכום", ru: "Сумма", en: "Sum" },
+        label: { he: "and עם <", ru: "and с <", en: "and with <" },
         kind: "number",
         text: {
-          he: "השאילתה של תרגיל 2 (`select iskaot from shlifot where chanut = 'rehitim'`) מציגה עמודה של מספרים. מה הסכום שלהם?",
-          ru: "Запрос задания 2 (`select iskaot from shlifot where chanut = 'rehitim'`) показывает столбец чисел. Какова их сумма?",
-          en: "The exercise 2 query (`select iskaot from shlifot where chanut = 'rehitim'`) shows a column of numbers. What is their sum?"
+          he: "כתבו שאילתה שמציגה רק את שדה העסקאות (iskaot) של חנויות rehitim שיש להן פחות מ־10 עסקאות. הריצו אותה על טבלת shlifot — כמה שורות היא תחזיר?",
+          ru: "Напиши запрос, который показывает только поле сделок (iskaot) у магазинов rehitim, у которых меньше 10 сделок. Выполни его на таблице shlifot — сколько строк он вернёт?",
+          en: "Write a query that shows only the deals field (iskaot) of rehitim shops that have fewer than 10 deals. Run it on the shlifot table — how many rows does it return?"
         },
-        answer: { value: "232" },
+        answer: { value: "2" },
         hints: [
-          { he: "קודם מצאו את 4 הערכים של rehitim.", ru: "Сначала найди 4 значения у rehitim.", en: "First find the 4 rehitim values." }
+          { he: "את העמודה כותבים אחרי `select`, ואת התנאים אחרי `where`. שני התנאים צריכים להתקיים יחד — במה מחברים אותם?", ru: "Столбец пишем после `select`, условия — после `where`. Оба условия должны выполняться вместе — чем их соединить?", en: "The column goes after `select`, the conditions after `where`. Both must hold together — what joins them?" },
+          "select iskaot from shlifot where chanut = 'rehitim' and iskaot < 10"
         ],
         solution: [
-          { he: "הערכים: 9, 9, 110, 104.", ru: "Значения: 9, 9, 110, 104.", en: "The values: 9, 9, 110, 104." },
-          "9 + 9 + 110 + 104 = 232"
+          "select iskaot from shlifot where chanut = 'rehitim' and iskaot < 10",
+          { he: "ל־rehitim יש iskaot: 9, 9, 110, 104. רק 9 ו־9 קטנים מ־10.", ru: "У rehitim iskaot: 9, 9, 110, 104. Меньше 10 только 9 и 9.", en: "rehitim has iskaot: 9, 9, 110, 104. Only 9 and 9 are below 10." },
+          { he: "השאילתה מחזירה 2 שורות.", ru: "Запрос возвращает 2 строки.", en: "The query returns 2 rows." }
         ]
       }
     ]

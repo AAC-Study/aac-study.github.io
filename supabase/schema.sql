@@ -9,6 +9,7 @@ alter table public.app_secrets enable row level security;  -- нет полит�
 insert into public.app_secrets(key, value) values ('invite_code', 'CHANGE-ME') on conflict (key) do nothing;
 -- С каких почт можно регистрироваться (через запятую; пусто = с любых). Просьба Дениса 03.11: только gmail.com и mail.ru.
 insert into public.app_secrets(key, value) values ('email_domains', 'gmail.com,mail.ru') on conflict (key) do nothing;
+insert into public.app_secrets(key, value) values ('ip_salt', md5(random()::text || clock_timestamp()::text)) on conflict (key) do nothing;
 create or replace function public.email_domain_ok(email text) returns boolean
 language sql stable security definer set search_path = public as $$
   select coalesce((select value from public.app_secrets where key = 'email_domains'), '') = ''
@@ -248,6 +249,17 @@ begin
 end $$;
 drop trigger if exists drafts_limit on public.drafts;
 create trigger drafts_limit before insert on public.drafts for each row execute function public.drafts_limit();
+-- Всего на человека не больше ~15 МБ черновиков (проверка безопасности 03.11: иначе один аккаунт мог забить всю бесплатную базу).
+create or replace function public.drafts_total() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if (select coalesce(sum(octet_length(d.data::text)), 0) from public.drafts d where d.user_id = new.user_id and d.key <> new.key)
+     + octet_length(new.data::text) > 15000000 then raise exception 'too_many_drafts'; end if;
+  return new;
+end $$;
+drop trigger if exists drafts_total on public.drafts;
+create trigger drafts_total before insert or update of data on public.drafts for each row execute function public.drafts_total();
+revoke execute on function public.drafts_total() from public, anon, authenticated;
 
 -- ---------- защита (проверка безопасности 02.11) ----------
 -- 1) Подписка на пуш — только адрес настоящей службы браузера (иначе функция могла бы стучаться куда угодно), не больше 10 устройств.
@@ -279,25 +291,55 @@ language plpgsql security definer set search_path = public as $$
 begin
   if (select count(*) from public.issues where user_id = new.user_id and created_at > now() - interval '1 hour') >= 10 then raise exception 'too_many_reports'; end if;
   if (select count(*) from public.issues where user_id = new.user_id) >= 300 then raise exception 'too_many_reports'; end if;
+  -- всего от одного человека не больше ~30 МБ (03.11)
+  if new.user_id is not null and (select coalesce(sum(octet_length(i.info::text)), 0) from public.issues i where i.user_id = new.user_id)
+     + octet_length(new.info::text) > 30000000 then raise exception 'too_many_reports'; end if;
   return new;
 end $$;
 drop trigger if exists issues_limit on public.issues;
 create trigger issues_limit before insert on public.issues for each row execute function public.issues_limit();
 
 -- Сообщение о проблеме от гостя (экран входа/регистрации, ещё без аккаунта). Просьба Дениса 03.11.
--- Защита от спама: до ~1,5 МБ (2 фото), 20 гостевых сообщений в час на весь сайт, 300 непрочитанных максимум.
+-- Защита от спама: до ~1,5 МБ (2 фото); с одного адреса (IP) 5 в час; 30 в час на весь сайт;
+-- непрочитанных гостевых не больше 60 и не больше ~40 МБ (проверка безопасности 03.11).
+-- IP не хранится: только его хеш с секретной солью, чтобы считать лимит.
+alter table public.issues add column if not exists src text;
 create or replace function public.report_issue_guest(p jsonb) returns bigint
 language plpgsql security definer set search_path = public as $$
-declare new_id bigint;
+declare new_id bigint; hdr jsonb; ip text; tag text;
 begin
   if p is null or jsonb_typeof(p) <> 'object' then raise exception 'bad_report'; end if;
   if octet_length(p::text) > 1600000 then raise exception 'report_too_big'; end if;
-  if (select count(*) from public.issues i where i.user_id is null and i.info->>'type' = 'guest' and i.created_at > now() - interval '1 hour') >= 20
+  begin hdr := nullif(current_setting('request.headers', true), '')::jsonb; exception when others then hdr := null; end;
+  ip := coalesce(hdr->>'cf-connecting-ip', split_part(coalesce(hdr->>'x-forwarded-for', ''), ',', 1), '');
+  tag := case when btrim(ip) = '' then null
+    else md5(btrim(ip) || coalesce((select value from public.app_secrets where key = 'ip_salt'), 'aac')) end;
+  if tag is not null and (select count(*) from public.issues i where i.src = tag and i.created_at > now() - interval '1 hour') >= 5
     then raise exception 'too_many_reports'; end if;
-  if (select count(*) from public.issues i where i.user_id is null and i.info->>'type' = 'guest' and not i.resolved) >= 300
+  if (select count(*) from public.issues i where i.user_id is null and i.info->>'type' = 'guest' and i.created_at > now() - interval '1 hour') >= 30
     then raise exception 'too_many_reports'; end if;
-  insert into public.issues(user_id, info)
-  values (null, (p - 'type') || jsonb_build_object('type', 'guest'))
+  if (select count(*) from public.issues i where i.user_id is null and i.info->>'type' = 'guest' and not i.resolved) >= 60
+    then raise exception 'too_many_reports'; end if;
+  if (select coalesce(sum(octet_length(i.info::text)), 0) from public.issues i where i.user_id is null and not i.resolved) > 40000000
+    then raise exception 'too_many_reports'; end if;
+  -- только известные поля и только текст (иначе странные данные могли сломать список у админа); картинки — только data:image/…
+  insert into public.issues(user_id, info, src)
+  values (null, jsonb_strip_nulls(jsonb_build_object(
+      'type', 'guest',
+      'text', left(case when jsonb_typeof(p->'text') = 'string' then p->>'text' end, 20000),
+      'html', left(case when jsonb_typeof(p->'html') = 'string' then p->>'html' end, 1500000),
+      'email', left(case when jsonb_typeof(p->'email') = 'string' then p->>'email' end, 200),
+      'where', left(case when jsonb_typeof(p->'where') = 'string' then p->>'where' end, 40),
+      'err', left(case when jsonb_typeof(p->'err') = 'string' then p->>'err' end, 400),
+      'errText', left(case when jsonb_typeof(p->'errText') = 'string' then p->>'errText' end, 400),
+      'errAt', left(case when jsonb_typeof(p->'errAt') in ('string', 'number') then p->>'errAt' end, 40),
+      'page', left(case when jsonb_typeof(p->'page') = 'string' then p->>'page' end, 80),
+      'ua', left(case when jsonb_typeof(p->'ua') = 'string' then p->>'ua' end, 400),
+      'lang', left(case when jsonb_typeof(p->'lang') = 'string' then p->>'lang' end, 10),
+      'screen', left(case when jsonb_typeof(p->'screen') = 'string' then p->>'screen' end, 40),
+      'images', case when jsonb_typeof(p->'images') = 'array' then
+        (select coalesce(jsonb_agg(x), '[]'::jsonb) from (select x from jsonb_array_elements(p->'images') x
+          where jsonb_typeof(x) = 'string' and x #>> '{}' like 'data:image/%' limit 2) z) end)), tag)
   returning id into new_id;
   return new_id;
 end $$;
@@ -350,3 +392,7 @@ revoke execute on function public.pass_cooldown() from public, anon, authenticat
 drop trigger if exists pass_cooldown on auth.users;
 create trigger pass_cooldown before update of encrypted_password on auth.users
   for each row execute function public.pass_cooldown();
+
+-- Проверка безопасности 03.11: настройки профиля не больше ~8 КБ.
+alter table public.profiles drop constraint if exists profiles_prefs_size;
+alter table public.profiles add constraint profiles_prefs_size check (octet_length(prefs::text) <= 8000) not valid;

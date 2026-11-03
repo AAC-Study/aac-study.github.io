@@ -168,18 +168,22 @@ window.LESSONS['fullstack-2026-10-28'] = {
         label: { he: 'שורות', ru: 'Строки', en: 'Rows' },
         kind: 'number',
         text: {
-          he: 'טבלה עם שורת כותרת אחת ועוד 3 שורות של נתונים. כמה תגיות `<tr>` יש בה?',
-          ru: 'В таблице одна строка-заголовок и ещё 3 строки данных. Сколько в ней тегов `<tr>`?',
-          en: 'A table with one header row and 3 data rows. How many `<tr>` tags does it have?'
+          he: 'כתבו טבלה עם שורת כותרת אחת (`<th>`) ועוד 3 שורות של נתונים (`<td>`). כמה תגיות `<tr>` פותחות יהיו בקוד שלכם?',
+          ru: 'Напиши таблицу: одна строка-заголовок (`<th>`) и ещё 3 строки данных (`<td>`). Сколько открывающих тегов `<tr>` будет в твоём коде?',
+          en: 'Write a table with one header row (`<th>`) and 3 data rows (`<td>`). How many opening `<tr>` tags will your code have?'
         },
         answer: { value: '4' },
         hints: [
-          { he: 'כל שורה — `<tr>` אחד, גם שורת הכותרת.', ru: 'Каждая строка — один `<tr>`, и строка-заголовок тоже.', en: 'Every row is one `<tr>`, including the header row.' }
+          { he: 'כל שורה בטבלה מתחילה ב־`<tr>` — גם שורת הכותרת.', ru: 'Каждая строка таблицы начинается с `<tr>` — и строка-заголовок тоже.', en: 'Every table row starts with `<tr>` — the header row too.' }
         ],
         solution: [
-          { he: 'שורת כותרת (עם `<th>`) — `<tr>` אחד.', ru: 'Строка-заголовок (с `<th>`) — один `<tr>`.', en: 'Header row (with `<th>`) — one `<tr>`.' },
-          { he: '3 שורות נתונים — עוד 3.', ru: '3 строки данных — ещё 3.', en: '3 data rows — 3 more.' },
-          '1 + 3 = 4'
+          '<table border="1">',
+          '  <tr><th>…</th><th>…</th></tr>',
+          '  <tr><td>…</td><td>…</td></tr>',
+          '  <tr><td>…</td><td>…</td></tr>',
+          '  <tr><td>…</td><td>…</td></tr>',
+          '</table>',
+          { he: 'שורת כותרת אחת + 3 שורות נתונים: בקוד 4 תגיות `<tr>`.', ru: 'Одна строка-заголовок + 3 строки данных: в коде 4 тега `<tr>`.', en: 'One header row + 3 data rows: the code has 4 `<tr>` tags.' }
         ]
       },
       {
@@ -187,17 +191,19 @@ window.LESSONS['fullstack-2026-10-28'] = {
         label: { he: 'כמה דפים', ru: 'Сколько страниц', en: 'How many pages' },
         kind: 'number',
         text: {
-          he: 'כמה דפים לפחות צריכים להיות באתר של התרגיל המסכם?',
-          ru: 'Сколько страниц минимум должно быть на сайте итогового задания?',
-          en: 'At least how many pages must the summary-exercise website have?'
+          he: 'בתרגיל המסכם כל דף באתר הוא קובץ `.html` נפרד, והתפריט מקשר ביניהם עם `<a href>`. כמה קובצי `.html` לפחות תצטרכו לכתוב?',
+          ru: 'В итоговом задании каждая страница сайта — отдельный файл `.html`, а меню связывает их через `<a href>`. Сколько файлов `.html` минимум тебе придётся написать?',
+          en: 'In the summary exercise every page of the site is a separate `.html` file, and the menu links them with `<a href>`. At least how many `.html` files will you need to write?'
         },
         answer: { value: '4' },
         hints: [
-          { he: 'מנו את הדפים: בית, הרשמה, …', ru: 'Перечисли страницы: главная, регистрация, …', en: 'List the pages: home, registration, …' }
+          { he: 'לכל דף מהתרגיל — קובץ משלו: בית, הרשמה, …', ru: 'Каждой странице из задания — свой файл: главная, регистрация, …', en: 'Each page of the exercise gets its own file: home, registration, …' }
         ],
         solution: [
-          { he: 'דף הבית, דף הרשמה, דף אישור הרשמה, דף מחירון.', ru: 'Главная, регистрация, подтверждение регистрации, прайс-лист.', en: 'Home, registration, registration confirmation, price list.' },
-          { he: 'סה״כ 4 דפים.', ru: 'Итого 4 страницы.', en: 'That is 4 pages.' }
+          { he: 'דף הבית, דף הרשמה, דף אישור הרשמה, דף מחירון — כל אחד בקובץ משלו.', ru: 'Главная, регистрация, подтверждение регистрации, прайс-лист — каждая в своём файле.', en: 'Home, registration, registration confirmation, price list — each in its own file.' },
+          { he: 'התפריט בדף הבית, למשל:', ru: 'Меню на главной, например:', en: 'The menu on the home page, for example:' },
+          '<a href="register.html">…</a>  <a href="prices.html">…</a>',
+          { he: 'סה״כ 4 קבצים.', ru: 'Итого 4 файла.', en: 'That is 4 files.' }
         ]
       },
       {
@@ -205,19 +211,21 @@ window.LESSONS['fullstack-2026-10-28'] = {
         label: { he: 'מחירון', ru: 'Прайс-лист', en: 'Price list' },
         kind: 'number',
         text: {
-          he: 'במחירון יש שורת כותרת (שם המוצר, מחיר, זמינות, תמונה) ובדיוק 5 מוצרים, כל מוצר בשורה. כמה תאים `<td>` יש בטבלה?',
-          ru: 'В прайс-листе строка-заголовок (название, цена, наличие, картинка) и ровно 5 товаров, по товару в строке. Сколько ячеек `<td>` в таблице?',
-          en: 'The price list has a header row (name, price, availability, image) and exactly 5 products, one per row. How many `<td>` cells does the table have?'
+          he: 'כתבו את טבלת המחירון: שורת כותרת עם `<th>` (שם המוצר, מחיר, זמינות, תמונה) ובדיוק 5 מוצרים, כל מוצר בשורת `<tr>` משלו. כמה תגיות `<td>` יהיו בקוד שלכם?',
+          ru: 'Напиши таблицу прайс-листа: строка-заголовок из `<th>` (название, цена, наличие, картинка) и ровно 5 товаров, каждый в своей строке `<tr>`. Сколько тегов `<td>` будет в твоём коде?',
+          en: 'Write the price-list table: a header row of `<th>` (name, price, availability, image) and exactly 5 products, each in its own `<tr>` row. How many `<td>` tags will your code have?'
         },
         answer: { value: '20' },
         hints: [
           { he: 'שורת הכותרת בנויה מ־`<th>`, לא מ־`<td>`.', ru: 'Строка-заголовок состоит из `<th>`, а не `<td>`.', en: 'The header row is made of `<th>`, not `<td>`.' },
-          { he: 'בכל שורת מוצר יש 4 תאים.', ru: 'В каждой строке товара 4 ячейки.', en: 'Each product row has 4 cells.' }
+          { he: 'כתבו שורת מוצר אחת: כמה `<td>` יש בה? יש 5 שורות כאלה.', ru: 'Напиши одну строку товара: сколько в ней `<td>`? Таких строк 5.', en: 'Write one product row: how many `<td>` does it have? There are 5 such rows.' }
         ],
         solution: [
-          { he: 'עמודות: שם, מחיר, זמינות, תמונה — 4.', ru: 'Столбцы: название, цена, наличие, картинка — 4.', en: 'Columns: name, price, availability, image — 4.' },
-          { he: 'שורות מוצרים: 5. שורת הכותרת היא `<th>` ולא נספרת.', ru: 'Строк с товарами: 5. Строка-заголовок — `<th>`, не считается.', en: 'Product rows: 5. The header row is `<th>` and is not counted.' },
-          '5 × 4 = 20'
+          '<table border="1">',
+          '  <tr><th>שם</th><th>מחיר</th><th>זמינות</th><th>תמונה</th></tr>',
+          '  <tr><td>…</td><td>…</td><td>…</td><td>…</td></tr>   × 5',
+          '</table>',
+          { he: 'בכל שורת מוצר 4 תגיות `<td>`, ויש 5 שורות מוצרים: 20. שורת הכותרת היא `<th>` ולא נספרת.', ru: 'В каждой строке товара 4 тега `<td>`, строк с товарами 5: всего 20. Строка-заголовок — `<th>`, не считается.', en: 'Each product row has 4 `<td>` tags, and there are 5 product rows: 20. The header row is `<th>` and is not counted.' }
         ]
       },
       {
@@ -403,18 +411,20 @@ window.LESSONS['fullstack-2026-10-28'] = {
         label: { he: 'שורות במחירון', ru: 'Строки прайса', en: 'Price list rows' },
         kind: 'number',
         text: {
-          he: 'במחירון יש שורת כותרת ו־7 מוצרים, כל מוצר בשורה משלו, ו־4 עמודות. כמה תאים יש בטבלה בסך הכול (`<th>` וגם `<td>`)?',
-          ru: 'В прайс-листе строка-заголовок и 7 товаров, каждый в своей строке, и 4 столбца. Сколько всего ячеек в таблице (и `<th>`, и `<td>`)?',
-          en: 'A price list has a header row and 7 products, each in its own row, and 4 columns. How many cells in total (`<th>` and `<td>`)?'
+          he: 'כתבו מחירון ב־HTML: שורת כותרת עם 4 תגיות `<th>`, ו־7 מוצרים, כל מוצר ב־`<tr>` משלו עם 4 תגיות `<td>`. כמה תגיות תא (`<th>` וגם `<td>`) יהיו בקוד בסך הכול?',
+          ru: 'Напиши прайс-лист на HTML: строка-заголовок из 4 тегов `<th>` и 7 товаров, каждый в своей `<tr>` с 4 тегами `<td>`. Сколько всего тегов-ячеек (и `<th>`, и `<td>`) будет в коде?',
+          en: 'Write a price list in HTML: a header row of 4 `<th>` tags and 7 products, each in its own `<tr>` with 4 `<td>` tags. How many cell tags (`<th>` and `<td>`) will the code have in total?'
         },
         answer: { value: '32' },
         hints: [
-          { he: 'כמה שורות יש בסך הכול, כולל הכותרת?', ru: 'Сколько всего строк, включая заголовок?', en: 'How many rows in total, including the header?' },
-          { he: '8 שורות, ובכל אחת 4 תאים.', ru: '8 строк, в каждой 4 ячейки.', en: '8 rows, 4 cells each.' }
+          { he: 'כמה שורות `<tr>` יהיו בקוד, כולל שורת הכותרת?', ru: 'Сколько строк `<tr>` будет в коде, включая заголовок?', en: 'How many `<tr>` rows will the code have, including the header?' },
+          { he: '8 שורות `<tr>`, ובכל אחת 4 תאים.', ru: '8 строк `<tr>`, в каждой 4 ячейки.', en: '8 `<tr>` rows, 4 cells each.' }
         ],
         solution: [
-          { he: 'שורות: 1 (כותרת) + 7 (מוצרים) = 8.', ru: 'Строк: 1 (заголовок) + 7 (товары) = 8.', en: 'Rows: 1 (header) + 7 (products) = 8.' },
-          '8 × 4 = 32'
+          '<tr><th>…</th><th>…</th><th>…</th><th>…</th></tr>',
+          '<tr><td>…</td><td>…</td><td>…</td><td>…</td></tr>   × 7',
+          { he: 'שורות `<tr>`: 1 (כותרת) + 7 (מוצרים) = 8, בכל אחת 4 תאים.', ru: 'Строк `<tr>`: 1 (заголовок) + 7 (товары) = 8, в каждой 4 ячейки.', en: '`<tr>` rows: 1 (header) + 7 (products) = 8, 4 cells each.' },
+          { he: 'סה״כ 32 תגיות תא: 4 `<th>` ו־28 `<td>`.', ru: 'Всего 32 тега-ячейки: 4 `<th>` и 28 `<td>`.', en: 'In total 32 cell tags: 4 `<th>` and 28 `<td>`.' }
         ]
       },
       {

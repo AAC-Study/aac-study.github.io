@@ -396,7 +396,9 @@ language plpgsql immutable as $$
 begin return p::uuid; exception when others then return null; end $$;
 create or replace function public.sc_msg_chat(p_msg bigint) returns uuid
 language sql stable security definer set search_path = public as $$
-  select chat_id from public.messages where id = p_msg and (expires_at is null or expires_at > now());
+  -- только для своих чатов: чужой не узнает, в каком чате сообщение (проверка безопасности 03.11)
+  select m.chat_id from public.messages m where m.id = p_msg and (m.expires_at is null or m.expires_at > now())
+    and exists(select 1 from public.chat_members k where k.chat_id = m.chat_id and k.user_id = auth.uid());
 $$;
 create or replace function public.sc_has_banned(p_words text[], p_text text) returns boolean
 language sql immutable as $$

@@ -221,12 +221,12 @@ window.LESSONS['algo-2026-10-25'] = {
         ],
         solution: ['sum = 1 + 2 + 2 = 5', '5 / 3 = 1.666...', { he: 'חילוק בשלמים זורק את השבר: 1', ru: 'Целочисленное деление отбрасывает дробь: 1', en: 'Integer division drops the fraction: 1' }, { he: 'הנכון לשאלה: `sum / 3.0` → 1.6666666666666667', ru: 'Правильно для задания: `sum / 3.0` → 1.6666666666666667', en: 'Correct for the question: `sum / 3.0` → 1.6666666666666667' }] },
       { id: 's4', group: 'sheet', label: '4', kind: 'number',
-        text: { he: 'שאלה 4: קולטים שנת לידה ומדפיסים את הגיל (השנה 2026). מה הגיל עבור הקלט 1998?\n`System.out.println("your age is " + (2026 - year) + ".");`', ru: 'Задание 4: вводим год рождения и печатаем возраст (сейчас 2026). Какой возраст при вводе 1998?\n`System.out.println("your age is " + (2026 - year) + ".");`', en: 'Question 4: read a birth year and print the age (the year is 2026). What is the age for input 1998?\n`System.out.println("your age is " + (2026 - year) + ".");`' },
+        text: { he: 'שאלה 4: קולטים שנת לידה ומדפיסים את הגיל (השנה 2026). איזה מספר יופיע בשורה שהתוכנית תדפיס עבור הקלט 1998?\n`System.out.println("your age is " + (2026 - year) + ".");`', ru: 'Задание 4: вводим год рождения и печатаем возраст (сейчас 2026). Какое число будет в строке, которую напечатает программа при вводе 1998?\n`System.out.println("your age is " + (2026 - year) + ".");`', en: 'Question 4: read a birth year and print the age (the year is 2026). Which number appears in the line the program prints for input 1998?\n`System.out.println("your age is " + (2026 - year) + ".");`' },
         answer: { value: '28' },
         hints: [
           { he: 'הסוגריים מחושבים לפני ההדבקה לטקסט.', ru: 'Скобки считаются до склейки с текстом.', en: 'The brackets are calculated before joining with the text.' }
         ],
-        solution: ['2026 - 1998 = 28', { he: 'מודפס: your age is 28.', ru: 'Печатается: your age is 28.', en: 'Printed: your age is 28.' }] },
+        solution: ['int year = sc.nextInt();   // 1998', '2026 - 1998 = 28', { he: 'מודפס: your age is 28.', ru: 'Печатается: your age is 28.', en: 'Printed: your age is 28.' }] },
       { id: 's5', group: 'sheet', label: '5', kind: 'text',
         text: { he: 'שאלה 5: מספר דו-ספרתי, ספרת העשרות וספרת האחדות. הקלט 47. מה יודפס? (שתי שורות — כתבו עם רווח)\n`System.out.println(n / 10);`\n`System.out.println(n % 10);`', ru: 'Задание 5: двузначное число, цифра десятков и единиц. Ввод 47. Что будет напечатано? (две строки — напиши через пробел)\n`System.out.println(n / 10);`\n`System.out.println(n % 10);`', en: 'Question 5: a two-digit number, the tens and the units digit. Input 47. What is printed? (two lines — write them with a space)\n`System.out.println(n / 10);`\n`System.out.println(n % 10);`' },
         answer: { accept: ['4 7'] },
@@ -286,19 +286,22 @@ window.LESSONS['algo-2026-10-25'] = {
         ],
         solution: ['3 + 4 = 7,  7 > 8  →  false', { he: 'ב-`&&` מספיק `false` אחד, וכל התנאי `false`', ru: 'В `&&` хватает одного `false` — всё условие `false`', en: 'In `&&` one `false` is enough — the whole condition is `false`' }, { he: 'מודפס No', ru: 'Печатается No', en: 'No is printed' }] },
       { id: 's20', group: 'sheet', label: '20', kind: 'number',
-        text: { he: 'שאלה 20: מס מדורג. עד 6,000 — אין מס. על החלק שבין 6,000 ל-12,000 משלמים 10%. על כל שקל מעל 12,000 משלמים 20%. כמה מס על משכורת של 15,000?', ru: 'Задание 20: ступенчатый налог. До 6 000 — налога нет. С части между 6 000 и 12 000 платят 10%. С каждого шекеля выше 12 000 платят 20%. Какой налог с зарплаты 15 000?', en: 'Question 20: progressive tax. Up to 6,000 — no tax. On the part between 6,000 and 12,000 you pay 10%. On every shekel above 12,000 you pay 20%. What is the tax on a salary of 15,000?' },
+        text: { he: 'שאלה 20: מס מדורג. כתבו תוכנית שקולטת משכורת `m` (`double`) ומדפיסה את המס עם `System.out.println`. עד 6,000 — אין מס. על החלק שבין 6,000 ל-12,000 משלמים 10%. על כל שקל מעל 12,000 משלמים 20%. מה תדפיס התוכנית עבור הקלט 15000?', ru: 'Задание 20: ступенчатый налог. Напиши программу, которая вводит зарплату `m` (`double`) и печатает налог через `System.out.println`. До 6 000 — налога нет. С части между 6 000 и 12 000 платят 10%. С каждого шекеля выше 12 000 платят 20%. Что напечатает программа при вводе 15000?', en: 'Question 20: progressive tax. Write a program that reads a salary `m` (`double`) and prints the tax with `System.out.println`. Up to 6,000 — no tax. On the part between 6,000 and 12,000 you pay 10%. On every shekel above 12,000 you pay 20%. What does the program print for input 15000?' },
         answer: { value: '1200' },
         hints: [
-          { he: 'מחלקים את המשכורת לשלושה חלקים: 0–6000, 6000–12000, מעל 12000.', ru: 'Делим зарплату на три части: 0–6000, 6000–12000, выше 12000.', en: 'Split the salary into three parts: 0–6000, 6000–12000, above 12000.' },
-          { he: 'החלק האמצעי הוא 6000 שקל, והחלק העליון הוא 3000 שקל.', ru: 'Средняя часть — 6000 шекелей, верхняя — 3000 шекелей.', en: 'The middle part is 6000 shekels, the top part is 3000 shekels.' }
+          { he: 'שלושה ענפים: `if (m <= 6000)`, `else if (m <= 12000)`, `else`.', ru: 'Три ветки: `if (m <= 6000)`, `else if (m <= 12000)`, `else`.', en: 'Three branches: `if (m <= 6000)`, `else if (m <= 12000)`, `else`.' },
+          { he: 'בענף האמצעי: `(m - 6000) * 0.10`. בענף האחרון החלק האמצעי כבר מלא (600), ומוסיפים `(m - 12000) * 0.20`.', ru: 'В средней ветке: `(m - 6000) * 0.10`. В последней средняя часть уже полная (600), и прибавляем `(m - 12000) * 0.20`.', en: 'Middle branch: `(m - 6000) * 0.10`. In the last branch the middle part is already full (600), and you add `(m - 12000) * 0.20`.' }
         ],
         solution: [
-          { he: 'עד 6000: אין מס → 0', ru: 'До 6000: налога нет → 0', en: 'Up to 6000: no tax → 0' },
-          '(12000 - 6000) * 0.10 = 6000 * 0.10 = 600',
-          '(15000 - 12000) * 0.20 = 3000 * 0.20 = 600',
-          '0 + 600 + 600 = 1200',
-          { he: 'בקוד: `if (m <= 6000) tax = 0; else if (m <= 12000) tax = (m - 6000) * 0.10; else tax = 600 + (m - 12000) * 0.20;`', ru: 'В коде: `if (m <= 6000) tax = 0; else if (m <= 12000) tax = (m - 6000) * 0.10; else tax = 600 + (m - 12000) * 0.20;`', en: 'In code: `if (m <= 6000) tax = 0; else if (m <= 12000) tax = (m - 6000) * 0.10; else tax = 600 + (m - 12000) * 0.20;`' },
-          { he: 'תשובה: 1200 (ולא 1500 — 10% רק על החלק האמצעי)', ru: 'Ответ: 1200 (а не 1500 — 10% только со средней части)', en: 'Answer: 1200 (not 1500 — 10% only on the middle part)' }
+          'double m = sc.nextDouble();',
+          'double tax;',
+          'if (m <= 6000) tax = 0;',
+          'else if (m <= 12000) tax = (m - 6000) * 0.10;',
+          'else tax = 600 + (m - 12000) * 0.20;',
+          'System.out.println(tax);',
+          { he: 'קלט 15000: גדול מ-12000, ולכן רץ הענף `else`.', ru: 'Ввод 15000: больше 12000, поэтому работает ветка `else`.', en: 'Input 15000: more than 12000, so the `else` branch runs.' },
+          'tax = 600 + (15000 - 12000) * 0.20 = 600 + 600.0 = 1200.0',
+          { he: 'מודפס: 1200.0 (ולא 1500 — 10% רק על החלק האמצעי)', ru: 'Печатается: 1200.0 (а не 1500 — 10% только со средней части)', en: 'Printed: 1200.0 (not 1500 — 10% only on the middle part)' }
         ] },
       { id: 'f1', group: 'for', label: { he: 'זוגיים עד 20', ru: 'Чётные до 20', en: 'Evens to 20' }, kind: 'number',
         text: { he: 'מה יודפס?\n`int sum = 0;`\n`for (int i = 2; i <= 20; i += 2) {`\n`    sum += i;`\n`}`\n`System.out.println(sum);`', ru: 'Что будет напечатано?\n`int sum = 0;`\n`for (int i = 2; i <= 20; i += 2) {`\n`    sum += i;`\n`}`\n`System.out.println(sum);`', en: 'What is printed?\n`int sum = 0;`\n`for (int i = 2; i <= 20; i += 2) {`\n`    sum += i;`\n`}`\n`System.out.println(sum);`' },

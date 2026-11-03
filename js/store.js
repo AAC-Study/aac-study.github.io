@@ -259,11 +259,19 @@
           if (q.type !== 'recovery') {
             // почта подтверждена — входить человек будет сам; вход из ссылки отзываем
             Store.linkNote = 'auth_confirmed'; Store.loginEmail = u.email;
-            return fetch(URL + '/auth/v1/logout', { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + q.access_token } }).catch(function () {});
+            return fetch(URL + '/auth/v1/logout?scope=local', { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + q.access_token } }).catch(function () {});
           }
-          saveSess({ access_token: q.access_token, refresh_token: q.refresh_token,
-            expires_at: Number(q.expires_at) || Math.floor(Date.now() / 1000) + (Number(q.expires_in) || 3600), user: { id: u.id, email: u.email } });
-          Store.pendingReset = true; Store.linkNote = null; Policy.start(false);   // ссылка «сменить пароль»: короткий вход
+          var linkSess = { access_token: q.access_token, refresh_token: q.refresh_token,
+            expires_at: Number(q.expires_at) || Math.floor(Date.now() / 1000) + (Number(q.expires_in) || 3600), user: { id: u.id, email: u.email } };
+          /* Защита (проверка 03.11): чужая ссылка «сменить пароль» не должна тихо входить в чужой аккаунт.
+             Сразу входим, только если «Забыл пароль?» для этой почты нажимали в этом браузере (за последние 3 часа). */
+          var asked = U.storage.get('rec_req', null);
+          var mine = asked && String(asked.email || '').toLowerCase() === String(u.email || '').toLowerCase() && Date.now() - (asked.at || 0) < 3 * 3600 * 1000;
+          Store.linkNote = null;
+          if (!mine) { Store.pendingLink = linkSess; Store.pendingReset = true; return; }
+          U.storage.set('rec_req', null);
+          saveSess(linkSess);
+          Store.pendingReset = true; Policy.start(false);   // ссылка «сменить пароль»: короткий вход
         })
         .catch(function () { Store.linkNote = 'auth_link_bad'; });
     }
@@ -271,11 +279,23 @@
       if (!sess) return Promise.resolve();
       if (!Policy.expired()) { Policy.ensure(); return Promise.resolve(); }
       Store.linkNote = 'auth_expired';
-      var p = http('POST', '/auth/v1/logout', {}).catch(function () {});   // отзываем вход и на сервере
+      var p = http('POST', '/auth/v1/logout?scope=local', {}).catch(function () {});   // отзываем вход и на сервере
       return p.then(function () { saveSess(null); me = null; U.storage.set('sb_me_cache', null); Policy.clear(); });
     }
     Store.ready = expireAtStart().then(fromLink).then(loadMe).then(function (x) { setTimeout(flushAwards, 2000); return x; })
       .catch(function () { /* нет сети или сессия истекла */ });
+
+    /* ссылка «сменить пароль» открыта не там, где просили: человек сам подтверждает аккаунт */
+    Store.linkAccept = function () {
+      var l = Store.pendingLink; if (!l) return Promise.resolve();
+      Store.pendingLink = null; saveSess(l); Policy.start(false); me = null;
+      return loadMe();
+    };
+    Store.linkReject = function () {
+      var l = Store.pendingLink; Store.pendingLink = null; Store.pendingReset = false;
+      if (!l) return Promise.resolve();
+      return fetch(URL + '/auth/v1/logout?scope=local', { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + l.access_token } }).catch(function () {});
+    };
 
     Store.auth = {
       current: function () { return toPub(me); },
@@ -294,7 +314,7 @@
             if (r && !r.access_token && Array.isArray(r.identities) && r.identities.length === 0) { var x = new Error('err_exists'); x.code = 'err_exists'; throw x; }
             if (!r || !r.access_token) return { confirm: true, email: email };   // ждём, пока подтвердит почту
             // сразу не входим: человек входит сам на экране «Вход». Выданный сервером вход отзываем.
-            return fetch(URL + '/auth/v1/logout', { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + r.access_token } })
+            return fetch(URL + '/auth/v1/logout?scope=local', { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + r.access_token } })
               .catch(function () {}).then(function () { return { registered: true, email: email }; });
           }, function (e) {
             var er = mapAuthErr(e);
@@ -320,6 +340,7 @@
         if (!email) return err('err_fields');
         var body = { email: email };
         if (p.captcha) body.gotrue_meta_security = { captcha_token: p.captcha };
+        U.storage.set('rec_req', { email: email, at: Date.now() });   // эта ссылка из письма откроется здесь сразу
         return http('POST', '/auth/v1/recover?redirect_to=' + encodeURIComponent(location.origin + location.pathname), body, { auth: false })
           .then(function () {}, function (e) {
             if (e && e.status === 429) { var x = mapAuthErr(e); x.code = 'err_too_often'; throw x; }
@@ -350,7 +371,7 @@
         });
       },
       signOut: function () {
-        var p = sess ? http('POST', '/auth/v1/logout', {}).catch(function () {}) : Promise.resolve();
+        var p = sess ? http('POST', '/auth/v1/logout?scope=local', {}).catch(function () {}) : Promise.resolve();
         saveSess(null); me = null; done = {}; U.storage.set('sb_me_cache', null); Policy.clear(); emit(); return p;
       }
     };

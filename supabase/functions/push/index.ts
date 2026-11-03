@@ -280,7 +280,7 @@ Deno.serve(async (req) => {
     }
     if (action === "issue") {   // друг сообщил о проблеме → пуш всем админам (один раз)
       const id = Number(body.id);
-      const rows = await db(`issues?id=eq.${id}&user_id=eq.${uid}&select=info,profiles(name)`);
+      const rows = await db(`issues?id=eq.${id}&user_id=eq.${uid}&created_at=gt.${ago(10 * 60e3)}&select=info,profiles(name)`);
       if (!rows.length) return json({ error: "not found" }, 404);
       if (!(await claim([`i:${id}`])).size) return json({ sent: 0 });
       const info = rows[0].info || {};
@@ -333,6 +333,6 @@ Deno.serve(async (req) => {
     return json({ error: "unknown action" }, 400);
   } catch (e) {
     console.error(e);
-    return json({ error: String(e) }, 500);
+    return json({ error: "server error" }, 500);   // подробности только в логах функции
   }
 });

@@ -254,14 +254,40 @@ step('guest problem report: anon can send, limits, nobody but admin reads it', f
   assert(!anon("select count(*) from public.issues").ok || anon("select count(*) from public.issues").out === '0', 'anon reads nothing');
   assert.strictEqual(ok(B, "select count(*) from public.issues where id = " + id), '0', 'student does not see guest report');
   assert.strictEqual(ok(A, "select count(*) from public.issues where id = " + id), '1', 'admin sees it');
+  const odd = anon("select public.report_issue_guest('{\"err\":{\"x\":1},\"where\":[1],\"role\":\"admin\",\"text\":\"t\",\"images\":[\"javascript:x\",\"data:image/png;base64,AA\",5]}'::jsonb)");
+  assert(odd.ok, odd.err);
+  assert.strictEqual(admin("select (info - 'type')::text from public.issues where id = " + odd.out), '{"text": "t", "images": ["data:image/png;base64,AA"]}', 'only known text fields and data:image pictures are kept');
   const big = anon("select public.report_issue_guest(jsonb_build_object('text', repeat('x', 1700000)))");
   assert(!big.ok && /report_too_big/.test(big.err), 'too big refused');
-  for (let i = 0; i < 19; i++) assert(anon("select public.report_issue_guest('{\"text\":\"n" + i + "\"}'::jsonb)").ok);
+  // one address (IP): 5 per hour, then refused; another address still works
+  const fromIp = (ip, txt) => anon("select set_config('request.headers', '{\"cf-connecting-ip\":\"" + ip + "\"}', false) \\g /dev/null\nselect public.report_issue_guest('{\"text\":\"" + txt + "\"}'::jsonb)");
+  for (let i = 0; i < 5; i++) { const x = fromIp('1.2.3.4', 'ip' + i); assert(x.ok, x.err); }
+  const ipOver = fromIp('1.2.3.4', 'ip6');
+  assert(!ipOver.ok && /too_many_reports/.test(ipOver.err), '6th from one address refused');
+  assert(fromIp('5.6.7.8', 'other').ok, 'other address still works');
+  assert.strictEqual(admin("select count(*) from public.issues where src is not null and info::text like '%1.2.3.4%'"), '0', 'IP not stored in clear');
+  // whole site: 30 per hour (2 + 6 so far)
+  for (let i = 0; i < 22; i++) assert(anon("select public.report_issue_guest('{\"text\":\"n" + i + "\"}'::jsonb)").ok);
   const over = anon("select public.report_issue_guest('{\"text\":\"one too many\"}'::jsonb)");
-  assert(!over.ok && /too_many_reports/.test(over.err), '21st in an hour refused');
+  assert(!over.ok && /too_many_reports/.test(over.err), '31st in an hour refused');
   const ins = anon("insert into public.issues(info) values ('{\"text\":\"direct\"}')");
   assert(!ins.ok, 'anon cannot insert directly');
   admin("delete from public.issues where user_id is null");
+});
+step('security 03.11: drafts total size, prefs size, message chat id hidden from strangers', function () {
+  const chunk = "jsonb_build_object('s', repeat('x', 390000))";
+  let err = '';
+  for (let i = 0; i < 40 && !err; i++) { const r = as(B, "insert into public.drafts(key, data) values ('big" + i + "', " + chunk + ")"); if (!r.ok) err = r.err; }
+  assert(/too_many_drafts/.test(err), 'drafts over ~15 MB refused: ' + err.slice(0, 200));
+  admin("delete from public.drafts where key like 'big%'");
+  fails(B, "update public.profiles set prefs = jsonb_build_object('x', repeat('y', 9000)) where id = '" + B + "'", 'profiles_prefs_size');
+  const mid = admin("select id from public.messages order by id limit 1");
+  if (mid) {
+    const cid = admin("select chat_id from public.messages where id = " + mid);
+    const members = admin("select string_agg(user_id::text, ',') from public.chat_members where chat_id = '" + cid + "'");
+    const outsider = [A, B, C].filter(u => members.indexOf(u) < 0)[0];
+    if (outsider) assert.strictEqual(ok(outsider, "select coalesce(public.sc_msg_chat(" + mid + ")::text, 'none')"), 'none');
+  }
 });
 step('admin: invite code get/set, only for admin', function () {
   assert.strictEqual(ok(A, rpc('admin_invite_get', '')), 'TEST');
