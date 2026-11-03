@@ -11,7 +11,10 @@
       hw_given: 'ניתן', hw_due: 'להגיש עד', hw_due_unknown: 'מועד ההגשה עוד לא ידוע', hw_left_d: 'נשארו {d} ימים ו־{h} שעות', hw_left_h: 'נשארו {h} שעות',
       hw_left_m: 'נשארו {m} דקות', hw_over: 'המועד עבר', hw_active: 'פתוחים', hw_nodue: 'בלי מועד', hw_past: 'המועד עבר', hw_empty: 'אין עדיין שיעורי בית.',
       hw_back: 'לכל שיעורי הבית', hw_not_found: 'שיעורי הבית לא נמצאו', hw_original: 'הטקסט של המרצה', hw_steps: 'מה לעשות, שלב אחרי שלב', hw_submit: 'איך ולאן להגיש',
-      hw_links: 'קישורים', hw_ai: 'פרומפט ל־AI: עזרה צעד אחר צעד',
+      hw_links: 'קישורים', hw_ai: 'פרומפט ל־AI', hw_mode: 'מה ה־AI יעשה', hw_mode_tutor: 'עזרה צעד אחר צעד', hw_mode_full: 'לעשות הכול',
+      hw_full_lead: 'ה־AI יעשה את כל המשימה: קבצים מוכנים (קוד נקי, בלי הערות מיותרות) וקובץ הסבר נפרד. השורה הראשונה בהסבר: «העבודה נעשתה בעזרת בינה מלאכותית: (שם ה־AI)». בהמשך: מה ביקשו במשימה, איך הכול עובד, מה להעלות ולאן ואיך להציג למרצה.',
+      hw_full_warn: 'זה AI: הוא יכול לטעות. בדקו שהקוד רץ, והבינו כל שורה לפני ההצגה: המרצה ישאל אתכם.',
+      hw_full_banned: 'בקורס הזה המרצה אסר AI בסמסטר א. גם עם השורה על ה־AI העבודה אולי לא תתקבל. שאלו את המרצה מראש, או בחרו «עזרה צעד אחר צעד».',
       hw_ai_lead: 'העתיקו והדביקו בכל AI (ChatGPT, Claude, Gemini…), גם בצ׳אט חדש וריק. ה־AI יסביר את המשימה, ילווה אתכם שלב אחרי שלב, יבדוק את מה שעשיתם ויכין אתכם להציג את העבודה.',
       hw_ai_warn: 'זה AI: הוא יכול לטעות. בדקו כל דבר בעצמכם. את העבודה עושים אתם, ה־AI רק מסביר ובודק.',
       hw_ai_banned: 'המרצה אסר להשתמש ב־AI בקורס הזה בסמסטר א. השתמשו בפרומפט רק כדי להבין את החומר, ואת הקוד כתבו בעצמכם.',
@@ -22,7 +25,10 @@
       hw_given: 'Выдали', hw_due: 'Сдать до', hw_due_unknown: 'Срок сдачи пока не известен', hw_left_d: 'Осталось {d} дн. {h} ч', hw_left_h: 'Осталось {h} ч',
       hw_left_m: 'Осталось {m} мин', hw_over: 'Срок прошёл', hw_active: 'Открытые', hw_nodue: 'Без срока', hw_past: 'Срок прошёл', hw_empty: 'Домашних заданий пока нет.',
       hw_back: 'Ко всем домашним заданиям', hw_not_found: 'Задание не найдено', hw_original: 'Текст преподавателя', hw_steps: 'Что сделать, по шагам', hw_submit: 'Как и куда сдать',
-      hw_links: 'Ссылки', hw_ai: 'Промпт для ИИ: помощь по шагам',
+      hw_links: 'Ссылки', hw_ai: 'Промпт для ИИ', hw_mode: 'Что сделает ИИ', hw_mode_tutor: 'Помощь по шагам', hw_mode_full: 'Сделать целиком',
+      hw_full_lead: 'ИИ сделает задание целиком: готовые файлы (чистый код без лишних приписок) и отдельный файл-объяснение. Первая строка объяснения: «Сделано с помощью ИИ: (его название)». Дальше в нём: что было в задании, как всё работает, что куда загрузить и как показать преподавателю.',
+      hw_full_warn: 'Это ИИ: он может ошибаться. Проверь, что код запускается, и разберись в каждой строке до показа: преподаватель будет спрашивать тебя.',
+      hw_full_banned: 'На этом курсе преподаватель запретил ИИ в семестре א. Даже с пометкой про ИИ работу могут не принять. Спроси преподавателя заранее или выбери «Помощь по шагам».',
       hw_ai_lead: 'Скопируй и вставь в любой ИИ (ChatGPT, Claude, Gemini…), даже в новый пустой чат. ИИ объяснит задание, проведёт тебя по шагам, проверит, что ты сделал, и подготовит к показу работы преподавателю.',
       hw_ai_warn: 'Это ИИ: он может ошибаться. Проверяй всё сам. Задание делаешь ты, ИИ только объясняет и проверяет.',
       hw_ai_banned: 'Преподаватель запретил ИИ на этом курсе в семестре א. Используй промпт только чтобы понять материал, а код пиши сам.',
@@ -33,7 +39,10 @@
       hw_given: 'Given', hw_due: 'Due', hw_due_unknown: 'The deadline is not known yet', hw_left_d: '{d} d {h} h left', hw_left_h: '{h} h left',
       hw_left_m: '{m} min left', hw_over: 'Past the deadline', hw_active: 'Open', hw_nodue: 'No deadline', hw_past: 'Past the deadline', hw_empty: 'No homework yet.',
       hw_back: 'All homework', hw_not_found: 'Homework not found', hw_original: 'The teacher\'s text', hw_steps: 'What to do, step by step', hw_submit: 'How and where to submit',
-      hw_links: 'Links', hw_ai: 'AI prompt: step-by-step help',
+      hw_links: 'Links', hw_ai: 'AI prompt', hw_mode: 'What the AI does', hw_mode_tutor: 'Step-by-step help', hw_mode_full: 'Do it all',
+      hw_full_lead: 'The AI does the whole homework: ready files (clean code, no extra remarks) and a separate explanation file. Its first line: "This work was done with the help of AI: (the AI\'s name)". Then: what the task asked, how it all works, what to upload where and how to present it to the teacher.',
+      hw_full_warn: 'This is AI: it can make mistakes. Make sure the code runs and understand every line before you present: the teacher will ask you.',
+      hw_full_banned: 'The teacher does not allow AI in this course in semester A. Even with the AI note, the work may not be accepted. Ask the teacher first, or choose "Step-by-step help".',
       hw_ai_lead: 'Copy and paste into any AI (ChatGPT, Claude, Gemini…), even a brand-new empty chat. The AI explains the task, walks you through it step by step, checks your work and gets you ready to present it.',
       hw_ai_warn: 'This is AI: it can make mistakes. Check everything yourself. You do the homework; the AI only explains and checks.',
       hw_ai_banned: 'The teacher does not allow AI in this course in semester A. Use the prompt only to understand the material, and write the code yourself.',
@@ -117,7 +126,52 @@
   }
 
   /* ---------- промпт ---------- */
-  function buildPrompt(h, replyLang) {
+  function aiMode() { return U.storage.get('hw_ai_mode', 'tutor') === 'full' ? 'full' : 'tutor'; }
+
+  /* «Сделать целиком»: всё решение + отдельное объяснение, первая строка которого честно говорит, что это сделал ИИ */
+  function buildFullPrompt(h, replyLang) {
+    var s = subject(h.subject);
+    var langName = { he: 'Hebrew', ru: 'Russian', en: 'English' }[(h.original && h.original.lang) || 'he'] || 'Hebrew';
+    var rl = { he: 'Hebrew', ru: 'Russian', en: 'English' }[replyLang] || 'Hebrew';
+    var sub = (h.submit && h.submit.en) || 'as the teacher asked';
+    var lines = [
+      'You are an expert and a very clear teacher. I am a beginner college student (software technician program, first semester). Subject: ' + ((s.name && s.name.en) || U.tr(s.name)) + '.',
+      'Below is my homework exactly as the teacher gave it (in ' + langName + '), with a short summary.', '',
+      'Homework: ' + (h.title.en || U.tr(h.title)),
+      'Given: ' + fmt(h.given, h.givenDateOnly, 'en') + '. Due: ' + (h.due ? fmt(h.due, false, 'en') + ' (Israel time)' : 'not known yet') + '.',
+      'Summary: ' + (h.summary.en || U.tr(h.summary)), '',
+      'The teacher\'s text:', '"""', (h.original && h.original.text) || '', '"""', '',
+      'What to submit: ' + sub,
+      'What we have learned so far: ' + (h.level || ''), '',
+      'Do the WHOLE homework for me, completely and correctly. Two parts:', '',
+      'PART 1. The finished work.',
+      '1. Do every item of the task, nothing left out. Use only what is listed above as learned (so I can understand and explain all of it), but the result must be fully correct and complete.',
+      '2. Give every file ready to save: first the exact file name, then the full content in one block. No "...", no TODO, no parts for me to fill in.',
+      '3. Inside the work itself write NO notes, remarks or explanations about how it was made (they would confuse me). Only what the teacher expects to see.',
+      '4. Before you answer, check it: the code must compile and run, every item of the task must be done, math answers must be checked by substitution.',
+      '5. If the task needs something only I can make (a screenshot, a file from my computer, an upload), tell me exactly how to make it, click by click.',
+      '',
+      'PART 2. A separate explanation file (file name: explanation.txt).',
+      'The VERY FIRST line of this file must be exactly, in Hebrew: "העבודה נעשתה בעזרת בינה מלאכותית: <your real name and version, for example ChatGPT, Claude, Gemini, DeepSeek>". Write your real name, never leave the placeholder.'
+    ];
+    if (replyLang !== 'he') lines.push('The second line: the same sentence in ' + rl + '.');
+    lines = lines.concat([
+      'Then, in ' + rl + ' and in simple words:',
+      'a) What the teacher asked for in this homework.',
+      'b) How the solution works, part by part. For code: line by line, what each line does and why.',
+      'c) Which files to upload, where, and how (' + sub + ').',
+      'd) How to present it to the teacher in 1-2 minutes: a short plan of what to say.',
+      'e) 5 questions the teacher is likely to ask, each with a short answer I can say in my own words.',
+      'f) What to practise so I can explain and repeat it myself.'
+    ]);
+    if (h.selfPrompt) lines.push('', 'The teacher asked us to write a prompt ourselves: write it as its own file, and in the explanation say why each part of the prompt is there.');
+    lines.push('', 'If I later send you an error or a teacher comment you cannot fully understand, FIRST ask me for a photo or screenshot (or the pasted text), then fix exactly that.');
+    lines.push('', Tasks.replyLine(replyLang) + ' The work files themselves stay in the language the teacher expects.');
+    return lines.join('\n');
+  }
+
+  function buildPrompt(h, replyLang, mode) {
+    if ((mode || aiMode()) === 'full') return buildFullPrompt(h, replyLang);
     var s = subject(h.subject);
     var L = 'en';
     var langName = { he: 'Hebrew', ru: 'Russian', en: 'English' }[(h.original && h.original.lang) || 'he'] || 'Hebrew';
@@ -149,7 +203,27 @@
     var sum = el('summary', { class: 'hw-ai__head' }, [el('span', { class: 'hw-ai__icon', html: Icons.get('robot') }), el('span', null, t('hw_ai')), el('span', { class: 'hw-ai__chev', html: Icons.get('chevronDown') })]);
     box.appendChild(sum);
     var area = el('textarea', { class: 'input tk-prompt', readonly: true, rows: 12, dir: 'ltr', 'aria-label': t('hw_ai') });
-    function refresh() { area.value = buildPrompt(h, Tasks.aiLang()); }
+    var lead = el('p', { class: 'tk-note' }), warn = el('p', { class: 'tk-note ai-warn' }), ban = el('p', { class: 'tk-note ai-warn' });
+    function refresh() {
+      var m = aiMode();
+      area.value = buildPrompt(h, Tasks.aiLang(), m);
+      lead.textContent = t(m === 'full' ? 'hw_full_lead' : 'hw_ai_lead');
+      warn.textContent = t(m === 'full' ? 'hw_full_warn' : 'hw_ai_warn');
+      ban.textContent = t(m === 'full' ? 'hw_full_banned' : 'hw_ai_banned');
+      box.setAttribute('data-mode', m);
+    }
+    var modeRow = el('div', { class: 'ai-lang hw-mode', role: 'group', 'aria-label': t('hw_mode') }, [el('span', { class: 'ai-lang__label' }, t('hw_mode'))]);
+    var modeSeg = el('div', { class: 'tk-seg ai-lang__seg' });
+    ['tutor', 'full'].forEach(function (m) {
+      var b = el('button', { type: 'button', class: 'tk-seg__btn', 'data-mode': m, 'aria-pressed': m === aiMode() ? 'true' : 'false' }, t('hw_mode_' + m));
+      b.addEventListener('click', function () {
+        U.storage.set('hw_ai_mode', m);
+        U.$$('.tk-seg__btn', modeSeg).forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+        refresh();
+      });
+      modeSeg.appendChild(b);
+    });
+    modeRow.appendChild(modeSeg);
     var copy = el('button', { type: 'button', class: 'btn btn--primary', html: Icons.get('copy') + '<span>' + U.esc(t('tk_copy')) + '</span>' });
     copy.addEventListener('click', function () {
       refresh();
@@ -158,10 +232,11 @@
       else { area.focus(); area.select(); try { document.execCommand('copy'); done(); } catch (e) { /* */ } }
     });
     var inner = el('div', { class: 'hw-ai__body' }, [
-      el('p', { class: 'tk-note' }, t('hw_ai_lead')),
+      modeRow,
+      lead,
       Tasks.aiLangSwitch(refresh),
-      el('p', { class: 'tk-note ai-warn' }, t('hw_ai_warn')),
-      h.aiRule === 'banned' ? el('p', { class: 'tk-note ai-warn' }, t('hw_ai_banned')) : null,
+      warn,
+      h.aiRule === 'banned' ? ban : null,
       area,
       el('div', { class: 'tk-prompt__btns' }, [copy])
     ]);
@@ -204,7 +279,7 @@
     view.appendChild(aiBox(h));
   }
 
-  window.Homework = { list: list, left: left, sorted: sorted, buildPrompt: buildPrompt };
+  window.Homework = { list: list, left: left, sorted: sorted, buildPrompt: buildPrompt, aiMode: aiMode };
 
   function register() {
     if (window.App && App.registerRoute && !register.done) {
