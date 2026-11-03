@@ -97,7 +97,7 @@
   function card(h) {
     var s = subject(h.subject);
     return el('a', { class: 'card hw-card', href: '#/homework/' + encodeURIComponent(h.id) }, [
-      el('div', { class: 'hw-card__top' }, [chip(s), h.aiRule === 'banned' ? el('span', { class: 'hw-noai', title: t('hw_ai_banned') }, 'AI ✕') : null]),
+      el('div', { class: 'hw-card__top' }, [chip(s), window.HwRemind ? HwRemind.chip(h) : null, h.aiRule === 'banned' ? el('span', { class: 'hw-noai', title: t('hw_ai_banned') }, 'AI ✕') : null]),
       el('h3', { class: 'hw-card__title' }, U.tr(h.title)),
       el('p', { class: 'hw-card__sum' }, U.tr(h.summary)),
       dates(h)
@@ -107,6 +107,7 @@
   function listRoute(params, view) {
     App.setTitle(t('nav_homework'));
     view.appendChild(el('div', { class: 'page-head' }, [el('h1', null, t('nav_homework')), el('p', null, t('hw_lead'))]));
+    if (window.HwRemind) view.appendChild(HwRemind.card());
     var g = sorted();
     if (!list().length) { view.appendChild(el('div', { class: 'empty card' }, t('hw_empty'))); return; }
     [['active', 'hw_active'], ['nodue', 'hw_nodue'], ['past', 'hw_past']].forEach(function (x) {
@@ -114,6 +115,7 @@
       view.appendChild(el('div', { class: 'section-label' }, t(x[1]) + ' · ' + g[x[0]].length));
       view.appendChild(el('div', { class: 'hw-list' }, g[x[0]].map(card)));
     });
+    if (window.HwRemind) HwRemind.refreshChips(view);
     // «сколько осталось» обновляется раз в минуту — только эти надписи, не вся страница
     var timer = setInterval(tick, 60000);
     function tick() {
@@ -293,6 +295,7 @@
       view.appendChild(orig);
     }
     view.appendChild(aiBox(h));
+    if (window.HwRemind) view.appendChild(HwRemind.doneBox(h));
   }
 
   window.Homework = { list: list, left: left, sorted: sorted, buildPrompt: buildPrompt, aiMode: aiMode };

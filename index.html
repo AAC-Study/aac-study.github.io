@@ -9,6 +9,8 @@
   <meta name="theme-color" content="#0e1020" media="(prefers-color-scheme: dark)">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
+  <!-- версия сайта: менять вместе с version.json и SW_VERSION в sw.js -->
+  <meta name="app-version" content="2026-11-03.15">
   <title>AAC Study</title>
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="img/icon-32.png">
@@ -16,7 +18,6 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/frames.css">
@@ -26,10 +27,44 @@
   <link rel="stylesheet" href="css/report.css">
   <link rel="stylesheet" href="css/social.css">
   <link rel="stylesheet" href="css/themes.css">
+  <!-- экран загрузки: виден сразу, пока грузятся скрипты; сайт сам его убирает -->
+  <style>
+    .splash { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; }
+    .splash__book { position: relative; width: 132px; height: 88px; perspective: 700px; animation: splash-shift 2.4s cubic-bezier(.45,.05,.3,1) infinite alternate; }
+    .splash__half { position: absolute; top: 0; left: 66px; width: 64px; height: 88px; border-radius: 2px 8px 8px 2px; background: var(--surface); border: 1px solid var(--border); border-right: 4px solid var(--accent-2); box-shadow: var(--shadow); }
+    .splash__half::before, .splash__back::before { content: ''; position: absolute; inset: 18px 12px; background: repeating-linear-gradient(to bottom, var(--border) 0 2px, transparent 2px 10px); border-radius: 2px; }
+    .splash__page { position: absolute; top: 2px; left: 66px; width: 62px; height: 84px; transform-origin: left center; border-radius: 2px 7px 7px 2px;
+      background: linear-gradient(90deg, var(--surface-2), var(--surface)); border: 1px solid var(--border);
+      animation: splash-flip 2.4s cubic-bezier(.45,.05,.3,1) infinite alternate; }
+    .splash__page:nth-child(3) { animation-delay: .15s; }
+    .splash__page:nth-child(4) { animation-delay: .3s; }
+    .splash__cover { position: absolute; top: -3px; left: 66px; width: 67px; height: 94px; transform-origin: left center; transform-style: preserve-3d;
+      animation: splash-cover 2.4s cubic-bezier(.45,.05,.3,1) infinite alternate; }
+    .splash__front, .splash__back { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .splash__front { border-radius: 3px 10px 10px 3px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); box-shadow: var(--shadow-lg);
+      display: flex; align-items: center; justify-content: center; color: #fff; font: 800 34px/1 var(--font); }
+    .splash__back { transform: rotateY(180deg); border-radius: 10px 3px 3px 10px; background: var(--surface); border: 1px solid var(--border); box-shadow: inset 0 0 0 0 transparent, var(--shadow); border-right-color: var(--border); border-left: 4px solid var(--accent); }
+    @keyframes splash-cover { 0%, 12% { transform: rotateY(0deg); } 60%, 100% { transform: rotateY(-180deg); } }
+    @keyframes splash-flip { 0%, 40% { transform: rotateY(0deg); } 88%, 100% { transform: rotateY(-178deg); } }
+    @keyframes splash-shift { 0%, 12% { transform: translateX(-33px); } 60%, 100% { transform: translateX(0); } }
+    .splash__name { font: 700 20px/1 var(--font); letter-spacing: .3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .splash__slow { min-height: 20px; font-size: 14px; color: var(--text-3); opacity: 0; transition: opacity .6s; text-align: center; padding: 0 16px; }
+    .splash.is-slow .splash__slow { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .splash__page, .splash__cover { animation: none; }
+      .splash__cover { transform: rotateY(-180deg); }
+      .splash__book { animation: splash-pulse 1.6s ease-in-out infinite alternate; }
+      @keyframes splash-pulse { from { opacity: .55; } to { opacity: 1; } }
+    }
+  </style>
   <script src="js/boot.js"></script>
 </head>
 <body>
-  <div id="app" class="app"></div>
+  <div id="app" class="app"><div class="splash" id="splash" role="status" aria-label="AAC Study">
+    <div class="splash__book" aria-hidden="true"><div class="splash__half"></div><div class="splash__page"></div><div class="splash__page"></div><div class="splash__page"></div><div class="splash__cover"><div class="splash__front">A</div><div class="splash__back"></div></div></div>
+    <div class="splash__name">AAC Study</div>
+    <div class="splash__slow" id="splash-slow"></div>
+  </div></div>
   <div id="toasts" aria-live="polite"></div>
   <noscript>Please enable JavaScript.</noscript>
 
@@ -57,6 +92,7 @@
   <script src="js/offline.js"></script>
   <script src="js/lesson.js"></script>
   <script src="js/homework.js"></script>
+  <script src="js/hw-remind.js"></script>
   <script src="js/report.js"></script>
   <script src="js/admin.js"></script>
   <script src="js/push.js"></script>

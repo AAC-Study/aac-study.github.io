@@ -290,7 +290,8 @@ function watchErrors(page, list) {
     await page.waitForSelector('.ls-tile');
     const st = () => page.evaluate(() => window.ReadingTracker._states['math-2026-11-01']);
     // jump to the end immediately — must NOT count as read
-    await page.evaluate(() => document.querySelector('[data-read-end]').scrollIntoView());
+    // wait until the browser really delivers the scroll event (it comes on a real frame, the test clock is fake)
+    await page.evaluate(() => new Promise(r => { document.addEventListener('scroll', () => r(), { once: true, capture: true }); document.querySelector('[data-read-end]').scrollIntoView(); }));
     await page.clock.runFor(3000);
     assert.strictEqual(await page.evaluate(() => Store.progress.has('read:math-2026-11-01')), false, 'not instant');
     // idle for a minute: engaged time grows by ≤ 5 s

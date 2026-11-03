@@ -282,8 +282,24 @@
       var p = http('POST', '/auth/v1/logout?scope=local', {}).catch(function () {});   // отзываем вход и на сервере
       return p.then(function () { saveSess(null); me = null; U.storage.set('sb_me_cache', null); Policy.clear(); });
     }
-    Store.ready = expireAtStart().then(fromLink).then(loadMe).then(function (x) { setTimeout(flushAwards, 2000); return x; })
-      .catch(function () { /* нет сети или сессия истекла */ });
+    /* Быстрое открытие: человек уже входил на этом устройстве — сразу показываем сайт по сохранённому профилю,
+       а свежий профиль подгружаем следом. Если сервер скажет «вход недействителен» — покажем экран входа. */
+    function fastStart() {
+      if (!sess || Policy.expired()) return false;
+      if (/(access_token|error_code|error)=/.test(location.hash || '')) return false;
+      var c = U.storage.get('sb_me_cache', null);
+      if (!c || !c.me || c.id !== sess.user.id) return false;
+      Policy.ensure();
+      me = c.me; done = c.done || {};
+      return true;
+    }
+    if (fastStart()) {
+      Store.ready = Promise.resolve(me);
+      loadMe().then(function () { setTimeout(flushAwards, 2000); emit(); }, function () { if (!sess || !me) emit(); });
+    } else {
+      Store.ready = expireAtStart().then(fromLink).then(loadMe).then(function (x) { setTimeout(flushAwards, 2000); return x; })
+        .catch(function () { /* нет сети или сессия истекла */ });
+    }
 
     /* ссылка «сменить пароль» открыта не там, где просили: человек сам подтверждает аккаунт */
     Store.linkAccept = function () {

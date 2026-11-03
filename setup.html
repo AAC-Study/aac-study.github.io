@@ -100,7 +100,34 @@
         keys.map(function (k) { return "  ('" + k + "')"; }).join(',\n') + '\non conflict do nothing;\n';
     });
   }
-  Promise.all([load('schema', 'supabase/schema.sql'), load('social', 'supabase/social.sql'), loadKeys()])
+  /* домашние задания для напоминаний + расписание: раз в 10 минут база сама зовёт функцию push (action hw_tick) */
+  function q(v) { return v == null ? 'null' : "'" + String(v).replace(/'/g, "''") + "'"; }
+  function loadHw() {
+    return Promise.all([script('data/homework.js'), script('js/config.js')]).then(function () {
+      var list = (window.HOMEWORK || []).filter(function (h) { return /^[a-z0-9-]{1,80}$/.test(h.id); });
+      var out = '\n\n-- домашние задания (' + list.length + ') — для напоминаний\n';
+      if (list.length) {
+        out += 'insert into public.hw_items(id, due, title) values\n' + list.map(function (h) {
+          return '  (' + q(h.id) + ', ' + (h.due ? q(h.due) + '::timestamptz' : 'null') + ', ' + q(JSON.stringify(h.title || {})) + '::jsonb)';
+        }).join(',\n') + '\non conflict (id) do update set due = excluded.due, title = excluded.title;\n';
+        out += 'delete from public.hw_items where id not in (' + list.map(function (h) { return q(h.id); }).join(', ') + ');\n';
+      }
+      var C = window.APP_CONFIG || {}, url = String(C.SUPABASE_URL || ''), key = String(C.SUPABASE_ANON_KEY || '');
+      if (/^https:\/\/[a-z0-9]+\.supabase\.co$/.test(url) && /^[A-Za-z0-9._-]+$/.test(key)) {
+        out += "\n-- расписание напоминаний (если расширения недоступны — просто пропускаем, остальное уже готово)\n" +
+          "do $cron$ begin\n" +
+          "  create extension if not exists pg_net with schema extensions;\n" +
+          "  create extension if not exists pg_cron with schema pg_catalog;\n" +
+          "  perform cron.schedule('hw-remind', '*/10 * * * *', $job$ select net.http_post(url := '" + url + "/functions/v1/push', " +
+          "headers := jsonb_build_object('Content-Type', 'application/json', 'apikey', '" + key + "'), " +
+          "body := jsonb_build_object('action', 'hw_tick', 'key', (select value from public.app_secrets where key = 'cron_key'))) $job$);\n" +
+          "exception when others then raise notice 'hw-remind: %', sqlerrm;\n" +
+          "end $cron$;\n";
+      }
+      files.hw = out;
+    });
+  }
+  Promise.all([load('schema', 'supabase/schema.sql'), load('social', 'supabase/social.sql'), loadKeys(), loadHw()])
     .then(function () { dbBtn.disabled = false; })
     .catch(function (e) { err1.textContent = 'Не удалось загрузить: ' + e.message; });
   load('fn', 'supabase/functions/push/index.ts')
@@ -129,9 +156,9 @@
     if (code.length < 6) { err1.textContent = 'Код слишком короткий (минимум 6 символов).'; codeEl.focus(); return; }
     if (/['\\]/.test(code)) { err1.textContent = 'Без кавычек и обратной косой черты, пожалуйста.'; return; }
     err1.textContent = '';
-    var sql = files.schema + '\n\n' + files.social + (files.keys || '') +
+    var sql = files.schema + '\n\n' + files.social + (files.keys || '') + (files.hw || '') +
       "\n\n-- код приглашения\nupdate public.app_secrets set value = '" + code + "' where key = 'invite_code';\n" +
-      "select 'Готово! База настроена.' as result;\n";
+      "select 'Готово! База настроена.' || case when exists (select 1 from pg_extension where extname = 'pg_cron') then ' Напоминания: ✓' else ' Напоминания: ✗ (напиши Claude)' end as result;\n";
     copy(sql, dbBtn, 'Скопировать код базы');
   });
   fnBtn.addEventListener('click', function () { copy(files.fn, fnBtn, 'Скопировать код функции push'); });

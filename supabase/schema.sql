@@ -396,3 +396,41 @@ create trigger pass_cooldown before update of encrypted_password on auth.users
 -- Проверка безопасности 03.11: настройки профиля не больше ~8 КБ.
 alter table public.profiles drop constraint if exists profiles_prefs_size;
 alter table public.profiles add constraint profiles_prefs_size check (octet_length(prefs::text) <= 8000) not valid;
+
+-- =====================================================================
+-- Домашние задания (03.11): «Я сделал» + ежедневное напоминание.
+-- Список заданий (hw_items) setup.html заполняет из data/homework.js, расписание (pg_cron) — тоже там.
+-- =====================================================================
+create table if not exists public.hw_items (
+  id text primary key check (id ~ '^[a-z0-9-]{1,80}$'),
+  due timestamptz,
+  title jsonb not null default '{}'::jsonb
+);
+alter table public.hw_items enable row level security;
+drop policy if exists "hw_items: read" on public.hw_items;
+create policy "hw_items: read" on public.hw_items for select to authenticated using (true);
+revoke all on public.hw_items from anon;
+revoke insert, update, delete on public.hw_items from authenticated;
+grant select on public.hw_items to authenticated;
+
+create table if not exists public.hw_done (
+  user_id uuid not null default auth.uid() references public.profiles(id) on delete cascade,
+  hw_id text not null check (hw_id ~ '^[a-z0-9-]{1,80}$'),
+  done_at timestamptz not null default now(),
+  primary key (user_id, hw_id)
+);
+alter table public.hw_done enable row level security;
+drop policy if exists "hw_done: read own" on public.hw_done;
+create policy "hw_done: read own" on public.hw_done for select to authenticated using (user_id = auth.uid());
+drop policy if exists "hw_done: add own" on public.hw_done;
+create policy "hw_done: add own" on public.hw_done for insert to authenticated
+  with check (user_id = auth.uid() and exists (select 1 from public.hw_items i where i.id = hw_id));
+drop policy if exists "hw_done: remove own" on public.hw_done;
+create policy "hw_done: remove own" on public.hw_done for delete to authenticated using (user_id = auth.uid());
+revoke all on public.hw_done from anon;
+revoke update on public.hw_done from authenticated;
+grant select, insert, delete on public.hw_done to authenticated;
+
+-- ключ, с которым расписание зовёт функцию push (снаружи его никто не видит)
+insert into public.app_secrets(key, value) values ('cron_key', replace(gen_random_uuid()::text || gen_random_uuid()::text, '-', ''))
+  on conflict (key) do nothing;

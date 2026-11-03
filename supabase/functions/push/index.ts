@@ -69,8 +69,13 @@ async function currentUser(req: Request): Promise<string | null> {
 type Msg = { title: string; body: string; url?: string; tag?: string };
 // x — подробности: имя, группа, текст, задержка
 type X = { name?: string; chat?: string | null; text?: string; mkind?: string; delay?: number; support?: boolean; url?: string; tag?: string;
-  ls?: Record<string, string>; sjn?: Record<string, string> };
+  ls?: Record<string, string>; sjn?: Record<string, string>; n?: number; hwt?: Record<string, string> };
 const clip = (s: string, n = 140) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
+const pickLangs = (o: unknown, n: number) => {
+  const r: Record<string, string> = {};
+  for (const l of ["he", "ru", "en"]) r[l] = clip(String(((o || {}) as Record<string, unknown>)[l] || ""), n);
+  return r;
+};
 function msgBody(x: X, media: Record<string, string>) {
   const t = x.mkind && x.mkind !== "text" ? (media[x.mkind] || "") + (x.text ? " " + x.text : "") : (x.text || "");
   return clip(x.chat ? `${x.name}: ${t}` : t);
@@ -85,6 +90,7 @@ const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
     added: (x) => ({ title: "קבוצה חדשה 👥", body: `הוסיפו אותך לקבוצה «${x.chat || ""}»`, tag: "group" }),
     message: (x) => ({ title: x.support ? "תמיכה" : (x.chat || x.name || ""), body: msgBody(x, { photo: "📷 תמונה", file: "📎 קובץ", sticker: "מדבקה" }) }),
     lesson: (x) => ({ title: `שיעור חדש 📚 ${x.sjn?.he || ""}`.trim(), body: x.ls?.he || "", tag: "lesson" }),
+    hw: (x) => ({ title: "שיעורי בית 📝", body: x.n === 1 ? `עוד לא סיימת: «${x.hwt?.he || ""}». כשתסיים, לחץ «עשיתי».` : `יש לך ${x.n} שיעורי בית שעוד לא סומנו «עשיתי».`, url: "#/homework", tag: "hw" }),
   },
   ru: {
     test: (x) => ({ title: "Проверка 🔔", body: "Уведомления на этом устройстве работают." + (x.delay ? ` (через ${x.delay} сек)` : ""), tag: "test" }),
@@ -95,6 +101,7 @@ const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
     added: (x) => ({ title: "Новая группа 👥", body: `Тебя добавили в группу «${x.chat || ""}»`, tag: "group" }),
     message: (x) => ({ title: x.support ? "Поддержка" : (x.chat || x.name || ""), body: msgBody(x, { photo: "📷 Фото", file: "📎 Файл", sticker: "Стикер" }) }),
     lesson: (x) => ({ title: `Новый урок 📚 ${x.sjn?.ru || ""}`.trim(), body: x.ls?.ru || "", tag: "lesson" }),
+    hw: (x) => ({ title: "Домашнее задание 📝", body: x.n === 1 ? `Ещё не сделано: «${x.hwt?.ru || ""}». Когда закончишь, нажми «Я сделал».` : `Ещё не сделано заданий: ${x.n}. Когда закончишь, нажми «Я сделал».`, url: "#/homework", tag: "hw" }),
   },
   en: {
     test: (x) => ({ title: "Test 🔔", body: "Notifications work on this device." + (x.delay ? ` (after ${x.delay} s)` : ""), tag: "test" }),
@@ -105,6 +112,7 @@ const TEXT: Record<string, Record<string, (x: X) => Msg>> = {
     added: (x) => ({ title: "New group 👥", body: `You were added to the group “${x.chat || ""}”`, tag: "group" }),
     message: (x) => ({ title: x.support ? "Support" : (x.chat || x.name || ""), body: msgBody(x, { photo: "📷 Photo", file: "📎 File", sticker: "Sticker" }) }),
     lesson: (x) => ({ title: `New lesson 📚 ${x.sjn?.en || ""}`.trim(), body: x.ls?.en || "", tag: "lesson" }),
+    hw: (x) => ({ title: "Homework 📝", body: x.n === 1 ? `Not done yet: “${x.hwt?.en || ""}”. When you finish, tap “I did it”.` : `${x.n} homework tasks are not done yet. When you finish, tap “I did it”.`, url: "#/homework", tag: "hw" }),
   },
 };
 
@@ -197,6 +205,42 @@ async function claim(keys: string[]): Promise<Set<string>> {
   return new Set((rows || []).map((r: { key: string }) => r.key));
 }
 const ago = (ms: number) => new Date(Date.now() - ms).toISOString();
+// ---------- напоминания о домашке (зовёт расписание pg_cron раз в 10 минут) ----------
+const HW_TZ = "Asia/Jerusalem", HW_TIME = "11:00", HW_WINDOW = 120;   // по умолчанию Израиль, 11:00; окно — 2 часа
+function localNow(tz: string): { day: string; min: number } | null {
+  try {
+    const parts = new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).formatToParts(new Date());
+    const g = (t: string) => parts.find((p) => p.type === t)?.value || "";
+    return { day: `${g("year")}-${g("month")}-${g("day")}`, min: Number(g("hour")) * 60 + Number(g("minute")) };
+  } catch (_) { return null; }
+}
+type HwCfg = { on?: boolean; tz?: string; time?: string };
+async function hwTick() {
+  const items: { id: string; due: string | null; title: Record<string, string> }[] = await db("hw_items?select=id,due,title");
+  const open = items.filter((i) => !i.due || new Date(i.due).getTime() > Date.now());
+  if (!open.length) return { sent: 0, open: 0 };
+  const subs: { user_id: string }[] = await db("push_subs?select=user_id");
+  const withPush = [...new Set(subs.map((x) => x.user_id))];
+  if (!withPush.length) return { sent: 0, open: open.length };
+  const people: { id: string; prefs?: { hwRemind?: HwCfg } }[] = await db(`profiles?banned=is.false&id=in.(${withPush.join(",")})&select=id,prefs`);
+  const done: { user_id: string; hw_id: string }[] = await db(`hw_done?user_id=in.(${withPush.join(",")})&select=user_id,hw_id`);
+  let sent = 0;
+  for (const p of people) {
+    const c: HwCfg = (p.prefs && p.prefs.hwRemind) || {};
+    if (c.on === false) continue;
+    const time = /^([01]\d|2[0-3]):[0-5]\d$/.test(String(c.time || "")) ? String(c.time) : HW_TIME;
+    const now = localNow(typeof c.tz === "string" && /^[A-Za-z_]+(\/[A-Za-z_+-]+){0,2}$/.test(c.tz) ? c.tz : HW_TZ) || localNow(HW_TZ)!;
+    const at = Number(time.slice(0, 2)) * 60 + Number(time.slice(3));
+    if (now.min < at || now.min >= at + HW_WINDOW) continue;
+    const mine = new Set(done.filter((d) => d.user_id === p.id).map((d) => d.hw_id));
+    const left = open.filter((i) => !mine.has(i.id));
+    if (!left.length) continue;
+    if (!(await claim([`hw:${p.id}:${now.day}`])).size) continue;   // не чаще раза в день
+    sent += await sendTo([p.id], "hw", { n: left.length, hwt: pickLangs(left[0].title, 80) });
+  }
+  return { sent, open: open.length };
+}
+
 async function nameOf(uid: string) {
   const r = await db(`profiles?id=eq.${uid}&select=name`);
   return (r[0]?.name as string) || "";
@@ -220,6 +264,14 @@ Deno.serve(async (req) => {
       const who = "👤 " + String(info.email || "?").slice(0, 60) + (info.err ? " [" + String(info.err).slice(0, 60) + "]" : "") + ": ";
       const sent = await sendTo(admins, "issue", { text: clip(who + String(info.text || "")) + pics });
       return json({ sent });
+    }
+    // расписание (pg_cron) — без пользователя, но со своим ключом из app_secrets
+    if (!uid && body.action === "hw_tick") {
+      const k = await db("app_secrets?key=eq.cron_key&select=value");
+      if (!k.length || typeof body.key !== "string" || body.key.length < 32 || body.key !== k[0].value) return json({ error: "forbidden" }, 403);
+      const r = await hwTick();
+      console.log(`hw_tick: открытых заданий ${r.open}, отправлено ${r.sent}, ${Date.now() - t0} мс`);
+      return json(r);
     }
     if (!uid) return json({ error: "not signed in" }, 401);
     // «разогрев»: сайт зовёт это, когда человек начинает печатать, чтобы пуш потом ушёл без задержки на запуск функции
@@ -267,11 +319,6 @@ Deno.serve(async (req) => {
       const id = String(body.id || ""), subject = String(body.subject || "");
       if (!/^[a-z0-9-]{1,80}$/i.test(id) || !/^[a-z0-9-]{1,40}$/i.test(subject)) return json({ error: "bad lesson" }, 400);
       if (!(await claim([`l:${id}`])).size) return json({ sent: 0, again: true });
-      const pickLangs = (o: unknown, n: number) => {
-        const r: Record<string, string> = {};
-        for (const l of ["he", "ru", "en"]) r[l] = clip(String(((o || {}) as Record<string, unknown>)[l] || ""), n);
-        return r;
-      };
       const people = await db(`profiles?banned=is.false&select=id,prefs`);
       const ids = people.filter((p: { prefs?: { pushTopics?: Record<string, boolean> } }) => !(p.prefs?.pushTopics && p.prefs.pushTopics[subject] === false))
         .map((p: { id: string }) => p.id);
