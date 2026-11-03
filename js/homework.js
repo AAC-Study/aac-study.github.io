@@ -124,7 +124,11 @@
         var lf = left(h); n.className = 'hw-left hw-left--' + lf.kind; n.lastChild.textContent = lf.text;
       });
     }
-    return function () { clearInterval(timer); };
+    /* ровно в момент срока: задание сразу краснеет и переходит в «Срок прошёл» (страница перерисовывается) */
+    var next = list().map(function (h) { return h.due ? new Date(h.due).getTime() - Date.now() : -1; })
+      .filter(function (ms) { return ms > 0; }).sort(function (a, b) { return a - b; })[0];
+    var atDue = next && next < 20 * 864e5 ? setTimeout(function () { if (App.path() === '/homework') App.render(); }, next + 300) : 0;
+    return function () { clearInterval(timer); clearTimeout(atDue); };
   }
 
   /* ---------- промпт ---------- */

@@ -166,6 +166,18 @@ async function step(name, fn) {
     await p.click('.cont-card'); await p.waitForSelector('.ls-part.is-open[data-part="1"]');
     assert.deepStrictEqual(errs, []); await ctx.close();
   });
+  await step('the moment the deadline passes, the card turns red and moves to «Срок прошёл» by itself', async () => {
+    const { ctx, p, errs } = await mk(390);
+    await p.goto('http://localhost:8765/index.html#/'); await p.waitForSelector('.side');
+    await p.evaluate(() => { const d = new Date('2026-11-03T12:00:00+02:00').getTime() - 2000, r = performance.now(); Date.now = () => d + (performance.now() - r); });
+    await p.evaluate(() => App.go('/homework')); await p.waitForSelector('.hw-card');
+    const sql = () => p.locator('.hw-card', { hasText: 'Вводное' }).locator('.hw-left');
+    assert.ok(/hw-left--soon/.test(await sql().getAttribute('class')));
+    await p.waitForTimeout(3000);
+    assert.ok(/hw-left--past/.test(await sql().getAttribute('class')), await sql().getAttribute('class'));
+    assert.ok(/Срок прошёл/i.test(await p.locator('.section-label').last().innerText()), await p.locator('.section-label').last().innerText());
+    assert.deepStrictEqual(errs, []); await ctx.close();
+  });
   await b.close();
   console.log('\n' + passed + ' passed, ' + failures + ' failed');
   process.exit(failures ? 1 : 0);
