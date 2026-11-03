@@ -16,7 +16,7 @@ window.LESSONS["sql-2026-10-22"] = {
   },
 
   timeline: [
-    { kind: "board",
+    { "why": {"he": "למה לא פשוט קובץ Excel? כשיש מאות אלפי רשומות והרבה אנשים עובדים יחד, צריך מקום אחד שבו כל נתון כתוב פעם אחת, אפשר לשאול עליו שאלות מהר, ואף אחד לא מוחק בטעות של אחר. זה מה ששרת מסד נתונים עושה. עמודה = תכונה אחת, שורה = דבר אחד שלם — כך תמיד יודעים איפה לחפש.", "ru": "Почему не просто файл Excel? Когда записей сотни тысяч и с ними работают многие люди сразу, нужно одно место, где каждый факт записан один раз, где можно быстро задать вопрос и где никто случайно не испортит чужое. Это и делает сервер базы данных. Столбец = одно свойство, строка = один предмет целиком, поэтому всегда понятно, где искать.", "en": "Why not just an Excel file? With hundreds of thousands of records and many people working at once, you need one place where each fact is written once, questions are answered fast, and nobody accidentally ruins someone else's work. That is what a database server does. A column = one property, a row = one whole thing, so you always know where to look."}, kind: "board",
       title: { he: "מה זה מסד נתונים", ru: "Что такое база данных", en: "What a database is" },
       text: {
         he: "SQL = Structured Query Language — השפה שבה \"מדברים\" עם מסד הנתונים (מסד נתונים, Data Base, DB).\nעל הלוח: מסד נתונים מכיל טבלאות, טבלה מכילה עמודות, והנתונים נשמרים ברשומות (שורות).\nעמודה — תכונה אחת (שם, גיל, עיר). שורה = רשומה — אדם או פריט אחד שלם.\nדוגמה מהלוח: טבלת \"פרטים אישיים\" עם העמודות שם, משפחה, גיל, שכר, עיר.",
@@ -24,42 +24,42 @@ window.LESSONS["sql-2026-10-22"] = {
         en: "SQL = Structured Query Language — the language we use to \"talk\" to a database (Data Base, DB).\nOn the board: a database holds tables, a table holds columns, and the data is stored in records (rows).\nA column is one property (name, age, city). A row = a record — one whole person or item.\nBoard example: a \"personal details\" table with the columns first name, last name, age, salary, city."
       },
       math: ["DB  →  tables  →  columns  →  records"] },
-    { kind: "talk",
+    { "why": {"he": "למה מפתח ולא שם? שמות חוזרים: יש הרבה \"משה כהן\". מספר ת.ז הוא ייחודי, ולכן הוא מזהה אדם אחד בלבד. כך אפשר לפצל את המידע לכמה טבלאות קטנות ולחבר אותן לפי המספר, במקום לכתוב את כל הפרטים שוב ושוב.", "ru": "Почему ключ, а не имя? Имена повторяются: «Моше Коэнов» много. Номер ת.ז уникален, поэтому указывает ровно на одного человека. Так данные можно разложить по нескольким маленьким таблицам и соединять их по номеру, а не переписывать все данные снова и снова.", "en": "Why a key and not a name? Names repeat: there are many \"Moshe Cohen\"s. An ID number is unique, so it points to exactly one person. That lets you split data into several small tables and join them by the number, instead of rewriting all the details again and again."}, kind: "talk",
       title: { he: "כמה טבלאות ומפתח", ru: "Несколько таблиц и ключ", en: "Several tables and a key" },
       text: {
         he: "בלוח היה גם מסד עם כמה טבלאות: פרטים אישיים, שכר, עיר. כולן מחוברות דרך מספר תעודת הזהות (ת.ז).\nהעמודה המשותפת שדרכה מחברים טבלאות נקראת מפתח ראשי (primary key). כמעט תמיד זה מספר: ת.ז, מספר קורס, מספר סטודנט.\nשאילתה (query) היא שאלה למסד הנתונים, למשל: מי מעל גיל 29 ומרוויח יותר מ־10,000?",
         ru: "На доске была и база с несколькими таблицами: личные данные, зарплата, город. Все связаны через номер удостоверения (ת.ז).\nОбщий столбец, через который связывают таблицы, называется первичный ключ (primary key, מפתח ראשי). Почти всегда это число: ת.ז, номер курса, номер студента.\nЗапрос (שאילתה, query) — это вопрос к базе, например: кто старше 29 и получает больше 10 000?",
         en: "The board also showed a database with several tables: personal details, salary, city. They are all linked by the ID number.\nThe shared column that links tables is called the primary key. It is almost always a number: ID, course number, student number.\nA query is a question to the database, for example: who is over 29 and earns more than 10,000?"
       } },
-    { kind: "talk",
+    { "why": {"he": "למה זה חשוב? סוג הקשר קובע איך בונים את הטבלאות. ב-1:N מספיק לשים את מספר המרצה בטבלת הקורסים. ב-M:N זה כבר לא עובד (בתא אחד אי אפשר לשים כמה מרצים), ולכן בונים טבלה שלישית שמחברת ביניהם. את זה לומדים בהמשך.", "ru": "Зачем это знать? От вида связи зависит, как строить таблицы. При 1:N достаточно записать номер лектора в таблицу курсов. При M:N так уже не получится (в одну ячейку не впишешь несколько лекторов), поэтому строят третью таблицу-связку. Это будет дальше в курсе.", "en": "Why does it matter? The kind of link decides how you build the tables. For 1:N it is enough to put the lecturer number in the courses table. For M:N that no longer works (one cell cannot hold several lecturers), so you build a third linking table. That comes later in the course."}, kind: "talk",
       title: { he: "קשרים בין טבלאות", ru: "Связи между таблицами", en: "Relations between tables" },
       text: {
         he: "דוגמה: טבלת מרצים וטבלת קורסים.\nאחד לאחד (1:1) — מרצה מלמד קורס אחד בלבד.\nאחד לרבים (1:N) — מרצה אחד מלמד כמה קורסים.\nרבים לרבים (M:N) — אותו קורס מלמדים מרצים שונים, וכל אחד מהם מלמד גם קורסים אחרים.",
         ru: "Пример: таблица лекторов и таблица курсов.\nОдин к одному (1:1) — лектор ведёт ровно один курс.\nОдин ко многим (1:N) — один лектор ведёт несколько курсов.\nМногие ко многим (M:N) — один и тот же курс ведут разные лекторы, и каждый из них ведёт ещё и другие курсы.",
         en: "Example: a lecturers table and a courses table.\nOne to one (1:1) — a lecturer teaches exactly one course.\nOne to many (1:N) — one lecturer teaches several courses.\nMany to many (M:N) — the same course is taught by different lecturers, and each of them also teaches other courses."
       } },
-    { kind: "talk",
+    { "why": {"he": "למה כפילויות הן בעיה? אם אותו לקוח כתוב פעמיים והכתובת שלו מתעדכנת רק באחת — יש שתי \"אמיתות\", ולא ברור איזו נכונה. לכן בודקים לפי מפתח ייחודי (ת.ז) ולא לפי שם: שם זהה עם ת.ז שונה הם שני אנשים.", "ru": "Почему дубликаты — это плохо? Если один клиент записан дважды и адрес обновили только в одной записи, у базы две «правды», и непонятно, какая верная. Поэтому сверяют по уникальному ключу (ת.ז), а не по имени: одинаковое имя с разной ת.ז — это два человека.", "en": "Why are duplicates a problem? If the same customer is stored twice and the address is updated in only one row, the database has two \"truths\" and you cannot tell which is right. So you check by a unique key (ID), not by name: the same name with a different ID is two people."}, kind: "talk",
       title: { he: "DBA וכפילויות", ru: "DBA и дубликаты", en: "DBA and duplicates" },
       text: {
         he: "DBA (מנהל מסדי נתונים) הוא מקצוע: לשמור שהמסד תקין. מדובר במאות אלפי רשומות.\nהמשימה הראשונה — למנוע כפילויות, ולהבין מתי שתי רשומות דומות הן בעצם שונות: שני אנשים עם אותו שם, אבל גיל שונה ומספר ת.ז שונה — הם שני אנשים, לא כפילות.",
         ru: "DBA (администратор баз данных) — профессия: следить, чтобы база была в порядке. Речь о сотнях тысяч записей.\nПервая задача — не допускать дубликатов и понимать, когда похожие записи на самом деле разные: два человека с одинаковым именем, но разным возрастом и разным номером ת.ז — это два человека, а не дубликат.",
         en: "A DBA (database administrator) is a profession: keeping the database in good order. We are talking about hundreds of thousands of records.\nThe first job is to prevent duplicates, and to recognise when two similar records are really different: two people with the same name but a different age and ID number are two people, not a duplicate."
       } },
-    { kind: "talk",
+    { "why": {"he": "למה שתי תוכנות? השרת הוא \"המחסן\": הוא שומר את הנתונים ועובד ברקע, גם כשאין חלון פתוח. SSMS הוא רק \"הדלפק\" שדרכו מבקשים דברים מהמחסן. לכן אם השירות לא ב-Running, החיבור ייכשל גם אם SSMS תקין. `Trust Server Certificate` נדרש כי SSMS מצפין את החיבור, והשרת המקומי משתמש בתעודה שהוא יצר לעצמו.", "ru": "Почему две программы? Сервер — это «склад»: он хранит данные и работает в фоне, даже когда никакое окно не открыто. SSMS — только «окошко», через которое просят у склада. Поэтому если служба не Running, подключение не пройдёт, даже если SSMS в порядке. `Trust Server Certificate` нужен, потому что SSMS шифрует связь, а локальный сервер использует сертификат, который сделал сам себе.", "en": "Why two programs? The server is the \"warehouse\": it stores data and runs in the background even with no window open. SSMS is just the \"counter\" you ask the warehouse through. So if the service is not Running, connecting fails even if SSMS is fine. `Trust Server Certificate` is needed because SSMS encrypts the connection and the local server uses a certificate it made for itself."}, kind: "talk",
       title: { he: "שתי תוכנות: שרת וחלון פקודות", ru: "Две программы: сервер и окно для команд", en: "Two programs: a server and a command window" },
       text: {
         he: "SQL Server Express — השרת עצמו. הוא רץ ברקע ושומר את המסדים. בודקים ב־Services שהשירות SQL Server (SQLEXPRESS) במצב Running.\nSQL Server Management Studio 22 (SSMS) — החלון שבו כותבים פקודות. הוא מתחבר לשרת:\nServer Name: `.\\SQLEXPRESS` · Authentication: Windows Authentication · לסמן Trust Server Certificate · Connect.\nאחרי החיבור: New Query, כותבים קוד, ו־Execute או F5. אם מסמנים שורה אחת ולוחצים F5 — רק היא מתבצעת.",
         ru: "SQL Server Express — сам сервер. Он работает в фоне и хранит базы. В Services проверяют, что служба SQL Server (SQLEXPRESS) в состоянии Running.\nSQL Server Management Studio 22 (SSMS) — окно, где пишут команды. Оно подключается к серверу:\nServer Name: `.\\SQLEXPRESS` · Authentication: Windows Authentication · галочка Trust Server Certificate · Connect.\nПосле подключения: New Query, пишем код, затем Execute или F5. Если выделить одну строку и нажать F5 — выполнится только она.",
         en: "SQL Server Express is the server itself. It runs in the background and stores the databases. In Services, check that SQL Server (SQLEXPRESS) is Running.\nSQL Server Management Studio 22 (SSMS) is the window where you type commands. It connects to the server:\nServer Name: `.\\SQLEXPRESS` · Authentication: Windows Authentication · tick Trust Server Certificate · Connect.\nAfter connecting: New Query, type code, then Execute or F5. If you select one line and press F5, only that line runs."
       } },
-    { kind: "tip",
+    { "why": {"he": "Windows מגן על תיקיות מערכת מפני שינוי. התקנה של שרת כותבת לתיקיות כאלה ומתקינה שירות, ולכן צריך הרשאות מנהל. זו לא תקלה בתוכנה אלא הגנה של Windows.", "ru": "Windows защищает системные папки от изменений. Установка сервера пишет в такие папки и ставит службу, поэтому нужны права администратора. Это не поломка программы, а защита Windows.", "en": "Windows protects system folders from changes. Installing a server writes into such folders and adds a service, so it needs administrator rights. It is not a bug in the program but Windows protection."}, kind: "tip",
       title: { he: "שגיאה בהתקנה: Access … is denied", ru: "Ошибка установки: Access … is denied", en: "Install error: Access … is denied" },
       text: {
         he: "בהתקנה הופיעה שגיאה: Access to the path …\\SSEI\\LogFiles is denied. לתוכנת ההתקנה חסרות הרשאות: קליק ימני על קובץ ההתקנה → Run as administrator.",
         ru: "При установке была ошибка: Access to the path …\\SSEI\\LogFiles is denied. Установщику не хватает прав: правой кнопкой по установщику → «Запуск от имени администратора».",
         en: "During installation an error appeared: Access to the path …\\SSEI\\LogFiles is denied. The installer lacks permissions: right-click the installer → Run as administrator."
       } },
-    { kind: "qa",
+    { "why": {"he": "`MSSQL$SQLEXPRESS` הוא שם השירות ב-Windows: \"שירות SQL, עותק בשם SQLEXPRESS\". על מחשב אחד אפשר להתקין כמה עותקים של השרת, ולכל אחד שם. בחיבור כותבים \"מחשב\\עותק\": הנקודה היא המחשב הזה, ו-SQLEXPRESS הוא העותק.", "ru": "`MSSQL$SQLEXPRESS` — это имя службы в Windows: «служба SQL, копия по имени SQLEXPRESS». На одном компьютере можно поставить несколько копий сервера, у каждой своё имя. При подключении пишут «компьютер\\копия»: точка — этот компьютер, SQLEXPRESS — копия.", "en": "`MSSQL$SQLEXPRESS` is the Windows service name: \"SQL service, instance named SQLEXPRESS\". One computer can have several server instances, each with a name. To connect you write \"computer\\instance\": the dot is this computer, SQLEXPRESS is the instance."}, kind: "qa",
       q: {
         he: "את שם השרת מעתיקים יחד עם סימן הדולר?",
         ru: "Имя сервера переписывать вместе со знаком доллара?",
@@ -70,7 +70,7 @@ window.LESSONS["sql-2026-10-22"] = {
         ru: "Нет. В Services имя выглядит как `MSSQL$SQLEXPRESS`. Берём только то, что справа от $, поэтому подключаемся к `.\\SQLEXPRESS` (точка = этот компьютер).",
         en: "No. In Services the name looks like `MSSQL$SQLEXPRESS`. Take only what is right of the $, so you connect to `.\\SQLEXPRESS` (the dot means this computer)."
       } },
-    { kind: "board",
+    { "why": {"he": "למה `create` לא נכנס לבד? כי לפעמים יוצרים כמה מסדים מאותו חלון, או יוצרים מסד ונשארים לעבוד במקום אחר. `use` הוא החלטה נפרדת: \"מעכשיו אני כאן\". master הוא מסד המערכת של השרת עצמו — לא לשים בו טבלאות שלנו.", "ru": "Почему `create` не переходит сам? Иногда из одного окна создают несколько баз или создают базу, а работают в другой. `use` — отдельное решение: «теперь я здесь». master — системная база самого сервера, свои таблицы туда класть не надо.", "en": "Why does `create` not switch by itself? Sometimes you create several databases from one window, or create one and keep working elsewhere. `use` is a separate decision: \"from now on I am here\". master is the server's own system database; do not put your tables there."}, kind: "board",
       title: { he: "יוצרים מסד ועוברים אליו", ru: "Создаём базу и переходим в неё", en: "Create a database and switch to it" },
       text: {
         he: "`create database` יוצר מסד חדש, אבל לא עובר אליו. `use` אומר: מעכשיו עובדים במסד הזה. בלי זה עובדים במסד המערכת master.\nל־SQL לא משנה אותיות גדולות או קטנות. שם עם רווח כותבים בסוגריים מרובעים: `[Dugma 2]`.",
@@ -78,7 +78,7 @@ window.LESSONS["sql-2026-10-22"] = {
         en: "`create database` creates a new database but does not switch to it. `use` says: from now on work in this database. Without it you are in the system database master.\nSQL ignores upper/lower case. A name with a space goes in square brackets: `[Dugma 2]`."
       },
       math: ["create database Dugma2", "use Dugma2"] },
-    { kind: "qa",
+    { "why": {"he": "הרשימה למעלה ו-`use` עושים אותו דבר. היתרון של `use` בקוד: כשפותחים את הקובץ מחר, הוא יעבוד במסד הנכון גם אם ברשימה כתוב master.", "ru": "Список наверху и `use` делают одно и то же. Плюс `use` в коде: если завтра открыть файл, он сработает в нужной базе, даже если в списке стоит master.", "en": "The dropdown and `use` do the same thing. The advantage of `use` in code: when you open the file tomorrow, it runs in the right database even if the dropdown says master."}, kind: "qa",
       q: {
         he: "חייבים לכתוב `use Dugma2`?",
         ru: "Обязательно писать `use Dugma2`?",
@@ -89,7 +89,7 @@ window.LESSONS["sql-2026-10-22"] = {
         ru: "Нет. Можно выбрать базу в выпадающем списке на верхней панели (где написано master) — это то же самое. В этом же списке переходят между разными базами.",
         en: "No. You can pick the database in the drop-down list on the top toolbar (where it says master) — it does the same. The same list switches between databases."
       } },
-    { kind: "board",
+    { "why": {"he": "למה צריך סוג לכל עמודה? השרת שומר מיליוני תאים, ולכן הוא רוצה לדעת מראש מה ייכנס: מספר אפשר לחבר ולמיין לפי גודל, טקסט — לא. ה-`n` ב-`nvarchar` אומר Unicode, ולכן עברית ורוסית נשמרות נכון. המספר בסוגריים הוא תקרה: מילה ארוכה יותר לא תיכנס.", "ru": "Зачем каждому столбцу тип? Сервер хранит миллионы ячеек и хочет заранее знать, что в них будет: числа можно складывать и сортировать по величине, текст — нет. Буква `n` в `nvarchar` значит Unicode, поэтому иврит и русский сохраняются правильно. Число в скобках — потолок: слово длиннее не поместится.", "en": "Why does each column need a type? The server stores millions of cells and wants to know in advance what goes in: numbers can be added and sorted by size, text cannot. The `n` in `nvarchar` means Unicode, so Hebrew and Russian are stored correctly. The number in brackets is a ceiling: a longer word will not fit."}, kind: "board",
       title: { he: "יוצרים טבלה: create table", ru: "Создаём таблицу: create table", en: "Create a table: create table" },
       text: {
         he: "אחרי שם הטבלה, בסוגריים — רשימת העמודות: שם העמודה וסוג הנתונים, ופסיק בין עמודות (אחרי האחרונה אין פסיק).\n`nvarchar(20)` — טקסט עד 20 תווים (גם בעברית). המקום תופס רק כמה שכתבת בפועל — לכן \"var\", אורך משתנה.\n`int` — מספר שלם, בלי אורך בסוגריים.\nהעמודות: chanut — חנות, ktovet — כתובת, email, iskaot — עסקאות, menahel — מנהל.",
@@ -106,7 +106,7 @@ window.LESSONS["sql-2026-10-22"] = {
         " menahel nvarchar(20)",
         ")"
       ] },
-    { kind: "qa",
+    { "why": {"he": "ל-`int` יש גודל קבוע: הוא תמיד תופס אותו מקום ומחזיק מספרים עד בערך 2 מיליארד (פלוס או מינוס). לכן אין מה לכתוב בסוגריים. ומה לגבי מספר טלפון? הוא נראה כמו מספר, אבל לא מחשבים איתו ויש בו 0 בהתחלה — לכן שומרים אותו כטקסט.", "ru": "У `int` размер постоянный: он всегда занимает одно и то же место и хранит числа примерно до 2 миллиардов (плюс или минус). Поэтому в скобках писать нечего. А номер телефона? Он похож на число, но с ним не считают и он начинается с 0, поэтому его хранят как текст.", "en": "`int` has a fixed size: it always takes the same space and holds numbers up to about 2 billion (plus or minus). So there is nothing to put in brackets. What about a phone number? It looks like a number, but you never calculate with it and it starts with 0, so it is stored as text."}, kind: "qa",
       q: {
         he: "למה ל־iskaot יש `int` בלי מספר בסוגריים?",
         ru: "Почему у iskaot тип `int` и без числа в скобках?",
@@ -117,7 +117,7 @@ window.LESSONS["sql-2026-10-22"] = {
         ru: "Потому что там число (например, 9). В остальных столбцах текст, поэтому `nvarchar` с максимумом 20 или 30. Для `int` длину не указывают — сервер знает её сам.",
         en: "Because it holds a number (e.g. 9). The other columns hold text, so `nvarchar` with a maximum of 20 or 30. `int` takes no length — the server knows it."
       } },
-    { kind: "board",
+    { "why": {"he": "למה אותו סדר? כשלא כותבים את שמות העמודות, השרת פשוט ממלא אותן לפי הסדר מ-create table: ערך ראשון לעמודה ראשונה וכן הלאה. אם מחליפים מקומות, `9` ייכנס לאימייל, או שתהיה שגיאה. גרשיים מסמנים איפה טקסט מתחיל ונגמר — אחרת השרת לא יודע אם `moshe` זה טקסט או שם של עמודה.", "ru": "Почему тот же порядок? Если не написать имена столбцов, сервер просто раскладывает значения по порядку из create table: первое в первый столбец и так далее. Перепутаешь — `9` попадёт в email или будет ошибка. Кавычки показывают, где текст начинается и кончается, иначе сервер не знает, `moshe` — это текст или имя столбца.", "en": "Why the same order? If you do not name the columns, the server fills them in the order from create table: first value to the first column, and so on. Swap them and `9` lands in email, or you get an error. Quotes mark where text starts and ends; otherwise the server cannot tell whether `moshe` is text or a column name."}, kind: "board",
       title: { he: "מכניסים שורות: insert into … values", ru: "Добавляем строки: insert into … values", en: "Add rows: insert into … values" },
       text: {
         he: "הערכים באותו סדר כמו העמודות ב־create table. טקסט — בגרש בודד מכל צד: `'moshe'`. מספר — בלי גרשיים. אפשר להכניס כמה שורות בפקודה אחת: סוגריים עם פסיק ביניהם. בשיעור הכניסו 11 חנויות (קודם 3, בדקו, ואז השאר):",
@@ -138,7 +138,7 @@ window.LESSONS["sql-2026-10-22"] = {
         "('shayish', 'ezra 4 dimona', 'd@gmail', 18, 'riki'),",
         "('rehitim', 'golda meir 89 chadera', 'e@gmail', 104, 'moshe')"
       ] },
-    { kind: "qa",
+    { "why": {"he": "הפסיק מפריד בין שדות, והגרש מקיף את הטקסט. אלה שני תפקידים שונים, ולכן הם לא \"מתחברים\". דרך לבדוק: ספרו פסיקים — צריך להיות אחד פחות ממספר העמודות (5 עמודות → 4 פסיקים).", "ru": "Запятая разделяет поля, а кавычки обнимают текст. Это две разные роли, поэтому они не «сливаются». Как проверить: посчитай запятые, их на одну меньше, чем столбцов (5 столбцов → 4 запятые).", "en": "The comma separates fields; the quotes wrap the text. Two different jobs, so they do not \"merge\". A quick check: count the commas, there should be one fewer than the columns (5 columns → 4 commas)."}, kind: "qa",
       q: {
         he: "אז שמים שני פסיקים?",
         ru: "Значит, ставят две запятые?",
@@ -149,7 +149,7 @@ window.LESSONS["sql-2026-10-22"] = {
         ru: "Нет. Кавычки ставят с двух сторон текста, а запятая одна, между полями: `('rehitim', 'dayan 11 rechovot', 'a@gmail', 9, 'moshe')`.",
         en: "No. Quotes go on both sides of the text, and one comma between fields: `('rehitim', 'dayan 11 rechovot', 'a@gmail', 9, 'moshe')`."
       } },
-    { kind: "board",
+    { "why": {"he": "`select` הוא השאלה הכי נפוצה בעבודה עם מסדים, והוא בטוח: הוא רק מראה ולא משנה כלום. לכן אפשר להריץ אותו כמה פעמים שרוצים. בעבודה אמיתית עדיף לכתוב את שמות העמודות ולא `*`: בטבלה עם 50 עמודות קשה למצוא את מה שצריך.", "ru": "`select` — самый частый вопрос к базе, и он безопасен: только показывает и ничего не меняет. Поэтому его можно запускать сколько угодно. В настоящей работе лучше писать имена столбцов, а не `*`: в таблице на 50 столбцов трудно найти нужное.", "en": "`select` is the most common question you ask a database, and it is safe: it only shows and changes nothing. So you can run it as often as you like. In real work it is better to list column names rather than `*`: in a table with 50 columns it is hard to find what you need."}, kind: "board",
       title: { he: "שליפה: select", ru: "Выборка: select", en: "Retrieving: select" },
       text: {
         he: "`select` = בחר. `*` = כל העמודות (כל הטורים). `from shlifot` = מהטבלה shlifot. זו שאילתה — היא לא משנה כלום, רק מציגה.\nבמקום `*` אפשר לכתוב שמות עמודות עם פסיק: הן יוצגו בסדר שכתבת, וכל השורות נשארות.",
@@ -161,7 +161,7 @@ window.LESSONS["sql-2026-10-22"] = {
         "select chanut from shlifot",
         "select chanut, menahel from shlifot"
       ] },
-    { kind: "board",
+    { "why": {"he": "למה שני מקומות? כי אלה שתי שאלות שונות: \"מה להראות?\" (עמודות, אחרי select) ו\"על מי?\" (שורות, אחרי where). `or` מרחיב — יותר שורות עוברות. בשיעור הבא נראה את `and`, שמצמצם.", "ru": "Почему два места? Это два разных вопроса: «что показать?» (столбцы, после select) и «про кого?» (строки, после where). `or` расширяет — проходит больше строк. На следующем уроке будет `and`, он сужает.", "en": "Why two places? They are two different questions: \"what to show?\" (columns, after select) and \"about whom?\" (rows, after where). `or` widens — more rows pass. Next lesson brings `and`, which narrows."}, kind: "board",
       title: { he: "סינון שורות: where", ru: "Фильтр строк: where", en: "Filtering rows: where" },
       text: {
         he: "מה שבין select ל־from מסנן עמודות; `where` מסנן שורות — נשארות רק השורות שבהן התנאי נכון. ביחד (שילוב): גם עמודות וגם שורות.\nבתנאי אפשר להשוות מספרים: `>=` גדול או שווה. `or` (או) מחבר שני תנאים — השורה נכנסת אם לפחות אחד מהם נכון.",
@@ -177,7 +177,7 @@ window.LESSONS["sql-2026-10-22"] = {
         "select * from shlifot",
         "where iskaot >= 10 or chanut = 'rehitim'"
       ] },
-    { kind: "tip",
+    { "why": {"he": "למה `drop` בהערה? כדי שהשורה תהיה מוכנה, אבל לא תרוץ בטעות כשמריצים את כל הקובץ ב-F5. אין \"פח מחזור\" במסד נתונים: מה שנמחק, נמחק. לכן מסירים את `--` רק כשבאמת רוצים להתחיל מחדש.", "ru": "Зачем `drop` в комментарии? Чтобы строка была под рукой, но не выполнилась случайно, когда весь файл запускают по F5. В базе данных нет «корзины»: что удалено, то удалено. Поэтому `--` убирают, только когда правда хотят начать заново.", "en": "Why keep `drop` in a comment? So the line is ready but does not run by accident when you press F5 on the whole file. A database has no \"recycle bin\": what is dropped is gone. So remove the `--` only when you really want to start over."}, kind: "tip",
       title: { he: "הערות `--` ו־drop table", ru: "Комментарии `--` и drop table", en: "Comments `--` and drop table" },
       text: {
         he: "שני מקפים `--` הופכים שורה להערה (remark): השרת לא קורא אותה.\n`drop table shlifot` מוחק את הטבלה כולה עם הנתונים — אי אפשר להחזיר. בשיעור היא עמדה בהערה, \"to be on the safe side\": אם כבר קיימת טבלה ישנה בשם הזה, מוחקים אותה ויוצרים מחדש. כשלרבים בכיתה הייתה שגיאה — הריצו drop table ואז שוב create table.",
@@ -185,21 +185,21 @@ window.LESSONS["sql-2026-10-22"] = {
         en: "Two dashes `--` turn a line into a comment (remark): the server does not read it.\n`drop table shlifot` deletes the whole table with its data — it cannot be undone. In class it sat in a comment \"to be on the safe side\": if an old table with that name already exists, you drop it and create it again. When many in the class got an error, they ran drop table and then create table again."
       },
       math: ["--drop table shlifot"] },
-    { kind: "tip",
+    { "why": {"he": "כמעט כל השגיאות כאן הן \"השרת לא מצא את מה שביקשת\": מסד אחר (master), שם עם טעות, שם עם רווח, או טקסט בלי גרשיים שהשרת חושב שהוא שם של עמודה (הודעה `Invalid column name`). כשיש שגיאה — קודם בודקים באיזה מסד אנחנו ואיך בדיוק כתוב השם.", "ru": "Почти все ошибки здесь — это «сервер не нашёл то, что ты просишь»: другая база (master), имя с опечаткой, имя с пробелом или текст без кавычек, который сервер принял за имя столбца (сообщение `Invalid column name`). При ошибке сначала смотри, в какой ты базе и как точно написано имя.", "en": "Almost every error here means \"the server could not find what you asked for\": another database (master), a typo in a name, a name with a space, or text without quotes that the server takes for a column name (message `Invalid column name`). When you get an error, first check which database you are in and exactly how the name is spelled."}, kind: "tip",
       title: { he: "טעויות שהיו בכיתה", ru: "Ошибки, которые были на уроке", en: "Mistakes seen in class" },
       text: {
         he: "• `use master` במקום המסד שלך — הטבלה נוצרת במסד master.\n• שגיאת כתיב: `shilfot` במקום `shlifot` — אחר כך השאילתות לא מוצאות את הטבלה.\n• `[Dugma 2]` ו־`dugma2` — עם רווח ובלי רווח אלה שני מסדים שונים.\n• פסיק אחרי העמודה האחרונה ב־create table — שגיאה.\n• טקסט בלי גרשיים: `where chanut = rehitim` — SQL מחפש עמודה בשם rehitim. צריך `'rehitim'`.",
         ru: "• `use master` вместо своей базы — таблица создаётся в master.\n• Опечатка: `shilfot` вместо `shlifot` — потом запросы не находят таблицу.\n• `[Dugma 2]` и `dugma2` — с пробелом и без это две разные базы.\n• Запятая после последнего столбца в create table — ошибка.\n• Текст без кавычек: `where chanut = rehitim` — SQL ищет столбец rehitim. Нужно `'rehitim'`.",
         en: "• `use master` instead of your own database — the table is created in master.\n• A typo: `shilfot` instead of `shlifot` — later queries cannot find the table.\n• `[Dugma 2]` and `dugma2` — with and without a space these are two different databases.\n• A comma after the last column in create table — an error.\n• Text without quotes: `where chanut = rehitim` — SQL looks for a column named rehitim. You need `'rehitim'`."
       } },
-    { kind: "board",
+    { "why": {"he": "זה אותו מסלול כמו בשיעור, רק לבד: `create database` → `use` → `create table` עם סוג לכל עמודה. מספר קורס ומספר שעות הם `int`, שם קורס ומרצה הם `nvarchar`. מספר קורס הוא המועמד הטבעי למפתח — הוא לא חוזר.", "ru": "Это тот же путь, что на уроке, только самому: `create database` → `use` → `create table` с типом для каждого столбца. Номер курса и число часов — `int`, название курса и лектор — `nvarchar`. Номер курса — естественный кандидат в ключ: он не повторяется.", "en": "It is the same path as in class, on your own: `create database` → `use` → `create table` with a type for every column. Course number and hours are `int`; course name and lecturer are `nvarchar`. The course number is the natural key candidate — it does not repeat."}, kind: "board",
       title: { he: "תרגיל מהלוח", ru: "Упражнение с доски", en: "Exercise from the board" },
       text: {
         he: "1) צרו מסד נתונים בשם קורסים.\n2) צרו טבלה בשם קורס.\n3) הכניסו את השדות: מספר קורס, שם קורס, מספר שעות, מרצה.\n\"שדה\" כאן זה עמודה. שמות בעברית עם רווח כותבים בסוגריים מרובעים, למשל `[מספר קורס]`; פשוט יותר באותיות לטיניות בלי רווחים.",
         ru: "1) Создайте базу данных «курсы» (קורסים).\n2) Создайте таблицу «курс» (קורס).\n3) Добавьте поля: номер курса, название курса, количество часов, лектор.\n«Поле» (שדה) здесь — это столбец. Имена на иврите с пробелом пишут в квадратных скобках, например `[מספר קורס]`; проще латиницей без пробелов.",
         en: "1) Create a database called courses (קורסים).\n2) Create a table called course (קורס).\n3) Add the fields: course number, course name, number of hours, lecturer.\nA \"field\" here is a column. Hebrew names with a space go in square brackets, e.g. `[מספר קורס]`; Latin letters without spaces are simpler."
       } },
-    { kind: "qa",
+    { "why": {"he": "גם בלי הגשה כדאי לעשות: את הצעדים האלה (מסד → טבלה → הכנסה → שאילתה) חוזרים עליהם בכל שיעור SQL ובמטלות. מי שעשה אותם פעם אחת לבד, עובד אחר כך הרבה יותר מהר.", "ru": "Даже без сдачи стоит сделать: эти шаги (база → таблица → вставка → запрос) повторяются на каждом уроке SQL и в заданиях. Кто сделал их один раз сам, дальше работает гораздо быстрее.", "en": "Even without handing it in, it is worth doing: these steps (database → table → insert → query) repeat in every SQL lesson and assignment. Whoever has done them once alone works much faster later."}, kind: "qa",
       q: {
         he: "את התרגיל מהלוח צריך להגיש?",
         ru: "Упражнение с доски надо сдавать?",

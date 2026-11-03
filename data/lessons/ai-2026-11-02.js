@@ -15,7 +15,7 @@ window.LESSONS["ai-2026-11-02"] = {
     "en": "The RTC-C structure (Role, Task, Context, Constraints), a program that sorts 5 numbers and testing its edge cases, the \"hole\" in a support agent's prompt, and a price calculator in Gemini."
   },
   "timeline": [
-    {
+    { "why": {"he": "למה לבקש גם דוגמת הרצה ומקרי קצה? כי קוד שנראה נכון הוא לא הוכחה. דוגמת הרצה מראה מה באמת יוצא, ומקרי קצה (מספרים שווים, שליליים, קלט שגוי) הם בדיוק המקומות שבהם קוד נשבר. ככה בודקים גם קוד שכתב AI.", "ru": "Зачем просить ещё пример запуска и крайние случаи? Потому что код, который выглядит правильным, — ещё не доказательство. Пример запуска показывает, что выходит на самом деле, а крайние случаи (равные числа, отрицательные, неверный ввод) — ровно те места, где код ломается. Так проверяют и код, который написал ИИ.", "en": "Why also ask for a sample run and edge cases? Because code that looks right is not proof. A sample run shows what really comes out, and edge cases (equal numbers, negatives, bad input) are exactly where code breaks. That is how you check AI-written code too."},
       "kind": "board",
       "title": {
         "he": "משימה: מיון 5 מספרים",
@@ -28,7 +28,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "en": "Ask the chat (Gemini, Claude or ChatGPT) to write a program that sorts 5 entered numbers and shows them in descending order. Edge cases must be checked.\nWhat output we want:\n1. see the code\n2. see a sample run\n3. get examples of edge cases"
       }
     },
-    {
+    { "why": {"he": "למה ארבעה חלקים? כל חלק עונה על שאלה שהמודל אחרת היה מנחש: למי לכתוב, מה בדיוק לעשות, מה המצב, ומה אסור. כל ניחוש של המודל הוא מקום לטעות. פרומפט טוב לא צריך להיות ארוך, הוא צריך להשאיר מעט לניחוש.", "ru": "Почему четыре части? Каждая отвечает на вопрос, который модель иначе стала бы угадывать: для кого писать, что именно сделать, какая ситуация и что нельзя. Каждая догадка модели — место для ошибки. Хороший промпт не обязательно длинный, он оставляет мало для угадывания.", "en": "Why four parts? Each answers a question the model would otherwise guess: who to write for, what exactly to do, what the situation is, and what is off-limits. Every guess is a chance for a mistake. A good prompt need not be long; it leaves little to guess."},
       "kind": "talk",
       "title": {
         "he": "RTC-C: ממסגור הבקשה לפרומפט מדויק",
@@ -41,7 +41,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "en": "Four simple decisions that reduce ambiguity and make the result easy to check:\nR — Role: who should the model be? Set the expertise, point of view and level of experience.\nT — Task: what exactly should it do? A clear action, the desired output and a success criterion.\nC — Context: what is important to know in advance? Audience, goal, current situation, data.\nC — Constraints: what limits must the output meet? Language, length, tone, format, sources, and what is not allowed."
       }
     },
-    {
+    { "why": {"he": "תסתכלו מה כל חלק משנה: \"שבועיים Java\" אומר בלי מונחים מסובכים, \"5 שלבים\" אומר סדר ברור, \"עד 120 מילים\" אומר בלי חפירות. בלי החלקים האלה התשובה הייתה נכונה, אבל לא מתאימה לכם.", "ru": "Посмотри, что меняет каждая часть: «две недели Java» значит без сложных терминов, «5 шагов» — ясный порядок, «до 120 слов» — без воды. Без этих частей ответ был бы правильным, но не подходящим для вас.", "en": "Look at what each part changes: \"two weeks of Java\" means no hard jargon, \"5 steps\" means a clear order, \"up to 120 words\" means no waffle. Without these parts the answer would be correct but not right for you."},
       "kind": "board",
       "title": {
         "he": "דוגמה מהשקף: ארבעת הרכיבים בפרומפט אחד",
@@ -54,7 +54,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "en": "Role: act as an experienced Java teacher.\nTask: explain converting from base 2 to base 10 in 5 steps.\nContext: for students who have been learning Java for two weeks.\nConstraints: in Hebrew · up to 120 words · one example."
       }
     },
-    {
+    { "why": {"he": "למה לא להתחיל מחדש? כי רוב הפרומפט כבר עבד. אם התשובה ארוכה מדי — מחזקים רק את המגבלות. אם היא מסובכת מדי — רק את ההקשר. כך גם לומדים איזה חלק משפיע על מה.", "ru": "Почему не начинать заново? Потому что большая часть промпта уже сработала. Ответ слишком длинный — усиливаем только ограничения. Слишком сложный — только контекст. Так ещё и учишься, какая часть на что влияет.", "en": "Why not start over? Because most of the prompt already worked. Answer too long — strengthen only the constraints. Too complex — only the context. That way you also learn which part affects what."},
       "kind": "tip",
       "title": {
         "he": "RTC-C הוא תהליך איטרטיבי",
@@ -67,7 +67,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "en": "Send → check against the requirements → find the weak component → refine and resend.\nIf the answer isn't precise, strengthen the missing component — don't start everything over."
       }
     },
-    {
+    { "why": {"he": "המשפט \"עברנו לולאות\" חשוב במיוחד: הוא אומר למודל באיזה כלים מותר לו להשתמש. בלי זה הוא עלול לכתוב קוד עם דברים שעוד לא למדנו, והקוד יהיה נכון אבל לא מובן לכם.", "ru": "Фраза «мы прошли циклы» особенно важна: она говорит модели, какими средствами можно пользоваться. Без неё модель может написать код с тем, чего мы ещё не учили, и код будет верным, но непонятным.", "en": "The line \"we have covered loops\" matters most: it tells the model which tools it may use. Without it the model may write code with things we have not learned yet, and the code will be correct but not understandable to you."},
       "kind": "board",
       "title": {
         "he": "פרומפט RTC-C למשימת המיון",
@@ -80,7 +80,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "en": "\"You are a Java teacher for beginners (R). Write a program that reads 5 numbers and shows them in descending order (T). I'm a first-year student and we have learned loops (C). Show the code, a sample run and edge-case examples, with a short explanation in Hebrew (C).\""
       }
     },
-    {
+    { "why": {"he": "למה מהסוף? `Arrays.sort` מסדר תמיד מהקטן לגדול. במקום לחפש פונקציה אחרת, פשוט קוראים את התוצאה מהסוף להתחלה. מערכים (`a[i]`) עוד לא למדנו באלגוריתמיקה — הם יגיעו בהמשך, ולכן כאן מספיק להבין את הרעיון.", "ru": "Почему с конца? `Arrays.sort` всегда сортирует от меньшего к большему. Вместо того чтобы искать другую функцию, просто читаем результат с конца к началу. Массивы (`a[i]`) на алгоритмике ещё не проходили — они будут позже, поэтому здесь достаточно понять идею.", "en": "Why from the end? `Arrays.sort` always sorts smallest to largest. Instead of finding another function, just read the result from end to start. We have not covered arrays (`a[i]`) in algorithms yet — they come later, so here it is enough to get the idea."},
       "kind": "board",
       "title": {
         "he": "הקוד: איך מקבלים סדר יורד",
@@ -99,7 +99,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "}"
       ]
     },
-    {
+    { "why": {"he": "למה `.0`? כי המשתנים הם `double`, ו-Java מדפיסה `double` תמיד עם נקודה. זה גם מראה שהתוכנית מקבלת `2.5`. והשורה עם `abc` מוכיחה שהבדיקה של הקלט באמת עובדת, לא רק כתובה.", "ru": "Почему `.0`? Потому что переменные типа `double`, а Java печатает `double` всегда с точкой. Это же показывает, что программа примет `2.5`. А строка с `abc` доказывает, что проверка ввода правда работает, а не просто написана.", "en": "Why `.0`? Because the variables are `double`, and Java always prints a `double` with a point. It also shows the program accepts `2.5`. And the `abc` line proves the input check really works, not just that it is written."},
       "kind": "board",
       "title": {
         "he": "דוגמת הרצה",
@@ -121,7 +121,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "Descending: 9.0 5.0 4.0 3.0 2.0"
       ]
     },
-    {
+    { "why": {"he": "איך בוחרים מקרי קצה? שואלים \"מה יכול להפתיע את הקוד?\": כולם שווים (אין \"גדול יותר\"), מספרים שליליים ו-0, רשימה שכבר ממוינת, שבר, וקלט שהוא לא מספר בכלל. אותה רשימה מתאימה כמעט לכל תוכנית עם מספרים.", "ru": "Как выбирают крайние случаи? Спрашивают «что может удивить код?»: все равны (нет «больше»), отрицательные и 0, уже отсортированный список, дробь и ввод, который вообще не число. Этот же список подходит почти к любой программе с числами.", "en": "How do you pick edge cases? Ask \"what could surprise the code?\": all equal (no \"bigger\"), negatives and 0, an already sorted list, a fraction, and input that is not a number at all. The same list fits almost any program with numbers."},
       "kind": "talk",
       "title": {
         "he": "מקרי קצה שנבדקו",
@@ -134,7 +134,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "en": "All numbers equal: `7 7 7 7 7` → `7 7 7 7 7`\nNegatives and zero: `-3 0 -10 8 -1` → `8 0 -1 -3 -10`\nAlready sorted ascending: `1 2 3 4 5` → `5 4 3 2 1`\nA decimal number: `2.5 1 9 0 3` → `9 3 2.5 1 0`\nNot a number: `abc` → `Not a number, try again`\nAll cases passed."
       }
     },
-    {
+    { "why": {"he": "למה זה קורה? המודל מנסה לרצות ולעזור, ולכן הוא מאמין למה שהלקוח כותב. כל תנאי שמבוסס רק על מה שהלקוח אומר על עצמו — הלקוח יכול פשוט להגיד אותו. זו כבר לא שאלה של ניסוח יפה, אלא של אבטחה.", "ru": "Почему так происходит? Модель старается угодить и помочь, поэтому верит тому, что пишет клиент. Любое условие, основанное только на словах клиента о себе, клиент может просто сказать. Это уже вопрос не красивой формулировки, а безопасности.", "en": "Why does this happen? The model tries to please and help, so it believes what the customer writes. Any condition based only on what the customer says about themselves, the customer can simply say. This is no longer about nice wording but about security."},
       "kind": "board",
       "title": {
         "he": "חידה: \"חור\" של מילה אחת",
@@ -147,7 +147,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "en": "You built an AI customer-service agent for your business. Everything looks perfect, but within an hour it handed out 50% discounts on its own to anyone who asked nicely, burning thousands of shekels. There is a security \"hole\" of just one word. The prompt:\n\"You are a polite customer-service representative of an electrical-appliance store. Your job is to give professional answers, help with problems and keep customers satisfied. You may give a discount of up to 10% to unhappy customers to keep them. You must not exceed this discount in any way without manager approval.\""
       }
     },
-    {
+    { "why": {"he": "מה עושים במקום? כל דבר שנוגע בכסף או בהרשאות בודקים בקוד ולא בפרומפט: מגבלה קשיחה במערכת (לא יותר מ-10%), ואישור מנהל שמגיע מהמערכת ולא מהצ'אט. הפרומפט מנחה את המודל, אבל הוא לא מנעול.", "ru": "Что делать вместо этого? Всё, что касается денег или прав, проверяют в коде, а не в промпте: жёсткий предел в системе (не больше 10%) и одобрение менеджера, которое приходит из системы, а не из чата. Промпт направляет модель, но он не замок.", "en": "What to do instead? Anything involving money or permissions is checked in code, not in the prompt: a hard limit in the system (no more than 10%) and manager approval that comes from the system, not from the chat. A prompt guides the model, but it is not a lock."},
       "kind": "faq",
       "q": {
         "he": "איך מחפשים \"חור\" כזה בפרומפט?",
@@ -160,7 +160,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "en": "Go over every condition and ask: can the bot check it by itself? \"Unhappy customer\" and \"manager approval\" are things the customer simply types in the chat — the bot has no way to verify them. A rule the bot cannot check is easy to get around."
       }
     },
-    {
+    { "why": {"he": "למה זה תרגיל טוב? בעל עסק יודע בדיוק מה הוא צריך, אבל לא יודע לתכנת. כאן רואים שפרומפט ברור (מחיר, משלוח, מע\"מ, רווח) מספיק כדי לקבל כלי שעובד. אחר כך בודקים אותו עם מחשבון — AI יכול לטעות גם בחשבון.", "ru": "Почему это хорошее упражнение? Владелец бизнеса точно знает, что ему нужно, но не умеет программировать. Тут видно, что ясного промпта (цена, доставка, НДС, прибыль) хватает, чтобы получить рабочий инструмент. Потом его проверяют калькулятором: ИИ может ошибиться и в арифметике.", "en": "Why is this a good exercise? A business owner knows exactly what they need but cannot code. Here you see that a clear prompt (price, shipping, VAT, profit) is enough to get a working tool. Then you check it with a calculator — AI can get arithmetic wrong too."},
       "kind": "board",
       "title": {
         "he": "תרגיל: בניית אפליקציה ב־Gemini / Canvas",
@@ -173,7 +173,7 @@ window.LESSONS["ai-2026-11-02"] = {
         "en": "The prompt: \"I want a tool that shows what my product should cost. Each product I sell costs me 16.90 ₪ for Israel Post shipping. I want a 100% profit on its original price. The app lets me type the product price as it cost me, adds shipping, VAT as it is in Israel today (18%) and the profit I want (100%). Finally it shows the price for the customer.\"\nThe task: copy the prompt into Gemini, then edit, add, fix, design and share."
       }
     },
-    {
+    { "why": {"he": "למה הסדר חשוב? מע\"מ הוא מס על המחיר הסופי שהלקוח משלם, ולכן הוא מחושב על הכול — מוצר, רווח ומשלוח. אם מחשבים מע\"מ לפני שמוסיפים משלוח, המחיר יוצא נמוך מדי והעסק מפסיד. בישראל המע\"מ הוא 18% מינואר 2025.", "ru": "Почему порядок важен? НДС — налог на итоговую цену, которую платит клиент, поэтому его считают на всё: товар, прибыль и доставку. Если посчитать НДС до доставки, цена выйдет слишком низкой и бизнес потеряет. В Израиле НДС 18% с января 2025.", "en": "Why does the order matter? VAT is a tax on the final price the customer pays, so it is calculated on everything — product, profit and shipping. If you add VAT before shipping, the price comes out too low and the business loses. In Israel VAT has been 18% since January 2025."},
       "kind": "board",
       "title": {
         "he": "סדר החישוב במחשבון",

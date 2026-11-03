@@ -15,7 +15,7 @@ window.LESSONS["computer-2026-10-29"] = {
     "en": "Converting between base 8, base 16 and base 10 (e.g. `12A₁₆ = 298`, `ABBA₁₆ = 43962`), binary in groups of 3 and 4, and the remainder operator `%`."
   },
   "timeline": [
-    {
+    { "why": {"he": "חוזרים על זה כי מהיום עובדים עם כמה בסיסים, ובכולם אותו כלל: המקום הימני הוא הקטן ביותר, והשמאלי הגדול ביותר. מי שזוכר את זה לא מתבלבל באיזה כיוון לשים משקלים.", "ru": "Повторяем, потому что с сегодняшнего дня систем несколько, и во всех одно правило: правое место — самое маленькое, левое — самое большое. Кто это помнит, не путает, с какой стороны ставить веса.", "en": "We repeat this because from today we use several bases, and they all share one rule: the right place is the smallest, the left the biggest. Remember it and you never mix up which side the weights start on."},
       "kind": "talk",
       "time": "09:19",
       "title": {
@@ -29,7 +29,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "en": "In a binary number the rightmost digit is the LSB (least significant bit), weight `1`.\nThe leftmost one is the MSB (most significant bit), with the biggest weight.\nFor example in `1101₂`: the LSB is `1` (weight 1), the MSB is `1` (weight 8)."
       }
     },
-    {
+    { "why": {"he": "למה דווקא 8? כי `8 = 2³`: כל ספרה אוקטלית היא בדיוק 3 ביטים. כך אפשר לכתוב מספר בינארי ארוך בקצרה, ובלי חישובים כדי לחזור. דוגמה אמיתית: ב-Linux הרשאות קבצים נכתבות באוקטלי, כמו `755`.", "ru": "Почему именно 8? Потому что `8 = 2³` — каждая восьмеричная цифра ровно 3 бита. Так длинное двоичное число записывают коротко и возвращают назад без вычислений. Настоящий пример — в Linux права на файлы пишут в восьмеричной, вроде `755`.", "en": "Why 8? Because `8 = 2³` — each octal digit is exactly 3 bits. That lets you write a long binary number briefly and convert back with no arithmetic. A real example — in Linux, file permissions are written in octal, like `755`."},
       "kind": "talk",
       "title": {
         "he": "בסיס 8 (אוקטלי)",
@@ -42,7 +42,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "en": "On the board: \"number system = digital system\". Base 8 has 8 digits: 0–7 (no 8 or 9). Weights from the right: `8⁰ = 1`, `8¹ = 8`, `8² = 64`, `8³ = 512`. Each step left multiplies by 8."
       }
     },
-    {
+    { "why": {"he": "האלגוריתם לא השתנה — רק הבסיס. זה הרעיון של כל הנושא: \"ספרה × משקל, ולחבר\" עובד לכל בסיס. מי שהבין את זה בבינארי, כבר יודע אוקטלי והקסה.", "ru": "Алгоритм не изменился — поменялось только основание. В этом вся идея темы: «цифра × вес, и сложить» работает в любой системе. Кто понял это в двоичной, уже умеет восьмеричную и hexa.", "en": "The algorithm did not change — only the base did. That is the whole idea of the topic: \"digit × weight, then add\" works in any base. Whoever got it in binary already knows octal and hexa."},
       "kind": "board",
       "title": {
         "he": "מבסיס 8 לבסיס 10: `123₈`",
@@ -61,7 +61,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "= 83₁₀"
       ]
     },
-    {
+    { "why": {"he": "גם כאן אותו היגיון כמו בחלוקה ב-2: כל שארית היא הספרה הבאה מימין. השארית תמיד קטנה מ-8, ולכן היא תמיד ספרה חוקית בבסיס 8. בדיקה — `1 × 64 + 7 × 8 + 3 = 123`.", "ru": "Та же логика, что при делении на 2: каждый остаток — следующая цифра справа. Остаток всегда меньше 8, поэтому он всегда разрешённая цифра системы 8. Проверка — `1 × 64 + 7 × 8 + 3 = 123`.", "en": "The same logic as dividing by 2: each remainder is the next digit from the right. The remainder is always less than 8, so it is always a legal base-8 digit. Check — `1 × 64 + 7 × 8 + 3 = 123`."},
       "kind": "board",
       "title": {
         "he": "מבסיס 10 לבסיס 8: `123₁₀`",
@@ -80,7 +80,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "123₁₀ = 173₈"
       ]
     },
-    {
+    { "why": {"he": "למה בדיוק 3? שלושה ביטים נותנים `2 × 2 × 2 = 8` צירופים — בדיוק כמספר הספרות בבסיס 8. לכן אין צורך לחשב דרך העשרוני: כל ספרה מתחלפת בקבוצה שלה. זו הטבלה מהשיעור הקודם, רק עם שם חדש.", "ru": "Почему ровно 3? Три бита дают `2 × 2 × 2 = 8` сочетаний — ровно столько, сколько цифр в системе 8. Поэтому не нужно считать через десятичную: каждая цифра просто заменяется своей группой. Это таблица с прошлого урока, только с новым названием.", "en": "Why exactly 3? Three bits give `2 × 2 × 2 = 8` combinations — exactly as many as the digits in base 8. So there is no need to go through decimal: each digit is simply swapped for its group. It is last lesson's table with a new name."},
       "kind": "board",
       "title": {
         "he": "בסיס 8 ובסיס 2: כל ספרה = 3 ביטים",
@@ -103,7 +103,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "7 = 111"
       ]
     },
-    {
+    { "why": {"he": "למה מימין? כי הימין הוא תמיד המקום של המשקל 1. אם חותכים משמאל, הקבוצות \"זזות\", וכל ספרה יוצאת עם משקל לא נכון. אפסים משמאל לא משנים את המספר, ולכן מותר להוסיף אותם.", "ru": "Почему справа? Потому что справа всегда место веса 1. Если резать слева, группы «съезжают», и каждая цифра получает неправильный вес. Нули слева число не меняют, поэтому их дописывать можно.", "en": "Why from the right? Because the right is always the place of weight 1. Cut from the left and the groups \"shift\", so every digit gets the wrong weight. Leading zeros do not change the number, so adding them is allowed."},
       "kind": "talk",
       "title": {
         "he": "מבינארי לבסיס 8: קבוצות של 3",
@@ -122,7 +122,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "= 32₈"
       ]
     },
-    {
+    { "why": {"he": "בדיוק כמו שבעשרוני אין ספרה \"10\": כשמגיעים לבסיס, עוברים מקום שמאלה. אחרי `7₈` בא `10₈`. לכן ספרה שגדולה או שווה לבסיס היא סימן מיידי שמשהו לא בסדר.", "ru": "Ровно как в десятичной нет цифры «10»: дойдя до основания, переходим на место левее. После `7₈` идёт `10₈`. Поэтому цифра, которая больше основания или равна ему, — сразу знак, что что-то не так.", "en": "Just as decimal has no digit \"10\": when you reach the base, you move one place left. After `7₈` comes `10₈`. So a digit equal to or bigger than the base is an instant sign something is wrong."},
       "kind": "tip",
       "time": "10:43",
       "title": {
@@ -136,7 +136,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "en": "A trick question from class: \"convert `78₈`\". No such number exists: base 8 only has the digits 0–7.\nThe same in binary: only 0 and 1. In base 16: 0–9 and A–F."
       }
     },
-    {
+    { "why": {"he": "למה צריך הקסה? `16 = 2⁴`, ולכן כל ספרת הקסה היא 4 ביטים, ושתי ספרות הן בית שלם. זה הכי נוח לכתוב בתים. רואים את זה ב-HTML: הצבע `#FF0000` הוא שלושה בתים — אדום 255, ירוק 0, כחול 0.", "ru": "Зачем нужна hexa? `16 = 2⁴`, поэтому каждая цифра hexa — это 4 бита, а две цифры — целый байт. Байты так записывать удобнее всего. Это видно в HTML — цвет `#FF0000` это три байта: красный 255, зелёный 0, синий 0.", "en": "Why hexa? `16 = 2⁴`, so each hex digit is 4 bits and two digits are a whole byte. It is the handiest way to write bytes. You see it in HTML — the colour `#FF0000` is three bytes: red 255, green 0, blue 0."},
       "kind": "board",
       "title": {
         "he": "בסיס 16 (הקסדצימלי, Hexadecimal)",
@@ -158,7 +158,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "F = 15"
       ]
     },
-    {
+    { "why": {"he": "הצעד הכי חשוב הוא להחליף אות במספר לפני הכפל. `A` היא ספרה אחת ששווה 10, ולא \"1 ו-0\". מכאן הכול רגיל — ספרה × משקל, ולחבר.", "ru": "Самый важный шаг — заменить букву числом перед умножением. `A` — одна цифра, равная 10, а не «1 и 0». Дальше всё как обычно — цифра × вес, и сложить.", "en": "The key step is to replace the letter with a number before multiplying. `A` is one digit worth 10, not \"1 and 0\". After that it is the usual — digit × weight, then add."},
       "kind": "board",
       "title": {
         "he": "מבסיס 16 לבסיס 10: `12A₁₆`",
@@ -176,7 +176,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "= 298₁₀"
       ]
     },
-    {
+    { "why": {"he": "המשקלים גדלים מהר מאוד (1, 16, 256, 4096), ולכן ארבע ספרות הקסה כבר נותנות מספר של עשרות אלפים. כדאי לכתוב את המשקלים מעל הספרות לפני שמתחילים — כך לא מתבלבלים במיקום.", "ru": "Веса растут очень быстро (1, 16, 256, 4096), поэтому четыре цифры hexa — уже десятки тысяч. Перед началом стоит написать веса над цифрами, так не перепутаешь места.", "en": "The weights grow very fast (1, 16, 256, 4096), so four hex digits already give tens of thousands. Write the weights above the digits before you start, so you do not mix up the places."},
       "kind": "board",
       "title": {
         "he": "`ABBA₁₆` בבסיס 10",
@@ -195,7 +195,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "= 43962₁₀"
       ]
     },
-    {
+    { "why": {"he": "חזקה היא כפל חוזר, ולא כפל בחזקה. הטעות `2³ = 6` נפוצה מאוד כשממהרים. במחשבון Casio fx-82MS המקש הוא `^` (או `xʸ`), ובכל מקרה כדאי לבדוק משקל קטן בראש.", "ru": "Степень — это повторное умножение, а не умножение на показатель. Ошибка `2³ = 6` очень частая в спешке. На Casio fx-82MS клавиша `^` (или `xʸ`), и в любом случае маленький вес стоит проверить в уме.", "en": "A power is repeated multiplication, not multiplying by the exponent. The mistake `2³ = 6` is very common in a hurry. On the Casio fx-82MS the key is `^` (or `xʸ`); either way, check a small weight in your head."},
       "kind": "tip",
       "title": {
         "he": "חזקות במחשבון",
@@ -208,7 +208,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "en": "Type `16³ × 10` on the calculator as `16 ^ 3 × 10` and you get `40960`. `2³` is `2 × 2 × 2 = 8`, not `2 × 3`."
       }
     },
-    {
+    { "why": {"he": "אותו אלגוריתם בפעם השלישית — לחלק בבסיס, לרשום שארית, לקרוא מלמטה. `11₁₆` הוא לא אחת-עשרה, אלא `16 + 1 = 17`. בגלל זה תמיד כותבים את הבסיס.", "ru": "Тот же алгоритм в третий раз — делим на основание, пишем остаток, читаем снизу. `11₁₆` — это не одиннадцать, а `16 + 1 = 17`. Именно поэтому основание пишем всегда.", "en": "The same algorithm for the third time — divide by the base, write the remainder, read from the bottom. `11₁₆` is not eleven but `16 + 1 = 17`. That is why the base is always written."},
       "kind": "board",
       "title": {
         "he": "מבסיס 10 לבסיס 16: `17₁₀`",
@@ -226,7 +226,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "17₁₀ = 11₁₆"
       ]
     },
-    {
+    { "why": {"he": "כל שארית חייבת להיות ספרה אחת. \"10\" הן שתי ספרות, ולכן הן היו מזיזות את כל השאר. בגלל זה בהקסה הומצאו האותיות — כדי שלכל ערך מ-0 עד 15 יהיה סימן אחד.", "ru": "Каждый остаток должен быть одной цифрой. «10» — это две цифры, они сдвинули бы всё остальное. Поэтому в hexa и придумали буквы — чтобы у каждого значения от 0 до 15 был один знак.", "en": "Each remainder must be a single digit. \"10\" is two digits and would shift everything else. That is why hexa uses letters — so every value from 0 to 15 has one symbol."},
       "kind": "tip",
       "title": {
         "he": "שארית 10–15 כותבים באות",
@@ -239,7 +239,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "en": "When dividing by 16 the remainder can be up to 15. A remainder of 10 is `A`, 11 is `B`, … 15 is `F`. For example `26 : 16 = 1`, remainder `10 = A`, so `26₁₀ = 1A₁₆`."
       }
     },
-    {
+    { "why": {"he": "זו אותה שיטה כמו קבוצות של 3 לאוקטלי, רק עם 4, כי `2⁴ = 16`. בפועל זו הדרך המהירה ביותר: לא מחלקים ולא מכפילים, רק מחליפים כל קבוצה לפי הטבלה 8-4-2-1.", "ru": "Это тот же способ, что группы по 3 для восьмеричной, только по 4, потому что `2⁴ = 16`. На деле это самый быстрый путь: ничего не делим и не умножаем, только меняем каждую группу по таблице 8-4-2-1.", "en": "It is the same method as groups of 3 for octal, only with 4, because `2⁴ = 16`. In practice it is the fastest way: no dividing or multiplying, just swap each group using the 8-4-2-1 table."},
       "kind": "talk",
       "title": {
         "he": "מבינארי לבסיס 16: קבוצות של 4",
@@ -258,7 +258,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "= 2D₁₆"
       ]
     },
-    {
+    { "why": {"he": "למה זה בשיעור מבוא למחשב? כי זה בדיוק מה שעשינו בהמרות: `/` נותן את החלק השלם, ו-`%` את השארית. אותם סימנים עובדים ב-Java — `25 / 10` עם `int` נותן 2, לא 2.5. כך כותבים המרת בסיסים בקוד.", "ru": "Почему это на введении в компьютер? Потому что это ровно то, что мы делали при переводе: `/` даёт целую часть, а `%` — остаток. Те же знаки работают в Java — `25 / 10` с `int` даёт 2, а не 2.5. Так перевод систем пишут в коде.", "en": "Why is this in Intro to Computers? Because it is exactly what we did in conversions: `/` gives the whole part and `%` the remainder. The same signs work in Java — `25 / 10` with `int` gives 2, not 2.5. That is how base conversion is written in code."},
       "kind": "board",
       "title": {
         "he": "חילוק `/` ושארית `%` (מודולו)",
@@ -278,7 +278,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "11 % 2 = 1"
       ]
     },
-    {
+    { "why": {"he": "למה `4 % 11 = 4`? כי 11 לא נכנס ב-4 אף פעם, אז כל ה-4 נשאר שארית. `% 10` נותן את ספרת האחדות, כי כל העשרות מתחלקות ב-10 בלי שארית. ו-`% 2` הוא בדיוק ה-LSB בבינארי — 0 לזוגי, 1 לאי-זוגי.", "ru": "Почему `4 % 11 = 4`? Потому что 11 не помещается в 4 ни разу, значит все 4 остаются остатком. `% 10` даёт цифру единиц, потому что все десятки делятся на 10 без остатка. А `% 2` — это ровно LSB в двоичной: 0 у чётного, 1 у нечётного.", "en": "Why is `4 % 11 = 4`? Because 11 fits into 4 zero times, so all of 4 is the remainder. `% 10` gives the ones digit, because all the tens divide by 10 with no remainder. And `% 2` is exactly the binary LSB — 0 for even, 1 for odd."},
       "kind": "tip",
       "title": {
         "he": "מודולו — טיפים וטריקים",
@@ -291,7 +291,7 @@ window.LESSONS["computer-2026-10-29"] = {
         "en": "a. If the number left of the modulo sign is smaller than the number on the right, the answer is always the left number: `4 % 11 = 4`, `7 % 12 = 7`, `2 % 11 = 2`.\nb. `% 10` gives the units digit: `13 % 10 = 3`, `32 % 10 = 2`, `3254 % 10 = 4`.\nc. `% 2` checks even or odd: `10 % 2 = 0` — even, `17 % 2 = 1` — odd."
       }
     },
-    {
+    { "why": {"he": "למה `/ 10` לפני `% 10`? חלוקה ב-10 \"מוחקת\" את ספרת האחדות ומזיזה הכול מקום ימינה, ואז `% 10` לוקח את הספרה שהגיעה למקום האחדות. זה אותו \"קילוף מימין\" כמו בהמרת בסיסים. על זה בנויות הרבה משימות באלגוריתמיקה, כמו סכום ספרות.", "ru": "Почему `/ 10` перед `% 10`? Деление на 10 «стирает» цифру единиц и сдвигает всё на место вправо, а потом `% 10` берёт цифру, которая пришла на место единиц. Это то же «снятие справа», что при переводе систем. На этом построено много задач по алгоритмике, например сумма цифр.", "en": "Why `/ 10` before `% 10`? Dividing by 10 \"erases\" the ones digit and shifts everything one place right; then `% 10` takes the digit that moved into the ones place. It is the same \"peeling from the right\" as in base conversion. Many algorithm tasks are built on it, such as summing digits."},
       "kind": "board",
       "title": {
         "he": "ספרות של המספר `153`",

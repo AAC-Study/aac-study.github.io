@@ -34,6 +34,27 @@ window.HOMEWORK = [
     level: 'So far in SQL we learned: what a database and a table are, create database, use, create table with int and nvarchar columns, insert into ... values, select * from, selecting specific columns, and where with the operators and / or / not. We use SQL Server with SSMS.'
   },
   {
+    id: 'algo-2026-10-18-grade', subject: 'algo',
+    title: { he: 'שיעורי בית: חישוב ציון סופי (40% בוחן, 60% מבחן)', ru: 'Домашнее задание: итоговая оценка (40% квиз, 60% экзамен)', en: 'Homework: final grade (40% quiz, 60% exam)' },
+    given: '2026-10-18T08:45:00+03:00', givenDateOnly: true, due: '2026-10-25T08:45:00+02:00',
+    summary: {
+      he: 'מהמצגת "משתנים ב-Java" (נושא השיעור 18.10): תוכנית שמחשבת ציון סופי, וקריאה על if-else.',
+      ru: 'Из презентации преподавателя «Переменные в Java» (тема урока 18.10): программа, которая считает итоговую оценку, и чтение про if-else.',
+      en: 'From the teacher\'s slides "Variables in Java" (the 18.10 lesson topic): a program that computes a final grade, and reading on if-else.'
+    },
+    original: { lang: 'he', text: 'שיעורי בית למפגש הבא\nתרגול: כתבו תוכנית המחשבת את ציונו הסופי של סטודנט (השקלול הוא: 40% בוחן, 60% מבחן). השתמשו בטיפוסים עשרוניים ואופרטורים.\nקריאה: התחילו לקרוא על מבני בקרה בסיסיים: if-else ו-switch.' },
+    steps: [
+      { he: 'צרו ב-IntelliJ מחלקה חדשה עם main.', ru: 'Создай в IntelliJ новый класс с main.', en: 'Create a new class with main in IntelliJ.' },
+      { he: 'קלטו עם Scanner שני ציונים למשתנים מסוג double: בוחן ומבחן.', ru: 'Прочитай через Scanner две оценки в переменные типа double: квиз и экзамен.', en: 'Read two grades with Scanner into double variables: quiz and exam.' },
+      { he: 'חשבו: ציון סופי = בוחן × 0.4 + מבחן × 0.6.', ru: 'Посчитай: итог = квиз × 0.4 + экзамен × 0.6.', en: 'Compute: final = quiz × 0.4 + exam × 0.6.' },
+      { he: 'הדפיסו את הציון הסופי. בדיקה: בוחן 80 ומבחן 90 נותנים 86.0.', ru: 'Напечатай итоговую оценку. Проверка: квиз 80 и экзамен 90 дают 86.0.', en: 'Print the final grade. Check: quiz 80 and exam 90 give 86.0.' },
+      { he: 'קריאה: if-else (עברנו בשיעור 25.10). את switch עוד לא עברנו.', ru: 'Чтение: if-else (прошли на уроке 25.10). switch на уроках ещё не было.', en: 'Reading: if-else (covered on 25 Oct). switch has not been covered yet.' }
+    ],
+    submit: { he: 'לא נאמר שצריך להגיש. זה תרגול למפגש הבא.', ru: 'Сдавать не говорили. Это тренировка к следующей встрече.', en: 'No submission was mentioned. It is practice for the next meeting.' },
+    links: [],
+    level: 'So far in Java we learned: IntelliJ, a first program with main, System.out.println, variables of types int, double, char, boolean and String, Scanner input, arithmetic operators including / and %, casting, and comparison and logical operators.'
+  },
+  {
     id: 'fullstack-2026-10-28-mesakem', subject: 'fullstack',
     title: { he: 'תרגיל מסכם – HTML: אתר לעסק (4 דפים)', ru: 'Итоговое задание по HTML: сайт бизнеса (4 страницы)', en: 'HTML summary exercise: a business website (4 pages)' },
     given: '2026-10-28T11:19:00+02:00', due: null, aiRule: 'banned',

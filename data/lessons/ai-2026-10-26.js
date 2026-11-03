@@ -15,7 +15,7 @@ window.LESSONS["ai-2026-10-26"] = {
     "en": "What AI is and how it differs from an ordinary program, neurons and tokens, the balls puzzle (syntax vs logic errors) and a \"guide, don't solve\" prompt."
   },
   "timeline": [
-    {
+    { "why": {"he": "למה אנשי תוכנה צריכים להבין \"מאחורי הקלעים\"? כי מי שמבין איך המודל עובד יודע מתי לסמוך עליו ומתי לא, ואיך לבנות עליו מוצר. וב-Full Stack כותבים לבד כי המטרה היא שהידיים והראש ילמדו. אם ה-AI כותב, הוא זה שלמד, לא אתה.", "ru": "Зачем людям софта понимать, что «за кулисами»? Кто понимает, как работает модель, знает, когда ей верить, а когда нет, и как построить на ней продукт. А в Full Stack пишут сами, потому что цель — чтобы научились руки и голова. Если пишет ИИ, учится он, а не ты.", "en": "Why do software people need to see \"behind the scenes\"? Whoever understands how the model works knows when to trust it, when not to, and how to build a product on it. And in Full Stack you write yourself because the goal is for your hands and head to learn. If the AI writes, it learns, not you."},
       "kind": "talk",
       "title": {
         "he": "למה הקורס הזה",
@@ -28,7 +28,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "Everyone uses AI, but software people also need to understand what happens \"behind the scenes\". The course uses NotebookLM and Gemini (you can build agents without a paid plan), with projects — apps in your field. Next year: automations and vibe coding. But in Full Stack you write the code yourselves — AI helps, it doesn't write it for you."
       }
     },
-    {
+    { "why": {"he": "למה מודל ממציא? הוא לא \"יודע\" עובדות. הוא בוחר בכל פעם את המילה הבאה שהכי סבירה, ותשובה שנשמעת בטוחה ונעימה היא לרוב \"סבירה\". לכן הוא יכול לנסח שקר בביטחון מלא. הדרך להתגונן: לבקש מקורות, לשאול \"מה החסרונות?\", ולבדוק עובדה חשובה במקום נוסף.", "ru": "Почему модель выдумывает? Она не «знает» факты. Она каждый раз выбирает самое вероятное следующее слово, а уверенный и приятный ответ обычно «вероятен». Поэтому она может сказать неправду с полной уверенностью. Как защититься: просить источники, спрашивать «какие минусы?», а важный факт проверять в другом месте.", "en": "Why does a model make things up? It does not \"know\" facts. It picks the most likely next word each time, and a confident, pleasant answer is usually \"likely\". So it can state something false with full confidence. To protect yourself: ask for sources, ask \"what are the downsides?\", and check important facts elsewhere."},
       "kind": "tip",
       "title": {
         "he": "המודל יכול להמציא בביטחון (הזיה)",
@@ -41,7 +41,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "An example from class: Gemini praised chairs with rope backs — \"strong, long-lasting\". After the prompt added \"don't sugar-coat it\" (אל תחרטט אותי), the answer changed: they wear out in about 3 years. Lesson: know how to talk to the model and check it, don't just copy the answer.\nAnd a homework rule: AI is a helper, not copy-paste. If you just copy, a minute later you remember nothing."
       }
     },
-    {
+    { "why": {"he": "המונחים האלה יחזרו בכל הקורס, ולכן כדאי לדעת אותם בעל פה. Overfitting הוא כמו תלמיד ששינן את התשובות של המבחן לדוגמה: במבחן ההוא קיבל 100, ובמבחן חדש נכשל. ו-GPU מתאים ללמידה כי יש בו אלפי ליבות קטנות שעושות הרבה חישובים פשוטים באותו זמן.", "ru": "Эти термины будут во всём курсе, поэтому их стоит знать наизусть. Overfitting — как студент, который зазубрил ответы пробного экзамена: на том экзамене 100, а на новом проваливается. GPU подходит для обучения, потому что в нём тысячи маленьких ядер, которые одновременно делают много простых вычислений.", "en": "These terms come back all course long, so learn them by heart. Overfitting is like a student who memorised the sample exam: 100 on that one, fails a new one. A GPU suits training because it has thousands of small cores doing many simple calculations at the same time."},
       "kind": "talk",
       "title": {
         "he": "מושגים ממשחק הפתיחה",
@@ -54,7 +54,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "The lesson opened with a Kahoot game on terms. Some of them:\nTuring test — can a person tell a chat with a machine from a chat with a human.\nHallucination — the model confidently makes things up.\nLLM — a large language model; it predicts the next word.\nAPI — a way for an outside program to exchange data with a model or system.\nPrompt — what we write to the model.\nOverfitting — the model was fitted too closely, so it makes mistakes on new data.\nGPU — a graphics processor; needed to train on huge amounts of data.\nDeepfake — a fake photo or video that looks real."
       }
     },
-    {
+    { "why": {"he": "המשפט \"מי שמשתמש ב-AI יחליף את מי שלא\" אומר: הכלי לא עושה את העבודה לבד, הוא מכפיל את מי שיודע להשתמש בו. לכן הקורס מלמד לעבוד איתו, ולא רק להכיר אותו.", "ru": "Фраза «люди с ИИ заменят людей без ИИ» значит: инструмент сам работу не делает, он усиливает того, кто умеет им пользоваться. Поэтому курс учит работать с ним, а не только знать о нём.", "en": "The line \"people who use AI will replace those who do not\" means: the tool does not do the work by itself, it multiplies whoever knows how to use it. So the course teaches you to work with it, not just know about it."},
       "kind": "talk",
       "title": {
         "he": "מה זו בינה מלאכותית",
@@ -67,7 +67,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "Artificial — man-made, created by humans. Intelligence — the ability to understand, learn, solve problems and make decisions. AI is an attempt to build computer systems that do tasks needing \"intelligence\". The human brain works organically and intuitively; AI systems work through complex mathematical algorithms.\n\"AI won't replace people — people who use AI will replace those who don't.\""
       }
     },
-    {
+    { "why": {"he": "למה עיגולים אחד בתוך השני? כל אחד הוא סוג של הקודם. AI הוא כל מכונה \"חכמה\", גם עם חוקים שאדם כתב. ML הוא AI שלומד מדוגמאות. DL הוא ML עם רשת נוירונים של הרבה שכבות — וזה מה שנמצא בתוך ChatGPT ו-Claude.", "ru": "Почему круги один в другом? Каждый — вид предыдущего. ИИ — любая «умная» машина, даже с правилами, которые написал человек. ML — ИИ, который учится на примерах. DL — ML с многослойной нейросетью, и именно это внутри ChatGPT и Claude.", "en": "Why circles inside circles? Each is a kind of the one before. AI is any \"smart\" machine, even with rules a person wrote. ML is AI that learns from examples. DL is ML with a many-layer neural network — and that is what is inside ChatGPT and Claude."},
       "kind": "talk",
       "title": {
         "he": "מה נלמד",
@@ -80,7 +80,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "AI is the widest term. Inside it is Machine Learning — software that learns from data — and inside that, Deep Learning — many-layered neural networks.\nIn practice: prompt engineering, thinking models and automation, connecting tools, building agents, and a project — your own app."
       }
     },
-    {
+    { "why": {"he": "למה היה צריך 60 שנה? הרעיונות היו מוקדם, אבל לא היה מספיק כוח מחשוב ונתונים. רשתות גדולות צריכות מיליארדי דוגמאות ומעבדים חזקים, וזה קרה רק עם האינטרנט וה-GPU. הסיפור של Tay מראה למה לומדים מנתונים בזהירות: המודל לומד גם את הרע.", "ru": "Почему понадобилось 60 лет? Идеи были давно, но не хватало вычислительной мощности и данных. Большим сетям нужны миллиарды примеров и сильные процессоры, а это появилось только с интернетом и GPU. История Tay показывает, почему учиться на данных надо осторожно: модель учится и плохому.", "en": "Why did it take 60 years? The ideas came early, but there was not enough computing power or data. Big networks need billions of examples and strong processors, which only arrived with the internet and GPUs. The Tay story shows why learning from data needs care: the model learns the bad too."},
       "kind": "talk",
       "title": {
         "he": "קצת היסטוריה",
@@ -93,7 +93,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "1950 — Alan Turing asks: \"Can a machine think?\"\n1956 — the Dartmouth conference, where the name \"artificial intelligence\" was born.\n1966 — ELIZA, the first chatbot (Joseph Weizenbaum, MIT).\n2016 — Microsoft's Tay learned from Twitter users, quickly picked up insults and was taken down in less than a day.\n2017 — the Transformer model, the basis of ChatGPT, Claude and others.\nThe leap became possible thanks to fast computers and memory and an internet full of data."
       }
     },
-    {
+    { "why": {"he": "אין כאן תשובה אחת נכונה, ובכוונה: אותו כלי שעוזר ללמוד יכול גם להזיק ללמידה, אם רק מעתיקים. השאלה היא לא \"טוב או רע\", אלא \"איך משתמשים בו נכון\".", "ru": "Одного верного ответа тут нет, и это нарочно: тот же инструмент, который помогает учиться, может и мешать учёбе, если только копировать. Вопрос не «хорошо или плохо», а «как пользоваться правильно».", "en": "There is no single right answer here, on purpose: the same tool that helps you learn can also hurt learning if you just copy. The question is not \"good or bad\" but \"how to use it well\"."},
       "kind": "talk",
       "title": {
         "he": "AI: מצוין או מסוכן?",
@@ -106,7 +106,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "Great: doing tasks efficiently, research and discovery, reducing social gaps, creativity and innovation, health, learning.\nDangerous: job losses, unreliable information, privacy threats, harm to personal growth, security threats."
       }
     },
-    {
+    { "why": {"he": "למה לא לכתוב חוקים לכל דבר? יש משימות שאי אפשר לנסח בחוקים. נסו לכתוב חוק שמזהה חתול בתמונה — אוזניים? גם לכלב יש. לכן נותנים למכונה אלפי דוגמאות, והיא מוצאת לבד את הדפוס. אבל כשיש חוק ברור, כמו מחשבון, תוכנית רגילה טובה יותר — מדויקת וצפויה.", "ru": "Почему не написать правила на всё? Некоторые задачи правилами не описать. Попробуй написать правило, которое находит кошку на фото — уши? У собаки тоже. Поэтому машине дают тысячи примеров, и она сама находит закономерность. Но когда правило ясное, как в калькуляторе, обычная программа лучше: точная и предсказуемая.", "en": "Why not write rules for everything? Some tasks cannot be put into rules. Try writing a rule that spots a cat in a photo — ears? Dogs have them too. So you give the machine thousands of examples and it finds the pattern itself. But when the rule is clear, like a calculator, a regular program is better: exact and predictable."},
       "kind": "talk",
       "title": {
         "he": "תוכנית רגילה מול AI",
@@ -119,7 +119,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "An ordinary program follows fixed, clear rules, doesn't learn or improve, and does only what it was programmed to do (a calculator always returns `5 + 5 = 10`).\nAI learns from examples, improves over time, handles new situations and finds complex patterns. How does a person know it's a house or a plane? Nobody gave them a rule — they saw many examples."
       }
     },
-    {
+    { "why": {"he": "הדוגמה מראה את החיסרון של חוק קשיח: `80.01` ו-`200` מקבלים אותה תשובה, וגם `79.99` ו-`80.01` כמעט זהים אבל מקבלים תשובות הפוכות. מערכת לומדת יכולה לשקול עוד נתונים (כמה זמן חם, מה קרה בפעם הקודמת). עם זאת, למכונה מסוכנת לפעמים בדיוק רוצים חוק קשיח.", "ru": "Пример показывает минус жёсткого правила: `80.01` и `200` получают один ответ, а `79.99` и `80.01` почти одинаковы, но получают противоположные. Обучаемая система может учесть ещё данные (как долго жарко, что было в прошлый раз). Но для опасной машины иногда нужно как раз жёсткое правило.", "en": "The example shows the downside of a hard rule: `80.01` and `200` get the same answer, while `79.99` and `80.01` are nearly equal yet get opposite answers. A learning system can weigh more data (how long it has been hot, what happened last time). Still, for a dangerous machine a hard rule is sometimes exactly what you want."},
       "kind": "board",
       "title": {
         "he": "דוגמת הטמפרטורה",
@@ -136,7 +136,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "else printf(\"ok\");"
       ]
     },
-    {
+    { "why": {"he": "למה זה בחינם? כי הנתונים על מה שאתה צופה ולוחץ הם מה ששווה כסף: הם עוזרים להראות לך פרסומות שתלחץ עליהן ולהשאיר אותך יותר זמן. כדאי לדעת את זה כשמחליטים מה לשתף.", "ru": "Почему это бесплатно? Потому что данные о том, что ты смотришь и нажимаешь, и стоят денег: они помогают показать рекламу, на которую ты нажмёшь, и удержать тебя дольше. Это стоит помнить, когда решаешь, чем делиться.", "en": "Why is it free? Because the data about what you watch and click is what is worth money: it helps show you ads you will click and keep you longer. Worth knowing when you decide what to share."},
       "kind": "talk",
       "title": {
         "he": "AI בחיים: המלצות חכמות",
@@ -149,7 +149,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "Behind the screen, AI follows every action to get to know you: YouTube shows matching ads, Netflix recommends films, AliExpress analyses behaviour, Spotify builds a personal weekly playlist."
       }
     },
-    {
+    { "why": {"he": "למה משקלים? כי לא כל קלט חשוב באותה מידה. \"למידה\" היא בעצם שינוי קטן של המשקלים שוב ושוב, עד שהטעויות קטנות. backpropagation הוא הדרך לדעת איזה משקל אשם בטעות וכמה לתקן אותו. זה הכול כפל וחיבור, רק מיליארדים מהם — ולכן צריך GPU.", "ru": "Зачем веса? Потому что не каждый вход одинаково важен. «Обучение» — это на самом деле маленькое изменение весов снова и снова, пока ошибок не станет мало. Backpropagation — способ узнать, какой вес виноват в ошибке и насколько его поправить. Всё это умножения и сложения, только их миллиарды, поэтому и нужен GPU.", "en": "Why weights? Because not every input matters equally. \"Learning\" is really nudging the weights again and again until the errors get small. Backpropagation is how you find which weight caused an error and how much to fix it. It is all multiplying and adding, just billions of times — hence the GPU."},
       "kind": "talk",
       "title": {
         "he": "נוירון ורשת נוירונים",
@@ -162,7 +162,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "A brain neuron: dendrites receive signals, the cell body gathers information, the axon carries an electrical impulse, and the axon terminals pass the message to the next cell.\nAn artificial neuron: each input x is multiplied by a weight w, everything is added, b is added, and an activation function decides whether to \"fire\": `x1·w1 + x2·w2 + b`. The weight says how important an input is.\nForward propagation — the signal goes forward, from input to answer. Backpropagation — the network compares with the right answer and corrects the weights. That is training.\nThe cat example: layer 1 — four legs and a tail (a dog and a tiger too!), layer 2 — eye colour, and the next layers narrow it down to the breed."
       }
     },
-    {
+    { "why": {"he": "למה המחשב לא \"מבין למה התכוונו\"? כי אין לו הקשר ושכל ישר, יש לו רק את הפקודות. זה הקשר לשיעור האלגוריתמיקה: מה שנראה לנו \"ברור מאליו\" צריך לכתוב בקוד במפורש ובסדר הנכון.", "ru": "Почему компьютер не «понимает, что имели в виду»? У него нет контекста и здравого смысла, есть только команды. В этом связь с алгоритмикой: то, что нам кажется «само собой понятным», в коде надо написать явно и в правильном порядке.", "en": "Why does the computer not \"get what we meant\"? It has no context or common sense, only the commands. That is the link to the algorithms course: whatever seems \"obvious\" to us must be written in code explicitly and in the right order."},
       "kind": "talk",
       "title": {
         "he": "תוכנית = סדרת הוראות מדויקות",
@@ -175,7 +175,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "Need → instructions → result. The computer doesn't \"guess\" what we meant — it carries out exactly the instructions it got, in the same order. A person just needs \"turn on the camera\"; a computer needs every step: turn on the computer, open Zoom from the link, and so on. A common mistake: the wrong order of steps — for example, comparing a ball that hasn't been weighed yet."
       }
     },
-    {
+    { "why": {"he": "שימו לב: האלגוריתם הזה שגוי בכוונה. אל תחפשו בו היגיון — קראו עד הסוף. המטרה היא לראות שקוד יכול לרוץ בלי שום שגיאה ועדיין לתת תשובה לא נכונה. בשביל זה נותנים לכם אותו.", "ru": "Внимание: этот алгоритм нарочно неправильный. Не ищи в нём логику — прочитай до конца. Цель — увидеть, что код может выполниться без единой ошибки и всё равно дать неверный ответ. Для этого его и дают.", "en": "Note: this algorithm is wrong on purpose. Do not look for logic in it — read to the end. The goal is to see that code can run without a single error and still give a wrong answer. That is why it is given."},
       "kind": "board",
       "title": {
         "he": "אתגר לוגי: האלגוריתם רץ — אבל טועה",
@@ -188,7 +188,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "There are 10 balls, each with its own weight. The algorithm should print the weight of the heaviest ball. The algorithm in words, from the slide:\nStart: take ball 1 and put it on the temporary shelf (\"the heaviest so far\").\nComparison loop: for each ball N from 2 to 10:\n• weigh ball N;\n• compare the weight of ball N with the weight of ball N−1 (the previous one in the row);\n• if ball N is heavier than ball N−1, replace the ball on the shelf with ball N;\n• otherwise leave the shelf as it is.\nOutput: show the ball left on the shelf.\nAnd the question at the bottom of the slide: the code finishes without a syntax error — does it reach the goal?"
       }
     },
-    {
+    { "why": {"he": "למה לבדוק עם 3 שקלים? כי בדוגמה קטנה אפשר לעקוב אחרי כל צעד ביד. כשהשאלה היא \"מי הכי כבד עד עכשיו\", צריך להשוות למי שעל המדף, כי רק הוא זוכר את כל מה שהיה. השכן הקודם יודע רק על עצמו. זה בדיוק משתנה ה-`max` באלגוריתמיקה.", "ru": "Зачем проверять на 3 весах? На маленьком примере можно пройти каждый шаг руками. Когда вопрос «кто самый тяжёлый до сих пор», сравнивать надо с тем, кто на полке, потому что только он «помнит» всё, что было. Предыдущий сосед знает только о себе. Это ровно переменная `max` на алгоритмике.", "en": "Why test with 3 weights? On a small example you can follow every step by hand. When the question is \"who is heaviest so far\", you compare with the one on the shelf, because only it \"remembers\" everything so far. The previous neighbour knows only about itself. That is exactly the `max` variable in algorithms."},
       "kind": "tip",
       "title": {
         "he": "איפה הכשל",
@@ -201,7 +201,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "The flaw is deliberate: ball N is compared with its neighbour N−1, not with the ball on the shelf. With `5, 9, 3, 4, 2, 1, 6, 2, 3, 1` the algorithm prints `3`, but the heaviest is `9`. With three weights `9, 3, 5` it prints `5`.\nThe fix is one line: compare ball N with the ball on the shelf."
       }
     },
-    {
+    { "why": {"he": "למה קודם במילים ולא בקוד? כי כך מתמקדים בהיגיון ולא בתחביר. אם האלגוריתם נכון במילים, לתרגם לקוד זה כבר קל. אם הוא שגוי במילים, שום קוד לא יציל אותו.", "ru": "Почему сначала словами, а не кодом? Так думаешь о логике, а не о синтаксисе. Если алгоритм верен словами, перевести его в код уже легко. Если он неверен словами, никакой код его не спасёт.", "en": "Why words first, not code? Because then you focus on logic, not syntax. If the algorithm is right in words, turning it into code is easy. If it is wrong in words, no code will save it."},
       "kind": "talk",
       "title": {
         "he": "האלגוריתם הנכון שבנו יחד",
@@ -214,7 +214,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "In class everyone first spent 5 minutes writing the algorithm in words (not code), then it was built together:\n1. Weigh the first ball and put it in the box.\n2. Loop: go over balls 2 to 10 and weigh each one.\n3. Compare the current ball with the ball in the box.\n4. If the current one is heavier — swap.\n5. Continue until all 10 are checked."
       }
     },
-    {
+    { "why": {"he": "למה שגיאה לוגית מסוכנת יותר? שגיאת תחביר המחשב מראה מיד באדום. שגיאה לוגית שקטה: התוכנית רצה, ונראה שהכול בסדר, עד שמישהו מקבל תשובה לא נכונה. לכן תמיד בודקים על דוגמאות שאת התשובה שלהן יודעים מראש.", "ru": "Почему логическая ошибка опаснее? Синтаксическую компьютер сразу показывает красным. Логическая — тихая: программа работает, и кажется, что всё хорошо, пока кто-то не получит неверный ответ. Поэтому всегда проверяют на примерах, ответ на которые знают заранее.", "en": "Why is a logic error more dangerous? The computer shows a syntax error in red at once. A logic error is silent: the program runs and everything seems fine until someone gets a wrong answer. So always test on examples whose answer you already know."},
       "kind": "talk",
       "title": {
         "he": "שגיאת תחביר מול שגיאה לוגית",
@@ -227,7 +227,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "A syntax error is a mistake in writing a word, e.g. `intt` instead of `int`. The program doesn't run, and IntelliJ underlines it in red.\nA logic error: everything is written correctly and the program runs, but the answer is wrong (like the balls: 3 instead of 9). The computer won't tell you — you find it only by testing on examples.\n\"For a system to understand what we want, we must give it a logical order of operations — not necessarily the way we think in everyday life.\""
       }
     },
-    {
+    { "why": {"he": "למה לבקש מה-AI לא לפתור? כי מה שאתה מגלה לבד אתה זוכר, ומה שקיבלת מוכן נשכח. כללים כמו \"שאלה אחת בכל פעם\" ו\"רמז רק אחרי ניסיון\" הופכים את המודל ממי שעושה במקומך למורה פרטי.", "ru": "Зачем просить ИИ не решать? То, что находишь сам, запоминаешь, а полученное готовым забывается. Правила вроде «один вопрос за раз» и «подсказка только после попытки» превращают модель из того, кто делает вместо тебя, в личного репетитора.", "en": "Why ask the AI not to solve it? What you find yourself, you remember; what you get ready-made, you forget. Rules like \"one question at a time\" and \"a hint only after an attempt\" turn the model from someone doing it for you into a private tutor."},
       "kind": "talk",
       "title": {
         "he": "תרגיל בהנדסת פרומפטים: מנחה — לא פותר",
@@ -240,7 +240,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "Find the flaw without asking for the solution. Write a prompt in which the AI guides you rather than solving. What the prompt must include:\n• one guiding question at a time\n• a hand trace with 3 sample weights\n• a hint only after your own attempt\n• no fixed code and no revealing the error\n• show edge cases and guide how to solve them\nGoal: explain yourselves what the algorithm really does."
       }
     },
-    {
+    { "why": {"he": "היתרון: לא צריך לנחש מראש את כל הניסוחים. \"לא נכנס לאתר\", \"שוכח סיסמה\", \"המסך לבן\" — המודל ראה דוגמאות דומות ומבין שזו תקלה. החיסרון: אם בדוגמאות היו טעויות בתוויות, המודל ילמד גם אותן.", "ru": "Плюс: не нужно заранее угадывать все формулировки. «Не захожу на сайт», «забыл пароль», «белый экран» — модель видела похожие примеры и понимает, что это неполадка. Минус: если в примерах были неправильные метки, модель выучит и их.", "en": "The upside: you need not guess every wording in advance. \"Can't get into the site\", \"forgot my password\", \"white screen\" — the model saw similar examples and knows it is a fault. The downside: if the examples had wrong labels, the model learns those too."},
       "kind": "talk",
       "title": {
         "he": "דוגמה: מסווג פניות של סטודנטים",
@@ -253,7 +253,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "The model learns from labelled examples: \"The system won't open\" → fault, \"When is the assignment due?\" → deadlines, \"How do I register for a course?\" → registration. A new request: \"I can't log in to the site\" → prediction: fault → the program opens a support ticket. We didn't write a rule for every sentence — we gave examples and the model learned by itself."
       }
     },
-    {
+    { "why": {"he": "למה הנתונים צריכים להיות מגוונים? המודל לומד את מה שהכי בולט בתמונות. אם כל התמונות של \"כוס\" צולמו על שולחן לבן, הוא אולי ילמד \"שולחן לבן\" ולא \"כוס\". זו בדיוק ההטיה (bias): המודל טוב כמו הנתונים שלו.", "ru": "Почему данные должны быть разными? Модель учит то, что на фото заметнее всего. Если все фото «чашки» сняты на белом столе, она может выучить «белый стол», а не «чашку». Это и есть предвзятость (bias): модель хороша ровно настолько, насколько хороши её данные.", "en": "Why must the data be varied? The model learns whatever stands out most in the pictures. If every \"cup\" photo was taken on a white table, it may learn \"white table\", not \"cup\". That is bias: a model is only as good as its data."},
       "kind": "talk",
       "title": {
         "he": "Teachable Machine: AI משלכם ב־3 שלבים",
@@ -266,7 +266,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "A free Google site where you train a model on your own photos without code.\n1. Gather — collect dozens or hundreds of photos; each group is a class.\n2. Train — one click, and the system learns how the classes differ.\n3. Export — download the model and use it in code.\nImportant: the data must be varied (lighting, angles), or the model will be biased."
       }
     },
-    {
+    { "why": {"he": "למה עברית \"יקרה\" יותר? הטוקנייזרים נבנו בעיקר על טקסט באנגלית, ולכן מילים באנגלית הן לרוב טוקן אחד, ומילה בעברית נחתכת לכמה חלקים. התוצאה: בעברית החלון מתמלא מהר יותר ותשובה עולה יותר ב-API. לכן לפעמים כדאי לכתוב פרומפט ארוך באנגלית.", "ru": "Почему иврит «дороже»? Токенайзеры строили в основном на английском тексте, поэтому английское слово часто один токен, а слово на иврите режется на несколько кусков. В итоге на иврите окно заполняется быстрее и ответ через API стоит дороже. Поэтому длинный промпт иногда выгоднее писать по-английски.", "en": "Why is Hebrew \"more expensive\"? Tokenizers were built mostly on English text, so an English word is often one token while a Hebrew word is cut into several pieces. As a result, in Hebrew the window fills faster and an API answer costs more. That is why a long prompt is sometimes better written in English."},
       "kind": "talk",
       "title": {
         "he": "טוקנים: מה המודל \"רואה\"",
@@ -279,7 +279,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "The model doesn't read words like a person. A tokenizer cuts the text into pieces (tokens), each token becomes a number, and the model computes which token is most likely to come next. The answer is built token by token — statistical prediction, not human \"thinking\".\nWhy it matters: the context window is limited (e.g. 128,000 tokens); more tokens = a slower answer; via the API you pay per token; and a word split into many pieces is harder to understand. According to the slides, Hebrew can use 3–4 times more tokens than English."
       }
     },
-    {
+    { "why": {"he": "למה צריך סטנדרט כמו MCP? בלעדיו, כל חיבור בין מודל לכלי (יומן, קבצים, מסד נתונים) הוא קוד מיוחד, ועם הרבה מודלים והרבה כלים זה מתפוצץ. עם תקן אחד — כמו USB — כל כלי שמדבר MCP מתחבר לכל מודל שמדבר MCP.", "ru": "Зачем стандарт вроде MCP? Без него каждое соединение модели с инструментом (календарь, файлы, база данных) — отдельный код, а при многих моделях и многих инструментах таких соединений становится огромное число. С одним стандартом, как USB, любой инструмент с MCP подключается к любой модели с MCP.", "en": "Why a standard like MCP? Without it, every link between a model and a tool (calendar, files, database) is custom code, and with many models and many tools the number of links explodes. With one standard, like USB, any tool that speaks MCP plugs into any model that speaks MCP."},
       "kind": "talk",
       "title": {
         "he": "כלים, אקו־סיסטם ו־MCP",
@@ -292,7 +292,7 @@ window.LESSONS["ai-2026-10-26"] = {
         "en": "There are thousands of AI tools. Chatbots: Claude, ChatGPT, Gemini, Copilot; also Perplexity (search with sources), Grok, and NotebookLM (work from your own materials).\nAn ecosystem is a network of products and services that feed each other, like Apple's iPhone, watch, Mac and iCloud.\nMCP (Model Context Protocol) — an open standard from Anthropic: one safe \"pipe\" between language models and data, files and programs. \"USB for AI\" — no need to write separate code for every connection."
       }
     },
-    {
+    { "why": {"he": "המטרה של המטלה היא לא רק למצוא את הטעות, אלא לתרגל כתיבת פרומפט שמכוון. בשיעור הבא תצטרכו להסביר במילים שלכם מה האלגוריתם עושה בפועל. מי שה-AI פתר לו, לא יוכל.", "ru": "Цель задания — не только найти ошибку, но и потренироваться писать промпт, который направляет. На следующем уроке нужно будет своими словами объяснить, что алгоритм делает на самом деле. Кому решил ИИ, тот не сможет.", "en": "The goal is not only to find the error but to practise writing a prompt that guides. Next lesson you will need to explain in your own words what the algorithm really does. If the AI solved it for you, you will not be able to."},
       "kind": "tip",
       "title": {
         "he": "שיעורי בית",

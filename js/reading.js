@@ -28,7 +28,13 @@
 
   function now() { return Date.now(); }
   function words(node) {
-    var txt = (node.textContent || '').replace(/\s+/g, ' ').trim();
+    // «Почему так?» (.ls-why) — по желанию, свёрнуто: в обязательное время чтения не входит
+    var txt = node.textContent || '';
+    if (node.querySelectorAll) {
+      var w = node.querySelectorAll('.ls-why');
+      for (var i = 0; i < w.length; i++) txt = txt.replace(w[i].textContent, ' ');
+    }
+    txt = txt.replace(/\s+/g, ' ').trim();
     return txt ? txt.split(' ').length : 0;
   }
   function viewportH() { return window.innerHeight || document.documentElement.clientHeight || 0; }

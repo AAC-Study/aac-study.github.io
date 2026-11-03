@@ -25,7 +25,7 @@ async function step(name, fn) {
     await p.goto('http://localhost:8765/index.html#/'); await p.waitForSelector('.side');
     assert(await p.locator('.side a[href="#/homework"], .side [data-path="/homework"]').count() >= 1 || /Домашние задания/.test(await p.locator('.side').innerText()), 'menu item');
     await p.goto('http://localhost:8765/index.html#/homework'); await p.waitForSelector('.hw-card');
-    assert.strictEqual(await p.locator('.hw-card').count(), 2);
+    assert.strictEqual(await p.locator('.hw-card').count(), await p.evaluate(() => window.HOMEWORK.length));
     const sql = p.locator('.hw-card', { hasText: 'Вводное упражнение' });
     const txt = await sql.innerText();
     assert(/Базы данных SQL/.test(txt) && /Выдали/.test(txt) && /Сдать до/.test(txt) && /Осталось 2 дн\. [12] ч/.test(txt), JSON.stringify(txt));

@@ -15,7 +15,7 @@ window.LESSONS["computer-2026-10-22"] = {
     "en": "Computer and CPU parts, the memory pyramid, and three methods: base 10 to base 2 (division by 2 and the table method) and base 2 to base 10."
   },
   "timeline": [
-    {
+    { "why": {"he": "למה הסדר הזה? כל נושא נשען על הקודם. בסיסים (0 ו-1) הם השפה של המחשב. שערים לוגיים בונים מ-0 ו-1 החלטות. משערים בונים רכיבים כמו מחבר (ADDER). ואסמבלר הוא הפקודות שהמעבד מבין ישירות. בסוף הקורס רואים את כל הדרך מהחשמל עד התוכנה.", "ru": "Почему такой порядок? Каждая тема стоит на предыдущей. Системы счисления (0 и 1) — язык компьютера. Логические вентили делают из 0 и 1 решения. Из вентилей собирают детали вроде сумматора (ADDER). А ассемблер — команды, которые процессор понимает напрямую. К концу курса виден весь путь от тока до программы.", "en": "Why this order? Each topic rests on the previous one. Number bases (0 and 1) are the computer's language. Logic gates turn 0 and 1 into decisions. Gates build parts like an ADDER. And assembly is the commands the processor understands directly. By the end you see the whole path from electricity to software."},
       "kind": "talk",
       "title": {
         "he": "מה יהיה בקורס",
@@ -28,7 +28,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "The course plan from the board:\n1. Computer hardware components\n2. Number systems: binary, decimal, Hexa, Octal\n3. Addition, subtraction and multiplication in different bases\n4. Logic gates\n5. Truth tables and Karnaugh maps\n6. Components such as an ADDER\n7. Assembler"
       }
     },
-    {
+    { "why": {"he": "זה המודל הפשוט ביותר, והוא מתאים לכל תוכנה: גם התוכניות שכותבים ב-Java קולטות (`Scanner`), מעבדות (לולאות, חישובים) ומוציאות (`println`). כשלא ברור מה תוכנית צריכה לעשות, שואלים שלוש שאלות: מה נכנס, מה קורה בפנים, מה יוצא.", "ru": "Это самая простая модель, и она подходит к любой программе: программы на Java тоже вводят (`Scanner`), обрабатывают (циклы, вычисления) и выводят (`println`). Если непонятно, что должна делать программа, задай три вопроса: что входит, что внутри, что выходит.", "en": "This is the simplest model, and it fits every program: Java programs also take input (`Scanner`), process (loops, calculations) and output (`println`). When it is unclear what a program should do, ask three questions: what goes in, what happens inside, what comes out."},
       "kind": "talk",
       "title": {
         "he": "המחשב כ\"קופסה\": קלט, עיבוד, פלט",
@@ -41,7 +41,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "Something goes in, gets processed inside, and a result comes out.\nInput: keyboard, mouse, microphone, webcam.\nOutput: screen, speakers, headphones."
       }
     },
-    {
+    { "why": {"he": "למה לוח אם? כל רכיב עושה דבר אחד, והם צריכים \"לדבר\" ביניהם. לוח האם הוא הכבישים שמחברים את כולם. טרנזיסטור הוא מתג זעיר בלי חלקים זזים: עובר זרם או לא — וזה בדיוק 1 או 0.", "ru": "Зачем материнская плата? Каждая деталь делает что-то одно, и им нужно «разговаривать». Материнская плата — это дороги, которые соединяют всех. Транзистор — крошечный выключатель без движущихся частей: ток идёт или нет, и это ровно 1 или 0.", "en": "Why a motherboard? Each part does one thing, and they need to \"talk\". The motherboard is the roads connecting them all. A transistor is a tiny switch with no moving parts: current flows or not — exactly 1 or 0."},
       "kind": "talk",
       "title": {
         "he": "מה יש בתוך המחשב",
@@ -54,7 +54,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "Motherboard (everything connects to it), power supply, graphics card, memory, and the CPU — the central processing unit. The chip itself is the size of a fingernail. The CPU works by moving current between billions of transistors."
       }
     },
-    {
+    { "why": {"he": "למה חדר נקי? הטרנזיסטורים קטנים פי אלפים מעובי שערה, ולכן גרגר אבק אחד מכסה אלפים מהם. binning מסביר למה יש דגמים שונים במחירים שונים: שבבים מאותה פרוסה יוצאים קצת שונים באיכות, והטובים יותר נמכרים כדגם מהיר ויקר יותר.", "ru": "Зачем чистая комната? Транзисторы в тысячи раз тоньше волоса, поэтому одна пылинка накрывает тысячи из них. Binning объясняет, почему есть разные модели по разной цене: чипы с одной пластины выходят чуть разными по качеству, и лучшие продают как более быструю и дорогую модель.", "en": "Why a clean room? Transistors are thousands of times thinner than a hair, so one speck of dust covers thousands of them. Binning explains why there are different models at different prices: chips from the same wafer come out slightly different in quality, and the better ones are sold as a faster, pricier model."},
       "kind": "talk",
       "title": {
         "he": "איך מייצרים מעבד",
@@ -67,7 +67,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "Silicon is made from sand and turned into a thin round slice (a wafer). Engineers plan where billions of transistors go, and lithography puts the plan onto the wafer. All of this happens in clean rooms — a single eyelash on the wafer makes the chip a reject. Finally the wafer is cut into chips, which are tested and sorted by quality (binning)."
       }
     },
-    {
+    { "why": {"he": "למה מחלקים לחלקים? כמו במטבח של מסעדה: אחד מבשל (ALU), אחד מחלק עבודה (CU), אחד מביא מצרכים מהמחסן (MMU). Pipeline הוא כמו פס ייצור — בזמן שפקודה אחת מתבצעת, הבאה כבר נקראת, ולכן הכול מהיר יותר בלי להגביר את הקצב של כל צעד.", "ru": "Почему процессор делят на части? Как кухня ресторана: один готовит (ALU), один раздаёт работу (CU), один приносит продукты со склада (MMU). Pipeline — как конвейер: пока одна команда выполняется, следующая уже читается, поэтому всё быстрее, хотя каждый шаг не ускорили.", "en": "Why split the CPU into parts? Like a restaurant kitchen: one cooks (ALU), one hands out work (CU), one fetches supplies from the store (MMU). The pipeline is like an assembly line: while one command runs, the next is already being read, so everything is faster without speeding up any single step."},
       "kind": "talk",
       "title": {
         "he": "מבנה ה־CPU",
@@ -80,7 +80,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "`ALU` (Arithmetic Logic Unit): arithmetic (+ − × ÷) and logic (AND, OR, XOR, NOT).\n`CU` (Control Unit): decides which unit does what.\nA unit for decimal (floating-point) numbers like 0.123.\n`Pipeline`: speeds things up — the CPU prepares the next steps in advance.\n`MMU` (Memory Management Unit): moves data between the CPU and memory."
       }
     },
-    {
+    { "why": {"he": "למה פירמידה ולא סוג זיכרון אחד? אין זיכרון שהוא גם מהיר, גם גדול וגם זול. לכן שמים מעט זיכרון מהיר מאוד ליד המעבד, ויותר ויותר זיכרון איטי וזול רחוק ממנו. דוגמה מהחיים: עט ביד (רגיסטר), קלמר על השולחן (cache), תיק (RAM), ארון בבית (דיסק).", "ru": "Почему пирамида, а не один вид памяти? Не бывает памяти, которая одновременно быстрая, большая и дешёвая. Поэтому рядом с процессором ставят немного очень быстрой памяти, а дальше — всё больше медленной и дешёвой. Пример из жизни: ручка в руке (регистр), пенал на столе (кэш), сумка (RAM), шкаф дома (диск).", "en": "Why a pyramid and not one kind of memory? No memory is fast, big and cheap at once. So a little very fast memory sits next to the processor, and more and more slow, cheap memory further away. A real-life picture: the pen in your hand (register), the pencil case on the desk (cache), your bag (RAM), the cupboard at home (disk)."},
       "kind": "board",
       "title": {
         "he": "פירמידת הזיכרון",
@@ -93,7 +93,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "From top to bottom:\nregisters — inside the CPU\nL1 cache\ninternal cache (L2)\nexternal cache (L3)\nRAM — main memory\nsecondary memory (disk)\nThe higher in the pyramid, the faster, smaller and more expensive the memory."
       }
     },
-    {
+    { "why": {"he": "למה צריך דגלים? המעבד עושה חישוב, והתוכנית צריכה לדעת \"מה יצא\": האם התוצאה 0, האם היא לא נכנסה. במקום לבדוק את המספר מחדש, מסתכלים על ביט אחד. בדיוק על זה בנויים `if` ולולאות — באסמבלר נראה איך.", "ru": "Зачем флаги? Процессор что-то посчитал, а программе нужно знать «что вышло»: ноль ли результат, поместился ли он. Вместо того чтобы снова проверять число, смотрят на один бит. Именно на этом построены `if` и циклы — на ассемблере увидим как.", "en": "Why flags? The processor computed something, and the program needs to know \"what came out\": is the result 0, did it fit. Instead of checking the number again, it looks at one bit. That is exactly what `if` and loops are built on — we will see how in assembly."},
       "kind": "talk",
       "title": {
         "he": "אוגר הדגלים",
@@ -106,7 +106,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "Each flag is one bit: 0 = normal, 1 = something special happened.\nOverflow: the system expects two digits, but `55 + 55 = 110` — three digits. The flag becomes 1.\nZero: `1 − 1 = 0`. The result is 0, so the flag becomes 1.\nThere are 20–30 more registers; we will meet them with assembler."
       }
     },
-    {
+    { "why": {"he": "למה cache עוזר? תוכניות חוזרות על אותם דברים שוב ושוב (לולאה רצה על אותן פקודות). אם הן כבר קרובות, לא צריך ללכת בכל פעם ל-RAM הרחוק. ההבדל גדול: גישה ל-RAM איטית בעשרות מונים מגישה ל-L1.", "ru": "Чем помогает кэш? Программы повторяют одно и то же снова и снова (цикл бегает по тем же командам). Если они уже рядом, не нужно каждый раз ходить в далёкую RAM. Разница большая — обращение к RAM в десятки раз медленнее, чем к L1.", "en": "How does the cache help? Programs repeat the same things again and again (a loop runs over the same commands). If they are already close, there is no need to go to distant RAM every time. The gap is big — reaching RAM is tens of times slower than L1."},
       "kind": "talk",
       "title": {
         "he": "זיכרון מטמון (Cache)",
@@ -119,7 +119,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "Fast memory inside or next to the CPU. It holds what is needed often, such as common commands like create, move, delete.\nL1 is the smallest and fastest, L2 is bigger, L3 bigger still.\nSee it yourself: `Ctrl + Shift + Esc` → Task Manager → Performance → CPU. L1, L2, L3 are listed at the bottom."
       }
     },
-    {
+    { "why": {"he": "לא רק כסף: זיכרון מהיר גם תופס יותר מקום על השבב וצורך יותר חשמל. לכן ה-cache נמדד במגה-בייטים, וה-RAM בגיגה-בייטים.", "ru": "Не только деньги: быстрая память ещё занимает больше места на чипе и ест больше электричества. Поэтому кэш измеряют в мегабайтах, а RAM — в гигабайтах.", "en": "Not only money: fast memory also takes more room on the chip and uses more power. That is why cache is measured in megabytes and RAM in gigabytes."},
       "kind": "qa",
       "q": {
         "he": "למה לא עושים את כל הזיכרון מהיר כמו המטמון?",
@@ -132,7 +132,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "Because it is very expensive. The higher in the pyramid, the more each byte costs."
       }
     },
-    {
+    { "why": {"he": "למה RAM נמחק בכיבוי? הוא שומר מידע בעזרת זרם חשמלי, ובלי זרם אין מה לשמור. הדיסק שומר בדרך אחרת, שלא צריכה זרם. זיכרון וירטואלי הוא פשרה: כשה-RAM מלא, מעבירים חלק לדיסק. זה עובד, אבל הדיסק איטי בהרבה — ולכן המחשב \"נתקע\" כשפתוחים יותר מדי דברים.", "ru": "Почему RAM стирается при выключении? Она держит данные с помощью тока, а без тока держать нечем. Диск хранит по-другому, ему ток не нужен. Виртуальная память — компромисс: когда RAM полна, часть переносят на диск. Это работает, но диск гораздо медленнее, поэтому компьютер «тормозит», когда открыто слишком много.", "en": "Why is RAM wiped on shutdown? It holds data using electric current, and without current there is nothing to hold it. The disk stores data another way that needs no power. Virtual memory is a compromise: when RAM is full, part of it moves to disk. It works, but the disk is much slower, so the computer \"lags\" when too much is open."},
       "kind": "talk",
       "title": {
         "he": "RAM, זיכרון וירטואלי וזיכרון משני",
@@ -145,7 +145,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "RAM (main memory): everything open right now — Word, Facebook, TikTok. When the power goes or the computer is turned off, it is emptied. So save your work and keep backups.\nWhen too much is open, RAM fills up and the device gets stuck. Tip: restarting once a week clears the RAM.\nVirtual memory: part of the hard disk used as an extension of RAM. Facebook doesn't load into RAM entirely: what you use all the time is in RAM, and a rare action (adding a photo to a story) sits in virtual memory and is loaded when needed.\nSecondary memory: the disk — it keeps files after power-off."
       }
     },
-    {
+    { "why": {"he": "למה זה חוזר? כי כל קוד שנכתוב רץ על הזיכרון הזה: משתנה ב-Java יושב ב-RAM, ו-SQL Server שומר נתונים בדיסק ומחזיק את מה שבשימוש ב-RAM. מי שמבין את הפירמידה מבין למה תוכנית אחת מהירה ואחרת איטית.", "ru": "Почему это вернётся? Любой код, который мы пишем, работает на этой памяти: переменная в Java лежит в RAM, а SQL Server хранит данные на диске и держит нужное в RAM. Кто понимает пирамиду, понимает, почему одна программа быстрая, а другая медленная.", "en": "Why does this come back? Every program we write runs on this memory: a Java variable sits in RAM, and SQL Server keeps data on disk and holds what is in use in RAM. Whoever understands the pyramid understands why one program is fast and another slow."},
       "kind": "qa",
       "q": {
         "he": "נעבור על זה (זיכרון, אוגרים) עוד פעם?",
@@ -158,7 +158,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "Yes. It comes back throughout the two years. You need to know what RAM, registers and memory are."
       }
     },
-    {
+    { "why": {"he": "למה דווקא 8? זו בחירה היסטורית שהפכה לסטנדרט: 8 ביטים נותנים 256 צירופים, וזה מספיק לכל האותיות, הספרות והסימנים באנגלית. במחשב \"קילו\" הוא לרוב 1024 ולא 1000 (כי `2¹⁰ = 1024`), ולכן דיסק של 1 TB מופיע ב-Windows כ-931 GB בערך.", "ru": "Почему именно 8? Это историческое решение, которое стало стандартом: 8 бит дают 256 сочетаний, этого хватает на все английские буквы, цифры и знаки. В компьютере «кило» часто 1024, а не 1000 (потому что `2¹⁰ = 1024`), поэтому диск на 1 TB в Windows показывается примерно как 931 GB.", "en": "Why exactly 8? A historical choice that became the standard: 8 bits give 256 combinations, enough for all English letters, digits and signs. In computers \"kilo\" is often 1024, not 1000 (because `2¹⁰ = 1024`), so a 1 TB disk shows in Windows as about 931 GB."},
       "kind": "talk",
       "title": {
         "he": "ביט ובייט",
@@ -171,7 +171,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "A bit is the smallest unit: one digit, 0 or 1. 0 = no current, 1 = current.\n8 bits = 1 byte. So numbers are often written with 8 bits, filling zeros on the left: `5 = 00000101`.\nLike milligrams, grams and kilos — big units are built from small ones (kilobyte, megabyte, gigabyte)."
       }
     },
-    {
+    { "why": {"he": "למה המחשב לא עובד בבסיס 10? כי לטרנזיסטור קל להבדיל רק בין שני מצבים — יש זרם או אין. להבדיל בין 10 רמות זרם שונות זה הרבה יותר קשה ויותר טעויות. ולמה תמיד לכתוב את הבסיס? כי `10` לבד יכול להיות עשר, שתיים או שש-עשרה.", "ru": "Почему компьютер не работает в десятичной? Транзистору легко отличать только два состояния — ток есть или нет. Различать 10 разных уровней тока гораздо сложнее, и ошибок больше. А почему всегда писать основание? Потому что `10` само по себе может быть и десятью, и двумя, и шестнадцатью.", "en": "Why does the computer not work in base 10? A transistor can easily tell only two states apart — current or none. Telling 10 different current levels apart is much harder and causes more errors. And why always write the base? Because `10` alone could be ten, two or sixteen."},
       "kind": "talk",
       "title": {
         "he": "בסיס של שיטת ספירה",
@@ -184,7 +184,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "Base = how many different digits the system has.\nDecimal, base 10: digits 0–9. After 9 we write 10, then 10–19, 20–29.\nBinary, base 2: only 0 and 1. We count `0, 1, 10, 11, 100…`\nThe base is written small at the bottom right: `10₁₀` is ten, and `10₂` is two. So always write the base."
       }
     },
-    {
+    { "why": {"he": "זו הסכמה, אבל הגיונית: 0 הוא \"כלום\", ו\"כלום זרם\" הוא כבוי. העיקר שכולם משתמשים באותה הסכמה — אחרת מחשבים לא היו מבינים זה את זה.", "ru": "Это договорённость, но логичная: 0 — это «ничего», а «ничего тока» — выключено. Главное, что все пользуются одной и той же договорённостью, иначе компьютеры не понимали бы друг друга.", "en": "It is a convention, but a logical one: 0 is \"nothing\", and \"no current\" is off. What matters is that everyone uses the same convention, otherwise computers could not understand one another."},
       "kind": "qa",
       "q": {
         "he": "למה 0 זה \"כבוי\" ו־1 \"דולק\"?",
@@ -197,7 +197,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "It is a convention the whole world agreed on."
       }
     },
-    {
+    { "why": {"he": "למה המשקלים הם 4, 2, 1? זה כמו בעשרוני: ב-`375` יש 3 מאות, 7 עשרות, 5 אחדות — כל מקום גדול פי 10 מהקודם. בבינארי כל מקום גדול פי 2. כדאי לזכור את הטבלה 0–7 בעל פה: עליה בנויים בהמשך אוקטלי והקסה.", "ru": "Почему веса 4, 2, 1? Как в десятичной: в `375` — 3 сотни, 7 десятков, 5 единиц, каждое место в 10 раз больше предыдущего. В двоичной каждое место больше в 2 раза. Таблицу 0–7 стоит запомнить: на ней дальше строятся восьмеричная и hexa.", "en": "Why are the weights 4, 2, 1? Like in decimal: `375` has 3 hundreds, 7 tens, 5 ones — each place is 10 times the previous. In binary each place is 2 times bigger. Learn the 0–7 table by heart: octal and hexa build on it later."},
       "kind": "board",
       "title": {
         "he": "טבלת המרה מבסיס 10 לבסיס 2",
@@ -220,7 +220,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "7 = 111"
       ]
     },
-    {
+    { "why": {"he": "למה זה עובד? כל ספרה אומרת \"כמה פעמים לקחת את המשקל שלה\". ב-0 לא לוקחים, ב-1 לוקחים פעם אחת. לכן אפשר גם בקיצור — לחבר רק את המשקלים שמעליהם 1.", "ru": "Почему это работает? Каждая цифра говорит «сколько раз взять её вес». При 0 не берём, при 1 берём один раз. Поэтому можно короче — сложить только веса, над которыми стоит 1.", "en": "Why does it work? Each digit says \"how many times to take its weight\". With 0 you take none, with 1 you take it once. So there is a shortcut — add only the weights that have a 1."},
       "kind": "board",
       "title": {
         "he": "מבסיס 2 לבסיס 10: `101₂`",
@@ -239,7 +239,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "= 5"
       ]
     },
-    {
+    { "why": {"he": "למה צריך שמות? כשמדברים על מספר בינארי ארוך, צריך דרך ברורה לומר \"הביט הזה\". ה-LSB מספר אם המספר זוגי (0) או אי-זוגי (1). ה-MSB נותן את הגודל — שינוי בו משנה את המספר הכי הרבה.", "ru": "Зачем названия? Когда говорят о длинном двоичном числе, нужно ясно сказать «вот этот бит». LSB говорит, чётное число (0) или нечётное (1). MSB даёт величину — его изменение меняет число сильнее всего.", "en": "Why names? When talking about a long binary number, you need a clear way to say \"this bit\". The LSB tells whether the number is even (0) or odd (1). The MSB gives the size — changing it changes the number the most."},
       "kind": "board",
       "title": {
         "he": "MSB ו־LSB: `21₁₀ = 10101₂`",
@@ -257,7 +257,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "= 21"
       ]
     },
-    {
+    { "why": {"he": "אותו רעיון בבינארי: ב-`10101₂` הביט השמאלי שווה 16, והימני רק 1. טעות ב-MSB היא טעות של 16, טעות ב-LSB היא טעות של 1.", "ru": "Та же мысль в двоичной: в `10101₂` левый бит стоит 16, а правый только 1. Ошибка в MSB — это ошибка на 16, ошибка в LSB — на 1.", "en": "Same idea in binary: in `10101₂` the left bit is worth 16 and the right one only 1. A mistake in the MSB is off by 16; in the LSB, off by 1."},
       "kind": "tip",
       "title": {
         "he": "למה \"הכי משמעותי\"? דוגמת הרכב",
@@ -270,7 +270,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "A car costs 213,400. The seller will happily knock something off on the right (213,300), but not a discount in the leftmost digit. The leftmost digit is the most significant — the same goes for bits."
       }
     },
-    {
+    { "why": {"he": "למה השארית היא ביט? כשמחלקים ב-2, השארית אומרת אם המספר זוגי — וזה בדיוק ה-LSB. אחר כך מחלקים את החלק השלם, ומקבלים את הביט הבא משמאל. לכן הביט הראשון שיוצא הוא הימני ביותר, וקוראים מלמטה למעלה.", "ru": "Почему остаток — это бит? При делении на 2 остаток говорит, чётное ли число, — а это ровно LSB. Потом делим целую часть и получаем следующий бит слева. Поэтому первый полученный бит — самый правый, и читаем снизу вверх.", "en": "Why is the remainder a bit? When you divide by 2, the remainder says whether the number is even — exactly the LSB. Then you divide the whole part and get the next bit to the left. So the first bit you get is the rightmost, and you read from the bottom up."},
       "kind": "board",
       "title": {
         "he": "מבסיס 10 לבסיס 2: חלוקה ב־2 (השיטה הארוכה)",
@@ -290,7 +290,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "10₁₀ = 1010₂"
       ]
     },
-    {
+    { "why": {"he": "בלי השורה הזאת חסר הביט השמאלי ביותר (ה-MSB), והתשובה יוצאת קטנה פי 2 בערך. לכן ממשיכים לחלק עד שהחלק השלם הוא 0, ולא עוצרים ב-1.", "ru": "Без этой строки пропадает самый левый бит (MSB), и ответ выходит примерно вдвое меньше. Поэтому делим, пока целая часть не станет 0, и не останавливаемся на 1.", "en": "Without this line the leftmost bit (MSB) is lost and the answer comes out about half as big. So keep dividing until the whole part is 0; do not stop at 1."},
       "kind": "tip",
       "title": {
         "he": "השורה האחרונה `1 : 2 = 0`",
@@ -303,7 +303,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "2 doesn't go into 1 even once, so the quotient is 0 and the 1 itself is the remainder.\nOne more tip: you can see the first remainder at once — 0 for an even number, 1 for an odd one. So the LSB of an odd number is always 1."
       }
     },
-    {
+    { "why": {"he": "כי בכל בסיס המשקלים הם חזקות של הבסיס. חלוקה בבסיס \"מקלפת\" ספרה אחת מימין בכל פעם. אותו דבר בעשרוני: `375` חלקי 10 נותן 37 ושארית 5 — הספרה הימנית.", "ru": "Потому что в любой системе веса — степени основания. Деление на основание «снимает» по одной цифре справа. В десятичной так же: `375` делим на 10, выходит 37 и остаток 5 — правая цифра.", "en": "Because in any base the weights are powers of the base. Dividing by the base \"peels off\" one digit from the right each time. Same in decimal: `375` divided by 10 gives 37 remainder 5 — the right digit."},
       "kind": "qa",
       "q": {
         "he": "למה תמיד מחלקים דווקא ב־2?",
@@ -316,7 +316,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "We divide by the base we convert to. Binary is base 2, so we divide by 2. For octal we would divide by 8."
       }
     },
-    {
+    { "why": {"he": "למה מתחילים מהמשקל הגדול? כמו לתת עודף בכסף: קודם השטר הגדול שנכנס, אחר כך הקטנים. כל משקל משתמשים בו פעם אחת לכל היותר, ולכן כל ספרה היא 0 או 1.", "ru": "Почему начинаем с большого веса? Как давать сдачу: сначала самая крупная купюра, которая помещается, потом мелкие. Каждый вес можно взять не больше одного раза, поэтому каждая цифра — 0 или 1.", "en": "Why start with the biggest weight? Like giving change: first the biggest note that fits, then the smaller ones. Each weight can be used at most once, so each digit is 0 or 1."},
       "kind": "board",
       "title": {
         "he": "השיטה הטבלאית (מחסירים משקלים): `710`",
@@ -340,7 +340,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "710₁₀ = 1011000110₂"
       ]
     },
-    {
+    { "why": {"he": "`1024` הוא `2¹⁰`, ולכן הוא 1 ואחריו עשרה אפסים — כמו ש-1000 הוא 1 ואחריו שלושה אפסים בעשרוני. אפסים משמאל לא משנים ערך, בדיוק כמו ש-`007` הוא 7.", "ru": "`1024` — это `2¹⁰`, поэтому это 1 и десять нулей, как 1000 — это 1 и три нуля в десятичной. Нули слева значение не меняют, ровно как `007` — это 7.", "en": "`1024` is `2¹⁰`, so it is 1 followed by ten zeros, just as 1000 is 1 followed by three zeros in decimal. Leading zeros do not change the value, just as `007` is 7."},
       "kind": "board",
       "title": {
         "he": "עוד דוגמאות בשיטה הטבלאית",
@@ -358,7 +358,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "86₁₀ = 1010110₂"
       ]
     },
-    {
+    { "why": {"he": "בדיקה הפוכה תופסת כמעט כל טעות: אם שכחת ביט או קראת שאריות בכיוון הלא נכון, המספר שחוזר יהיה שונה. במבחן זה לוקח דקה ומציל נקודות.", "ru": "Обратная проверка ловит почти любую ошибку: если пропустил бит или прочитал остатки не в ту сторону, вернётся другое число. На экзамене это минута, которая спасает баллы.", "en": "Checking backwards catches almost any mistake: if you skipped a bit or read the remainders the wrong way, a different number comes back. On the exam it takes a minute and saves points."},
       "kind": "tip",
       "title": {
         "he": "איך מוכיחים שהתשובה נכונה",
@@ -371,7 +371,7 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "Convert the result back to base 10. If you get the original number, the answer is right. Both methods (division and table) always give the same answer: division is handy for small numbers, the table for big ones, especially near a power of 2 (1024, 4096)."
       }
     },
-    {
+    { "why": {"he": "כל קבוצה מתרגלת שיטה אחרת, ובכוונה. 4096 הוא `2¹²` — 1 ואחריו 12 אפסים, ובשיטת הטבלה זה רואים מיד. 510 ו-1020 קרובים לחזקה (512, 1024) — כדאי לראות איך יוצאים כמעט רק אחדות.", "ru": "Каждая группа тренирует свой способ, и это нарочно. 4096 — это `2¹²`, 1 и 12 нулей, методом таблицы это видно сразу. 510 и 1020 близки к степеням (512, 1024) — посмотри, как выходят почти одни единицы.", "en": "Each group practises a different method, on purpose. 4096 is `2¹²` — 1 followed by 12 zeros, which the table method shows at once. 510 and 1020 are close to powers (512, 1024) — notice how they come out as almost all ones."},
       "kind": "board",
       "title": {
         "he": "תרגילים מהלוח",
