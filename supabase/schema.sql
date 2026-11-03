@@ -7,6 +7,14 @@
 create table if not exists public.app_secrets (key text primary key, value text not null);
 alter table public.app_secrets enable row level security;  -- нет политик = никто снаружи не читает
 insert into public.app_secrets(key, value) values ('invite_code', 'CHANGE-ME') on conflict (key) do nothing;
+-- С каких почт можно регистрироваться (через запятую; пусто = с любых). Просьба Дениса 03.11: только gmail.com и mail.ru.
+insert into public.app_secrets(key, value) values ('email_domains', 'gmail.com,mail.ru') on conflict (key) do nothing;
+create or replace function public.email_domain_ok(email text) returns boolean
+language sql stable security definer set search_path = public as $$
+  select coalesce((select value from public.app_secrets where key = 'email_domains'), '') = ''
+      or lower(split_part(coalesce(email, ''), '@', 2)) = any (string_to_array(replace(lower((select value from public.app_secrets where key = 'email_domains')), ' ', ''), ','));
+$$;
+revoke execute on function public.email_domain_ok(text) from public, anon, authenticated;
 
 create table if not exists public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
@@ -37,6 +45,9 @@ begin
   if coalesce(new.raw_user_meta_data->>'invite', '') is distinct from code then
     raise exception 'invalid_invite';
   end if;
+  if not public.email_domain_ok(new.email) then
+    raise exception 'bad_email_domain';
+  end if;
   select not exists(select 1 from public.profiles) into is_first;
   insert into public.profiles(id, name, role)
   values (new.id, coalesce(nullif(trim(new.raw_user_meta_data->>'name'), ''), split_part(new.email, '@', 1)),
@@ -46,6 +57,18 @@ end $$;
 drop trigger if exists on_auth_user_created on auth.users;
 create trigger on_auth_user_created after insert on auth.users
   for each row execute function public.handle_new_user();
+-- смена почты тоже только на разрешённую
+create or replace function public.check_email_change() returns trigger
+language plpgsql security definer set search_path = public as $$
+begin
+  if new.email is distinct from old.email and not public.email_domain_ok(new.email) then
+    raise exception 'bad_email_domain';
+  end if;
+  return new;
+end $$;
+drop trigger if exists check_email_change on auth.users;
+create trigger check_email_change before update of email on auth.users
+  for each row execute function public.check_email_change();
 
 -- Очки: за каждый ключ один раз. Сколько очков — решает база, не браузер.
 create table if not exists public.progress (

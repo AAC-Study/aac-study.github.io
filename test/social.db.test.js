@@ -41,6 +41,7 @@ admin("set client_min_messages = warning");
 execFileSync('psql', base.concat(['-d', DB, '-f', path.join(ROOT, 'supabase/schema.sql')]), { env: Object.assign({}, process.env, { PGOPTIONS: '-c client_min_messages=warning' }) });
 execFileSync('psql', base.concat(['-d', DB, '-f', path.join(ROOT, 'supabase/social.sql')]), { env: Object.assign({}, process.env, { PGOPTIONS: '-c client_min_messages=warning' }) });
 admin("update public.app_secrets set value = 'TEST' where key = 'invite_code'");
+admin("update public.app_secrets set value = '' where key = 'email_domains'");   // тестовые адреса @x.y
 
 const U = {};
 ['a', 'b', 'c', 'd'].forEach(function (n) {
@@ -230,6 +231,21 @@ step('support chat: any user ↔ admins, no friendship needed', function () {
   assert.strictEqual(ok(B, "select count(*) from public.chats where id = " + q(sid)), '0', 'other users do not see it');
   fails(D, rpc('sc_pin_message', q(sid) + ', null'), 'sc_err_no_rights');
 });
+step('signup only with @gmail.com / @mail.ru (when set); email change too', function () {
+  admin("update public.app_secrets set value = 'gmail.com, mail.ru' where key = 'email_domains'");
+  const ins = (e) => "insert into auth.users(email, raw_user_meta_data) values ('" + e + "', '{\"name\":\"X\",\"invite\":\"TEST\"}') returning id";
+  let err = ''; try { admin(ins('dom1@yahoo.com')); } catch (e) { err = String(e.stderr || e.message); }
+  assert(/bad_email_domain/.test(err), 'yahoo refused: ' + err);
+  err = ''; try { admin(ins('dom2@gmail.com.evil.io')); } catch (e) { err = String(e.stderr || e.message); }
+  assert(/bad_email_domain/.test(err), 'lookalike refused');
+  const g = admin(ins('Dom3@GMail.com')); assert(g, 'gmail ok (any case)');
+  const m = admin(ins('dom4@mail.ru')); assert(m, 'mail.ru ok');
+  err = ''; try { admin("update auth.users set email = 'dom3@outlook.com' where id = '" + g + "'"); } catch (e) { err = String(e.stderr || e.message); }
+  assert(/bad_email_domain/.test(err), 'change to outlook refused');
+  admin("update auth.users set email = 'dom3b@mail.ru' where id = '" + g + "'");
+  admin("delete from auth.users where id in ('" + g + "', '" + m + "')");
+  admin("update public.app_secrets set value = '' where key = 'email_domains'");
+});
 step('admin: invite code get/set, only for admin', function () {
   assert.strictEqual(ok(A, rpc('admin_invite_get', '')), 'TEST');
   fails(B, rpc('admin_invite_get', ''), 'not_admin');
@@ -241,6 +257,7 @@ step('admin: invite code get/set, only for admin', function () {
   try { admin("insert into auth.users(email, raw_user_meta_data) values ('z@x.y', '{\"name\":\"Z\",\"invite\":\"TEST\"}')"); } catch (e) { err = String(e.stderr || e.message); }
   assert.ok(/invalid_invite/.test(err), 'old code no longer works: ' + err);
   admin("update public.app_secrets set value = 'TEST' where key = 'invite_code'");
+admin("update public.app_secrets set value = '' where key = 'email_domains'");   // тестовые адреса @x.y
 });
 step('admin: ban blocks everything, unban restores; users cannot ban or unban themselves', function () {
   fails(B, rpc('admin_ban', q(C) + ', true'), 'not_admin');

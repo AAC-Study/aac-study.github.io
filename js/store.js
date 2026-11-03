@@ -50,6 +50,12 @@
   var Store = {
     mode: cfg.SUPABASE_URL ? 'supabase' : 'mock',
     policy: Policy,
+    /* С каких почт можно регистрироваться (просьба Дениса 03.11). Настоящая проверка — в базе (app_secrets.email_domains). */
+    EMAIL_DOMAINS: cfg.EMAIL_DOMAINS || ['gmail.com', 'mail.ru'],
+    emailDomainOk: function (email) {
+      var d = String(email || '').trim().toLowerCase().split('@');
+      return d.length === 2 && !!d[0] && Store.EMAIL_DOMAINS.indexOf(d[1]) >= 0;
+    },
     POINTS: POINTS,
     levelInfo: levelInfo,
     MAX_LEVEL: MAX_LEVEL,
@@ -272,12 +278,15 @@
         var email = String(p.email || '').trim().toLowerCase();
         if (!email || !p.password || !p.name || !p.invite) return err('err_fields');
         if (String(p.password).length < 6) return err('err_short_pass');
+        if (!Store.emailDomainOk(email)) return err('err_email_domain');
         var body = { email: email, password: p.password, data: { name: String(p.name).trim(), invite: String(p.invite).trim() } };
         if (p.captcha) body.gotrue_meta_security = { captcha_token: p.captcha };
         // если в Supabase включено подтверждение почты: ссылка из письма вернёт человека сюда же
         var back = location.origin + location.pathname;
         return http('POST', '/auth/v1/signup?redirect_to=' + encodeURIComponent(back), body, { auth: false })
           .then(function (r) {
+            // почта уже занята: при включённом подтверждении Supabase не пишет ошибку, а отдаёт «пустого» пользователя без identities
+            if (r && !r.access_token && Array.isArray(r.identities) && r.identities.length === 0) { var x = new Error('err_exists'); x.code = 'err_exists'; throw x; }
             if (!r || !r.access_token) return { confirm: true, email: email };   // ждём, пока подтвердит почту
             // сразу не входим: человек входит сам на экране «Вход». Выданный сервером вход отзываем.
             return fetch(URL + '/auth/v1/logout', { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + r.access_token } })

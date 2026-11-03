@@ -291,7 +291,7 @@
       okBox,
       errBox,
       isReg ? field('f-name', t('display_name'), 'text', { ac: 'nickname' }) : null,
-      field('f-email', t('email'), 'email', { ac: 'email', dir: 'ltr' }),
+      field('f-email', t('email'), 'email', { ac: 'email', dir: 'ltr', hint: isReg && Store.mode === 'supabase' ? t('email_domains_hint') : null }),
       field('f-pass', t('password'), 'password', { ac: isReg ? 'new-password' : 'current-password', dir: 'ltr' }),
       isReg ? null : el('label', { class: 'remember' }, [
         el('input', { type: 'checkbox', id: 'f-remember' }),
