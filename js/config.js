@@ -8,5 +8,5 @@ window.APP_CONFIG = {
   MOCK_INVITE_CODE: 'AAC2026',
   // Cloudflare Turnstile (проверка «не робот»): ОТКРЫТЫЙ Site Key. Пусто = проверка выключена.
   // Secret Key сюда НЕ кладём, он только в Supabase.
-  TURNSTILE_SITE_KEY: ''
+  TURNSTILE_SITE_KEY: '0x4AAAAAAFx0f9qhNlPY-0n9'
 };
