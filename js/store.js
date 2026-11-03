@@ -279,7 +279,16 @@
             // сразу не входим: человек входит сам на экране «Вход». Выданный сервером вход отзываем.
             return fetch(URL + '/auth/v1/logout', { method: 'POST', headers: { apikey: KEY, Authorization: 'Bearer ' + r.access_token } })
               .catch(function () {}).then(function () { return { registered: true, email: email }; });
-          }, function (e) { throw mapAuthErr(e); });
+          }, function (e) {
+            var er = mapAuthErr(e);
+            var m = String((e && e.message) || '').toLowerCase() + ' ' + String((e && e.data && e.data.error_code) || '');
+            if (e && e.status === 429 || /rate limit/.test(m)) er.code = 'err_too_often';
+            // при регистрации пароль «неверным» быть не может: говорим про email и код приглашения
+            else if (er.code === 'err_login') er.code = 'err_signup';
+            if (er.code !== 'err_network') er.detail = (e && e.status ? e.status + ' ' : '') + String((e && e.message) || '').slice(0, 120);
+            try { console.warn('signup failed:', er.detail); } catch (x2) { /* */ }
+            throw er;
+          });
       },
       signIn: function (p) {
         var email = String(p.email || '').trim().toLowerCase();

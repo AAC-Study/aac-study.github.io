@@ -14,6 +14,7 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     await ctx.route(SB + '/**', async r => {
       const u = new URL(r.request().url()); const body = r.request().postData(); calls.push({ path: u.pathname + u.search, body: body ? JSON.parse(body) : null, auth: r.request().headers().authorization });
       const j = (s, o) => r.fulfill({ status: s, contentType: 'application/json', body: JSON.stringify(o) });
+      if (u.pathname === '/auth/v1/signup' && opts.signupErr) return j(opts.signupErr.code, opts.signupErr);
       if (u.pathname === '/auth/v1/signup' && opts.signupSession) return j(200, { access_token: 'ATS', refresh_token: 'RTS', expires_in: 3600, user: { id: 'u1', email: 'a@b.c' } });
       if (u.pathname === '/auth/v1/signup') return j(200, { id: 'u1', email: 'a@b.c', identities: [] });
       if (u.pathname === '/auth/v1/token') return opts.tokenErr ? j(400, opts.tokenErr) : j(200, { access_token: 'AT', refresh_token: 'RT', expires_in: 3600, user: { id: 'u1', email: 'a@b.c' } });
@@ -142,6 +143,21 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     const pol = await p.evaluate(() => JSON.parse(localStorage.getItem('auth_pol')));
     assert.strictEqual(pol.r, true); assert(Date.now() - pol.at < 60e3);
     await ctx.close();
+  });
+  await step('signup errors never say "wrong email or password"', async () => {
+    for (const [err, re] of [[{ code: 400, error_code: 'validation_failed', msg: 'Something odd' }, /Не получилось зарегистрироваться.*Something odd/],
+                             [{ code: 429, error_code: 'over_email_send_rate_limit', msg: 'email rate limit exceeded' }, /Слишком много писем/],
+                             [{ code: 500, error_code: 'unexpected_failure', msg: 'Database error saving new user' }, /Неверный код приглашения/]]) {
+      const { ctx, p } = await mk({ key: false, signupErr: err });
+      await p.goto('http://localhost:8765/index.html'); await p.evaluate(() => { localStorage.clear(); localStorage.setItem('lang', '"ru"'); }); await p.reload();
+      await p.click('.auth__switch button');
+      await p.fill('#f-name', 'A'); await p.fill('#f-email', 'a@b.c'); await p.fill('#f-pass', 'secret1'); await p.fill('#f-invite', 'X123456');
+      await p.click('form button[type=submit]');
+      await p.waitForFunction(() => document.querySelector('.form-error').style.display === 'block');
+      const e = await p.locator('.form-error').innerText();
+      assert(re.test(e), e); assert(!/Неверный email или пароль/.test(e), e);
+      await ctx.close();
+    }
   });
   await step('expired link -> login page + message', async () => {
     const { ctx, p, errs } = await mk({ key: false });

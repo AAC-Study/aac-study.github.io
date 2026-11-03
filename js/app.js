@@ -305,7 +305,12 @@
         // после регистрации — на экран «Вход»: человек входит сам и выбирает «Запомнить меня»
         if (r && r.registered) { cfReset(); renderAuth('login', { email: r.email, note: 'reg_done' }); return; }
         App.go('/');
-      }).catch(function (er) { busy = false; cfReset(); showErr(t(er.code || 'err_login')); });
+      }).catch(function (er) {
+        busy = false; cfReset();
+        var code = er.code || (isReg ? 'err_signup' : 'err_login');
+        if (isReg && code === 'err_login') code = 'err_signup';
+        showErr(t(code) + (isReg && er.detail && code !== 'err_invite' && code !== 'err_exists' ? ' (' + er.detail + ')' : ''));
+      });
     });
     /* после регистрации, если сервер просит подтвердить почту */
     function checkMail(email) {
