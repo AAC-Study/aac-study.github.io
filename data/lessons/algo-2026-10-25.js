@@ -401,6 +401,85 @@ window.LESSONS["algo-2026-10-25"] = {
       ]
     },
     {
+      "kind": "board",
+      "title": {
+        "he": "מהשיעור: ספירה בקפיצות ולאחור",
+        "ru": "С урока: шаг больше 1 и обратный отсчёт",
+        "en": "From class: bigger steps and counting down"
+      },
+      "text": {
+        "he": "בשיעור הראו עוד שלושה דברים עם `for`:\n• `print` במקום `println` ועוד רווח — המספרים יוצאים בשורה אחת.\n• אי-זוגיים: מתחילים ב-1 ועולים ב-2 (`i += 2`) — יוצא 1 3 5 7.\n• ספירה לאחור מ-50 עד 1: מתחילים ב-50, התנאי `i >= 1`, וכל פעם `i--`.",
+        "ru": "На уроке показали ещё три вещи с `for`.\n• `print` вместо `println` и пробел — числа выходят в одну строку.\n• Нечётные: начинаем с 1 и прибавляем 2 (`i += 2`) — получается 1 3 5 7.\n• Обратный отсчёт от 50 до 1: начинаем с 50, условие `i >= 1`, и каждый раз `i--`.",
+        "en": "In class three more things were shown with `for`.\n• `print` instead of `println` plus a space — the numbers come out on one line.\n• Odd numbers: start at 1 and add 2 (`i += 2`) — gives 1 3 5 7.\n• Counting down from 50 to 1: start at 50, condition `i >= 1`, and `i--` each time."
+      },
+      "math": [
+        "for (int i = 1; i <= 7; i += 2) {",
+        "    System.out.print(i + \" \");",
+        "}",
+        "// 1 3 5 7",
+        "",
+        "for (int i = 50; i >= 1; i--) {",
+        "    System.out.println(i);",
+        "}"
+      ],
+      "why": {
+        "he": "שלושת החלקים של `for` חופשיים: מאיפה מתחילים, עד מתי, ואיך זזים. אפשר לזוז ב-1, ב-2 או אחורה. בספירה לאחור חשוב להפוך גם את התנאי: עם `i <= 1` הלולאה לא תרוץ אף פעם, כי 50 כבר גדול מ-1.",
+        "ru": "Все три части `for` свободны: откуда начинаем, до каких пор и как шагаем. Шагать можно на 1, на 2 или назад. При обратном отсчёте надо перевернуть и условие: с `i <= 1` цикл не выполнится ни разу, потому что 50 уже больше 1.",
+        "en": "All three parts of `for` are free: where to start, until when, and how to step. You can step by 1, by 2 or backwards. When counting down, flip the condition too: with `i <= 1` the loop never runs, because 50 is already greater than 1."
+      },
+      "_src": "rec-2510"
+    },
+    {
+      "kind": "tip",
+      "title": {
+        "he": "מהשיעור: `i` חי רק בתוך ה-`for`",
+        "ru": "С урока: `i` живёт только внутри `for`",
+        "en": "From class: `i` lives only inside the `for`"
+      },
+      "text": {
+        "he": "משתנה שמגדירים בתוך ה-`for` (`int i = …`) קיים רק בתוך הלולאה. אחרי `}` של הלולאה Java כבר לא מכירה אותו, ו-`System.out.println(i)` שם נותן שגיאת קומפילציה (cannot find symbol).",
+        "ru": "Переменная, объявленная в самом `for` (`int i = …`), существует только внутри цикла. После `}` цикла Java её уже не знает, и `System.out.println(i)` там даёт ошибку компиляции (cannot find symbol).",
+        "en": "A variable declared in the `for` itself (`int i = …`) exists only inside the loop. After the loop's `}` Java no longer knows it, and `System.out.println(i)` there is a compile error (cannot find symbol)."
+      },
+      "why": {
+        "he": "זה אותו כלל של \"תחום\" משיעור 18.10: משתנה חי בתוך הבלוק שבו הוגדר. אם צריך את הערך אחרי הלולאה, מגדירים את המשתנה לפני ה-`for`. כך גם ה-`sum` נשאר אחרי הלולאה: הוא הוגדר לפניה.",
+        "ru": "Это то же правило «области видимости» с урока 18.10: переменная живёт внутри блока, где её объявили. Если значение нужно после цикла, переменную объявляют до `for`. Поэтому `sum` остаётся и после цикла: его объявили раньше.",
+        "en": "It is the same \"scope\" rule from the 18.10 lesson: a variable lives inside the block where it was declared. If you need the value after the loop, declare the variable before the `for`. That is why `sum` survives the loop: it was declared before it."
+      },
+      "_src": "rec-2510"
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "מהשיעור: מכפלה מתחילה ב-1, וחזקה בלולאה",
+        "ru": "С урока: произведение начинается с 1, и степень через цикл",
+        "en": "From class: a product starts at 1, and a power with a loop"
+      },
+      "text": {
+        "he": "מכפלה עובדת כמו סכום, רק עם `*=`. אבל מתחילים ב-1, לא ב-0: אם מתחילים ב-0, כל מה שנכפיל ייתן 0.\nאותו רעיון נותן חזקה: כופלים את הבסיס בעצמו כמה פעמים. `3` בחזקת `5` = 243.",
+        "ru": "Произведение работает как сумма, только с `*=`. Но начинаем с 1, а не с 0: если начать с 0, что ни умножай, выйдет 0.\nТа же идея даёт степень: умножаем основание само на себя нужное число раз. `3` в степени `5` = 243.",
+        "en": "A product works like a sum, only with `*=`. But it starts at 1, not 0: start at 0 and whatever you multiply gives 0.\nThe same idea gives a power: multiply the base by itself the needed number of times. `3` to the power `5` = 243."
+      },
+      "math": [
+        "int product = 1;",
+        "for (int i = 0; i < 8; i++) {",
+        "    product *= scanner.nextInt();",
+        "}",
+        "",
+        "int result = 1;",
+        "for (int i = 0; i < 5; i++) {",
+        "    result *= 3;",
+        "}",
+        "System.out.println(result);   // 243"
+      ],
+      "why": {
+        "he": "למה 1? כי 1 הוא \"האפס של הכפל\": כפול 1 לא משנה כלום, בדיוק כמו ועוד 0 בסכום. לכן \"קופה\" של סכום מתחילה ב-0, ושל מכפלה ב-1. בחזקה הלולאה רצה בדיוק לפי המעריך: 5 סיבובים — 5 כפלים ב-3.",
+        "ru": "Почему 1? Потому что 1 — это «ноль умножения»: умножить на 1 ничего не меняет, ровно как прибавить 0 в сумме. Поэтому «копилка» суммы начинается с 0, а произведения — с 1. В степени цикл крутится ровно по показателю: 5 кругов — 5 умножений на 3.",
+        "en": "Why 1? Because 1 is the \"zero of multiplication\": multiplying by 1 changes nothing, just like adding 0 in a sum. So a sum's \"piggy bank\" starts at 0 and a product's at 1. For a power the loop runs exactly by the exponent: 5 rounds — 5 multiplications by 3."
+      },
+      "_src": "rec-2510"
+    },
+    {
       "why": {
         "he": "דוגמה: ציון 95.\n`if (g > 90) A; if (g > 80) B;` — יודפסו גם A וגם B.\n`if (g > 90) A; else if (g > 80) B;` — יודפס רק A.\nכשהמצבים לא יכולים לקרות יחד (ציון הוא A או B) — `else if`.",
         "ru": "Пример: оценка 95.\n`if (g > 90) A; if (g > 80) B;` — напечатаются и A, и B.\n`if (g > 90) A; else if (g > 80) B;` — напечатается только A.\nКогда случаи не могут быть одновременно (оценка либо A, либо B) — `else if`.",
@@ -671,6 +750,11 @@ window.LESSONS["algo-2026-10-25"] = {
         "he": "דף תרגול: תנאים ומעקב",
         "ru": "Лист упражнений: условия и отслеживание",
         "en": "Worksheet: conditions and tracing"
+      },
+      "rec": {
+        "he": "מהשיעור: עוד לולאות for",
+        "ru": "С урока: ещё циклы for",
+        "en": "From class: more for loops"
       }
     },
     "teacher": [
@@ -1878,6 +1962,255 @@ window.LESSONS["algo-2026-10-25"] = {
           }
         ],
         "_src": "pass-0311-ws"
+      },
+      {
+        "id": "r1",
+        "group": "rec",
+        "label": {
+          "he": "אי-זוגיים",
+          "ru": "Нечётные",
+          "en": "Odd"
+        },
+        "kind": "text",
+        "text": {
+          "he": "מהשיעור. מה יודפס? כתבו כך: 1 2\n`for (int i = 1; i <= 7; i += 2) {`\n`    System.out.print(i + \" \");`\n`}`",
+          "ru": "С урока. Что напечатает? Напиши так: 1 2\n`for (int i = 1; i <= 7; i += 2) {`\n`    System.out.print(i + \" \");`\n`}`",
+          "en": "From class. What is printed? Write like: 1 2\n`for (int i = 1; i <= 7; i += 2) {`\n`    System.out.print(i + \" \");`\n`}`"
+        },
+        "answer": {
+          "accept": [
+            "1 3 5 7"
+          ]
+        },
+        "hints": [
+          {
+            "he": "מתחילים ב-1 ועולים ב-2.",
+            "ru": "Начинаем с 1 и прибавляем 2.",
+            "en": "Start at 1 and add 2."
+          }
+        ],
+        "solution": [
+          "i = 1  →  1",
+          "i = 3  →  3",
+          "i = 5  →  5",
+          "i = 7  →  7",
+          "i = 9  →  9 <= 7 false, stop",
+          {
+            "he": "תשובה: 1 3 5 7",
+            "ru": "Ответ: 1 3 5 7",
+            "en": "Answer: 1 3 5 7"
+          }
+        ],
+        "_src": "rec-2510"
+      },
+      {
+        "id": "r2",
+        "group": "rec",
+        "label": {
+          "he": "לאחור",
+          "ru": "Назад",
+          "en": "Down"
+        },
+        "kind": "number",
+        "text": {
+          "he": "מהשיעור. מה יודפס?\n`for (int i = 5; i >= 1; i--) {`\n`    System.out.print(i);`\n`}`",
+          "ru": "С урока. Что напечатает?\n`for (int i = 5; i >= 1; i--) {`\n`    System.out.print(i);`\n`}`",
+          "en": "From class. What is printed?\n`for (int i = 5; i >= 1; i--) {`\n`    System.out.print(i);`\n`}`"
+        },
+        "answer": {
+          "value": "54321"
+        },
+        "hints": [
+          {
+            "he": "`print` בלי רווח — הכול צמוד.",
+            "ru": "`print` без пробела — всё подряд.",
+            "en": "`print` with no space — all together."
+          }
+        ],
+        "solution": [
+          "i = 5, 4, 3, 2, 1",
+          "i = 0  →  0 >= 1 false, stop",
+          {
+            "he": "תשובה: 54321",
+            "ru": "Ответ: 54321",
+            "en": "Answer: 54321"
+          }
+        ],
+        "_src": "rec-2510"
+      },
+      {
+        "id": "r3",
+        "group": "rec",
+        "label": {
+          "he": "מכפלה",
+          "ru": "Произведение",
+          "en": "Product"
+        },
+        "kind": "number",
+        "text": {
+          "he": "מהשיעור. מה יודפס?\n`int p = 1;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`",
+          "ru": "С урока. Что напечатает?\n`int p = 1;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`",
+          "en": "From class. What is printed?\n`int p = 1;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`"
+        },
+        "answer": {
+          "value": "24"
+        },
+        "hints": [
+          {
+            "he": "1 × 1 × 2 × 3 × 4",
+            "ru": "1 × 1 × 2 × 3 × 4",
+            "en": "1 × 1 × 2 × 3 × 4"
+          }
+        ],
+        "solution": [
+          "p = 1",
+          "p = 1 × 1 = 1",
+          "p = 1 × 2 = 2",
+          "p = 2 × 3 = 6",
+          "p = 6 × 4 = 24",
+          {
+            "he": "תשובה: 24",
+            "ru": "Ответ: 24",
+            "en": "Answer: 24"
+          }
+        ],
+        "_src": "rec-2510"
+      },
+      {
+        "id": "r4",
+        "group": "rec",
+        "label": {
+          "he": "מכפלה מ-0",
+          "ru": "Произведение с 0",
+          "en": "Product from 0"
+        },
+        "kind": "number",
+        "text": {
+          "he": "מהשיעור. מה יודפס?\n`int p = 0;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`",
+          "ru": "С урока. Что напечатает?\n`int p = 0;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`",
+          "en": "From class. What is printed?\n`int p = 0;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`"
+        },
+        "answer": {
+          "value": "0"
+        },
+        "hints": [
+          {
+            "he": "במה מתחיל p?",
+            "ru": "С чего начинается p?",
+            "en": "What does p start at?"
+          }
+        ],
+        "solution": [
+          "p = 0",
+          "0 × 1 = 0",
+          "0 × 2 = 0",
+          "0 × 3 = 0",
+          "0 × 4 = 0",
+          {
+            "he": "תשובה: 0",
+            "ru": "Ответ: 0",
+            "en": "Answer: 0"
+          }
+        ],
+        "_src": "rec-2510"
+      },
+      {
+        "id": "r5",
+        "group": "rec",
+        "label": {
+          "he": "חזקה",
+          "ru": "Степень",
+          "en": "Power"
+        },
+        "kind": "number",
+        "text": {
+          "he": "מהשיעור. מה יודפס?\n`int r = 1;`\n`for (int i = 0; i < 5; i++) {`\n`    r *= 3;`\n`}`\n`System.out.println(r);`",
+          "ru": "С урока. Что напечатает?\n`int r = 1;`\n`for (int i = 0; i < 5; i++) {`\n`    r *= 3;`\n`}`\n`System.out.println(r);`",
+          "en": "From class. What is printed?\n`int r = 1;`\n`for (int i = 0; i < 5; i++) {`\n`    r *= 3;`\n`}`\n`System.out.println(r);`"
+        },
+        "answer": {
+          "value": "243"
+        },
+        "hints": [
+          {
+            "he": "כמה סיבובים? i = 0 עד 4.",
+            "ru": "Сколько кругов? i = 0 до 4.",
+            "en": "How many rounds? i = 0 to 4."
+          }
+        ],
+        "solution": [
+          "r = 3",
+          "r = 9",
+          "r = 27",
+          "r = 81",
+          "r = 243",
+          {
+            "he": "תשובה: 243",
+            "ru": "Ответ: 243",
+            "en": "Answer: 243"
+          }
+        ],
+        "_src": "rec-2510"
+      },
+      {
+        "id": "r6",
+        "group": "rec",
+        "label": {
+          "he": "תחום",
+          "ru": "Область видимости",
+          "en": "Scope"
+        },
+        "kind": "choice",
+        "text": {
+          "he": "מהשיעור. מה יקרה?\n`for (int i = 0; i < 3; i++) {`\n`}`\n`System.out.println(i);`",
+          "ru": "С урока. Что произойдёт?\n`for (int i = 0; i < 3; i++) {`\n`}`\n`System.out.println(i);`",
+          "en": "From class. What happens?\n`for (int i = 0; i < 3; i++) {`\n`}`\n`System.out.println(i);`"
+        },
+        "options": [
+          {
+            "he": "יודפס 3",
+            "ru": "Напечатает 3",
+            "en": "Prints 3"
+          },
+          {
+            "he": "יודפס 2",
+            "ru": "Напечатает 2",
+            "en": "Prints 2"
+          },
+          {
+            "he": "שגיאת קומפילציה",
+            "ru": "Ошибка компиляции",
+            "en": "Compile error"
+          }
+        ],
+        "answer": {
+          "index": 2
+        },
+        "hints": [
+          {
+            "he": "איפה הוגדר `i`?",
+            "ru": "Где объявлена `i`?",
+            "en": "Where is `i` declared?"
+          }
+        ],
+        "solution": [
+          {
+            "he": "`i` הוגדר בתוך ה-`for`.",
+            "ru": "`i` объявлена внутри `for`.",
+            "en": "`i` is declared inside the `for`."
+          },
+          {
+            "he": "אחרי `}` הוא כבר לא קיים: cannot find symbol.",
+            "ru": "После `}` её уже нет: cannot find symbol.",
+            "en": "After `}` it no longer exists: cannot find symbol."
+          },
+          {
+            "he": "תשובה: שגיאת קומפילציה",
+            "ru": "Ответ — ошибка компиляции",
+            "en": "Answer — compile error"
+          }
+        ],
+        "_src": "rec-2510"
       }
     ],
     "ai": [

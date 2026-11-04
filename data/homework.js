@@ -29,7 +29,7 @@ window.HOMEWORK = [
       { he: 'שאילתה שמציגה רק את שם האומן ואת מספר הלייקים.', ru: 'Запрос, который показывает только имя артиста и число лайков.', en: 'A query that shows only the artist name and the number of likes.' },
       { he: 'הריצו הכול, צלמו מסך של SSMS עם הקוד והתוצאה, והעלו ל־Moodle.', ru: 'Запусти всё, сделай скриншот SSMS с кодом и результатом и загрузи в Moodle.', en: 'Run everything, take a screenshot of SSMS with the code and the result, and upload it to Moodle.' }
     ],
-    submit: { he: 'צילום מסך מ־SSMS (הקוד והתוצאה) ב־Moodle, עד 3.11 בשעה 12:00.', ru: 'Скриншот из SSMS (код и результат) в Moodle, до 03.11 в 12:00.', en: 'A screenshot from SSMS (code and result) in Moodle, by 3 Nov at 12:00.' },
+    submit: { he: 'צילום מסך מ־SSMS (הקוד והתוצאה) ב־Moodle, עד 3.11 בשעה 12:00. ב-2.11 המרצה אמרה: מי שלא הגיש — עדיין מוזמן להגיש.', ru: 'Скриншот из SSMS (код и результат) в Moodle, до 03.11 в 12:00. 02.11 преподавательница сказала: кто не сдал, ещё может сдать.', en: 'A screenshot from SSMS (code and result) in Moodle, by 3 Nov at 12:00. On 2 Nov the teacher said: whoever has not handed it in still may.' },
     links: [],
     level: 'So far in SQL we learned: what a database and a table are, create database, use, create table with int and nvarchar columns, insert into ... values, select * from, selecting specific columns, and where with the operators and / or / not. We use SQL Server with SSMS.'
   },
@@ -74,6 +74,27 @@ window.HOMEWORK = [
     submit: { he: 'לא נאמר שצריך להגיש. מביאים את התשובה לשיעור הבא.', ru: 'Сдавать не говорили. Ответ приносим на следующий урок.', en: 'No submission was mentioned. Bring the answer to the next lesson.' },
     links: [],
     level: 'So far in Intro to AI we learned: what AI is, a regular program (clear if/else instructions) vs. AI that learns from examples, neurons and neural networks, tokens and the context window, chatbots, a verbal algorithm, syntax vs. logic errors, and the prompt-engineering rule that the AI should guide, not solve.'
+  },
+  {
+    id: 'ai-2026-11-02-calc', subject: 'ai', selfPrompt: true,
+    title: { he: 'משימה: מחשבון עם 4 פעולות ב-Gemini / Canvas', ru: 'Задание: калькулятор с 4 действиями в Gemini / Canvas', en: 'Task: a 4-operation calculator in Gemini / Canvas' },
+    given: '2026-11-02T10:15:00+02:00', givenDateOnly: true, due: null,
+    summary: {
+      he: 'לבנות ב-Gemini (Canvas) מחשבון עם ארבע הפעולות הבסיסיות, מעוצב יפה, ולהגיש ב-Moodle את התוצר ואת הפרומפט.',
+      ru: 'Сделать в Gemini (Canvas) калькулятор с четырьмя основными действиями, красиво оформить и сдать в Moodle результат и свой промпт.',
+      en: 'Build a calculator with the four basic operations in Gemini (Canvas), design it nicely, and hand in the result and your prompt in Moodle.'
+    },
+    original: { lang: 'he', text: 'מתוך דברי המרצה בסוף השיעור (דף המשימה יעלה ל-Moodle):\nמחשבון עם ארבע פעולות בסיסיות. קודם כל צריך לעצב אותו יפה. מגישים ב-Moodle את התוצר ואת מה שכתבתם (הפרומפט).' },
+    steps: [
+      { he: 'פתחו Gemini והפעילו Canvas (כמו בתרגיל מחשבון המחיר בשיעור).', ru: 'Открой Gemini и включи Canvas (как в упражнении с калькулятором цены на уроке).', en: 'Open Gemini and turn on Canvas (as in the price-calculator exercise in class).' },
+      { he: 'כתבו פרומפט משלכם לפי RTC-C: תפקיד, משימה (מחשבון: חיבור, חיסור, כפל, חילוק), הקשר, ומגבלות (עיצוב, שפה).', ru: 'Напиши свой промпт по RTC-C: роль, задача (калькулятор: сложение, вычитание, умножение, деление), контекст и ограничения (оформление, язык).', en: 'Write your own prompt using RTC-C: role, task (a calculator: add, subtract, multiply, divide), context and constraints (design, language).' },
+      { he: 'בדקו כל פעולה במחשבון רגיל, וגם מקרה קצה: חילוק ב-0.', ru: 'Проверь каждое действие обычным калькулятором и крайний случай — деление на 0.', en: 'Check every operation with a normal calculator, and the edge case of dividing by 0.' },
+      { he: 'אם משהו לא טוב — חזקו את הרכיב החסר בפרומפט ושלחו שוב (לא מתחילים מאפס).', ru: 'Если что-то не так, усиль недостающую часть промпта и отправь снова (не начинай с нуля).', en: 'If something is off, strengthen the missing part of the prompt and send again (do not start over).' },
+      { he: 'שמרו את הפרומפט הסופי והעלו ל-Moodle את התוצר (קישור שיתוף או צילום מסך) ואת הפרומפט.', ru: 'Сохрани итоговый промпт и загрузи в Moodle результат (ссылку «Поделиться» или скриншот) и промпт.', en: 'Save the final prompt and upload to Moodle the result (a share link or a screenshot) and the prompt.' }
+    ],
+    submit: { he: 'ב-Moodle: התוצר והפרומפט. המועד עוד לא ידוע — בדקו בדף המשימה ב-Moodle.', ru: 'В Moodle: результат и промпт. Срок пока не известен, смотри лист задания в Moodle.', en: 'In Moodle: the result and the prompt. The due date is not known yet; check the task sheet in Moodle.' },
+    links: [],
+    level: 'So far in Intro to AI we learned: what AI is, tokens and the context window, Garbage In / Garbage Out, weak vs. strong prompts, the RTC-C framework (Role, Task, Context, Constraints) used iteratively, edge cases, and building a small app in Gemini Canvas from a prompt (a price calculator with shipping, profit and 18% VAT).'
   },
   {
     id: 'fullstack-2026-10-28-mesakem', subject: 'fullstack',
