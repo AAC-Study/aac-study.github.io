@@ -344,19 +344,21 @@
                     : Store.auth.signIn({ email: v('f-email'), password: v('f-pass'), captcha: cap, remember: !!($('#f-remember') || {}).checked });
       p.then(function (r) {
         busy = false;
-        if (r && r.confirm) { checkMail(r.email); return; }
+        if (r && r.confirm) { checkMail(r.email, true); return; }
         // после регистрации — на экран «Вход»: человек входит сам и выбирает «Запомнить меня»
         if (r && r.registered) { cfReset(); renderAuth('login', { email: r.email, note: 'reg_done' }); return; }
         App.go('/');
       }).catch(function (er) {
         busy = false; cfReset();
+        // вход до подтверждения почты: показываем «проверь почту» с кнопкой «отправить ещё раз»
+        if (!isReg && er.code === 'err_not_confirmed') { checkMail(String(v('f-email')).trim().toLowerCase()); return; }
         var code = er.code || (isReg ? 'err_signup' : 'err_login');
         if (isReg && code === 'err_login') code = 'err_signup';
         fillErr(errBox, t(code), er, isReg ? 'R' : 'L');
       });
     });
     /* после регистрации, если сервер просит подтвердить почту */
-    function checkMail(email) {
+    function checkMail(email, fresh) {
       form.innerHTML = '';
       form.appendChild(el('div', { class: 'auth-mail' }, [
         el('div', { class: 'auth-mail__icon', html: Icons.get('mail') }),
@@ -364,6 +366,26 @@
         el('p', null, [t('auth_mail_1'), ' ', el('b', { dir: 'ltr' }, email)]),
         el('p', { class: 'muted' }, t('auth_mail_2'))
       ]));
+      /* письмо не пришло: отправить ещё раз (не чаще раза в минуту) */
+      var rErr = el('div', { class: 'form-error', role: 'alert', style: 'display:none' });
+      var rBtn = el('button', { type: 'button', class: 'btn', style: 'width:100%;margin-top:6px', 'data-act': 'resend' }, t('auth_resend'));
+      var rBox = cfBox(function (txt) { rErr.textContent = txt; rErr.style.display = 'block'; });
+      function tick(n) {
+        if (!rBtn.isConnected && n < 60) return;
+        if (n <= 0) { rBtn.disabled = false; rBtn.textContent = t('auth_resend'); return; }
+        rBtn.disabled = true; rBtn.textContent = t('auth_resend_wait', { n: n });
+        setTimeout(function () { tick(n - 1); }, 1000);
+      }
+      rBtn.addEventListener('click', function () {
+        rErr.style.display = 'none';
+        if (cfKey() && !cf.token) { rErr.textContent = t('err_captcha_wait'); rErr.style.display = 'block'; return; }
+        rBtn.disabled = true;
+        Store.auth.resend({ email: email, captcha: cf.token }).then(function () {
+          cfReset(); U.toast(t('auth_resent')); tick(60);
+        }, function (er) { cfReset(); rBtn.disabled = false; fillErr(rErr, t(er.code || 'err_recover'), er, 'M'); });
+      });
+      form.appendChild(el('div', { class: 'auth-resend', style: 'margin-top:14px;text-align:center' }, [el('p', { class: 'muted', style: 'margin:0 0 6px' }, t('auth_resend_q')), rBox, rBtn, rErr]));
+      if (fresh) tick(60);
       var sw = $('.auth__switch', card); if (sw) sw.style.display = 'none';
       var h1 = $('h1', card); if (h1) h1.style.display = 'none';
     }

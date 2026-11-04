@@ -88,6 +88,7 @@
       signOut: function () { sessionEmail = null; U.storage.set('mock_session', null); Policy.clear(); emit(); return Promise.resolve(); },
       /* «Забыл пароль?»: в пробном режиме письма нет, просто делаем вид */
       recover: function () { return Promise.resolve(); },
+      resend: function () { return Promise.resolve(); },
       passChangedAt: function () { var u = users[sessionEmail]; return Promise.resolve(u && u.passAt ? new Date(u.passAt) : null); },
       setPassword: function (pw) {
         var u = users[sessionEmail]; if (!u) return err('no_session');
@@ -364,6 +365,20 @@
             // здесь нет пароля: «неверный email или пароль» не подходит
             if (er.code === 'err_login') { er.code = e && e.status >= 500 ? 'err_mail_send' : 'err_recover'; }
             try { console.warn('recover failed:', er.tech); } catch (x2) { /* */ }
+            throw er;
+          });
+      },
+      /* письмо «подтверди почту» ещё раз (если первое не пришло) */
+      resend: function (p) {
+        var email = String(p.email || '').trim().toLowerCase();
+        if (!email) return err('err_fields');
+        var body = { type: 'signup', email: email };
+        if (p.captcha) body.gotrue_meta_security = { captcha_token: p.captcha };
+        return http('POST', '/auth/v1/resend?redirect_to=' + encodeURIComponent(location.origin + location.pathname), body, { auth: false })
+          .then(function () {}, function (e) {
+            var er = mapAuthErr(e);
+            if (e && e.status === 429) er.code = 'err_too_often';
+            else if (er.code === 'err_login') er.code = e && e.status >= 500 ? 'err_mail_send' : 'err_recover';
             throw er;
           });
       },
