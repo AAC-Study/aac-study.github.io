@@ -634,7 +634,7 @@
     }
     function onSendErr(e) {
       e = Social.normErr(e);
-      if (e.code === 'sc_err_slow' && e.n) startCooldown(e.n);
+      if ((e.code === 'sc_err_slow' || e.code === 'sc_err_rate') && e.n) startCooldown(e.n);
       fail(e);
       if (['sc_err_only_admins', 'sc_err_restricted', 'sc_err_not_friends', 'sc_err_blocked', 'sc_err_not_member'].indexOf(e.code) >= 0) refreshChat();
     }

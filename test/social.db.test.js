@@ -359,6 +359,46 @@ step('hardening: push endpoint allowlist, issue limits, award catalog', function
   fails(B, "select public.award('download:math-2026-11-01:xx')", 'bad_key');
   fails(B, "select count(*) from public.award_keys", 'permission denied');
 });
+step('anti-spam 04.11: messages, edits, reactions, requests, groups, uploads, avatars', function () {
+  const cid = ok(A, rpc('sc_open_direct', q(C)));
+  // 10 messages in a row are fine, the 11th right away is refused with a wait time
+  ok(C, "do $x$ begin for i in 1..10 loop insert into public.messages(chat_id, body) values (" + q(cid) + ", 'm' || i); end loop; end $x$");
+  const e = fails(C, "insert into public.messages(chat_id, body) values (" + q(cid) + ", 'm11')", 'sc_err_rate');
+  assert.ok(/HINT:\s+[0-9]+/.test(e), 'hint with seconds: ' + e);
+  // the other person is not affected
+  ok(A, "insert into public.messages(chat_id, body) values (" + q(cid) + ", 'still fine')");
+  // after the wait it works again (simulate time passing)
+  admin("update public.sc_rate set at = at - interval '10 seconds' where user_id = " + q(C) + " and kind = 'msg'");
+  ok(C, "insert into public.messages(chat_id, body) values (" + q(cid) + ", 'after wait')");
+  // edits
+  const mid = ok(C, "select id from public.messages where chat_id = " + q(cid) + " and body = 'after wait'");
+  ok(C, "do $x$ begin for i in 1..10 loop update public.messages set body = 'e' || i where id = " + mid + "; end loop; end $x$");
+  fails(C, "update public.messages set body = 'e11' where id = " + mid, 'sc_err_rate');
+  // reactions
+  ok(A, "do $x$ begin for i in 1..20 loop perform public.sc_react(" + mid + ", case when i % 2 = 0 then '👍' else '❤' end); end loop; end $x$");
+  fails(A, rpc('sc_react', mid + ", '😀'"), 'sc_err_rate');
+  // friend requests: burst of 10
+  admin("insert into public.sc_rate(user_id, kind, tokens) values (" + q(D) + ", 'friend', 0.5)");
+  fails(D, rpc('sc_friend_request', q(C)), 'sc_err_rate');
+  // groups: 3 in a row (A already made groups earlier in this test file)
+  admin("delete from public.sc_rate where kind = 'group'");
+  ok(A, "do $x$ begin for i in 1..3 loop perform public.sc_create_group('g' || i, array[" + q(C) + "]::uuid[]); end loop; end $x$");
+  fails(A, rpc('sc_create_group', "'g4', array[" + q(C) + "]::uuid[]"), 'sc_err_rate');
+  // nobody can read or reset the counters, nor call the helper directly
+  fails(C, "select count(*) from public.sc_rate", 'permission denied');
+  fails(C, "delete from public.sc_rate", 'permission denied');
+  fails(C, "select public.sc_rate_take('msg', 1000, 0.001)", 'permission denied');
+  // chat files: 60 per hour
+  admin("insert into storage.objects(bucket_id, name) select 'chat', " + q(cid + '/' + C + '/f') + " || g from generate_series(1, 60) g");
+  fails(C, "insert into storage.objects(bucket_id, name) values ('chat', " + q(cid + '/' + C + '/x.jpg') + ")", 'row-level security');
+  ok(A, "insert into storage.objects(bucket_id, name) values ('chat', " + q(cid + '/' + A + '/x.jpg') + ")");
+  // chat files: ~300 MB total
+  admin("update storage.objects set created_at = now() - interval '2 hours', metadata = '{\"size\":6000000}' where name like " + q(cid + '/' + C + '/f%'));
+  fails(C, "insert into storage.objects(bucket_id, name) values ('chat', " + q(cid + '/' + C + '/y.jpg') + ")", 'row-level security');
+  // avatars: at most 5 files in own folder
+  for (let i = 0; i < 5; i++) ok(D, "insert into storage.objects(bucket_id, name) values ('avatars', " + q(D + '/avatar-' + i + '.jpg') + ")");
+  fails(D, "insert into storage.objects(bucket_id, name) values ('avatars', " + q(D + '/avatar-9.jpg') + ")", 'row-level security');
+});
 step('anon gets nothing', function () {
   const r = as('', "set role anon; select count(*) from public.messages");
   assert.ok(!r.ok && /permission denied/.test(r.err), r.err || r.out);

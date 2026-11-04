@@ -6,6 +6,7 @@
 const { execFileSync } = require('child_process');
 const path = require('path');
 const assert = require('assert');
+const HW_N = (function () { const w = global.window = global.window || {}; require('../data/homework.js'); return String(w.HOMEWORK.length); })();   // homework entries in data/homework.js
 const { chromium } = require('playwright');
 
 const DB = 'sctest_hw';
@@ -47,7 +48,7 @@ async function step(name, fn) {
   await step('whole setup SQL runs (twice) even without pg_cron', () => {
     const out1 = psql(['-d', DB], sql); const out2 = psql(['-d', DB], sql);
     assert(/Готово! База настроена\. Напоминания: ✗/.test(out1 + out2), out2.slice(-300));
-    assert.strictEqual(admin('select count(*) from public.hw_items'), String(2));
+    assert.strictEqual(admin('select count(*) from public.hw_items'), HW_N);
     assert.strictEqual(admin("select count(*) from public.app_secrets where key = 'cron_key' and length(value) = 64"), '1');
   });
   await step('cron job SQL itself is valid: with stand-ins for cron.schedule / net.http_post it posts {action: hw_tick, key}', () => {
@@ -78,7 +79,7 @@ async function step(name, fn) {
   await step('nobody outside can read or change the homework list or the cron key', () => {
     fails(A, "insert into public.hw_items(id) values ('x')");
     fails(A, "delete from public.hw_items");
-    assert.strictEqual(ok(A, 'select count(*) from public.hw_items'), '2');
+    assert.strictEqual(ok(A, 'select count(*) from public.hw_items'), HW_N);
     assert.strictEqual(ok(A, 'select count(*) from public.app_secrets'), '0');
   });
   console.log('\n' + passed + ' passed, ' + failed + ' failed');

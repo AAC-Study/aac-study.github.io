@@ -200,6 +200,7 @@ begin
   if not exists(select 1 from public.profiles where id = p_to) then raise exception 'sc_err_generic'; end if;
   if public.sc_blocked_either(me, p_to) then raise exception 'sc_err_blocked'; end if;
   if public.sc_are_friends(me, p_to) then return 'friend'; end if;
+  perform public.sc_rate_take('friend', 10, 60);   -- 10 заявок подряд, дальше 1 в минуту
   if exists(select 1 from public.friend_requests where from_id = p_to and to_id = me) then
     return public.sc_friend_accept(p_to);   -- встречная заявка = дружба
   end if;
@@ -418,7 +419,12 @@ language sql stable security definer set search_path = public as $$
     select 1 from public.chat_members m join public.chats c on c.id = m.chat_id
     where m.chat_id = p_chat and m.user_id = auth.uid()
       and (c.kind in ('direct', 'support') or m.role in ('owner', 'admin') or (
-        not c.only_admins and (m.restricted_until is null or m.restricted_until <= now()) and (c.p_photos or c.p_files))));
+        not c.only_admins and (m.restricted_until is null or m.restricted_until <= now()) and (c.p_photos or c.p_files))))
+  -- защита от спама файлами (04.11): не больше 60 файлов в час и ~300 МБ всего от одного человека
+  and (select count(*) from storage.objects o where o.bucket_id = 'chat'
+         and (storage.foldername(o.name))[2] = auth.uid()::text and o.created_at > now() - interval '1 hour') < 60
+  and (select coalesce(sum(case when o.metadata->>'size' ~ '^[0-9]+$' then (o.metadata->>'size')::bigint else 0 end), 0)
+         from storage.objects o where o.bucket_id = 'chat' and (storage.foldername(o.name))[2] = auth.uid()::text) < 300000000;
 $$;
 -- права в группе: 'info' | 'settings' | 'delete' | 'ban' | 'add' | 'pin' | 'promote'
 create or replace function public.sc_can(p_chat uuid, p_user uuid, p_what text) returns boolean
@@ -473,6 +479,32 @@ revoke all on public.chats, public.chat_members, public.chat_bans, public.messag
   public.friend_requests, public.friendships, public.user_marks, public.sc_notifications from anon;
 
 -- ---------- триггер: каждое новое сообщение проходит все правила ----------
+-- ---------- защита от спама (04.11): «ведро жетонов» на человека и действие ----------
+-- p_burst действий можно сразу, дальше одно в p_gap секунд. Иначе ошибка sc_err_rate (hint = сколько секунд ждать).
+create table if not exists public.sc_rate (
+  user_id uuid not null references auth.users on delete cascade,
+  kind text not null,
+  tokens real not null,
+  at timestamptz not null default now(),
+  primary key (user_id, kind)
+);
+alter table public.sc_rate enable row level security;
+revoke all on public.sc_rate from anon, authenticated;
+create or replace function public.sc_rate_take(p_kind text, p_burst real, p_gap real) returns void
+language plpgsql security definer set search_path = public as $$
+declare me uuid := auth.uid(); t real; a timestamptz; n timestamptz := clock_timestamp();
+begin
+  if me is null then return; end if;
+  insert into public.sc_rate (user_id, kind, tokens, at) values (me, p_kind, p_burst, n) on conflict (user_id, kind) do nothing;
+  select tokens, at into t, a from public.sc_rate where user_id = me and kind = p_kind for update;
+  t := least(p_burst, t + extract(epoch from (n - a))::real / p_gap);
+  if t < 1 then
+    raise exception 'sc_err_rate' using hint = greatest(1, ceil((1 - t) * p_gap))::int::text;
+  end if;
+  update public.sc_rate set tokens = t - 1, at = n where user_id = me and kind = p_kind;
+end $$;
+revoke execute on function public.sc_rate_take(text, real, real) from public, anon, authenticated;
+
 create or replace function public.sc_msg_before_insert() returns trigger
 language plpgsql security definer set search_path = public as $$
 declare c public.chats; m public.chat_members; me uuid := auth.uid(); other uuid; adm boolean; wait int;
@@ -486,6 +518,7 @@ begin
     if coalesce(current_setting('sc.internal', true), '') <> '1' then raise exception 'sc_err_no_rights'; end if;
   else
     if me is null then raise exception 'sc_err_auth'; end if;
+    perform public.sc_rate_take('msg', 10, 2);   -- защита от спама: 10 подряд, дальше 1 в 2 с
     new.sender_id := me;
     select * into m from public.chat_members where chat_id = new.chat_id and user_id = me;
     if m.user_id is null then raise exception 'sc_err_not_member'; end if;
@@ -548,6 +581,7 @@ declare c public.chats;
 begin
   if coalesce(current_setting('sc.internal', true), '') = '1' then return new; end if;
   if old.deleted or old.kind not in ('text', 'photo', 'file') then raise exception 'sc_err_no_rights'; end if;
+  perform public.sc_rate_take('edit', 10, 3);
   if new.body is not null and btrim(new.body) = '' then new.body := null; end if;
   if old.kind = 'text' and new.body is null then raise exception 'sc_err_empty'; end if;
   if old.kind <> 'text' and new.body is not null and char_length(new.body) > 1000 then raise exception 'sc_err_too_long'; end if;
@@ -654,6 +688,7 @@ language plpgsql security definer set search_path = public as $$
 declare me uuid := public.sc_uid(); cid uuid; x uuid; ids uuid[]; ttl text := btrim(coalesce(p_title, ''));
 begin
   if ttl = '' or char_length(ttl) > 64 then raise exception 'sc_err_title'; end if;
+  perform public.sc_rate_take('group', 3, 1200);   -- 3 группы подряд, дальше 1 в 20 мин
   select coalesce(array_agg(distinct u), '{}') into ids from unnest(coalesce(p_members, '{}')) u where u <> me;
   if cardinality(ids) + 1 > 50 then raise exception 'sc_err_group_full'; end if;
   foreach x in array ids loop
@@ -677,6 +712,7 @@ declare me uuid := public.sc_uid(); x uuid; n int := 0; total int; b public.chat
 begin
   if not exists(select 1 from public.chats where id = p_chat and kind = 'group') then raise exception 'sc_err_not_member'; end if;
   if not public.sc_can(p_chat, me, 'add') then raise exception 'sc_err_no_rights'; end if;
+  perform public.sc_rate_take('gadd', 10, 10);
   foreach x in array coalesce(p_users, '{}') loop
     continue when x = me or exists(select 1 from public.chat_members where chat_id = p_chat and user_id = x);
     if not public.sc_are_friends(me, x) then raise exception 'sc_err_not_friends'; end if;
@@ -881,6 +917,7 @@ begin
   select * into m from public.chat_members where chat_id = mm.chat_id and user_id = me;
   if m.user_id is null then raise exception 'sc_err_not_member'; end if;
   if p_emoji is null or char_length(p_emoji) < 1 or char_length(p_emoji) > 16 then raise exception 'sc_err_generic'; end if;
+  perform public.sc_rate_take('react', 20, 1);
   if c.kind = 'direct' then
     select user_id into other from public.chat_members where chat_id = c.id and user_id <> me limit 1;
     if other is not null and public.sc_blocked_either(me, other) then raise exception 'sc_err_blocked'; end if;

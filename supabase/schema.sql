@@ -134,9 +134,20 @@ create policy "issues: admin updates" on public.issues for update to authenticat
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('avatars', 'avatars', true, 204800, array['image/jpeg','image/png','image/webp'])
 on conflict (id) do nothing;
+-- защита от спама (04.11): в папке аватарок одного человека не больше 5 файлов
+-- (сайт кладёт новую и сразу удаляет старую), и не больше 20 загрузок в час
+create or replace function public.avatar_upload_ok() returns boolean
+language sql stable security definer set search_path = public as $$
+  select (select count(*) from storage.objects o where o.bucket_id = 'avatars'
+            and (storage.foldername(o.name))[1] = auth.uid()::text) < 5
+     and (select count(*) from storage.objects o where o.bucket_id = 'avatars'
+            and (storage.foldername(o.name))[1] = auth.uid()::text and o.created_at > now() - interval '1 hour') < 20;
+$$;
+revoke execute on function public.avatar_upload_ok() from public, anon;
+grant execute on function public.avatar_upload_ok() to authenticated;
 drop policy if exists "avatars: upload own" on storage.objects;
 create policy "avatars: upload own" on storage.objects for insert to authenticated
-  with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
+  with check (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text and public.avatar_upload_ok());
 drop policy if exists "avatars: update own" on storage.objects;
 create policy "avatars: update own" on storage.objects for update to authenticated
   using (bucket_id = 'avatars' and (storage.foldername(name))[1] = auth.uid()::text);
