@@ -536,3 +536,20 @@
 .ls-why__chev { transition: transform .2s; }
 .ls-why[open] .ls-why__chev { transform: rotate(180deg); }
 .ls-why__body { margin-top: 6px; color: var(--text); line-height: 1.6; }
+
+/* Кнопка «Копировать» у кода (уроки программирования) */
+.ls-code { position: relative; }
+.ls-math--code { padding-right: 44px; }
+.code-copy {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 9px; border-radius: 8px;
+  border: 1px solid var(--border); background: var(--surface); color: var(--text-2);
+  font: 600 12px/1 var(--font, inherit); cursor: pointer; opacity: .85;
+}
+.code-copy svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.code-copy:hover { opacity: 1; color: var(--text); }
+.code-copy.is-done { color: var(--ok, #16a34a); border-color: currentColor; }
+.ls-code > .code-copy { position: absolute; top: 18px; right: 6px; }
+.ls-code > .code-copy span { display: none; }
+.ls-code > .code-copy.is-done span { display: inline; }
+.tk-head__q--code > .code-copy { margin-top: 8px; }
+[dir="rtl"] .tk-head__q--code > .code-copy { direction: rtl; }

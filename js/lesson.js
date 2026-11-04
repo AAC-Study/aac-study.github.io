@@ -374,6 +374,7 @@
   }
 
   function renderLesson(lesson, view, ctl) {
+    progLesson = !!PROG_SUBJ[lesson.subject];
     var lang = I18N.lang;
     var subj = subjectOf(lesson.subject);
     var tasks = lesson.tasks || {};
@@ -800,9 +801,15 @@
     }
   }
 
+  /* В уроках программирования у блока кода есть кнопка «Копировать» — вставить в IntelliJ / VS Code / SSMS и запустить */
+  var PROG_SUBJ = { algo: 1, fullstack: 1, sql: 1 }, progLesson = false;
   function mathBlock(lines) {
     var b = el('div', { class: 'ls-math', dir: 'ltr' });
     lines.forEach(function (m) { b.appendChild(el('div', { class: 'ls-math__line' }, m)); });
+    if (progLesson && window.Tasks && Tasks.copyBtn) {
+      b.classList.add('ls-math--code');
+      return el('div', { class: 'ls-code' }, [b, Tasks.copyBtn(function () { return lines.join('\n'); })]);
+    }
     return b;
   }
 

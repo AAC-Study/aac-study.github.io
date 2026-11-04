@@ -292,7 +292,7 @@
       tk_diag_number: 'זה לא המספר הנכון. בדקו את החישוב שלב אחרי שלב.',
       tk_diag_choice: 'זו לא התשובה הנכונה. הרמז יעזור.',
       tk_ai_reply: 'ה־AI יענה ב:', tk_ai_warn: 'זה AI: הוא יכול לטעות. בדקו בעצמכם כל דבר שהוא כותב.',
-      tk_code: 'הקוד שלך', tk_code_ph_java: 'כתבו כאן את הקוד ב־Java…', tk_code_ph_html: 'כתבו כאן את קוד ה־HTML…', tk_code_ph_sql: 'כתבו כאן את השאילתה ב־SQL…',
+      tk_copy_code: 'להעתיק את הקוד', tk_code: 'הקוד שלך', tk_code_ph_java: 'כתבו כאן את הקוד ב־Java…', tk_code_ph_html: 'כתבו כאן את קוד ה־HTML…', tk_code_ph_sql: 'כתבו כאן את השאילתה ב־SQL…',
       tk_code_note: 'כתבו את הקוד כאן, הריצו אותו אצלכם (IntelliJ / VS Code / SSMS) והכניסו למטה מה יצא.',
       tk_preview: 'להציג את הדף', tk_preview_hide: 'להסתיר את הדף', tk_preview_note: 'תמונות מהאינטרנט לא מוצגות כאן, רק הקוד שלכם.',
       tk_diag_code: 'עוד לא. עברו על הקוד שורה אחרי שורה (או הריצו אותו שוב) ובדקו מה בדיוק הוא מדפיס.'
@@ -327,7 +327,7 @@
       tk_diag_number: 'Это не то число. Проверь вычисления шаг за шагом.',
       tk_diag_choice: 'Это неверный ответ. Подсказка поможет.',
       tk_ai_reply: 'ИИ ответит на:', tk_ai_warn: 'Это ИИ: он может ошибаться. Проверяй сам всё, что он пишет.',
-      tk_code: 'Твой код', tk_code_ph_java: 'Пиши здесь код на Java…', tk_code_ph_html: 'Пиши здесь HTML-код…', tk_code_ph_sql: 'Пиши здесь запрос SQL…',
+      tk_copy_code: 'Скопировать код', tk_code: 'Твой код', tk_code_ph_java: 'Пиши здесь код на Java…', tk_code_ph_html: 'Пиши здесь HTML-код…', tk_code_ph_sql: 'Пиши здесь запрос SQL…',
       tk_code_note: 'Напиши код здесь, запусти у себя (IntelliJ / VS Code / SSMS) и впиши ниже, что получилось.',
       tk_preview: 'Показать страницу', tk_preview_hide: 'Скрыть страницу', tk_preview_note: 'Картинки из интернета здесь не показываются, только твой код.',
       tk_diag_code: 'Пока нет. Пройди по коду строка за строкой (или запусти ещё раз) и проверь, что именно он печатает.'
@@ -362,7 +362,7 @@
       tk_diag_number: 'That is not the right number. Check your working step by step.',
       tk_diag_choice: 'That is not the right answer. The hint will help.',
       tk_ai_reply: 'The AI will answer in:', tk_ai_warn: 'This is AI: it can make mistakes. Check everything it writes yourself.',
-      tk_code: 'Your code', tk_code_ph_java: 'Write your Java code here…', tk_code_ph_html: 'Write your HTML here…', tk_code_ph_sql: 'Write your SQL query here…',
+      tk_copy_code: 'Copy the code', tk_code: 'Your code', tk_code_ph_java: 'Write your Java code here…', tk_code_ph_html: 'Write your HTML here…', tk_code_ph_sql: 'Write your SQL query here…',
       tk_code_note: 'Write the code here, run it on your computer (IntelliJ / VS Code / SSMS) and enter below what came out.',
       tk_preview: 'Show the page', tk_preview_hide: 'Hide the page', tk_preview_note: 'Images from the internet are not shown here, only your code.',
       tk_diag_code: 'Not yet. Go through the code line by line (or run it again) and check exactly what it prints.'
@@ -416,6 +416,35 @@
       });
     });
     return frag;
+  }
+
+  /* Кнопка «Копировать» для кода (маленькая, в углу блока) */
+  function copyCode(text, done) {
+    function fallback() {
+      var ta = el('textarea', { style: 'position:fixed;top:0;left:0;opacity:0', readonly: 'readonly' }); ta.value = text;
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); } catch (e) { /* */ }
+      document.body.removeChild(ta); done();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+    else fallback();
+  }
+  function codeCopyBtn(getText) {
+    var b = el('button', { type: 'button', class: 'code-copy', 'data-act': 'copy-code', title: t('tk_copy_code'), 'aria-label': t('tk_copy_code'),
+      html: Icons.get('copy') + '<span>' + U.esc(t('tk_copy')) + '</span>' });
+    b.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      copyCode(getText(), function () {
+        b.classList.add('is-done'); b.lastChild.textContent = t('tk_copied');
+        setTimeout(function () { b.classList.remove('is-done'); b.lastChild.textContent = t('tk_copy'); }, 1500);
+      });
+    });
+    return b;
+  }
+  /* строки задачи, целиком взятые в `…`, — это код */
+  function codeOfText(text) {
+    var lines = String(text || '').split('\n').filter(function (l) { return /^`[^`]*`$/.test(l); }).map(function (l) { return l.slice(1, -1); });
+    return lines.length >= 2 ? lines.join('\n') : '';
   }
 
   /* Скачать текст как .txt (UTF-8 с BOM — чтобы Блокнот показал иврит и русский). */
@@ -789,6 +818,8 @@
       ? el('div', { class: 'tk-head__q tk-head__q--math', dir: 'ltr' }, task.text)
       : el('div', { class: 'tk-head__q' }, [rich(pick(task.text, lang))]);
     head.appendChild(q);
+    var qCode = codeLang && typeof task.text !== 'string' ? codeOfText(pick(task.text, lang)) : '';
+    if (qCode) { q.classList.add('tk-head__q--code'); q.appendChild(codeCopyBtn(function () { return qCode; })); }
 
     /* ---- draft: toolbar + canvas/textarea + symbols ---- */
     var work = el('div', { class: 'tk-work' });
@@ -1161,6 +1192,7 @@
     downloadText: downloadText,
     copyText: copyText,
     rich: rich,
+    copyBtn: codeCopyBtn,
     pick: pick,
     plain: plain,
     fmtDate: fmtDate,
