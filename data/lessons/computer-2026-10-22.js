@@ -80,6 +80,18 @@ window.LESSONS["computer-2026-10-22"] = {
         "en": "`ALU` (Arithmetic Logic Unit): arithmetic (+ − × ÷) and logic (AND, OR, XOR, NOT).\n`CU` (Control Unit): decides which unit does what.\nA unit for decimal (floating-point) numbers like 0.123.\n`Pipeline`: speeds things up — the CPU prepares the next steps in advance.\n`MMU` (Memory Management Unit): moves data between the CPU and memory."
       }
     },
+    { "kind": "tip",
+      "title": {"he": "ליבות: פיזיות ולוגיות", "ru": "Ядра: физические и логические", "en": "Cores: physical and logical"},
+      "text": {
+        "he": "במנהל המשימות (Task Manager → Performance → CPU) יש שתי שורות: `Cores` — ליבות פיזיות, ו־`Logical processors` — מעבדים לוגיים. ב\"12 ליבות\" שרואים לפעמים מדובר במעבדים לוגיים.\nבהרבה מעבדים ליבה פיזית אחת מריצה שני חוטי עבודה (Hyper-Threading), ולכן המספר הלוגי גדול פי 2.",
+        "ru": "В диспетчере задач (Task Manager → Performance → CPU) две строки: `Cores` — физические ядра и `Logical processors` — логические процессоры. «12 ядер», которые часто видят, — это логические.\nВо многих процессорах одно физическое ядро ведёт два потока работы (Hyper-Threading), поэтому логических в 2 раза больше.",
+        "en": "In Task Manager (Performance → CPU) there are two lines: `Cores` (physical cores) and `Logical processors`. The \"12 cores\" people often see are logical ones.\nOn many CPUs one physical core runs two threads (Hyper-Threading), so there are twice as many logical processors."
+      },
+      "why": {
+        "he": "למה זה חשוב? ליבה לוגית היא לא ליבה שלמה: שני חוטים חולקים את אותו ALU. היא עוזרת כשליבה מחכה לנתונים מהזיכרון, אבל לא מכפילה את המהירות פי 2.",
+        "ru": "Почему это важно? Логическое ядро — не целое ядро: два потока делят один и тот же ALU. Это помогает, пока ядро ждёт данные из памяти, но скорость не удваивается.",
+        "en": "Why it matters: a logical core is not a whole core; two threads share the same ALU. It helps while the core waits for data from memory, but it does not double the speed."
+      } },
     { "why": {"he": "למה פירמידה ולא סוג זיכרון אחד? אין זיכרון שהוא גם מהיר, גם גדול וגם זול. לכן שמים מעט זיכרון מהיר מאוד ליד המעבד, ויותר ויותר זיכרון איטי וזול רחוק ממנו. דוגמה מהחיים: עט ביד (רגיסטר), קלמר על השולחן (cache), תיק (RAM), ארון בבית (דיסק).", "ru": "Почему пирамида, а не один вид памяти? Не бывает памяти, которая одновременно быстрая, большая и дешёвая. Поэтому рядом с процессором ставят немного очень быстрой памяти, а дальше — всё больше медленной и дешёвой. Пример из жизни: ручка в руке (регистр), пенал на столе (кэш), сумка (RAM), шкаф дома (диск).", "en": "Why a pyramid and not one kind of memory? No memory is fast, big and cheap at once. So a little very fast memory sits next to the processor, and more and more slow, cheap memory further away. A real-life picture: the pen in your hand (register), the pencil case on the desk (cache), your bag (RAM), the cupboard at home (disk)."},
       "kind": "board",
       "title": {

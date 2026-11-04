@@ -143,7 +143,7 @@
     ]));
     var nav = el('nav', { class: 'side__nav', 'aria-label': t('nav_menu') });
     var navItems = NAV.slice();
-    if (user.role === 'admin') navItems.push({ path: '/admin', icon: 'bell', key: 'nav_admin' });
+    if (user.role === 'admin') { navItems.push({ path: '/admin', icon: 'bell', key: 'nav_admin' }); if (window.Admin && Admin.autoAnnounce) setTimeout(Admin.autoAnnounce, 3000); }
     navItems.forEach(function (n) {
       nav.appendChild(el('a', { class: 'navlink', href: '#' + n.path, 'data-path': n.path, onclick: closeSide, id: n.path === '/admin' ? 'nav-admin' : null },
         [el('span', { html: Icons.get(n.icon) }), el('span', { class: 'navlink__label' }, t(n.key)), el('span', { class: 'navlink__dot' })]));

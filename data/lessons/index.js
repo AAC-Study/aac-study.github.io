@@ -30,7 +30,7 @@ window.LESSON_INDEX = [
   { id: 'fullstack-2026-10-28', subject: 'fullstack', date: '2026-10-28',
     title: { he: 'טבלאות ב־HTML ותמונת רקע', ru: 'Таблицы в HTML и фоновая картинка', en: 'HTML tables and a background image' },
     summary: { he: 'תמונת רקע דרך style ב־head, טבלה עם table, tr, th, td, אלמנטים של טופס, והתרגיל המסכם: אתר של עסק עם 4 דפים.', ru: 'Фоновая картинка через style в head, таблица из table, tr, th, td, элементы формы и итоговое задание: сайт бизнеса из 4 страниц.', en: 'A background image via style in the head, a table from table, tr, th, td, form elements, and the summary project: a 4-page business website.' } },
-  { id: 'fullstack-2026-11-04', subject: 'fullstack', date: '2026-11-04',
+  { id: 'fullstack-2026-11-04', subject: 'fullstack', date: '2026-11-04', notify: true,
     title: { he: 'מבוא ל־CSS ו־Layout: grid ו־flex', ru: 'Введение в CSS и раскладка: grid и flex', en: 'Intro to CSS and layouts: grid and flex' },
     summary: { he: 'קובץ CSS נפרד, בוררים: תגית, class, id ומי מנצח, padding ו־margin, ואז layout: display grid, טורים, רווחים, span ו־flex.', ru: 'Отдельный CSS-файл, селекторы: тег, class, id и кто побеждает, padding и margin, потом раскладка: display grid, столбцы, промежутки, span и flex.', en: 'A separate CSS file, selectors: tag, class, id and which wins, padding and margin, then layouts: display grid, columns, gaps, span and flex.' } },
   { id: 'sql-2026-10-22', subject: 'sql', date: '2026-10-22',
