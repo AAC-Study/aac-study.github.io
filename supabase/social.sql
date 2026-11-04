@@ -580,6 +580,9 @@ language plpgsql security definer set search_path = public as $$
 declare c public.chats;
 begin
   if coalesce(current_setting('sc.internal', true), '') = '1' then return new; end if;
+  -- аккаунт удаляют (on delete set null): сообщение остаётся без автора, ничего не проверяем
+  if new.sender_id is null and old.sender_id is not null
+     and not exists(select 1 from public.profiles where id = old.sender_id) then return new; end if;
   if old.deleted or old.kind not in ('text', 'photo', 'file') then raise exception 'sc_err_no_rights'; end if;
   perform public.sc_rate_take('edit', 10, 3);
   if new.body is not null and btrim(new.body) = '' then new.body := null; end if;

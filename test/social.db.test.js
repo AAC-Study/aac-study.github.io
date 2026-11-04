@@ -399,6 +399,27 @@ step('anti-spam 04.11: messages, edits, reactions, requests, groups, uploads, av
   for (let i = 0; i < 5; i++) ok(D, "insert into storage.objects(bucket_id, name) values ('avatars', " + q(D + '/avatar-' + i + '.jpg') + ")");
   fails(D, "insert into storage.objects(bucket_id, name) values ('avatars', " + q(D + '/avatar-9.jpg') + ")", 'row-level security');
 });
+step('account can be deleted even with messages (text, system, deleted); messages stay without author', function () {
+  const E = admin("insert into auth.users(email, raw_user_meta_data) values ('del1@gmail.com', '{\"name\":\"E\",\"invite\":\"TEST\"}') returning id");
+  const sid = ok(E, rpc('sc_support_open', ''));
+  const m1 = ok(E, "insert into public.messages(chat_id, body) values (" + q(sid) + ", 'hi') returning id");
+  ok(E, "insert into public.messages(chat_id, body) values (" + q(sid) + ", 'bye')");
+  admin("select set_config('sc.internal', '1', false); insert into public.messages(chat_id, sender_id, kind, body) values (" + q(sid) + ", " + q(E) + ", 'system', 'x'); update public.messages set deleted = true where id = " + m1);
+  admin("delete from auth.users where id = " + q(E));
+  assert.strictEqual(admin("select count(*) from public.profiles where id = " + q(E)), '0', 'profile gone');
+  assert.strictEqual(admin("select count(*) || '|' || count(sender_id) from public.messages where chat_id = " + q(sid)), '3|0', 'messages kept, author cleared');
+  // a normal user still cannot clear the author of a message
+  const ma = ok(A, "insert into public.messages(chat_id, body) values (" + q(sid) + ", 'admin here') returning id");
+  fails(A, "update public.messages set sender_id = null where id = " + ma, 'permission denied');
+  assert.strictEqual(admin("select sender_id from public.messages where id = " + ma), A, 'author unchanged');
+  // the one-off script given to the admin for 04.11 works too (sc.internal path)
+  const F = admin("insert into auth.users(email, raw_user_meta_data) values ('del2@gmail.com', '{\"name\":\"F\",\"invite\":\"TEST\"}') returning id");
+  const sf = ok(F, rpc('sc_support_open', ''));
+  ok(F, "insert into public.messages(chat_id, body) values (" + q(sf) + ", 'x')");
+  admin("insert into storage.objects(bucket_id, name, owner) values ('avatars', " + q(F + '/a.jpg') + ", " + q(F) + ")");
+  psql(['-d', DB], "begin; set local sc.internal = '1'; update storage.objects set owner = null where owner in (select id from auth.users where email in ('del2@gmail.com')); delete from auth.users where email in ('del2@gmail.com'); commit;");
+  assert.strictEqual(admin("select count(*) from auth.users where id = " + q(F)), '0', 'deleted by script');
+});
 step('anon gets nothing', function () {
   const r = as('', "set role anon; select count(*) from public.messages");
   assert.ok(!r.ok && /permission denied/.test(r.err), r.err || r.out);
