@@ -139,6 +139,29 @@ window.LESSONS["math-2026-10-25"] = {
     },
     {
       "why": {
+        "he": "כל שורה היא משוואה. להחליף משוואות במקום זה רק לכתוב אותן בסדר אחר, והפתרון לא משתנה. כפל וחיבור הם אותן פעולות כמו בשיטת החיבור, וגם הן לא משנות את הפתרון.",
+        "ru": "Каждая строка — это уравнение. Поменять уравнения местами значит просто записать их в другом порядке, решение то же. Умножение и сложение — те же действия, что в методе сложения, они тоже не меняют решения.",
+        "en": "Each row is an equation. Swapping equations just writes them in a different order, so the solution stays the same. Multiplying and adding are the same moves as in the addition method, and they do not change the solution either."
+      },
+      "kind": "board",
+      "title": {
+        "he": "שלוש הפעולות המותרות על שורות",
+        "ru": "Три разрешённых действия со строками",
+        "en": "The three allowed row operations"
+      },
+      "text": {
+        "he": "עם שורות המטריצה מותר לעשות רק שלוש פעולות (קוראים להן פעולות אלמנטריות):\n• להחליף שתי שורות במקום;\n• לכפול שורה במספר שאינו 0 (כופלים את כל השורה, גם את המספר שאחרי הקו);\n• לחבר לשורה שורה אחרת או להחסיר אותה (אפשר גם כפול מספר).\nהסימון `R3 ← R3 − 2R1` אומר: השורה השלישית החדשה = השלישית פחות פעמיים הראשונה.",
+        "ru": "Со строками матрицы можно делать только три действия (их называют элементарными):\n• поменять две строки местами;\n• умножить строку на число, не равное 0 (умножаем всю строку, и число после черты тоже);\n• прибавить к строке другую строку или вычесть её (можно умноженную на число).\nЗапись `R3 ← R3 − 2R1` значит: новая третья строка = третья минус две первых.",
+        "en": "You may do only three things with the rows of the matrix (they are called elementary operations):\n• swap two rows;\n• multiply a row by a number other than 0 (the whole row, including the number after the bar);\n• add another row to a row, or subtract it (it may be multiplied by a number).\nThe notation `R3 ← R3 − 2R1` means: the new third row = the third minus twice the first."
+      },
+      "math": [
+        "R1 ↔ R2",
+        "R2 ← 2R2",
+        "R3 ← R3 − 2R1"
+      ]
+    },
+    {
+      "why": {
         "he": "בדיקה של הצעד `R2 ← 2R2 − 3R1`, מספר אחרי מספר.",
         "ru": "Проверка шага `R2 ← 2R2 − 3R1` число за числом.",
         "en": "Checking the step `R2 ← 2R2 − 3R1` number by number."
@@ -171,6 +194,30 @@ window.LESSONS["math-2026-10-25"] = {
         "R3 ← −13R3 + R2",
         "R3  ( 0   0  128 | 252 )"
       ]
+    },
+    {
+      "why": {
+        "he": "אם לוקחים את R1, שבה x אינו 0, ה-x יחזור לשורה R3, והאפס שכבר עשינו ייעלם. שורה שיש בה 0 בעמודה הזו מוסיפה 0, ולכן האפס נשאר אפס.",
+        "ru": "Если взять R1, где x не равен 0, в R3 снова появится x, и уже сделанный ноль пропадёт. Строка, у которой в этом столбце 0, прибавляет 0, поэтому готовый ноль остаётся нулём.",
+        "en": "If you use R1, where x is not 0, the x comes back into R3 and the zero you already made disappears. A row with 0 in that column adds 0, so the zero stays a zero."
+      },
+      "whyMath": [
+        "−13 × 0 + 0 = 0",
+        "−13 × (−1) + (−13) = 0",
+        "−13 × (−10) + (−2) = 128",
+        "−13 × (−22) + (−34) = 252"
+      ],
+      "kind": "tip",
+      "title": {
+        "he": "באיזו שורה לעשות אפס?",
+        "ru": "Какой строкой делать ноль?",
+        "en": "Which row to use for a zero?"
+      },
+      "text": {
+        "he": "שני כללים מהלוח:\n• אם מספר אחד מתחלק בשני, כופלים רק שורה אחת. ב-R3 יש 4 וב-R1 יש 2, לכן `R3 ← R3 − 2R1`. קודם היו 3 ו-2, והיה צריך לכפול את שתי השורות.\n• כשבעמודה כבר יש אפס, לאפס הבא לוקחים שורה שגם בה יש 0 בעמודה הזו. כדי להעלים את ה-−1 ב-R3 לוקחים את R2 ולא את R1: `R3 ← −13R3 + R2`.\nכך לא צריך לכתוב הכול מחדש, וזה היתרון של השיטה.",
+        "ru": "Два правила с доски:\n• Если одно число делится на другое, умножаем только одну строку. В R3 стоит 4, в R1 стоит 2, поэтому `R3 ← R3 − 2R1`. Раньше были 3 и 2, и пришлось умножать обе строки.\n• Когда в столбце уже есть ноль, для следующего нуля берём строку, у которой в этом столбце тоже 0. Чтобы убрать −1 в R3, берём R2, а не R1: `R3 ← −13R3 + R2`.\nТак не нужно переписывать всё заново, в этом плюс метода.",
+        "en": "Two rules from the board:\n• If one number divides the other, multiply only one row. R3 has 4 and R1 has 2, so `R3 ← R3 − 2R1`. Before, it was 3 and 2, and both rows had to be multiplied.\n• When a column already has a zero, make the next zero with a row that also has 0 in that column. To remove the −1 in R3, use R2, not R1: `R3 ← −13R3 + R2`.\nThis way you don't rewrite everything, and that is the advantage of the method."
+      }
     },
     {
       "why": {
