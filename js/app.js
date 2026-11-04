@@ -303,6 +303,8 @@
     var isReg = mode === 'register';
     function field(id, label, type, extra) {
       var input = el('input', { class: 'input', id: id, name: id, type: type, autocomplete: extra && extra.ac, required: true, dir: extra && extra.dir });
+      /* iPhone: в пароле и почте не ставить большую первую букву и не «исправлять» слова (иначе пароль при регистрации и при входе выходит разным) */
+      if (type === 'password' || type === 'email') { input.setAttribute('autocapitalize', 'off'); input.setAttribute('autocorrect', 'off'); input.setAttribute('spellcheck', 'false'); }
       var wrap = input;
       if (type === 'password') {
         var eye = el('button', { type: 'button', class: 'pass-eye', 'aria-label': 'show', html: Icons.get('eye'),
@@ -398,7 +400,7 @@
   }
   function renderForgot(app, errBox) {
     document.title = t('app_name');
-    var email = el('input', { class: 'input', id: 'f-email', type: 'email', autocomplete: 'email', dir: 'ltr', required: true });
+    var email = el('input', { class: 'input', id: 'f-email', type: 'email', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false', autocomplete: 'email', dir: 'ltr', required: true });
     function showErr(txt) { errBox.textContent = txt; errBox.style.display = 'block'; }
     var form = el('form', { novalidate: true }, [
       errBox,
@@ -438,8 +440,8 @@
   /* форма нового пароля: после ссылки из письма (страница) и в настройках (окно) */
   function newPassForm(onDone) {
     var errBox = el('div', { class: 'form-error', role: 'alert', style: 'display:none' });
-    var a = el('input', { class: 'input', id: 'f-np1', type: 'password', autocomplete: 'new-password', dir: 'ltr', minlength: '6' });
-    var b = el('input', { class: 'input', id: 'f-np2', type: 'password', autocomplete: 'new-password', dir: 'ltr', minlength: '6' });
+    var a = el('input', { class: 'input', id: 'f-np1', type: 'password', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false', autocomplete: 'new-password', dir: 'ltr', minlength: '6' });
+    var b = el('input', { class: 'input', id: 'f-np2', type: 'password', autocapitalize: 'off', autocorrect: 'off', spellcheck: 'false', autocomplete: 'new-password', dir: 'ltr', minlength: '6' });
     var btn = el('button', { class: 'btn btn--primary', type: 'submit', style: 'width:100%;margin-top:6px' }, t('pw_save'));
     var note = el('p', { class: 'muted pw-note' }, t('pw_rule'));
     function showErr(txt) { errBox.textContent = txt; errBox.style.display = 'block'; }
