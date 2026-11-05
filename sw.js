@@ -4,7 +4,7 @@
    новый sw.js, он заново кладёт файлы в новый кэш, старый удаляет. Плашка «Сайт обновился» (js/update.js)
    предлагает перезагрузить. version.json, setup.html, 404.html, supabase/ и test/ всегда из сети.
    Без сети и без кэша — то, что человек сам скачал кнопкой «Скачать для офлайна» (aac-offline-v1, js/offline.js). */
-var SW_VERSION = '2026-11-05.1';
+var SW_VERSION = '2026-11-05.2';
 var OFFLINE_CACHE = 'aac-offline-v1';
 var STATIC = 'aac-static-' + SW_VERSION;
 /* всё, что подключает index.html (проверяет test/sw.e2e.js), и картинки */

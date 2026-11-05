@@ -11,7 +11,7 @@ window.EXAMS = [
   {
     id: 'computer-2026-11-bohan-bases', subject: 'computer',
     kind: { he: 'בוחן', ru: 'Экзамен', en: 'Quiz' },
-    title: { he: 'מערכות ספירה: המרות, חיבור וכפל בינארי', ru: 'Системы счисления: переводы, сложение и умножение в двоичной', en: 'Number systems: conversions, binary addition and multiplication' },
+    title: { he: 'מערכות ספירה: המרה בין בסיסים וחיבור בינארי · שעה, 3 תרגילים', ru: 'Системы счисления: переводы и двоичное сложение · 1 час, 3 задания', en: 'Number systems: base conversion and binary addition · 1 hour, 3 tasks' },
     date: null,
     hint: { he: 'נאמר: בשבוע הבא', ru: 'сказали: на следующей неделе', en: 'said: next week' },
     hideAfter: '2026-11-20'
