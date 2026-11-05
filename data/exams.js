@@ -10,8 +10,8 @@
 window.EXAMS = [
   {
     id: 'computer-2026-11-bohan-bases', subject: 'computer',
-    kind: { he: 'בוחן', ru: 'Экзамен', en: 'Quiz' },
-    title: { he: 'מערכות ספירה: המרה בין בסיסים וחיבור בינארי · שעה, 3 תרגילים', ru: 'Системы счисления: переводы и двоичное сложение · 1 час, 3 задания', en: 'Number systems: base conversion and binary addition · 1 hour, 3 tasks' },
+    kind: { he: 'בוחן סיכום נושא', ru: 'Экзамен', en: 'End-of-topic quiz' },
+    title: { he: 'המרה בין בסיסים, חיבור בינארי, חיבור בין מספרים שליליים לחיוביים · שעה, 3 תרגילים', ru: 'Системы счисления: переводы, двоичное сложение, сложение отрицательных и положительных · 1 час, 3 задания', en: 'Base conversion, binary addition, adding negative and positive numbers · 1 hour, 3 tasks' },
     date: null,
     hint: { he: 'נאמר: בשבוע הבא', ru: 'сказали: на следующей неделе', en: 'said: next week' },
     hideAfter: '2026-11-20'
