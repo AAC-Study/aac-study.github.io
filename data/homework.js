@@ -11,6 +11,27 @@
      selfPrompt: true — преподаватель просит самому написать промпт (тогда ИИ помогает написать свой) */
 window.HOMEWORK = [
   {
+    id: 'sql-2026-11-05-perek1', subject: 'sql',
+    title: { he: 'תרגילים פרק 1 – טבלת עובדים', ru: 'Упражнения, глава 1: таблица работников', en: 'Exercises, chapter 1: the employees table' },
+    given: '2026-11-05T15:04:00+02:00', givenDateOnly: true, due: null,
+    summary: {
+      he: 'מסד גדול מ־Moodle (טבלת עובדים, 200 שורות): להריץ ב־SSMS ולפתור את תרגילי השליפה מהקובץ targilim perek 1.',
+      ru: 'Большая база из Moodle (таблица работников, 200 строк): запустить в SSMS и решить упражнения на выборку из файла targilim perek 1.',
+      en: 'A big database from Moodle (employees table, 200 rows): run it in SSMS and solve the query exercises from the file targilim perek 1.'
+    },
+    original: { lang: 'he', text: 'השתמש בטבלת עובדים\n\nהצגת נתונים\n1.1. הצג את כל הנתונים\n1.2. הצג את כל הנתונים של כל העובדים, העובדים במחלקה 1\n1.3. הצג את כל הנתונים של כל העובדים המשתכרים מעל 11000 שח העובדים במחלקה 3\n1.4. הצג את כל הנתונים של כל העובדים המשתכרים בין 10000 שח ל- 12000 שח\n1.5. הצג את כל הנתונים של כל העובדים המשתכרים פחות מ- 10000 או יותר מ- 12000 שח\n1.6. הצג אך ורק את השמות הפרטיים ואת האימיילים של כל העובדים\n1.7. הצג את כל הנתונים של כל העובדים שיש להם מייל ב- gmail\n1.8. הצג את כל הנתונים של כל העובדים, העובדים במחלקה 1, ממוינים לפי שם המשפחה\n1.9. הצג את כל הנתונים של כל העובדים, ממוינים לפי מחלקה בסדר יורד, עם מיון פנימי (לפי מחלקה) של השם הפרטי\n1.10. הצג את כל הנתונים של שלושה העובדים בעלי המשכורות הגבוהה ביותר\n1.11. הצג את כל הנתונים של כל העובדים המשתכרים מעל 19000 שח\n1.12. הצג רשימה של המחלקות של עובדים אלו (השתמש ב- distinct)\n\n(בקובץ יש עמוד שני — עוד לא הועתק.)' },
+    steps: [
+      { he: 'הורידו מ־Moodle את קובץ המסד (טבלת עובדים) ופתחו אותו ב־SSMS.', ru: 'Скачай из Moodle файл базы (таблица работников) и открой его в SSMS.', en: 'Download the database file (employees table) from Moodle and open it in SSMS.' },
+      { he: 'הריצו בחלקים: create database ← use ← create table ← insert. אם יש "already exists" — החלק הזה כבר רץ.', ru: 'Запусти частями: create database → use → create table → insert. Если «already exists» — эта часть уже запускалась.', en: 'Run it in parts: create database → use → create table → insert. "already exists" means that part already ran.' },
+      { he: 'בדיקה: `select * from haovdim` מחזיר 200 שורות.', ru: 'Проверка: `select * from haovdim` возвращает 200 строк.', en: 'Check: `select * from haovdim` returns 200 rows.' },
+      { he: 'כתבו שאילתה לכל תרגיל 1.1–1.12. "כל הנתונים" = `select *`.', ru: 'Напиши запрос на каждое упражнение 1.1–1.12. «Все данные» = `select *`.', en: 'Write a query for each exercise 1.1–1.12. "All the data" = `select *`.' },
+      { he: 'בדקו את עצמכם בשיעור 05.11 באתר: קבוצת "תרגילים פרק 1" (כמה שורות צריך לקבל).', ru: 'Проверь себя в уроке 05.11 на сайте: группа «Упражнения, глава 1» (сколько строк должно выйти).', en: 'Check yourself in the 05.11 lesson on the site: the "Exercises, chapter 1" group (how many rows you should get).' }
+    ],
+    submit: { he: 'לא נאמר שצריך להגיש. בשיעור פתרו בחדרים יחד.', ru: 'Сдавать не говорили. На уроке решали вместе в комнатах.', en: 'No submission was mentioned. In class it was solved together in rooms.' },
+    links: [],
+    level: 'So far in SQL we learned: create database, use, create table (int, nvarchar, date), insert into ... values (also into some columns only, the rest become NULL), select * and selected columns, where with and / or / not, in / not in, between / not between, order by (asc, desc, two columns), like with %, top N, top N percent and distinct. We use SQL Server with SSMS.'
+  },
+  {
     id: 'sql-2026-10-29-ptiha', subject: 'sql',
     title: { he: 'תרגיל פתיחה – הקמת מסד נתונים', ru: 'Вводное упражнение: создать базу данных', en: 'Opening exercise: build a database' },
     given: '2026-10-29T13:00:00+02:00', givenDateOnly: true, due: '2026-11-03T12:00:00+02:00',
