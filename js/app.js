@@ -580,6 +580,39 @@
     ]);
   }
 
+  /* Экзамены на главной: тихо, без напоминаний — только «есть экзамен и когда» */
+  var MONTHS = { he: ['ינו', 'פבר', 'מרץ', 'אפר', 'מאי', 'יוני', 'יולי', 'אוג', 'ספט', 'אוק', 'נוב', 'דצמ'],
+                 ru: ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'],
+                 en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] };
+  function isoToday() { var d = new Date(); return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+  function examCards() {
+    var today = isoToday();
+    var list = (window.EXAMS || []).filter(function (x) {
+      return x.date ? x.date >= today : (!x.hideAfter || x.hideAfter >= today);
+    }).sort(function (a, b) { return (a.date || '9999') < (b.date || '9999') ? -1 : 1; });
+    if (!list.length) return null;
+    return el('div', { class: 'exam-list' }, list.map(function (x) {
+      var s = (window.SUBJECTS || []).filter(function (y) { return y.id === x.subject; })[0] || { hue: 240, name: '' };
+      var badge, when;
+      if (x.date) {
+        var d = x.date.split('-'), days = Math.round((new Date(x.date + 'T00:00:00') - new Date(today + 'T00:00:00')) / 864e5);
+        badge = [el('b', null, String(+d[2])), el('span', null, (MONTHS[I18N.lang] || MONTHS.en)[+d[1] - 1])];
+        when = fmtDate(x.date) + ' · ' + (days === 0 ? t('exam_today') : days === 1 ? t('exam_tomorrow') : t('exam_in', { n: days }));
+      } else {
+        badge = [el('b', null, '?')];
+        when = t('exam_unknown') + (x.hint ? ' · ' + U.tr(x.hint) : '');
+      }
+      return el('a', { class: 'exam-card', href: '#/subject/' + x.subject, style: '--card-grad:' + subjectGrad(s) }, [
+        el('span', { class: 'exam-card__date' }, badge),
+        el('span', { class: 'exam-card__body' }, [
+          el('span', { class: 'exam-card__cap' }, U.tr(x.kind) + ' · ' + U.tr(s.name)),
+          el('b', { class: 'exam-card__title' }, U.tr(x.title)),
+          el('span', { class: 'exam-card__when' }, when)
+        ])
+      ]);
+    }));
+  }
+
   App.registerRoute('/', function (params, view) {
     var u = Store.auth.current();
     setTitle(t('nav_home'));
@@ -590,6 +623,8 @@
     if (Store.mode === 'mock') view.insertBefore(el('div', { class: 'mock-banner' }, t('mock_banner')), view.firstChild);
     var cont = continueCard(u);
     if (cont) view.appendChild(cont);
+    var ex = examCards();
+    if (ex) view.appendChild(ex);
     view.appendChild(el('div', { class: 'page-head' }, el('h2', null, t('subjects_title'))));
     view.appendChild(subjectCards());
     view.appendChild(el('div', { class: 'report-cta' }, [

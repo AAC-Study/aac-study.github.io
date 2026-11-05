@@ -4,13 +4,13 @@
    новый sw.js, он заново кладёт файлы в новый кэш, старый удаляет. Плашка «Сайт обновился» (js/update.js)
    предлагает перезагрузить. version.json, setup.html, 404.html, supabase/ и test/ всегда из сети.
    Без сети и без кэша — то, что человек сам скачал кнопкой «Скачать для офлайна» (aac-offline-v1, js/offline.js). */
-var SW_VERSION = '2026-11-04.8';
+var SW_VERSION = '2026-11-05.1';
 var OFFLINE_CACHE = 'aac-offline-v1';
 var STATIC = 'aac-static-' + SW_VERSION;
 /* всё, что подключает index.html (проверяет test/sw.e2e.js), и картинки */
 var SHELL = ['index.html', 'manifest.webmanifest',
   'css/base.css', 'css/app.css', 'css/frames.css', 'css/avatar.css', 'css/lesson.css', 'css/titles.css', 'css/report.css', 'css/social.css', 'css/themes.css',
-  'js/boot.js', 'js/config.js', 'js/util.js', 'js/i18n.js', 'js/icons.js', 'js/store.js', 'data/subjects.js', 'data/lessons/index.js', 'data/homework.js',
+  'js/boot.js', 'js/config.js', 'js/util.js', 'js/i18n.js', 'js/icons.js', 'js/store.js', 'data/subjects.js', 'data/lessons/index.js', 'data/homework.js', 'data/exams.js',
   'js/titles.js', 'js/app.js', 'js/themes.js', 'js/frames.js', 'js/avatar.js', 'js/reading.js', 'js/draft.js', 'js/sync.js', 'js/tasks.js', 'js/social.js',
   'js/presence.js', 'js/people.js', 'js/chat.js', 'js/offline.js', 'js/lesson.js', 'js/homework.js', 'js/hw-remind.js', 'js/report.js', 'js/admin.js',
   'js/push.js', 'js/update.js',
