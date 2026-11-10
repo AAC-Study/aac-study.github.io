@@ -477,6 +477,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Реши систему уравнений\n`5x + 2y = 27`\n`7x − 3y = 32`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`5x + 2y = 27`\n`7x − 3y = 32`\nWrite the answer like this: x = …, y = …"
         },
+        "example": {
+          "he": "```\n3x + 2y = 12\n2x − 3y = −5\n```\nרוצים להיפטר מ־y. המקדמים של y: `2` ו־−3``. את הראשונה כופלים ב־3, את השנייה ב־2:\n```\n9x + 6y = 36\n4x − 6y = −10\n```\nהסימנים של y שונים → מחברים:\n```\n13x = 26\nx = 26 / 13 = 2\n```\nמציבים את x במשוואה הראשונה:\n```\n3 × 2 + 2y = 12\n2y = 6\ny = 3\n```\nבדיקה במשוואה השנייה: `2 × 2 − 3 × 3 = −5` ✅",
+          "ru": "```\n3x + 2y = 12\n2x − 3y = −5\n```\nХотим убрать y. Коэффициенты при y: `2` и `−3`. Первое умножаем на 3, второе на 2:\n```\n9x + 6y = 36\n4x − 6y = −10\n```\nЗнаки при y разные → складываем:\n```\n13x = 26\nx = 26 / 13 = 2\n```\nПодставляем x в первое уравнение:\n```\n3 × 2 + 2y = 12\n2y = 6\ny = 3\n```\nПроверка во втором уравнении: `2 × 2 − 3 × 3 = −5` ✅",
+          "en": "```\n3x + 2y = 12\n2x − 3y = −5\n```\nWe want to remove y. The y coefficients: `2` and `−3`. Multiply the first by 3, the second by 2:\n```\n9x + 6y = 36\n4x − 6y = −10\n```\nThe y signs are different → we add:\n```\n13x = 26\nx = 26 / 13 = 2\n```\nPut x into the first equation:\n```\n3 × 2 + 2y = 12\n2y = 6\ny = 3\n```\nCheck in the second equation: `2 × 2 − 3 × 3 = −5` ✅"
+        },
         "answer": {
           "accept": [
             "x = 5, y = 1",
@@ -565,6 +570,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`7x − 4y = 5`\n`10x + 3y = 42`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`7x − 4y = 5`\n`10x + 3y = 42`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`7x − 4y = 5`\n`10x + 3y = 42`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n4x − 3y = 6\n5x + 2y = 19\n```\nרוצים להיפטר מ־y. המקדמים של y: `−3` ו־`2`. את הראשונה כופלים ב־2, את השנייה ב־3:\n```\n8x − 6y = 12\n15x + 6y = 57\n```\nהסימנים של y שונים → מחברים:\n```\n23x = 69\nx = 69 / 23 = 3\n```\nמציבים את x במשוואה הראשונה:\n```\n4 × 3 − 3y = 6\n−3y = −6\ny = 2\n```\nבדיקה במשוואה השנייה: `5 × 3 + 2 × 2 = 19` ✅",
+          "ru": "```\n4x − 3y = 6\n5x + 2y = 19\n```\nХотим убрать y. Коэффициенты при y: `−3` и `2`. Первое умножаем на 2, второе на 3:\n```\n8x − 6y = 12\n15x + 6y = 57\n```\nЗнаки при y разные → складываем:\n```\n23x = 69\nx = 69 / 23 = 3\n```\nПодставляем x в первое уравнение:\n```\n4 × 3 − 3y = 6\n−3y = −6\ny = 2\n```\nПроверка во втором уравнении: `5 × 3 + 2 × 2 = 19` ✅",
+          "en": "```\n4x − 3y = 6\n5x + 2y = 19\n```\nWe want to remove y. The y coefficients: `−3` and `2`. Multiply the first by 2, the second by 3:\n```\n8x − 6y = 12\n15x + 6y = 57\n```\nThe y signs are different → we add:\n```\n23x = 69\nx = 69 / 23 = 3\n```\nPut x into the first equation:\n```\n4 × 3 − 3y = 6\n−3y = −6\ny = 2\n```\nCheck in the second equation: `5 × 3 + 2 × 2 = 19` ✅"
         },
         "answer": {
           "accept": [
@@ -655,6 +665,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Реши систему уравнений\n`11x − 6y = 80`\n`12x + 4y = 24`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`11x − 6y = 80`\n`12x + 4y = 24`\nWrite the answer like this: x = …, y = …"
         },
+        "example": {
+          "he": "```\n3x − 4y = 10\n5x + 2y = 8\n```\nרוצים להיפטר מ־y. המקדמים של y: `−4` ו־`2`. את הראשונה כופלים ב־1, את השנייה ב־2:\n```\n3x − 4y = 10\n10x + 4y = 16\n```\nהסימנים של y שונים → מחברים:\n```\n13x = 26\nx = 26 / 13 = 2\n```\nמציבים את x במשוואה הראשונה:\n```\n3 × 2 − 4y = 10\n−4y = 4\ny = −1\n```\nבדיקה במשוואה השנייה: `5 × 2 + 2 × (−1) = 8` ✅",
+          "ru": "```\n3x − 4y = 10\n5x + 2y = 8\n```\nХотим убрать y. Коэффициенты при y: `−4` и `2`. Первое умножаем на 1, второе на 2:\n```\n3x − 4y = 10\n10x + 4y = 16\n```\nЗнаки при y разные → складываем:\n```\n13x = 26\nx = 26 / 13 = 2\n```\nПодставляем x в первое уравнение:\n```\n3 × 2 − 4y = 10\n−4y = 4\ny = −1\n```\nПроверка во втором уравнении: `5 × 2 + 2 × (−1) = 8` ✅",
+          "en": "```\n3x − 4y = 10\n5x + 2y = 8\n```\nWe want to remove y. The y coefficients: `−4` and `2`. Multiply the first by 1, the second by 2:\n```\n3x − 4y = 10\n10x + 4y = 16\n```\nThe y signs are different → we add:\n```\n13x = 26\nx = 26 / 13 = 2\n```\nPut x into the first equation:\n```\n3 × 2 − 4y = 10\n−4y = 4\ny = −1\n```\nCheck in the second equation: `5 × 2 + 2 × (−1) = 8` ✅"
+        },
         "answer": {
           "accept": [
             "x = 4, y = −6",
@@ -743,6 +758,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`9x + 5y = −38`\n`7x + 2y = −39`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`9x + 5y = −38`\n`7x + 2y = −39`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`9x + 5y = −38`\n`7x + 2y = −39`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n4x + 3y = 1\n5x + 2y = −4\n```\nרוצים להיפטר מ־y. המקדמים של y: `3` ו־`2`. את הראשונה כופלים ב־2, את השנייה ב־3:\n```\n8x + 6y = 2\n15x + 6y = −12\n```\nהסימנים של y זהים → מחסרים:\n```\n−7x = 14\nx = 14 / (−7) = −2\n```\nמציבים את x במשוואה הראשונה:\n```\n4 × (−2) + 3y = 1\n3y = 9\ny = 3\n```\nבדיקה במשוואה השנייה: `5 × (−2) + 2 × 3 = −4` ✅",
+          "ru": "```\n4x + 3y = 1\n5x + 2y = −4\n```\nХотим убрать y. Коэффициенты при y: `3` и `2`. Первое умножаем на 2, второе на 3:\n```\n8x + 6y = 2\n15x + 6y = −12\n```\nЗнаки при y одинаковые → вычитаем:\n```\n−7x = 14\nx = 14 / (−7) = −2\n```\nПодставляем x в первое уравнение:\n```\n4 × (−2) + 3y = 1\n3y = 9\ny = 3\n```\nПроверка во втором уравнении: `5 × (−2) + 2 × 3 = −4` ✅",
+          "en": "```\n4x + 3y = 1\n5x + 2y = −4\n```\nWe want to remove y. The y coefficients: `3` and `2`. Multiply the first by 2, the second by 3:\n```\n8x + 6y = 2\n15x + 6y = −12\n```\nThe y signs are the same → we subtract:\n```\n−7x = 14\nx = 14 / (−7) = −2\n```\nPut x into the first equation:\n```\n4 × (−2) + 3y = 1\n3y = 9\ny = 3\n```\nCheck in the second equation: `5 × (−2) + 2 × 3 = −4` ✅"
         },
         "answer": {
           "accept": [
@@ -833,6 +853,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Реши систему уравнений\n`−12x + 8y = −72`\n`17x + 4y = 56`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`−12x + 8y = −72`\n`17x + 4y = 56`\nWrite the answer like this: x = …, y = …"
         },
+        "example": {
+          "he": "```\n−6x + 4y = −24\n7x + 2y = 8\n```\nרוצים להיפטר מ־y. המקדמים של y: `4` ו־`2`. את הראשונה כופלים ב־1, את השנייה ב־2:\n```\n−6x + 4y = −24\n14x + 4y = 16\n```\nהסימנים של y זהים → מחסרים:\n```\n−20x = −40\nx = −40 / (−20) = 2\n```\nמציבים את x במשוואה הראשונה:\n```\n−6 × 2 + 4y = −24\n4y = −12\ny = −3\n```\nבדיקה במשוואה השנייה: `7 × 2 + 2 × (−3) = 8` ✅",
+          "ru": "```\n−6x + 4y = −24\n7x + 2y = 8\n```\nХотим убрать y. Коэффициенты при y: `4` и `2`. Первое умножаем на 1, второе на 2:\n```\n−6x + 4y = −24\n14x + 4y = 16\n```\nЗнаки при y одинаковые → вычитаем:\n```\n−20x = −40\nx = −40 / (−20) = 2\n```\nПодставляем x в первое уравнение:\n```\n−6 × 2 + 4y = −24\n4y = −12\ny = −3\n```\nПроверка во втором уравнении: `7 × 2 + 2 × (−3) = 8` ✅",
+          "en": "```\n−6x + 4y = −24\n7x + 2y = 8\n```\nWe want to remove y. The y coefficients: `4` and `2`. Multiply the first by 1, the second by 2:\n```\n−6x + 4y = −24\n14x + 4y = 16\n```\nThe y signs are the same → we subtract:\n```\n−20x = −40\nx = −40 / (−20) = 2\n```\nPut x into the first equation:\n```\n−6 × 2 + 4y = −24\n4y = −12\ny = −3\n```\nCheck in the second equation: `7 × 2 + 2 × (−3) = 8` ✅"
+        },
         "answer": {
           "accept": [
             "x = 4, y = −3",
@@ -910,6 +935,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`−4x + 16y = 12`\n`10x + 23y = 96`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`−4x + 16y = 12`\n`10x + 23y = 96`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`−4x + 16y = 12`\n`10x + 23y = 96`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n−3x + 9y = 0\n4x + 5y = 17\n```\nרוצים להיפטר מ־y. המקדמים של y: `9` ו־`5`. את הראשונה כופלים ב־5, את השנייה ב־9:\n```\n−15x + 45y = 0\n36x + 45y = 153\n```\nהסימנים של y זהים → מחסרים:\n```\n−51x = −153\nx = −153 / (−51) = 3\n```\nמציבים את x במשוואה הראשונה:\n```\n−3 × 3 + 9y = 0\n9y = 9\ny = 1\n```\nבדיקה במשוואה השנייה: `4 × 3 + 5 × 1 = 17` ✅",
+          "ru": "```\n−3x + 9y = 0\n4x + 5y = 17\n```\nХотим убрать y. Коэффициенты при y: `9` и `5`. Первое умножаем на 5, второе на 9:\n```\n−15x + 45y = 0\n36x + 45y = 153\n```\nЗнаки при y одинаковые → вычитаем:\n```\n−51x = −153\nx = −153 / (−51) = 3\n```\nПодставляем x в первое уравнение:\n```\n−3 × 3 + 9y = 0\n9y = 9\ny = 1\n```\nПроверка во втором уравнении: `4 × 3 + 5 × 1 = 17` ✅",
+          "en": "```\n−3x + 9y = 0\n4x + 5y = 17\n```\nWe want to remove y. The y coefficients: `9` and `5`. Multiply the first by 5, the second by 9:\n```\n−15x + 45y = 0\n36x + 45y = 153\n```\nThe y signs are the same → we subtract:\n```\n−51x = −153\nx = −153 / (−51) = 3\n```\nPut x into the first equation:\n```\n−3 × 3 + 9y = 0\n9y = 9\ny = 1\n```\nCheck in the second equation: `4 × 3 + 5 × 1 = 17` ✅"
         },
         "answer": {
           "accept": [
@@ -999,6 +1029,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`2x + 3y + 4z = 20`\n`3x − 2y + 5z = 13`\n`4x + 5y − 2z = 18`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
           "ru": "Реши систему уравнений\n`2x + 3y + 4z = 20`\n`3x − 2y + 5z = 13`\n`4x + 5y − 2z = 18`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
           "en": "Solve the system of equations\n`2x + 3y + 4z = 20`\n`3x − 2y + 5z = 13`\n`4x + 5y − 2z = 18`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+        },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  2  3 | 6 )\nR2  ( 2  −1  1 | 2 )\nR3  ( 3  1  −2 | 2 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 2R1   ( 0  −5  −5 | −10 )\nR3 ← R3 − 3R1   ( 0  −5  −11 | −16 )\nR3 ← R3 − R2    ( 0  0  −6 | −6 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n−6z = −6 → z = 1\n−5y − 5z = −10 → y = 1\nx + 2y + 3z = 6 → x = 1\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  2  3 | 6 )\nR2  ( 2  −1  1 | 2 )\nR3  ( 3  1  −2 | 2 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 2R1   ( 0  −5  −5 | −10 )\nR3 ← R3 − 3R1   ( 0  −5  −11 | −16 )\nR3 ← R3 − R2    ( 0  0  −6 | −6 )\n```\nОбратный ход, снизу вверх:\n```\n−6z = −6 → z = 1\n−5y − 5z = −10 → y = 1\nx + 2y + 3z = 6 → x = 1\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  2  3 | 6 )\nR2  ( 2  −1  1 | 2 )\nR3  ( 3  1  −2 | 2 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 2R1   ( 0  −5  −5 | −10 )\nR3 ← R3 − 3R1   ( 0  −5  −11 | −16 )\nR3 ← R3 − R2    ( 0  0  −6 | −6 )\n```\nBack substitution, bottom to top:\n```\n−6z = −6 → z = 1\n−5y − 5z = −10 → y = 1\nx + 2y + 3z = 6 → x = 1\n```"
         },
         "answer": {
           "accept": [
@@ -1197,6 +1232,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Реши систему уравнений\n`6x + 2y − 3z = 13`\n`3x + 4y + 2z = 23`\n`2x − 3y + 5z = 10`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
           "en": "Solve the system of equations\n`6x + 2y − 3z = 13`\n`3x + 4y + 2z = 23`\n`2x − 3y + 5z = 10`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
         },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  −1  2 | 4 )\nR2  ( 3  1  1 | 7 )\nR3  ( 2  3  −1 | 3 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 3R1    ( 0  4  −5 | −5 )\nR3 ← R3 − 2R1    ( 0  5  −5 | −5 )\nR3 ← 4R3 − 5R2   ( 0  0  5 | 5 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n5z = 5 → z = 1\n4y − 5z = −5 → y = 0\nx − y + 2z = 4 → x = 2\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  −1  2 | 4 )\nR2  ( 3  1  1 | 7 )\nR3  ( 2  3  −1 | 3 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 3R1    ( 0  4  −5 | −5 )\nR3 ← R3 − 2R1    ( 0  5  −5 | −5 )\nR3 ← 4R3 − 5R2   ( 0  0  5 | 5 )\n```\nОбратный ход, снизу вверх:\n```\n5z = 5 → z = 1\n4y − 5z = −5 → y = 0\nx − y + 2z = 4 → x = 2\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  −1  2 | 4 )\nR2  ( 3  1  1 | 7 )\nR3  ( 2  3  −1 | 3 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 3R1    ( 0  4  −5 | −5 )\nR3 ← R3 − 2R1    ( 0  5  −5 | −5 )\nR3 ← 4R3 − 5R2   ( 0  0  5 | 5 )\n```\nBack substitution, bottom to top:\n```\n5z = 5 → z = 1\n4y − 5z = −5 → y = 0\nx − y + 2z = 4 → x = 2\n```"
+        },
         "answer": {
           "accept": [
             "x = 95/37, y = 95/37, z = 93/37",
@@ -1302,6 +1342,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`5x + 2y + 3z = 26`\n`2x + 4y − 2z = 4`\n`3x − 3y + 4z = 11`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
           "ru": "Реши систему уравнений\n`5x + 2y + 3z = 26`\n`2x + 4y − 2z = 4`\n`3x − 3y + 4z = 11`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
           "en": "Solve the system of equations\n`5x + 2y + 3z = 26`\n`2x + 4y − 2z = 4`\n`3x − 3y + 4z = 11`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+        },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  1  2 | 3 )\nR2  ( 2  3  1 | 1 )\nR3  ( 3  −1  1 | 12 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 2R1   ( 0  1  −3 | −5 )\nR3 ← R3 − 3R1   ( 0  −4  −5 | 3 )\nR3 ← R3 + 4R2   ( 0  0  −17 | −17 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n−17z = −17 → z = 1\ny − 3z = −5 → y = −2\nx + y + 2z = 3 → x = 3\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  1  2 | 3 )\nR2  ( 2  3  1 | 1 )\nR3  ( 3  −1  1 | 12 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 2R1   ( 0  1  −3 | −5 )\nR3 ← R3 − 3R1   ( 0  −4  −5 | 3 )\nR3 ← R3 + 4R2   ( 0  0  −17 | −17 )\n```\nОбратный ход, снизу вверх:\n```\n−17z = −17 → z = 1\ny − 3z = −5 → y = −2\nx + y + 2z = 3 → x = 3\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  1  2 | 3 )\nR2  ( 2  3  1 | 1 )\nR3  ( 3  −1  1 | 12 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 2R1   ( 0  1  −3 | −5 )\nR3 ← R3 − 3R1   ( 0  −4  −5 | 3 )\nR3 ← R3 + 4R2   ( 0  0  −17 | −17 )\n```\nBack substitution, bottom to top:\n```\n−17z = −17 → z = 1\ny − 3z = −5 → y = −2\nx + y + 2z = 3 → x = 3\n```"
         },
         "answer": {
           "accept": [
@@ -1482,6 +1527,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Реши систему уравнений\n`5x + 3y + 2z = 28`\n`2x + 4y + 3z = 26`\n`3x + 2y + 5z = 30`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
           "en": "Solve the system of equations\n`5x + 3y + 2z = 28`\n`2x + 4y + 3z = 26`\n`3x + 2y + 5z = 30`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
         },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  2  2 | 3 )\nR2  ( 2  1  3 | 1 )\nR3  ( 3  2  1 | 6 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 2R1     ( 0  −3  −1 | −5 )\nR3 ← R3 − 3R1     ( 0  −4  −5 | −3 )\nR3 ← −3R3 + 4R2   ( 0  0  11 | −11 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n11z = −11 → z = −1\n−3y − z = −5 → y = 2\nx + 2y + 2z = 3 → x = 1\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  2  2 | 3 )\nR2  ( 2  1  3 | 1 )\nR3  ( 3  2  1 | 6 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 2R1     ( 0  −3  −1 | −5 )\nR3 ← R3 − 3R1     ( 0  −4  −5 | −3 )\nR3 ← −3R3 + 4R2   ( 0  0  11 | −11 )\n```\nОбратный ход, снизу вверх:\n```\n11z = −11 → z = −1\n−3y − z = −5 → y = 2\nx + 2y + 2z = 3 → x = 1\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  2  2 | 3 )\nR2  ( 2  1  3 | 1 )\nR3  ( 3  2  1 | 6 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 2R1     ( 0  −3  −1 | −5 )\nR3 ← R3 − 3R1     ( 0  −4  −5 | −3 )\nR3 ← −3R3 + 4R2   ( 0  0  11 | −11 )\n```\nBack substitution, bottom to top:\n```\n11z = −11 → z = −1\n−3y − z = −5 → y = 2\nx + 2y + 2z = 3 → x = 1\n```"
+        },
         "answer": {
           "accept": [
             "x = 8/3, y = 8/3, z = 10/3",
@@ -1579,6 +1629,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`3x + 4y + 5z = 26`\n`4x + 5y + 3z = 25`\n`5x + 3y + 4z = 21`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
           "ru": "Реши систему уравнений\n`3x + 4y + 5z = 26`\n`4x + 5y + 3z = 25`\n`5x + 3y + 4z = 21`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
           "en": "Solve the system of equations\n`3x + 4y + 5z = 26`\n`4x + 5y + 3z = 25`\n`5x + 3y + 4z = 21`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+        },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  3  2 | 7 )\nR2  ( 2  1  −1 | −1 )\nR3  ( 1  −2  3 | −2 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 2R1   ( 0  −5  −5 | −15 )\nR3 ← R3 − R1    ( 0  −5  1 | −9 )\nR3 ← R3 − R2    ( 0  0  6 | 6 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n6z = 6 → z = 1\n−5y − 5z = −15 → y = 2\nx + 3y + 2z = 7 → x = −1\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  3  2 | 7 )\nR2  ( 2  1  −1 | −1 )\nR3  ( 1  −2  3 | −2 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 2R1   ( 0  −5  −5 | −15 )\nR3 ← R3 − R1    ( 0  −5  1 | −9 )\nR3 ← R3 − R2    ( 0  0  6 | 6 )\n```\nОбратный ход, снизу вверх:\n```\n6z = 6 → z = 1\n−5y − 5z = −15 → y = 2\nx + 3y + 2z = 7 → x = −1\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  3  2 | 7 )\nR2  ( 2  1  −1 | −1 )\nR3  ( 1  −2  3 | −2 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 2R1   ( 0  −5  −5 | −15 )\nR3 ← R3 − R1    ( 0  −5  1 | −9 )\nR3 ← R3 − R2    ( 0  0  6 | 6 )\n```\nBack substitution, bottom to top:\n```\n6z = 6 → z = 1\n−5y − 5z = −15 → y = 2\nx + 3y + 2z = 7 → x = −1\n```"
         },
         "answer": {
           "accept": [
@@ -1678,6 +1733,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Реши систему уравнений\n`4x + 3y + 2z = 25`\n`3x + 2y + 4z = 24`\n`2x + 4y + 3z = 23`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
           "en": "Solve the system of equations\n`4x + 3y + 2z = 25`\n`3x + 2y + 4z = 24`\n`2x + 4y + 3z = 23`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
         },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  1  −1 | 1 )\nR2  ( 2  3  1 | 7 )\nR3  ( 3  −1  2 | 17 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 2R1   ( 0  1  3 | 5 )\nR3 ← R3 − 3R1   ( 0  −4  5 | 14 )\nR3 ← R3 + 4R2   ( 0  0  17 | 34 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n17z = 34 → z = 2\ny + 3z = 5 → y = −1\nx + y − z = 1 → x = 4\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  1  −1 | 1 )\nR2  ( 2  3  1 | 7 )\nR3  ( 3  −1  2 | 17 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 2R1   ( 0  1  3 | 5 )\nR3 ← R3 − 3R1   ( 0  −4  5 | 14 )\nR3 ← R3 + 4R2   ( 0  0  17 | 34 )\n```\nОбратный ход, снизу вверх:\n```\n17z = 34 → z = 2\ny + 3z = 5 → y = −1\nx + y − z = 1 → x = 4\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  1  −1 | 1 )\nR2  ( 2  3  1 | 7 )\nR3  ( 3  −1  2 | 17 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 2R1   ( 0  1  3 | 5 )\nR3 ← R3 − 3R1   ( 0  −4  5 | 14 )\nR3 ← R3 + 4R2   ( 0  0  17 | 34 )\n```\nBack substitution, bottom to top:\n```\n17z = 34 → z = 2\ny + 3z = 5 → y = −1\nx + y − z = 1 → x = 4\n```"
+        },
         "answer": {
           "accept": [
             "x = 10/3, y = 7/3, z = 7/3",
@@ -1776,6 +1836,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Из «תרגיל כיתה 2» преподавателя. Реши методом Гаусса\n`5x + 9y = 16`\n`x + 2y = 4`\nЗапиши так: x = …, y = …",
           "en": "From the teacher's class exercise 2. Solve by Gaussian elimination\n`5x + 9y = 16`\n`x + 2y = 4`\nWrite like: x = …, y = …"
         },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  3 | 5 )\nR2  ( 2  5 | 8 )\n```\nמאפסים את x בשורה השנייה:\n```\nR2 ← R2 − 2R1   ( 0  −1 | −2 )\n```\nהצבה לאחור:\n```\n−y = −2 → y = 2\nx + 3y = 5 → x = −1\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  3 | 5 )\nR2  ( 2  5 | 8 )\n```\nОбнуляем x во второй строке:\n```\nR2 ← R2 − 2R1   ( 0  −1 | −2 )\n```\nОбратный ход:\n```\n−y = −2 → y = 2\nx + 3y = 5 → x = −1\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  3 | 5 )\nR2  ( 2  5 | 8 )\n```\nZero out x in the second row:\n```\nR2 ← R2 − 2R1   ( 0  −1 | −2 )\n```\nBack substitution:\n```\n−y = −2 → y = 2\nx + 3y = 5 → x = −1\n```"
+        },
         "answer": {
           "accept": [
             "x = −4, y = 4",
@@ -1835,6 +1900,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Из «תרגיל כיתה 2» преподавателя. Реши методом Гаусса\n`13x + 19y = 29`\n`−12x + 45y = −13`\nЗапиши так: x = …, y = … (можно дробями)",
           "en": "From the teacher's class exercise 2. Solve by Gaussian elimination\n`13x + 19y = 29`\n`−12x + 45y = −13`\nWrite like: x = …, y = … (fractions are fine)"
         },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 3  2 | 4 )\nR2  ( −2  5 | 9 )\n```\nמאפסים את x בשורה השנייה:\n```\nR2 ← 3R2 + 2R1   ( 0  19 | 35 )\n```\nהצבה לאחור:\n```\n19y = 35 → y = 35/19\n3x + 2y = 4 → x = 2/19\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 3  2 | 4 )\nR2  ( −2  5 | 9 )\n```\nОбнуляем x во второй строке:\n```\nR2 ← 3R2 + 2R1   ( 0  19 | 35 )\n```\nОбратный ход:\n```\n19y = 35 → y = 35/19\n3x + 2y = 4 → x = 2/19\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 3  2 | 4 )\nR2  ( −2  5 | 9 )\n```\nZero out x in the second row:\n```\nR2 ← 3R2 + 2R1   ( 0  19 | 35 )\n```\nBack substitution:\n```\n19y = 35 → y = 35/19\n3x + 2y = 4 → x = 2/19\n```"
+        },
         "answer": {
           "accept": [
             "x = 1552/813, y = 179/813",
@@ -1885,6 +1955,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "מתרגיל כיתה 2 של המרצה. פתרו בשיטת גאוס\n`2x − 5y + 2z = 7`\n`x + 2y − 4z = 3`\n`3x − 4y − 6z = 10`\nכתבו את התשובה כך: x = …, y = …, z = …\nאפשר לכתוב שברים, למשל 3/4.",
           "ru": "Из «תרגיל כיתה 2» преподавателя. Реши методом Гаусса\n`2x − 5y + 2z = 7`\n`x + 2y − 4z = 3`\n`3x − 4y − 6z = 10`\nЗапиши ответ так: x = …, y = …, z = …\nМожно писать дроби, например 3/4.",
           "en": "From the teacher's class exercise 2. Solve by Gaussian elimination\n`2x − 5y + 2z = 7`\n`x + 2y − 4z = 3`\n`3x − 4y − 6z = 10`\nWrite the answer like this: x = …, y = …, z = …\nFractions are fine, e.g. 3/4."
+        },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  −2  1 | 1 )\nR2  ( 2  1  −3 | 2 )\nR3  ( 3  −1  1 | 6 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 2R1   ( 0  5  −5 | 0 )\nR3 ← R3 − 3R1   ( 0  5  −2 | 3 )\nR3 ← R3 − R2    ( 0  0  3 | 3 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n3z = 3 → z = 1\n5y − 5z = 0 → y = 1\nx − 2y + z = 1 → x = 2\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  −2  1 | 1 )\nR2  ( 2  1  −3 | 2 )\nR3  ( 3  −1  1 | 6 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 2R1   ( 0  5  −5 | 0 )\nR3 ← R3 − 3R1   ( 0  5  −2 | 3 )\nR3 ← R3 − R2    ( 0  0  3 | 3 )\n```\nОбратный ход, снизу вверх:\n```\n3z = 3 → z = 1\n5y − 5z = 0 → y = 1\nx − 2y + z = 1 → x = 2\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  −2  1 | 1 )\nR2  ( 2  1  −3 | 2 )\nR3  ( 3  −1  1 | 6 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 2R1   ( 0  5  −5 | 0 )\nR3 ← R3 − 3R1   ( 0  5  −2 | 3 )\nR3 ← R3 − R2    ( 0  0  3 | 3 )\n```\nBack substitution, bottom to top:\n```\n3z = 3 → z = 1\n5y − 5z = 0 → y = 1\nx − 2y + z = 1 → x = 2\n```"
         },
         "answer": {
           "accept": [
@@ -1989,6 +2064,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Из «תרגיל כיתה 2» преподавателя. Что получится методом Гаусса?\n`2x − 3y + 5z = 8`\n`2x + 4y − 6z = −5`\n`x + 2y − 3z = −1`",
           "en": "From the teacher's class exercise 2. What does Gaussian elimination give?\n`2x − 3y + 5z = 8`\n`2x + 4y − 6z = −5`\n`x + 2y − 3z = −1`"
         },
+        "example": {
+          "he": "שני מקרים מיוחדים על מערכת קטנה:\n```\nx + y = 2\n2x + 2y = 5\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 1 )`, כלומר `0 = 1`. זה לא ייתכן → אין פתרונות.\n```\nx + y = 2\n2x + 2y = 4\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 0 )`, כלומר `0 = 0`. השורה נעלמה, יש פחות משוואות מנעלמים → אינסוף פתרונות.\nאם בסוף הכול תקין (כמו `3z = 6`) → פתרון אחד.",
+          "ru": "Два особых случая на маленькой системе:\n```\nx + y = 2\n2x + 2y = 5\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 1 )`, то есть `0 = 1`. Так не бывает → решений нет.\n```\nx + y = 2\n2x + 2y = 4\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 0 )`, то есть `0 = 0`. Строка исчезла, уравнений меньше, чем неизвестных → бесконечно много решений.\nЕсли в конце всё нормально (как `3z = 6`) → одно решение.",
+          "en": "Two special cases on a small system:\n```\nx + y = 2\n2x + 2y = 5\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 1 )`, that is `0 = 1`. That is impossible → no solutions.\n```\nx + y = 2\n2x + 2y = 4\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 0 )`, that is `0 = 0`. The row vanished, there are fewer equations than unknowns → infinitely many solutions.\nIf at the end everything is normal (like `3z = 6`) → one solution."
+        },
         "options": [
           {
             "he": "פתרון יחיד",
@@ -2043,6 +2123,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "Из «תרגיל כיתה 2» преподавателя. Что получится методом Гаусса?\n`2x + 3y − 4z = −2`\n`x − 2y + z = 7`\n`3x + y − 3z = 5`",
           "en": "From the teacher's class exercise 2. What does Gaussian elimination give?\n`2x + 3y − 4z = −2`\n`x − 2y + z = 7`\n`3x + y − 3z = 5`"
         },
+        "example": {
+          "he": "שני מקרים מיוחדים על מערכת קטנה:\n```\nx + y = 2\n2x + 2y = 5\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 1 )`, כלומר `0 = 1`. זה לא ייתכן → אין פתרונות.\n```\nx + y = 2\n2x + 2y = 4\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 0 )`, כלומר `0 = 0`. השורה נעלמה, יש פחות משוואות מנעלמים → אינסוף פתרונות.\nאם בסוף הכול תקין (כמו `3z = 6`) → פתרון אחד.",
+          "ru": "Два особых случая на маленькой системе:\n```\nx + y = 2\n2x + 2y = 5\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 1 )`, то есть `0 = 1`. Так не бывает → решений нет.\n```\nx + y = 2\n2x + 2y = 4\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 0 )`, то есть `0 = 0`. Строка исчезла, уравнений меньше, чем неизвестных → бесконечно много решений.\nЕсли в конце всё нормально (как `3z = 6`) → одно решение.",
+          "en": "Two special cases on a small system:\n```\nx + y = 2\n2x + 2y = 5\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 1 )`, that is `0 = 1`. That is impossible → no solutions.\n```\nx + y = 2\n2x + 2y = 4\n```\n`R2 ← R2 − 2R1` → `( 0  0 | 0 )`, that is `0 = 0`. The row vanished, there are fewer equations than unknowns → infinitely many solutions.\nIf at the end everything is normal (like `3z = 6`) → one solution."
+        },
         "options": [
           {
             "he": "פתרון יחיד",
@@ -2094,6 +2179,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`3x + 2y = 18`\n`x − 2y = −2`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`3x + 2y = 18`\n`x − 2y = −2`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`3x + 2y = 18`\n`x − 2y = −2`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n2x + 3y = 12\nx − 3y = −3\n```\nהמקדמים של y: `3` ו־−3``, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n3x = 9\nx = 9 / 3 = 3\n```\nמציבים את x במשוואה הראשונה:\n```\n2 × 3 + 3y = 12\n3y = 6\ny = 2\n```\nבדיקה במשוואה השנייה: `1 × 3 − 3 × 2 = −3` ✅",
+          "ru": "```\n2x + 3y = 12\nx − 3y = −3\n```\nКоэффициенты при y: `3` и `−3`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n3x = 9\nx = 9 / 3 = 3\n```\nПодставляем x в первое уравнение:\n```\n2 × 3 + 3y = 12\n3y = 6\ny = 2\n```\nПроверка во втором уравнении: `1 × 3 − 3 × 2 = −3` ✅",
+          "en": "```\n2x + 3y = 12\nx − 3y = −3\n```\nThe y coefficients: `3` and `−3`, no need to multiply.\nThe y signs are different → we add:\n```\n3x = 9\nx = 9 / 3 = 3\n```\nPut x into the first equation:\n```\n2 × 3 + 3y = 12\n3y = 6\ny = 2\n```\nCheck in the second equation: `1 × 3 − 3 × 2 = −3` ✅"
         },
         "answer": {
           "accept": [
@@ -2166,6 +2256,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`4x + 3y = 5`\n`2x − 5y = 9`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`4x + 3y = 5`\n`2x − 5y = 9`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`4x + 3y = 5`\n`2x − 5y = 9`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n3x + 2y = −1\n4x − 3y = 10\n```\nרוצים להיפטר מ־y. המקדמים של y: `2` ו־−3``. את הראשונה כופלים ב־3, את השנייה ב־2:\n```\n9x + 6y = −3\n8x − 6y = 20\n```\nהסימנים של y שונים → מחברים:\n```\n17x = 17\nx = 17 / 17 = 1\n```\nמציבים את x במשוואה הראשונה:\n```\n3 × 1 + 2y = −1\n2y = −4\ny = −2\n```\nבדיקה במשוואה השנייה: `4 × 1 − 3 × (−2) = 10` ✅",
+          "ru": "```\n3x + 2y = −1\n4x − 3y = 10\n```\nХотим убрать y. Коэффициенты при y: `2` и `−3`. Первое умножаем на 3, второе на 2:\n```\n9x + 6y = −3\n8x − 6y = 20\n```\nЗнаки при y разные → складываем:\n```\n17x = 17\nx = 17 / 17 = 1\n```\nПодставляем x в первое уравнение:\n```\n3 × 1 + 2y = −1\n2y = −4\ny = −2\n```\nПроверка во втором уравнении: `4 × 1 − 3 × (−2) = 10` ✅",
+          "en": "```\n3x + 2y = −1\n4x − 3y = 10\n```\nWe want to remove y. The y coefficients: `2` and `−3`. Multiply the first by 3, the second by 2:\n```\n9x + 6y = −3\n8x − 6y = 20\n```\nThe y signs are different → we add:\n```\n17x = 17\nx = 17 / 17 = 1\n```\nPut x into the first equation:\n```\n3 × 1 + 2y = −1\n2y = −4\ny = −2\n```\nCheck in the second equation: `4 × 1 − 3 × (−2) = 10` ✅"
         },
         "answer": {
           "accept": [
@@ -2246,6 +2341,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "В системе `5x + 2y = 27`, `7x − 3y = 32` хотим убрать y. Что делаем?",
           "en": "In the system `5x + 2y = 27`, `7x − 3y = 32` we want to eliminate y. What do we do?"
         },
+        "example": {
+          "he": "המערכת `3x + 4y = 10`, `2x − 5y = −1`. רוצים להיפטר מ־y: המקדמים 4 ו־5 → המספר המשותף 20 → את הראשונה כופלים ב־5, את השנייה ב־4 → מקבלים `20y` ו־−20`y`. הסימנים שונים → מחברים, ו־y נעלם. אם הסימנים היו זהים, היה צריך לחסר.",
+          "ru": "Система `3x + 4y = 10`, `2x − 5y = −1`. Хотим убрать y: коэффициенты 4 и 5 → общее число 20 → первое умножаем на 5, второе на 4 → получаем `20y` и `−20y`. Знаки разные → складываем, и y исчезает. Если бы знаки были одинаковые, надо было бы вычитать.",
+          "en": "The system `3x + 4y = 10`, `2x − 5y = −1`. We want to remove y: the coefficients 4 and 5 → common number 20 → multiply the first by 5, the second by 4 → we get `20y` and `−20y`. The signs differ → add, and y disappears. If the signs were the same, you would subtract."
+        },
         "options": [
           {
             "he": "כופלים את הראשונה ב־3 ואת השנייה ב־2, ומחברים",
@@ -2308,6 +2408,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`x + y + z = 6`\n`2x − y + z = 3`\n`x + 2y − z = 2`\nכתבו את התשובה כך: x = …, y = …, z = …",
           "ru": "Реши систему уравнений\n`x + y + z = 6`\n`2x − y + z = 3`\n`x + 2y − z = 2`\nЗапиши ответ так: x = …, y = …, z = …",
           "en": "Solve the system of equations\n`x + y + z = 6`\n`2x − y + z = 3`\n`x + 2y − z = 2`\nWrite the answer like this: x = …, y = …, z = …"
+        },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  1  1 | 6 )\nR2  ( 2  1  −1 | 5 )\nR3  ( 1  −1  2 | 6 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 2R1   ( 0  −1  −3 | −7 )\nR3 ← R3 − R1    ( 0  −2  1 | 0 )\nR3 ← R3 − 2R2   ( 0  0  7 | 14 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n7z = 14 → z = 2\n−y − 3z = −7 → y = 1\nx + y + z = 6 → x = 3\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  1  1 | 6 )\nR2  ( 2  1  −1 | 5 )\nR3  ( 1  −1  2 | 6 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 2R1   ( 0  −1  −3 | −7 )\nR3 ← R3 − R1    ( 0  −2  1 | 0 )\nR3 ← R3 − 2R2   ( 0  0  7 | 14 )\n```\nОбратный ход, снизу вверх:\n```\n7z = 14 → z = 2\n−y − 3z = −7 → y = 1\nx + y + z = 6 → x = 3\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  1  1 | 6 )\nR2  ( 2  1  −1 | 5 )\nR3  ( 1  −1  2 | 6 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 2R1   ( 0  −1  −3 | −7 )\nR3 ← R3 − R1    ( 0  −2  1 | 0 )\nR3 ← R3 − 2R2   ( 0  0  7 | 14 )\n```\nBack substitution, bottom to top:\n```\n7z = 14 → z = 2\n−y − 3z = −7 → y = 1\nx + y + z = 6 → x = 3\n```"
         },
         "answer": {
           "accept": [
@@ -2399,6 +2504,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`2x + y − z = 3`\n`x − y + 2z = 5`\n`3x + 2y + z = 10`\nכתבו את התשובה כך: x = …, y = …, z = …",
           "ru": "Реши систему уравнений\n`2x + y − z = 3`\n`x − y + 2z = 5`\n`3x + 2y + z = 10`\nЗапиши ответ так: x = …, y = …, z = …",
           "en": "Solve the system of equations\n`2x + y − z = 3`\n`x − y + 2z = 5`\n`3x + 2y + z = 10`\nWrite the answer like this: x = …, y = …, z = …"
+        },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  2  1 | 3 )\nR2  ( 2  −1  3 | 0 )\nR3  ( 3  1  −2 | 9 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 2R1   ( 0  −5  1 | −6 )\nR3 ← R3 − 3R1   ( 0  −5  −5 | 0 )\nR3 ← R3 − R2    ( 0  0  −6 | 6 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n−6z = 6 → z = −1\n−5y + z = −6 → y = 1\nx + 2y + z = 3 → x = 2\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  2  1 | 3 )\nR2  ( 2  −1  3 | 0 )\nR3  ( 3  1  −2 | 9 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 2R1   ( 0  −5  1 | −6 )\nR3 ← R3 − 3R1   ( 0  −5  −5 | 0 )\nR3 ← R3 − R2    ( 0  0  −6 | 6 )\n```\nОбратный ход, снизу вверх:\n```\n−6z = 6 → z = −1\n−5y + z = −6 → y = 1\nx + 2y + z = 3 → x = 2\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  2  1 | 3 )\nR2  ( 2  −1  3 | 0 )\nR3  ( 3  1  −2 | 9 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 2R1   ( 0  −5  1 | −6 )\nR3 ← R3 − 3R1   ( 0  −5  −5 | 0 )\nR3 ← R3 − R2    ( 0  0  −6 | 6 )\n```\nBack substitution, bottom to top:\n```\n−6z = 6 → z = −1\n−5y + z = −6 → y = 1\nx + 2y + z = 3 → x = 2\n```"
         },
         "answer": {
           "accept": [
@@ -2492,6 +2602,11 @@ window.LESSONS["math-2026-10-25"] = {
           "ru": "В расширенной матрице `R1  ( 1  2  −1 | 4 )`, `R2  ( 3  1  2 | 13 )` делаем `R2 ← R2 − 3R1`. Какой стала строка R2?",
           "en": "In the augmented matrix `R1  ( 1  2  −1 | 4 )`, `R2  ( 3  1  2 | 13 )` we do `R2 ← R2 − 3R1`. What is the new row R2?"
         },
+        "example": {
+          "he": "השורות:\n```\nR1  ( 1  3  2 | 5 )\nR2  ( 2  1  −1 | 4 )\n```\n`R2 ← R2 − 2R1`: מכל מספר ב־R2 מחסרים פעמיים את המספר של R1 באותה עמודה:\n```\n2 − 2 × 1 = 0\n1 − 2 × 3 = −5\n−1 − 2 × 2 = −5\n4 − 2 × 5 = −6\nR2  ( 0  −5  −5 | −6 )\n```",
+          "ru": "Строки:\n```\nR1  ( 1  3  2 | 5 )\nR2  ( 2  1  −1 | 4 )\n```\n`R2 ← R2 − 2R1`: из каждого числа R2 вычитаем удвоенное число R1 в том же столбце:\n```\n2 − 2 × 1 = 0\n1 − 2 × 3 = −5\n−1 − 2 × 2 = −5\n4 − 2 × 5 = −6\nR2  ( 0  −5  −5 | −6 )\n```",
+          "en": "The rows:\n```\nR1  ( 1  3  2 | 5 )\nR2  ( 2  1  −1 | 4 )\n```\n`R2 ← R2 − 2R1`: from each number of R2 subtract twice the number of R1 in the same column:\n```\n2 − 2 × 1 = 0\n1 − 2 × 3 = −5\n−1 − 2 × 2 = −5\n4 − 2 × 5 = −6\nR2  ( 0  −5  −5 | −6 )\n```"
+        },
         "options": [
           "( 0  −5  5 | 1 )",
           "( 0  −5  −1 | 1 )",
@@ -2544,6 +2659,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`x + y + z = 2`\n`2x + 3y + z = 1`\n`x − y + 2z = 7`\nכתבו את התשובה כך: x = …, y = …, z = …",
           "ru": "Реши систему уравнений\n`x + y + z = 2`\n`2x + 3y + z = 1`\n`x − y + 2z = 7`\nЗапиши ответ так: x = …, y = …, z = …",
           "en": "Solve the system of equations\n`x + y + z = 2`\n`2x + 3y + z = 1`\n`x − y + 2z = 7`\nWrite the answer like this: x = …, y = …, z = …"
+        },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  1  1 | 4 )\nR2  ( 3  2  1 | 7 )\nR3  ( 1  −1  3 | 12 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 3R1   ( 0  −1  −2 | −5 )\nR3 ← R3 − R1    ( 0  −2  2 | 8 )\nR3 ← R3 − 2R2   ( 0  0  6 | 18 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n6z = 18 → z = 3\n−y − 2z = −5 → y = −1\nx + y + z = 4 → x = 2\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  1  1 | 4 )\nR2  ( 3  2  1 | 7 )\nR3  ( 1  −1  3 | 12 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 3R1   ( 0  −1  −2 | −5 )\nR3 ← R3 − R1    ( 0  −2  2 | 8 )\nR3 ← R3 − 2R2   ( 0  0  6 | 18 )\n```\nОбратный ход, снизу вверх:\n```\n6z = 18 → z = 3\n−y − 2z = −5 → y = −1\nx + y + z = 4 → x = 2\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  1  1 | 4 )\nR2  ( 3  2  1 | 7 )\nR3  ( 1  −1  3 | 12 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 3R1   ( 0  −1  −2 | −5 )\nR3 ← R3 − R1    ( 0  −2  2 | 8 )\nR3 ← R3 − 2R2   ( 0  0  6 | 18 )\n```\nBack substitution, bottom to top:\n```\n6z = 18 → z = 3\n−y − 2z = −5 → y = −1\nx + y + z = 4 → x = 2\n```"
         },
         "answer": {
           "accept": [
@@ -2623,6 +2743,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "פתרו את מערכת המשוואות\n`3x + y − 2z = −9`\n`2x − 3y + z = −4`\n`x + 4y + 3z = 19`\nכתבו את התשובה כך: x = …, y = …, z = …",
           "ru": "Реши систему уравнений\n`3x + y − 2z = −9`\n`2x − 3y + z = −4`\n`x + 4y + 3z = 19`\nЗапиши ответ так: x = …, y = …, z = …",
           "en": "Solve the system of equations\n`3x + y − 2z = −9`\n`2x − 3y + z = −4`\n`x + 4y + 3z = 19`\nWrite the answer like this: x = …, y = …, z = …"
+        },
+        "example": {
+          "he": "המטריצה המורחבת:\n```\nR1  ( 1  2  −1 | 3 )\nR2  ( 2  1  1 | 3 )\nR3  ( 3  −1  2 | −2 )\n```\nמאפסים את x ב־R2 וב־R3, ואחר כך את y ב־R3:\n```\nR2 ← R2 − 2R1     ( 0  −3  3 | −3 )\nR3 ← R3 − 3R1     ( 0  −7  5 | −11 )\nR3 ← −3R3 + 7R2   ( 0  0  6 | 12 )\n```\nהצבה לאחור, מלמטה למעלה:\n```\n6z = 12 → z = 2\n−3y + 3z = −3 → y = 3\nx + 2y − z = 3 → x = −1\n```",
+          "ru": "Расширенная матрица:\n```\nR1  ( 1  2  −1 | 3 )\nR2  ( 2  1  1 | 3 )\nR3  ( 3  −1  2 | −2 )\n```\nОбнуляем x в R2 и R3, потом y в R3:\n```\nR2 ← R2 − 2R1     ( 0  −3  3 | −3 )\nR3 ← R3 − 3R1     ( 0  −7  5 | −11 )\nR3 ← −3R3 + 7R2   ( 0  0  6 | 12 )\n```\nОбратный ход, снизу вверх:\n```\n6z = 12 → z = 2\n−3y + 3z = −3 → y = 3\nx + 2y − z = 3 → x = −1\n```",
+          "en": "The augmented matrix:\n```\nR1  ( 1  2  −1 | 3 )\nR2  ( 2  1  1 | 3 )\nR3  ( 3  −1  2 | −2 )\n```\nZero out x in R2 and R3, then y in R3:\n```\nR2 ← R2 − 2R1     ( 0  −3  3 | −3 )\nR3 ← R3 − 3R1     ( 0  −7  5 | −11 )\nR3 ← −3R3 + 7R2   ( 0  0  6 | 12 )\n```\nBack substitution, bottom to top:\n```\n6z = 12 → z = 2\n−3y + 3z = −3 → y = 3\nx + 2y − z = 3 → x = −1\n```"
         },
         "answer": {
           "accept": [
@@ -2704,6 +2829,11 @@ window.LESSONS["math-2026-10-25"] = {
           "he": "אחרי שיטת גאוס התקבלה מטריצה מדורגת\n`R1  ( 1  2  −1 | 3 )`\n`R2  ( 0  1   3 | 11 )`\n`R3  ( 0  0   2 | 6 )`\nמצאו את x.",
           "ru": "После метода Гаусса получилась ступенчатая матрица\n`R1  ( 1  2  −1 | 3 )`\n`R2  ( 0  1   3 | 11 )`\n`R3  ( 0  0   2 | 6 )`\nНайди x.",
           "en": "After Gaussian elimination we got a staircase matrix\n`R1  ( 1  2  −1 | 3 )`\n`R2  ( 0  1   3 | 11 )`\n`R3  ( 0  0   2 | 6 )`\nFind x."
+        },
+        "example": {
+          "he": "מטריצה מדורגת:\n```\nR1  ( 1  1  1 | 6 )\nR2  ( 0  1  2 | 7 )\nR3  ( 0  0  3 | 6 )\n```\nהולכים מלמטה למעלה:\n```\n3z = 6 → z = 2\ny + 2 × 2 = 7 → y = 3\nx + 3 + 2 = 6 → x = 1\n```",
+          "ru": "Ступенчатая матрица:\n```\nR1  ( 1  1  1 | 6 )\nR2  ( 0  1  2 | 7 )\nR3  ( 0  0  3 | 6 )\n```\nИдём снизу вверх:\n```\n3z = 6 → z = 2\ny + 2 × 2 = 7 → y = 3\nx + 3 + 2 = 6 → x = 1\n```",
+          "en": "An echelon matrix:\n```\nR1  ( 1  1  1 | 6 )\nR2  ( 0  1  2 | 7 )\nR3  ( 0  0  3 | 6 )\n```\nGo from the bottom up:\n```\n3z = 6 → z = 2\ny + 2 × 2 = 7 → y = 3\nx + 3 + 2 = 6 → x = 1\n```"
         },
         "answer": {
           "value": "2"

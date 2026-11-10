@@ -574,6 +574,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `−3.5x = 31.5`",
           "en": "Solve the equation `−3.5x = 31.5`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n−2.5x = 12.5\nx = 12.5 / (−2.5)\nx = −5\n```\nמחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n−2.5x = 12.5\nx = 12.5 / (−2.5)\nx = −5\n```\nДелим обе части на число перед x.",
+          "en": "Equation:\n```\n−2.5x = 12.5\nx = 12.5 / (−2.5)\nx = −5\n```\nDivide both sides by the number in front of x."
+        },
         "answer": {
           "value": "-9"
         },
@@ -629,6 +634,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `3x = 18`",
           "en": "Solve the equation `3x = 18`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n4x = 28\nx = 28 / 4\nx = 7\n```\nמחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n4x = 28\nx = 28 / 4\nx = 7\n```\nДелим обе части на число перед x.",
+          "en": "Equation:\n```\n4x = 28\nx = 28 / 4\nx = 7\n```\nDivide both sides by the number in front of x."
+        },
         "answer": {
           "value": "6"
         },
@@ -678,6 +688,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `x − 8 = 6`",
           "ru": "Реши уравнение `x − 8 = 6`",
           "en": "Solve the equation `x − 8 = 6`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\nx − 5 = 7\nx = 7 + 5\nx = 12\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\nx − 5 = 7\nx = 7 + 5\nx = 12\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\nx − 5 = 7\nx = 7 + 5\nx = 12\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign."
         },
         "answer": {
           "value": "14"
@@ -729,6 +744,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `x − 4.5 = −13`",
           "en": "Solve the equation `x − 4.5 = −13`"
         },
+        "example": {
+          "he": "המשוואה:\n```\nx − 2.5 = −7\nx = −7 + 2.5\nx = −4.5\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\nx − 2.5 = −7\nx = −7 + 2.5\nx = −4.5\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\nx − 2.5 = −7\nx = −7 + 2.5\nx = −4.5\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign."
+        },
         "answer": {
           "value": "-8.5"
         },
@@ -778,6 +798,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `−12.3 − 1.6x = −8.3`",
           "ru": "Реши уравнение `−12.3 − 1.6x = −8.3`",
           "en": "Solve the equation `−12.3 − 1.6x = −8.3`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n−5.2 − 1.4x = 1.8\n−1.4x = 1.8 + 5.2\n−1.4x = 7\nx = 7 / (−1.4)\nx = −5\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n−5.2 − 1.4x = 1.8\n−1.4x = 1.8 + 5.2\n−1.4x = 7\nx = 7 / (−1.4)\nx = −5\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n−5.2 − 1.4x = 1.8\n−1.4x = 1.8 + 5.2\n−1.4x = 7\nx = 7 / (−1.4)\nx = −5\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
         },
         "answer": {
           "value": "-2.5"
@@ -835,6 +860,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `12 + 3x + 2x = 4x + 8 + 3x`",
           "ru": "Реши уравнение `12 + 3x + 2x = 4x + 8 + 3x`",
           "en": "Solve the equation `12 + 3x + 2x = 4x + 8 + 3x`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n5 + 4x + x = 3x + 9 + x\n5 + 5x = 4x + 9\n5x − 4x = 9 − 5\nx = 4\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n5 + 4x + x = 3x + 9 + x\n5 + 5x = 4x + 9\n5x − 4x = 9 − 5\nx = 4\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n5 + 4x + x = 3x + 9 + x\n5 + 5x = 4x + 9\n5x − 4x = 9 − 5\nx = 4\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign."
         },
         "answer": {
           "value": "2"
@@ -898,6 +928,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `15 − 4(2x − 3) = 43`",
           "ru": "Реши уравнение `15 − 4(2x − 3) = 43`",
           "en": "Solve the equation `15 − 4(2x − 3) = 43`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n10 − 3(2x − 4) = 40\n10 − 6x + 12 = 40\n22 − 6x = 40\n−6x = 40 − 22\n−6x = 18\nx = −3\n```\nפותחים סוגריים: את המספר שלפני הסוגריים כופלים בכל איבר בפנים. מינוס לפני סוגריים הופך את כל הסימנים בפנים. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n10 − 3(2x − 4) = 40\n10 − 6x + 12 = 40\n22 − 6x = 40\n−6x = 40 − 22\n−6x = 18\nx = −3\n```\nРаскрываем скобки: число перед скобкой умножаем на каждое слагаемое внутри. Минус перед скобкой меняет все знаки внутри. Переносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n10 − 3(2x − 4) = 40\n10 − 6x + 12 = 40\n22 − 6x = 40\n−6x = 40 − 22\n−6x = 18\nx = −3\n```\nOpen the brackets: multiply the number in front by every term inside. A minus in front of brackets flips every sign inside. Move x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
         },
         "answer": {
           "value": "-2"
@@ -968,6 +1003,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `12 − 3(−x − 4) = 3`",
           "en": "Solve the equation `12 − 3(−x − 4) = 3`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n5 − 2(−x − 3) = 3\n5 + 2x + 6 = 3\n2x + 11 = 3\n2x = 3 − 11\n2x = −8\nx = −4\n```\nפותחים סוגריים: את המספר שלפני הסוגריים כופלים בכל איבר בפנים. מינוס לפני סוגריים הופך את כל הסימנים בפנים. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n5 − 2(−x − 3) = 3\n5 + 2x + 6 = 3\n2x + 11 = 3\n2x = 3 − 11\n2x = −8\nx = −4\n```\nРаскрываем скобки: число перед скобкой умножаем на каждое слагаемое внутри. Минус перед скобкой меняет все знаки внутри. Переносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n5 − 2(−x − 3) = 3\n5 + 2x + 6 = 3\n2x + 11 = 3\n2x = 3 − 11\n2x = −8\nx = −4\n```\nOpen the brackets: multiply the number in front by every term inside. A minus in front of brackets flips every sign inside. Move x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
+        },
         "answer": {
           "value": "-7"
         },
@@ -1030,6 +1070,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `2(x − 3) − 6(2x − 5) = 5(x + 1) + 49`",
           "ru": "Реши уравнение `2(x − 3) − 6(2x − 5) = 5(x + 1) + 49`",
           "en": "Solve the equation `2(x − 3) − 6(2x − 5) = 5(x + 1) + 49`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n3(x − 1) − 2(x + 4) = 4(x − 2) + 6\n3x − 3 − 2x − 8 = 4x − 8 + 6\nx − 11 = 4x − 2\nx − 4x = −2 + 11\n−3x = 9\nx = −3\n```\nפותחים סוגריים: את המספר שלפני הסוגריים כופלים בכל איבר בפנים. מינוס לפני סוגריים הופך את כל הסימנים בפנים. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n3(x − 1) − 2(x + 4) = 4(x − 2) + 6\n3x − 3 − 2x − 8 = 4x − 8 + 6\nx − 11 = 4x − 2\nx − 4x = −2 + 11\n−3x = 9\nx = −3\n```\nРаскрываем скобки: число перед скобкой умножаем на каждое слагаемое внутри. Минус перед скобкой меняет все знаки внутри. Переносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n3(x − 1) − 2(x + 4) = 4(x − 2) + 6\n3x − 3 − 2x − 8 = 4x − 8 + 6\nx − 11 = 4x − 2\nx − 4x = −2 + 11\n−3x = 9\nx = −3\n```\nOpen the brackets: multiply the number in front by every term inside. A minus in front of brackets flips every sign inside. Move x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
         },
         "answer": {
           "value": "-2"
@@ -1098,6 +1143,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `(x + 2)(x + 1) = x(x − 3) − 10`",
           "ru": "Реши уравнение `(x + 2)(x + 1) = x(x − 3) − 10`",
           "en": "Solve the equation `(x + 2)(x + 1) = x(x − 3) − 10`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n(x + 1)(x + 4) = x(x + 2) + 10\nx² + 4x + x + 4 = x² + 2x + 10\n5x + 4 = 2x + 10\n5x − 2x = 10 − 4\n3x = 6\nx = 2\n```\nפותחים סוגריים \"כל אחד בכל אחד\". x² מופיע בשני הצדדים ומצטמצם. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n(x + 1)(x + 4) = x(x + 2) + 10\nx² + 4x + x + 4 = x² + 2x + 10\n5x + 4 = 2x + 10\n5x − 2x = 10 − 4\n3x = 6\nx = 2\n```\nРаскрываем скобки «каждое на каждое». x² есть с обеих сторон и сокращается. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n(x + 1)(x + 4) = x(x + 2) + 10\nx² + 4x + x + 4 = x² + 2x + 10\n5x + 4 = 2x + 10\n5x − 2x = 10 − 4\n3x = 6\nx = 2\n```\nOpen the brackets \"each by each\". x² is on both sides and cancels. Move x to one side and the numbers to the other. Moving a term flips its sign."
         },
         "answer": {
           "value": "-2"
@@ -1173,6 +1223,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `(x + 3)(x + 4) = x(x + 5) + 96`",
           "en": "Solve the equation `(x + 3)(x + 4) = x(x + 5) + 96`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n(x + 2)(x + 5) = x(x + 4) + 40\nx² + 5x + 2x + 10 = x² + 4x + 40\n7x + 10 = 4x + 40\n3x = 30\nx = 10\n```\nפותחים סוגריים \"כל אחד בכל אחד\". x² מופיע בשני הצדדים ומצטמצם. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n(x + 2)(x + 5) = x(x + 4) + 40\nx² + 5x + 2x + 10 = x² + 4x + 40\n7x + 10 = 4x + 40\n3x = 30\nx = 10\n```\nРаскрываем скобки «каждое на каждое». x² есть с обеих сторон и сокращается. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n(x + 2)(x + 5) = x(x + 4) + 40\nx² + 5x + 2x + 10 = x² + 4x + 40\n7x + 10 = 4x + 40\n3x = 30\nx = 10\n```\nOpen the brackets \"each by each\". x² is on both sides and cancels. Move x to one side and the numbers to the other. Moving a term flips its sign."
+        },
         "answer": {
           "value": "42"
         },
@@ -1246,6 +1301,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `(2x + 1)(x − 1) = (3 + 2x)(x + 3) − 20`",
           "ru": "Реши уравнение `(2x + 1)(x − 1) = (3 + 2x)(x + 3) − 20`",
           "en": "Solve the equation `(2x + 1)(x − 1) = (3 + 2x)(x + 3) − 20`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n(2x + 3)(x − 2) = (2x + 1)(x + 1) − 9\n2x² − 4x + 3x − 6 = 2x² + 2x + x + 1 − 9\n−x − 6 = 3x − 8\n−x − 3x = −8 + 6\n−4x = −2\nx = 0.5\n```\nפותחים סוגריים \"כל אחד בכל אחד\". x² מופיע בשני הצדדים ומצטמצם. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n(2x + 3)(x − 2) = (2x + 1)(x + 1) − 9\n2x² − 4x + 3x − 6 = 2x² + 2x + x + 1 − 9\n−x − 6 = 3x − 8\n−x − 3x = −8 + 6\n−4x = −2\nx = 0.5\n```\nРаскрываем скобки «каждое на каждое». x² есть с обеих сторон и сокращается. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n(2x + 3)(x − 2) = (2x + 1)(x + 1) − 9\n2x² − 4x + 3x − 6 = 2x² + 2x + x + 1 − 9\n−x − 6 = 3x − 8\n−x − 3x = −8 + 6\n−4x = −2\nx = 0.5\n```\nOpen the brackets \"each by each\". x² is on both sides and cancels. Move x to one side and the numbers to the other. Moving a term flips its sign."
         },
         "answer": {
           "value": "1"
@@ -1321,6 +1381,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `x/3 − x/7 = −4`",
           "en": "Solve the equation `x/3 − x/7 = −4`"
         },
+        "example": {
+          "he": "המשוואה:\n```\nx/2 − x/5 = 6        | × 10\n5x − 2x = 60\n3x = 60\nx = 20\n```\nכופלים הכול במכנה המשותף כדי להיפטר מהשברים. מינוס לפני שבר הופך את הסימנים של כל המונה.",
+          "ru": "Уравнение:\n```\nx/2 − x/5 = 6        | × 10\n5x − 2x = 60\n3x = 60\nx = 20\n```\nУмножаем всё на общий знаменатель, чтобы убрать дроби. Минус перед дробью меняет знаки всего числителя.",
+          "en": "Equation:\n```\nx/2 − x/5 = 6        | × 10\n5x − 2x = 60\n3x = 60\nx = 20\n```\nMultiply everything by the common denominator to get rid of fractions. A minus in front of a fraction flips the signs of the whole numerator."
+        },
         "answer": {
           "value": "-21"
         },
@@ -1382,6 +1447,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `(3x + 4)/5 = (2x + 14)/10`",
           "ru": "Реши уравнение `(3x + 4)/5 = (2x + 14)/10`",
           "en": "Solve the equation `(3x + 4)/5 = (2x + 14)/10`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n(x + 5)/4 = (3x + 1)/8        | × 8\n2(x + 5) = 3x + 1\n2x + 10 = 3x + 1\n2x − 3x = 1 − 10\n−x = −9\nx = 9\n```\nכופלים הכול במכנה המשותף כדי להיפטר מהשברים. מינוס לפני שבר הופך את הסימנים של כל המונה.",
+          "ru": "Уравнение:\n```\n(x + 5)/4 = (3x + 1)/8        | × 8\n2(x + 5) = 3x + 1\n2x + 10 = 3x + 1\n2x − 3x = 1 − 10\n−x = −9\nx = 9\n```\nУмножаем всё на общий знаменатель, чтобы убрать дроби. Минус перед дробью меняет знаки всего числителя.",
+          "en": "Equation:\n```\n(x + 5)/4 = (3x + 1)/8        | × 8\n2(x + 5) = 3x + 1\n2x + 10 = 3x + 1\n2x − 3x = 1 − 10\n−x = −9\nx = 9\n```\nMultiply everything by the common denominator to get rid of fractions. A minus in front of a fraction flips the signs of the whole numerator."
         },
         "answer": {
           "value": "1.5"
@@ -1456,6 +1526,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `(x + 3)/5 + (2x + 4)/3 = −5`",
           "en": "Solve the equation `(x + 3)/5 + (2x + 4)/3 = −5`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n(x + 1)/2 + (x − 2)/3 = 4        | × 6\n3(x + 1) + 2(x − 2) = 24\n3x + 3 + 2x − 4 = 24\n5x − 1 = 24\n5x = 25\nx = 5\n```\nכופלים הכול במכנה המשותף כדי להיפטר מהשברים. מינוס לפני שבר הופך את הסימנים של כל המונה.",
+          "ru": "Уравнение:\n```\n(x + 1)/2 + (x − 2)/3 = 4        | × 6\n3(x + 1) + 2(x − 2) = 24\n3x + 3 + 2x − 4 = 24\n5x − 1 = 24\n5x = 25\nx = 5\n```\nУмножаем всё на общий знаменатель, чтобы убрать дроби. Минус перед дробью меняет знаки всего числителя.",
+          "en": "Equation:\n```\n(x + 1)/2 + (x − 2)/3 = 4        | × 6\n3(x + 1) + 2(x − 2) = 24\n3x + 3 + 2x − 4 = 24\n5x − 1 = 24\n5x = 25\nx = 5\n```\nMultiply everything by the common denominator to get rid of fractions. A minus in front of a fraction flips the signs of the whole numerator."
+        },
         "answer": {
           "value": "-8"
         },
@@ -1529,6 +1604,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `(1 − 7x)/3 + 3x = (x − 3)/5`",
           "ru": "Реши уравнение `(1 − 7x)/3 + 3x = (x − 3)/5`",
           "en": "Solve the equation `(1 − 7x)/3 + 3x = (x − 3)/5`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n(1 − x)/2 + x = (x + 7)/4        | × 4\n2(1 − x) + 4x = x + 7\n2 − 2x + 4x = x + 7\n2x − x = 7 − 2\nx = 5\n```\nכופלים הכול במכנה המשותף כדי להיפטר מהשברים. מינוס לפני שבר הופך את הסימנים של כל המונה.",
+          "ru": "Уравнение:\n```\n(1 − x)/2 + x = (x + 7)/4        | × 4\n2(1 − x) + 4x = x + 7\n2 − 2x + 4x = x + 7\n2x − x = 7 − 2\nx = 5\n```\nУмножаем всё на общий знаменатель, чтобы убрать дроби. Минус перед дробью меняет знаки всего числителя.",
+          "en": "Equation:\n```\n(1 − x)/2 + x = (x + 7)/4        | × 4\n2(1 − x) + 4x = x + 7\n2 − 2x + 4x = x + 7\n2x − x = 7 − 2\nx = 5\n```\nMultiply everything by the common denominator to get rid of fractions. A minus in front of a fraction flips the signs of the whole numerator."
         },
         "answer": {
           "value": "-2"
@@ -1608,6 +1688,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `(2x − 3)/5 + (5x + 12)/16 − (32 − 3x)/20 = (5x − 12)/4`",
           "ru": "Реши уравнение `(2x − 3)/5 + (5x + 12)/16 − (32 − 3x)/20 = (5x − 12)/4`",
           "en": "Solve the equation `(2x − 3)/5 + (5x + 12)/16 − (32 − 3x)/20 = (5x − 12)/4`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n(x + 1)/2 + (x − 1)/3 − (x + 3)/6 = (x + 2)/2        | × 6\n3(x + 1) + 2(x − 1) − (x + 3) = 3(x + 2)\n3x + 3 + 2x − 2 − x − 3 = 3x + 6\n4x − 2 = 3x + 6\n4x − 3x = 6 + 2\nx = 8\n```\nכופלים הכול במכנה המשותף כדי להיפטר מהשברים. מינוס לפני שבר הופך את הסימנים של כל המונה.",
+          "ru": "Уравнение:\n```\n(x + 1)/2 + (x − 1)/3 − (x + 3)/6 = (x + 2)/2        | × 6\n3(x + 1) + 2(x − 1) − (x + 3) = 3(x + 2)\n3x + 3 + 2x − 2 − x − 3 = 3x + 6\n4x − 2 = 3x + 6\n4x − 3x = 6 + 2\nx = 8\n```\nУмножаем всё на общий знаменатель, чтобы убрать дроби. Минус перед дробью меняет знаки всего числителя.",
+          "en": "Equation:\n```\n(x + 1)/2 + (x − 1)/3 − (x + 3)/6 = (x + 2)/2        | × 6\n3(x + 1) + 2(x − 1) − (x + 3) = 3(x + 2)\n3x + 3 + 2x − 2 − x − 3 = 3x + 6\n4x − 2 = 3x + 6\n4x − 3x = 6 + 2\nx = 8\n```\nMultiply everything by the common denominator to get rid of fractions. A minus in front of a fraction flips the signs of the whole numerator."
         },
         "answer": {
           "value": "4"
@@ -1693,6 +1778,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши систему уравнений\n`x + y = 8`\n`x − y = 6`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`x + y = 8`\n`x − y = 6`\nWrite the answer like this: x = …, y = …"
         },
+        "example": {
+          "he": "```\nx + y = 7\nx − y = 3\n```\nהמקדמים של y: `1` ו־−1``, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n2x = 10\nx = 10 / 2 = 5\n```\nמציבים את x במשוואה הראשונה:\n```\n5 + y = 7\ny = 2\n```",
+          "ru": "```\nx + y = 7\nx − y = 3\n```\nКоэффициенты при y: `1` и `−1`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n2x = 10\nx = 10 / 2 = 5\n```\nПодставляем x в первое уравнение:\n```\n5 + y = 7\ny = 2\n```",
+          "en": "```\nx + y = 7\nx − y = 3\n```\nThe y coefficients: `1` and `−1`, no need to multiply.\nThe y signs are different → we add:\n```\n2x = 10\nx = 10 / 2 = 5\n```\nPut x into the first equation:\n```\n5 + y = 7\ny = 2\n```"
+        },
         "answer": {
           "accept": [
             "x = 7, y = 1",
@@ -1765,6 +1855,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши систему уравнений\n`x − y = 1`\n`x + y = 7`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`x − y = 1`\n`x + y = 7`\nWrite the answer like this: x = …, y = …"
         },
+        "example": {
+          "he": "```\nx − y = 2\nx + y = 10\n```\nהמקדמים של y: `−1` ו־`1`, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n2x = 12\nx = 12 / 2 = 6\n```\nמציבים את x במשוואה הראשונה:\n```\n6 − y = 2\n−y = −4\ny = 4\n```",
+          "ru": "```\nx − y = 2\nx + y = 10\n```\nКоэффициенты при y: `−1` и `1`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n2x = 12\nx = 12 / 2 = 6\n```\nПодставляем x в первое уравнение:\n```\n6 − y = 2\n−y = −4\ny = 4\n```",
+          "en": "```\nx − y = 2\nx + y = 10\n```\nThe y coefficients: `−1` and `1`, no need to multiply.\nThe y signs are different → we add:\n```\n2x = 12\nx = 12 / 2 = 6\n```\nPut x into the first equation:\n```\n6 − y = 2\n−y = −4\ny = 4\n```"
+        },
         "answer": {
           "accept": [
             "x = 4, y = 3",
@@ -1836,6 +1931,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את מערכת המשוואות\n`5x − 2y = −17`\n`3x + 2y = −7`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`5x − 2y = −17`\n`3x + 2y = −7`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`5x − 2y = −17`\n`3x + 2y = −7`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n4x − 3y = −10\n2x + 3y = 4\n```\nהמקדמים של y: `−3` ו־`3`, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n6x = −6\nx = −6 / 6 = −1\n```\nמציבים את x במשוואה הראשונה:\n```\n4 × (−1) − 3y = −10\n−3y = −6\ny = 2\n```",
+          "ru": "```\n4x − 3y = −10\n2x + 3y = 4\n```\nКоэффициенты при y: `−3` и `3`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n6x = −6\nx = −6 / 6 = −1\n```\nПодставляем x в первое уравнение:\n```\n4 × (−1) − 3y = −10\n−3y = −6\ny = 2\n```",
+          "en": "```\n4x − 3y = −10\n2x + 3y = 4\n```\nThe y coefficients: `−3` and `3`, no need to multiply.\nThe y signs are different → we add:\n```\n6x = −6\nx = −6 / 6 = −1\n```\nPut x into the first equation:\n```\n4 × (−1) − 3y = −10\n−3y = −6\ny = 2\n```"
         },
         "answer": {
           "accept": [
@@ -1910,6 +2010,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши систему уравнений\n`−10x + 4y = −44`\n`7x − 4y = 26`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`−10x + 4y = −44`\n`7x − 4y = 26`\nWrite the answer like this: x = …, y = …"
         },
+        "example": {
+          "he": "```\n−5x + 2y = −18\n3x − 2y = 10\n```\nהמקדמים של y: `2` ו־−2``, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n−2x = −8\nx = −8 / (−2) = 4\n```\nמציבים את x במשוואה הראשונה:\n```\n−5 × 4 + 2y = −18\n2y = 2\ny = 1\n```",
+          "ru": "```\n−5x + 2y = −18\n3x − 2y = 10\n```\nКоэффициенты при y: `2` и `−2`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n−2x = −8\nx = −8 / (−2) = 4\n```\nПодставляем x в первое уравнение:\n```\n−5 × 4 + 2y = −18\n2y = 2\ny = 1\n```",
+          "en": "```\n−5x + 2y = −18\n3x − 2y = 10\n```\nThe y coefficients: `2` and `−2`, no need to multiply.\nThe y signs are different → we add:\n```\n−2x = −8\nx = −8 / (−2) = 4\n```\nPut x into the first equation:\n```\n−5 × 4 + 2y = −18\n2y = 2\ny = 1\n```"
+        },
         "answer": {
           "accept": [
             "x = 6, y = 4",
@@ -1983,6 +2088,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши систему уравнений\n`−x + y = 7`\n`x + y = −3`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`−x + y = 7`\n`x + y = −3`\nWrite the answer like this: x = …, y = …"
         },
+        "example": {
+          "he": "```\n−x + y = 5\nx + y = 1\n```\nהמקדמים של y: `1` ו־`1`, אין צורך לכפול.\nהסימנים של y זהים → מחסרים:\n```\n−2x = 4\nx = 4 / (−2) = −2\n```\nמציבים את x במשוואה הראשונה:\n```\n−(−2) + y = 5\ny = 3\n```",
+          "ru": "```\n−x + y = 5\nx + y = 1\n```\nКоэффициенты при y: `1` и `1`, умножать ничего не нужно.\nЗнаки при y одинаковые → вычитаем:\n```\n−2x = 4\nx = 4 / (−2) = −2\n```\nПодставляем x в первое уравнение:\n```\n−(−2) + y = 5\ny = 3\n```",
+          "en": "```\n−x + y = 5\nx + y = 1\n```\nThe y coefficients: `1` and `1`, no need to multiply.\nThe y signs are the same → we subtract:\n```\n−2x = 4\nx = 4 / (−2) = −2\n```\nPut x into the first equation:\n```\n−(−2) + y = 5\ny = 3\n```"
+        },
         "answer": {
           "accept": [
             "x = −5, y = 2",
@@ -2048,6 +2158,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את מערכת המשוואות\n`−3x − 2y = −1`\n`3x + 8y = 13`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`−3x − 2y = −1`\n`3x + 8y = 13`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`−3x − 2y = −1`\n`3x + 8y = 13`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n−2x − 3y = −5\n2x + 5y = 7\n```\nרוצים להיפטר מ־y. המקדמים של y: `−3` ו־`5`. את הראשונה כופלים ב־5, את השנייה ב־3:\n```\n−10x − 15y = −25\n6x + 15y = 21\n```\nהסימנים של y שונים → מחברים:\n```\n−4x = −4\nx = −4 / (−4) = 1\n```\nמציבים את x במשוואה הראשונה:\n```\n−2 × 1 − 3y = −5\n−3y = −3\ny = 1\n```",
+          "ru": "```\n−2x − 3y = −5\n2x + 5y = 7\n```\nХотим убрать y. Коэффициенты при y: `−3` и `5`. Первое умножаем на 5, второе на 3:\n```\n−10x − 15y = −25\n6x + 15y = 21\n```\nЗнаки при y разные → складываем:\n```\n−4x = −4\nx = −4 / (−4) = 1\n```\nПодставляем x в первое уравнение:\n```\n−2 × 1 − 3y = −5\n−3y = −3\ny = 1\n```",
+          "en": "```\n−2x − 3y = −5\n2x + 5y = 7\n```\nWe want to remove y. The y coefficients: `−3` and `5`. Multiply the first by 5, the second by 3:\n```\n−10x − 15y = −25\n6x + 15y = 21\n```\nThe y signs are different → we add:\n```\n−4x = −4\nx = −4 / (−4) = 1\n```\nPut x into the first equation:\n```\n−2 × 1 − 3y = −5\n−3y = −3\ny = 1\n```"
         },
         "answer": {
           "accept": [
@@ -2115,6 +2230,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את מערכת המשוואות\n`4x + y = 9`\n`3x − 2y = 4`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`4x + y = 9`\n`3x − 2y = 4`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`4x + y = 9`\n`3x − 2y = 4`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n3x + y = 5\n2x − 3y = 7\n```\nרוצים להיפטר מ־y. המקדמים של y: `1` ו־−3``. את הראשונה כופלים ב־3, את השנייה ב־1:\n```\n9x + 3y = 15\n2x − 3y = 7\n```\nהסימנים של y שונים → מחברים:\n```\n11x = 22\nx = 22 / 11 = 2\n```\nמציבים את x במשוואה הראשונה:\n```\n3 × 2 + y = 5\ny = −1\n```",
+          "ru": "```\n3x + y = 5\n2x − 3y = 7\n```\nХотим убрать y. Коэффициенты при y: `1` и `−3`. Первое умножаем на 3, второе на 1:\n```\n9x + 3y = 15\n2x − 3y = 7\n```\nЗнаки при y разные → складываем:\n```\n11x = 22\nx = 22 / 11 = 2\n```\nПодставляем x в первое уравнение:\n```\n3 × 2 + y = 5\ny = −1\n```",
+          "en": "```\n3x + y = 5\n2x − 3y = 7\n```\nWe want to remove y. The y coefficients: `1` and `−3`. Multiply the first by 3, the second by 1:\n```\n9x + 3y = 15\n2x − 3y = 7\n```\nThe y signs are different → we add:\n```\n11x = 22\nx = 22 / 11 = 2\n```\nPut x into the first equation:\n```\n3 × 2 + y = 5\ny = −1\n```"
         },
         "answer": {
           "accept": [
@@ -2193,6 +2313,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение\n`−9x = −27`",
           "en": "Solve the equation\n`−9x = −27`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n−6x = −42\nx = −42 / (−6)\nx = 7\n```\nמחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n−6x = −42\nx = −42 / (−6)\nx = 7\n```\nДелим обе части на число перед x.",
+          "en": "Equation:\n```\n−6x = −42\nx = −42 / (−6)\nx = 7\n```\nDivide both sides by the number in front of x."
+        },
         "answer": {
           "value": "3"
         },
@@ -2223,6 +2348,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה\n`2.5x = 18`",
           "ru": "Реши уравнение\n`2.5x = 18`",
           "en": "Solve the equation\n`2.5x = 18`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n1.5x = 9\nx = 9 / 1.5\nx = 6\n```\nמחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n1.5x = 9\nx = 9 / 1.5\nx = 6\n```\nДелим обе части на число перед x.",
+          "en": "Equation:\n```\n1.5x = 9\nx = 9 / 1.5\nx = 6\n```\nDivide both sides by the number in front of x."
         },
         "answer": {
           "value": "7.2"
@@ -2255,6 +2385,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение\n`x + 7.8 = −2.2`",
           "en": "Solve the equation\n`x + 7.8 = −2.2`"
         },
+        "example": {
+          "he": "המשוואה:\n```\nx + 3.5 = −1.5\nx = −1.5 − 3.5\nx = −5\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\nx + 3.5 = −1.5\nx = −1.5 − 3.5\nx = −5\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\nx + 3.5 = −1.5\nx = −1.5 − 3.5\nx = −5\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign."
+        },
         "answer": {
           "value": "-10"
         },
@@ -2286,6 +2421,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение\n`12.3 + x = −4.8`",
           "en": "Solve the equation\n`12.3 + x = −4.8`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n6.4 + x = −2.6\nx = −2.6 − 6.4\nx = −9\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n6.4 + x = −2.6\nx = −2.6 − 6.4\nx = −9\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n6.4 + x = −2.6\nx = −2.6 − 6.4\nx = −9\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign."
+        },
         "answer": {
           "value": "-17.1"
         },
@@ -2316,6 +2456,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה\n`2.5x − 4 = −19`",
           "ru": "Реши уравнение\n`2.5x − 4 = −19`",
           "en": "Solve the equation\n`2.5x − 4 = −19`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n1.5x − 3 = 9\n1.5x = 9 + 3\n1.5x = 12\nx = 8\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n1.5x − 3 = 9\n1.5x = 9 + 3\n1.5x = 12\nx = 8\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n1.5x − 3 = 9\n1.5x = 9 + 3\n1.5x = 12\nx = 8\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
         },
         "answer": {
           "value": "-6"
@@ -2350,6 +2495,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение\n`−1.25 + 2.3x = 1.51`",
           "en": "Solve the equation\n`−1.25 + 2.3x = 1.51`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n−0.75 + 1.5x = 2.25\n1.5x = 2.25 + 0.75\n1.5x = 3\nx = 2\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n−0.75 + 1.5x = 2.25\n1.5x = 2.25 + 0.75\n1.5x = 3\nx = 2\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n−0.75 + 1.5x = 2.25\n1.5x = 2.25 + 0.75\n1.5x = 3\nx = 2\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
+        },
         "answer": {
           "value": "1.2"
         },
@@ -2382,6 +2532,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה\n`17x + 4 = 60 + 9x`",
           "ru": "Реши уравнение\n`17x + 4 = 60 + 9x`",
           "en": "Solve the equation\n`17x + 4 = 60 + 9x`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n11x + 3 = 27 + 5x\n11x − 5x = 27 − 3\n6x = 24\nx = 4\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n11x + 3 = 27 + 5x\n11x − 5x = 27 − 3\n6x = 24\nx = 4\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n11x + 3 = 27 + 5x\n11x − 5x = 27 − 3\n6x = 24\nx = 4\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
         },
         "answer": {
           "value": "7"
@@ -2416,6 +2571,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение\n`−20x − 16 = −24x − 18`",
           "en": "Solve the equation\n`−20x − 16 = −24x − 18`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n−10x − 7 = −14x − 13\n−10x + 14x = −13 + 7\n4x = −6\nx = −1.5\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n−10x − 7 = −14x − 13\n−10x + 14x = −13 + 7\n4x = −6\nx = −1.5\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n−10x − 7 = −14x − 13\n−10x + 14x = −13 + 7\n4x = −6\nx = −1.5\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
+        },
         "answer": {
           "value": "-0.5"
         },
@@ -2448,6 +2608,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה\n`−4x + 5 − 7x + 4 = 3x + 93`",
           "ru": "Реши уравнение\n`−4x + 5 − 7x + 4 = 3x + 93`",
           "en": "Solve the equation\n`−4x + 5 − 7x + 4 = 3x + 93`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n−2x + 3 − 5x + 1 = x + 36\n−7x + 4 = x + 36\n−7x − x = 36 − 4\n−8x = 32\nx = −4\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n−2x + 3 − 5x + 1 = x + 36\n−7x + 4 = x + 36\n−7x − x = 36 − 4\n−8x = 32\nx = −4\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n−2x + 3 − 5x + 1 = x + 36\n−7x + 4 = x + 36\n−7x − x = 36 − 4\n−8x = 32\nx = −4\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
         },
         "answer": {
           "value": "-6"
@@ -2483,6 +2648,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение\n`3(x + 1) − 4 = 11`",
           "en": "Solve the equation\n`3(x + 1) − 4 = 11`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n2(x + 3) − 5 = 11\n2x + 6 − 5 = 11\n2x + 1 = 11\n2x = 10\nx = 5\n```\nפותחים סוגריים: את המספר שלפני הסוגריים כופלים בכל איבר בפנים. מינוס לפני סוגריים הופך את כל הסימנים בפנים. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n2(x + 3) − 5 = 11\n2x + 6 − 5 = 11\n2x + 1 = 11\n2x = 10\nx = 5\n```\nРаскрываем скобки: число перед скобкой умножаем на каждое слагаемое внутри. Минус перед скобкой меняет все знаки внутри. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n2(x + 3) − 5 = 11\n2x + 6 − 5 = 11\n2x + 1 = 11\n2x = 10\nx = 5\n```\nOpen the brackets: multiply the number in front by every term inside. A minus in front of brackets flips every sign inside. Move x to one side and the numbers to the other. Moving a term flips its sign."
+        },
         "answer": {
           "value": "4"
         },
@@ -2515,6 +2685,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה\n`70 − 7(4 − 3x) = 0`",
           "ru": "Реши уравнение\n`70 − 7(4 − 3x) = 0`",
           "en": "Solve the equation\n`70 − 7(4 − 3x) = 0`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n30 − 5(2 − 4x) = 0\n30 − 10 + 20x = 0\n20 + 20x = 0\n20x = −20\nx = −1\n```\nפותחים סוגריים: את המספר שלפני הסוגריים כופלים בכל איבר בפנים. מינוס לפני סוגריים הופך את כל הסימנים בפנים. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n30 − 5(2 − 4x) = 0\n30 − 10 + 20x = 0\n20 + 20x = 0\n20x = −20\nx = −1\n```\nРаскрываем скобки: число перед скобкой умножаем на каждое слагаемое внутри. Минус перед скобкой меняет все знаки внутри. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n30 − 5(2 − 4x) = 0\n30 − 10 + 20x = 0\n20 + 20x = 0\n20x = −20\nx = −1\n```\nOpen the brackets: multiply the number in front by every term inside. A minus in front of brackets flips every sign inside. Move x to one side and the numbers to the other. Moving a term flips its sign."
         },
         "answer": {
           "value": "-2"
@@ -2549,6 +2724,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение\n`5(x − 2) + 3(2x + 1) = 26`",
           "en": "Solve the equation\n`5(x − 2) + 3(2x + 1) = 26`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n2(x − 1) + 4(x + 2) = 18\n2x − 2 + 4x + 8 = 18\n6x + 6 = 18\n6x = 12\nx = 2\n```\nפותחים סוגריים: את המספר שלפני הסוגריים כופלים בכל איבר בפנים. מינוס לפני סוגריים הופך את כל הסימנים בפנים. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n2(x − 1) + 4(x + 2) = 18\n2x − 2 + 4x + 8 = 18\n6x + 6 = 18\n6x = 12\nx = 2\n```\nРаскрываем скобки: число перед скобкой умножаем на каждое слагаемое внутри. Минус перед скобкой меняет все знаки внутри. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n2(x − 1) + 4(x + 2) = 18\n2x − 2 + 4x + 8 = 18\n6x + 6 = 18\n6x = 12\nx = 2\n```\nOpen the brackets: multiply the number in front by every term inside. A minus in front of brackets flips every sign inside. Move x to one side and the numbers to the other. Moving a term flips its sign."
+        },
         "answer": {
           "value": "3"
         },
@@ -2581,6 +2761,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה\n`3(2x + 2) − 4(3x + 2) = 5x + 20`",
           "ru": "Реши уравнение\n`3(2x + 2) − 4(3x + 2) = 5x + 20`",
           "en": "Solve the equation\n`3(2x + 2) − 4(3x + 2) = 5x + 20`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n2(3x + 1) − 3(x + 2) = x + 6\n6x + 2 − 3x − 6 = x + 6\n3x − 4 = x + 6\n3x − x = 6 + 4\n2x = 10\nx = 5\n```\nפותחים סוגריים: את המספר שלפני הסוגריים כופלים בכל איבר בפנים. מינוס לפני סוגריים הופך את כל הסימנים בפנים. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n2(3x + 1) − 3(x + 2) = x + 6\n6x + 2 − 3x − 6 = x + 6\n3x − 4 = x + 6\n3x − x = 6 + 4\n2x = 10\nx = 5\n```\nРаскрываем скобки: число перед скобкой умножаем на каждое слагаемое внутри. Минус перед скобкой меняет все знаки внутри. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n2(3x + 1) − 3(x + 2) = x + 6\n6x + 2 − 3x − 6 = x + 6\n3x − 4 = x + 6\n3x − x = 6 + 4\n2x = 10\nx = 5\n```\nOpen the brackets: multiply the number in front by every term inside. A minus in front of brackets flips every sign inside. Move x to one side and the numbers to the other. Moving a term flips its sign."
         },
         "answer": {
           "value": "-2"
@@ -2616,6 +2801,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение\n`x(x + 5) = x² + 40`",
           "en": "Solve the equation\n`x(x + 5) = x² + 40`"
         },
+        "example": {
+          "he": "המשוואה:\n```\nx(x + 3) = x² + 21\nx² + 3x = x² + 21\n3x = 21\nx = 7\n```\nפותחים סוגריים \"כל אחד בכל אחד\". x² מופיע בשני הצדדים ומצטמצם.",
+          "ru": "Уравнение:\n```\nx(x + 3) = x² + 21\nx² + 3x = x² + 21\n3x = 21\nx = 7\n```\nРаскрываем скобки «каждое на каждое». x² есть с обеих сторон и сокращается.",
+          "en": "Equation:\n```\nx(x + 3) = x² + 21\nx² + 3x = x² + 21\n3x = 21\nx = 7\n```\nOpen the brackets \"each by each\". x² is on both sides and cancels."
+        },
         "answer": {
           "value": "8"
         },
@@ -2647,6 +2837,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה\n`(3 − x)(x + 2) = (x + 4)(1 − x) + 18`",
           "ru": "Реши уравнение\n`(3 − x)(x + 2) = (x + 4)(1 − x) + 18`",
           "en": "Solve the equation\n`(3 − x)(x + 2) = (x + 4)(1 − x) + 18`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n(2 − x)(x + 1) = (x + 3)(1 − x) + 5\n2x + 2 − x² − x = x − x² + 3 − 3x + 5\nx + 2 = −2x + 8\nx + 2x = 8 − 2\n3x = 6\nx = 2\n```\nפותחים סוגריים \"כל אחד בכל אחד\". x² מופיע בשני הצדדים ומצטמצם. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n(2 − x)(x + 1) = (x + 3)(1 − x) + 5\n2x + 2 − x² − x = x − x² + 3 − 3x + 5\nx + 2 = −2x + 8\nx + 2x = 8 − 2\n3x = 6\nx = 2\n```\nРаскрываем скобки «каждое на каждое». x² есть с обеих сторон и сокращается. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n(2 − x)(x + 1) = (x + 3)(1 − x) + 5\n2x + 2 − x² − x = x − x² + 3 − 3x + 5\nx + 2 = −2x + 8\nx + 2x = 8 − 2\n3x = 6\nx = 2\n```\nOpen the brackets \"each by each\". x² is on both sides and cancels. Move x to one side and the numbers to the other. Moving a term flips its sign."
         },
         "answer": {
           "value": "4"
@@ -2683,6 +2878,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `7x − 5 = 2x + 20`",
           "ru": "Реши уравнение `7x − 5 = 2x + 20`",
           "en": "Solve the equation `7x − 5 = 2x + 20`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n6x − 4 = 2x + 12\n6x − 2x = 12 + 4\n4x = 16\nx = 4\n```\nמעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך. מחלקים את שני הצדדים במספר שלפני x.",
+          "ru": "Уравнение:\n```\n6x − 4 = 2x + 12\n6x − 2x = 12 + 4\n4x = 16\nx = 4\n```\nПереносим x в одну сторону, числа в другую. При переносе знак меняется. Делим обе части на число перед x.",
+          "en": "Equation:\n```\n6x − 4 = 2x + 12\n6x − 2x = 12 + 4\n4x = 16\nx = 4\n```\nMove x to one side and the numbers to the other. Moving a term flips its sign. Divide both sides by the number in front of x."
         },
         "answer": {
           "value": "5"
@@ -2739,6 +2939,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `4(x − 2) = 2x + 6`",
           "ru": "Реши уравнение `4(x − 2) = 2x + 6`",
           "en": "Solve the equation `4(x − 2) = 2x + 6`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n3(x − 1) = x + 9\n3x − 3 = x + 9\n3x − x = 9 + 3\n2x = 12\nx = 6\n```\nפותחים סוגריים: את המספר שלפני הסוגריים כופלים בכל איבר בפנים. מינוס לפני סוגריים הופך את כל הסימנים בפנים. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n3(x − 1) = x + 9\n3x − 3 = x + 9\n3x − x = 9 + 3\n2x = 12\nx = 6\n```\nРаскрываем скобки: число перед скобкой умножаем на каждое слагаемое внутри. Минус перед скобкой меняет все знаки внутри. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n3(x − 1) = x + 9\n3x − 3 = x + 9\n3x − x = 9 + 3\n2x = 12\nx = 6\n```\nOpen the brackets: multiply the number in front by every term inside. A minus in front of brackets flips every sign inside. Move x to one side and the numbers to the other. Moving a term flips its sign."
         },
         "answer": {
           "value": "7"
@@ -2801,6 +3006,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את מערכת המשוואות\n`x + y = 10`\n`x − y = 4`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`x + y = 10`\n`x − y = 4`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`x + y = 10`\n`x − y = 4`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\nx + y = 11\nx − y = 5\n```\nהמקדמים של y: `1` ו־−1``, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n2x = 16\nx = 16 / 2 = 8\n```\nמציבים את x במשוואה הראשונה:\n```\n8 + y = 11\ny = 3\n```",
+          "ru": "```\nx + y = 11\nx − y = 5\n```\nКоэффициенты при y: `1` и `−1`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n2x = 16\nx = 16 / 2 = 8\n```\nПодставляем x в первое уравнение:\n```\n8 + y = 11\ny = 3\n```",
+          "en": "```\nx + y = 11\nx − y = 5\n```\nThe y coefficients: `1` and `−1`, no need to multiply.\nThe y signs are different → we add:\n```\n2x = 16\nx = 16 / 2 = 8\n```\nPut x into the first equation:\n```\n8 + y = 11\ny = 3\n```"
         },
         "answer": {
           "accept": [
@@ -2874,6 +3084,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `20 − 3(2x − 4) = 2(x + 4)`",
           "en": "Solve the equation `20 − 3(2x − 4) = 2(x + 4)`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n14 − 2(3x − 5) = 3(x + 2)\n14 − 6x + 10 = 3x + 6\n24 − 6x = 3x + 6\n−6x − 3x = 6 − 24\n−9x = −18\nx = 2\n```\nפותחים סוגריים: את המספר שלפני הסוגריים כופלים בכל איבר בפנים. מינוס לפני סוגריים הופך את כל הסימנים בפנים. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n14 − 2(3x − 5) = 3(x + 2)\n14 − 6x + 10 = 3x + 6\n24 − 6x = 3x + 6\n−6x − 3x = 6 − 24\n−9x = −18\nx = 2\n```\nРаскрываем скобки: число перед скобкой умножаем на каждое слагаемое внутри. Минус перед скобкой меняет все знаки внутри. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n14 − 2(3x − 5) = 3(x + 2)\n14 − 6x + 10 = 3x + 6\n24 − 6x = 3x + 6\n−6x − 3x = 6 − 24\n−9x = −18\nx = 2\n```\nOpen the brackets: multiply the number in front by every term inside. A minus in front of brackets flips every sign inside. Move x to one side and the numbers to the other. Moving a term flips its sign."
+        },
         "answer": {
           "value": "3"
         },
@@ -2941,6 +3156,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `(x + 5)(x − 2) = x(x + 1) + 2`",
           "ru": "Реши уравнение `(x + 5)(x − 2) = x(x + 1) + 2`",
           "en": "Solve the equation `(x + 5)(x − 2) = x(x + 1) + 2`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n(x + 4)(x − 1) = x(x + 2) + 5\nx² − x + 4x − 4 = x² + 2x + 5\n3x − 4 = 2x + 5\nx = 9\n```\nפותחים סוגריים \"כל אחד בכל אחד\". x² מופיע בשני הצדדים ומצטמצם. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n(x + 4)(x − 1) = x(x + 2) + 5\nx² − x + 4x − 4 = x² + 2x + 5\n3x − 4 = 2x + 5\nx = 9\n```\nРаскрываем скобки «каждое на каждое». x² есть с обеих сторон и сокращается. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n(x + 4)(x − 1) = x(x + 2) + 5\nx² − x + 4x − 4 = x² + 2x + 5\n3x − 4 = 2x + 5\nx = 9\n```\nOpen the brackets \"each by each\". x² is on both sides and cancels. Move x to one side and the numbers to the other. Moving a term flips its sign."
         },
         "answer": {
           "value": "6"
@@ -3016,6 +3236,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `x/4 + (x − 2)/6 = 3`",
           "en": "Solve the equation `x/4 + (x − 2)/6 = 3`"
         },
+        "example": {
+          "he": "המשוואה:\n```\nx/3 + (x + 1)/2 = 8        | × 6\n2x + 3(x + 1) = 48\n2x + 3x + 3 = 48\n5x = 45\nx = 9\n```\nכופלים הכול במכנה המשותף כדי להיפטר מהשברים. מינוס לפני שבר הופך את הסימנים של כל המונה.",
+          "ru": "Уравнение:\n```\nx/3 + (x + 1)/2 = 8        | × 6\n2x + 3(x + 1) = 48\n2x + 3x + 3 = 48\n5x = 45\nx = 9\n```\nУмножаем всё на общий знаменатель, чтобы убрать дроби. Минус перед дробью меняет знаки всего числителя.",
+          "en": "Equation:\n```\nx/3 + (x + 1)/2 = 8        | × 6\n2x + 3(x + 1) = 48\n2x + 3x + 3 = 48\n5x = 45\nx = 9\n```\nMultiply everything by the common denominator to get rid of fractions. A minus in front of a fraction flips the signs of the whole numerator."
+        },
         "answer": {
           "value": "8"
         },
@@ -3089,6 +3314,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши систему уравнений\n`3x + 2y = 16`\n`5x − 2y = 0`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`3x + 2y = 16`\n`5x − 2y = 0`\nWrite the answer like this: x = …, y = …"
         },
+        "example": {
+          "he": "```\n2x + 3y = 9\n4x − 3y = 9\n```\nהמקדמים של y: `3` ו־−3``, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n6x = 18\nx = 18 / 6 = 3\n```\nמציבים את x במשוואה הראשונה:\n```\n2 × 3 + 3y = 9\n3y = 3\ny = 1\n```",
+          "ru": "```\n2x + 3y = 9\n4x − 3y = 9\n```\nКоэффициенты при y: `3` и `−3`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n6x = 18\nx = 18 / 6 = 3\n```\nПодставляем x в первое уравнение:\n```\n2 × 3 + 3y = 9\n3y = 3\ny = 1\n```",
+          "en": "```\n2x + 3y = 9\n4x − 3y = 9\n```\nThe y coefficients: `3` and `−3`, no need to multiply.\nThe y signs are different → we add:\n```\n6x = 18\nx = 18 / 6 = 3\n```\nPut x into the first equation:\n```\n2 × 3 + 3y = 9\n3y = 3\ny = 1\n```"
+        },
         "answer": {
           "accept": [
             "x = 2, y = 5",
@@ -3161,6 +3391,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את המשוואה `(3x − 4)/6 − (x + 2)/4 = (x − 5)/3`",
           "ru": "Реши уравнение `(3x − 4)/6 − (x + 2)/4 = (x − 5)/3`",
           "en": "Solve the equation `(3x − 4)/6 − (x + 2)/4 = (x − 5)/3`"
+        },
+        "example": {
+          "he": "המשוואה:\n```\n(x + 3)/4 − (x − 1)/6 = (x − 1)/3        | × 12\n3(x + 3) − 2(x − 1) = 4(x − 1)\n3x + 9 − 2x + 2 = 4x − 4\nx + 11 = 4x − 4\n−3x = −15\nx = 5\n```\nכופלים הכול במכנה המשותף כדי להיפטר מהשברים. מינוס לפני שבר הופך את הסימנים של כל המונה.",
+          "ru": "Уравнение:\n```\n(x + 3)/4 − (x − 1)/6 = (x − 1)/3        | × 12\n3(x + 3) − 2(x − 1) = 4(x − 1)\n3x + 9 − 2x + 2 = 4x − 4\nx + 11 = 4x − 4\n−3x = −15\nx = 5\n```\nУмножаем всё на общий знаменатель, чтобы убрать дроби. Минус перед дробью меняет знаки всего числителя.",
+          "en": "Equation:\n```\n(x + 3)/4 − (x − 1)/6 = (x − 1)/3        | × 12\n3(x + 3) − 2(x − 1) = 4(x − 1)\n3x + 9 − 2x + 2 = 4x − 4\nx + 11 = 4x − 4\n−3x = −15\nx = 5\n```\nMultiply everything by the common denominator to get rid of fractions. A minus in front of a fraction flips the signs of the whole numerator."
         },
         "answer": {
           "value": "6"
@@ -3236,6 +3471,11 @@ window.LESSONS["math-2026-10-18"] = {
           "ru": "Реши уравнение `(2x − 1)(x + 3) − 2x(x − 4) = 36`",
           "en": "Solve the equation `(2x − 1)(x + 3) − 2x(x − 4) = 36`"
         },
+        "example": {
+          "he": "המשוואה:\n```\n(2x + 1)(x − 2) − 2x(x + 1) = −12\n2x² − 4x + x − 2 − 2x² − 2x = −12\n−5x − 2 = −12\n−5x = −10\nx = 2\n```\nפותחים סוגריים \"כל אחד בכל אחד\". x² מופיע בשני הצדדים ומצטמצם. מעבירים את x לצד אחד ואת המספרים לצד השני. במעבר הסימן מתהפך.",
+          "ru": "Уравнение:\n```\n(2x + 1)(x − 2) − 2x(x + 1) = −12\n2x² − 4x + x − 2 − 2x² − 2x = −12\n−5x − 2 = −12\n−5x = −10\nx = 2\n```\nРаскрываем скобки «каждое на каждое». x² есть с обеих сторон и сокращается. Переносим x в одну сторону, числа в другую. При переносе знак меняется.",
+          "en": "Equation:\n```\n(2x + 1)(x − 2) − 2x(x + 1) = −12\n2x² − 4x + x − 2 − 2x² − 2x = −12\n−5x − 2 = −12\n−5x = −10\nx = 2\n```\nOpen the brackets \"each by each\". x² is on both sides and cancels. Move x to one side and the numbers to the other. Moving a term flips its sign."
+        },
         "answer": {
           "value": "3"
         },
@@ -3297,6 +3537,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את מערכת המשוואות\n`3x + 4y = 10`\n`5x − 3y = 7`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`3x + 4y = 10`\n`5x − 3y = 7`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`3x + 4y = 10`\n`5x − 3y = 7`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n2x + 5y = 12\n3x − 2y = −1\n```\nרוצים להיפטר מ־y. המקדמים של y: `5` ו־−2``. את הראשונה כופלים ב־2, את השנייה ב־5:\n```\n4x + 10y = 24\n15x − 10y = −5\n```\nהסימנים של y שונים → מחברים:\n```\n19x = 19\nx = 19 / 19 = 1\n```\nמציבים את x במשוואה הראשונה:\n```\n2 × 1 + 5y = 12\n5y = 10\ny = 2\n```",
+          "ru": "```\n2x + 5y = 12\n3x − 2y = −1\n```\nХотим убрать y. Коэффициенты при y: `5` и `−2`. Первое умножаем на 2, второе на 5:\n```\n4x + 10y = 24\n15x − 10y = −5\n```\nЗнаки при y разные → складываем:\n```\n19x = 19\nx = 19 / 19 = 1\n```\nПодставляем x в первое уравнение:\n```\n2 × 1 + 5y = 12\n5y = 10\ny = 2\n```",
+          "en": "```\n2x + 5y = 12\n3x − 2y = −1\n```\nWe want to remove y. The y coefficients: `5` and `−2`. Multiply the first by 2, the second by 5:\n```\n4x + 10y = 24\n15x − 10y = −5\n```\nThe y signs are different → we add:\n```\n19x = 19\nx = 19 / 19 = 1\n```\nPut x into the first equation:\n```\n2 × 1 + 5y = 12\n5y = 10\ny = 2\n```"
         },
         "answer": {
           "accept": [
@@ -3386,6 +3631,11 @@ window.LESSONS["math-2026-10-18"] = {
           "he": "פתרו את מערכת המשוואות\n`2x − 5y = −16`\n`−3x + 4y = 17`\nכתבו את התשובה כך: x = …, y = …",
           "ru": "Реши систему уравнений\n`2x − 5y = −16`\n`−3x + 4y = 17`\nЗапиши ответ так: x = …, y = …",
           "en": "Solve the system of equations\n`2x − 5y = −16`\n`−3x + 4y = 17`\nWrite the answer like this: x = …, y = …"
+        },
+        "example": {
+          "he": "```\n3x − 2y = −8\n−2x + 5y = 9\n```\nרוצים להיפטר מ־y. המקדמים של y: `−2` ו־`5`. את הראשונה כופלים ב־5, את השנייה ב־2:\n```\n15x − 10y = −40\n−4x + 10y = 18\n```\nהסימנים של y שונים → מחברים:\n```\n11x = −22\nx = −22 / 11 = −2\n```\nמציבים את x במשוואה הראשונה:\n```\n3 × (−2) − 2y = −8\n−2y = −2\ny = 1\n```",
+          "ru": "```\n3x − 2y = −8\n−2x + 5y = 9\n```\nХотим убрать y. Коэффициенты при y: `−2` и `5`. Первое умножаем на 5, второе на 2:\n```\n15x − 10y = −40\n−4x + 10y = 18\n```\nЗнаки при y разные → складываем:\n```\n11x = −22\nx = −22 / 11 = −2\n```\nПодставляем x в первое уравнение:\n```\n3 × (−2) − 2y = −8\n−2y = −2\ny = 1\n```",
+          "en": "```\n3x − 2y = −8\n−2x + 5y = 9\n```\nWe want to remove y. The y coefficients: `−2` and `5`. Multiply the first by 5, the second by 2:\n```\n15x − 10y = −40\n−4x + 10y = 18\n```\nThe y signs are different → we add:\n```\n11x = −22\nx = −22 / 11 = −2\n```\nPut x into the first equation:\n```\n3 × (−2) − 2y = −8\n−2y = −2\ny = 1\n```"
         },
         "answer": {
           "accept": [
