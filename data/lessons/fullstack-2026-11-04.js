@@ -712,6 +712,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "ru": "Какая строка в `<head>` подключает к странице файл `design.css`?",
           "en": "Which line in `<head>` links the file `design.css` to the page?"
         },
+        "example": {
+          "he": "תמונה מציגים בדף כך: `<img src=\"cat.png\">` — מאפיין עם הנתיב לקובץ. קובץ חיצוני מחברים בדרך דומה, אבל עם תגית משלו ב־`<head>`, שיש לה `rel` (איזה קובץ זה) ו־`href` (איפה הוא נמצא).",
+          "ru": "Картинку на странице показывают так: `<img src=\"cat.png\">` — атрибут с путём к файлу. Внешний файл подключают похожим способом, но своим тегом в `<head>`, у которого есть `rel` (что это за файл) и `href` (где он лежит).",
+          "en": "An image is shown on a page like this: `<img src=\"cat.png\">` — an attribute with the path to the file. An external file is connected in a similar way, but with its own tag in `<head>`, which has `rel` (what kind of file it is) and `href` (where it is)."
+        },
         "options": [
           "`<style href=\"design.css\">`",
           "`<link rel=\"stylesheet\" href=\"design.css\">`",
@@ -756,6 +761,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "ru": "В HTML написано `<h1 class=\"one\">`. Как в CSS написать правило для всех, у кого этот класс?",
           "en": "The HTML says `<h1 class=\"one\">`. How do you write a CSS rule for everyone with this class?"
         },
+        "example": {
+          "he": "ב־HTML ‏`<p id=\"top\">` → ב־CSS הכלל ל־id הזה: `#top { color: red; }`. ל־id הסימן `#`. למחלקה (class) סימן אחר, היזכרו בשקופית \"בוררים\".",
+          "ru": "В HTML `<p id=\"top\">` → в CSS правило для этого id: `#top { color: red; }`. Для id знак `#`. Для класса другой знак, вспомни слайд «בוררים».",
+          "en": "In HTML `<p id=\"top\">` → in CSS the rule for that id: `#top { color: red; }`. For an id the sign is `#`. For a class it is a different sign, remember the \"selectors\" slide."
+        },
         "options": [
           "`one { }`",
           "`#one { }`",
@@ -794,6 +804,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "he": "כמו בשיעור: `h1 { color: beige; }`, `.one { color: lightcyan; }`, `#special { color: ghostwhite; }`. באיזה צבע יהיו האותיות של `<h1 class=\"one\" id=\"special\">`?",
           "ru": "Как на уроке: `h1 { color: beige; }`, `.one { color: lightcyan; }`, `#special { color: ghostwhite; }`. Какого цвета будут буквы у `<h1 class=\"one\" id=\"special\">`?",
           "en": "As in class: `h1 { color: beige; }`, `.one { color: lightcyan; }`, `#special { color: ghostwhite; }`. What colour are the letters of `<h1 class=\"one\" id=\"special\">`?"
+        },
+        "example": {
+          "he": "`p { color: red; }` ו־`.note { color: blue; }`. ב־`<p class=\"note\">` האותיות כחולות (blue): מחלקה חזקה מתגית. כוח הכללים: תגית < מחלקה < id.",
+          "ru": "`p { color: red; }` и `.note { color: blue; }`. У `<p class=\"note\">` буквы синие (blue): класс сильнее тега. Сила правил: тег < класс < id.",
+          "en": "`p { color: red; }` and `.note { color: blue; }`. `<p class=\"note\">` has blue letters: a class is stronger than a tag. Rule strength: tag < class < id."
         },
         "options": [
           "beige",
@@ -836,6 +851,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "he": "באותו קובץ: `h1 { width: 15rem; }`, `.one { width: 18rem; }`, ול־`#special` אין width. מה הרוחב של `<h1 class=\"one\" id=\"special\">`?",
           "ru": "В том же файле: `h1 { width: 15rem; }`, `.one { width: 18rem; }`, а у `#special` нет width. Какая ширина у `<h1 class=\"one\" id=\"special\">`?",
           "en": "Same file: `h1 { width: 15rem; }`, `.one { width: 18rem; }`, and `#special` has no width. What is the width of `<h1 class=\"one\" id=\"special\">`?"
+        },
+        "example": {
+          "he": "`p { font-size: 14px; }`, `.note { font-size: 18px; }`, `#top { color: red; }`. ל־`<p class=\"note\" id=\"top\">` הגודל 18px: ב־`#top` אין `font-size`, ולכן לוקחים את הכלל הבא בכוחו שיש בו את זה, כלומר המחלקה.",
+          "ru": "`p { font-size: 14px; }`, `.note { font-size: 18px; }`, `#top { color: red; }`. У `<p class=\"note\" id=\"top\">` размер 18px: в `#top` нет font-size, поэтому берётся следующее по силе правило, где оно есть, то есть класс.",
+          "en": "`p { font-size: 14px; }`, `.note { font-size: 18px; }`, `#top { color: red; }`. `<p class=\"note\" id=\"top\">` gets 18px: `#top` has no font-size, so the next strongest rule that has it wins, that is the class."
         },
         "options": [
           "15rem",
@@ -883,6 +903,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "ru": "Нужно, чтобы сама коробка отодвинулась на 30px от коробки слева. Что пишем?",
           "en": "You want the box itself to move 30px away from the box on its left. What do you write?"
         },
+        "example": {
+          "he": "`padding-top: 10px` — ריווח בתוך הקופסה: הטקסט מתרחק מהקצה העליון שלה, והקופסה נשארת במקום. ריווח מבחוץ מזיז את הקופסה עצמה מהשכנה, וזו תכונה אחרת.",
+          "ru": "`padding-top: 10px` — отступ ВНУТРИ коробки: текст отходит от её верхнего края, а коробка стоит на месте. Отступ СНАРУЖИ двигает саму коробку от соседа, это другое свойство.",
+          "en": "`padding-top: 10px` is space INSIDE the box: the text moves away from its top edge, and the box stays put. Space OUTSIDE moves the box itself away from its neighbour, and that is a different property."
+        },
         "options": [
           "`padding-left: 30px;`",
           "`margin-left: 30px;`",
@@ -921,6 +946,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "he": "`<div class=\"page\">` ובתוכו 4 קופסאות. על מי כותבים `display: grid` כדי שהן יעמדו ברשת?",
           "ru": "`<div class=\"page\">`, а внутри 4 коробки. Кому пишем `display: grid`, чтобы они встали сеткой?",
           "en": "`<div class=\"page\">` with 4 boxes inside. Which gets `display: grid` so they line up in a grid?"
+        },
+        "example": {
+          "he": "`<ul class=\"menu\">` ובתוכו 3 ‏`<li>`. כדי שהפריטים יעמדו בשורה, כותבים `display: flex` על `.menu`: ההורה מסדר את הילדים שלו. ב־grid אותו דבר.",
+          "ru": "`<ul class=\"menu\">` и внутри 3 `<li>`. Чтобы пункты встали в ряд, `display: flex` пишут на `.menu`: родитель раскладывает своих детей. С grid так же.",
+          "en": "`<ul class=\"menu\">` with 3 `<li>` inside. To put the items in a row, `display: flex` goes on `.menu`: the parent arranges its children. Grid works the same way."
         },
         "options": [
           {
@@ -972,6 +1002,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "ru": "`grid-template-columns: auto auto auto auto;`, внутри родителя 4 ребёнка. Что получится?",
           "en": "`grid-template-columns: auto auto auto auto;` with 4 children inside the parent. What do you get?"
         },
+        "example": {
+          "he": "`grid-template-columns: auto auto;` → 2 עמודות. 4 ילדים: 2 הראשונים בשורה 1, ה־2 הבאים בשורה 2 → 2 עמודות ו־2 שורות. כמה פעמים כתוב `auto` — כך מספר העמודות.",
+          "ru": "`grid-template-columns: auto auto;` → 2 столбца. 4 ребёнка: первые 2 в строке 1, следующие 2 в строке 2 → 2 столбца и 2 строки. Сколько раз написано `auto`, столько и столбцов.",
+          "en": "`grid-template-columns: auto auto;` → 2 columns. 4 children: the first 2 in row 1, the next 2 in row 2 → 2 columns and 2 rows. As many times as `auto` is written, that many columns."
+        },
         "options": [
           {
             "he": "4 טורים ו־4 שורות",
@@ -1022,6 +1057,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "ru": "`#batman { grid-column: 1 /span 2; }` — на каких столбцах стоит картинка?",
           "en": "`#batman { grid-column: 1 /span 2; }` — which columns does the image stand on?"
         },
+        "example": {
+          "he": "`grid-column: 2 /span 3;` → מתחילים בעמודה 2 ותופסים 3 עמודות ברצף → עמודות 2, 3 ו־4.",
+          "ru": "`grid-column: 2 /span 3;` → начинаем со столбца 2 и занимаем 3 столбца подряд → столбцы 2, 3 и 4.",
+          "en": "`grid-column: 2 /span 3;` → start at column 2 and take 3 columns in a row → columns 2, 3 and 4."
+        },
         "options": [
           {
             "he": "רק טור 2",
@@ -1066,6 +1106,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "he": "`#special { grid-row: 3 /span 9; }` — באילו שורות האלמנט נמצא?",
           "ru": "`#special { grid-row: 3 /span 9; }` — в каких строках находится элемент?",
           "en": "`#special { grid-row: 3 /span 9; }` — which rows is the element in?"
+        },
+        "example": {
+          "he": "`grid-row: 2 /span 4;` → מתחילים בשורה 2 ותופסים 4 שורות → 2, 3, 4, 5. השורה האחרונה = הראשונה + span פחות 1.",
+          "ru": "`grid-row: 2 /span 4;` → начинаем со строки 2 и занимаем 4 строки → 2, 3, 4, 5. Последняя строка = первая + span − 1.",
+          "en": "`grid-row: 2 /span 4;` → start at row 2 and take 4 rows → 2, 3, 4, 5. The last row = the first + span − 1."
         },
         "options": [
           {
@@ -1116,6 +1161,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "he": "`#content { display: flex; flex-direction: row; flex-wrap: wrap; }` — מה עושה `flex-wrap: wrap`?",
           "ru": "`#content { display: flex; flex-direction: row; flex-wrap: wrap; }` — что делает `flex-wrap: wrap`?",
           "en": "`#content { display: flex; flex-direction: row; flex-wrap: wrap; }` — what does `flex-wrap: wrap` do?"
+        },
+        "example": {
+          "he": "בלי `flex-wrap` (ברירת המחדל `nowrap`) כל הכרטיסים מנסים להיכנס לשורה אחת: אם אין מספיק מקום, הם מתכווצים או יוצאים מהקצה. חשבו מה `wrap` משנה.",
+          "ru": "Без `flex-wrap` (по умолчанию `nowrap`) все карточки стараются влезть в одну строку: если места мало, они сжимаются или вылезают за край. Подумай, что меняет `wrap`.",
+          "en": "Without `flex-wrap` (the default is `nowrap`) all the cards try to fit on one line: if there is not enough room, they shrink or stick out past the edge. Think about what `wrap` changes."
         },
         "options": [
           {
@@ -1168,6 +1218,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "ru": "Какое свойство, как на уроке, даёт промежуток между строками grid? (имя свойства)",
           "en": "Which property, as in class, puts space between grid rows? (property name)"
         },
+        "example": {
+          "he": "את הרווח בין עמודות ה־grid כתבו בשיעור כך: `grid-column-gap: 10px;`. לשורות התכונה בנויה אותו דבר, רק על שורות.",
+          "ru": "Промежуток между столбцами grid на уроке писали так: `grid-column-gap: 10px;`. Для строк свойство устроено так же, только про строки.",
+          "en": "In class the gap between grid columns was written like this: `grid-column-gap: 10px;`. For rows the property is built the same way, only about rows."
+        },
         "answer": {
           "accept": [
             "grid-row-gap",
@@ -1205,6 +1260,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "ru": "Какой знак пишут в CSS перед именем id? (один знак)",
           "en": "Which symbol goes before an id name in CSS? (one symbol)"
         },
+        "example": {
+          "he": "לפני שם של מחלקה ב־CSS כותבים נקודה: `.one { }`. ל־id יש סימן משלו, אחר.",
+          "ru": "Перед именем класса в CSS пишут точку: `.one { }`. Для id свой знак, другой.",
+          "en": "Before a class name in CSS you write a dot: `.one { }`. An id has its own, different sign."
+        },
         "answer": {
           "accept": [
             "#"
@@ -1239,6 +1299,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "he": "`.page { display: grid; grid-template-columns: auto auto auto; }` ובתוכו 7 ילדים בלי `grid-row` ו־`grid-column`. כמה שורות יהיו?",
           "ru": "`.page { display: grid; grid-template-columns: auto auto auto; }`, внутри 7 детей без `grid-row` и `grid-column`. Сколько будет строк?",
           "en": "`.page { display: grid; grid-template-columns: auto auto auto; }` with 7 children and no `grid-row` or `grid-column`. How many rows?"
+        },
+        "example": {
+          "he": "4 עמודות (`auto` ארבע פעמים) ו־6 ילדים → שורה 1: ילדים 1–4, שורה 2: ילדים 5–6 → 2 שורות. מחלקים את מספר הילדים במספר העמודות ומעגלים למעלה.",
+          "ru": "4 столбца (`auto` 4 раза) и 6 детей → строка 1: дети 1–4, строка 2: дети 5–6 → 2 строки. Делим детей на число столбцов и округляем вверх.",
+          "en": "4 columns (`auto` 4 times) and 6 children → row 1: children 1–4, row 2: children 5–6 → 2 rows. Divide the children by the number of columns and round up."
         },
         "options": [
           "2",
@@ -1276,6 +1341,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "he": "`.page` עם `grid-template-columns: auto auto auto auto;` ו־4 ילדים: `.page1`, `.page2`, `.page3`, `.box`. כתוב רק `.page1 { grid-column: 3; }`. איפה יעמוד `.page3`?",
           "ru": "`.page` с `grid-template-columns: auto auto auto auto;` и 4 ребёнка: `.page1`, `.page2`, `.page3`, `.box`. Написано только `.page1 { grid-column: 3; }`. Где встанет `.page3`?",
           "en": "`.page` with `grid-template-columns: auto auto auto auto;` and 4 children: `.page1`, `.page2`, `.page3`, `.box`. Only `.page1 { grid-column: 3; }` is written. Where does `.page3` go?"
+        },
+        "example": {
+          "he": "3 עמודות, הילדים `.a`, `.b`, `.c`, ורק `.a { grid-column: 2; }`.\n`.a` עומד בשורה 1, עמודה 2.\n`.b` ממשיך ימינה בסדר: שורה 1, עמודה 3.\n`.c`: אין מקום אחריו בשורה 1 → שורה 2, עמודה 1.\nהתא \"שורה 1, עמודה 1\" נשאר ריק: ה־grid לא חוזר אחורה.",
+          "ru": "3 столбца, дети `.a`, `.b`, `.c`, и только `.a { grid-column: 2; }`.\n`.a` встаёт в строку 1, столбец 2.\n`.b` идёт дальше вправо: строка 1, столбец 3.\n`.c`: справа в строке 1 места нет → строка 2, столбец 1.\nКлетка «строка 1, столбец 1» остаётся пустой: grid назад не возвращается.",
+          "en": "3 columns, children `.a`, `.b`, `.c`, and only `.a { grid-column: 2; }`.\n`.a` goes to row 1, column 2.\n`.b` goes on to the right: row 1, column 3.\n`.c`: no room after it in row 1 → row 2, column 1.\nThe cell \"row 1, column 1\" stays empty: the grid does not go back."
         },
         "options": [
           {
@@ -1341,6 +1411,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "ru": "В CSS-файле в таком порядке: `#main { color: red; }`, `.card { color: blue; }`, `div { color: green; }`. Какого цвета будет `<div class=\"card\" id=\"main\">`?",
           "en": "A CSS file in this order: `#main { color: red; }`, `.card { color: blue; }`, `div { color: green; }`. What colour is `<div class=\"card\" id=\"main\">`?"
         },
+        "example": {
+          "he": "`.card { color: blue; }`, ואחריו `p { color: green; }`. ב־`<p class=\"card\">` האותיות כחולות: מחלקה חזקה מתגית, גם אם התגית כתובה למטה בקובץ. הסדר בקובץ חשוב רק כשהכללים באותו כוח.",
+          "ru": "`.card { color: blue; }`, потом `p { color: green; }`. У `<p class=\"card\">` буквы синие: класс сильнее тега, даже если тег написан ниже в файле. Порядок в файле важен, только когда правила одинаковой силы.",
+          "en": "`.card { color: blue; }`, then `p { color: green; }`. `<p class=\"card\">` has blue letters: a class is stronger than a tag, even if the tag rule is lower in the file. The order in the file matters only when rules have the same strength."
+        },
         "options": [
           "red",
           "blue",
@@ -1377,6 +1452,11 @@ window.LESSONS["fullstack-2026-11-04"] = {
           "he": "ב־`.page` יש 3 טורים. רוצים ש־`.box` יתפוס את כל רוחב השורה. מה כותבים ב־`.box`?",
           "ru": "В `.page` 3 столбца. Нужно, чтобы `.box` занял всю ширину строки. Что пишем в `.box`?",
           "en": "`.page` has 3 columns. You want `.box` to take the full row width. What goes in `.box`?"
+        },
+        "example": {
+          "he": "ב־`.page` יש 4 עמודות, ו־`.box { grid-column: 2 /span 2; }` → `.box` מתחיל בעמודה 2 ותופס 2 עמודות: 2 ו־3, כלומר את אמצע השורה.",
+          "ru": "В `.page` 4 столбца, а `.box { grid-column: 2 /span 2; }` → `.box` начинается в столбце 2 и занимает 2 столбца: 2 и 3, то есть середину строки.",
+          "en": "`.page` has 4 columns, and `.box { grid-column: 2 /span 2; }` → `.box` starts at column 2 and takes 2 columns: 2 and 3, the middle of the row."
         },
         "options": [
           "`grid-column: 3;`",

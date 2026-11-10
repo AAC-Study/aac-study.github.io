@@ -448,9 +448,14 @@ window.LESSONS["ai-2026-11-02"] = {
         "label": "מא",
         "kind": "text",
         "text": {
-          "he": "תוכנית המיון מהשיעור. הקלט: `5`, `9`, `abc`, `3`, `4`, `2`. מה יודפס בשורה האחרונה (אחרי `Descending:`)?",
-          "ru": "Программа сортировки с урока. Ввод: `5`, `9`, `abc`, `3`, `4`, `2`. Что напечатается в последней строке (после `Descending:`)?",
-          "en": "The sorting program from class. Input: `5`, `9`, `abc`, `3`, `4`, `2`. What is printed on the last line (after `Descending:`)?"
+          "he": "תוכנית המיון מהשיעור. המשתמש הקליד, אחד אחרי השני: `5`, `9`, `abc`, `3`, `4`, `2`. מה יודפס בשורה האחרונה (אחרי `Descending:`)?",
+          "ru": "Программа сортировки с урока. Пользователь по очереди ввёл: `5`, `9`, `abc`, `3`, `4`, `2`. Что напечатается в последней строке (после `Descending:`)?",
+          "en": "The sorting program from class. The user typed, one after another: `5`, `9`, `abc`, `3`, `4`, `2`. What is printed on the last line (after `Descending:`)?"
+        },
+        "example": {
+          "he": "המשתמש הקליד, אחד אחרי השני: `7`, `1`, `x`, `6`, `2`, `8`.\n`x` אינו מספר → התוכנית מדפיסה `Not a number, try again:` ולא סופרת את הערך הזה.\nהמספרים: 7, 1, 6, 2, 8 → `Arrays.sort` מהקטן לגדול: 1, 2, 6, 7, 8 → הלולאה מדפיסה מהסוף.\nהשורה האחרונה הייתה: `Descending: 8.0 7.0 6.0 2.0 1.0` (הטיפוס `double`, ולכן `.0`).",
+          "ru": "Пользователь по очереди ввёл: `7`, `1`, `x`, `6`, `2`, `8`.\n`x` не число → программа печатает `Not a number, try again:` и это значение не считает.\nЧисла: 7, 1, 6, 2, 8 → `Arrays.sort` от меньшего к большему: 1, 2, 6, 7, 8 → цикл печатает с конца.\nПоследняя строка была бы: `Descending: 8.0 7.0 6.0 2.0 1.0` (тип `double`, поэтому `.0`).",
+          "en": "The user typed one after another: `7`, `1`, `x`, `6`, `2`, `8`.\n`x` is not a number → the program prints `Not a number, try again:` and does not count it.\nThe numbers: 7, 1, 6, 2, 8 → `Arrays.sort` from small to large: 1, 2, 6, 7, 8 → the loop prints from the end.\nThe last line would be: `Descending: 8.0 7.0 6.0 2.0 1.0` (the type is `double`, hence `.0`)."
         },
         "answer": {
           "accept": [
@@ -501,9 +506,14 @@ window.LESSONS["ai-2026-11-02"] = {
         "label": "מב",
         "kind": "text",
         "text": {
-          "he": "מקרה קצה מהשיעור — שליליים ואפס. הקלט: `-3 0 -10 8 -1`. מה יודפס אחרי `Descending:`?",
-          "ru": "Крайний случай с урока — отрицательные и ноль. Ввод: `-3 0 -10 8 -1`. Что напечатается после `Descending:`?",
-          "en": "An edge case from class — negatives and zero. Input: `-3 0 -10 8 -1`. What is printed after `Descending:`?"
+          "he": "מקרה קצה מהשיעור — שליליים ואפס. המשתמש הקליד, אחד אחרי השני: `-3 0 -10 8 -1`. מה יודפס אחרי `Descending:`?",
+          "ru": "Крайний случай с урока — отрицательные и ноль. Пользователь по очереди ввёл: `-3 0 -10 8 -1`. Что напечатается после `Descending:`?",
+          "en": "An edge case from class — negatives and zero. The user typed, one after another: `-3 0 -10 8 -1`. What is printed after `Descending:`?"
+        },
+        "example": {
+          "he": "המשתמש הקליד: `4 -2 0 -7 1`.\nמהקטן לגדול: ‎−7, ‎−2, 0, 1, 4 (‎−7 קטן מ־‎−2: ככל שרחוק יותר משמאל לאפס, קטן יותר).\nמהסוף: `Descending: 4.0 1.0 0.0 -2.0 -7.0`.",
+          "ru": "Пользователь ввёл: `4 -2 0 -7 1`.\nОт меньшего к большему: −7, −2, 0, 1, 4 (−7 меньше −2: чем дальше от нуля влево, тем меньше).\nС конца: `Descending: 4.0 1.0 0.0 -2.0 -7.0`.",
+          "en": "The user typed: `4 -2 0 -7 1`.\nFrom small to large: −7, −2, 0, 1, 4 (−7 is less than −2: the further left of zero, the smaller).\nFrom the end: `Descending: 4.0 1.0 0.0 -2.0 -7.0`."
         },
         "answer": {
           "accept": [
@@ -552,6 +562,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "he": "בדוגמה מהשקף: \"בעברית · עד 120 מילים · דוגמה אחת\". איזה רכיב של RTC-C זה?",
           "ru": "В примере со слайда: «на иврите · до 120 слов · один пример». Какой это компонент RTC-C?",
           "en": "In the slide's example: \"in Hebrew · up to 120 words · one example\". Which RTC-C component is this?"
+        },
+        "example": {
+          "he": "פרומפט: \"אתה רואה חשבון מנוסה. חשב מע״מ מ־200 ₪. אני בעל חנות קטנה. תשובה בשורה אחת\".\nR (תפקיד): \"אתה רואה חשבון מנוסה\"\nT (משימה): \"חשב מע״מ מ־200 ₪\"\nC (הקשר): \"אני בעל חנות קטנה\"\nC (מגבלות): \"תשובה בשורה אחת\" — כלומר הצורה, האורך והשפה של התשובה.",
+          "ru": "Промпт: «Ты — опытный бухгалтер. Посчитай НДС с 200 ₪. Я владелец маленького магазина. Ответ одной строкой».\nR (роль): «Ты — опытный бухгалтер»\nT (задача): «Посчитай НДС с 200 ₪»\nC (контекст): «Я владелец маленького магазина»\nC (ограничения): «Ответ одной строкой» — то есть форма, длина, язык ответа.",
+          "en": "Prompt: \"You are an experienced accountant. Work out the VAT on 200 ₪. I own a small shop. Answer in one line\".\nR (role): \"You are an experienced accountant\"\nT (task): \"Work out the VAT on 200 ₪\"\nC (context): \"I own a small shop\"\nC (constraints): \"Answer in one line\", that is the form, length and language of the answer."
         },
         "options": [
           {
@@ -613,6 +628,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "ru": "Калькулятор цены продажи: товар стоил `50 ₪`, прибыль `100%`, доставка `16.90 ₪`. Какая сумма до НДС?",
           "en": "The selling-price calculator: the product cost `50 ₪`, profit `100%`, shipping `16.90 ₪`. What is the total before VAT?"
         },
+        "example": {
+          "he": "המוצר עלה `40 ₪`, רווח `100%`, משלוח `10 ₪`.\nשלב 1. רווח 100% → המחיר × 2: ‏`40 × 2 = 80`\nשלב 2. מוסיפים משלוח: `80 + 10 = 90`\nלפני מע״מ: `90.00`",
+          "ru": "Товар стоил `40 ₪`, прибыль `100%`, доставка `10 ₪`.\nШаг 1. Прибыль 100% → цена × 2: 40 × 2 = 80\nШаг 2. Добавляем доставку: 80 + 10 = 90\nДо НДС: `90.00`",
+          "en": "The item cost `40 ₪`, profit `100%`, delivery `10 ₪`.\nStep 1. 100% profit → price × 2: 40 × 2 = 80\nStep 2. Add delivery: 80 + 10 = 90\nBefore VAT: `90.00`"
+        },
         "answer": {
           "value": "116.90"
         },
@@ -648,6 +668,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "he": "המשך: מוסיפים מע\"מ `18%` על הכול. מה המחיר ללקוח? (עגלו לאגורות — 2 ספרות אחרי הנקודה)",
           "ru": "Продолжение: добавляем НДС `18%` на всё. Какая цена для клиента? (округлите до агорот — 2 знака после точки)",
           "en": "Continued: add `18%` VAT on everything. What is the price for the customer? (round to agorot — 2 decimal places)"
+        },
+        "example": {
+          "he": "ממשיכים את הדוגמה: לפני מע״מ `90 ₪`.\nמע״מ 18% על הכול → כופלים ב־1.18: ‏`90 × 1.18 = 106.2`\nהמחיר ללקוח: `106.20`",
+          "ru": "Продолжаем пример: до НДС `90 ₪`.\nНДС 18% на всё → умножаем на 1.18: 90 × 1.18 = 106.2\nЦена для клиента: `106.20`",
+          "en": "Continuing the example: before VAT `90 ₪`.\n18% VAT on everything → multiply by 1.18: 90 × 1.18 = 106.2\nThe price for the customer: `106.20`"
         },
         "answer": {
           "value": "137.94"
@@ -688,6 +713,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "he": "לפי המרצה: איזו מילה אחת בפרומפט של סוכן השירות יצרה את החור, שבגללו הוא חילק הנחות של 50%?",
           "ru": "По словам преподавательницы: какое одно слово в промпте агента поддержки создало дыру, из-за которой он раздавал скидки 50%?",
           "en": "According to the teacher: which single word in the support agent's prompt created the hole that made it hand out 50% discounts?"
+        },
+        "example": {
+          "he": "סיפור דומה: בפרומפט של חנות כתבו \"היה נדיב ללקוחות\", אבל לא כתבו גבול. הבוט החליט שנדיבות חשובה מהכללים והתחיל לחלק מוצרים במתנה. מילה \"טובה\" אחת בלי גבול פתחה פרצה.",
+          "ru": "Похожая история: в промпте магазина написали «будь щедрым к клиентам», но не написали предел. Бот решил, что щедрость важнее правил, и начал дарить товары. Одно «доброе» слово без границы открыло дыру.",
+          "en": "A similar story: a shop prompt said \"be generous to customers\" but set no limit. The bot decided generosity mattered more than the rules and started giving products away. One \"kind\" word without a limit opened a hole."
         },
         "options": [
           {
@@ -749,6 +779,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "ru": "Что значит правило Garbage In, Garbage Out?",
           "en": "What does the Garbage In, Garbage Out rule mean?"
         },
+        "example": {
+          "he": "ביקשו מהצ׳אט: \"כתוב קוד\" ולא יותר. קיבלו קוד בלי בדיקת קלט ובלי דוגמת הרצה. שאלה זבל (חלשה) → תשובה זבל (חלשה).",
+          "ru": "Попросили чат: «напиши код» и ничего больше. Получили код без проверки ввода и без примера запуска. Мусорный (слабый) вопрос → мусорный (слабый) ответ.",
+          "en": "Someone asked the chat: \"write code\" and nothing more. They got code with no input check and no example run. A garbage (weak) question → a garbage (weak) answer."
+        },
         "options": [
           {
             "he": "AI תמיד טועה",
@@ -802,6 +837,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "ru": "«Действуй как опытный преподаватель Java». Какой это компонент RTC-C?",
           "en": "\"Act as an experienced Java teacher.\" Which RTC-C component is this?"
         },
+        "example": {
+          "he": "\"הסבר איך עובדת לולאת for\" → זו T (משימה): מה צריך לעשות. התפקיד עונה על \"מי להיות\", והמשימה על \"מה לעשות\".",
+          "ru": "«Объясни, как работает цикл for» → это T (задача): что нужно сделать. Роль отвечает на вопрос «кем быть», задача — «что сделать».",
+          "en": "\"Explain how a for loop works\" → that is T (task): what to do. The role answers \"who to be\", the task answers \"what to do\"."
+        },
         "options": [
           {
             "he": "R — תפקיד",
@@ -851,6 +891,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "he": "מה עושה `Arrays.sort(a)` בתוכנית המיון?",
           "ru": "Что делает `Arrays.sort(a)` в программе сортировки?",
           "en": "What does `Arrays.sort(a)` do in the sorting program?"
+        },
+        "example": {
+          "he": "`String[] f = {\"pear\", \"apple\", \"kiwi\"};` → `Arrays.sort(f);` → `apple, kiwi, pear`. המילים עמדו לפי סדר האלף־בית. עם מספרים `Arrays.sort` עובד אותו דבר, לפי אותו כלל.",
+          "ru": "`String[] f = {\"pear\", \"apple\", \"kiwi\"};` → `Arrays.sort(f);` → `apple, kiwi, pear`. Слова встали по алфавиту. С числами `Arrays.sort` работает так же, по тому же правилу.",
+          "en": "`String[] f = {\"pear\", \"apple\", \"kiwi\"};` → `Arrays.sort(f);` → `apple, kiwi, pear`. The words are now in alphabetical order. With numbers `Arrays.sort` works the same way, by the same rule."
         },
         "options": [
           {
@@ -906,6 +951,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "ru": "Какой правильный порядок в процессе RTC-C?",
           "en": "What is the right order in the RTC-C flow?"
         },
+        "example": {
+          "he": "כמו בתיקון רכב: בודקים אם הכול נוסע כמו שצריך → מוצאים איזה חלק חלש → מחליפים רק אותו → בודקים שוב. את כל הרכב לא זורקים.",
+          "ru": "Как с ремонтом машины: проверили, всё ли едет как надо → нашли, какая деталь слабая → поменяли только её → снова проверили. Машину целиком не выбрасывают.",
+          "en": "Like fixing a car: check whether everything drives as it should → find which part is weak → replace only that part → check again. You do not throw away the whole car."
+        },
         "options": [
           {
             "he": "שליחה ← בדיקה מול הדרישות ← זיהוי הרכיב החלש ← חידוד ושליחה מחדש",
@@ -956,6 +1006,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "ru": "Сколько составит НДС `18%` от `200 ₪`?",
           "en": "How much is `18%` VAT on `200 ₪`?"
         },
+        "example": {
+          "he": "מע״מ 18% מ־`50 ₪` → ‏`50 × 0.18 = 9` → `9 ₪`. ‏18% = 0.18.",
+          "ru": "НДС 18% от `50 ₪` → 50 × 0.18 = 9 → `9 ₪`. 18% = 0.18.",
+          "en": "18% VAT on `50 ₪` → 50 × 0.18 = 9 → `9 ₪`. 18% = 0.18."
+        },
         "answer": {
           "value": "36"
         },
@@ -986,6 +1041,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "he": "לפי המחשבון (רווח `100%`, משלוח `16.90 ₪`, מע\"מ `18%`): המוצר עלה `41.55 ₪`. מה המחיר ללקוח?",
           "ru": "По калькулятору (прибыль `100%`, доставка `16.90 ₪`, НДС `18%`): товар стоил `41.55 ₪`. Какая цена для клиента?",
           "en": "With the calculator (profit `100%`, shipping `16.90 ₪`, VAT `18%`): the product cost `41.55 ₪`. What is the price for the customer?"
+        },
+        "example": {
+          "he": "המוצר עלה `20 ₪`.\nשלב 1. רווח 100%: ‏`20 × 2 = 40`\nשלב 2. משלוח: `40 + 16.90 = 56.90`\nשלב 3. מע״מ: `56.90 × 1.18 = 67.142` → מעגלים לאגורות: `67.14`",
+          "ru": "Товар стоил `20 ₪`.\nШаг 1. Прибыль 100%: 20 × 2 = 40\nШаг 2. Доставка: 40 + 16.90 = 56.90\nШаг 3. НДС: 56.90 × 1.18 = 67.142 → округляем до агорот: `67.14`",
+          "en": "The item cost `20 ₪`.\nStep 1. 100% profit: 20 × 2 = 40\nStep 2. Delivery: 40 + 16.90 = 56.90\nStep 3. VAT: 56.90 × 1.18 = 67.142 → round to agorot: `67.14`"
         },
         "answer": {
           "value": "118.00"
@@ -1021,9 +1081,14 @@ window.LESSONS["ai-2026-11-02"] = {
         "label": "2.3",
         "kind": "text",
         "text": {
-          "he": "תוכנית המיון, קלט שכבר ממוין: `1 2 3 4 5`. מה יודפס אחרי `Descending:`?",
-          "ru": "Программа сортировки, уже отсортированный ввод: `1 2 3 4 5`. Что напечатается после `Descending:`?",
-          "en": "The sorting program with already-sorted input: `1 2 3 4 5`. What is printed after `Descending:`?"
+          "he": "תוכנית המיון. המשתמש הקליד מספרים שכבר ממוינים: `1 2 3 4 5`. מה יודפס אחרי `Descending:`?",
+          "ru": "Программа сортировки. Пользователь ввёл уже отсортированные числа: `1 2 3 4 5`. Что напечатается после `Descending:`?",
+          "en": "The sorting program. The user typed numbers that are already sorted: `1 2 3 4 5`. What is printed after `Descending:`?"
+        },
+        "example": {
+          "he": "המשתמש הקליד: `2 2 1 3 3`.\nמהקטן לגדול: 1, 2, 2, 3, 3 → מהסוף: `Descending: 3.0 3.0 2.0 2.0 1.0`. מספרים זהים נשארים שניהם.",
+          "ru": "Пользователь ввёл: `2 2 1 3 3`.\nОт меньшего к большему: 1, 2, 2, 3, 3 → с конца: `Descending: 3.0 3.0 2.0 2.0 1.0`. Одинаковые числа остаются оба.",
+          "en": "The user typed: `2 2 1 3 3`.\nFrom small to large: 1, 2, 2, 3, 3 → from the end: `Descending: 3.0 3.0 2.0 2.0 1.0`. Equal numbers both stay."
         },
         "answer": {
           "accept": [
@@ -1062,6 +1127,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "he": "מקלידים `abc` במקום מספר. מה התוכנית עושה?",
           "ru": "Вводим `abc` вместо числа. Что делает программа?",
           "en": "You type `abc` instead of a number. What does the program do?"
+        },
+        "example": {
+          "he": "מקלידים `7.5` → `hasNextDouble` מחזיר true: זה מספר מסוג `double`, התוכנית מקבלת אותו וממשיכה. חשבו מה יחזיר `hasNextDouble` עבור `abc` ואיזה ענף בתוכנית יפעל.",
+          "ru": "Вводим `7.5` → `hasNextDouble` возвращает true: это число типа `double`, программа его принимает и идёт дальше. Подумай, что вернёт `hasNextDouble` для `abc` и какая ветка программы сработает.",
+          "en": "Type `7.5` → `hasNextDouble` returns true: it is a `double`, the program accepts it and moves on. Think what `hasNextDouble` returns for `abc` and which branch of the program runs."
         },
         "options": [
           {
@@ -1112,6 +1182,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "ru": "Тот же калькулятор, но прибыль `50%`: товар стоил `30 ₪`, доставка `16.90 ₪`. Какая сумма до НДС?",
           "en": "Same calculator, but `50%` profit: the product cost `30 ₪`, shipping `16.90 ₪`. What is the total before VAT?"
         },
+        "example": {
+          "he": "רווח 50%: המוצר `20 ₪`, משלוח `10 ₪`.\nשלב 1. רווח 50% → המחיר × 1.5: ‏`20 × 1.5 = 30`\nשלב 2. משלוח: `30 + 10 = 40`\nלפני מע״מ: `40.00`",
+          "ru": "Прибыль 50%: товар `20 ₪`, доставка `10 ₪`.\nШаг 1. Прибыль 50% → цена × 1.5: 20 × 1.5 = 30\nШаг 2. Доставка: 30 + 10 = 40\nДо НДС: `40.00`",
+          "en": "50% profit: the item `20 ₪`, delivery `10 ₪`.\nStep 1. 50% profit → price × 1.5: 20 × 1.5 = 30\nStep 2. Delivery: 30 + 10 = 40\nBefore VAT: `40.00`"
+        },
         "answer": {
           "value": "61.90"
         },
@@ -1142,6 +1217,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "he": "בפרומפט של סוכן שירות הלקוחות: \"מותר לך להעניק הנחה של עד 10% ללקוחות לא מרוצים… אסור לחרוג ללא אישור מנהל\". איזה תנאי הבוט לא יכול לבדוק בעצמו?",
           "ru": "В промпте агента поддержки: «Тебе разрешено дать скидку до 10% недовольным клиентам… Запрещено превышать без одобрения менеджера». Какое условие бот не может проверить сам?",
           "en": "In the customer-service agent's prompt: \"You may give a discount of up to 10% to unhappy customers… You must not exceed it without manager approval\". Which condition can the bot not check by itself?"
+        },
+        "example": {
+          "he": "\"ענה רק באנגלית\" → הבוט יכול לבדוק את זה בעצמו: הוא רואה את התשובה שלו. \"הנחה רק ללקוחות VIP מהמאגר שלנו\" → בלי גישה למאגר הבוט לא יכול לבדוק, והוא יאמין ללקוח.",
+          "ru": "«Отвечай только по-английски» → бот может проверить это сам: он видит свой ответ. «Скидка только VIP-клиентам из нашей базы» → без доступа к базе бот проверить не может, он поверит клиенту на слово.",
+          "en": "\"Answer only in English\" → the bot can check this itself: it sees its own answer. \"A discount only for VIP customers in our database\" → without access to the database the bot cannot check, it will take the customer's word."
         },
         "options": [
           {
@@ -1197,6 +1277,11 @@ window.LESSONS["ai-2026-11-02"] = {
           "he": "ביקשתם קוד מהצ'ט, אבל קיבלתם רק קוד בלי דוגמת הרצה ובלי מקרי קצה. לפי RTC-C, מה עושים?",
           "ru": "Вы попросили у чата код, но получили только код без примера запуска и без крайних случаев. Что делать по RTC-C?",
           "en": "You asked the chat for code but got only code, with no sample run and no edge cases. What do you do according to RTC-C?"
+        },
+        "example": {
+          "he": "ביקשו מתכון וקיבלו בלי גרמים. לא מוחקים הכול: מוסיפים למגבלות \"ציין גרמים לכל מוצר\" ושולחים שוב. משנים רק את הרכיב החלש.",
+          "ru": "Попросили рецепт, а получили без граммов. Не удаляем всё: в ограничения добавляем «укажи граммы для каждого продукта» и отправляем снова. Меняем только слабый компонент.",
+          "en": "You asked for a recipe and got one without grams. Do not delete everything: add \"give grams for each ingredient\" to the constraints and send it again. Change only the weak component."
         },
         "options": [
           {

@@ -937,7 +937,7 @@ window.LESSONS["sql-2026-11-05"] = {
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\nHow many rows does `select top 40 percent * from hayot` return?"
         },
         "example": {
-          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 60 percent * from perot` → 5 שורות × 0.6 = 3 → 3 שורות. אם יוצא שבר, SQL Server מעגל כלפי מעלה.",
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 60 percent * from perot` → `5 × 0.6 = 3` → 3 שורות. אם יוצא שבר, SQL Server מעגל כלפי מעלה.",
           "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 60 percent * from perot` → 5 строк × 0.6 = 3 → 3 строки. Если получается дробь, SQL Server округляет вверх.",
           "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 60 percent * from perot` → 5 rows × 0.6 = 3 → 3 rows. If it comes out as a fraction, SQL Server rounds up."
         },

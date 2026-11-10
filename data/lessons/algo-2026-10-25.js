@@ -982,7 +982,7 @@ window.LESSONS["algo-2026-10-25"] = {
           "en": "Exercise 3: the program reads 3 whole numbers and prints their average.\n```\nScanner sc = new Scanner(System.in);\nint a = sc.nextInt();\nint b = sc.nextInt();\nint c = sc.nextInt();\nint sum = a + b + c;\nSystem.out.println(sum / 3);\n```\nThe user typed 3 numbers one after another: 1, 2, 2. What does the program print?"
         },
         "example": {
-          "he": "המשתמש הקליד 2, 3, 3 → `sum` = 8 → `8 / 3`: שני המספרים `int`, ולכן החלק העשרוני נזרק → התוכנית תדפיס 2.",
+          "he": "המשתמש הקליד 2, 3, 3 → `sum = 8` → `8 / 3`: שני המספרים `int`, ולכן החלק העשרוני נזרק → התוכנית תדפיס 2.",
           "ru": "Пользователь ввёл 2, 3, 3 → `sum` = 8 → `8 / 3`: оба числа `int`, поэтому дробная часть отбрасывается → программа напечатает 2.",
           "en": "The user typed 2, 3, 3 → `sum` = 8 → `8 / 3`: both numbers are `int`, so the fraction is dropped → the program prints 2."
         },
@@ -1032,7 +1032,7 @@ window.LESSONS["algo-2026-10-25"] = {
           "en": "Exercise 4: the program reads a birth year and prints the age (it is 2026 now).\n```\nScanner sc = new Scanner(System.in);\nint year = sc.nextInt();\nSystem.out.println(\"your age is \" + (2026 - year) + \".\");\n```\nThe user typed 1998. What number is in the line the program prints?"
         },
         "example": {
-          "he": "המשתמש הקליד 2000 → `2026 - 2000` = 26 → התוכנית תדפיס `your age is 26.`",
+          "he": "המשתמש הקליד 2000 → `2026 - 2000 = 26` → התוכנית תדפיס `your age is 26.`",
           "ru": "Пользователь ввёл 2000 → `2026 - 2000` = 26 → программа напечатает `your age is 26.`",
           "en": "The user typed 2000 → `2026 - 2000` = 26 → the program prints `your age is 26.`"
         },
@@ -1067,7 +1067,7 @@ window.LESSONS["algo-2026-10-25"] = {
           "en": "Exercise 5: the program reads a two-digit number and prints the tens digit and the ones digit.\n```\nScanner sc = new Scanner(System.in);\nint n = sc.nextInt();\nSystem.out.println(n / 10);\nSystem.out.println(n % 10);\n```\nThe user typed 47. The program prints two lines. What is in them? Write them with a space, for example: 1 2"
         },
         "example": {
-          "he": "המשתמש הקליד 83 → `83 / 10` = 8 (השבר נזרק) → `83 % 10` = 3 (השארית) → התוכנית תדפיס 8 ו־3.",
+          "he": "המשתמש הקליד 83 → `83 / 10 = 8` (השבר נזרק) → `83 % 10 = 3` (השארית) → התוכנית תדפיס 8 ו־3.",
           "ru": "Пользователь ввёл 83 → `83 / 10` = 8 (дробь отбрасывается) → `83 % 10` = 3 (остаток) → программа напечатает 8 и 3.",
           "en": "The user typed 83 → `83 / 10` = 8 (the fraction is dropped) → `83 % 10` = 3 (the remainder) → the program prints 8 and 3."
         },
@@ -1104,7 +1104,7 @@ window.LESSONS["algo-2026-10-25"] = {
           "en": "Exercise 6: the program reads a number of days and prints how many weeks and days that is.\n```\nScanner sc = new Scanner(System.in);\nint days = sc.nextInt();\nSystem.out.println(days / 7 + \" weeks and \" + days % 7 + \" days\");\n```\nThe user typed 17. What does the program print?"
         },
         "example": {
-          "he": "המשתמש הקליד 10 → `10 / 7` = 1 → `10 % 7` = 3 → התוכנית תדפיס `1 weeks and 3 days`.",
+          "he": "המשתמש הקליד 10 → `10 / 7 = 1` → `10 % 7 = 3` → התוכנית תדפיס `1 weeks and 3 days`.",
           "ru": "Пользователь ввёл 10 → `10 / 7` = 1 → `10 % 7` = 3 → программа напечатает `1 weeks and 3 days`.",
           "en": "The user typed 10 → `10 / 7` = 1 → `10 % 7` = 3 → the program prints `1 weeks and 3 days`."
         },
@@ -1137,7 +1137,7 @@ window.LESSONS["algo-2026-10-25"] = {
           "en": "Exercise 8: the program reads a three-digit number and prints the sum of its digits.\n```\nScanner sc = new Scanner(System.in);\nint n = sc.nextInt();\nSystem.out.println(n / 100 + n / 10 % 10 + n % 10);\n```\nThe user typed 258. What does the program print?"
         },
         "example": {
-          "he": "המשתמש הקליד 314 → `314 / 100` = 3 → `314 / 10 % 10` = 1 → `314 % 10` = 4 → יחד 3 ו־1 ו־4 הם 8 → התוכנית תדפיס 8.",
+          "he": "המשתמש הקליד 314 → `314 / 100 = 3` → `314 / 10 % 10 = 1` → `314 % 10 = 4` → יחד 3 ו־1 ו־4 הם 8 → התוכנית תדפיס 8.",
           "ru": "Пользователь ввёл 314 → `314 / 100` = 3 → `314 / 10 % 10` = 1 → `314 % 10` = 4 → 3 и 1 и 4 вместе 8 → программа напечатает 8.",
           "en": "The user typed 314 → `314 / 100` = 3 → `314 / 10 % 10` = 1 → `314 % 10` = 4 → 3 and 1 and 4 together make 8 → the program prints 8."
         },
@@ -1179,7 +1179,7 @@ window.LESSONS["algo-2026-10-25"] = {
           "en": "Exercise 9: the program reads a number of minutes and prints how many hours and minutes that is.\n```\nScanner sc = new Scanner(System.in);\nint num = sc.nextInt();\nSystem.out.println(num / 60 + \" hours and \" + num % 60 + \" minutes\");\n```\nThe user typed 130. What does the program print?"
         },
         "example": {
-          "he": "המשתמש הקליד 75 → `75 / 60` = 1 → `75 % 60` = 15 → התוכנית תדפיס `1 hours and 15 minutes`.",
+          "he": "המשתמש הקליד 75 → `75 / 60 = 1` → `75 % 60 = 15` → התוכנית תדפיס `1 hours and 15 minutes`.",
           "ru": "Пользователь ввёл 75 → `75 / 60` = 1 → `75 % 60` = 15 → программа напечатает `1 hours and 15 minutes`.",
           "en": "The user typed 75 → `75 / 60` = 1 → `75 % 60` = 15 → the program prints `1 hours and 15 minutes`."
         },
