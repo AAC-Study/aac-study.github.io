@@ -543,10 +543,10 @@
         el('span', { class: 'ls-tile__label' }, Tasks.taskLabel(task, lang)),
         typeof task.text === 'string'
           ? el('span', { class: 'ls-tile__expr', dir: 'ltr' }, task.text)
-          : el('span', { class: 'ls-tile__text' }, [rich(pick(task.text, lang))]),
+          : el('span', { class: 'ls-tile__text' }, [rich(String(pick(task.text, lang)).split('```')[0].trim())]),   // в плитке без блока кода
         el('span', { class: 'ls-tile__check', html: Icons.get('check'), 'aria-hidden': 'true' })
       ]);
-      b.setAttribute('aria-label', Tasks.taskLabel(task, lang) + ': ' + Tasks.taskText(task, lang) + (solved ? ' — ' + t('tk_solved') : ''));
+      b.setAttribute('aria-label', Tasks.taskLabel(task, lang) + ': ' + Tasks.taskText(task, lang).split('```')[0].trim() + (solved ? ' — ' + t('tk_solved') : ''));
       b.addEventListener('click', function () {
         try { sessionStorage.setItem('open_task', lesson.id + '|' + task.id); } catch (e) { /* */ }
         Tasks.open(lesson, task, { onSolved: function () { refreshTiles(); }, onClose: function () {

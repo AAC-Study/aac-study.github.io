@@ -768,9 +768,9 @@ window.LESSONS["algo-2026-10-25"] = {
         },
         "kind": "choice",
         "text": {
-          "he": "המשתמש מקליד 10. מה יודפס?\n`int age = sca.nextInt();`\n`if (age >= 7 && age <= 10) System.out.println(\"Yes\");`\n`else System.out.println(\"No\");`",
-          "ru": "Пользователь вводит 10. Что будет напечатано?\n`int age = sca.nextInt();`\n`if (age >= 7 && age <= 10) System.out.println(\"Yes\");`\n`else System.out.println(\"No\");`",
-          "en": "The user types 10. What is printed?\n`int age = sca.nextInt();`\n`if (age >= 7 && age <= 10) System.out.println(\"Yes\");`\n`else System.out.println(\"No\");`"
+          "he": "תוכנית מהשיעור קולטת גיל ובודקת אם הוא בין 7 ל־10.\n```\nScanner sca = new Scanner(System.in);\nint age = sca.nextInt();\nif (age >= 7 && age <= 10) System.out.println(\"Yes\");\nelse System.out.println(\"No\");\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 12 → `12 >= 7` כן, `12 <= 10` לא → התנאי לא מתקיים → התוכנית תדפיס `No`.\nהמשימה שלך: המשתמש הקליד 10. מה התוכנית תדפיס?",
+          "ru": "Программа с урока читает возраст и проверяет, от 7 до 10 он или нет.\n```\nScanner sca = new Scanner(System.in);\nint age = sca.nextInt();\nif (age >= 7 && age <= 10) System.out.println(\"Yes\");\nelse System.out.println(\"No\");\n```\nПример на других числах: пользователь ввёл 12 → `12 >= 7` да, `12 <= 10` нет → условие не выполнено → программа напечатает `No`.\nТвоя задача: Пользователь ввёл 10. Что напечатает программа?",
+          "en": "A program from the lesson reads an age and checks whether it is from 7 to 10.\n```\nScanner sca = new Scanner(System.in);\nint age = sca.nextInt();\nif (age >= 7 && age <= 10) System.out.println(\"Yes\");\nelse System.out.println(\"No\");\n```\nExample with other numbers: the user typed 12 → `12 >= 7` yes, `12 <= 10` no → the condition is false → the program prints `No`.\nYour task: The user typed 10. What does the program print?"
         },
         "options": [
           "Yes",
@@ -812,9 +812,9 @@ window.LESSONS["algo-2026-10-25"] = {
         },
         "kind": "text",
         "text": {
-          "he": "המשתמש מקליד 10. מה יודפס?\n`if (age > 18) System.out.println(\"Yes\");`\n`else if (age == 0) System.out.println(\"No\");`\n`else System.out.println(\"ll\");`",
-          "ru": "Пользователь вводит 10. Что будет напечатано?\n`if (age > 18) System.out.println(\"Yes\");`\n`else if (age == 0) System.out.println(\"No\");`\n`else System.out.println(\"ll\");`",
-          "en": "The user types 10. What is printed?\n`if (age > 18) System.out.println(\"Yes\");`\n`else if (age == 0) System.out.println(\"No\");`\n`else System.out.println(\"ll\");`"
+          "he": "תוכנית מהשיעור קולטת גיל ובודקת לפי הסדר: גדול מ־18, שווה ל־0, אחרת.\n```\nScanner sca = new Scanner(System.in);\nint age = sca.nextInt();\nif (age > 18) System.out.println(\"Yes\");\nelse if (age == 0) System.out.println(\"No\");\nelse System.out.println(\"ll\");\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 25 → `25 > 18` כן → התוכנית תדפיס `Yes` ולא בודקת הלאה.\nהמשימה שלך: המשתמש הקליד 10. מה התוכנית תדפיס?",
+          "ru": "Программа с урока читает возраст и проверяет его по очереди: больше 18, равен 0, иначе.\n```\nScanner sca = new Scanner(System.in);\nint age = sca.nextInt();\nif (age > 18) System.out.println(\"Yes\");\nelse if (age == 0) System.out.println(\"No\");\nelse System.out.println(\"ll\");\n```\nПример на других числах: пользователь ввёл 25 → `25 > 18` да → программа напечатает `Yes`, дальше не проверяет.\nТвоя задача: Пользователь ввёл 10. Что напечатает программа?",
+          "en": "A program from the lesson reads an age and checks it in order: over 18, equal to 0, otherwise.\n```\nScanner sca = new Scanner(System.in);\nint age = sca.nextInt();\nif (age > 18) System.out.println(\"Yes\");\nelse if (age == 0) System.out.println(\"No\");\nelse System.out.println(\"ll\");\n```\nExample with other numbers: the user typed 25 → `25 > 18` yes → the program prints `Yes` and checks nothing more.\nYour task: The user typed 10. What does the program print?"
         },
         "answer": {
           "accept": [
@@ -931,9 +931,9 @@ window.LESSONS["algo-2026-10-25"] = {
         },
         "kind": "number",
         "text": {
-          "he": "שיטה I מהלוח. הקלט: 4, 9, 2 (x, y, z). מה יודפס?\n`if (x >= y && x >= z) System.out.println(x);`\n`else if (y >= z) System.out.println(y);`\n`else System.out.println(z);`",
-          "ru": "Способ I с доски. Ввод: 4, 9, 2 (x, y, z). Что будет напечатано?\n`if (x >= y && x >= z) System.out.println(x);`\n`else if (y >= z) System.out.println(y);`\n`else System.out.println(z);`",
-          "en": "Method I from the board. Input: 4, 9, 2 (x, y, z). What is printed?\n`if (x >= y && x >= z) System.out.println(x);`\n`else if (y >= z) System.out.println(y);`\n`else System.out.println(z);`"
+          "he": "שיטה I מהלוח: התוכנית קולטת 3 מספרים x, y, z ומדפיסה את הגדול ביותר.\n```\nScanner sca = new Scanner(System.in);\nint x = sca.nextInt();\nint y = sca.nextInt();\nint z = sca.nextInt();\nif (x >= y && x >= z) System.out.println(x);\nelse if (y >= z) System.out.println(y);\nelse System.out.println(z);\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 3, 1, 8 → `3 >= 1` כן, אבל `3 >= 8` לא → התנאי הראשון לא מתקיים → `1 >= 8` לא → התוכנית תדפיס את z, כלומר 8.\nהמשימה שלך: המשתמש הקליד, אחד אחרי השני, 3 מספרים: 4, 9, 2 (אלה x, y, z). מה התוכנית תדפיס?",
+          "ru": "Способ I с доски: программа читает 3 числа x, y, z и печатает самое большое.\n```\nScanner sca = new Scanner(System.in);\nint x = sca.nextInt();\nint y = sca.nextInt();\nint z = sca.nextInt();\nif (x >= y && x >= z) System.out.println(x);\nelse if (y >= z) System.out.println(y);\nelse System.out.println(z);\n```\nПример на других числах: пользователь ввёл 3, 1, 8 → `3 >= 1` да, но `3 >= 8` нет → первое условие не выполнено → `1 >= 8` нет → программа напечатает z, то есть 8.\nТвоя задача: Пользователь по очереди ввёл 3 числа: 4, 9, 2 (это x, y, z). Что напечатает программа?",
+          "en": "Method I from the board: the program reads 3 numbers x, y, z and prints the largest.\n```\nScanner sca = new Scanner(System.in);\nint x = sca.nextInt();\nint y = sca.nextInt();\nint z = sca.nextInt();\nif (x >= y && x >= z) System.out.println(x);\nelse if (y >= z) System.out.println(y);\nelse System.out.println(z);\n```\nExample with other numbers: the user typed 3, 1, 8 → `3 >= 1` yes, but `3 >= 8` no → the first condition is false → `1 >= 8` no → the program prints z, that is 8.\nYour task: The user typed 3 numbers one after another: 4, 9, 2 (these are x, y, z). What does the program print?"
         },
         "answer": {
           "value": "9"
@@ -962,9 +962,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "3",
         "kind": "choice",
         "text": {
-          "he": "שאלה 3 (ממוצע של שלושה). הקלט: 1, 2, 2. מה ידפיס הקוד הזה?\n`int sum = a + b + c;`\n`System.out.println(sum / 3);`",
-          "ru": "Задание 3 (среднее трёх). Ввод: 1, 2, 2. Что напечатает этот код?\n`int sum = a + b + c;`\n`System.out.println(sum / 3);`",
-          "en": "Question 3 (average of three). Input: 1, 2, 2. What does this code print?\n`int sum = a + b + c;`\n`System.out.println(sum / 3);`"
+          "he": "שאלה 3: התוכנית קולטת 3 מספרים שלמים ומדפיסה את הממוצע שלהם.\n```\nScanner sc = new Scanner(System.in);\nint a = sc.nextInt();\nint b = sc.nextInt();\nint c = sc.nextInt();\nint sum = a + b + c;\nSystem.out.println(sum / 3);\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 2, 3, 3 → `sum` = 8 → `8 / 3`: שני המספרים `int`, ולכן החלק העשרוני נזרק → התוכנית תדפיס 2.\nהמשימה שלך: המשתמש הקליד, אחד אחרי השני, 3 מספרים: 1, 2, 2. מה התוכנית תדפיס?",
+          "ru": "Задание 3: программа читает 3 целых числа и печатает их среднее.\n```\nScanner sc = new Scanner(System.in);\nint a = sc.nextInt();\nint b = sc.nextInt();\nint c = sc.nextInt();\nint sum = a + b + c;\nSystem.out.println(sum / 3);\n```\nПример на других числах: пользователь ввёл 2, 3, 3 → `sum` = 8 → `8 / 3`: оба числа `int`, поэтому дробная часть отбрасывается → программа напечатает 2.\nТвоя задача: Пользователь по очереди ввёл 3 числа: 1, 2, 2. Что напечатает программа?",
+          "en": "Exercise 3: the program reads 3 whole numbers and prints their average.\n```\nScanner sc = new Scanner(System.in);\nint a = sc.nextInt();\nint b = sc.nextInt();\nint c = sc.nextInt();\nint sum = a + b + c;\nSystem.out.println(sum / 3);\n```\nExample with other numbers: the user typed 2, 3, 3 → `sum` = 8 → `8 / 3`: both numbers are `int`, so the fraction is dropped → the program prints 2.\nYour task: The user typed 3 numbers one after another: 1, 2, 2. What does the program print?"
         },
         "options": [
           "1",
@@ -1007,9 +1007,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "4",
         "kind": "number",
         "text": {
-          "he": "שאלה 4: קולטים שנת לידה ומדפיסים את הגיל (השנה 2026). איזה מספר יופיע בשורה שהתוכנית תדפיס עבור הקלט 1998?\n`System.out.println(\"your age is \" + (2026 - year) + \".\");`",
-          "ru": "Задание 4: вводим год рождения и печатаем возраст (сейчас 2026). Какое число будет в строке, которую напечатает программа при вводе 1998?\n`System.out.println(\"your age is \" + (2026 - year) + \".\");`",
-          "en": "Question 4: read a birth year and print the age (the year is 2026). Which number appears in the line the program prints for input 1998?\n`System.out.println(\"your age is \" + (2026 - year) + \".\");`"
+          "he": "שאלה 4: התוכנית קולטת שנת לידה ומדפיסה את הגיל (השנה 2026).\n```\nScanner sc = new Scanner(System.in);\nint year = sc.nextInt();\nSystem.out.println(\"your age is \" + (2026 - year) + \".\");\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 2000 → `2026 - 2000` = 26 → התוכנית תדפיס `your age is 26.`\nהמשימה שלך: המשתמש הקליד 1998. איזה מספר יופיע בשורה שהתוכנית תדפיס?",
+          "ru": "Задание 4: программа читает год рождения и печатает возраст (сейчас 2026).\n```\nScanner sc = new Scanner(System.in);\nint year = sc.nextInt();\nSystem.out.println(\"your age is \" + (2026 - year) + \".\");\n```\nПример на других числах: пользователь ввёл 2000 → `2026 - 2000` = 26 → программа напечатает `your age is 26.`\nТвоя задача: Пользователь ввёл 1998. Какое число будет в строке, которую напечатает программа?",
+          "en": "Exercise 4: the program reads a birth year and prints the age (it is 2026 now).\n```\nScanner sc = new Scanner(System.in);\nint year = sc.nextInt();\nSystem.out.println(\"your age is \" + (2026 - year) + \".\");\n```\nExample with other numbers: the user typed 2000 → `2026 - 2000` = 26 → the program prints `your age is 26.`\nYour task: The user typed 1998. What number is in the line the program prints?"
         },
         "answer": {
           "value": "28"
@@ -1037,9 +1037,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "5",
         "kind": "text",
         "text": {
-          "he": "שאלה 5: מספר דו-ספרתי, ספרת העשרות וספרת האחדות. הקלט 47. מה יודפס? (שתי שורות — כתבו עם רווח)\n`System.out.println(n / 10);`\n`System.out.println(n % 10);`",
-          "ru": "Задание 5: двузначное число, цифра десятков и единиц. Ввод 47. Что будет напечатано? (две строки — напиши через пробел)\n`System.out.println(n / 10);`\n`System.out.println(n % 10);`",
-          "en": "Question 5: a two-digit number, the tens and the units digit. Input 47. What is printed? (two lines — write them with a space)\n`System.out.println(n / 10);`\n`System.out.println(n % 10);`"
+          "he": "שאלה 5: התוכנית קולטת מספר דו-ספרתי ומדפיסה את ספרת העשרות ואת ספרת האחדות.\n```\nScanner sc = new Scanner(System.in);\nint n = sc.nextInt();\nSystem.out.println(n / 10);\nSystem.out.println(n % 10);\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 83 → `83 / 10` = 8 (השבר נזרק) → `83 % 10` = 3 (השארית) → התוכנית תדפיס 8 ו־3.\nהמשימה שלך: המשתמש הקליד 47. התוכנית מדפיסה שתי שורות. מה כתוב בהן? כתבו עם רווח, למשל: 1 2",
+          "ru": "Задание 5: программа читает двузначное число и печатает цифру десятков и цифру единиц.\n```\nScanner sc = new Scanner(System.in);\nint n = sc.nextInt();\nSystem.out.println(n / 10);\nSystem.out.println(n % 10);\n```\nПример на других числах: пользователь ввёл 83 → `83 / 10` = 8 (дробь отбрасывается) → `83 % 10` = 3 (остаток) → программа напечатает 8 и 3.\nТвоя задача: Пользователь ввёл 47. Программа печатает две строки. Что в них? Напиши через пробел, например: 1 2",
+          "en": "Exercise 5: the program reads a two-digit number and prints the tens digit and the ones digit.\n```\nScanner sc = new Scanner(System.in);\nint n = sc.nextInt();\nSystem.out.println(n / 10);\nSystem.out.println(n % 10);\n```\nExample with other numbers: the user typed 83 → `83 / 10` = 8 (the fraction is dropped) → `83 % 10` = 3 (the remainder) → the program prints 8 and 3.\nYour task: The user typed 47. The program prints two lines. What is in them? Write them with a space, for example: 1 2"
         },
         "answer": {
           "accept": [
@@ -1069,9 +1069,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "6",
         "kind": "text",
         "text": {
-          "he": "שאלה 6: ימים → שבועות וימים. הקלט 17. מה יודפס?\n`System.out.println(days / 7 + \" weeks and \" + days % 7 + \" days\");`",
-          "ru": "Задание 6: дни → недели и дни. Ввод 17. Что будет напечатано?\n`System.out.println(days / 7 + \" weeks and \" + days % 7 + \" days\");`",
-          "en": "Question 6: days → weeks and days. Input 17. What is printed?\n`System.out.println(days / 7 + \" weeks and \" + days % 7 + \" days\");`"
+          "he": "שאלה 6: התוכנית קולטת מספר ימים ומדפיסה כמה שבועות וימים זה.\n```\nScanner sc = new Scanner(System.in);\nint days = sc.nextInt();\nSystem.out.println(days / 7 + \" weeks and \" + days % 7 + \" days\");\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 10 → `10 / 7` = 1 → `10 % 7` = 3 → התוכנית תדפיס `1 weeks and 3 days`.\nהמשימה שלך: המשתמש הקליד 17. מה התוכנית תדפיס?",
+          "ru": "Задание 6: программа читает число дней и печатает, сколько это недель и дней.\n```\nScanner sc = new Scanner(System.in);\nint days = sc.nextInt();\nSystem.out.println(days / 7 + \" weeks and \" + days % 7 + \" days\");\n```\nПример на других числах: пользователь ввёл 10 → `10 / 7` = 1 → `10 % 7` = 3 → программа напечатает `1 weeks and 3 days`.\nТвоя задача: Пользователь ввёл 17. Что напечатает программа?",
+          "en": "Exercise 6: the program reads a number of days and prints how many weeks and days that is.\n```\nScanner sc = new Scanner(System.in);\nint days = sc.nextInt();\nSystem.out.println(days / 7 + \" weeks and \" + days % 7 + \" days\");\n```\nExample with other numbers: the user typed 10 → `10 / 7` = 1 → `10 % 7` = 3 → the program prints `1 weeks and 3 days`.\nYour task: The user typed 17. What does the program print?"
         },
         "answer": {
           "accept": [
@@ -1097,9 +1097,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "8",
         "kind": "number",
         "text": {
-          "he": "שאלה 8: סכום הספרות של מספר תלת-ספרתי. הקלט 258. מה יודפס?\n`System.out.println(n / 100 + n / 10 % 10 + n % 10);`",
-          "ru": "Задание 8: сумма цифр трёхзначного числа. Ввод 258. Что будет напечатано?\n`System.out.println(n / 100 + n / 10 % 10 + n % 10);`",
-          "en": "Question 8: the digit sum of a three-digit number. Input 258. What is printed?\n`System.out.println(n / 100 + n / 10 % 10 + n % 10);`"
+          "he": "שאלה 8: התוכנית קולטת מספר תלת-ספרתי ומדפיסה את סכום הספרות שלו.\n```\nScanner sc = new Scanner(System.in);\nint n = sc.nextInt();\nSystem.out.println(n / 100 + n / 10 % 10 + n % 10);\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 314 → `314 / 100` = 3 → `314 / 10 % 10` = 1 → `314 % 10` = 4 → יחד 3 ו־1 ו־4 הם 8 → התוכנית תדפיס 8.\nהמשימה שלך: המשתמש הקליד 258. מה התוכנית תדפיס?",
+          "ru": "Задание 8: программа читает трёхзначное число и печатает сумму его цифр.\n```\nScanner sc = new Scanner(System.in);\nint n = sc.nextInt();\nSystem.out.println(n / 100 + n / 10 % 10 + n % 10);\n```\nПример на других числах: пользователь ввёл 314 → `314 / 100` = 3 → `314 / 10 % 10` = 1 → `314 % 10` = 4 → 3 и 1 и 4 вместе 8 → программа напечатает 8.\nТвоя задача: Пользователь ввёл 258. Что напечатает программа?",
+          "en": "Exercise 8: the program reads a three-digit number and prints the sum of its digits.\n```\nScanner sc = new Scanner(System.in);\nint n = sc.nextInt();\nSystem.out.println(n / 100 + n / 10 % 10 + n % 10);\n```\nExample with other numbers: the user typed 314 → `314 / 100` = 3 → `314 / 10 % 10` = 1 → `314 % 10` = 4 → 3 and 1 and 4 together make 8 → the program prints 8.\nYour task: The user typed 258. What does the program print?"
         },
         "answer": {
           "value": "15"
@@ -1134,9 +1134,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "9",
         "kind": "text",
         "text": {
-          "he": "שאלה 9: דקות → שעות ודקות. הקלט 130. מה יודפס?\n`System.out.println(num / 60 + \" hours and \" + num % 60 + \" minutes\");`",
-          "ru": "Задание 9: минуты → часы и минуты. Ввод 130. Что будет напечатано?\n`System.out.println(num / 60 + \" hours and \" + num % 60 + \" minutes\");`",
-          "en": "Question 9: minutes → hours and minutes. Input 130. What is printed?\n`System.out.println(num / 60 + \" hours and \" + num % 60 + \" minutes\");`"
+          "he": "שאלה 9: התוכנית קולטת מספר דקות ומדפיסה כמה שעות ודקות זה.\n```\nScanner sc = new Scanner(System.in);\nint num = sc.nextInt();\nSystem.out.println(num / 60 + \" hours and \" + num % 60 + \" minutes\");\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 75 → `75 / 60` = 1 → `75 % 60` = 15 → התוכנית תדפיס `1 hours and 15 minutes`.\nהמשימה שלך: המשתמש הקליד 130. מה התוכנית תדפיס?",
+          "ru": "Задание 9: программа читает число минут и печатает, сколько это часов и минут.\n```\nScanner sc = new Scanner(System.in);\nint num = sc.nextInt();\nSystem.out.println(num / 60 + \" hours and \" + num % 60 + \" minutes\");\n```\nПример на других числах: пользователь ввёл 75 → `75 / 60` = 1 → `75 % 60` = 15 → программа напечатает `1 hours and 15 minutes`.\nТвоя задача: Пользователь ввёл 130. Что напечатает программа?",
+          "en": "Exercise 9: the program reads a number of minutes and prints how many hours and minutes that is.\n```\nScanner sc = new Scanner(System.in);\nint num = sc.nextInt();\nSystem.out.println(num / 60 + \" hours and \" + num % 60 + \" minutes\");\n```\nExample with other numbers: the user typed 75 → `75 / 60` = 1 → `75 % 60` = 15 → the program prints `1 hours and 15 minutes`.\nYour task: The user typed 130. What does the program print?"
         },
         "answer": {
           "accept": [
@@ -1162,9 +1162,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "12",
         "kind": "text",
         "text": {
-          "he": "שאלה 12: ציון 55 ומעלה — `Pass`, אחרת `Fail`. הקלט 55. מה יודפס?\n`if (grade >= 55) System.out.println(\"Pass\");`\n`else System.out.println(\"Fail\");`",
-          "ru": "Задание 12: оценка 55 и выше — `Pass`, иначе `Fail`. Ввод 55. Что будет напечатано?\n`if (grade >= 55) System.out.println(\"Pass\");`\n`else System.out.println(\"Fail\");`",
-          "en": "Question 12: a grade of 55 or more — `Pass`, otherwise `Fail`. Input 55. What is printed?\n`if (grade >= 55) System.out.println(\"Pass\");`\n`else System.out.println(\"Fail\");`"
+          "he": "שאלה 12: ציון 55 ומעלה — `Pass`, אחרת `Fail`.\n```\nScanner sc = new Scanner(System.in);\nint grade = sc.nextInt();\nif (grade >= 55) System.out.println(\"Pass\");\nelse System.out.println(\"Fail\");\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 54 → `54 >= 55` לא → התוכנית תדפיס `Fail`.\nהמשימה שלך: המשתמש הקליד 55. מה התוכנית תדפיס?",
+          "ru": "Задание 12: оценка 55 и выше — `Pass`, иначе `Fail`.\n```\nScanner sc = new Scanner(System.in);\nint grade = sc.nextInt();\nif (grade >= 55) System.out.println(\"Pass\");\nelse System.out.println(\"Fail\");\n```\nПример на других числах: пользователь ввёл 54 → `54 >= 55` нет → программа напечатает `Fail`.\nТвоя задача: Пользователь ввёл 55. Что напечатает программа?",
+          "en": "Exercise 12: a grade of 55 or more is `Pass`, otherwise `Fail`.\n```\nScanner sc = new Scanner(System.in);\nint grade = sc.nextInt();\nif (grade >= 55) System.out.println(\"Pass\");\nelse System.out.println(\"Fail\");\n```\nExample with other numbers: the user typed 54 → `54 >= 55` no → the program prints `Fail`.\nYour task: The user typed 55. What does the program print?"
         },
         "answer": {
           "accept": [
@@ -1193,9 +1193,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "14",
         "kind": "number",
         "text": {
-          "he": "שאלה 14: מחיר מעל 1000 — הנחה של 10%, אחרת המחיר המקורי. הקלט 1500. מה יודפס?\n`double price = sc.nextDouble();`\n`if (price > 1000) System.out.println(price * 0.9);`\n`else System.out.println(price);`",
-          "ru": "Задание 14: цена выше 1000 — скидка 10%, иначе исходная цена. Ввод 1500. Что будет напечатано?\n`double price = sc.nextDouble();`\n`if (price > 1000) System.out.println(price * 0.9);`\n`else System.out.println(price);`",
-          "en": "Question 14: a price above 1000 gets a 10% discount, otherwise the original price. Input 1500. What is printed?\n`double price = sc.nextDouble();`\n`if (price > 1000) System.out.println(price * 0.9);`\n`else System.out.println(price);`"
+          "he": "שאלה 14: מחיר מעל 1000 — הנחה של 10%, אחרת המחיר המקורי.\n```\nScanner sc = new Scanner(System.in);\ndouble price = sc.nextDouble();\nif (price > 1000) System.out.println(price * 0.9);\nelse System.out.println(price);\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 800 → `800 > 1000` לא → התוכנית תדפיס את המחיר בלי הנחה: `800.0` (`price` הוא `double`, ולכן עם `.0`).\nהמשימה שלך: המשתמש הקליד 1500. איזה מספר התוכנית תדפיס?",
+          "ru": "Задание 14: цена выше 1000 — скидка 10%, иначе исходная цена.\n```\nScanner sc = new Scanner(System.in);\ndouble price = sc.nextDouble();\nif (price > 1000) System.out.println(price * 0.9);\nelse System.out.println(price);\n```\nПример на других числах: пользователь ввёл 800 → `800 > 1000` нет → программа напечатает цену без скидки: `800.0` (`price` — `double`, поэтому с `.0`).\nТвоя задача: Пользователь ввёл 1500. Какое число напечатает программа?",
+          "en": "Exercise 14: a price over 1000 gets a 10% discount, otherwise the original price.\n```\nScanner sc = new Scanner(System.in);\ndouble price = sc.nextDouble();\nif (price > 1000) System.out.println(price * 0.9);\nelse System.out.println(price);\n```\nExample with other numbers: the user typed 800 → `800 > 1000` no → the program prints the price without a discount: `800.0` (`price` is a `double`, so it has `.0`).\nYour task: The user typed 1500. What number does the program print?"
         },
         "answer": {
           "value": "1350"
@@ -1223,9 +1223,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "16",
         "kind": "text",
         "text": {
-          "he": "שאלה 16: מספר חודש → עונה (12, 1, 2 — Winter; 3–5 — Spring; 6–8 — Summer; 9–11 — Autumn; אחרת Error). הקלט 4. מה יודפס?\n`if (m == 12 || m == 1 || m == 2) System.out.println(\"Winter\");`\n`else if (m >= 3 && m <= 5) System.out.println(\"Spring\");`\n`else if (m >= 6 && m <= 8) System.out.println(\"Summer\");`\n`else if (m >= 9 && m <= 11) System.out.println(\"Autumn\");`\n`else System.out.println(\"Error\");`",
-          "ru": "Задание 16: номер месяца → время года (12, 1, 2 — Winter; 3–5 — Spring; 6–8 — Summer; 9–11 — Autumn; иначе Error). Ввод 4. Что будет напечатано?\n`if (m == 12 || m == 1 || m == 2) System.out.println(\"Winter\");`\n`else if (m >= 3 && m <= 5) System.out.println(\"Spring\");`\n`else if (m >= 6 && m <= 8) System.out.println(\"Summer\");`\n`else if (m >= 9 && m <= 11) System.out.println(\"Autumn\");`\n`else System.out.println(\"Error\");`",
-          "en": "Question 16: month number → season (12, 1, 2 — Winter; 3–5 — Spring; 6–8 — Summer; 9–11 — Autumn; otherwise Error). Input 4. What is printed?\n`if (m == 12 || m == 1 || m == 2) System.out.println(\"Winter\");`\n`else if (m >= 3 && m <= 5) System.out.println(\"Spring\");`\n`else if (m >= 6 && m <= 8) System.out.println(\"Summer\");`\n`else if (m >= 9 && m <= 11) System.out.println(\"Autumn\");`\n`else System.out.println(\"Error\");`"
+          "he": "שאלה 16: התוכנית קולטת מספר חודש ומדפיסה עונה (12, 1, 2 — Winter; 3–5 — Spring; 6–8 — Summer; 9–11 — Autumn; אחרת Error).\n```\nScanner sc = new Scanner(System.in);\nint m = sc.nextInt();\nif (m == 12 || m == 1 || m == 2) System.out.println(\"Winter\");\nelse if (m >= 3 && m <= 5) System.out.println(\"Spring\");\nelse if (m >= 6 && m <= 8) System.out.println(\"Summer\");\nelse if (m >= 9 && m <= 11) System.out.println(\"Autumn\");\nelse System.out.println(\"Error\");\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד 7 → התנאי הראשון לא → `7 >= 3 && 7 <= 5` לא → `7 >= 6 && 7 <= 8` כן → התוכנית תדפיס `Summer`.\nהמשימה שלך: המשתמש הקליד 4. מה התוכנית תדפיס?",
+          "ru": "Задание 16: программа читает номер месяца и печатает время года (12, 1, 2 — Winter; 3–5 — Spring; 6–8 — Summer; 9–11 — Autumn; иначе Error).\n```\nScanner sc = new Scanner(System.in);\nint m = sc.nextInt();\nif (m == 12 || m == 1 || m == 2) System.out.println(\"Winter\");\nelse if (m >= 3 && m <= 5) System.out.println(\"Spring\");\nelse if (m >= 6 && m <= 8) System.out.println(\"Summer\");\nelse if (m >= 9 && m <= 11) System.out.println(\"Autumn\");\nelse System.out.println(\"Error\");\n```\nПример на других числах: пользователь ввёл 7 → первое условие нет → `7 >= 3 && 7 <= 5` нет → `7 >= 6 && 7 <= 8` да → программа напечатает `Summer`.\nТвоя задача: Пользователь ввёл 4. Что напечатает программа?",
+          "en": "Exercise 16: the program reads a month number and prints the season (12, 1, 2 is Winter; 3–5 Spring; 6–8 Summer; 9–11 Autumn; otherwise Error).\n```\nScanner sc = new Scanner(System.in);\nint m = sc.nextInt();\nif (m == 12 || m == 1 || m == 2) System.out.println(\"Winter\");\nelse if (m >= 3 && m <= 5) System.out.println(\"Spring\");\nelse if (m >= 6 && m <= 8) System.out.println(\"Summer\");\nelse if (m >= 9 && m <= 11) System.out.println(\"Autumn\");\nelse System.out.println(\"Error\");\n```\nExample with other numbers: the user typed 7 → the first condition no → `7 >= 3 && 7 <= 5` no → `7 >= 6 && 7 <= 8` yes → the program prints `Summer`.\nYour task: The user typed 4. What does the program print?"
         },
         "answer": {
           "accept": [
@@ -1689,9 +1689,9 @@ window.LESSONS["algo-2026-10-25"] = {
         "label": "charAt(0)",
         "kind": "text",
         "text": {
-          "he": "המשתמש מקליד hello. מה יודפס?\n`char first = input.next().charAt(0);`\n`System.out.println(first);`",
-          "ru": "Пользователь вводит hello. Что напечатает?\n`char first = input.next().charAt(0);`\n`System.out.println(first);`",
-          "en": "The user types hello. What is printed?\n`char first = input.next().charAt(0);`\n`System.out.println(first);`"
+          "he": "התוכנית קולטת מילה ומדפיסה ממנה תו אחד.\n```\nScanner input = new Scanner(System.in);\nchar first = input.next().charAt(0);\nSystem.out.println(first);\n```\nדוגמה עם מספרים אחרים: המשתמש הקליד world → `charAt(0)` לוקח את התו במקום 0, כלומר הראשון → התוכנית תדפיס `w`.\nהמשימה שלך: המשתמש הקליד את המילה hello. מה התוכנית תדפיס?",
+          "ru": "Программа читает слово и печатает один символ из него.\n```\nScanner input = new Scanner(System.in);\nchar first = input.next().charAt(0);\nSystem.out.println(first);\n```\nПример на других числах: пользователь ввёл world → `charAt(0)` берёт символ на месте 0, то есть самый первый → программа напечатает `w`.\nТвоя задача: Пользователь ввёл слово hello. Что напечатает программа?",
+          "en": "The program reads a word and prints one character from it.\n```\nScanner input = new Scanner(System.in);\nchar first = input.next().charAt(0);\nSystem.out.println(first);\n```\nExample with other numbers: the user typed world → `charAt(0)` takes the character at place 0, the very first one → the program prints `w`.\nYour task: The user typed the word hello. What does the program print?"
         },
         "answer": {
           "accept": [

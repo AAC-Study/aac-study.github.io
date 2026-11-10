@@ -553,3 +553,7 @@
 .ls-code > .code-copy.is-done span { display: inline; }
 .tk-head__q--code > .code-copy { margin-top: 8px; }
 [dir="rtl"] .tk-head__q--code > .code-copy { direction: rtl; }
+
+/* блок кода в тексте задания (```…```) */
+.tk-pre { font-family: var(--mono); font-size: 14px; line-height: 1.55; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; margin: 8px 0; overflow-x: auto; white-space: pre; text-align: left; direction: ltr; color: var(--text); font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+@media (max-width: 420px) { .tk-pre { font-size: 12.5px; padding: 10px 9px; } }

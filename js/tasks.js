@@ -404,9 +404,19 @@
 
   /* Текст с `математикой` → DOM (математика изолирована как LTR). */
   function rich(text) {
+    var src = String(text == null ? '' : text);
+    /* ```…``` — целый блок кода: с отступами, моноширинный, слева направо */
+    if (src.indexOf('```') >= 0) {
+      var out = document.createDocumentFragment();
+      src.split('```').forEach(function (part, i) {
+        if (i % 2) out.appendChild(el('pre', { class: 'tk-pre', dir: 'ltr' }, part.replace(/^\n/, '').replace(/\n$/, '')));
+        else if (part.replace(/^\n+|\n+$/g, '')) out.appendChild(rich(part.replace(/^\n+|\n+$/g, '')));
+      });
+      return out;
+    }
     var frag = document.createDocumentFragment();
     var rtl = window.I18N && I18N.dir() === 'rtl';
-    String(text == null ? '' : text).split('\n').forEach(function (line, li) {
+    src.split('\n').forEach(function (line, li) {
       if (li) frag.appendChild(el('br'));
       line.split('`').forEach(function (part, i) {
         if (!part) return;
@@ -443,6 +453,8 @@
   }
   /* строки задачи, целиком взятые в `…`, — это код */
   function codeOfText(text) {
+    var fence = String(text || '').split('```');
+    if (fence.length >= 3) return fence[1].replace(/^\n+|\n+$/g, '');   // блок ```…``` — копируем его целиком
     var lines = String(text || '').split('\n').filter(function (l) { return /^`[^`]*`$/.test(l); }).map(function (l) { return l.slice(1, -1); });
     return lines.length >= 2 ? lines.join('\n') : '';
   }
