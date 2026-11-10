@@ -237,6 +237,7 @@ window.LESSONS["sql-2026-10-22"] = {
     teacher: [
       {
         id: "t-b-1", group: "board",
+        example: {"he": "משימה דומה: לפתוח את המסד shop שכבר קיים, כדי לעבוד בו → `use shop`.\nשים לב: `use` רק פותח מסד קיים. ליצור מסד חדש זו פקודה אחרת.", "ru": "Похожая задача: открыть базу shop, которая уже есть, чтобы работать в ней → `use shop`.\nОбрати внимание: `use` только открывает готовую базу. Создать новую базу — это другая команда.", "en": "A similar task: open the existing database shop to work in it → `use shop`.\nNote: `use` only opens a database that already exists. Creating a new database is a different command."},
         label: { he: "שלב 1", ru: "Шаг 1", en: "Step 1" },
         kind: "choice",
         text: {
@@ -258,6 +259,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "t-b-2", group: "board",
+        example: {"he": "שדה «שם הפרי» (טקסט בעברית, עד 20 אותיות) → `nvarchar(20)`.\nטקסט הוא nvarchar עם אורך בסוגריים. לשדה עם מספר צריך טיפוס אחר.", "ru": "Поле «название фрукта» (текст на иврите, до 20 букв) → `nvarchar(20)`.\nТекст — nvarchar с длиной в скобках. Для поля с числом нужен другой тип.", "en": "A \"fruit name\" field (Hebrew text, up to 20 letters) → `nvarchar(20)`.\nText is nvarchar with the length in brackets. A field with a number needs a different type."},
         label: { he: "סוג לשעות", ru: "Тип для часов", en: "Type for hours" },
         kind: "text",
         text: {
@@ -277,6 +279,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "t-b-3", group: "board",
+        example: {"he": "טבלת פירות נכונה:\n`create table perot (mispar_pri int, shem nvarchar(20), kamut int)`\nבודקים לפי שלבים:\nשלב 1. כל העמודות בתוך הסוגריים.\nשלב 2. בין העמודות יש פסיק, ואחרי העמודה האחרונה אין פסיק.\nשלב 3. הטיפוס מתאים למשמעות: מספר וכמות הם `int`, שם הוא `nvarchar`.", "ru": "Правильная таблица фруктов:\n`create table perot (mispar_pri int, shem nvarchar(20), kamut int)`\nПроверяем по шагам:\nШаг 1. Все столбцы внутри скобок.\nШаг 2. Между столбцами запятая, после последнего столбца запятой нет.\nШаг 3. Тип подходит к смыслу: номер и количество — `int`, название — `nvarchar`.", "en": "A correct fruit table:\n`create table perot (mispar_pri int, shem nvarchar(20), kamut int)`\nCheck step by step:\nStep 1. All columns are inside the brackets.\nStep 2. A comma between columns, no comma after the last column.\nStep 3. The type fits the meaning: a number and an amount are `int`, a name is `nvarchar`."},
         label: { he: "הטבלה", ru: "Таблица", en: "The table" },
         kind: "choice",
         text: {
@@ -303,6 +306,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "t-c-1", group: "code",
+        example: {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where pri = 'banana'`\nמחפשים שורות שבהן `pri = banana`: שורה 2 ושורה 5 → 2 שורות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri = 'banana'`\nИщем строки, где pri = banana: строка 2 и строка 5 → 2 строки.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri = 'banana'`\nLook for rows where pri = banana: row 2 and row 5 → 2 rows."},
         label: "where = 'rehitim'",
         kind: "number",
         text: {
@@ -322,6 +326,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "t-c-2", group: "code",
+        example: {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where kamut >= 4`\n`>=` פירושו «גדול או שווה», לכן גם 4 מתאים.\nkamut: 4 כן, 6 כן, 2 לא, 9 כן, 1 לא → 3 שורות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut >= 4`\n`>=` значит «больше или равно», поэтому 4 тоже подходит.\nkamut: 4 да, 6 да, 2 нет, 9 да, 1 нет → 3 строки.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut >= 4`\n`>=` means \"greater than or equal\", so 4 fits too.\nkamut: 4 yes, 6 yes, 2 no, 9 yes, 1 no → 3 rows."},
         label: "iskaot >= 10",
         kind: "number",
         text: {
@@ -342,6 +347,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "t-c-3", group: "code",
+        example: {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where kamut >= 4 or pri = 'tapuach'`\n`or` — מספיק שהשורה מקיימת תנאי אחד.\n`kamut >= 4`: שורות 1, 2, 4.\n`pri = tapuach`: שורות 1, 3.\nשורה 1 מתאימה פעמיים, אבל נספרת פעם אחת.\nביחד: 1, 2, 3, 4 → 4 שורות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut >= 4 or pri = 'tapuach'`\n`or` — строке достаточно одного условия.\nkamut >= 4: строки 1, 2, 4.\npri = tapuach: строки 1, 3.\nСтрока 1 подходит дважды, но считается один раз.\nВместе: 1, 2, 3, 4 → 4 строки.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut >= 4 or pri = 'tapuach'`\n`or` means one condition is enough for a row.\nkamut >= 4: rows 1, 2, 4.\npri = tapuach: rows 1, 3.\nRow 1 fits twice but is counted once.\nTogether: 1, 2, 3, 4 → 4 rows."},
         label: "or",
         kind: "number",
         text: {
@@ -362,6 +368,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "t-c-4", group: "code",
+        example: {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select pri, kamut from perot where pri = 'banana'`\nשלב 1. שורות: banana — שורה 2 ושורה 5 → 2 שורות.\nשלב 2. עמודות: pri ו־kamut → 2 עמודות.\nשלב 3. תאים: `2 × 2 = 4` ערכים.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select pri, kamut from perot where pri = 'banana'`\nШаг 1. Строки: banana — строка 2 и строка 5 → 2 строки.\nШаг 2. Столбцы: pri и kamut → 2 столбца.\nШаг 3. Ячейки: 2 × 2 = 4 значения.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select pri, kamut from perot where pri = 'banana'`\nStep 1. Rows: banana is row 2 and row 5 → 2 rows.\nStep 2. Columns: pri and kamut → 2 columns.\nStep 3. Cells: 2 × 2 = 4 values."},
         label: { he: "שילוב", ru: "Сочетание", en: "Combination" },
         kind: "number",
         text: {
@@ -385,6 +392,7 @@ window.LESSONS["sql-2026-10-22"] = {
     ai: [
       {
         id: "ai-1", level: 1,
+        example: {"he": "השמטה דומה: `select * ___ perot`\nבין `*` לשם הטבלה צריך את המילה «מאיזו טבלה» → `from`.\nהשאילתה המלאה: `select * from perot`.", "ru": "Похожий пропуск: `select * ___ perot`\nМежду `*` и именем таблицы нужно слово «из какой таблицы» → `from`.\nЗапрос целиком: `select * from perot`.", "en": "A similar gap: `select * ___ perot`\nBetween `*` and the table name you need the word \"from which table\" → `from`.\nThe whole query: `select * from perot`."},
         label: { he: "בחר", ru: "Выбрать", en: "Choose" },
         kind: "text",
         text: {
@@ -403,6 +411,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-2", level: 1,
+        example: {"he": "`select pri, kamut from perot` → מציג רק את העמודות pri ו־kamut, ואת כל השורות.\nומה אם במקום רשימת העמודות כתוב `*`? תחשוב מה הוא מחליף.", "ru": "`select pri, kamut from perot` → показывает только столбцы pri и kamut, и все строки.\nА если вместо списка столбцов стоит `*`? Подумай, что он заменяет.", "en": "`select pri, kamut from perot` → shows only the columns pri and kamut, and all the rows.\nAnd if `*` stands instead of the list of columns? Think what it replaces."},
         label: { he: "הכוכבית", ru: "Звёздочка", en: "The star" },
         kind: "choice",
         text: {
@@ -426,6 +435,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-3", level: 1,
+        example: {"he": "עמודה «שם בעברית, עד 20 אותיות» → `nvarchar(20)`.\n`n` — אפשר עברית, בסוגריים — מספר האותיות המקסימלי.\nעמודה «גיל» → `int`, בלי סוגריים.", "ru": "Столбец «имя на иврите, до 20 букв» → `nvarchar(20)`.\n`n` — можно иврит, в скобках — максимум букв.\nСтолбец «возраст» → `int`, без скобок.", "en": "A column \"name in Hebrew, up to 20 letters\" → `nvarchar(20)`.\n`n` means Hebrew is allowed, the brackets hold the maximum letters.\nA column \"age\" → `int`, no brackets."},
         label: { he: "טקסט", ru: "Текст", en: "Text" },
         kind: "choice",
         text: {
@@ -445,6 +455,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-4", level: 1,
+        example: {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\nשורה אחת, למשל `(2,'banana',6)`, היא כל המידע על פרי אחד: מספר, שם, כמות.\nעמודה אחת, למשל kamut, היא תכונה אחת של כל הפירות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nОдна строка, например `(2,'banana',6)`, — это всё про один фрукт: номер, название, количество.\nОдин столбец, например kamut, — это одно свойство у всех фруктов.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nOne row, for example `(2,'banana',6)`, is everything about one fruit: number, name, amount.\nOne column, for example kamut, is one property of all the fruits."},
         label: { he: "שורה", ru: "Строка", en: "Row" },
         kind: "choice",
         text: {
@@ -468,6 +479,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-5", level: 2,
+        example: {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where kamut = 2`\nkamut: 4, 6, 2, 9, 1 → רק שורה 3 → שורה אחת.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut = 2`\nkamut: 4, 6, 2, 9, 1 → только строка 3 → 1 строка.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut = 2`\nkamut: 4, 6, 2, 9, 1 → only row 3 → 1 row."},
         label: "iskaot = 8",
         kind: "number",
         text: {
@@ -486,6 +498,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-6", level: 2,
+        example: {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select id from perot where pri = 'anavim'`\nמוצגת רק העמודה id, אבל יש כמה שורות שמתאימות לתנאי.\nanavim רק בשורה 4 → שורה אחת.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select id from perot where pri = 'anavim'`\nПоказывается только столбец id, но строк столько, сколько подходят под условие.\nanavim только в строке 4 → 1 строка.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select id from perot where pri = 'anavim'`\nOnly the id column is shown, but there are as many rows as fit the condition.\nanavim is only in row 4 → 1 row."},
         label: "menahel = 'avi'",
         kind: "number",
         text: {
@@ -505,6 +518,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-7", level: 2,
+        example: {"he": "טבלה perot (id, pri, kamut):\n`insert into perot values (6, 'agas', 3)`\nבודקים לפי שלבים:\nשלב 1. סדר הערכים כמו סדר העמודות: id, pri, kamut.\nשלב 2. טקסט בגרשיים: `'agas'`.\nשלב 3. מספר בלי גרשיים: `6`, `3`.", "ru": "Таблица perot (id, pri, kamut):\n`insert into perot values (6, 'agas', 3)`\nПроверяем по шагам:\nШаг 1. Порядок значений как порядок столбцов: id, pri, kamut.\nШаг 2. Текст в кавычках: `'agas'`.\nШаг 3. Число без кавычек: `6`, `3`.", "en": "Table perot (id, pri, kamut):\n`insert into perot values (6, 'agas', 3)`\nCheck step by step:\nStep 1. The order of values is the order of columns: id, pri, kamut.\nStep 2. Text in quotes: `'agas'`.\nStep 3. A number without quotes: `6`, `3`."},
         label: "insert",
         kind: "choice",
         text: {
@@ -530,6 +544,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-8", level: 2,
+        example: {"he": "דוגמה אחרת: סטודנטים וקורסים.\nשאלה 1. כמה קורסים יש לסטודנט אחד? הרבה.\nשאלה 2. כמה סטודנטים יש בקורס אחד? הרבה.\nהרבה משני הצדדים → `M:N`.\nשאל את אותן שתי השאלות על מרצים וקורסים.", "ru": "Другой пример: студенты и курсы.\nВопрос 1. Сколько курсов у одного студента? Много.\nВопрос 2. Сколько студентов на одном курсе? Много.\nМного с обеих сторон → M:N.\nЗадай эти же два вопроса про лекторов и курсы.", "en": "Another example: students and courses.\nQuestion 1. How many courses does one student have? Many.\nQuestion 2. How many students are in one course? Many.\nMany on both sides → M:N.\nAsk the same two questions about lecturers and courses."},
         label: { he: "סוג קשר", ru: "Тип связи", en: "Relation type" },
         kind: "choice",
         text: {
@@ -549,6 +564,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-9", level: 2,
+        example: {"he": "שגיאה אחרת: `create table perot (pri nvarchar(20) kamut int)`\nבין `nvarchar(20)` ל־`kamut` אין פסיק → SQL לא מבין איפה נגמרת עמודה אחת ומתחילה אחרת.\nמתוקן: `create table perot (pri nvarchar(20), kamut int)`.", "ru": "Другая ошибка: `create table perot (pri nvarchar(20) kamut int)`\nМежду `nvarchar(20)` и `kamut` нет запятой → SQL не понимает, где кончается один столбец и начинается другой.\nИсправлено: `create table perot (pri nvarchar(20), kamut int)`.", "en": "Another error: `create table perot (pri nvarchar(20) kamut int)`\nThere is no comma between `nvarchar(20)` and `kamut` → SQL cannot tell where one column ends and the next begins.\nFixed: `create table perot (pri nvarchar(20), kamut int)`."},
         label: { he: "מצאו את הטעות", ru: "Найди ошибку", en: "Find the mistake" },
         kind: "choice",
         text: {
@@ -573,6 +589,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-10", level: 3,
+        example: {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where kamut < 4`\n`<` — קטן ממש, 4 עצמו לא מתאים.\nkamut: 4 לא, 6 לא, 2 כן, 9 לא, 1 כן → 2 שורות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut < 4`\n`<` — строго меньше, само 4 не подходит.\nkamut: 4 нет, 6 нет, 2 да, 9 нет, 1 да → 2 строки.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut < 4`\n`<` means strictly less, 4 itself does not fit.\nkamut: 4 no, 6 no, 2 yes, 9 no, 1 yes → 2 rows."},
         label: "iskaot < 10",
         kind: "number",
         text: {
@@ -592,6 +609,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-11", level: 3,
+        example: {"he": "בתנאי כותבים טקסט בגרשיים: `where pri = 'banana'`.\nמספר כותבים בלי גרשיים: `where kamut = 6`.\nתחשוב: מילה בלי גרשיים — SQL קורא אותה כטקסט או כשם של משהו בטבלה?", "ru": "В условии текст пишут в кавычках: `where pri = 'banana'`.\nЧисло пишут без кавычек: `where kamut = 6`.\nПодумай: слово без кавычек SQL читает как текст или как имя чего-то в таблице?", "en": "In a condition, text is written in quotes: `where pri = 'banana'`.\nA number is written without quotes: `where kamut = 6`.\nThink: does SQL read a word without quotes as text, or as the name of something in the table?"},
         label: { he: "בלי גרשיים", ru: "Без кавычек", en: "No quotes" },
         kind: "choice",
         text: {
@@ -616,6 +634,7 @@ window.LESSONS["sql-2026-10-22"] = {
       },
       {
         id: "ai-12", level: 3,
+        example: {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select pri, kamut from perot where kamut > 5`\nשלב 1. שורות: kamut 6 ו־9 → 2 שורות.\nשלב 2. עמודות: pri ו־kamut → 2 עמודות.\nשלב 3. תאים: `2 × 2 = 4` ערכים.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select pri, kamut from perot where kamut > 5`\nШаг 1. Строки: kamut 6 и 9 → 2 строки.\nШаг 2. Столбцы: pri и kamut → 2 столбца.\nШаг 3. Ячейки: 2 × 2 = 4 значения.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select pri, kamut from perot where kamut > 5`\nStep 1. Rows: kamut 6 and 9 → 2 rows.\nStep 2. Columns: pri and kamut → 2 columns.\nStep 3. Cells: 2 × 2 = 4 values."},
         label: "iskaot > 100",
         kind: "number",
         text: {

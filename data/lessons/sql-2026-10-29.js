@@ -339,6 +339,7 @@ window.LESSONS["sql-2026-10-29"] = {
     "teacher": [
       {
         "id": "t-e-1",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\nצריך: להציג רק את הכמות (kamut) של הפירות tapuach.\n`select kamut from perot where pri = 'tapuach'`\nאחרי `select` — איזו עמודה להציג. אחרי `where` — לפי איזה תנאי בוחרים שורות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nНужно: показать только количество (kamut) у фруктов tapuach.\n`select kamut from perot where pri = 'tapuach'`\nПосле `select` — какой столбец показать. После `where` — по какому условию отбирать строки.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nNeeded: show only the amount (kamut) of the tapuach fruits.\n`select kamut from perot where pri = 'tapuach'`\nAfter `select` comes the column to show. After `where` comes the condition that picks the rows."},
         "group": "ex",
         "label": {
           "he": "תרגיל 1",
@@ -388,6 +389,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "t-e-2",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select kamut from perot where pri = 'anavim'`\nanavim רק בשורה 4 → שורה אחת (הערך 9).\nיש עמודה אחת, אבל שורות כמה שמתאימות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select kamut from perot where pri = 'anavim'`\nanavim только в строке 4 → 1 строка (значение 9).\nСтолбец один, но строк столько, сколько подходят.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select kamut from perot where pri = 'anavim'`\nanavim is only in row 4 → 1 row (the value 9).\nOne column, but as many rows as fit."},
         "group": "ex",
         "label": {
           "he": "תרגיל 1 — כמה",
@@ -427,6 +429,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "t-e-3",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\nצריך: רק הרשומות של הפרי banana, ורק עם שדה הכמות.\n`select kamut from perot where pri = 'banana'`\nהעמודה להצגה — אחרי `select`. התנאי על טקסט — אחרי `where`, והטקסט בגרשיים.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nНужно: записи только фрукта banana, только с полем количества.\n`select kamut from perot where pri = 'banana'`\nСтолбец для показа — после `select`. Условие на текст — после `where`, текст в кавычках.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nNeeded: only the records of the fruit banana, only with the amount field.\n`select kamut from perot where pri = 'banana'`\nThe column to show goes after `select`. The text condition goes after `where`, the text in quotes."},
         "group": "ex",
         "label": {
           "he": "תרגיל 2",
@@ -471,6 +474,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "t-e-4",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select kamut from perot where pri = 'banana'`\nbanana בשורה 2 ובשורה 5 → 2 שורות (הערכים 6 ו־1).", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select kamut from perot where pri = 'banana'`\nbanana в строке 2 и в строке 5 → 2 строки (значения 6 и 1).", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select kamut from perot where pri = 'banana'`\nbanana is in row 2 and row 5 → 2 rows (the values 6 and 1)."},
         "group": "ex",
         "label": {
           "he": "תרגיל 2 — כמה",
@@ -509,6 +513,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "t-o-1",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where kamut >= 4 and pri = 'banana'`\n`and` — צריך את שני התנאים יחד.\n`kamut >= 4`: שורות 1, 2, 4.\nמהן banana: רק שורה 2 → שורה אחת.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut >= 4 and pri = 'banana'`\n`and` — нужны оба условия сразу.\nkamut >= 4: строки 1, 2, 4.\nИз них banana: только строка 2 → 1 строка.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut >= 4 and pri = 'banana'`\n`and` means both conditions at once.\nkamut >= 4: rows 1, 2, 4.\nOf those, banana: only row 2 → 1 row."},
         "group": "ops",
         "label": "and",
         "kind": "number",
@@ -552,6 +557,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "t-o-2",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\nהתנאים: `kamut >= 4` ו־`pri = 'tapuach'`.\nעם `and`: צריך את שניהם → רק שורה 1 → שורה אחת.\nעכשיו תספור בעצמך עם `or` (מספיק תנאי אחד) ותשווה.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nУсловия: `kamut >= 4` и `pri = 'tapuach'`.\nС `and`: нужны оба → только строка 1 → 1 строка.\nТеперь посчитай сам для `or` (хватает одного условия) и сравни.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nThe conditions: `kamut >= 4` and `pri = 'tapuach'`.\nWith `and`: both are needed → only row 1 → 1 row.\nNow count it yourself for `or` (one condition is enough) and compare."},
         "group": "ops",
         "label": {
           "he": "or מול and",
@@ -606,6 +612,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "t-k-1",
+        "example": {"he": "משימה דומה: לעבור למסד shop שכבר קיים → רק `use shop`.\nאם המסד עוד לא קיים, צריך קודם ליצור אותו. תחשוב באיזה סדר באות שתי הפקודות: אפשר לעבור למסד שעוד לא קיים?", "ru": "Похожая задача: перейти в базу shop, которая УЖЕ есть → только `use shop`.\nЕсли базы ещё нет, её сначала нужно создать. Подумай, в каком порядке идут две команды: можно ли перейти в базу, которой ещё нет?", "en": "A similar task: switch to the database shop that ALREADY exists → only `use shop`.\nIf the database does not exist yet, it has to be created first. Think about the order of the two commands: can you switch to a database that does not exist yet?"},
         "group": "clips",
         "label": {
           "he": "מטלה 1",
@@ -646,6 +653,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "t-k-2",
+        "example": {"he": "חברה אחרת רוצה טבלת פירות: «מספר פרי, שם, כמות».\nכל סעיף בדרישה — עמודה אחת → 3 סעיפים → 3 עמודות:\n`create table perot (id int, pri nvarchar(20), kamut int)`", "ru": "Другая компания хочет таблицу фруктов: «номер фрукта, название, количество».\nКаждый пункт требования — один столбец → 3 пункта → 3 столбца:\n`create table perot (id int, pri nvarchar(20), kamut int)`", "en": "Another company wants a fruit table: \"fruit number, name, amount\".\nEach item of the requirement is one column → 3 items → 3 columns:\n`create table perot (id int, pri nvarchar(20), kamut int)`"},
         "group": "clips",
         "label": {
           "he": "כמה עמודות",
@@ -686,6 +694,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "t-k-3",
+        "example": {"he": "עמודה «שם הקליפ» היא טקסט → `nvarchar(n)`, למשל `nvarchar(100)`.\nולייקים — זה טקסט או מספר שלם?", "ru": "Столбец «название клипа» — это текст → `nvarchar(n)`, например `nvarchar(100)`.\nА лайки — это текст или целое число?", "en": "A \"clip name\" column is text → `nvarchar(n)`, for example `nvarchar(100)`.\nAnd likes: are they text or a whole number?"},
         "group": "clips",
         "label": {
           "he": "לייקים",
@@ -722,6 +731,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "t-k-4",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\nצריך: מספר ושם של כל הפירות.\n`select id, pri from perot`\nהעמודות מופרדות בפסיק. לא כותבים `where`, כי צריך את כל השורות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nНужно: номер и название всех фруктов.\n`select id, pri from perot`\nСтолбцы через запятую. `where` не пишем, потому что нужны все строки.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nNeeded: the number and name of all the fruits.\n`select id, pri from perot`\nColumns are separated by a comma. No `where`, because all rows are needed."},
         "group": "clips",
         "label": {
           "he": "מטלה 5",
@@ -768,11 +778,12 @@ window.LESSONS["sql-2026-10-29"] = {
     "ai": [
       {
         "id": "ai-1",
+        "example": {"he": "השורה `(1,'tapuach',4)` והשאילתה `where kamut >= 4 and pri = 'tapuach'`.\nתנאי 1: `4 >= 4` → אמת.\nתנאי 2: `tapuach = tapuach` → אמת.\n`and`: שניהם אמת → השורה תופיע בתוצאה.", "ru": "Строка `(1,'tapuach',4)` и запрос `where kamut >= 4 and pri = 'tapuach'`.\nУсловие 1: 4 >= 4 → истинно.\nУсловие 2: tapuach = tapuach → истинно.\n`and`: оба истинны → строка попадёт в результат.", "en": "The row `(1,'tapuach',4)` and the query `where kamut >= 4 and pri = 'tapuach'`.\nCondition 1: 4 >= 4 → true.\nCondition 2: tapuach = tapuach → true.\n`and`: both are true → the row is in the result."},
         "level": 1,
         "label": "and",
         "kind": "choice",
         "text": {
-          "he": "השורה ('rehitim', 'dayan 11 rechovot', 'a@gmail', 9, 'moshe'): בשבילה `chanut = 'rehitim'` אמת, ו־`iskaot >= 10` שקר. האם היא תופיע בתוצאה של\n`select * from shlifot where iskaot >= 10 and chanut = 'rehitim'`?",
+          "he": "השורה `('rehitim', 'dayan 11 rechovot', 'a@gmail', 9, 'moshe')`: בשבילה `chanut = 'rehitim'` אמת, ו־`iskaot >= 10` שקר. האם היא תופיע בתוצאה של\n`select * from shlifot where iskaot >= 10 and chanut = 'rehitim'`?",
           "ru": "Строка ('rehitim', 'dayan 11 rechovot', 'a@gmail', 9, 'moshe'): для неё `chanut = 'rehitim'` истинно, а `iskaot >= 10` ложно. Попадёт ли она в результат\n`select * from shlifot where iskaot >= 10 and chanut = 'rehitim'`?",
           "en": "The row ('rehitim', 'dayan 11 rechovot', 'a@gmail', 9, 'moshe'): for it `chanut = 'rehitim'` is true and `iskaot >= 10` is false. Will it be in the result of\n`select * from shlifot where iskaot >= 10 and chanut = 'rehitim'`?"
         },
@@ -811,6 +822,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-2",
+        "example": {"he": "השמטה דומה: `select * from perot where kamut >= 4 ___ pri = 'tapuach'`\nאם צריך ששני התנאים יהיו אמת, חסר `and`.\nבמשימה צריך משהו אחר: מספיק תנאי אחד.", "ru": "Похожий пропуск: `select * from perot where kamut >= 4 ___ pri = 'tapuach'`\nЕсли нужно, чтобы были истинны ОБА условия, пропущено `and`.\nВ задании нужно другое: хватает одного условия.", "en": "A similar gap: `select * from perot where kamut >= 4 ___ pri = 'tapuach'`\nIf BOTH conditions must be true, the missing word is `and`.\nThe task needs something else: one condition is enough."},
         "level": 1,
         "label": {
           "he": "לפחות אחד",
@@ -846,6 +858,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-3",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`not kamut < 4` — «לא קטן מ־4».\nלא קטן מ־4 — כלומר 4 או יותר → `kamut >= 4`.\nבדיקה: שני התנאים בוחרים את שורות 1, 2, 4.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`not kamut < 4` — «НЕ меньше 4».\nНе меньше 4 — значит 4 или больше → `kamut >= 4`.\nПроверка: оба условия выбирают строки 1, 2, 4.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`not kamut < 4` means \"NOT less than 4\".\nNot less than 4 means 4 or more → `kamut >= 4`.\nCheck: both conditions pick rows 1, 2, 4."},
         "level": 1,
         "label": "not",
         "kind": "choice",
@@ -886,6 +899,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-4",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where pri = 'tapuach' and kamut >= 4`\ntapuach: שורות 1 ו־3.\nמהן `kamut >= 4`: שורה 1 (4 כן), שורה 3 (2 לא) → שורה אחת.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri = 'tapuach' and kamut >= 4`\ntapuach: строки 1 и 3.\nИз них kamut >= 4: строка 1 (4 да), строка 3 (2 нет) → 1 строка.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri = 'tapuach' and kamut >= 4`\ntapuach: rows 1 and 3.\nOf those, kamut >= 4: row 1 (4 yes), row 3 (2 no) → 1 row."},
         "level": 2,
         "label": "moshe and",
         "kind": "number",
@@ -929,6 +943,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-5",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where pri = 'anavim' or kamut = 1`\n`pri = anavim`: שורה 4.\n`kamut = 1`: שורה 5.\nביחד: שורות 4 ו־5 → 2 שורות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri = 'anavim' or kamut = 1`\npri = anavim: строка 4.\nkamut = 1: строка 5.\nВместе: строки 4 и 5 → 2 строки.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri = 'anavim' or kamut = 1`\npri = anavim: row 4.\nkamut = 1: row 5.\nTogether: rows 4 and 5 → 2 rows."},
         "level": 2,
         "label": "shayish or avi",
         "kind": "number",
@@ -963,6 +978,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-6",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where not pri = 'banana'`\nבסך הכול 5 שורות, banana — שורות 2 ו־5.\n`not` לוקח את כל השאר: `5 − 2 = 3` שורות (1, 3, 4).", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where not pri = 'banana'`\nВсего 5 строк, banana — строки 2 и 5.\n`not` берёт все остальные: 5 − 2 = 3 строки (1, 3, 4).", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where not pri = 'banana'`\n5 rows in total, banana is rows 2 and 5.\n`not` takes all the others: 5 − 2 = 3 rows (1, 3, 4)."},
         "level": 2,
         "label": "not rehitim",
         "kind": "number",
@@ -997,6 +1013,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-7",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\n`select * from perot where kamut > 1 and kamut < 6`\nצריך יותר מ־1 וגם פחות מ־6 (1 ו־6 עצמם לא מתאימים).\nkamut: 4 כן, 6 לא, 2 כן, 9 לא, 1 לא → 2 שורות.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut > 1 and kamut < 6`\nНужно больше 1 и меньше 6 (сами 1 и 6 не подходят).\nkamut: 4 да, 6 нет, 2 да, 9 нет, 1 нет → 2 строки.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut > 1 and kamut < 6`\nIt must be more than 1 and less than 6 (1 and 6 themselves do not fit).\nkamut: 4 yes, 6 no, 2 yes, 9 no, 1 no → 2 rows."},
         "level": 2,
         "label": {
           "he": "טווח",
@@ -1039,6 +1056,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-8",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\nצריך: שמות הפירות שה־kamut שלהם יותר מ־3 ופחות מ־9.\n`select pri from perot where kamut > 3 and kamut < 9`\nבודקים לפי שלבים:\nשלב 1. מציגים רק pri, לא `*`.\nשלב 2. צריך את שני התנאים → `and`.\nשלב 3. «יותר» → `>`, לא `>=`.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nНужно: названия фруктов, у которых kamut больше 3 и меньше 9.\n`select pri from perot where kamut > 3 and kamut < 9`\nПроверяем по шагам:\nШаг 1. Показываем только pri, не `*`.\nШаг 2. Нужны оба условия → `and`.\nШаг 3. «Больше» → `>`, не `>=`.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nNeeded: the names of the fruits whose kamut is more than 3 and less than 9.\n`select pri from perot where kamut > 3 and kamut < 9`\nCheck step by step:\nStep 1. Show only pri, not `*`.\nStep 2. Both conditions are needed → `and`.\nStep 3. \"More than\" → `>`, not `>=`."},
         "level": 3,
         "label": {
           "he": "כתבו את השאילתה",
@@ -1088,6 +1106,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-9",
+        "example": {"he": "השורה `(3,'tapuach',2)` והתנאי `where kamut >= 4 or pri = 'tapuach'`.\nתנאי 1: `2 >= 4` → שקר.\nתנאי 2: `tapuach = tapuach` → אמת.\n`or`: מספיק תנאי אמת אחד → השורה תופיע.", "ru": "Строка `(3,'tapuach',2)` и условие `where kamut >= 4 or pri = 'tapuach'`.\nУсловие 1: 2 >= 4 → ложно.\nУсловие 2: tapuach = tapuach → истинно.\n`or`: хватает одного истинного → строка попадёт.", "en": "The row `(3,'tapuach',2)` and the condition `where kamut >= 4 or pri = 'tapuach'`.\nCondition 1: 2 >= 4 → false.\nCondition 2: tapuach = tapuach → true.\n`or`: one true condition is enough → the row is in."},
         "level": 3,
         "label": {
           "he": "שורה אחת",
@@ -1096,7 +1115,7 @@ window.LESSONS["sql-2026-10-29"] = {
         },
         "kind": "choice",
         "text": {
-          "he": "השורה ('sfarim', 'herzl 55 holon', 'c.yahoo.com', 8, 'shimon') — האם היא תופיע בתוצאה של `where iskaot >= 10 or chanut = 'rehitim'`?",
+          "he": "השורה `('sfarim', 'herzl 55 holon', 'c.yahoo.com', 8, 'shimon')` — האם היא תופיע בתוצאה של `where iskaot >= 10 or chanut = 'rehitim'`?",
           "ru": "Строка ('sfarim', 'herzl 55 holon', 'c.yahoo.com', 8, 'shimon') — попадёт ли она в результат `where iskaot >= 10 or chanut = 'rehitim'`?",
           "en": "Will the row ('sfarim', 'herzl 55 holon', 'c.yahoo.com', 8, 'shimon') appear in the result of `where iskaot >= 10 or chanut = 'rehitim'`?"
         },
@@ -1135,6 +1154,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-10",
+        "example": {"he": "עמודה «שם הקליפ»: טקסט, בדרך כלל עד 50 תווים → `nvarchar(50)`.\nאת האורך n בוחרים לפי הטקסט הכי ארוך שיכול להיות בעמודה.\nתחשוב: קישור הוא קצר או ארוך?", "ru": "Столбец «название клипа»: текст, обычно до 50 символов → `nvarchar(50)`.\nДлину n выбирают по самому длинному тексту, который может быть в столбце.\nПодумай: ссылка короткая или длинная?", "en": "A \"clip name\" column: text, usually up to 50 characters → `nvarchar(50)`.\nThe length n is chosen by the longest text the column may hold.\nThink: is a link short or long?"},
         "level": 2,
         "label": {
           "he": "סוג ללינק",
@@ -1179,6 +1199,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-11",
+        "example": {"he": "נתונים אחרים, 4 קליפים (seconds, likes):\nקליפ 1: 120, 0 · קליפ 2: 75, 2500 · קליפ 3: 200, 1300 · קליפ 4: 30, 0.\n`where likes = 0 or seconds < 60`:\nקליפ 1: `likes = 0` → כן.\nקליפ 2: לא ולא → לא.\nקליפ 3: לא ולא → לא.\nקליפ 4: `likes = 0` → כן.\nסך הכול 2 שורות.", "ru": "Другие данные, 4 клипа (seconds, likes):\nклип 1: 120, 0 · клип 2: 75, 2500 · клип 3: 200, 1300 · клип 4: 30, 0.\n`where likes = 0 or seconds < 60`:\nклип 1: likes = 0 → да.\nклип 2: нет и нет → нет.\nклип 3: нет и нет → нет.\nклип 4: likes = 0 → да.\nИтого 2 строки.", "en": "Other data, 4 clips (seconds, likes):\nclip 1: 120, 0 · clip 2: 75, 2500 · clip 3: 200, 1300 · clip 4: 30, 0.\n`where likes = 0 or seconds < 60`:\nclip 1: likes = 0 → yes.\nclip 2: no and no → no.\nclip 3: no and no → no.\nclip 4: likes = 0 → yes.\nTotal 2 rows."},
         "level": 3,
         "label": {
           "he": "קטעים",
@@ -1221,6 +1242,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-12",
+        "example": {"he": "טבלה אחרת `perot (id, pri, kamut)`:\n```\n(1,'tapuach',4)\n(2,'banana',6)\n(3,'tapuach',2)\n(4,'anavim',9)\n(5,'banana',1)\n```\nצריך: רק kamut של הפירות tapuach שה־kamut שלהם פחות מ־3.\n`select kamut from perot where pri = 'tapuach' and kamut < 3`\ntapuach: שורות 1 (4) ו־3 (2). פחות מ־3 רק 2 → שורה אחת.", "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nНужно: только kamut у фруктов tapuach, у которых kamut меньше 3.\n`select kamut from perot where pri = 'tapuach' and kamut < 3`\ntapuach: строки 1 (4) и 3 (2). Меньше 3 только 2 → 1 строка.", "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\nNeeded: only kamut of the tapuach fruits whose kamut is less than 3.\n`select kamut from perot where pri = 'tapuach' and kamut < 3`\ntapuach: rows 1 (4) and 3 (2). Only 2 is less than 3 → 1 row."},
         "level": 3,
         "label": {
           "he": "and עם <",
@@ -1260,6 +1282,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-13",
+        "example": {"he": "קוד מדינה הוא תמיד 2 אותיות (`IL`, `RU`) → מתאים `char(2)`: האורך תמיד אותו דבר.\nומה אם אורך הטקסט משתנה (שם, כתובת)? תיזכר איזה טיפוס לא מבזבז מקום מיותר.", "ru": "Код страны всегда 2 буквы (`IL`, `RU`) → подходит `char(2)`: длина всегда одна и та же.\nА если длина текста разная (имя, адрес)? Вспомни, какой тип не тратит лишнее место.", "en": "A country code is always 2 letters (`IL`, `RU`) → `char(2)` fits: the length is always the same.\nAnd if the text length varies (name, address)? Recall which type wastes no extra space."},
         "level": 1,
         "label": {
           "he": "varchar",
@@ -1302,6 +1325,7 @@ window.LESSONS["sql-2026-10-29"] = {
       },
       {
         "id": "ai-14",
+        "example": {"he": "אמת = 1, שקר = 0.\n`1 and 1 = 1` (שניהם אמת).\n`0 or 1 = 1` (עם `or` מספיק אחד).\nעכשיו בעצמך: `and` עם תנאי שקר אחד.", "ru": "Истина = 1, ложь = 0.\n`1 and 1` = 1 (оба истинны).\n`0 or 1` = 1 (с `or` хватает одного).\nТеперь сам: `and` с одним ложным условием.", "en": "True = 1, false = 0.\n`1 and 1` = 1 (both are true).\n`0 or 1` = 1 (with `or` one is enough).\nNow yourself: `and` with one false condition."},
         "level": 2,
         "label": {
           "he": "1 ו־0",

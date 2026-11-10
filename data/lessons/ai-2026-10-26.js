@@ -408,6 +408,7 @@ window.LESSONS["ai-2026-10-26"] = {
     "teacher": [
       {
         "id": "t1",
+        "example": {"he": "אותו אלגוריתם (השוואה לשכן `N−1`). חמישה כדורים: `4, 8, 2, 6, 5`.\nהתחלה: על המדף 4.\n`N=2`: `8 > 4` (השכן)? כן → על המדף 8.\n`N=3`: `2 > 8` (השכן)? לא → על המדף 8.\n`N=4`: `6 > 2` (השכן)? כן → על המדף 6.\n`N=5`: `5 > 6` (השכן)? לא → על המדף 6.\nיודפס 6 (אבל הכבד ביותר הוא 8).", "ru": "Тот же алгоритм (сравнение с соседом N−1), 5 шаров: `4, 8, 2, 6, 5`.\nНачало: на полке 4.\nN=2: 8 > 4 (сосед)? да → на полку 8.\nN=3: 2 > 8 (сосед)? нет → на полке 8.\nN=4: 6 > 2 (сосед)? да → на полку 6.\nN=5: 5 > 6 (сосед)? нет → на полке 6.\nВыведет 6 (а самый тяжёлый — 8).", "en": "The same algorithm (comparing with neighbour N−1), 5 balls: `4, 8, 2, 6, 5`.\nStart: 4 on the shelf.\nN=2: 8 > 4 (neighbour)? yes → 8 to the shelf.\nN=3: 2 > 8 (neighbour)? no → 8 stays.\nN=4: 6 > 2 (neighbour)? yes → 6 to the shelf.\nN=5: 5 > 6 (neighbour)? no → 6 stays.\nIt prints 6 (but the heaviest is 8)."},
         "group": "balls",
         "label": "כא",
         "kind": "number",
@@ -496,6 +497,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "t2",
+        "example": {"he": "בדוק את האלגוריתם על `4, 8, 2, 6, 5`: הכבד ביותר הוא 8, אבל האלגוריתם מדפיס 6.\nמצא את הסיבוב שבו 8 ירד מהמדף, ותראה עם איזה כדור השוו אז.", "ru": "Проверь алгоритм на `4, 8, 2, 6, 5`: самый тяжёлый 8, а алгоритм печатает 6.\nНайди круг, на котором 8 ушёл с полки, и посмотри, с каким шаром тогда сравнивали.", "en": "Test the algorithm on `4, 8, 2, 6, 5`: the heaviest is 8, but the algorithm prints 6.\nFind the round where 8 left the shelf, and see which ball it was compared with then."},
         "group": "balls",
         "label": "כב",
         "kind": "choice",
@@ -566,6 +568,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "t3",
+        "example": {"he": "האלגוריתם המתוקן (השוואה לכדור שעל המדף), `4, 8, 2, 6, 5`.\nהתחלה: על המדף 4.\n`N=2`: `8 > 4` (המדף)? כן → על המדף 8.\n`N=3`: `2 > 8` (המדף)? לא → על המדף 8.\n`N=4`: `6 > 8` (המדף)? לא → על המדף 8.\n`N=5`: `5 > 8` (המדף)? לא → על המדף 8.\nיודפס 8.", "ru": "Исправленный алгоритм (сравнение с шаром на полке), `4, 8, 2, 6, 5`.\nНачало: на полке 4.\nN=2: 8 > 4 (полка)? да → на полку 8.\nN=3: 2 > 8 (полка)? нет → на полке 8.\nN=4: 6 > 8 (полка)? нет → на полке 8.\nN=5: 5 > 8 (полка)? нет → на полке 8.\nВыведет 8.", "en": "The fixed algorithm (comparing with the ball on the shelf), `4, 8, 2, 6, 5`.\nStart: 4 on the shelf.\nN=2: 8 > 4 (shelf)? yes → 8 to the shelf.\nN=3: 2 > 8 (shelf)? no → 8 stays.\nN=4: 6 > 8 (shelf)? no → 8 stays.\nN=5: 5 > 8 (shelf)? no → 8 stays.\nIt prints 8."},
         "group": "balls",
         "label": "כג",
         "kind": "number",
@@ -644,6 +647,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "t4",
+        "example": {"he": "מקרה אחר: כתבו `pritnf` במקום `printf`.\nהתוכנית אפילו לא תרוץ: המחשב לא מכיר מילה כזאת → זו שגיאה תחבירית.\nאבל במשימה התוכנית מגיעה עד הסוף בלי שגיאה. תחשוב מה זה אומר.", "ru": "Другой случай: написали `pritnf` вместо `printf`.\nПрограмма даже не запустится: компьютер не знает такого слова → это синтаксическая ошибка.\nА в задании программа доходит до конца без ошибки. Подумай, что это значит.", "en": "Another case: someone wrote `pritnf` instead of `printf`.\nThe program will not even run: the computer does not know that word → a syntax error.\nIn the task, though, the program runs to the end without an error. Think what that means."},
         "group": "errors",
         "label": "שא",
         "kind": "choice",
@@ -694,6 +698,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "t5",
+        "example": {"he": "מקרה אחר: את הממוצע של שני מספרים כתבו `a + b / 2`.\nהתוכנית רצה בלי שגיאות, אבל עבור 4 ו־6 נותנת `4 + 3 = 7`, ולא 5 (קודם מתחלק רק b).\nהכול כתוב לפי הכללים, הטעות במשמעות → שגיאה לוגית.\nעכשיו תחשוב על `intt`.", "ru": "Другой случай: среднее двух чисел записали как `a + b / 2`.\nПрограмма работает без ошибок, но для 4 и 6 даёт 4 + 3 = 7, а не 5 (сначала делится только b).\nВсё написано по правилам, ошибка в смысле → логическая ошибка.\nТеперь подумай про `intt`.", "en": "Another case: the average of two numbers was written as `a + b / 2`.\nThe program runs without errors, but for 4 and 6 it gives 4 + 3 = 7, not 5 (only b is divided first).\nEverything follows the rules, the mistake is in the meaning → a logic error.\nNow think about `intt`."},
         "group": "errors",
         "label": "שב",
         "kind": "choice",
@@ -744,6 +749,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "t6",
+        "example": {"he": "`if (temp > 80) printf(\"stop\"); else printf(\"ok\");`\nהטמפרטורה `79.99`.\n`79.99 > 80`? לא → הולכים ל־`else` → יודפס ok.\nתוכנית רגילה משווה בדיוק, בלי «בערך».", "ru": "`if (temp > 80) printf(\"stop\"); else printf(\"ok\");`\nТемпература `79.99`.\n79.99 > 80? нет → идём в `else` → напечатает ok.\nОбычная программа сравнивает точно, без «примерно».", "en": "`if (temp > 80) printf(\"stop\"); else printf(\"ok\");`\nThe temperature is `79.99`.\n79.99 > 80? no → go to `else` → it prints ok.\nAn ordinary program compares exactly, with no \"roughly\"."},
         "group": "errors",
         "label": "שג",
         "kind": "choice",
@@ -784,6 +790,7 @@ window.LESSONS["ai-2026-10-26"] = {
     "ai": [
       {
         "id": "ai1-1",
+        "example": {"he": "החצי השני של השם: Intelligence = אינטליגנציה, היכולת ללמוד, לחשוב ולפתור בעיות.\nעכשיו המילה הראשונה: Artificial. תחשוב במה אינטליגנציה כזאת שונה משלנו.", "ru": "Вторая половина названия: Intelligence = интеллект, умение учиться, думать и решать задачи.\nТеперь первое слово: Artificial. Подумай, чем такой интеллект отличается от нашего.", "en": "The second half of the name: Intelligence is the ability to learn, think and solve problems.\nNow the first word: Artificial. Think how such intelligence differs from ours."},
         "level": 1,
         "label": "1.1",
         "kind": "choice",
@@ -834,6 +841,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai1-2",
+        "example": {"he": "מחשבון: `2 + 2` תמיד 4.\nהוא עובד לפי כללים קשיחים שכתב מתכנת, ולא לומד ממה שאתה עושה → תוכנית רגילה.\nואיך נוצר הפלייליסט של Spotify?", "ru": "Калькулятор: `2 + 2` всегда 4.\nОн работает по жёстким правилам, которые написал программист, и не учится на том, что ты делаешь → обычная программа.\nА плейлист Spotify — как он появляется?", "en": "A calculator: `2 + 2` is always 4.\nIt works by fixed rules written by a programmer and does not learn from what you do → an ordinary program.\nAnd how does the Spotify playlist appear?"},
         "level": 1,
         "label": "1.2",
         "kind": "choice",
@@ -884,6 +892,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai1-3",
+        "example": {"he": "משמעות המילים:\nGather — לאסוף דוגמאות (תמונות, צלילים).\nTrain — לאמן את המודל על הדוגמאות.\nExport — להוציא החוצה את המודל המוכן.\nתחשוב: אפשר לאמן בלי דוגמאות? ומה אפשר להוציא לפני שהמודל אומן?", "ru": "Смысл слов:\nGather — собрать примеры (фото, звуки).\nTrain — обучить модель на примерах.\nExport — вынести готовую модель наружу.\nПодумай: можно ли обучать без примеров? И что можно вынести, пока модель не обучена?", "en": "What the words mean:\nGather: collect examples (photos, sounds).\nTrain: teach the model on the examples.\nExport: take the finished model out.\nThink: can you train without examples? And what can you take out before the model is trained?"},
         "level": 1,
         "label": "1.3",
         "kind": "choice",
@@ -927,6 +936,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai1-4",
+        "example": {"he": "נוירון: `x1 = 1`, `w1 = 0.6`, `x2 = 1`, `w2 = 0.3`, `b = −0.2`.\nשלב 1. `1 × 0.6 = 0.6`\nשלב 2. `1 × 0.3 = 0.3`\nשלב 3. `0.6 + 0.3 = 0.9`\nשלב 4. `0.9 − 0.2 = 0.7`\nהסכום הוא `0.7`", "ru": "Нейрон: `x1 = 1`, `w1 = 0.6`, `x2 = 1`, `w2 = 0.3`, `b = −0.2`.\nШаг 1. 1 × 0.6 = 0.6\nШаг 2. 1 × 0.3 = 0.3\nШаг 3. 0.6 + 0.3 = 0.9\nШаг 4. 0.9 − 0.2 = 0.7\nСумма = 0.7", "en": "A neuron: `x1 = 1`, `w1 = 0.6`, `x2 = 1`, `w2 = 0.3`, `b = −0.2`.\nStep 1. 1 × 0.6 = 0.6\nStep 2. 1 × 0.3 = 0.3\nStep 3. 0.6 + 0.3 = 0.9\nStep 4. 0.9 − 0.2 = 0.7\nThe sum is 0.7"},
         "level": 1,
         "label": "1.4",
         "kind": "number",
@@ -953,6 +963,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai2-1",
+        "example": {"he": "סכום הנוירון `0.3`, הסף `0.5`.\n`0.3 > 0.5`? לא → הנוירון לא «יידלק».", "ru": "Сумма нейрона `0.3`, порог `0.5`.\n0.3 > 0.5? нет → нейрон не «зажжётся».", "en": "The neuron sum is `0.3`, the threshold is `0.5`.\n0.3 > 0.5? no → the neuron does not \"fire\"."},
         "level": 2,
         "label": "2.1",
         "kind": "choice",
@@ -994,6 +1005,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai2-2",
+        "example": {"he": "נוירון: `x1 = 3`, `w1 = 0.2`, `x2 = 2`, `w2 = −0.3`, `b = 0.4`.\nשלב 1. `3 × 0.2 = 0.6`\nשלב 2. `2 × (−0.3) = −0.6`\nשלב 3. `0.6 + (−0.6) = 0`\nשלב 4. `0 + 0.4 = 0.4`\nהסכום הוא `0.4`", "ru": "Нейрон: `x1 = 3`, `w1 = 0.2`, `x2 = 2`, `w2 = −0.3`, `b = 0.4`.\nШаг 1. 3 × 0.2 = 0.6\nШаг 2. 2 × (−0.3) = −0.6\nШаг 3. 0.6 + (−0.6) = 0\nШаг 4. 0 + 0.4 = 0.4\nСумма = 0.4", "en": "A neuron: `x1 = 3`, `w1 = 0.2`, `x2 = 2`, `w2 = −0.3`, `b = 0.4`.\nStep 1. 3 × 0.2 = 0.6\nStep 2. 2 × (−0.3) = −0.6\nStep 3. 0.6 + (−0.6) = 0\nStep 4. 0 + 0.4 = 0.4\nThe sum is 0.4"},
         "level": 2,
         "label": "2.2",
         "kind": "number",
@@ -1026,6 +1038,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai2-3",
+        "example": {"he": "האלגוריתם מהשקף (השוואה לשכן), משקלים `6, 1, 2`.\nהתחלה: על המדף 6.\n`N=2`: `1 > 6` (השכן)? לא → על המדף 6.\n`N=3`: `2 > 1` (השכן)? כן → על המדף 2.\nיודפס 2 (אבל הכבד ביותר הוא 6).", "ru": "Алгоритм со слайда (сравнение с соседом), веса `6, 1, 2`.\nНачало: на полке 6.\nN=2: 1 > 6 (сосед)? нет → на полке 6.\nN=3: 2 > 1 (сосед)? да → на полку 2.\nВыведет 2 (а самый тяжёлый — 6).", "en": "The slide algorithm (comparing with the neighbour), weights `6, 1, 2`.\nStart: 6 on the shelf.\nN=2: 1 > 6 (neighbour)? no → 6 stays.\nN=3: 2 > 1 (neighbour)? yes → 2 to the shelf.\nIt prints 2 (but the heaviest is 6)."},
         "level": 2,
         "label": "2.3",
         "kind": "number",
@@ -1074,6 +1087,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai2-4",
+        "example": {"he": "פנייה: «מתי היום האחרון להגשת הפרויקט?»\nמדובר בתאריך → התווית מועדים.\nעל הפנייה החדשה תשאל את עצמך אותו דבר: במה מדובר?", "ru": "Обращение: «Когда последний день сдачи проекта?»\nРечь о дате → метка Сроки (מועדים).\nДля нового обращения спроси себя так же: о чём оно?", "en": "A request: \"When is the last day to hand in the project?\"\nIt is about a date → the label Deadlines (מועדים).\nFor the new request, ask yourself the same: what is it about?"},
         "level": 2,
         "label": "2.4",
         "kind": "choice",
@@ -1124,6 +1138,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai3-1",
+        "example": {"he": "האלגוריתם מהשקף (השוואה לשכן), 6 כדורים: `5, 2, 9, 1, 3, 6`.\nהתחלה: על המדף 5.\n`N=2`: `2 > 5`? לא → 5.\n`N=3`: `9 > 2`? כן → 9.\n`N=4`: `1 > 9`? לא → 9.\n`N=5`: `3 > 1`? כן → 3.\n`N=6`: `6 > 3`? כן → 6.\nיודפס 6 (אבל הכבד ביותר הוא 9).", "ru": "Алгоритм со слайда (сравнение с соседом), 6 шаров: `5, 2, 9, 1, 3, 6`.\nНачало: на полке 5.\nN=2: 2 > 5? нет → 5.\nN=3: 9 > 2? да → 9.\nN=4: 1 > 9? нет → 9.\nN=5: 3 > 1? да → 3.\nN=6: 6 > 3? да → 6.\nВыведет 6 (а самый тяжёлый — 9).", "en": "The slide algorithm (comparing with the neighbour), 6 balls: `5, 2, 9, 1, 3, 6`.\nStart: 5 on the shelf.\nN=2: 2 > 5? no → 5.\nN=3: 9 > 2? yes → 9.\nN=4: 1 > 9? no → 9.\nN=5: 3 > 1? yes → 3.\nN=6: 6 > 3? yes → 6.\nIt prints 6 (but the heaviest is 9)."},
         "level": 3,
         "label": "3.1",
         "kind": "number",
@@ -1192,6 +1207,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai3-2",
+        "example": {"he": "חלון ההקשר הוא כמה טוקנים המודל מחזיק ב«זיכרון» של השיחה.\nכשהחלון מלא, הדבר הכי ישן נופל החוצה.\nתחשוב: באיזו שפה אותו משפט תופס יותר טוקנים?", "ru": "Контекстное окно — сколько токенов модель держит в «памяти» разговора.\nКогда окно заполнено, самое старое выпадает.\nПодумай: на каком языке одна и та же фраза занимает больше токенов?", "en": "The context window is how many tokens the model keeps in the \"memory\" of a conversation.\nWhen the window is full, the oldest part drops out.\nThink: in which language does the same sentence take more tokens?"},
         "level": 3,
         "label": "3.2",
         "kind": "choice",
@@ -1247,6 +1263,7 @@ window.LESSONS["ai-2026-10-26"] = {
       },
       {
         "id": "ai3-3",
+        "example": {"he": "פירוש: MCP = Model Context Protocol.\nProtocol הוא הסכם (תקן) איך תוכנות מדברות זו עם זו.\nתחשוב איזו אפשרות מתארת תקן, ולא מודל ולא נוירון.", "ru": "Расшифровка: MCP = Model Context Protocol.\nProtocol — это договорённость (стандарт), как программы общаются между собой.\nПодумай, какой вариант описывает стандарт, а не модель и не нейрон.", "en": "Expansion: MCP = Model Context Protocol.\nA protocol is an agreement (a standard) on how programs talk to each other.\nThink which option describes a standard, not a model and not a neuron."},
         "level": 3,
         "label": "3.3",
         "kind": "choice",

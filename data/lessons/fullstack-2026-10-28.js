@@ -466,6 +466,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
     "teacher": [
       {
         "id": "t-tbl-1",
+        "example": {"he": "טבלה כמו ארון: `<table>` — הארון, `<tr>` — מדף, `<td>` — קופסה עם נתונים.\nתא כותרת הוא סוג שלישי של «קופסה»: הטקסט בו מודגש ובמרכז. תיזכר בתגית שלו.", "ru": "Таблица как шкаф: `<table>` — шкаф, `<tr>` — полка, `<td>` — коробка с данными.\nЯчейка-заголовок — это третий вид «коробки»: текст в ней жирный и по центру. Вспомни её тег.", "en": "A table is like a cupboard: `<table>` is the cupboard, `<tr>` a shelf, `<td>` a box with data.\nA header cell is a third kind of \"box\": its text is bold and centred. Recall its tag."},
         "group": "tbl",
         "label": {
           "he": "כותרת",
@@ -510,6 +511,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "t-tbl-2",
+        "example": {"he": "בתוך תא אפשר לשים כל תגית, למשל קישור:\n`<td><a href=\"page.html\">עמוד</a></td>`\nהתא הוא קופסה: את התוכן שמים בין `<td>` ל־`</td>`.", "ru": "В ячейку можно положить любой тег, например ссылку:\n`<td><a href=\"page.html\">עמוד</a></td>`\nЯчейка — коробка: содержимое кладут между `<td>` и `</td>`.", "en": "Any tag can go into a cell, for example a link:\n`<td><a href=\"page.html\">page</a></td>`\nA cell is a box: the content goes between `<td>` and `</td>`."},
         "group": "tbl",
         "label": {
           "he": "תמונה בתא",
@@ -554,6 +556,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "t-tbl-3",
+        "example": {"he": "טבלה: שורת כותרת אחת ו־2 שורות נתונים.\nכל שורה היא `<tr>` משלה, גם שורת הכותרת.\n`1 + 2 = 3` תגיות `<tr>`.", "ru": "Таблица: одна строка-заголовок и 2 строки данных.\nКаждая строка — свой `<tr>`, и строка-заголовок тоже.\n1 + 2 = 3 тега `<tr>`.", "en": "A table: one header row and 2 data rows.\nEvery row is its own `<tr>`, the header row too.\n1 + 2 = 3 `<tr>` tags."},
         "group": "tbl",
         "label": {
           "he": "שורות",
@@ -592,6 +595,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "t-site-1",
+        "example": {"he": "אתר של בית קפה עם 3 דפים: ראשי, תפריט, צור קשר.\nכל דף הוא קובץ משלו: `index.html`, `menu.html`, `contact.html` → 3 קבצים.\nהתפריט בכל דף מוביל לדפים האחרים: `<a href=\"menu.html\">`.\nתספור את הדפים במשימה שלך.", "ru": "Сайт кафе из 3 страниц: главная, меню, контакты.\nКаждая страница — свой файл: `index.html`, `menu.html`, `contact.html` → 3 файла.\nМеню на каждой странице ведёт на другие: `<a href=\"menu.html\">`.\nПосчитай страницы в своём задании.", "en": "A café site with 3 pages: home, menu, contact.\nEach page is its own file: `index.html`, `menu.html`, `contact.html` → 3 files.\nThe menu on each page leads to the others: `<a href=\"menu.html\">`.\nCount the pages in your task."},
         "group": "site",
         "label": {
           "he": "כמה דפים",
@@ -635,6 +639,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "t-site-2",
+        "example": {"he": "מחירון: כותרת מ־3 `<th>` (שם, מחיר, תמונה) ו־6 מוצרים.\nבכל שורת מוצר יש 3 תאי `<td>`.\nאת `<th>` לא סופרים, הם לא `<td>`.\n`6 × 3 = 18` תגיות `<td>`.", "ru": "Прайс-лист: заголовок из 3 `<th>` (название, цена, картинка) и 6 товаров.\nВ каждой строке товара 3 ячейки `<td>`.\n`<th>` не считаем, они не `<td>`.\n6 × 3 = 18 тегов `<td>`.", "en": "A price list: a header of 3 `<th>` (name, price, picture) and 6 products.\nEach product row has 3 `<td>` cells.\nThe `<th>` are not counted, they are not `<td>`.\n6 × 3 = 18 `<td>` tags."},
         "group": "site",
         "label": {
           "he": "מחירון",
@@ -676,6 +681,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "t-site-3",
+        "example": {"he": "פריטי רשימה עוטפים ב־`<ul>`, שורות טבלה — ב־`<table>`.\nגם את שדות הטופס עוטפים בתגית משותפת אחת. היא הייתה בשיעור, ובה כותבים גם `action`.", "ru": "Пункты списка оборачивают в `<ul>`, строки таблицы — в `<table>`.\nПоля формы тоже оборачивают в один общий тег. Он был на уроке, в нём ещё пишут `action`.", "en": "List items are wrapped in `<ul>`, table rows in `<table>`.\nForm fields are also wrapped in one common tag. It was in the lesson; `action` is written in it."},
         "group": "site",
         "label": {
           "he": "טופס",
@@ -718,6 +724,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "t-site-4",
+        "example": {"he": "בחירת פירות אהובים: אפשר לסמן כמה בבת אחת → Checkbox (ריבועים).\nומה אם מתוך האפשרויות אפשר לבחור רק אחת?", "ru": "Выбор любимых фруктов: можно отметить несколько сразу → Checkbox (квадратики).\nА если из вариантов можно выбрать только один?", "en": "Choosing favourite fruits: you can tick several at once → Checkbox (squares).\nAnd if only one of the options can be chosen?"},
         "group": "site",
         "label": {
           "he": "מגדר",
@@ -766,6 +773,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "t-site-5",
+        "example": {"he": "Radio — עיגול: מתוך הקבוצה בוחרים רק אפשרות אחת.\nריבוע שבו שמים ומורידים וי — זה טיפוס אחר.", "ru": "Radio — кружок: из группы выбирают только один вариант.\nКвадратик, в котором ставят и снимают галочку, — это другой тип.", "en": "Radio is a circle: only one option of the group is chosen.\nA square where you put and remove a tick is a different type."},
         "group": "site",
         "label": {
           "he": "תנאי שימוש",
@@ -809,6 +817,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "fz1",
+        "example": {"he": "`<input type=\"submit\" value=\"שלח\">`\nעל הכפתור כתוב מה שיש ב־`value` → «שלח».", "ru": "`<input type=\"submit\" value=\"שלח\">`\nНа кнопке пишется то, что стоит в `value` → «שלח».", "en": "`<input type=\"submit\" value=\"Go\">`\nThe button shows what is in `value` → \"Go\"."},
         "group": "files",
         "label": "value",
         "kind": "text",
@@ -840,6 +849,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "fz2",
+        "example": {"he": "סגירת תא רגיל: `</td>`.\nהלוכסן `/` בא מיד אחרי `<`, לפני שם התגית.", "ru": "Закрыть обычную ячейку: `</td>`.\nКосая черта `/` стоит сразу после `<`, перед именем тега.", "en": "Closing an ordinary cell: `</td>`.\nThe slash `/` comes right after `<`, before the tag name."},
         "group": "files",
         "label": "</th>",
         "kind": "choice",
@@ -875,6 +885,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "fz3",
+        "example": {"he": "`type=\"text\"` — שורה לטקסט.\n`type=\"submit\"` — כפתור שליחה.\nבחירת קובץ מהמחשב נותן טיפוס נוסף.", "ru": "`type=\"text\"` — строка для текста.\n`type=\"submit\"` — кнопка отправки.\nВыбрать файл с компьютера даёт ещё один тип.", "en": "`type=\"text\"` is a line for text.\n`type=\"submit\"` is a send button.\nPicking a file from the computer is yet another type."},
         "group": "files",
         "label": "file",
         "kind": "choice",
@@ -912,6 +923,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
     "ai": [
       {
         "id": "ai-1",
+        "example": {"he": "`<table>` — הארון (כל הטבלה).\n`<td>` — קופסה (תא אחד).\nשורה היא מדף. יש לה תגית משלה.", "ru": "`<table>` — шкаф (вся таблица).\n`<td>` — коробка (одна ячейка).\nСтрока — это полка. У неё свой тег.", "en": "`<table>` is the cupboard (the whole table).\n`<td>` is a box (one cell).\nA row is a shelf. It has its own tag."},
         "level": 1,
         "label": {
           "he": "שורה",
@@ -949,6 +961,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-2",
+        "example": {"he": "`<table width=\"600\">` — טבלה ברוחב 600 פיקסלים.\nאת מאפייני הטבלה כותבים ב־`<table>` הפותחת.\nאת הקווים בין התאים קובע מאפיין אחר.", "ru": "`<table width=\"600\">` — таблица шириной 600 пикселей.\nАтрибуты таблицы пишут в открывающем `<table>`.\nЛинии между ячейками задаёт другой атрибут.", "en": "`<table width=\"600\">` is a table 600 pixels wide.\nTable attributes go in the opening `<table>`.\nThe lines between cells are set by a different attribute."},
         "level": 1,
         "label": {
           "he": "מסגרת",
@@ -988,6 +1001,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-3",
+        "example": {"he": "`background-color: plum` — צבע רקע (היה בשיעור 21.10).\nהתכונה לתמונת רקע מתחילה אותו דבר, `background-`, ואחר כך מילה אחרת.", "ru": "`background-color: plum` — цвет фона (было на уроке 21.10).\nДля картинки фона свойство начинается так же, `background-`, а дальше другое слово.", "en": "`background-color: plum` is the background colour (lesson 21.10).\nThe property for a background picture starts the same way, `background-`, and then another word."},
         "level": 1,
         "label": {
           "he": "תמונת רקע",
@@ -1025,6 +1039,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-4",
+        "example": {"he": "`<tr><th>שם</th><th>מחיר</th></tr>`\n`<tr><td>…</td><td>…</td></tr>`\n`<tr><td>…</td><td>…</td></tr>`\nאת `<th>` לא סופרים. `2 × 2 = 4` תאי `<td>`.", "ru": "`<tr><th>שם</th><th>מחיר</th></tr>`\n`<tr><td>…</td><td>…</td></tr>`\n`<tr><td>…</td><td>…</td></tr>`\n`<th>` не считаем. 2 строки × 2 `<td>` = 4 ячейки `<td>`.", "en": "`<tr><th>name</th><th>price</th></tr>`\n`<tr><td>…</td><td>…</td></tr>`\n`<tr><td>…</td><td>…</td></tr>`\nThe `<th>` are not counted. 2 rows × 2 `<td>` = 4 `<td>` cells."},
         "level": 2,
         "label": {
           "he": "ספירת td",
@@ -1068,6 +1083,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-5",
+        "example": {"he": "צבע רקע לכל הדף, קוד ב־`<head>`:\n`<style> body { background-color: plum; } </style>`\nאת ה־CSS כותבים בתוך `<style>`, את התכונות בתוך `{ }`, ואחרי הערך `;`.\nבדוק את האפשרויות לפי הכללים האלה, ותיזכר איך בשיעור כתבו את כתובת התמונה.", "ru": "Цвет фона для всей страницы, код в `<head>`:\n`<style> body { background-color: plum; } </style>`\nCSS пишут внутри `<style>`, свойства — внутри `{ }`, после значения `;`.\nПроверь варианты по этим правилам и вспомни, как с урока пишут адрес картинки.", "en": "A background colour for the whole page, code in `<head>`:\n`<style> body { background-color: plum; } </style>`\nCSS goes inside `<style>`, properties inside `{ }`, and `;` after the value.\nCheck the options with these rules, and recall how the lesson wrote the picture address."},
         "level": 2,
         "label": {
           "he": "הרקע לא עובד",
@@ -1112,6 +1128,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-6",
+        "example": {"he": "שם — שורה אחת → `<input type=\"text\">`.\nומה אם צריך שדה שבו כותבים כמה שורות?", "ru": "Имя — одна строка → `<input type=\"text\">`.\nА если нужно поле, где пишут несколько строк?", "en": "A name is one line → `<input type=\"text\">`.\nAnd if you need a field for several lines?"},
         "level": 2,
         "label": {
           "he": "טקסט ארוך",
@@ -1150,6 +1167,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-7",
+        "example": {"he": "מחירון: כותרת מ־3 `<th>` ו־5 מוצרים עם 3 `<td>` כל אחד.\nשלב 1. `<th>`: 3.\nשלב 2. `<td>`: `5 × 3 = 15`.\nשלב 3. סך הכול: `3 + 15 = 18` תאים.", "ru": "Прайс-лист: заголовок из 3 `<th>` и 5 товаров по 3 `<td>`.\nШаг 1. `<th>`: 3.\nШаг 2. `<td>`: 5 × 3 = 15.\nШаг 3. Всего: 3 + 15 = 18 ячеек.", "en": "A price list: a header of 3 `<th>` and 5 products with 3 `<td>` each.\nStep 1. `<th>`: 3.\nStep 2. `<td>`: 5 × 3 = 15.\nStep 3. Total: 3 + 15 = 18 cells."},
         "level": 2,
         "label": {
           "he": "שורות במחירון",
@@ -1194,6 +1212,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-8",
+        "example": {"he": "שגיאה אחרת:\n`<table border=\"1\">`\n`  <tr><td>א</td><td>ב</tr>`\n`</table>`\nאחרי «ב» אין `</td>` — התא לא נסגר.\nמתוקן: `<tr><td>א</td><td>ב</td></tr>`.\nבמשימה השגיאה אחרת.", "ru": "Другая ошибка:\n`<table border=\"1\">`\n`  <tr><td>א</td><td>ב</tr>`\n`</table>`\nПосле «ב» нет `</td>` — ячейка не закрыта.\nИсправлено: `<tr><td>א</td><td>ב</td></tr>`.\nВ задании ошибка другая.", "en": "Another error:\n`<table border=\"1\">`\n`  <tr><td>a</td><td>b</tr>`\n`</table>`\nThere is no `</td>` after \"b\": the cell is not closed.\nFixed: `<tr><td>a</td><td>b</td></tr>`.\nThe error in the task is different."},
         "level": 3,
         "label": {
           "he": "מצאו את הטעות",
@@ -1249,6 +1268,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-9",
+        "example": {"he": "קבוצת radio נכונה «כן / לא», שבה אפשר לבחור רק אחד:\n`<input type=\"radio\" name=\"answer\" value=\"yes\">`\n`<input type=\"radio\" name=\"answer\" value=\"no\">`\nתשווה: מה זהה בשני הכפתורים, ומה שונה?", "ru": "Правильная группа radio «да / нет», где можно выбрать только одно:\n`<input type=\"radio\" name=\"answer\" value=\"yes\">`\n`<input type=\"radio\" name=\"answer\" value=\"no\">`\nСравни: что у двух кнопок одинаковое, а что разное?", "en": "A correct radio group \"yes / no\" where only one can be chosen:\n`<input type=\"radio\" name=\"answer\" value=\"yes\">`\n`<input type=\"radio\" name=\"answer\" value=\"no\">`\nCompare: what is the same in the two buttons, and what is different?"},
         "level": 3,
         "label": {
           "he": "Radio",
@@ -1313,6 +1333,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-10",
+        "example": {"he": "`<tr><th colspan=\"2\">מחירון</th></tr>`\n`<tr><td>חלב</td><td>6</td></tr>`\n`<tr><td>לחם</td><td>9</td></tr>`\n`colspan` מותח את התא, אבל זו עדיין תגית אחת.\n`1 + 4 = 5` תאים (`<th>` אחד ועוד `2 × 2` תאי `<td>`).", "ru": "`<tr><th colspan=\"2\">מחירון</th></tr>`\n`<tr><td>חלב</td><td>6</td></tr>`\n`<tr><td>לחם</td><td>9</td></tr>`\n`colspan` растягивает ячейку, но тег всё равно один.\n1 `<th>` + 2 × 2 `<td>` → 1 + 4 = 5 ячеек.", "en": "`<tr><th colspan=\"2\">price list</th></tr>`\n`<tr><td>milk</td><td>6</td></tr>`\n`<tr><td>bread</td><td>9</td></tr>`\n`colspan` stretches the cell, but it is still one tag.\n1 `<th>` + 2 × 2 `<td>` → 1 + 4 = 5 cells."},
         "level": 3,
         "label": {
           "he": "colspan",
@@ -1356,6 +1377,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-11",
+        "example": {"he": "`background-size: 50%` — תמונת הרקע תתפוס חצי מרוחב הדף.\nכדי שהתמונה תכסה את כל הדף כותבים מילה אחת. היא הייתה בשיעור.", "ru": "`background-size: 50%` — картинка фона займёт половину ширины страницы.\nЧтобы картинка закрыла всю страницу, пишут одно слово. Оно было на уроке.", "en": "`background-size: 50%` makes the background picture take half the page width.\nTo make the picture cover the whole page, one word is written. It was in the lesson."},
         "level": 2,
         "label": {
           "he": "cover",
@@ -1395,6 +1417,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-12",
+        "example": {"he": "הקישור `<a href=\"thanks.html\">תודה</a>` מוביל בלחיצה ל־thanks.html.\nב־`<form>` עבודה דומה עושה המאפיין `action`. תחשוב מתי הטופס «הולך» לכתובת הזאת.", "ru": "Ссылка `<a href=\"thanks.html\">תודה</a>` при клике ведёт на thanks.html.\nВ `<form>` похожую работу делает атрибут `action`. Подумай, когда форма «идёт» по этому адресу.", "en": "The link `<a href=\"thanks.html\">thanks</a>` leads to thanks.html when clicked.\nIn `<form>`, the `action` attribute does a similar job. Think when the form \"goes\" to that address."},
         "level": 1,
         "label": {
           "he": "action",
@@ -1454,6 +1477,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-13",
+        "example": {"he": "את `class` אפשר לתת לכמה אלמנטים שרוצים: למשל שלוש פסקאות עם `class=\"note\"`.\nל־`id` יש כלל אחר (שיעור 21.10).", "ru": "`class` можно дать скольким угодно элементам: например, три абзаца с `class=\"note\"`.\nУ `id` правило другое (урок 21.10).", "en": "`class` can be given to as many elements as you like: for example three paragraphs with `class=\"note\"`.\n`id` has a different rule (lesson 21.10)."},
         "level": 1,
         "label": {
           "he": "id",
@@ -1508,6 +1532,7 @@ window.LESSONS["fullstack-2026-10-28"] = {
       },
       {
         "id": "ai-14",
+        "example": {"he": "`type=\"text\"` — שדה רגיל: האותיות נראות.\n`type=\"submit\"` — כפתור שליחה.\nשדה שבו במקום אותיות יש נקודות הוא טיפוס נפרד, השם שלו באנגלית.", "ru": "`type=\"text\"` — обычное поле: буквы видны.\n`type=\"submit\"` — кнопка отправки.\nПоле, где вместо букв точки, — отдельный тип, его имя по-английски.", "en": "`type=\"text\"` is an ordinary field: the letters are visible.\n`type=\"submit\"` is a send button.\nA field with dots instead of letters is a separate type, and its name is an English word."},
         "level": 2,
         "label": {
           "he": "password",

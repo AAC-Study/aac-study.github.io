@@ -584,6 +584,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
     "teacher": [
       {
         "id": "t-cv-1",
+        "example": {"he": "כלל הקינון: התגית שנפתחה אחרונה נסגרת ראשונה.\n`<p><b>טקסט</b></p>` ✅\n`<p><b>טקסט</p></b>` ❌\nבדוק את האפשרויות לפי הכלל הזה, ותיזכר מהשיעור איזה חלק של הדף בא קודם: החלק הנסתר (הגדרות) או החלק הנראה.", "ru": "Правило вложения: тег, открытый последним, закрывается первым.\n`<p><b>טקסט</b></p>` ✅\n`<p><b>טקסט</p></b>` ❌\nПроверь варианты по этому правилу и вспомни с урока, какая часть страницы идёт первой: невидимая (настройки) или видимая.", "en": "The nesting rule: the tag opened last is closed first.\n`<p><b>text</b></p>` ✅\n`<p><b>text</p></b>` ❌\nCheck the options with this rule, and recall from the lesson which part of the page comes first: the hidden part (settings) or the visible part."},
         "group": "cv",
         "label": {
           "he": "שלד",
@@ -633,6 +634,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "t-cv-2",
+        "example": {"he": "מאפיין אחר באותו מקום: `<html lang=\"he\">` אומר לדפדפן שהדף בעברית.\nאת המאפיין כותבים בתוך התגית הפותחת: שם, `=`, וערך במירכאות.\nאת כיוון הטקסט (מימין לשמאל) קובע מאפיין אחר.", "ru": "Другой атрибут в том же месте: `<html lang=\"he\">` говорит браузеру, что страница на иврите.\nАтрибут пишут внутри открывающего тега: имя, `=`, значение в кавычках.\nНаправление текста (справа налево) задаёт другой атрибут.", "en": "Another attribute in the same place: `<html lang=\"he\">` tells the browser the page is in Hebrew.\nAn attribute goes inside the opening tag: name, `=`, value in quotes.\nThe text direction (right to left) is set by a different attribute."},
         "group": "cv",
         "label": {
           "he": "כיוון",
@@ -682,6 +684,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "t-cv-3",
+        "example": {"he": "תמונה בגודל `400 × 300` (הרוחב גדול מהגובה).\n`<img src=\"cat.jpg\" width=\"300\" height=\"300\">` תדחוס אותה לריבוע — החתול ייראה «מעוך».\nתחשוב: מה לעשות כדי שהדפדפן ישמור בעצמו על הפרופורציות של התמונה?", "ru": "Картинка 400 × 300 (ширина больше высоты).\n`<img src=\"cat.jpg\" width=\"300\" height=\"300\">` сожмёт её в квадрат — кот выйдет «сплющенным».\nПодумай: что сделать, чтобы браузер сам сохранил пропорции картинки?", "en": "A 400 × 300 picture (wider than it is tall).\n`<img src=\"cat.jpg\" width=\"300\" height=\"300\">` squeezes it into a square, so the cat looks \"squashed\".\nThink: what makes the browser keep the picture's proportions by itself?"},
         "group": "cv",
         "label": {
           "he": "תמונה",
@@ -747,6 +750,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "t-cv-4",
+        "example": {"he": "פסקה עם טקסט אדום ומסגרת ירוקה:\n`<p style=\"color: red; border: 2px solid green\">`\nכל העיצוב בתוך `style` אחד. כל תכונה: `תכונה: ערך`. בין התכונות `;`.", "ru": "Абзац с красным текстом и зелёной рамкой:\n`<p style=\"color: red; border: 2px solid green\">`\nВсё оформление внутри одного `style`. Каждое свойство: `свойство: значение`. Между свойствами `;`.", "en": "A paragraph with red text and a green border:\n`<p style=\"color: red; border: 2px solid green\">`\nAll the styling is inside one `style`. Each property is `property: value`. Between properties comes `;`."},
         "group": "cv",
         "label": {
           "he": "עיצוב",
@@ -796,6 +800,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "t-pl-1",
+        "example": {"he": "קישור רגיל: `<a href=\"https://www.ynet.co.il\">ynet</a>`\nהוא ייפתח באותה לשונית, במקום הדף שלך.\nכדי לפתוח בלשונית חדשה מוסיפים ל־`<a>` עוד מאפיין — הוא היה בשיעור.", "ru": "Обычная ссылка: `<a href=\"https://www.ynet.co.il\">ynet</a>`\nОна откроется в той же вкладке, вместо твоей страницы.\nЧтобы открыть в новой вкладке, в `<a>` добавляют ещё один атрибут — он был на уроке.", "en": "An ordinary link: `<a href=\"https://www.ynet.co.il\">ynet</a>`\nIt opens in the same tab, instead of your page.\nTo open it in a new tab, one more attribute is added to `<a>`; it was in the lesson."},
         "group": "pl",
         "label": "target",
         "kind": "text",
@@ -830,6 +835,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "t-pl-2",
+        "example": {"he": "ניסוי: תמונה `<img src=\"cat.jpg\" width=\"50%\">`.\nמצמצמים את חלון הדפדפן — גם התמונה קטנה. מרחיבים — היא גדלה.\nתחשוב למה: ממה מחושבים ה־50% האלה?", "ru": "Опыт: картинка `<img src=\"cat.jpg\" width=\"50%\">`.\nСужаешь окно браузера — картинка тоже становится меньше. Расширяешь — больше.\nПодумай, почему: от чего тогда считаются эти 50%?", "en": "An experiment: a picture `<img src=\"cat.jpg\" width=\"50%\">`.\nMake the browser window narrower and the picture shrinks too. Make it wider and the picture grows.\nThink why: what are these 50% counted from?"},
         "group": "pl",
         "label": "width 10%",
         "kind": "choice",
@@ -875,6 +881,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "t-pl-3",
+        "example": {"he": "קישור טקסט: `<a href=\"https://www.ynet.co.il\">ynet</a>`\nכל מה שנמצא בין `<a>` ל־`</a>` הופך ללחיץ. כאן זו המילה ynet.\nתחשוב מה לשים בין `<a>` ל־`</a>` כדי שהתמונה תהיה לחיצה.", "ru": "Ссылка-текст: `<a href=\"https://www.ynet.co.il\">ynet</a>`\nВсё, что стоит между `<a>` и `</a>`, становится кликабельным. Здесь это слово ynet.\nПодумай, что поставить между `<a>` и `</a>`, чтобы кликабельным было фото.", "en": "A text link: `<a href=\"https://www.ynet.co.il\">ynet</a>`\nEverything between `<a>` and `</a>` becomes clickable. Here it is the word ynet.\nThink what to put between `<a>` and `</a>` so that the photo is clickable."},
         "group": "pl",
         "label": "img → link",
         "kind": "choice",
@@ -908,6 +915,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "fz1",
+        "example": {"he": "רשימה ממוספרת:\n`<ol><li>אחד</li><li>שניים</li></ol>`\nבחוץ תגית הרשימה, ובפנים כל פריט בתוך `<li>…</li>` משלו.", "ru": "Нумерованный список:\n`<ol><li>אחד</li><li>שניים</li></ol>`\nСнаружи тег списка, внутри каждый пункт в своём `<li>…</li>`.", "en": "A numbered list:\n`<ol><li>one</li><li>two</li></ol>`\nThe list tag is outside, and each item is inside its own `<li>…</li>`."},
         "group": "files",
         "label": "<ul> <li>",
         "kind": "choice",
@@ -948,6 +956,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "fz2",
+        "example": {"he": "`<i>שלום</i>` — הטקסט נטוי (italic).\n`<br>` — ירידת שורה, `<button>` — כפתור.\nטקסט מודגש עושה תגית אחרת.", "ru": "`<i>שלום</i>` — текст становится наклонным (italic).\n`<br>` — перенос строки, `<button>` — кнопка.\nЖирный текст делает другой тег.", "en": "`<i>hello</i>` makes the text slanted (italic).\n`<br>` is a line break, `<button>` is a button.\nBold text is made by a different tag."},
         "group": "files",
         "label": "<b>",
         "kind": "choice",
@@ -988,6 +997,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "fz3",
+        "example": {"he": "דוגמה אחרת ל«איפה כותבים מה»: את `<title>` כותבים בתוך `<head>` — זה השם של הלשונית.\n`<!DOCTYPE html>` הוא לא תגית של הדף, אלא הודעה לדפדפן «זה HTML5». תחשוב מתי הדפדפן צריך לדעת את זה: בהתחלה או אחר כך.", "ru": "Другой пример «где что пишут»: `<title>` пишут внутри `<head>` — это название вкладки.\n`<!DOCTYPE html>` — не тег страницы, а сообщение браузеру «это HTML5». Подумай, когда браузер должен узнать это: в начале или потом.", "en": "Another \"what goes where\" example: `<title>` goes inside `<head>`; it is the tab name.\n`<!DOCTYPE html>` is not a page tag but a message to the browser: \"this is HTML5\". Think when the browser needs to know it: at the start or later."},
         "group": "files",
         "label": "DOCTYPE",
         "kind": "choice",
@@ -1041,6 +1051,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
     "ai": [
       {
         "id": "ai-1",
+        "example": {"he": "יש כותרות בשישה גדלים: מ־`h1` עד `h6`.\n`<h6>` היא הכי קטנה. ככל שהמספר קטן יותר, הכותרת גדולה וחשובה יותר.", "ru": "Заголовки бывают шести размеров: от `h1` до `h6`.\n`<h6>` — самый маленький. Чем меньше число, тем заголовок больше и главнее.", "en": "Headings come in six sizes: from `h1` to `h6`.\n`<h6>` is the smallest. The smaller the number, the bigger and more important the heading."},
         "level": 1,
         "label": {
           "he": "כותרת",
@@ -1083,6 +1094,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-2",
+        "example": {"he": "רשימה עם נקודות (בלי מספרים):\n`<ul><li>חלב</li><li>לחם</li></ul>`\n`<li>` הוא פריט אחד, הוא לא יוצר את הרשימה עצמה. מספרים 1, 2, 3 שמה תגית רשימה אחרת.", "ru": "Список с точками (без номеров):\n`<ul><li>חלב</li><li>לחם</li></ul>`\n`<li>` — это один пункт, он не создаёт сам список. Номера 1, 2, 3 ставит другой тег списка.", "en": "A list with bullets (no numbers):\n`<ul><li>milk</li><li>bread</li></ul>`\n`<li>` is one item; it does not make the list itself. The numbers 1, 2, 3 come from a different list tag."},
         "level": 1,
         "label": {
           "he": "רשימה ממוספרת",
@@ -1127,6 +1139,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-3",
+        "example": {"he": "בתמונה את כתובת הקובץ כותבים במאפיין `src`: `<img src=\"dog.jpg\">`.\nבקישור `<a>` את הכתובת שאליה הוא מוביל כותבים במאפיין אחר.", "ru": "У картинки адрес файла пишут в атрибуте `src`: `<img src=\"dog.jpg\">`.\nУ ссылки `<a>` адрес, куда она ведёт, пишут в другом атрибуте.", "en": "For a picture, the file address goes in the `src` attribute: `<img src=\"dog.jpg\">`.\nFor a link `<a>`, the address it leads to goes in a different attribute."},
         "level": 1,
         "label": {
           "he": "כתובת הקישור",
@@ -1169,6 +1182,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-4",
+        "example": {"he": "`<img src=\"dog.jpg\" title=\"הכלב שלי\">`\n`title` — רמז שמופיע כשמעבירים את העכבר מעל התמונה.\nטקסט במקום התמונה, אם היא לא נטענה, — זה מאפיין אחר.", "ru": "`<img src=\"dog.jpg\" title=\"הכלב שלי\">`\n`title` — подсказка, которая появляется, когда наводишь мышь на картинку.\nТекст вместо картинки, если она не загрузилась, — другой атрибут.", "en": "`<img src=\"dog.jpg\" title=\"my dog\">`\n`title` is a tooltip that appears when you hover the mouse over the picture.\nThe text shown instead of a picture that did not load is a different attribute."},
         "level": 1,
         "label": {
           "he": "תמונה שלא נטענה",
@@ -1213,6 +1227,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-5",
+        "example": {"he": "`<ul><li>א</li><li>ב</li></ul>`\n`<ol><li>ג</li></ol>`\nכל `<li>` הוא פריט אחד, לא משנה באיזו רשימה.\n`2 + 1 = 3` פריטים.", "ru": "`<ul><li>א</li><li>ב</li></ul>`\n`<ol><li>ג</li></ol>`\nКаждый `<li>` — один пункт, в каком бы списке он ни был.\n2 + 1 = 3 пункта.", "en": "`<ul><li>a</li><li>b</li></ul>`\n`<ol><li>c</li></ol>`\nEach `<li>` is one item, whichever list it is in.\n2 + 1 = 3 items."},
         "level": 2,
         "label": {
           "he": "כמה פריטים",
@@ -1256,6 +1271,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-6",
+        "example": {"he": "שגיאה אחרת: `<img src=\"dgo.jpg\">`, אבל הקובץ נקרא dog.jpg.\nשגיאת כתיב בשם הקובץ → הדפדפן לא מוצא את התמונה.\nמתוקן: `<img src=\"dog.jpg\">`.\nבמשימה השגיאה אחרת: תסתכל על שם המאפיין.", "ru": "Другая ошибка: `<img src=\"dgo.jpg\">`, а файл называется dog.jpg.\nОпечатка в имени файла → браузер не находит картинку.\nИсправлено: `<img src=\"dog.jpg\">`.\nВ задании ошибка другая: посмотри на имя атрибута.", "en": "Another error: `<img src=\"dgo.jpg\">`, but the file is called dog.jpg.\nA typo in the file name → the browser cannot find the picture.\nFixed: `<img src=\"dog.jpg\">`.\nIn the task the error is different: look at the attribute name."},
         "level": 2,
         "label": {
           "he": "מצאו את הטעות",
@@ -1316,6 +1332,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-7",
+        "example": {"he": "`<p>א<br>ב</p><h2>כותרת</h2>`\n`<p>…</p>` — זוגית (יש `</p>`).\n`<h2>…</h2>` — זוגית.\n`<br>` — בודדת, אין לה `</br>`.\nסך הכול תגית בודדת אחת.", "ru": "`<p>א<br>ב</p><h2>כותרת</h2>`\n`<p>…</p>` — парный (есть `</p>`).\n`<h2>…</h2>` — парный.\n`<br>` — одиночный, у него нет `</br>`.\nИтого 1 одиночный тег.", "en": "`<p>a<br>b</p><h2>title</h2>`\n`<p>…</p>` is a pair (it has `</p>`).\n`<h2>…</h2>` is a pair.\n`<br>` is single, it has no `</br>`.\nTotal: 1 single tag."},
         "level": 2,
         "label": {
           "he": "בלי סגירה",
@@ -1359,6 +1376,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-8",
+        "example": {"he": "`<p id=\"intro\">` — `id` נותן שם לאלמנט אחד. השם הזה חייב להיות ייחודי בדף, לא יכול להיות עוד אחד כזה.\nבשביל שם אחד לכמה אלמנטים צריך מאפיין אחר.", "ru": "`<p id=\"intro\">` — `id` даёт имя ОДНОМУ элементу. Это имя на странице должно быть уникальным, второго такого быть не может.\nДля одного имени у нескольких элементов нужен другой атрибут.", "en": "`<p id=\"intro\">` gives a name to ONE element. This name must be unique on the page; there cannot be a second one.\nOne name for several elements needs a different attribute."},
         "level": 2,
         "label": {
           "he": "id או class",
@@ -1403,6 +1421,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-9",
+        "example": {"he": "`<body align=\"left\">`\n`  <p align=\"center\">שלום</p>`\n`</body>`\nל־`<p>` יש `align` משלו → הוא חזק יותר מה־`align` של `<body>`.\nהטקסט יהיה במרכז.", "ru": "`<body align=\"left\">`\n`  <p align=\"center\">שלום</p>`\n`</body>`\nУ `<p>` есть своё `align` → оно главнее, чем `align` у `<body>`.\nТекст будет по центру.", "en": "`<body align=\"left\">`\n`  <p align=\"center\">hello</p>`\n`</body>`\n`<p>` has its own `align` → it wins over the `align` of `<body>`.\nThe text will be centred."},
         "level": 3,
         "label": {
           "he": "יישור",
@@ -1467,6 +1486,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-10",
+        "example": {"he": "הכלל: התגית שנפתחה אחרונה נסגרת ראשונה.\n`<b><i>טקסט</i></b>` ✅ (פתחנו b, i → סגרנו i, b)\n`<b><i>טקסט</b></i>` ❌ (סגרנו b לפני i)", "ru": "Правило: тег, открытый последним, закрывается первым.\n`<b><i>טקסט</i></b>` ✅ (открыли b, i → закрыли i, b)\n`<b><i>טקסט</b></i>` ❌ (закрыли b раньше, чем i)", "en": "The rule: the tag opened last is closed first.\n`<b><i>text</i></b>` ✅ (opened b, i → closed i, b)\n`<b><i>text</b></i>` ❌ (b closed before i)"},
         "level": 3,
         "label": {
           "he": "קינון",
@@ -1511,6 +1531,7 @@ window.LESSONS["fullstack-2026-10-21"] = {
       },
       {
         "id": "ai-11",
+        "example": {"he": "`<h2>א</h2><p>ב</p>`\n`<h4>ג</h4><div>ד</div>`\nכותרות הן `<h1>` … `<h6>`. `<p>` ו־`<div>` הן לא כותרות.\nכאן h2 ו־h4 → 2 כותרות.", "ru": "`<h2>א</h2><p>ב</p>`\n`<h4>ג</h4><div>ד</div>`\nЗаголовки — это `<h1>` … `<h6>`. `<p>` и `<div>` — не заголовки.\nЗдесь h2 и h4 → 2 заголовка.", "en": "`<h2>a</h2><p>b</p>`\n`<h4>c</h4><div>d</div>`\nHeadings are `<h1>` … `<h6>`. `<p>` and `<div>` are not headings.\nHere h2 and h4 → 2 headings."},
         "level": 3,
         "label": {
           "he": "כמה כותרות",
