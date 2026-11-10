@@ -803,6 +803,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Сумма всех чисел от 1 до 10. Что будет в последней строке?\n`int sum = 0;`\n`for (int i = 1; i <= 10; i++) {`\n`    System.out.print(i + \" \");`\n`    sum += i;`\n`}`\n`System.out.println();`\n`System.out.println(sum);`",
           "en": "The sum of all numbers from 1 to 10. What is on the last line?\n`int sum = 0;`\n`for (int i = 1; i <= 10; i++) {`\n`    System.out.print(i + \" \");`\n`    sum += i;`\n`}`\n`System.out.println();`\n`System.out.println(sum);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל עד 4 (`i <= 4`) → השורה הראשונה `1 2 3 4` → `sum`: 1, 3, 6, 10 → השורה האחרונה 10.",
+          "ru": "Тот же код, но до 4 (`i <= 4`) → первая строка `1 2 3 4` → `sum`: 1, 3, 6, 10 → последняя строка 10.",
+          "en": "The same code, but up to 4 (`i <= 4`) → the first line is `1 2 3 4` → `sum`: 1, 3, 6, 10 → the last line is 10."
+        },
         "answer": {
           "value": "55"
         },
@@ -846,6 +851,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Программа считает сумму всех чисел от 30 до 50 (включительно). Набери её и запусти — что она напечатает?\n`int sum = 0;`\n`for (int i = 30; i <= 50; i++) {`\n`    sum += i;`\n`}`\n`System.out.println(sum);`",
           "en": "The program adds up all numbers from 30 to 50 (inclusive). Type it in and run it — what does it print?\n`int sum = 0;`\n`for (int i = 30; i <= 50; i++) {`\n`    sum += i;`\n`}`\n`System.out.println(sum);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל מ־3 עד 6 (`i = 3; i <= 6`) → 3, 4, 5, 6 → `sum` = 3 → 7 → 12 → 18 → יודפס 18. הקצוות 3 ו־6 נכללים בגלל `<=`.",
+          "ru": "Тот же код, но от 3 до 6 (`i = 3; i <= 6`) → 3, 4, 5, 6 → `sum` = 3 → 7 → 12 → 18 → напечатает 18. Края 3 и 6 входят, потому что `<=`.",
+          "en": "The same code, but from 3 to 6 (`i = 3; i <= 6`) → 3, 4, 5, 6 → `sum` = 3 → 7 → 12 → 18 → prints 18. The ends 3 and 6 count because of `<=`."
+        },
         "answer": {
           "value": "840"
         },
@@ -883,6 +893,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "כתבו תוכנית שמחשבת בלולאת `for` את סכום המספרים השלמים מ-200 עד 300 (כולל) ומדפיסה רק את הסכום עם `System.out.println`. מה היא מדפיסה?",
           "ru": "Напиши программу, которая циклом `for` считает сумму целых чисел от 200 до 300 (включительно) и печатает только сумму через `System.out.println`. Что она напечатает?",
           "en": "Write a program that uses a `for` loop to add up the whole numbers from 200 to 300 (inclusive) and prints only the sum with `System.out.println`. What does it print?"
+        },
+        "example": {
+          "he": "סכום מ־1 עד 5 באותה לולאה: `sum` מתחיל מ־0 → i = 1: 1 → i = 2: 3 → i = 3: 6 → i = 4: 10 → i = 5: 15 → מדפיס 15. במשימה שלך אותו דבר, רק מ־200 עד 300.",
+          "ru": "Сумма от 1 до 5 таким же циклом: `sum` начинается с 0 → i = 1: 1 → i = 2: 3 → i = 3: 6 → i = 4: 10 → i = 5: 15 → печатает 15. В твоей задаче то же самое, только от 200 до 300.",
+          "en": "The sum from 1 to 5 with the same loop: `sum` starts at 0 → i = 1: 1 → i = 2: 3 → i = 3: 6 → i = 4: 10 → i = 5: 15 → prints 15. Your task is the same, only from 200 to 300."
         },
         "answer": {
           "value": "25250"
@@ -1153,6 +1168,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Задача из файла: `int num = 123;` — с помощью `while` посчитать, сколько цифр в числе. Что будет напечатано?\n`int count = 0;`\n`while (num != 0) {`\n`    count++;`\n`    num /= 10;`\n`}`\n`System.out.println(count);`",
           "en": "An exercise from the file: `int num = 123;` — use `while` to count how many digits the number has. What is printed?\n`int count = 0;`\n`while (num != 0) {`\n`    count++;`\n`    num /= 10;`\n`}`\n`System.out.println(count);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `num = 47` → סיבוב 1: `count` = 1, `num` = 4 → סיבוב 2: `count` = 2, `num` = 0 → `num != 0` לא, עצור → יודפס 2.",
+          "ru": "Тот же код, но `num = 47` → круг 1: `count` = 1, `num` = 4 → круг 2: `count` = 2, `num` = 0 → `num != 0` нет, стоп → напечатает 2.",
+          "en": "The same code, but `num = 47` → round 1: `count` = 1, `num` = 4 → round 2: `count` = 2, `num` = 0 → `num != 0` is false, stop → prints 2."
+        },
         "answer": {
           "value": "3"
         },
@@ -1273,6 +1293,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Код с экрана. Что будет напечатано? (напиши числа через пробел)\n`for (int i = 1; i <= 10; i++) {`\n`    if (i == 4 || i == 8) {`\n`        continue;`\n`    }`\n`    System.out.println(i);`\n`}`",
           "en": "The code from the screen. What is printed? (write the numbers with spaces)\n`for (int i = 1; i <= 10; i++) {`\n`    if (i == 4 || i == 8) {`\n`        continue;`\n`    }`\n`    System.out.println(i);`\n`}`"
         },
+        "example": {
+          "he": "אותו קוד, אבל עד 5 ומדלגים רק על 2 (`i == 2`) → 1 מודפס → 2: `continue`, ישר לסיבוב הבא → 3, 4, 5 מודפסים → התשובה הייתה `1 3 4 5`.",
+          "ru": "Тот же код, но до 5 и пропускаем только 2 (`i == 2`) → 1 печатается → 2: `continue`, сразу следующий круг → 3, 4, 5 печатаются → ответ был бы `1 3 4 5`.",
+          "en": "The same code, but up to 5 and skipping only 2 (`i == 2`) → 1 is printed → 2: `continue`, straight to the next round → 3, 4, 5 are printed → the answer would be `1 3 4 5`."
+        },
         "answer": {
           "accept": [
             "1 2 3 5 6 7 9 10",
@@ -1313,6 +1338,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Break в For: напечатать от 1 до 10, но остановиться через `break`, когда число дойдёт до 6. Что будет напечатано? (числа через пробел)\n`for (int i = 1; i <= 10; i++) {`\n`    if (i == 6) {`\n`        break;`\n`    }`\n`    System.out.println(i);`\n`}`",
           "en": "Break in For: print 1 to 10, but stop with `break` when the number reaches 6. What is printed? (write the numbers with spaces)\n`for (int i = 1; i <= 10; i++) {`\n`    if (i == 6) {`\n`        break;`\n`    }`\n`    System.out.println(i);`\n`}`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `break` ב־3 (`i == 3`) → 1 ו־2 מודפסים → ב־3 `break`: הלולאה נגמרה לגמרי, 3 כבר לא מודפס → התשובה הייתה `1 2`.",
+          "ru": "Тот же код, но `break` на 3 (`i == 3`) → 1 и 2 печатаются → на 3 `break`: цикл закончился совсем, 3 уже не печатается → ответ был бы `1 2`.",
+          "en": "The same code, but `break` at 3 (`i == 3`) → 1 and 2 are printed → at 3 `break`: the loop ends completely, 3 is not printed → the answer would be `1 2`."
+        },
         "answer": {
           "accept": [
             "1 2 3 4 5",
@@ -1350,6 +1380,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Continue в For 3: напечатать от 1 до 10 и пропустить через `continue` нечётные. Что будет напечатано? (числа через пробел)\n`for (int i = 1; i <= 10; i++) {`\n`    if (i % 2 != 0) {`\n`        continue;`\n`    }`\n`    System.out.println(i);`\n`}`",
           "en": "Continue in For 3: print 1 to 10 and skip the odd numbers with `continue`. What is printed? (write the numbers with spaces)\n`for (int i = 1; i <= 10; i++) {`\n`    if (i % 2 != 0) {`\n`        continue;`\n`    }`\n`    System.out.println(i);`\n`}`"
         },
+        "example": {
+          "he": "אותו קוד, אבל עד 5 → 1 אי־זוגי: `continue` → 2 מודפס → 3: `continue` → 4 מודפס → 5: `continue` → התשובה הייתה `2 4`.",
+          "ru": "Тот же код, но до 5 → 1 нечётное: `continue` → 2 печатается → 3: `continue` → 4 печатается → 5: `continue` → ответ был бы `2 4`.",
+          "en": "The same code, but up to 5 → 1 is odd: `continue` → 2 is printed → 3: `continue` → 4 is printed → 5: `continue` → the answer would be `2 4`."
+        },
         "answer": {
           "accept": [
             "2 4 6 8 10",
@@ -1386,6 +1421,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "Combine: הדפיסו 1 עד 12. דלגו על 5 (`continue`) ועצרו ב-10 (`break`). מה יודפס? (כתבו את המספרים עם רווחים)\n`for (int i = 1; i <= 12; i++) {`\n`    if (i == 5) continue;`\n`    if (i == 10) break;`\n`    System.out.println(i);`\n`}`",
           "ru": "Combine: напечатать от 1 до 12. Пропустить 5 (`continue`) и остановиться на 10 (`break`). Что будет напечатано? (числа через пробел)\n`for (int i = 1; i <= 12; i++) {`\n`    if (i == 5) continue;`\n`    if (i == 10) break;`\n`    System.out.println(i);`\n`}`",
           "en": "Combine: print 1 to 12. Skip 5 (`continue`) and stop at 10 (`break`). What is printed? (write the numbers with spaces)\n`for (int i = 1; i <= 12; i++) {`\n`    if (i == 5) continue;`\n`    if (i == 10) break;`\n`    System.out.println(i);`\n`}`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל מדלגים על 2 ועוצרים ב־4 → 1 מודפס → 2: `continue` → 3 מודפס → 4: `break`, סוף → התשובה הייתה `1 3`.",
+          "ru": "Тот же код, но пропускаем 2 и останавливаемся на 4 → 1 печатается → 2: `continue` → 3 печатается → 4: `break`, конец → ответ был бы `1 3`.",
+          "en": "The same code, but skip 2 and stop at 4 → 1 is printed → 2: `continue` → 3 is printed → 4: `break`, the end → the answer would be `1 3`."
         },
         "answer": {
           "accept": [
@@ -1464,6 +1504,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Таблица отслеживания: какие в конце a и b? Напиши так: 3 6\n`int a = 10;`\n`int b = 3;`\n`a = a / b;`\n`b = a * 2;`\n`a = a % b;`",
           "en": "Tracing table: what are a and b at the end? Write like: 3 6\n`int a = 10;`\n`int b = 3;`\n`a = a / b;`\n`b = a * 2;`\n`a = a % b;`"
         },
+        "example": {
+          "he": "בהתחלה `a = 9`, `b = 4` → `a = 9 / 4` = 2 (השבר נזרק) → `b = 2 * 2` = 4 → `a = 2 % 4` = 2 (2 קטן מ־4, השארית 2) → התשובה הייתה `2 4`. כל שורה לוקחת את הערכים שכבר התקבלו למעלה.",
+          "ru": "Начало `a = 9`, `b = 4` → `a = 9 / 4` = 2 (дробь отбрасывается) → `b = 2 * 2` = 4 → `a = 2 % 4` = 2 (2 меньше 4, остаток 2) → ответ был бы `2 4`. Каждая строка берёт значения, которые уже получились выше.",
+          "en": "Start with `a = 9`, `b = 4` → `a = 9 / 4` = 2 (the fraction is dropped) → `b = 2 * 2` = 4 → `a = 2 % 4` = 2 (2 is less than 4, remainder 2) → the answer would be `2 4`. Each line uses the values already computed above."
+        },
         "answer": {
           "accept": [
             "3 6",
@@ -1501,6 +1546,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Какие в конце x, y, z? Напиши так: 1 2 3\n`int x = 5;`\n`int y = x++;`\n`int z = ++x;`",
           "en": "What are x, y, z at the end? Write like: 1 2 3\n`int x = 5;`\n`int y = x++;`\n`int z = ++x;`"
         },
+        "example": {
+          "he": "בהתחלה `x = 1` → `y = x++`: קודם `y` מקבל את הערך הישן 1, ואז `x` נהיה 2 → `z = ++x`: קודם `x` נהיה 3, ואז `z` = 3 → התשובה הייתה `3 1 3`.",
+          "ru": "Начало `x = 1` → `y = x++`: сначала `y` получает старое значение 1, потом `x` становится 2 → `z = ++x`: сначала `x` становится 3, потом `z` = 3 → ответ был бы `3 1 3`.",
+          "en": "Start with `x = 1` → `y = x++`: first `y` gets the old value 1, then `x` becomes 2 → `z = ++x`: first `x` becomes 3, then `z` = 3 → the answer would be `3 1 3`."
+        },
         "answer": {
           "accept": [
             "7 5 7",
@@ -1537,6 +1587,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Какое в конце значение result?\n`int x = 1;`\n`int result = 0;`\n`while (x < 5) {`\n`    if (x % 2 != 0) {`\n`        result += 10;`\n`    } else {`\n`        result += 1;`\n`    }`\n`    x++;`\n`}`",
           "en": "What is the final value of result?\n`int x = 1;`\n`int result = 0;`\n`while (x < 5) {`\n`    if (x % 2 != 0) {`\n`        result += 10;`\n`    } else {`\n`        result += 1;`\n`    }`\n`    x++;`\n`}`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `while (x < 3)` → x = 1: אי־זוגי, `result` = 10 → x = 2: זוגי, `result` = 11 → x = 3: `3 < 3` לא, עצור → היה 11.",
+          "ru": "Тот же код, но `while (x < 3)` → x = 1: нечётное, `result` = 10 → x = 2: чётное, `result` = 11 → x = 3: `3 < 3` нет, стоп → было бы 11.",
+          "en": "The same code, but `while (x < 3)` → x = 1: odd, `result` = 10 → x = 2: even, `result` = 11 → x = 3: `3 < 3` is false, stop → it would be 11."
+        },
         "answer": {
           "value": "22"
         },
@@ -1569,6 +1624,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מה הערכים הסופיים של x ו-y? כתבו כך: 1 2\n`int x = 2;`\n`int y = 5;`\n`y *= x;`\n`x = x + y % 3;`",
           "ru": "Какие в конце x и y? Напиши так: 1 2\n`int x = 2;`\n`int y = 5;`\n`y *= x;`\n`x = x + y % 3;`",
           "en": "What are x and y at the end? Write like: 1 2\n`int x = 2;`\n`int y = 5;`\n`y *= x;`\n`x = x + y % 3;`"
+        },
+        "example": {
+          "he": "בהתחלה `x = 3`, `y = 4` → `y *= x`: `y` = 12 → `y % 3` = 0 → `x = 3 + 0` = 3 → התשובה הייתה `3 12`. קודם `%`, ואז `+`.",
+          "ru": "Начало `x = 3`, `y = 4` → `y *= x`: `y` = 12 → `y % 3` = 0 → `x = 3 + 0` = 3 → ответ был бы `3 12`. Сначала `%`, потом `+`.",
+          "en": "Start with `x = 3`, `y = 4` → `y *= x`: `y` = 12 → `y % 3` = 0 → `x = 3 + 0` = 3 → the answer would be `3 12`. First `%`, then `+`."
         },
         "answer": {
           "accept": [
@@ -1607,6 +1667,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Какое в конце значение result?\n`boolean isA = true;`\n`boolean isB = false;`\n`boolean result = !isA || (isA && isB);`",
           "en": "What is the final value of result?\n`boolean isA = true;`\n`boolean isB = false;`\n`boolean result = !isA || (isA && isB);`"
         },
+        "example": {
+          "he": "`isA = false`, `isB = true` → `!isA` = true → ל־`||` כבר יש true, ולכן כל התוצאה true.",
+          "ru": "`isA = false`, `isB = true` → `!isA` = true → у `||` уже есть true, значит весь результат true.",
+          "en": "`isA = false`, `isB = true` → `!isA` = true → `||` already has a true, so the whole result is true."
+        },
         "answer": {
           "index": 1
         },
@@ -1641,6 +1706,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מה result ו-factor בסיום? כתבו כך: 1 2\n`int result = 0;`\n`int factor = 1;`\n`for (int i = 0; i < 8; i++) {`\n`    if (i % 4 == 0) {`\n`        factor *= 2;`\n`    }`\n`    if (i >= 5) {`\n`        result -= factor;`\n`    } else {`\n`        result += factor;`\n`    }`\n`}`",
           "ru": "Какие result и factor в конце? Напиши так: 1 2\n`int result = 0;`\n`int factor = 1;`\n`for (int i = 0; i < 8; i++) {`\n`    if (i % 4 == 0) {`\n`        factor *= 2;`\n`    }`\n`    if (i >= 5) {`\n`        result -= factor;`\n`    } else {`\n`        result += factor;`\n`    }`\n`}`",
           "en": "What are result and factor at the end? Write like: 1 2\n`int result = 0;`\n`int factor = 1;`\n`for (int i = 0; i < 8; i++) {`\n`    if (i % 4 == 0) {`\n`        factor *= 2;`\n`    }`\n`    if (i >= 5) {`\n`        result -= factor;`\n`    } else {`\n`        result += factor;`\n`    }`\n`}`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `i < 3` → i = 0: `0 % 4 == 0`, `factor` = 2; `0 >= 5` לא, `result` = 2 → i = 1: `result` = 4 → i = 2: `result` = 6 → היה `6 2`. לכל `i` בדקו את שני ה־`if` לפי הסדר.",
+          "ru": "Тот же код, но `i < 3` → i = 0: `0 % 4 == 0`, `factor` = 2; `0 >= 5` нет, `result` = 2 → i = 1: `result` = 4 → i = 2: `result` = 6 → было бы `6 2`. Для каждого `i` проверяй оба `if` по очереди.",
+          "en": "The same code, but `i < 3` → i = 0: `0 % 4 == 0`, `factor` = 2; `0 >= 5` no, `result` = 2 → i = 1: `result` = 4 → i = 2: `result` = 6 → it would be `6 2`. For each `i` check both `if`s in order."
         },
         "answer": {
           "accept": [
@@ -1689,6 +1759,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Какое в конце значение sum?\n`int count = 5;`\n`int sum = 0;`\n`while (count > 0) {`\n`    sum += count;`\n`    count -= 2;`\n`}`",
           "en": "What is the final value of sum?\n`int count = 5;`\n`int sum = 0;`\n`while (count > 0) {`\n`    sum += count;`\n`    count -= 2;`\n`}`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `count = 4` → `sum` = 4, `count` = 2 → `sum` = 6, `count` = 0 → `0 > 0` לא, עצור → היה 6.",
+          "ru": "Тот же код, но `count = 4` → `sum` = 4, `count` = 2 → `sum` = 6, `count` = 0 → `0 > 0` нет, стоп → было бы 6.",
+          "en": "The same code, but `count = 4` → `sum` = 4, `count` = 2 → `sum` = 6, `count` = 0 → `0 > 0` is false, stop → it would be 6."
+        },
         "answer": {
           "value": "9"
         },
@@ -1721,6 +1796,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Напиши код: читаем `int num1` и печатаем `num1`, делённое на 3 (целочисленное деление). Что напечатает программа, если пользователь ввёл 17?",
           "en": "Write code: read `int num1` and print `num1` divided by 3 (integer division). What does the program print if the user typed 17?"
         },
+        "example": {
+          "he": "המשתמש הקליד 11 → `11 / 3`: שניהם `int`, ולכן 3.66… נחתך ל־3 → התוכנית תדפיס 3.",
+          "ru": "Пользователь ввёл 11 → `11 / 3`: оба `int`, поэтому 3,66… обрезается до 3 → программа напечатает 3.",
+          "en": "The user typed 11 → `11 / 3`: both are `int`, so 3.66… is cut to 3 → the program prints 3."
+        },
         "answer": {
           "value": "5"
         },
@@ -1751,6 +1831,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "כתבו קוד: קולטים `int age`. אם age קטן מ־18 או גדול מ־60 — מדפיסים \"יש הנחה\", אחרת \"אין הנחה\". מה התוכנית תדפיס אם המשתמש הקליד 18?",
           "ru": "Напиши код: читаем `int age`. Если age меньше 18 или больше 60 — печатаем «יש הנחה» (есть скидка), иначе «אין הנחה» (нет скидки). Что напечатает программа, если пользователь ввёл 18?",
           "en": "Write code: read `int age`. If age is less than 18 or more than 60 print \"יש הנחה\" (discount), otherwise \"אין הנחה\" (no discount). What does the program print if the user typed 18?"
+        },
+        "example": {
+          "he": "המשתמש הקליד 60 → `60 < 18` לא → `60 > 60` לא (60 לא גדול מ־60) → שני התנאים לא מתקיימים → התוכנית תדפיס \"אין הנחה\".",
+          "ru": "Пользователь ввёл 60 → `60 < 18` нет → `60 > 60` нет (60 не больше 60) → оба условия ложны → программа напечатает «אין הנחה».",
+          "en": "The user typed 60 → `60 < 18` no → `60 > 60` no (60 is not more than 60) → both conditions are false → the program prints \"אין הנחה\"."
         },
         "answer": {
           "index": 1
@@ -1788,6 +1873,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Напиши цикл `for`, который считает среднее чисел от 0 до 50 с шагом 7 (0, 7, 14…). Что напечатает `(double) sum / count`?",
           "en": "Write a `for` loop that computes the average of the numbers from 0 to 50 in steps of 7 (0, 7, 14…). What does `(double) sum / count` print?"
         },
+        "example": {
+          "he": "ממוצע המספרים מ־0 עד 10 בקפיצות של 5: המספרים 0, 5, 10 → `sum` = 15, `count` = 3 → `(double) 15 / 3` = 5.0. שימו לב: מספר שגדול מ־50 כבר לא נכנס ללולאה.",
+          "ru": "Среднее чисел от 0 до 10 с шагом 5: числа 0, 5, 10 → `sum` = 15, `count` = 3 → `(double) 15 / 3` = 5.0. Не забудь: число, которое больше 50, в цикл уже не попадает.",
+          "en": "The average of the numbers from 0 to 10 in steps of 5: the numbers 0, 5, 10 → `sum` = 15, `count` = 3 → `(double) 15 / 3` = 5.0. Remember: a number above 50 does not get into the loop."
+        },
         "answer": {
           "value": "24.5"
         },
@@ -1819,6 +1909,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "כתבו קוד: קולטים `int num`. אם num חיובי — בודקים זוגיות ומדפיסים \"מספר חיובי זוגי\" או \"מספר חיובי אי זוגי\". אם num שלילי — \"מספר שלילי\". מה התוכנית תדפיס אם המשתמש הקליד 0?",
           "ru": "Напиши код: читаем `int num`. Если num положительное — проверяем чётность и печатаем «מספר חיובי זוגי» или «מספר חיובי אי זוגי». Если отрицательное — «מספר שלילי». Что напечатает программа, если пользователь ввёл 0?",
           "en": "Write code: read `int num`. If num is positive, check if it is even and print \"מספר חיובי זוגי\" or \"מספר חיובי אי זוגי\". If negative, \"מספר שלילי\". What does the program print if the user typed 0?"
+        },
+        "example": {
+          "he": "המשתמש הקליד -4 → `-4 > 0` לא → `-4 < 0` כן → התוכנית תדפיס \"מספר שלילי\". חשבו איזה תנאי יתקיים עבור 0.",
+          "ru": "Пользователь ввёл -4 → `-4 > 0` нет → `-4 < 0` да → программа напечатает «מספר שלילי». Подумай, какое из условий выполнится для 0.",
+          "en": "The user typed -4 → `-4 > 0` no → `-4 < 0` yes → the program prints \"מספר שלילי\". Think which condition holds for 0."
         },
         "answer": {
           "index": 3
@@ -1861,6 +1956,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Напиши цикл `for`, который печатает символы от 'a' до 'h' (включительно) без пробелов. Что напечатает?",
           "en": "Write a `for` loop that prints the characters from 'a' to 'h' (inclusive) without spaces. What is printed?"
         },
+        "example": {
+          "he": "אפשר לעבור גם על תווים ב־`for`: מ־`'x'` עד `'z'` → `x`, אחר כך `y`, אחר כך `z` → יודפס `xyz`. `char` עם `++` עובר לאות הבאה.",
+          "ru": "Символы тоже можно перебирать в `for`: от `'x'` до `'z'` → `x`, потом `y`, потом `z` → напечатает `xyz`. `char` с `++` переходит к следующей букве.",
+          "en": "You can loop over characters too: from `'x'` to `'z'` → `x`, then `y`, then `z` → prints `xyz`. A `char` with `++` moves to the next letter."
+        },
         "answer": {
           "accept": [
             "abcdefgh"
@@ -1892,6 +1992,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "כתבו קוד: קולטים `int a` ו-`int b`. אם a גדול מ-b — `a = b`, אחרת `b = a`. מדפיסים a ו-b. מה יודפס עבור a = 7, b = 3? כתבו כך: 1 2",
           "ru": "Напиши код: читаем `int a` и `int b`. Если a больше b — `a = b`, иначе `b = a`. Печатаем a и b. Что напечатает при a = 7, b = 3? Напиши так: 1 2",
           "en": "Write code: read `int a` and `int b`. If a is more than b, `a = b`, otherwise `b = a`. Print a and b. What is printed for a = 7, b = 3? Write like: 1 2"
+        },
+        "example": {
+          "he": "a = 2, b = 9 → `2 > 9` לא → ולכן `b = a`, כלומר `b` = 2 → מדפיס `2 2`.",
+          "ru": "a = 2, b = 9 → `2 > 9` нет → значит `b = a`, то есть `b` = 2 → печатает `2 2`.",
+          "en": "a = 2, b = 9 → `2 > 9` no → so `b = a`, that is `b` = 2 → prints `2 2`."
         },
         "answer": {
           "accept": [
@@ -1927,6 +2032,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "כתבו לולאת `for` שמדפיסה את המספרים מ-20 עד 0 בקפיצות של 2 אחורה. כמה מספרים יודפסו?",
           "ru": "Напиши цикл `for`, который печатает числа от 20 до 0 с шагом 2 назад. Сколько чисел напечатается?",
           "en": "Write a `for` loop that prints the numbers from 20 down to 0 in steps of 2. How many numbers are printed?"
+        },
+        "example": {
+          "he": "מ־6 עד 0 בקפיצות של 2 אחורה: 6, 4, 2, 0 → 4 מספרים. גם 0 מודפס, כי התנאי הוא `i >= 0`.",
+          "ru": "От 6 до 0 с шагом 2 назад: 6, 4, 2, 0 → 4 числа. 0 тоже печатается, потому что условие `i >= 0`.",
+          "en": "From 6 down to 0 in steps of 2: 6, 4, 2, 0 → 4 numbers. 0 is printed too, because the condition is `i >= 0`."
         },
         "answer": {
           "value": "11"
@@ -2083,6 +2193,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Из материалов курса: печатаем числа от 1 до 50, а рядом с каждым, которое делится на 8, пишем nice. Сколько раз напечатается nice?",
           "en": "From the course files: print the numbers 1 to 50, and next to each one divisible by 8 write nice. How many times is nice printed?"
         },
+        "example": {
+          "he": "המספרים מ־1 עד 20, nice ליד אלה שמתחלקים ב־6: אלה 6, 12, 18 → nice יודפס 3 פעמים. מספר מתחלק ב־6 אם `i % 6 == 0`.",
+          "ru": "Числа от 1 до 20, nice у тех, что делятся на 6: это 6, 12, 18 → nice напечатается 3 раза. Число делится на 6, если `i % 6 == 0`.",
+          "en": "The numbers from 1 to 20, nice next to those divisible by 6: that is 6, 12, 18 → nice is printed 3 times. A number is divisible by 6 if `i % 6 == 0`."
+        },
         "answer": {
           "value": "6"
         },
@@ -2114,6 +2229,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Что напечатает?\n`final double CM_IN_INCH = 2.54;`\n`System.out.println(10 * CM_IN_INCH);`",
           "en": "What is printed?\n`final double CM_IN_INCH = 2.54;`\n`System.out.println(10 * CM_IN_INCH);`"
         },
+        "example": {
+          "he": "`final double KM_IN_MILE = 1.6;` ו־`System.out.println(5 * KM_IN_MILE);` → 5 × 1.6 = 8 → מדפיס `8.0` (הטיפוס `double`, ולכן עם `.0`). `final` אומר שאסור לשנות את הערך אחר כך.",
+          "ru": "`final double KM_IN_MILE = 1.6;` и `System.out.println(5 * KM_IN_MILE);` → 5 × 1.6 = 8 → печатает `8.0` (тип `double`, поэтому с `.0`). `final` значит, что значение потом менять нельзя.",
+          "en": "`final double KM_IN_MILE = 1.6;` and `System.out.println(5 * KM_IN_MILE);` → 5 × 1.6 = 8 → prints `8.0` (the type is `double`, so it has `.0`). `final` means the value cannot be changed later."
+        },
         "answer": {
           "value": "25.4"
         },
@@ -2144,6 +2264,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int sum = 0;`\n`for (int i = 1; i < 5; i++) {`\n`    sum += i;`\n`}`\n`System.out.println(sum);`",
           "en": "From the course worksheet. What is printed?\n`int sum = 0;`\n`for (int i = 1; i < 5; i++) {`\n`    sum += i;`\n`}`\n`System.out.println(sum);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `i < 3` → i = 1: `sum` = 1 → i = 2: `sum` = 3 → `3 < 3` לא, עצור → היה 3. שימו לב: `<` ולא `<=`.",
+          "ru": "Тот же код, но `i < 3` → i = 1: `sum` = 1 → i = 2: `sum` = 3 → `3 < 3` нет, стоп → было бы 3. Обрати внимание: `<`, а не `<=`.",
+          "en": "The same code, but `i < 3` → i = 1: `sum` = 1 → i = 2: `sum` = 3 → `3 < 3` is false, stop → it would be 3. Note: `<`, not `<=`."
+        },
         "answer": {
           "value": "10"
         },
@@ -2173,6 +2298,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מדף התרגול של הקורס. מה יודפס?\n`String s = \"\";`\n`for (int j = 10; j >= 0; j -= 5) {`\n`    s += j;`\n`}`\n`System.out.println(s);`",
           "ru": "Из листа упражнений курса. Что напечатает?\n`String s = \"\";`\n`for (int j = 10; j >= 0; j -= 5) {`\n`    s += j;`\n`}`\n`System.out.println(s);`",
           "en": "From the course worksheet. What is printed?\n`String s = \"\";`\n`for (int j = 10; j >= 0; j -= 5) {`\n`    s += j;`\n`}`\n`System.out.println(s);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `j = 4` ו־`j -= 2` → `s` = \"4\" → \"42\" → \"420\" → יודפס `420`. `s` היא מחרוזת (`String`), ולכן המספרים נדבקים ולא מתחברים.",
+          "ru": "Тот же код, но `j = 4` и `j -= 2` → `s` = \"4\" → \"42\" → \"420\" → напечатает `420`. `s` — строка (`String`), поэтому числа приклеиваются, а не складываются.",
+          "en": "The same code, but `j = 4` and `j -= 2` → `s` = \"4\" → \"42\" → \"420\" → prints `420`. `s` is a `String`, so the numbers are glued together, not added."
         },
         "answer": {
           "accept": [
@@ -2208,6 +2338,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int a = 1;`\n`int b = 5;`\n`while (a < b) {`\n`    a++;`\n`    b--;`\n`}`\n`System.out.println(a);`",
           "en": "From the course worksheet. What is printed?\n`int a = 1;`\n`int b = 5;`\n`while (a < b) {`\n`    a++;`\n`    b--;`\n`}`\n`System.out.println(a);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `b = 7` → (1, 7) → (2, 6) → (3, 5) → (4, 4): `4 < 4` לא, עצור → יודפס 4.",
+          "ru": "Тот же код, но `b = 7` → (1, 7) → (2, 6) → (3, 5) → (4, 4): `4 < 4` нет, стоп → напечатает 4.",
+          "en": "The same code, but `b = 7` → (1, 7) → (2, 6) → (3, 5) → (4, 4): `4 < 4` is false, stop → prints 4."
+        },
         "answer": {
           "value": "3"
         },
@@ -2240,6 +2375,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int count = 0;`\n`int num = 16;`\n`while (num > 0) {`\n`    num /= 2;`\n`    count++;`\n`}`\n`System.out.println(count);`",
           "en": "From the course worksheet. What is printed?\n`int count = 0;`\n`int num = 16;`\n`while (num > 0) {`\n`    num /= 2;`\n`    count++;`\n`}`\n`System.out.println(count);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `num = 6` → 6 / 2 = 3, `count` = 1 → 3 / 2 = 1, `count` = 2 → 1 / 2 = 0, `count` = 3 → `0 > 0` לא → יודפס 3.",
+          "ru": "Тот же код, но `num = 6` → 6 / 2 = 3, `count` = 1 → 3 / 2 = 1, `count` = 2 → 1 / 2 = 0, `count` = 3 → `0 > 0` нет → напечатает 3.",
+          "en": "The same code, but `num = 6` → 6 / 2 = 3, `count` = 1 → 3 / 2 = 1, `count` = 2 → 1 / 2 = 0, `count` = 3 → `0 > 0` is false → prints 3."
+        },
         "answer": {
           "value": "5"
         },
@@ -2270,6 +2410,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מדף התרגול של הקורס. מה יודפס?\n`for (int i = 1; i <= 8; i++) {`\n`    if (i == 5) {`\n`        break;`\n`    }`\n`    System.out.print(i);`\n`}`",
           "ru": "Из листа упражнений курса. Что напечатает?\n`for (int i = 1; i <= 8; i++) {`\n`    if (i == 5) {`\n`        break;`\n`    }`\n`    System.out.print(i);`\n`}`",
           "en": "From the course worksheet. What is printed?\n`for (int i = 1; i <= 8; i++) {`\n`    if (i == 5) {`\n`        break;`\n`    }`\n`    System.out.print(i);`\n`}`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `break` ב־3 → מדפיס 1, 2 → ב־3 הלולאה נגמרת → `12`. `print` בלי `ln`, ולכן הכול בשורה אחת.",
+          "ru": "Тот же код, но `break` на 3 → печатает 1, 2 → на 3 цикл заканчивается → `12`. `print` без `ln`, поэтому всё в одну строку.",
+          "en": "The same code, but `break` at 3 → prints 1, 2 → at 3 the loop ends → `12`. `print` without `ln`, so it is all on one line."
         },
         "answer": {
           "accept": [
@@ -2304,6 +2449,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`for (int i = 1; i <= 5; i++) {`\n`    if (i % 2 == 0) {`\n`        continue;`\n`    }`\n`    System.out.print(i);`\n`}`",
           "en": "From the course worksheet. What is printed?\n`for (int i = 1; i <= 5; i++) {`\n`    if (i % 2 == 0) {`\n`        continue;`\n`    }`\n`    System.out.print(i);`\n`}`"
         },
+        "example": {
+          "he": "אותו קוד, אבל מדלגים על מספרים שמתחלקים ב־3 (`i % 3 == 0`) → 1, 2 מודפסים → 3 מדלגים → 4, 5 → יודפס `1245`.",
+          "ru": "Тот же код, но пропускаем числа, которые делятся на 3 (`i % 3 == 0`) → 1, 2 печатаются → 3 пропуск → 4, 5 → напечатает `1245`.",
+          "en": "The same code, but skip numbers divisible by 3 (`i % 3 == 0`) → 1, 2 are printed → 3 is skipped → 4, 5 → prints `1245`."
+        },
         "answer": {
           "accept": [
             "135"
@@ -2336,6 +2486,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מדף התרגול של הקורס. מה יודפס?\n`int x = 0;`\n`int y = 5;`\n`while (x < y) {`\n`    if (x % 2 == 0) {`\n`        x += 2;`\n`        continue;`\n`    }`\n`    y--;`\n`    x++;`\n`}`\n`System.out.println(x + \"\" + y);`",
           "ru": "Из листа упражнений курса. Что напечатает?\n`int x = 0;`\n`int y = 5;`\n`while (x < y) {`\n`    if (x % 2 == 0) {`\n`        x += 2;`\n`        continue;`\n`    }`\n`    y--;`\n`    x++;`\n`}`\n`System.out.println(x + \"\" + y);`",
           "en": "From the course worksheet. What is printed?\n`int x = 0;`\n`int y = 5;`\n`while (x < y) {`\n`    if (x % 2 == 0) {`\n`        x += 2;`\n`        continue;`\n`    }`\n`    y--;`\n`    x++;`\n`}`\n`System.out.println(x + \"\" + y);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `y = 3` → x = 0 זוגי: x = 2, `continue` → x = 2 זוגי: x = 4, `continue` → `4 < 3` לא, עצור → מדפיס `43` (`x + \"\" + y` מדביק את המספרים למחרוזת).",
+          "ru": "Тот же код, но `y = 3` → x = 0 чётное: x = 2, `continue` → x = 2 чётное: x = 4, `continue` → `4 < 3` нет, стоп → печатает `43` (`x + \"\" + y` склеивает числа в строку).",
+          "en": "The same code, but `y = 3` → x = 0 is even: x = 2, `continue` → x = 2 is even: x = 4, `continue` → `4 < 3` is false, stop → prints `43` (`x + \"\" + y` glues the numbers into a string)."
         },
         "answer": {
           "accept": [
@@ -2372,6 +2527,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int a = 0;`\n`for (int i = 0; i < 5; i++) {`\n`    if (i == 3) {`\n`        break;`\n`    }`\n`    a += i;`\n`}`\n`System.out.println(a);`",
           "en": "From the course worksheet. What is printed?\n`int a = 0;`\n`for (int i = 0; i < 5; i++) {`\n`    if (i == 3) {`\n`        break;`\n`    }`\n`    a += i;`\n`}`\n`System.out.println(a);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `break` ב־2 → i = 0: `a` = 0 → i = 1: `a` = 1 → i = 2: `break` → יודפס 1.",
+          "ru": "Тот же код, но `break` на 2 → i = 0: `a` = 0 → i = 1: `a` = 1 → i = 2: `break` → напечатает 1.",
+          "en": "The same code, but `break` at 2 → i = 0: `a` = 0 → i = 1: `a` = 1 → i = 2: `break` → prints 1."
+        },
         "answer": {
           "value": "3"
         },
@@ -2402,6 +2562,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int f = 1;`\n`for (int i = 1; i <= 5; i++) {`\n`    f *= i;`\n`}`\n`System.out.println(f);`",
           "en": "From the course worksheet. What is printed?\n`int f = 1;`\n`for (int i = 1; i <= 5; i++) {`\n`    f *= i;`\n`}`\n`System.out.println(f);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל עד 3 → `f` = 1 → 1 × 2 = 2 → 2 × 3 = 6 → יודפס 6. `f` מתחיל מ־1, כי כפל ב־0 היה מקלקל הכול.",
+          "ru": "Тот же код, но до 3 → `f` = 1 → 1 × 2 = 2 → 2 × 3 = 6 → напечатает 6. `f` начинается с 1, потому что умножение на 0 всё испортило бы.",
+          "en": "The same code, but up to 3 → `f` = 1 → 1 × 2 = 2 → 2 × 3 = 6 → prints 6. `f` starts at 1, because multiplying by 0 would ruin everything."
+        },
         "answer": {
           "value": "120"
         },
@@ -2431,6 +2596,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מדף התרגול של הקורס. מה יודפס?\n`int p = 1;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= 3;`\n`}`\n`System.out.println(p);`",
           "ru": "Из листа упражнений курса. Что напечатает?\n`int p = 1;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= 3;`\n`}`\n`System.out.println(p);`",
           "en": "From the course worksheet. What is printed?\n`int p = 1;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= 3;`\n`}`\n`System.out.println(p);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `p *= 2` → 2, 4, 8, 16 → יודפס 16. הלולאה עושה 4 סיבובים, ובכל אחד כופלת עוד פעם.",
+          "ru": "Тот же код, но `p *= 2` → 2, 4, 8, 16 → напечатает 16. Цикл делает 4 круга, на каждом умножает ещё раз.",
+          "en": "The same code, but `p *= 2` → 2, 4, 8, 16 → prints 16. The loop makes 4 rounds and multiplies once more in each."
         },
         "answer": {
           "value": "81"
@@ -2466,6 +2636,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int num = 87654;`\n`int count = 0;`\n`while (num > 0) {`\n`    count++;`\n`    num /= 10;`\n`}`\n`System.out.println(count);`",
           "en": "From the course worksheet. What is printed?\n`int num = 87654;`\n`int count = 0;`\n`while (num > 0) {`\n`    count++;`\n`    num /= 10;`\n`}`\n`System.out.println(count);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `num = 305` → `count` = 1, `num` = 30 → `count` = 2, `num` = 3 → `count` = 3, `num` = 0 → יודפס 3. כל סיבוב מוחק ספרה אחת.",
+          "ru": "Тот же код, но `num = 305` → `count` = 1, `num` = 30 → `count` = 2, `num` = 3 → `count` = 3, `num` = 0 → напечатает 3. Каждый круг стирает одну цифру.",
+          "en": "The same code, but `num = 305` → `count` = 1, `num` = 30 → `count` = 2, `num` = 3 → `count` = 3, `num` = 0 → prints 3. Each round removes one digit."
+        },
         "answer": {
           "value": "5"
         },
@@ -2499,6 +2674,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Сколько раз выполнится цикл (сколько раз напечатается \"Hi\")?\n`for (int i = 0; i < 7; i++) {`\n`    System.out.println(\"Hi\");`\n`}`",
           "en": "How many times does the loop run (how many times is \"Hi\" printed)?\n`for (int i = 0; i < 7; i++) {`\n`    System.out.println(\"Hi\");`\n`}`"
         },
+        "example": {
+          "he": "`for (int i = 0; i < 3; i++)` → i = 0, 1, 2 → 3 פעמים. התחלה מ־0 ו־`<` נותנות בדיוק כמה סיבובים שכתוב מימין.",
+          "ru": "`for (int i = 0; i < 3; i++)` → i = 0, 1, 2 → 3 раза. Начало с 0 и `<` дают ровно столько кругов, сколько написано справа.",
+          "en": "`for (int i = 0; i < 3; i++)` → i = 0, 1, 2 → 3 times. Starting at 0 with `<` gives exactly as many rounds as the number on the right."
+        },
         "answer": {
           "value": "7"
         },
@@ -2528,6 +2708,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מה יודפס?\n`int s = 0;`\n`for (int i = 1; i <= 4; i++) {`\n`    s += i;`\n`}`\n`System.out.println(s);`",
           "ru": "Что будет напечатано?\n`int s = 0;`\n`for (int i = 1; i <= 4; i++) {`\n`    s += i;`\n`}`\n`System.out.println(s);`",
           "en": "What is printed?\n`int s = 0;`\n`for (int i = 1; i <= 4; i++) {`\n`    s += i;`\n`}`\n`System.out.println(s);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל עד 3 → `s` = 1 → 3 → 6 → יודפס 6.",
+          "ru": "Тот же код, но до 3 → `s` = 1 → 3 → 6 → напечатает 6.",
+          "en": "The same code, but up to 3 → `s` = 1 → 3 → 6 → prints 6."
         },
         "answer": {
           "value": "10"
@@ -2561,6 +2746,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Что будет напечатано?\n`int c = 0;`\n`for (int i = 1; i <= 20; i++) {`\n`    if (i % 5 == 0) c++;`\n`}`\n`System.out.println(c);`",
           "en": "What is printed?\n`int c = 0;`\n`for (int i = 1; i <= 20; i++) {`\n`    if (i % 5 == 0) c++;`\n`}`\n`System.out.println(c);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל עד 10 → מתחלקים ב־5 רק 5 ו־10 → `c` = 2 → יודפס 2.",
+          "ru": "Тот же код, но до 10 → делятся на 5 только 5 и 10 → `c` = 2 → напечатает 2.",
+          "en": "The same code, but up to 10 → only 5 and 10 are divisible by 5 → `c` = 2 → prints 2."
+        },
         "answer": {
           "value": "4"
         },
@@ -2592,6 +2782,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מכפלה: מה יודפס?\n`int p = 1;`\n`for (int i = 1; i <= 5; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`",
           "ru": "Произведение: что будет напечатано?\n`int p = 1;`\n`for (int i = 1; i <= 5; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`",
           "en": "A product: what is printed?\n`int p = 1;`\n`for (int i = 1; i <= 5; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל עד 4 → `p` = 1 → 2 → 6 → 24 → יודפס 24.",
+          "ru": "Тот же код, но до 4 → `p` = 1 → 2 → 6 → 24 → напечатает 24.",
+          "en": "The same code, but up to 4 → `p` = 1 → 2 → 6 → 24 → prints 24."
         },
         "answer": {
           "value": "120"
@@ -2631,6 +2826,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Что будет напечатано?\n`int s = 0;`\n`for (int i = 10; i >= 1; i -= 3) {`\n`    s += i;`\n`}`\n`System.out.println(s);`",
           "en": "What is printed?\n`int s = 0;`\n`for (int i = 10; i >= 1; i -= 3) {`\n`    s += i;`\n`}`\n`System.out.println(s);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `i = 8` → i = 8, 5, 2 (אחר כך ‎-1, קטן מ־1) → `s` = 8 → 13 → 15 → יודפס 15.",
+          "ru": "Тот же код, но `i = 8` → i = 8, 5, 2 (дальше −1, это меньше 1) → `s` = 8 → 13 → 15 → напечатает 15.",
+          "en": "The same code, but `i = 8` → i = 8, 5, 2 (next is −1, less than 1) → `s` = 8 → 13 → 15 → prints 15."
+        },
         "answer": {
           "value": "22"
         },
@@ -2663,6 +2863,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מה יודפס?\n`int n = 1;`\n`int steps = 0;`\n`while (n < 100) {`\n`    n *= 3;`\n`    steps++;`\n`}`\n`System.out.println(steps);`",
           "ru": "Что будет напечатано?\n`int n = 1;`\n`int steps = 0;`\n`while (n < 100) {`\n`    n *= 3;`\n`    steps++;`\n`}`\n`System.out.println(steps);`",
           "en": "What is printed?\n`int n = 1;`\n`int steps = 0;`\n`while (n < 100) {`\n`    n *= 3;`\n`    steps++;`\n`}`\n`System.out.println(steps);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `n < 10` → n = 3, `steps` = 1 → n = 9, `steps` = 2 → n = 27, `steps` = 3 → `27 < 10` לא → יודפס 3.",
+          "ru": "Тот же код, но `n < 10` → n = 3, `steps` = 1 → n = 9, `steps` = 2 → n = 27, `steps` = 3 → `27 < 10` нет → напечатает 3.",
+          "en": "The same code, but `n < 10` → n = 3, `steps` = 1 → n = 9, `steps` = 2 → n = 27, `steps` = 3 → `27 < 10` is false → prints 3."
         },
         "answer": {
           "value": "5"
@@ -2703,6 +2908,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Что будет напечатано?\n`int s = 0;`\n`for (int i = 1; i <= 10; i++) {`\n`    if (i % 3 == 0) continue;`\n`    s += i;`\n`}`\n`System.out.println(s);`",
           "en": "What is printed?\n`int s = 0;`\n`for (int i = 1; i <= 10; i++) {`\n`    if (i % 3 == 0) continue;`\n`    s += i;`\n`}`\n`System.out.println(s);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל עד 5 → על 3 מדלגים (`continue`) → `s` = 1 + 2 + 4 + 5 = 12 → יודפס 12.",
+          "ru": "Тот же код, но до 5 → 3 пропускаем (`continue`) → `s` = 1 + 2 + 4 + 5 = 12 → напечатает 12.",
+          "en": "The same code, but up to 5 → 3 is skipped (`continue`) → `s` = 1 + 2 + 4 + 5 = 12 → prints 12."
+        },
         "answer": {
           "value": "37"
         },
@@ -2739,6 +2949,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Среднее чётных от 2 до 10. Что будет напечатано?\n`int sum = 0;`\n`int count = 0;`\n`for (int i = 2; i <= 10; i += 2) {`\n`    sum += i;`\n`    count++;`\n`}`\n`System.out.println((double) sum / count);`",
           "en": "The average of the even numbers from 2 to 10. What is printed?\n`int sum = 0;`\n`int count = 0;`\n`for (int i = 2; i <= 10; i += 2) {`\n`    sum += i;`\n`    count++;`\n`}`\n`System.out.println((double) sum / count);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל עד 6 → המספרים 2, 4, 6 → `sum` = 12, `count` = 3 → 12 / 3 → יודפס `4.0`.",
+          "ru": "Тот же код, но до 6 → числа 2, 4, 6 → `sum` = 12, `count` = 3 → 12 / 3 → напечатает `4.0`.",
+          "en": "The same code, but up to 6 → the numbers 2, 4, 6 → `sum` = 12, `count` = 3 → 12 / 3 → prints `4.0`."
+        },
         "answer": {
           "value": "6"
         },
@@ -2769,6 +2984,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מה יודפס?\n`int x = 1;`\n`while (true) {`\n`    x *= 2;`\n`    if (x > 50) break;`\n`}`\n`System.out.println(x);`",
           "ru": "Что будет напечатано?\n`int x = 1;`\n`while (true) {`\n`    x *= 2;`\n`    if (x > 50) break;`\n`}`\n`System.out.println(x);`",
           "en": "What is printed?\n`int x = 1;`\n`while (true) {`\n`    x *= 2;`\n`    if (x > 50) break;`\n`}`\n`System.out.println(x);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x > 10` → x = 2 → 4 → 8 → 16: `16 > 10`, `break` → יודפס 16. `while (true)` מסתובבת עד שהיא פוגשת `break`.",
+          "ru": "Тот же код, но `x > 10` → x = 2 → 4 → 8 → 16: `16 > 10`, `break` → напечатает 16. `while (true)` крутится, пока не встретит `break`.",
+          "en": "The same code, but `x > 10` → x = 2 → 4 → 8 → 16: `16 > 10`, `break` → prints 16. `while (true)` keeps going until it meets `break`."
         },
         "answer": {
           "value": "64"
@@ -2846,6 +3066,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Что будет напечатано?\n`int n = 90210;`\n`int c = 0;`\n`while (n != 0) {`\n`    c++;`\n`    n /= 10;`\n`}`\n`System.out.println(c);`",
           "en": "What is printed?\n`int n = 90210;`\n`int c = 0;`\n`while (n != 0) {`\n`    c++;`\n`    n /= 10;`\n`}`\n`System.out.println(c);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `n = 500` → 50 → 5 → 0 → `c` = 3 → יודפס 3. אפסים באמצע ובסוף המספר הם גם ספרות.",
+          "ru": "Тот же код, но `n = 500` → 50 → 5 → 0 → `c` = 3 → напечатает 3. Нули внутри и в конце числа тоже цифры.",
+          "en": "The same code, but `n = 500` → 50 → 5 → 0 → `c` = 3 → prints 3. Zeros in the middle and at the end are digits too."
+        },
         "answer": {
           "value": "5"
         },
@@ -2880,6 +3105,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "ru": "Что будет напечатано?\n`int n = 123;`\n`int r = 0;`\n`while (n > 0) {`\n`    r = r * 10 + n % 10;`\n`    n /= 10;`\n`}`\n`System.out.println(r);`",
           "en": "What is printed?\n`int n = 123;`\n`int r = 0;`\n`while (n > 0) {`\n`    r = r * 10 + n % 10;`\n`    n /= 10;`\n`}`\n`System.out.println(r);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `n = 58` → `r` = 0 × 10 + 8 = 8, `n` = 5 → `r` = 8 × 10 + 5 = 85, `n` = 0 → יודפס 85.",
+          "ru": "Тот же код, но `n = 58` → `r` = 0 × 10 + 8 = 8, `n` = 5 → `r` = 8 × 10 + 5 = 85, `n` = 0 → напечатает 85.",
+          "en": "The same code, but `n = 58` → `r` = 0 × 10 + 8 = 8, `n` = 5 → `r` = 8 × 10 + 5 = 85, `n` = 0 → prints 85."
+        },
         "answer": {
           "value": "321"
         },
@@ -2911,6 +3141,11 @@ window.LESSONS["algo-2026-11-01"] = {
           "he": "מחפשים את המינימום של מספרים תלת-ספרתיים. מאיזה ערך צריך להתחיל את `min`?",
           "ru": "Ищем минимум среди трёхзначных чисел. С какого значения нужно начать `min`?",
           "en": "We look for the minimum of three-digit numbers. What should `min` start at?"
+        },
+        "example": {
+          "he": "מחפשים מקסימום בין מספרים דו־ספרתיים (10–99). את `max` מתחילים מהדו־ספרתי הקטן ביותר, 10: כך כל מספר דו־ספרתי שיוקלד לא יהיה קטן ממנו ויוכל להחליף אותו. במינימום הכול הפוך.",
+          "ru": "Ищем максимум среди двузначных чисел (10–99). `max` начинаем с самого маленького двузначного, 10: тогда любое введённое двузначное число будет не меньше и сможет его заменить. Для минимума всё наоборот.",
+          "en": "We look for the maximum among two-digit numbers (10–99). Start `max` at the smallest two-digit number, 10: then any two-digit number typed is not smaller and can replace it. For the minimum it is the other way round."
         },
         "options": [
           "0",

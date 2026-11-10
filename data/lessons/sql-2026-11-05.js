@@ -567,6 +567,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Какой код правильно создаёт таблицу из упражнения (номер чипа, животное, возраст)?",
           "en": "Which code correctly creates the exercise table (chip number, animal, age)?"
         },
+        "example": {
+          "he": "טבלת פירות: `create table perot (mispar_pri int, shem nvarchar(20), kamut int)`. הכללים: בשם עמודה אין רווחים (במקום רווח `_`), לכל עמודה יש טיפוס, והעמודות מופרדות בפסיקים.",
+          "ru": "Таблица фруктов: `create table perot (mispar_pri int, shem nvarchar(20), kamut int)`. Правила: в имени столбца нет пробелов (вместо пробела `_`), у каждого столбца есть тип, столбцы разделены запятыми.",
+          "en": "A fruit table: `create table perot (mispar_pri int, shem nvarchar(20), kamut int)`. The rules: no spaces in a column name (use `_`), every column has a type, columns are separated by commas."
+        },
         "options": [
           "`create table hayot (mispar shvav int, haya nvarchar(20), gil int)`",
           "`create table hayot (mispar_shvav int haya nvarchar(20) gil int)`",
@@ -615,6 +620,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "הרצת את כל הקוד בפעם השנייה וקיבלת `Database 'animals' already exists`. מה זה אומר?",
           "ru": "Ты запустил весь код второй раз и получил `Database 'animals' already exists`. Что это значит?",
           "en": "You ran all the code a second time and got `Database 'animals' already exists`. What does it mean?"
+        },
+        "example": {
+          "he": "הרצת בפעם השנייה `create table perot (...)` וקיבלת `There is already an object named 'perot'`. הטבלה נוצרה כבר בפעם הראשונה, ואין צורך ליצור אותה שוב. ממשיכים: מסמנים ומריצים רק את השורות הבאות.",
+          "ru": "Ты второй раз запустил `create table perot (...)` и получил `There is already an object named 'perot'`. Таблица создалась ещё в первый раз, второй раз её создавать не нужно. Дальше выделяешь и запускаешь только следующие строки.",
+          "en": "You ran `create table perot (...)` a second time and got `There is already an object named 'perot'`. The table was already created the first time, so there is no need to create it again. Next, select and run only the following lines."
         },
         "options": [
           {
@@ -670,6 +680,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Какая команда выбирает базу animals для работы? (напиши строку)",
           "en": "Which command selects the animals database to work in? (write the line)"
         },
+        "example": {
+          "he": "כדי לעבוד עם מסד הנתונים shop כותבים `use shop` ומריצים את השורה. מעכשיו כל השאילתות הולכות ל־shop.",
+          "ru": "Чтобы работать с базой shop, пишут `use shop` и запускают эту строку. После этого все запросы идут в базу shop.",
+          "en": "To work with the database shop, write `use shop` and run that line. After that every query goes to shop."
+        },
         "answer": {
           "accept": [
             "use animals",
@@ -705,6 +720,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — עמודות mispar_shvav, haya, gil.\nכמה שורות יחזיר `select * from hayot where haya in ('kelev', 'amav')`?",
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\nСколько строк вернёт `select * from hayot where haya in ('kelev', 'amav')`?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\nHow many rows does `select * from hayot where haya in ('kelev', 'amav')` return?"
+        },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri in ('anavim', 'kiwi')` → anavim קיים (שורה 4), kiwi לא קיים בטבלה בכלל → שורה 1. `in` מחפש רק התאמה מדויקת, אות באות.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri in ('anavim', 'kiwi')` → anavim есть (строка 4), kiwi в таблице нет совсем → 1 строка. `in` ищет только точное совпадение, буква в букву.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri in ('anavim', 'kiwi')` → anavim exists (row 4), kiwi is not in the table at all → 1 row. `in` looks only for an exact match, letter by letter."
         },
         "answer": {
           "value": "2"
@@ -744,6 +764,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\nА теперь `select * from hayot where haya in ('kelev', 'arnav')` — сколько строк?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\nAnd now `select * from hayot where haya in ('kelev', 'arnav')` — how many rows?"
         },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri in ('tapuach', 'banana')` → tapuach בשורות 1 ו־3, banana בשורות 2 ו־5 → 4 שורות.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri in ('tapuach', 'banana')` → tapuach в строках 1 и 3, banana в строках 2 и 5 → 4 строки.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri in ('tapuach', 'banana')` → tapuach is in rows 1 and 3, banana in rows 2 and 5 → 4 rows."
+        },
         "answer": {
           "value": "3"
         },
@@ -776,6 +801,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — עמודות mispar_shvav, haya, gil.\nכמה שורות יחזיר `select * from hayot where gil between 2 and 5`?",
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\nСколько строк вернёт `select * from hayot where gil between 2 and 5`?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\nHow many rows does `select * from hayot where gil between 2 and 5` return?"
+        },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut between 4 and 6` → kamut 4 ✅, 6 ✅, 2 ❌, 9 ❌, 1 ❌ → 2 שורות. הקצוות (4 ו־6) נכללים.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut between 4 and 6` → kamut 4 ✅, 6 ✅, 2 ❌, 9 ❌, 1 ❌ → 2 строки. Края (4 и 6) входят.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut between 4 and 6` → kamut 4 ✅, 6 ✅, 2 ❌, 9 ❌, 1 ❌ → 2 rows. The ends (4 and 6) are included."
         },
         "answer": {
           "value": "3"
@@ -819,6 +849,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\nСколько строк вернёт `select * from hayot where haya like '%u%'`?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\nHow many rows does `select * from hayot where haya like '%u%'` return?"
         },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri like '%n%'` → `%` פירושו \"כל אותיות או כלום\" → יש n במילה: banana ✅, anavim ✅, banana ✅, tapuach ❌ → 3 שורות.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri like '%n%'` → `%` значит «любые буквы или ничего» → в слове есть n: banana ✅, anavim ✅, banana ✅, tapuach ❌ → 3 строки.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri like '%n%'` → `%` means \"any letters or none\" → the word has an n: banana ✅, anavim ✅, banana ✅, tapuach ❌ → 3 rows."
+        },
         "answer": {
           "value": "2"
         },
@@ -855,6 +890,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — עמודות mispar_shvav, haya, gil.\n`select top 1 * from hayot order by gil desc` — איזו חיה תופיע? (המילה מהטבלה)",
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\n`select top 1 * from hayot order by gil desc` — какое животное покажется? (слово из таблицы)",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\n`select top 1 * from hayot order by gil desc` — which animal appears? (the word from the table)"
+        },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 1 * from perot order by kamut desc` → ממיינים מהגדול לקטן: 9, 6, 4, 2, 1 → `top 1` לוקח את השורה הראשונה → anavim (kamut 9).",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 1 * from perot order by kamut desc` → сортируем от большого к маленькому: 9, 6, 4, 2, 1 → `top 1` берёт первую строку → anavim (kamut 9).",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 1 * from perot order by kamut desc` → sort from big to small: 9, 6, 4, 2, 1 → `top 1` takes the first row → anavim (kamut 9)."
         },
         "answer": {
           "accept": [
@@ -896,6 +936,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\nСколько строк вернёт `select top 40 percent * from hayot`?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\nHow many rows does `select top 40 percent * from hayot` return?"
         },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 60 percent * from perot` → 5 שורות × 0.6 = 3 → 3 שורות. אם יוצא שבר, SQL Server מעגל כלפי מעלה.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 60 percent * from perot` → 5 строк × 0.6 = 3 → 3 строки. Если получается дробь, SQL Server округляет вверх.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 60 percent * from perot` → 5 rows × 0.6 = 3 → 3 rows. If it comes out as a fraction, SQL Server rounds up."
+        },
         "answer": {
           "value": "2"
         },
@@ -933,6 +978,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — עמודות mispar_shvav, haya, gil.\nכמה שורות יחזיר `select distinct haya from hayot`?",
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\nСколько строк вернёт `select distinct haya from hayot`?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\nHow many rows does `select distinct haya from hayot` return?"
+        },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select distinct pri from perot` → tapuach, banana, tapuach, anavim, banana → כפילויות מוצגות פעם אחת → tapuach, banana, anavim → 3 שורות.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select distinct pri from perot` → tapuach, banana, tapuach, anavim, banana → повторы показываются один раз → tapuach, banana, anavim → 3 строки.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select distinct pri from perot` → tapuach, banana, tapuach, anavim, banana → repeats are shown once → tapuach, banana, anavim → 3 rows."
         },
         "answer": {
           "value": "4"
@@ -975,6 +1025,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "מה יראה `select haya gil from hayot` (בלי פסיק)?",
           "ru": "Что покажет `select haya gil from hayot` (без запятой)?",
           "en": "What does `select haya gil from hayot` (no comma) show?"
+        },
+        "example": {
+          "he": "`select pri as shem from perot` → עמודה אחת עם הכותרת shem, ובה שמות הפירות. אפשר לא לכתוב `as`: `select pri shem from perot` עושה אותו דבר. פסיק בין העמודות משנה את המשמעות.",
+          "ru": "`select pri as shem from perot` → один столбец с заголовком shem, а в нём названия фруктов. Слово `as` можно не писать: `select pri shem from perot` делает то же самое. Запятая между столбцами меняет смысл.",
+          "en": "`select pri as shem from perot` → one column with the heading shem, holding the fruit names. You can leave out `as`: `select pri shem from perot` does the same. A comma between columns changes the meaning."
         },
         "options": [
           {
@@ -1031,6 +1086,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "После `insert into hayot (haya) values ('dag')` — что будет в столбце gil новой строки?",
           "en": "After `insert into hayot (haya) values ('dag')` — what is in the gil column of the new row?"
         },
+        "example": {
+          "he": "`insert into perot (id, pri) values (6, 'kiwi')` → נתנו id ו־pri, אבל את kamut לא כתבנו בכלל. חשבו: 0 הוא מספר שמישהו הקליד. ומה SQL שם בעמודה שלא הקלידו בה כלום? אחר כך הסתכלו ב־`select * from perot` ב־SSMS.",
+          "ru": "`insert into perot (id, pri) values (6, 'kiwi')` → id и pri мы дали, а kamut не написали совсем. Подумай: 0 — это число, которое кто-то ввёл. А что SQL ставит в столбец, куда не ввели ничего? Посмотри потом `select * from perot` в SSMS.",
+          "en": "`insert into perot (id, pri) values (6, 'kiwi')` → we gave id and pri, but did not write kamut at all. Think: 0 is a number someone typed. What does SQL put in a column where nothing was typed? Then look at `select * from perot` in SSMS."
+        },
         "options": [
           "0",
           "NULL",
@@ -1070,6 +1130,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.1. Покажи все данные.\nНапиши запрос, запусти — сколько строк получилось?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.1. Show all the data.\nWrite the query, run it — how many rows did you get?"
         },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nכל הנתונים: `select * from hayot` → כל 5 השורות. `*` פירושו \"כל העמודות\".",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nВсе данные: `select * from hayot` → все 5 строк. `*` значит «все столбцы».",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nAll the data: `select * from hayot` → all 5 rows. `*` means \"all columns\"."
+        },
         "answer": {
           "value": "200"
         },
@@ -1098,6 +1163,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת העובדים מ־Moodle (haovdim, 200 שורות; עמודות prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.2. הצג את כל הנתונים של העובדים במחלקה 1.\nכתבו את השאילתה, הריצו, וכמה שורות קיבלתם?",
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.2. Покажи все данные работников отдела 1.\nНапиши запрос, запусти — сколько строк получилось?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.2. Show all the data of the employees in department 1.\nWrite the query, run it — how many rows did you get?"
+        },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nרק כלבים: `select * from hayot where haya = 'kelev'` → השורות 1001 ו־1005 → 2 שורות. מספר כותבים בלי גרשיים: `where gil = 3`.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nТолько собаки: `select * from hayot where haya = 'kelev'` → строки 1001 и 1005 → 2 строки. Число пишут без кавычек: `where gil = 3`.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nOnly dogs: `select * from hayot where haya = 'kelev'` → rows 1001 and 1005 → 2 rows. A number is written without quotes: `where gil = 3`."
         },
         "answer": {
           "value": "51"
@@ -1128,6 +1198,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת העובדים מ־Moodle (haovdim, 200 שורות; עמודות prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.3. הצג את כל הנתונים של העובדים המשתכרים מעל 11000 ש\"ח במחלקה 3.\nכתבו את השאילתה, הריצו, וכמה שורות קיבלתם?",
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.3. Покажи все данные работников отдела 3 с зарплатой выше 11000.\nНапиши запрос, запусти — сколько строк получилось?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.3. Show all the data of department 3 employees earning over 11000.\nWrite the query, run it — how many rows did you get?"
+        },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nכלבים מעל גיל 4: `select * from hayot where haya = 'kelev' and gil > 4` → 1001 (3) ❌, 1005 (7) ✅ → שורה 1. `and` — שני התנאים חייבים להתקיים.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nСобаки старше 4 лет: `select * from hayot where haya = 'kelev' and gil > 4` → 1001 (3) ❌, 1005 (7) ✅ → 1 строка. `and` — должны выполняться оба условия.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nDogs older than 4: `select * from hayot where haya = 'kelev' and gil > 4` → 1001 (3) ❌, 1005 (7) ✅ → 1 row. `and` means both conditions must hold."
         },
         "answer": {
           "value": "94"
@@ -1160,6 +1235,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.4. Покажи все данные работников с зарплатой от 10000 до 12000.\nНапиши запрос, запусти — сколько строк получилось?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.4. Show all the data of employees earning between 10000 and 12000.\nWrite the query, run it — how many rows did you get?"
         },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nגיל מ־1 עד 2: `select * from hayot where gil between 1 and 2` → arnav (1) ו־tuki (2) → 2 שורות. הקצוות נכללים.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nВозраст от 1 до 2: `select * from hayot where gil between 1 and 2` → arnav (1) и tuki (2) → 2 строки. Края входят.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nAge from 1 to 2: `select * from hayot where gil between 1 and 2` → arnav (1) and tuki (2) → 2 rows. The ends are included."
+        },
         "answer": {
           "value": "36"
         },
@@ -1190,6 +1270,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת העובדים מ־Moodle (haovdim, 200 שורות; עמודות prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.5. הצג את כל הנתונים של העובדים המשתכרים פחות מ־10000 או יותר מ־12000 ש\"ח.\nכתבו את השאילתה, הריצו, וכמה שורות קיבלתם?",
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.5. Покажи все данные работников с зарплатой меньше 10000 или больше 12000.\nНапиши запрос, запусти — сколько строк получилось?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.5. Show all the data of employees earning under 10000 or over 12000.\nWrite the query, run it — how many rows did you get?"
+        },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nגיל קטן מ־2 או גדול מ־5: `select * from hayot where gil < 2 or gil > 5` → arnav (1) ו־kelev (7) → 2 שורות. `or` — מספיק תנאי אחד.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nВозраст меньше 2 или больше 5: `select * from hayot where gil < 2 or gil > 5` → arnav (1) и kelev (7) → 2 строки. `or` — хватает одного условия.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nAge below 2 or above 5: `select * from hayot where gil < 2 or gil > 5` → arnav (1) and kelev (7) → 2 rows. `or` means one condition is enough."
         },
         "answer": {
           "value": "164"
@@ -1227,6 +1312,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.6. Покажи только имена и e-mail всех работников. Какой запрос?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.6. Show only the first names and emails of all employees. Which query?"
         },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nרק החיה והגיל: `select haya, gil from hayot` → 2 עמודות, כל 5 השורות. את העמודות שצריך כותבים עם פסיק ביניהן.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nТолько животное и возраст: `select haya, gil from hayot` → 2 столбца, все 5 строк. Нужные столбцы перечисляют через запятую.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nOnly the animal and the age: `select haya, gil from hayot` → 2 columns, all 5 rows. List the columns you need with commas."
+        },
         "options": [
           "`select * from haovdim`",
           "`select prati, doal from haovdim`",
@@ -1258,6 +1348,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.7. Покажи все данные работников с почтой gmail.\nНапиши запрос, запусти — сколько строк получилось?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.7. Show all the data of employees with a gmail address.\nWrite the query, run it — how many rows did you get?"
         },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nחיות עם האות a בשם: `select * from hayot where haya like '%a%'` → chatul ו־arnav → 2 שורות. דואר gmail מחפשים באותה דרך: חלק טקסט בין `%`.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nЖивотные с буквой a в названии: `select * from hayot where haya like '%a%'` → chatul и arnav → 2 строки. Почту gmail ищут так же: кусок текста между `%`.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nAnimals with the letter a in the name: `select * from hayot where haya like '%a%'` → chatul and arnav → 2 rows. Gmail addresses are found the same way: a piece of text between `%`."
+        },
         "answer": {
           "value": "12"
         },
@@ -1287,6 +1382,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת העובדים מ־Moodle (haovdim, 200 שורות; עמודות prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.8. הצג את כל הנתונים של העובדים במחלקה 1, ממוינים לפי שם המשפחה. איזו שאילתה?",
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.8. Покажи все данные работников отдела 1, отсортированные по фамилии. Какой запрос?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.8. Show all the data of department 1 employees, sorted by family name. Which query?"
+        },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nמעל גיל 2, לפי סדר האלף־בית: `select * from hayot where gil > 2 order by haya` → chatul, kelev, kelev. סדר החלקים: `select` → `from` → `where` → `order by`.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nСтарше 2 лет, по алфавиту: `select * from hayot where gil > 2 order by haya` → chatul, kelev, kelev. Порядок частей: `select` → `from` → `where` → `order by`.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nOlder than 2, in alphabetical order: `select * from hayot where gil > 2 order by haya` → chatul, kelev, kelev. The order of parts: `select` → `from` → `where` → `order by`."
         },
         "options": [
           "`select * from haovdim where machlaka = 1 order by mishpacha`",
@@ -1325,6 +1425,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.9. Покажи все данные, отсортированные по отделу по убыванию, а внутри отдела — по имени. Какой запрос?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.9. Show all the data sorted by department descending, and inside each department by first name. Which query?"
         },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\n`select * from hayot order by haya desc, gil` → קודם לפי החיה מ־Z ל־A: tuki, kelev, kelev, chatul, arnav. שני ה־kelev לפי הגיל: 3, אחר כך 7. `desc` שייך רק לעמודה שלפניו.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\n`select * from hayot order by haya desc, gil` → сначала по животному от Z к A: tuki, kelev, kelev, chatul, arnav. Две kelev стоят по возрасту: 3, потом 7. `desc` относится только к столбцу перед ним.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\n`select * from hayot order by haya desc, gil` → first by animal from Z to A: tuki, kelev, kelev, chatul, arnav. The two kelev rows go by age: 3, then 7. `desc` belongs only to the column before it."
+        },
         "options": [
           "`select * from haovdim order by prati, machlaka desc`",
           "`select * from haovdim order by machlaka, prati desc`",
@@ -1360,6 +1465,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת העובדים מ־Moodle (haovdim, 200 שורות; עמודות prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.10. הצג את כל הנתונים של שלושת העובדים בעלי המשכורות הגבוהות ביותר. מה המשכורת של השלישי בתוצאה?",
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.10. Покажи все данные трёх работников с самыми большими зарплатами. Какая зарплата у третьего в результате?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.10. Show all the data of the three employees with the highest salaries. What is the third one's salary in the result?"
+        },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nשני המבוגרים ביותר: `select top 2 * from hayot order by gil desc` → kelev (7), chatul (5). השני בתוצאה — גיל 5. בלי `order by ... desc` ה־`top` היה לוקח סתם את השורות הראשונות.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nДва самых старых: `select top 2 * from hayot order by gil desc` → kelev (7), chatul (5). Второй в результате — возраст 5. Без `order by ... desc` `top` взял бы просто первые строки.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nThe two oldest: `select top 2 * from hayot order by gil desc` → kelev (7), chatul (5). The second in the result has age 5. Without `order by ... desc`, `top` would just take the first rows."
         },
         "answer": {
           "value": "19388"
@@ -1398,6 +1508,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.11. Покажи все данные работников с зарплатой выше 19000.\nНапиши запрос, запусти — сколько строк получилось?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.11. Show all the data of employees earning over 19000.\nWrite the query, run it — how many rows did you get?"
         },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nמעל 4: `select * from hayot where gil > 4` → chatul (5), kelev (7) → 2 שורות. בדיוק 4 לא היה נכנס: `>` גדול ממש.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nСтарше 4: `select * from hayot where gil > 4` → chatul (5), kelev (7) → 2 строки. Ровно 4 не попало бы: `>` строго больше.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\nOlder than 4: `select * from hayot where gil > 4` → chatul (5), kelev (7) → 2 rows. Exactly 4 would not count: `>` means strictly greater."
+        },
         "answer": {
           "value": "5"
         },
@@ -1427,6 +1542,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת העובדים מ־Moodle (haovdim, 200 שורות; עמודות prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.12. הצג רשימה של המחלקות של העובדים מ־1.11 (מעל 19000), עם distinct. כמה שורות?",
           "ru": "Таблица работников из Moodle (haovdim, 200 строк; столбцы prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.12. Покажи список отделов работников из 1.11 (больше 19000), с distinct. Сколько строк?",
           "en": "The employees table from Moodle (haovdim, 200 rows; columns prati, mishpacha, tikishi, doal, leda, machlaka, maskoret).\n1.12. List the departments of the employees from 1.11 (over 19000), using distinct. How many rows?"
+        },
+        "example": {
+          "he": "על הטבלה hayot מהשיעור: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\n`select distinct haya from hayot where gil >= 2` → קודם `where`: kelev, chatul, tuki, kelev → אחר כך `distinct` מוריד את הכפילות → kelev, chatul, tuki → 3 שורות.",
+          "ru": "На таблице hayot с урока: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\n`select distinct haya from hayot where gil >= 2` → сначала `where`: kelev, chatul, tuki, kelev → потом `distinct` убирает повтор → kelev, chatul, tuki → 3 строки.",
+          "en": "On the hayot table from the lesson: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7).\n`select distinct haya from hayot where gil >= 2` → first `where`: kelev, chatul, tuki, kelev → then `distinct` removes the repeat → kelev, chatul, tuki → 3 rows."
         },
         "answer": {
           "value": "2"
@@ -1470,6 +1590,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\n`select * from hayot order by gil` — какой возраст в первой строке?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\n`select * from hayot order by gil` — what age is in the first row?"
         },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot order by kamut desc` → מהגדול לקטן: 9, 6, 4, 2, 1 → בשורה הראשונה 9. בלי `desc` המיון הולך לכיוון ההפוך.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot order by kamut desc` → от большого к маленькому: 9, 6, 4, 2, 1 → в первой строке 9. Без `desc` сортировка идёт в обратную сторону.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot order by kamut desc` → from big to small: 9, 6, 4, 2, 1 → the first row has 9. Without `desc` the sort goes the other way."
+        },
         "answer": {
           "value": "1"
         },
@@ -1498,6 +1623,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "השלימו: `select * from hayot where haya ___ 'k%'`",
           "ru": "Допиши: `select * from hayot where haya ___ 'k%'`",
           "en": "Fill in: `select * from hayot where haya ___ 'k%'`"
+        },
+        "example": {
+          "he": "חסר אחר: `select * from perot ___ by kamut` → כאן חסר `order` (יוצא `order by`, מיון). במשימה שלך צריך מילה לחיפוש לפי תבנית עם `%`.",
+          "ru": "Другой пропуск: `select * from perot ___ by kamut` → здесь не хватает `order` (получается `order by`, сортировка). В твоей задаче нужно слово для поиска по шаблону с `%`.",
+          "en": "A different blank: `select * from perot ___ by kamut` → the missing word here is `order` (giving `order by`, sorting). Your task needs the word for searching by a pattern with `%`."
         },
         "answer": {
           "accept": [
@@ -1528,6 +1658,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — עמודות mispar_shvav, haya, gil.\nכמה שורות יחזיר `select * from hayot where gil not between 2 and 5`?",
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\nСколько строк вернёт `select * from hayot where gil not between 2 and 5`?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\nHow many rows does `select * from hayot where gil not between 2 and 5` return?"
+        },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut not between 2 and 9` → `not` הופך: מתאימים אלה שלא בין 2 ל־9 → רק kamut 1 → שורה 1.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut not between 2 and 9` → `not` переворачивает: подходят те, что НЕ от 2 до 9 → только kamut 1 → 1 строка.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where kamut not between 2 and 9` → `not` flips it: the rows NOT from 2 to 9 fit → only kamut 1 → 1 row."
         },
         "answer": {
           "value": "2"
@@ -1567,6 +1702,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "ru": "Какой запрос написан в правильном порядке?",
           "en": "Which query is in the right order?"
         },
+        "example": {
+          "he": "סדר החלקים בשאילתה תמיד כזה: `select` (מה להציג) → `from` (מאיזו טבלה) → `where` (תנאי) → `order by` (מיון). לדוגמה: `select pri from perot where kamut > 3 order by kamut`.",
+          "ru": "Правильный порядок частей запроса всегда такой: `select` (что показать) → `from` (из какой таблицы) → `where` (условие) → `order by` (сортировка). Например: `select pri from perot where kamut > 3 order by kamut`.",
+          "en": "The parts of a query always go in this order: `select` (what to show) → `from` (which table) → `where` (condition) → `order by` (sorting). For example: `select pri from perot where kamut > 3 order by kamut`."
+        },
         "options": [
           "`select haya from hayot order by haya where gil > 2`",
           "`select haya where gil > 2 from hayot`",
@@ -1598,6 +1738,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — עמודות mispar_shvav, haya, gil.\nכמה שורות יחזיר `select * from hayot where haya like '%e%' and gil > 2`?",
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\nСколько строк вернёт `select * from hayot where haya like '%e%' and gil > 2`?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\nHow many rows does `select * from hayot where haya like '%e%' and gil > 2` return?"
+        },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri like '%a%' and kamut > 3` → צריך את שני התנאים: tapuach 4 ✅, banana 6 ✅, tapuach 2 ❌ (2 לא גדול מ־3), anavim 9 ✅, banana 1 ❌ → 3 שורות.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri like '%a%' and kamut > 3` → нужно оба условия: tapuach 4 ✅, banana 6 ✅, tapuach 2 ❌ (2 не больше 3), anavim 9 ✅, banana 1 ❌ → 3 строки.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select * from perot where pri like '%a%' and kamut > 3` → both conditions are needed: tapuach 4 ✅, banana 6 ✅, tapuach 2 ❌ (2 is not more than 3), anavim 9 ✅, banana 1 ❌ → 3 rows."
         },
         "answer": {
           "value": "2"
@@ -1632,6 +1777,11 @@ window.LESSONS["sql-2026-11-05"] = {
           "he": "טבלת hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — עמודות mispar_shvav, haya, gil.\n`select top 3 * from hayot order by gil desc` — מה הגיל הקטן ביותר בתוצאה?",
           "ru": "Таблица hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — столбцы mispar_shvav, haya, gil.\n`select top 3 * from hayot order by gil desc` — какой самый маленький возраст в результате?",
           "en": "Table hayot: (1001,'kelev',3), (1002,'chatul',5), (1003,'arnav',1), (1004,'tuki',2), (1005,'kelev',7) — columns mispar_shvav, haya, gil.\n`select top 3 * from hayot order by gil desc` — what is the smallest age in the result?"
+        },
+        "example": {
+          "he": "טבלה אחרת, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 2 * from perot order by kamut desc` → ממיינים 9, 6, 4, 2, 1 → לוקחים 2 ראשונים: 9 ו־6 → הקטן ביותר בתוצאה 6.",
+          "ru": "Другая таблица, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 2 * from perot order by kamut desc` → сортируем 9, 6, 4, 2, 1 → берём первые 2: 9 и 6 → самое маленькое в результате 6.",
+          "en": "Another table, perot (id, pri, kamut): (1,'tapuach',4), (2,'banana',6), (3,'tapuach',2), (4,'anavim',9), (5,'banana',1).\n`select top 2 * from perot order by kamut desc` → sort 9, 6, 4, 2, 1 → take the first 2: 9 and 6 → the smallest in the result is 6."
         },
         "answer": {
           "value": "3"
