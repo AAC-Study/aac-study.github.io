@@ -862,6 +862,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Что будет напечатано?\n`int x = 87;`\n`int y = 8;`\n`boolean res = x % 2 == 0 || y % 2 == 0;`\n`System.out.println(res);`",
           "en": "What is printed?\n`int x = 87;`\n`int y = 8;`\n`boolean res = x % 2 == 0 || y % 2 == 0;`\n`System.out.println(res);`"
         },
+        "example": {
+          "he": "`x = 9`, `y = 5` → `9 % 2 == 0`? ‏9 אי־זוגי → false → `5 % 2 == 0`? → false → `false || false` = false. ל־`||` מספיקה אמת אחת.",
+          "ru": "`x = 9`, `y = 5` → `9 % 2 == 0`? 9 нечётное → false → `5 % 2 == 0`? → false → `false || false` = false. У `||` хватает одной правды.",
+          "en": "`x = 9`, `y = 5` → `9 % 2 == 0`? 9 is odd → false → `5 % 2 == 0`? → false → `false || false` = false. `||` needs just one true."
+        },
         "options": [
           "true",
           "false"
@@ -905,6 +910,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "אותם x = 87, y = 8. מה יודפס?\n`boolean res = x % 2 == 0 && y % 2 == 0;`\n`System.out.println(res);`",
           "ru": "Те же x = 87, y = 8. Что будет напечатано?\n`boolean res = x % 2 == 0 && y % 2 == 0;`\n`System.out.println(res);`",
           "en": "The same x = 87, y = 8. What is printed?\n`boolean res = x % 2 == 0 && y % 2 == 0;`\n`System.out.println(res);`"
+        },
+        "example": {
+          "he": "`x = 4`, `y = 6` → שניהם זוגיים → `true && true` = true. ל־`&&` צריך ששניהם יהיו true.",
+          "ru": "`x = 4`, `y = 6` → оба чётные → `true && true` = true. Для `&&` нужны ОБА true.",
+          "en": "`x = 4`, `y = 6` → both are even → `true && true` = true. `&&` needs BOTH to be true."
         },
         "options": [
           "true",
@@ -1319,6 +1329,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Задание 18: можно ли построить треугольник со сторонами 3, 4, 8? (сумма любых двух сторон больше третьей)\n`if (a + b > c && a + c > b && b + c > a) System.out.println(\"Yes\");`\n`else System.out.println(\"No\");`",
           "en": "Question 18: can sides 3, 4, 8 make a triangle? (the sum of any two sides is greater than the third)\n`if (a + b > c && a + c > b && b + c > a) System.out.println(\"Yes\");`\n`else System.out.println(\"No\");`"
         },
+        "example": {
+          "he": "הצלעות 2, 3, 4 → `2 + 3 > 4` ✅, `2 + 4 > 3` ✅, `3 + 4 > 2` ✅ → שלושתם אמת → `Yes`. אם אפילו בדיקה אחת שקר, `&&` נותן false.",
+          "ru": "Стороны 2, 3, 4 → `2 + 3 > 4` ✅, `2 + 4 > 3` ✅, `3 + 4 > 2` ✅ → все три правда → `Yes`. Если хоть одна проверка ложна, `&&` даёт false.",
+          "en": "Sides 2, 3, 4 → `2 + 3 > 4` ✅, `2 + 4 > 3` ✅, `3 + 4 > 2` ✅ → all three true → `Yes`. If even one check is false, `&&` gives false."
+        },
         "options": [
           "Yes",
           "No"
@@ -1356,6 +1371,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "שאלה 20: מס מדורג. כתבו תוכנית שקולטת משכורת `m` (`double`) ומדפיסה את המס עם `System.out.println`. עד 6,000 — אין מס. על החלק שבין 6,000 ל-12,000 משלמים 10%. על כל שקל מעל 12,000 משלמים 20%. מה תדפיס התוכנית עבור הקלט 15000?",
           "ru": "Задание 20: ступенчатый налог. Напиши программу, которая вводит зарплату `m` (`double`) и печатает налог через `System.out.println`. До 6 000 — налога нет. С части между 6 000 и 12 000 платят 10%. С каждого шекеля выше 12 000 платят 20%. Что напечатает программа при вводе 15000?",
           "en": "Question 20: progressive tax. Write a program that reads a salary `m` (`double`) and prints the tax with `System.out.println`. Up to 6,000 — no tax. On the part between 6,000 and 12,000 you pay 10%. On every shekel above 12,000 you pay 20%. What does the program print for input 15000?"
+        },
+        "example": {
+          "he": "משכורת 10,000: עד 6,000 אין מס → החלק בין 6,000 ל־10,`000 = 4`,000 → ‏10% מ־4,`000 = 400` → מעל 12,000 אין כלום → המס `400.0`.",
+          "ru": "Зарплата 10 000: до 6 000 налога нет → часть от 6 000 до 10 000 = 4 000 → 10% от 4 000 = 400 → выше 12 000 ничего нет → налог `400.0`.",
+          "en": "A salary of 10,000: no tax up to 6,000 → the part from 6,000 to 10,000 = 4,000 → 10% of 4,000 = 400 → nothing above 12,000 → the tax is `400.0`."
         },
         "answer": {
           "value": "1200"
@@ -1406,6 +1426,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Что будет напечатано?\n`int sum = 0;`\n`for (int i = 2; i <= 20; i += 2) {`\n`    sum += i;`\n`}`\n`System.out.println(sum);`",
           "en": "What is printed?\n`int sum = 0;`\n`for (int i = 2; i <= 20; i += 2) {`\n`    sum += i;`\n`}`\n`System.out.println(sum);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל עד 8 → `i = 2`, 4, 6, 8 → `sum = 2` → 6 → 12 → 20 → יודפס 20. `i += 2` — קפיצה של 2.",
+          "ru": "Тот же код, но до 8 → i = 2, 4, 6, 8 → `sum` = 2 → 6 → 12 → 20 → напечатает 20. `i += 2` — шаг 2.",
+          "en": "The same code, but up to 8 → i = 2, 4, 6, 8 → `sum` = 2 → 6 → 12 → 20 → prints 20. `i += 2` is a step of 2."
+        },
         "answer": {
           "value": "110"
         },
@@ -1453,6 +1478,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Программа с экрана прочитала 8 чисел и напечатала `The sum is 160`. Что будет в следующей строке?\n`double average = (double) sum / 8;`\n`System.out.println(\"The average is \" + average);`",
           "en": "The program on screen read 8 numbers and printed `The sum is 160`. What is printed on the next line?\n`double average = (double) sum / 8;`\n`System.out.println(\"The average is \" + average);`"
         },
+        "example": {
+          "he": "קלטו 4 מספרים, `sum = 30` → `(double) 30 / 4 = 7.5` → יודפס `The average is 7.5`. `(double)` צריך כדי שהשבר לא יאבד.",
+          "ru": "Прочитали 4 числа, `sum` = 30 → `(double) 30 / 4` = 7.5 → напечатает `The average is 7.5`. `(double)` нужен, чтобы дробь не потерялась.",
+          "en": "Read 4 numbers, `sum` = 30 → `(double) 30 / 4` = 7.5 → prints `The average is 7.5`. `(double)` is needed so the fraction is not lost."
+        },
         "answer": {
           "value": "20"
         },
@@ -1482,6 +1512,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מה יודפס?\n`int x = 5;`\n`if (x > 3)`\n`    if (x > 10)`\n`        System.out.println(\"A\");`\n`    else`\n`        System.out.println(\"B\");`",
           "ru": "Что напечатает?\n`int x = 5;`\n`if (x > 3)`\n`    if (x > 10)`\n`        System.out.println(\"A\");`\n`    else`\n`        System.out.println(\"B\");`",
           "en": "What is printed?\n`int x = 5;`\n`if (x > 3)`\n`    if (x > 10)`\n`        System.out.println(\"A\");`\n`    else`\n`        System.out.println(\"B\");`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x = 12` → `12 > 3` כן → נכנסים פנימה → `12 > 10` כן → מדפיס `A`. ה־`else` שייך ל־`if` הקרוב ביותר מעליו.",
+          "ru": "Тот же код, но `x = 12` → `12 > 3` да → заходим внутрь → `12 > 10` да → печатает `A`. `else` относится к ближайшему `if` над ним.",
+          "en": "The same code, but `x = 12` → `12 > 3` yes → go inside → `12 > 10` yes → prints `A`. The `else` belongs to the nearest `if` above it."
         },
         "answer": {
           "accept": [
@@ -1515,6 +1550,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "אותו קוד, אבל `int x = 2;`. מה יודפס? אם כלום — כתבו: כלום",
           "ru": "Тот же код, но `int x = 2;`. Что напечатает? Если ничего — напиши: ничего",
           "en": "The same code but `int x = 2;`. What is printed? If nothing, write: nothing"
+        },
+        "example": {
+          "he": "כש־`x = 5` התנאי החיצוני `5 > 3` מתקיים, והתוכנית נכנסת ל־`if` הפנימי. חשבו: מה יקרה אם התנאי החיצוני לא מתקיים? ל־`if` החיצוני אין `else` משלו.",
+          "ru": "При `x = 5` внешнее условие `5 > 3` выполнено, и программа идёт во внутренний `if`. Подумай: что будет, если внешнее условие не выполнено? У внешнего `if` своего `else` нет.",
+          "en": "With `x = 5` the outer condition `5 > 3` holds, and the program enters the inner `if`. Think: what happens if the outer condition is false? The outer `if` has no `else` of its own."
         },
         "answer": {
           "accept": [
@@ -1561,6 +1601,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Что напечатает? Напиши всё через пробел, например: A B\n`int k = 7;`\n`if (k > 10)`\n`    System.out.println(\"R\");`\n`    System.out.println(\"S\");`",
           "en": "What is printed? Write everything with spaces, e.g.: A B\n`int k = 7;`\n`if (k > 10)`\n`    System.out.println(\"R\");`\n`    System.out.println(\"S\");`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `k = 12` → `12 > 10` כן → מדפיס `R` ואחר כך `S`. הסתכלו טוב: איזו שורה שייכת ל־`if` כשאין סוגריים מסולסלים?",
+          "ru": "Тот же код, но `k = 12` → `12 > 10` да → печатает `R` и потом `S`. Посмотри внимательно: какая строка относится к `if`, если фигурных скобок нет?",
+          "en": "The same code, but `k = 12` → `12 > 10` yes → prints `R` and then `S`. Look carefully: which line belongs to the `if` when there are no curly braces?"
+        },
         "answer": {
           "accept": [
             "S"
@@ -1602,6 +1647,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "age = 16, license = false, special = true. Какой результат?\n`age > 18 && license || special`",
           "en": "age = 16, license = false, special = true. What is the result?\n`age > 18 && license || special`"
         },
+        "example": {
+          "he": "`true || false && false` → קודם `&&` (הוא חזק יותר, כמו × במתמטיקה): `false && false` = false → אחר כך `true || false` = true.",
+          "ru": "`true || false && false` → сначала `&&` (он сильнее, как × в математике): `false && false` = false → потом `true || false` = true.",
+          "en": "`true || false && false` → first `&&` (it is stronger, like × in maths): `false && false` = false → then `true || false` = true."
+        },
         "options": [
           "true",
           "false"
@@ -1637,6 +1687,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "אותם ערכים, עם סוגריים. מה התוצאה?\n`age > 18 && (license || special)`",
           "ru": "Те же значения, со скобками. Какой результат?\n`age > 18 && (license || special)`",
           "en": "Same values, with brackets. What is the result?\n`age > 18 && (license || special)`"
+        },
+        "example": {
+          "he": "`(true || false) && false` → קודם הסוגריים: `true || false` = true → אחר כך `true && false` = false. הסוגריים משנים את הסדר.",
+          "ru": "`(true || false) && false` → скобки первыми: `true || false` = true → потом `true && false` = false. Скобки меняют порядок.",
+          "en": "`(true || false) && false` → brackets first: `true || false` = true → then `true && false` = false. Brackets change the order."
         },
         "options": [
           "true",
@@ -1677,6 +1732,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מחומרי הקורס: תוכנית מדפיסה big אם המספר גדול מ-100, small אם קטן מ-100, ו-exactly אחרת. מה יודפס עבור 100?",
           "ru": "Из материалов курса: программа печатает big, если число больше 100, small — если меньше, иначе exactly. Что напечатает для 100?",
           "en": "From the course files: a program prints big if the number is over 100, small if under, otherwise exactly. What is printed for 100?"
+        },
+        "example": {
+          "he": "עבור 150 → `150 > 100` כן → `big`. עבור 40 → `40 > 100` לא → `40 < 100` כן → `small`. חשבו איזה תנאי יתקיים עבור בדיוק 100.",
+          "ru": "Для 150 → `150 > 100` да → `big`. Для 40 → `40 > 100` нет → `40 < 100` да → `small`. Подумай, какое условие выполнится для ровно 100.",
+          "en": "For 150 → `150 > 100` yes → `big`. For 40 → `40 > 100` no → `40 < 100` yes → `small`. Think which condition holds for exactly 100."
         },
         "answer": {
           "accept": [
@@ -1720,6 +1780,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מחומרי הקורס: שני מעגלים עם מרכז משותף, רדיוסים 3 ו-5 (בסדר כלשהו). מה שטח הטבעת ביניהם? (π = 3.14)",
           "ru": "Из материалов курса: два круга с общим центром, радиусы 3 и 5 (в любом порядке). Какова площадь кольца между ними? (π = 3.14)",
           "en": "From the course files: two circles with a shared centre, radii 3 and 5 (in any order). What is the area of the ring between them? (π = 3.14)"
+        },
+        "example": {
+          "he": "רדיוסים 1 ו־2: שטח העיגול הגדול `π × 2² = 3.14 × 4 = 12.56` → הקטן `π × 1² = 3.14` → הטבעת `12.56 − 3.14 = 9.42`. מהגדול מחסרים את הקטן, ולכן קודם בודקים איזה רדיוס גדול יותר.",
+          "ru": "Радиусы 1 и 2: площадь большого круга π × 2² = 3.14 × 4 = 12.56 → маленького π × 1² = 3.14 → кольцо = 12.56 − 3.14 = 9.42. Из большого вычитаем маленький, поэтому сначала узнай, какой радиус больше.",
+          "en": "Radii 1 and 2: the big circle area π × 2² = 3.14 × 4 = 12.56 → the small one π × 1² = 3.14 → the ring = 12.56 − 3.14 = 9.42. Subtract the small from the big, so first find which radius is bigger."
         },
         "answer": {
           "value": "50.24"
@@ -1795,6 +1860,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int age = 17;`\n`boolean hasParent = true;`\n`System.out.println(age > 18 || hasParent);`",
           "en": "From the course worksheet. What is printed?\n`int age = 17;`\n`boolean hasParent = true;`\n`System.out.println(age > 18 || hasParent);`"
         },
+        "example": {
+          "he": "`age = 20`, `hasParent = false` → `20 > 18` true → `true || false` = true. ל־`||` מספיק true אחד.",
+          "ru": "`age = 20`, `hasParent = false` → `20 > 18` true → `true || false` = true. Для `||` хватает одного true.",
+          "en": "`age = 20`, `hasParent = false` → `20 > 18` true → `true || false` = true. One true is enough for `||`."
+        },
         "answer": {
           "accept": [
             "true"
@@ -1831,6 +1901,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מדף התרגול של הקורס. מה יודפס?\n`double gpa = 3.9;`\n`int credits = 80;`\n`System.out.println(gpa > 3.0 && credits >= 100);`",
           "ru": "Из листа упражнений курса. Что напечатает?\n`double gpa = 3.9;`\n`int credits = 80;`\n`System.out.println(gpa > 3.0 && credits >= 100);`",
           "en": "From the course worksheet. What is printed?\n`double gpa = 3.9;`\n`int credits = 80;`\n`System.out.println(gpa > 3.0 && credits >= 100);`"
+        },
+        "example": {
+          "he": "`gpa = 2.5`, `credits = 120` → `2.5 > 3.0` false → `&&` כבר לא יכול להיות true → false.",
+          "ru": "`gpa = 2.5`, `credits = 120` → `2.5 > 3.0` false → `&&` уже не может быть true → false.",
+          "en": "`gpa = 2.5`, `credits = 120` → `2.5 > 3.0` false → `&&` can no longer be true → false."
         },
         "answer": {
           "accept": [
@@ -1870,6 +1945,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`double salary = 12000;`\n`double creditPoints = 2.25;`\n`double tax;`\n`if (salary > 15000) tax = salary * 0.20;`\n`else if (salary > 8000) tax = salary * 0.10;`\n`else tax = salary * 0.05;`\n`tax = tax - 225 * creditPoints;`\n`System.out.println(tax);`",
           "en": "From the course worksheet. What is printed?\n`double salary = 12000;`\n`double creditPoints = 2.25;`\n`double tax;`\n`if (salary > 15000) tax = salary * 0.20;`\n`else if (salary > 8000) tax = salary * 0.10;`\n`else tax = salary * 0.05;`\n`tax = tax - 225 * creditPoints;`\n`System.out.println(tax);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `salary = 6000`, `creditPoints = 2.0` → `6000 > 15000` לא → `6000 > 8000` לא → `tax = 6000 * 0.05 = 300` → `300 - 225 * 2.0` = `300 − 450 = −150` → יודפס -150.0``.",
+          "ru": "Тот же код, но `salary = 6000`, `creditPoints = 2.0` → `6000 > 15000` нет → `6000 > 8000` нет → `tax = 6000 * 0.05` = 300 → `300 - 225 * 2.0` = 300 − 450 = −150 → напечатает `-150.0`.",
+          "en": "The same code, but `salary = 6000`, `creditPoints = 2.0` → `6000 > 15000` no → `6000 > 8000` no → `tax = 6000 * 0.05` = 300 → `300 - 225 * 2.0` = 300 − 450 = −150 → prints `-150.0`."
+        },
         "answer": {
           "value": "693.75"
         },
@@ -1907,6 +1987,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`// same code, salary = 22000, creditPoints = 1.0`",
           "en": "From the course worksheet. What is printed?\n`// same code, salary = 22000, creditPoints = 1.0`"
         },
+        "example": {
+          "he": "אותו קוד, `salary = 10000`, `creditPoints = 1.0` → `10000 > 15000` לא → `10000 > 8000` כן → `tax = 10000 * 0.10 = 1000` → `1000 - 225 * 1.0 = 775` → יודפס `775.0`.",
+          "ru": "Тот же код, `salary = 10000`, `creditPoints = 1.0` → `10000 > 15000` нет → `10000 > 8000` да → `tax = 10000 * 0.10` = 1000 → `1000 - 225 * 1.0` = 775 → напечатает `775.0`.",
+          "en": "The same code, `salary = 10000`, `creditPoints = 1.0` → `10000 > 15000` no → `10000 > 8000` yes → `tax = 10000 * 0.10` = 1000 → `1000 - 225 * 1.0` = 775 → prints `775.0`."
+        },
         "answer": {
           "value": "4175.0"
         },
@@ -1937,6 +2022,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מדף התרגול של הקורס. מה יודפס?\n`int x = 10;`\n`int y = 5;`\n`boolean z = false;`\n`if (x > y || !z) {`\n`    if (x * 2 > 20) {`\n`        System.out.println(\"A\");`\n`    } else {`\n`        System.out.println(\"B\");`\n`    }`\n`} else {`\n`    System.out.println(\"C\");`\n`}`",
           "ru": "Из листа упражнений курса. Что напечатает?\n`int x = 10;`\n`int y = 5;`\n`boolean z = false;`\n`if (x > y || !z) {`\n`    if (x * 2 > 20) {`\n`        System.out.println(\"A\");`\n`    } else {`\n`        System.out.println(\"B\");`\n`    }`\n`} else {`\n`    System.out.println(\"C\");`\n`}`",
           "en": "From the course worksheet. What is printed?\n`int x = 10;`\n`int y = 5;`\n`boolean z = false;`\n`if (x > y || !z) {`\n`    if (x * 2 > 20) {`\n`        System.out.println(\"A\");`\n`    } else {`\n`        System.out.println(\"B\");`\n`    }`\n`} else {`\n`    System.out.println(\"C\");`\n`}`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x = 15` → `15 > 5` כן → נכנסים ל־`if` החיצוני → `15 * 2 > 20`? `30 > 20` כן → מדפיס `A`.",
+          "ru": "Тот же код, но `x = 15` → `15 > 5` да → во внешний `if` → `15 * 2 > 20`? 30 > 20 да → печатает `A`.",
+          "en": "The same code, but `x = 15` → `15 > 5` yes → into the outer `if` → `15 * 2 > 20`? 30 > 20 yes → prints `A`."
         },
         "answer": {
           "accept": [
@@ -1971,6 +2061,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int temp = 25;`\n`int limit = 30;`\n`boolean warning = false;`\n`if (temp > limit && !warning) {`\n`    System.out.println(\"H1\");`\n`} else if (temp == limit) {`\n`    System.out.println(\"H2\");`\n`} else {`\n`    System.out.println(\"H3\");`\n`}`",
           "en": "From the course worksheet. What is printed?\n`int temp = 25;`\n`int limit = 30;`\n`boolean warning = false;`\n`if (temp > limit && !warning) {`\n`    System.out.println(\"H1\");`\n`} else if (temp == limit) {`\n`    System.out.println(\"H2\");`\n`} else {`\n`    System.out.println(\"H3\");`\n`}`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `temp = 30` → `30 > 30` לא → התנאי הראשון false → `30 == 30` כן → מדפיס `H2`.",
+          "ru": "Тот же код, но `temp = 30` → `30 > 30` нет → первое условие false → `30 == 30` да → печатает `H2`.",
+          "en": "The same code, but `temp = 30` → `30 > 30` no → the first condition is false → `30 == 30` yes → prints `H2`."
+        },
         "answer": {
           "accept": [
             "H3"
@@ -2004,6 +2099,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מדף התרגול של הקורס. מה יודפס?\n`int num = 7;`\n`boolean isValid = true;`\n`if (num % 2 == 1 && isValid) {`\n`    if (num > 5) {`\n`        System.out.println(\"I1\");`\n`    } else {`\n`        System.out.println(\"I2\");`\n`    }`\n`} else {`\n`    System.out.println(\"I3\");`\n`}`",
           "ru": "Из листа упражнений курса. Что напечатает?\n`int num = 7;`\n`boolean isValid = true;`\n`if (num % 2 == 1 && isValid) {`\n`    if (num > 5) {`\n`        System.out.println(\"I1\");`\n`    } else {`\n`        System.out.println(\"I2\");`\n`    }`\n`} else {`\n`    System.out.println(\"I3\");`\n`}`",
           "en": "From the course worksheet. What is printed?\n`int num = 7;`\n`boolean isValid = true;`\n`if (num % 2 == 1 && isValid) {`\n`    if (num > 5) {`\n`        System.out.println(\"I1\");`\n`    } else {`\n`        System.out.println(\"I2\");`\n`    }`\n`} else {`\n`    System.out.println(\"I3\");`\n`}`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `num = 3` → `3 % 2 == 1` כן ו־`isValid` true → פנימה → `3 > 5` לא → מדפיס `I2`.",
+          "ru": "Тот же код, но `num = 3` → `3 % 2 == 1` да и `isValid` true → внутрь → `3 > 5` нет → печатает `I2`.",
+          "en": "The same code, but `num = 3` → `3 % 2 == 1` yes and `isValid` is true → inside → `3 > 5` no → prints `I2`."
         },
         "answer": {
           "accept": [
@@ -2041,6 +2141,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מהשיעור. מה יודפס? כתבו כך: 1 2\n`for (int i = 1; i <= 7; i += 2) {`\n`    System.out.print(i + \" \");`\n`}`",
           "ru": "С урока. Что напечатает? Напиши так: 1 2\n`for (int i = 1; i <= 7; i += 2) {`\n`    System.out.print(i + \" \");`\n`}`",
           "en": "From class. What is printed? Write like: 1 2\n`for (int i = 1; i <= 7; i += 2) {`\n`    System.out.print(i + \" \");`\n`}`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `i <= 5` → `i = 1`, 3, 5 → יודפס `1 3 5`. הבא היה 7, אבל 7 גדול מ־5.",
+          "ru": "Тот же код, но `i <= 5` → i = 1, 3, 5 → напечатает `1 3 5`. Следующее было бы 7, но 7 больше 5.",
+          "en": "The same code, but `i <= 5` → i = 1, 3, 5 → prints `1 3 5`. The next would be 7, but 7 is more than 5."
         },
         "answer": {
           "accept": [
@@ -2082,6 +2187,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "С урока. Что напечатает?\n`for (int i = 5; i >= 1; i--) {`\n`    System.out.print(i);`\n`}`",
           "en": "From class. What is printed?\n`for (int i = 5; i >= 1; i--) {`\n`    System.out.print(i);`\n`}`"
         },
+        "example": {
+          "he": "אותו קוד, אבל מ־3 → `i = 3`, 2, 1 → `print` בלי רווחים ובלי שורה חדשה → `321`.",
+          "ru": "Тот же код, но с 3 → i = 3, 2, 1 → `print` без пробелов и без новой строки → `321`.",
+          "en": "The same code, but from 3 → i = 3, 2, 1 → `print` with no spaces and no new line → `321`."
+        },
         "answer": {
           "value": "54321"
         },
@@ -2116,6 +2226,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מהשיעור. מה יודפס?\n`int p = 1;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`",
           "ru": "С урока. Что напечатает?\n`int p = 1;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`",
           "en": "From class. What is printed?\n`int p = 1;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל עד 3 → `p = 1` → `1 × 1 = 1` → `1 × 2 = 2` → `2 × 3 = 6` → יודפס 6.",
+          "ru": "Тот же код, но до 3 → `p` = 1 → 1 × 1 = 1 → 1 × 2 = 2 → 2 × 3 = 6 → напечатает 6.",
+          "en": "The same code, but up to 3 → `p` = 1 → 1 × 1 = 1 → 1 × 2 = 2 → 2 × 3 = 6 → prints 6."
         },
         "answer": {
           "value": "24"
@@ -2155,6 +2270,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "С урока. Что напечатает?\n`int p = 0;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`",
           "en": "From class. What is printed?\n`int p = 0;`\n`for (int i = 1; i <= 4; i++) {`\n`    p *= i;`\n`}`\n`System.out.println(p);`"
         },
+        "example": {
+          "he": "קוד עם `p = 1` ועד 3 → 1, 2, 6 → מדפיס 6. הסתכלו מאיזה מספר `p` מתחיל במשימה, ומה יוצא כשכופלים את המספר הזה.",
+          "ru": "Код с `p = 1` и до 3 → 1, 2, 6 → печатает 6. Посмотри, с какого числа `p` начинается в задаче, и что получится, если это число умножать.",
+          "en": "Code with `p = 1` up to 3 → 1, 2, 6 → prints 6. Look at which number `p` starts with in the task, and what you get when you multiply that number."
+        },
         "answer": {
           "value": "0"
         },
@@ -2193,6 +2313,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "С урока. Что напечатает?\n`int r = 1;`\n`for (int i = 0; i < 5; i++) {`\n`    r *= 3;`\n`}`\n`System.out.println(r);`",
           "en": "From class. What is printed?\n`int r = 1;`\n`for (int i = 0; i < 5; i++) {`\n`    r *= 3;`\n`}`\n`System.out.println(r);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `r *= 2` ו־`i < 3` → 3 סיבובים → 2, 4, 8 → יודפס 8.",
+          "ru": "Тот же код, но `r *= 2` и `i < 3` → 3 круга → 2, 4, 8 → напечатает 8.",
+          "en": "The same code, but `r *= 2` and `i < 3` → 3 rounds → 2, 4, 8 → prints 8."
+        },
         "answer": {
           "value": "243"
         },
@@ -2230,6 +2355,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מהשיעור. מה יקרה?\n`for (int i = 0; i < 3; i++) {`\n`}`\n`System.out.println(i);`",
           "ru": "С урока. Что произойдёт?\n`for (int i = 0; i < 3; i++) {`\n`}`\n`System.out.println(i);`",
           "en": "From class. What happens?\n`for (int i = 0; i < 3; i++) {`\n`}`\n`System.out.println(i);`"
+        },
+        "example": {
+          "he": "גרסה אחרת: `int i;` מוכרז לפני הלולאה, והלולאה `for (i = 0; i < 3; i++) { }` → אחרי הלולאה `i` עדיין קיים, ו־`println(i)` מדפיס 3. הסתכלו איפה `i` מוכרז במשימה.",
+          "ru": "Другой вариант: `int i;` объявлена ДО цикла, а цикл `for (i = 0; i < 3; i++) { }` → после цикла `i` всё ещё существует, `println(i)` печатает 3. Посмотри, где объявлена `i` в задаче.",
+          "en": "Another version: `int i;` is declared BEFORE the loop, and the loop is `for (i = 0; i < 3; i++) { }` → after the loop `i` still exists, `println(i)` prints 3. Look at where `i` is declared in the task."
         },
         "options": [
           {
@@ -2289,6 +2419,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Что будет напечатано?\n`int t = 30;`\n`if (t > 25) System.out.println(\"Hot\");`\n`else System.out.println(\"Cold\");`",
           "en": "What is printed?\n`int t = 30;`\n`if (t > 25) System.out.println(\"Hot\");`\n`else System.out.println(\"Cold\");`"
         },
+        "example": {
+          "he": "`t = 20` → `20 > 25` לא → הולכים ל־`else` → `Cold`.",
+          "ru": "`t = 20` → `20 > 25` нет → идём в `else` → `Cold`.",
+          "en": "`t = 20` → `20 > 25` no → go to `else` → `Cold`."
+        },
         "answer": {
           "accept": [
             "Hot"
@@ -2319,6 +2454,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מה יודפס?\n`System.out.println(15 % 2 == 0);`",
           "ru": "Что будет напечатано?\n`System.out.println(15 % 2 == 0);`",
           "en": "What is printed?\n`System.out.println(15 % 2 == 0);`"
+        },
+        "example": {
+          "he": "`System.out.println(8 % 2 == 0);` → `8 % 2 = 0` → `0 == 0` → מדפיס `true`. השוואה `==` נותנת true או false, ולא מספר.",
+          "ru": "`System.out.println(8 % 2 == 0);` → `8 % 2` = 0 → `0 == 0` → печатает `true`. Сравнение `==` даёт true или false, а не число.",
+          "en": "`System.out.println(8 % 2 == 0);` → `8 % 2` = 0 → `0 == 0` → prints `true`. A `==` comparison gives true or false, not a number."
         },
         "options": [
           "true",
@@ -2354,6 +2494,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "איזה תנאי בודק ש-x נמצא בין 7 ל-10 (כולל)?",
           "ru": "Какое условие проверяет, что x от 7 до 10 (включительно)?",
           "en": "Which condition checks that x is between 7 and 10 (inclusive)?"
+        },
+        "example": {
+          "he": "\"x בין 1 ל־5 כולל\" כותבים ב־Java בשתי השוואות שצריכות להיות נכונות יחד: `x >= 1` ו־`x <= 5`. את הכתיבה `1 <= x <= 5`, כמו במתמטיקה, Java לא מבינה.",
+          "ru": "«x от 1 до 5 включительно» в Java пишут двумя сравнениями, которые должны быть правдой одновременно: `x >= 1` и `x <= 5`. Запись `1 <= x <= 5`, как в математике, Java не понимает.",
+          "en": "\"x from 1 to 5 inclusive\" is written in Java as two comparisons that must both be true: `x >= 1` and `x <= 5`. Java does not understand `1 <= x <= 5` as in maths."
         },
         "options": [
           "7 <= x <= 10",
@@ -2403,6 +2548,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Что будет напечатано?\n`int g = 85;`\n`if (g >= 90) System.out.println(\"A\");`\n`else if (g >= 80) System.out.println(\"B\");`\n`else if (g >= 55) System.out.println(\"C\");`\n`else System.out.println(\"F\");`",
           "en": "What is printed?\n`int g = 85;`\n`if (g >= 90) System.out.println(\"A\");`\n`else if (g >= 80) System.out.println(\"B\");`\n`else if (g >= 55) System.out.println(\"C\");`\n`else System.out.println(\"F\");`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `g = 60` → `60 >= 90` לא → `60 >= 80` לא → `60 >= 55` כן → `C`. הבדיקות הולכות מלמעלה למטה, והאמת הראשונה מנצחת.",
+          "ru": "Тот же код, но `g = 60` → `60 >= 90` нет → `60 >= 80` нет → `60 >= 55` да → `C`. Проверки идут сверху вниз, срабатывает первая правда.",
+          "en": "The same code, but `g = 60` → `60 >= 90` no → `60 >= 80` no → `60 >= 55` yes → `C`. Checks go from top to bottom, the first true one wins."
+        },
         "answer": {
           "accept": [
             "B"
@@ -2439,6 +2589,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מה יודפס? (כתבו את השורות עם רווח ביניהן)\n`int x = 15;`\n`if (x > 5) System.out.println(\"A\");`\n`if (x > 10) System.out.println(\"B\");`\n`else System.out.println(\"C\");`",
           "ru": "Что будет напечатано? (напиши строки через пробел)\n`int x = 15;`\n`if (x > 5) System.out.println(\"A\");`\n`if (x > 10) System.out.println(\"B\");`\n`else System.out.println(\"C\");`",
           "en": "What is printed? (write the lines separated by a space)\n`int x = 15;`\n`if (x > 5) System.out.println(\"A\");`\n`if (x > 10) System.out.println(\"B\");`\n`else System.out.println(\"C\");`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x = 7` → ה־`if` הראשון: `7 > 5` כן → `A` → ה־`if` השני נפרד: `7 > 10` לא → ה־`else` שלו → `C` → התשובה הייתה `A C`. אלה שני `if` שונים, ושניהם נבדקים.",
+          "ru": "Тот же код, но `x = 7` → первый `if`: `7 > 5` да → `A` → второй `if` отдельный: `7 > 10` нет → его `else` → `C` → ответ был бы `A C`. Это два разных `if`, проверяются оба.",
+          "en": "The same code, but `x = 7` → first `if`: `7 > 5` yes → `A` → the second `if` is separate: `7 > 10` no → its `else` → `C` → the answer would be `A C`. These are two different `if`s, both are checked."
         },
         "answer": {
           "accept": [
@@ -2479,6 +2634,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מה יודפס?\n`boolean b = 3 + 2 * 4 > 10 || 5 % 2 == 0 && false;`\n`System.out.println(b);`",
           "ru": "Что будет напечатано?\n`boolean b = 3 + 2 * 4 > 10 || 5 % 2 == 0 && false;`\n`System.out.println(b);`",
           "en": "What is printed?\n`boolean b = 3 + 2 * 4 > 10 || 5 % 2 == 0 && false;`\n`System.out.println(b);`"
+        },
+        "example": {
+          "he": "`2 + 3 * 2 > 10 || true && false` → קודם `*`: `3 * 2 = 6` → `2 + 6 = 8` → `8 > 10` false → אחר כך `&&`: `true && false` = false → `false || false` = false.",
+          "ru": "`2 + 3 * 2 > 10 || true && false` → сначала `*`: 3 * 2 = 6 → 2 + 6 = 8 → `8 > 10` false → потом `&&`: `true && false` = false → `false || false` = false.",
+          "en": "`2 + 3 * 2 > 10 || true && false` → first `*`: 3 * 2 = 6 → 2 + 6 = 8 → `8 > 10` false → then `&&`: `true && false` = false → `false || false` = false."
         },
         "options": [
           "true",
@@ -2523,6 +2683,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Что будет напечатано?\n`int s = 0;`\n`for (int i = 1; i <= 5; i++) {`\n`    s += i;`\n`}`\n`System.out.println(s);`",
           "en": "What is printed?\n`int s = 0;`\n`for (int i = 1; i <= 5; i++) {`\n`    s += i;`\n`}`\n`System.out.println(s);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל עד 3 → `s = 1` → 3 → 6 → יודפס 6.",
+          "ru": "Тот же код, но до 3 → `s` = 1 → 3 → 6 → напечатает 6.",
+          "en": "The same code, but up to 3 → `s` = 1 → 3 → 6 → prints 6."
+        },
         "answer": {
           "value": "15"
         },
@@ -2555,6 +2720,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מה יודפס?\n`int x = 8;`\n`if (x % 3 == 0 && x % 4 == 0) System.out.println(\"both\");`\n`else if (x % 3 == 0 || x % 4 == 0) System.out.println(\"one\");`\n`else System.out.println(\"none\");`",
           "ru": "Что будет напечатано?\n`int x = 8;`\n`if (x % 3 == 0 && x % 4 == 0) System.out.println(\"both\");`\n`else if (x % 3 == 0 || x % 4 == 0) System.out.println(\"one\");`\n`else System.out.println(\"none\");`",
           "en": "What is printed?\n`int x = 8;`\n`if (x % 3 == 0 && x % 4 == 0) System.out.println(\"both\");`\n`else if (x % 3 == 0 || x % 4 == 0) System.out.println(\"one\");`\n`else System.out.println(\"none\");`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x = 12` → `12 % 3 == 0` כן ו־`12 % 4 == 0` כן → `both`. עבור `x = 7`: לא ב־3 ולא ב־4 → `none`.",
+          "ru": "Тот же код, но `x = 12` → `12 % 3 == 0` да и `12 % 4 == 0` да → `both`. Для `x = 7`: ни на 3, ни на 4 → `none`.",
+          "en": "The same code, but `x = 12` → `12 % 3 == 0` yes and `12 % 4 == 0` yes → `both`. For `x = 7`: neither by 3 nor by 4 → `none`."
         },
         "answer": {
           "accept": [
@@ -2590,6 +2760,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "ru": "Что будет напечатано? (числа в одной строке)\n`for (int i = 0; i < 10; i += 3) {`\n`    System.out.print(i + \" \");`\n`}`",
           "en": "What is printed? (the numbers are on one line)\n`for (int i = 0; i < 10; i += 3) {`\n`    System.out.print(i + \" \");`\n`}`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `i += 4` → 0, 4, 8 → הבא 12 כבר לא קטן מ־10 → `0 4 8`.",
+          "ru": "Тот же код, но `i += 4` → 0, 4, 8 → следующее 12 уже не меньше 10 → `0 4 8`.",
+          "en": "The same code, but `i += 4` → 0, 4, 8 → the next, 12, is not less than 10 → `0 4 8`."
+        },
         "answer": {
           "accept": [
             "0 3 6 9"
@@ -2624,6 +2799,11 @@ window.LESSONS["algo-2026-10-25"] = {
           "he": "מה יודפס?\n`double total = 250;`\n`if (total >= 200 && total < 500) {`\n`    total -= 20;`\n`} else if (total >= 500) {`\n`    total *= 0.9;`\n`}`\n`System.out.println(total);`",
           "ru": "Что будет напечатано?\n`double total = 250;`\n`if (total >= 200 && total < 500) {`\n`    total -= 20;`\n`} else if (total >= 500) {`\n`    total *= 0.9;`\n`}`\n`System.out.println(total);`",
           "en": "What is printed?\n`double total = 250;`\n`if (total >= 200 && total < 500) {`\n`    total -= 20;`\n`} else if (total >= 500) {`\n`    total *= 0.9;`\n`}`\n`System.out.println(total);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `total = 600` → `600 >= 200 && 600 < 500`? השני לא → false → `600 >= 500` כן → `total *= 0.9` → 540 → יודפס `540.0`.",
+          "ru": "Тот же код, но `total = 600` → `600 >= 200 && 600 < 500`? второе нет → false → `600 >= 500` да → `total *= 0.9` → 540 → напечатает `540.0`.",
+          "en": "The same code, but `total = 600` → `600 >= 200 && 600 < 500`? the second is no → false → `600 >= 500` yes → `total *= 0.9` → 540 → prints `540.0`."
         },
         "answer": {
           "value": "230"

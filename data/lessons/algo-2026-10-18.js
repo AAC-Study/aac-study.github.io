@@ -760,6 +760,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что напечатает команда?\n`System.out.println(2 + 5 * 7 - 2 / 7);`",
           "en": "What does this print?\n`System.out.println(2 + 5 * 7 - 2 / 7);`"
         },
+        "example": {
+          "he": "`System.out.println(3 + 4 * 5 - 9 / 4);` → קודם `*` ו־`/`: `4 * 5 = 20`, `9 / 4 = 2` (int, השבר נזרק) → אחר כך משמאל לימין: `3 + 20 = 23`, `23 − 2 = 21` → 21.",
+          "ru": "`System.out.println(3 + 4 * 5 - 9 / 4);` → сначала `*` и `/`: 4 * 5 = 20, 9 / 4 = 2 (int, дробь отбрасывается) → потом слева направо: 3 + 20 = 23, 23 − 2 = 21 → 21.",
+          "en": "`System.out.println(3 + 4 * 5 - 9 / 4);` → first `*` and `/`: 4 * 5 = 20, 9 / 4 = 2 (int, the fraction is dropped) → then left to right: 3 + 20 = 23, 23 − 2 = 21 → 21."
+        },
         "answer": {
           "value": "37"
         },
@@ -805,6 +810,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что напечатает команда?\n`System.out.println(2 + 3 * 4 - 8 / 2);`",
           "en": "What does this print?\n`System.out.println(2 + 3 * 4 - 8 / 2);`"
         },
+        "example": {
+          "he": "`System.out.println(2 + 4 * 3 - 6 / 2);` → `4 * 3 = 12`, `6 / 2 = 3` → `2 + 12 − 3 = 11`. קודם כפל וחילוק, אחר כך חיבור וחיסור.",
+          "ru": "`System.out.println(2 + 4 * 3 - 6 / 2);` → `4 * 3` = 12, `6 / 2` = 3 → 2 + 12 − 3 = 11. Сначала умножение и деление, потом сложение и вычитание.",
+          "en": "`System.out.println(2 + 4 * 3 - 6 / 2);` → `4 * 3` = 12, `6 / 2` = 3 → 2 + 12 − 3 = 11. Multiplication and division first, then addition and subtraction."
+        },
         "answer": {
           "value": "10"
         },
@@ -842,6 +852,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`double x = 5;`\n`double y = 10;`\n`System.out.println(x / y);`",
           "en": "What is printed?\n`double x = 5;`\n`double y = 10;`\n`System.out.println(x / y);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `x = 1`, `y = 4` → שניהם `double` → `1.0 / 4.0 = 0.25` → יודפס `0.25`. ב־`double` השבר נשמר.",
+          "ru": "Тот же код, но `x = 1`, `y = 4` → оба `double` → `1.0 / 4.0` = 0.25 → напечатает `0.25`. У `double` дробь сохраняется.",
+          "en": "The same code, but `x = 1`, `y = 4` → both are `double` → `1.0 / 4.0` = 0.25 → prints `0.25`. A `double` keeps the fraction."
+        },
         "answer": {
           "value": "0.5"
         },
@@ -871,6 +886,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס? (`'f'` הוא התו מספר 102)\n`char x = 'f' + 3;`\n`System.out.println(x);`",
           "ru": "Что будет напечатано? (`'f'` — символ номер 102)\n`char x = 'f' + 3;`\n`System.out.println(x);`",
           "en": "What is printed? (`'f'` is character number 102)\n`char x = 'f' + 3;`\n`System.out.println(x);`"
+        },
+        "example": {
+          "he": "`char x = 'a' + 2;` → `'a'` הוא התו מספר 97 → `97 + 2 = 99` → התו מספר 99 הוא `c` → יודפס `c`. האותיות הולכות ברצף: a, b, c…",
+          "ru": "`char x = 'a' + 2;` → `'a'` — символ номер 97 → 97 + 2 = 99 → символ номер 99 — это `c` → напечатает `c`. Буквы идут подряд: a, b, c…",
+          "en": "`char x = 'a' + 2;` → `'a'` is character number 97 → 97 + 2 = 99 → character number 99 is `c` → prints `c`. Letters go in a row: a, b, c…"
         },
         "answer": {
           "accept": [
@@ -910,6 +930,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`int gread1 = 82;`\n`int gread2 = 90;`\n`int gread3 = 98;`\n`double mean = (gread1 + gread2 + gread3) / 3.0;`\n`System.out.println(mean);`",
           "en": "What is printed?\n`int gread1 = 82;`\n`int gread2 = 90;`\n`int gread3 = 98;`\n`double mean = (gread1 + gread2 + gread3) / 3.0;`\n`System.out.println(mean);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל הציונים 70, 80, 81 → `70 + 80 + 81 = 231` → `231 / 3.0 = 77.0` → יודפס `77.0`. בגלל `3.0` החילוק עשרוני.",
+          "ru": "Тот же код, но оценки 70, 80, 81 → 70 + 80 + 81 = 231 → `231 / 3.0` = 77.0 → напечатает `77.0`. Из-за `3.0` деление дробное.",
+          "en": "The same code, but grades 70, 80, 81 → 70 + 80 + 81 = 231 → `231 / 3.0` = 77.0 → prints `77.0`. Because of `3.0` the division keeps fractions."
+        },
         "answer": {
           "value": "90"
         },
@@ -945,6 +970,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`System.out.println(17 / 4);`",
           "en": "What is printed?\n`System.out.println(17 / 4);`"
         },
+        "example": {
+          "he": "`System.out.println(13 / 5);` → `13 : 5 = 2.6`, אבל שני המספרים `int` → השבר נזרק → 2.",
+          "ru": "`System.out.println(13 / 5);` → 13 : 5 = 2.6, но оба числа `int` → дробь отбрасывается → 2.",
+          "en": "`System.out.println(13 / 5);` → 13 : 5 = 2.6, but both numbers are `int` → the fraction is dropped → 2."
+        },
         "answer": {
           "value": "4"
         },
@@ -973,6 +1003,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס?\n`int x = 17;`\n`System.out.println((double) x / 4);`",
           "ru": "Что будет напечатано?\n`int x = 17;`\n`System.out.println((double) x / 4);`",
           "en": "What is printed?\n`int x = 17;`\n`System.out.println((double) x / 4);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x = 13` → `(double) 13 / 4` → `13.0 / 4 = 3.25` → יודפס `3.25`. ‏`(double)` הופך את x למספר עשרוני לפני החילוק.",
+          "ru": "Тот же код, но `x = 13` → `(double) 13 / 4` → 13.0 / 4 = 3.25 → напечатает `3.25`. `(double)` превращает x в дробное число ДО деления.",
+          "en": "The same code, but `x = 13` → `(double) 13 / 4` → 13.0 / 4 = 3.25 → prints `3.25`. `(double)` turns x into a decimal number BEFORE dividing."
         },
         "answer": {
           "value": "4.25"
@@ -1004,6 +1039,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`int x = 3;`\n`double y = 2 * x;`\n`System.out.println(y);`",
           "en": "What is printed?\n`int x = 3;`\n`double y = 2 * x;`\n`System.out.println(y);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `x = 4` → `2 * 4 = 8` → שמים ב־`double` → יודפס `8.0`. ב־`double` מספר שלם מודפס עם `.0`.",
+          "ru": "Тот же код, но `x = 4` → `2 * 4` = 8 → кладём в `double` → напечатает `8.0`. В `double` целое число печатается с `.0`.",
+          "en": "The same code, but `x = 4` → `2 * 4` = 8 → put into a `double` → prints `8.0`. A whole number in a `double` is printed with `.0`."
+        },
         "answer": {
           "value": "6"
         },
@@ -1032,6 +1072,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "באוטובוס יש מקום ל-40 ילדים, ויש 97 ילדים. מה תדפיס הפקודה (כמה ילדים נשארים אחרי האוטובוסים המלאים)?\n`System.out.println(97 % 40);`",
           "ru": "В автобус помещается 40 детей, а детей 97. Что напечатает команда (сколько детей останется после полных автобусов)?\n`System.out.println(97 % 40);`",
           "en": "A bus holds 40 children and there are 97 children. What does this print (how many children are left after the full buses)?\n`System.out.println(97 % 40);`"
+        },
+        "example": {
+          "he": "בקופסה נכנסות 6 ביצים, ויש 20 ביצים → `20 % 6` → 3 קופסאות מלאות (18 ביצים) → נשארות 2. `%` הוא השארית.",
+          "ru": "В коробку помещается 6 яиц, яиц 20 → `20 % 6` → 3 полные коробки (18 яиц) → останется 2. `%` — это остаток.",
+          "en": "A box holds 6 eggs, and there are 20 eggs → `20 % 6` → 3 full boxes (18 eggs) → 2 are left. `%` is the remainder."
         },
         "answer": {
           "value": "17"
@@ -1069,6 +1114,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`System.out.println(149 % 100);`",
           "en": "What is printed?\n`System.out.println(149 % 100);`"
         },
+        "example": {
+          "he": "`System.out.println(237 % 100);` → ב־237 נכנס פעמיים 100 (200) → השארית 37. `% 100` נותן את שתי הספרות האחרונות.",
+          "ru": "`System.out.println(237 % 100);` → в 237 помещается 2 раза по 100 (200) → остаток 37. `% 100` даёт две последние цифры.",
+          "en": "`System.out.println(237 % 100);` → 100 fits into 237 twice (200) → the remainder is 37. `% 100` gives the last two digits."
+        },
         "answer": {
           "value": "49"
         },
@@ -1098,6 +1148,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס?\n`int x = 48;`\n`x %= 5;`\n`System.out.println(x);`",
           "ru": "Что будет напечатано?\n`int x = 48;`\n`x %= 5;`\n`System.out.println(x);`",
           "en": "What is printed?\n`int x = 48;`\n`x %= 5;`\n`System.out.println(x);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x = 26` → `x %= 5` פירושו `x = x % 5` → `26 = 5 × 5 + 1` → `x = 1.`",
+          "ru": "Тот же код, но `x = 26` → `x %= 5` значит `x = x % 5` → 26 = 5 × 5 + 1 → `x` = 1.",
+          "en": "The same code, but `x = 26` → `x %= 5` means `x = x % 5` → 26 = 5 × 5 + 1 → `x` = 1."
         },
         "answer": {
           "value": "3"
@@ -1136,6 +1191,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`int x = 48;`\n`x /= 5;`\n`System.out.println(x);`",
           "en": "What is printed?\n`int x = 48;`\n`x /= 5;`\n`System.out.println(x);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `x = 23` → `x /= 5` פירושו `x = x / 5` → `23 / 5 = 4.6` → `int`, השבר נזרק → 4.",
+          "ru": "Тот же код, но `x = 23` → `x /= 5` значит `x = x / 5` → 23 / 5 = 4.6 → `int`, дробь отбрасывается → 4.",
+          "en": "The same code, but `x = 23` → `x /= 5` means `x = x / 5` → 23 / 5 = 4.6 → `int`, the fraction is dropped → 4."
+        },
         "answer": {
           "value": "9"
         },
@@ -1165,6 +1225,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס?\n`int x = 48;`\n`System.out.println(x % 10 > 5);`",
           "ru": "Что будет напечатано?\n`int x = 48;`\n`System.out.println(x % 10 > 5);`",
           "en": "What is printed?\n`int x = 48;`\n`System.out.println(x % 10 > 5);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x = 23` → `23 % 10 = 3` (הספרה האחרונה) → `3 > 5`? לא → יודפס `false`.",
+          "ru": "Тот же код, но `x = 23` → `23 % 10` = 3 (последняя цифра) → `3 > 5`? нет → напечатает `false`.",
+          "en": "The same code, but `x = 23` → `23 % 10` = 3 (the last digit) → `3 > 5`? no → prints `false`."
         },
         "options": [
           "true",
@@ -1200,6 +1265,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "סכום הספרות של 736. מה יודפס?\n`int number = 736;`\n`int r = 0;`\n`r += number % 10;`\n`number /= 10;`\n`r += number % 10;`\n`number /= 10;`\n`r += number;`\n`System.out.println(r);`",
           "ru": "Сумма цифр 736. Что будет напечатано?\n`int number = 736;`\n`int r = 0;`\n`r += number % 10;`\n`number /= 10;`\n`r += number % 10;`\n`number /= 10;`\n`r += number;`\n`System.out.println(r);`",
           "en": "The digit sum of 736. What is printed?\n`int number = 736;`\n`int r = 0;`\n`r += number % 10;`\n`number /= 10;`\n`r += number % 10;`\n`number /= 10;`\n`r += number;`\n`System.out.println(r);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `number = 254` → `254 % 10 = 4`, `r = 4`, `number = 25` → `25 % 10 = 5`, `r = 9`, `number = 2` → `r += 2` → 11 → יודפס 11.",
+          "ru": "Тот же код, но `number = 254` → `254 % 10` = 4, `r` = 4, number = 25 → `25 % 10` = 5, `r` = 9, number = 2 → `r += 2` → 11 → напечатает 11.",
+          "en": "The same code, but `number = 254` → `254 % 10` = 4, `r` = 4, number = 25 → `25 % 10` = 5, `r` = 9, number = 2 → `r += 2` → 11 → prints 11."
         },
         "answer": {
           "value": "16"
@@ -1240,6 +1310,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Упражнение 22: какая цифра десятков у 482? Что будет напечатано?\n`int number = 482;`\n`System.out.println(number % 100 / 10);`",
           "en": "Exercise 22: what is the tens digit of 482? What is printed?\n`int number = 482;`\n`System.out.println(number % 100 / 10);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `number = 365` → `365 % 100 = 65` (שתי הספרות האחרונות) → `65 / 10 = 6` → ספרת העשרות 6.",
+          "ru": "Тот же код, но `number = 365` → `365 % 100` = 65 (две последние цифры) → `65 / 10` = 6 → цифра десятков 6.",
+          "en": "The same code, but `number = 365` → `365 % 100` = 65 (the last two digits) → `65 / 10` = 6 → the tens digit is 6."
+        },
         "answer": {
           "value": "8"
         },
@@ -1275,6 +1350,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Упражнение 24: цифра сотен у 905. Что будет напечатано?\n`int number = 905;`\n`System.out.println(number / 100);`",
           "en": "Exercise 24: the hundreds digit of 905. What is printed?\n`int number = 905;`\n`System.out.println(number / 100);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `number = 742` → `742 / 100 = 7.42` → `int`, השבר נזרק → 7, ספרת המאות.",
+          "ru": "Тот же код, но `number = 742` → `742 / 100` = 7.42 → `int`, дробь отбрасывается → 7, цифра сотен.",
+          "en": "The same code, but `number = 742` → `742 / 100` = 7.42 → `int`, the fraction is dropped → 7, the hundreds digit."
+        },
         "answer": {
           "value": "9"
         },
@@ -1303,6 +1383,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "תרגיל כיתה מהמצגת. מה הערך של res1?\n`int a = 10;`\n`int b = 3;`\n`double c = 2.5;`\n`double res1 = a / b + c;`",
           "ru": "Классное упражнение из презентации. Чему равно res1?\n`int a = 10;`\n`int b = 3;`\n`double c = 2.5;`\n`double res1 = a / b + c;`",
           "en": "Class exercise from the slides. What is res1?\n`int a = 10;`\n`int b = 3;`\n`double c = 2.5;`\n`double res1 = a / b + c;`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `a = 7`, `b = 2`, `c = 1.5` → `7 / 2` — שניהם `int` → 3 → `3 + 1.5 = 4.5` → `res1 = 4.5.`",
+          "ru": "Тот же код, но `a = 7`, `b = 2`, `c = 1.5` → `7 / 2` — оба `int` → 3 → `3 + 1.5` = 4.5 → `res1` = 4.5.",
+          "en": "The same code, but `a = 7`, `b = 2`, `c = 1.5` → `7 / 2` — both are `int` → 3 → `3 + 1.5` = 4.5 → `res1` = 4.5."
         },
         "answer": {
           "value": "5.5"
@@ -1334,6 +1419,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "אותם a, b, c. מה הערך של res2?\n`boolean res2 = (a % b == 1) && (c > 2);`",
           "ru": "Те же a, b, c. Чему равно res2?\n`boolean res2 = (a % b == 1) && (c > 2);`",
           "en": "Same a, b, c. What is res2?\n`boolean res2 = (a % b == 1) && (c > 2);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `a = 7`, `b = 2`, `c = 1.5` → `7 % 2 = 1` → `1 == 1` true → `1.5 > 2` false → `true && false` = false.",
+          "ru": "Тот же код, но `a = 7`, `b = 2`, `c = 1.5` → `7 % 2` = 1 → `1 == 1` true → `1.5 > 2` false → `true && false` = false.",
+          "en": "The same code, but `a = 7`, `b = 2`, `c = 1.5` → `7 % 2` = 1 → `1 == 1` true → `1.5 > 2` false → `true && false` = false."
         },
         "options": [
           "true",
@@ -1371,6 +1461,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Продолжаем: после `a++` чему равно res3?\n`a++;`\n`int res3 = a * b;`",
           "en": "Continue: after `a++`, what is res3?\n`a++;`\n`int res3 = a * b;`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `a = 7`, `b = 2` → `a++` → `a = 8` → `8 * 2 = 16` → `res3 = 16.`",
+          "ru": "Тот же код, но `a = 7`, `b = 2` → `a++` → `a` = 8 → `8 * 2` = 16 → `res3` = 16.",
+          "en": "The same code, but `a = 7`, `b = 2` → `a++` → `a` = 8 → `8 * 2` = 16 → `res3` = 16."
+        },
         "answer": {
           "value": "33"
         },
@@ -1401,6 +1496,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס? כתבו כך: 1 2\n`int a = 5;`\n`int b = a++;`\n`System.out.println(a + \" \" + b);`",
           "ru": "Что напечатает? Напиши так: 1 2\n`int a = 5;`\n`int b = a++;`\n`System.out.println(a + \" \" + b);`",
           "en": "What is printed? Write like: 1 2\n`int a = 5;`\n`int b = a++;`\n`System.out.println(a + \" \" + b);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `a = 2` → `b = a++`: קודם `b` מקבל את הערך הישן 2, ואז `a` נהיה 3 → יודפס `3 2`.",
+          "ru": "Тот же код, но `a = 2` → `b = a++`: сначала `b` получает старое значение 2, потом `a` становится 3 → напечатает `3 2`.",
+          "en": "The same code, but `a = 2` → `b = a++`: first `b` gets the old value 2, then `a` becomes 3 → prints `3 2`."
         },
         "answer": {
           "accept": [
@@ -1435,6 +1535,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что напечатает? Напиши так: 1 2\n`int c = 5;`\n`int d = ++c;`\n`System.out.println(c + \" \" + d);`",
           "en": "What is printed? Write like: 1 2\n`int c = 5;`\n`int d = ++c;`\n`System.out.println(c + \" \" + d);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `c = 2` → `d = ++c`: קודם `c` נהיה 3, ואז `d` מקבל 3 → יודפס `3 3`.",
+          "ru": "Тот же код, но `c = 2` → `d = ++c`: сначала `c` становится 3, потом `d` получает 3 → напечатает `3 3`.",
+          "en": "The same code, but `c = 2` → `d = ++c`: first `c` becomes 3, then `d` gets 3 → prints `3 3`."
+        },
         "answer": {
           "accept": [
             "6 6"
@@ -1467,6 +1572,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס?\n`System.out.println(10 + 20 + \" is the sum\");`",
           "ru": "Что напечатает?\n`System.out.println(10 + 20 + \" is the sum\");`",
           "en": "What is printed?\n`System.out.println(10 + 20 + \" is the sum\");`"
+        },
+        "example": {
+          "he": "`System.out.println(1 + 2 + \" apples\");` → משמאל לימין: `1 + 2` — שני מספרים, מחברים → 3 → אחר כך `3 + \" apples\"` — הדבקה → `3 apples`.",
+          "ru": "`System.out.println(1 + 2 + \" apples\");` → слева направо: `1 + 2` — два числа, складываем → 3 → потом `3 + \" apples\"` — склейка → `3 apples`.",
+          "en": "`System.out.println(1 + 2 + \" apples\");` → left to right: `1 + 2` — two numbers, add them → 3 → then `3 + \" apples\"` — gluing → `3 apples`."
         },
         "answer": {
           "accept": [
@@ -1501,6 +1611,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что напечатает?\n`System.out.println(\"Java\" + 10 + 20);`",
           "en": "What is printed?\n`System.out.println(\"Java\" + 10 + 20);`"
         },
+        "example": {
+          "he": "`System.out.println(\"A\" + 1 + 2);` → משמאל לימין: `\"A\" + 1` → המחרוזת `\"A1\"` → אחר כך `\"A1\" + 2` → `A12`. ברגע שמשמאל יש מחרוזת, `+` רק מדביק.",
+          "ru": "`System.out.println(\"A\" + 1 + 2);` → слева направо: `\"A\" + 1` → строка `\"A1\"` → потом `\"A1\" + 2` → `A12`. Как только слева строка, `+` дальше только склеивает.",
+          "en": "`System.out.println(\"A\" + 1 + 2);` → left to right: `\"A\" + 1` → the string `\"A1\"` → then `\"A1\" + 2` → `A12`. Once there is a string on the left, `+` only glues."
+        },
         "answer": {
           "accept": [
             "Java1020"
@@ -1534,6 +1649,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что напечатает?\n`double x = 3.55;`\n`System.out.println((int) (x + 0.5));`",
           "en": "What is printed?\n`double x = 3.55;`\n`System.out.println((int) (x + 0.5));`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `x = 2.45` → `2.45 + 0.5 = 2.95` → `(int)` חותך את השבר → 2. כך מעגלים: חלק עשרוני קטן מ־0.5 → למטה.",
+          "ru": "Тот же код, но `x = 2.45` → 2.45 + 0.5 = 2.95 → `(int)` отрезает дробь → 2. Так округляют: дробная часть меньше 0.5 → вниз.",
+          "en": "The same code, but `x = 2.45` → 2.45 + 0.5 = 2.95 → `(int)` cuts off the fraction → 2. That is how rounding works: a fraction below 0.5 → down."
+        },
         "answer": {
           "value": "4"
         },
@@ -1564,6 +1684,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מחומרי הקורס: ממוצע של 3 ציונים שלמים. מה יודפס?\n`int g1 = 84, g2 = 80, g3 = 90;`\n`System.out.println((g1 + g2 + g3) / 3);`",
           "ru": "Из материалов курса: среднее трёх целых оценок. Что напечатает?\n`int g1 = 84, g2 = 80, g3 = 90;`\n`System.out.println((g1 + g2 + g3) / 3);`",
           "en": "From the course files: the average of 3 whole grades. What is printed?\n`int g1 = 84, g2 = 80, g3 = 90;`\n`System.out.println((g1 + g2 + g3) / 3);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל הציונים 70, 75, 81 → `70 + 75 + 81 = 226` → `226 / 3` — שניהם `int` → 75 (‏75.33… נחתך) → 75.",
+          "ru": "Тот же код, но оценки 70, 75, 81 → 70 + 75 + 81 = 226 → `226 / 3` — оба `int` → 75 (75.33… обрезается) → 75.",
+          "en": "The same code, but grades 70, 75, 81 → 70 + 75 + 81 = 226 → `226 / 3` — both are `int` → 75 (75.33… is cut) → 75."
         },
         "answer": {
           "value": "84"
@@ -1605,6 +1730,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Из материалов курса: в контейнере А 160 апельсинов, в Б — 100. Сколько нужно переложить из А в Б, чтобы стало поровну?",
           "en": "From the course files: container A has 160 oranges, container B has 100. How many must move from A to B to make them equal?"
         },
+        "example": {
+          "he": "ב־A יש 50, ב־B יש 30 → בסך הכול 80 → שווה בשווה `80 / 2 = 40` → מ־A מעבירים `50 − 40 = 10`.",
+          "ru": "В A 50, в B 30 → всего 80 → поровну по 80 / 2 = 40 → из A переложить 50 − 40 = 10.",
+          "en": "A has 50, B has 30 → 80 in total → equally 80 / 2 = 40 → move 50 − 40 = 10 from A."
+        },
         "answer": {
           "value": "30"
         },
@@ -1644,6 +1774,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מחומרי הקורס: איזה שם משתנה חוקי ב-Java?",
           "ru": "Из материалов курса: какое имя переменной допустимо в Java?",
           "en": "From the course files: which variable name is legal in Java?"
+        },
+        "example": {
+          "he": "כללי השם: רק אותיות, ספרות, `_` ו־`$`, בלי רווחים, ולא מתחיל בספרה.\n`my_age` ✅\n`2cool` ❌ (מתחיל בספרה)\n`my age` ❌ (רווח)\n`a-b` ❌ (מינוס)",
+          "ru": "Правила имени: только буквы, цифры, `_` и `$`, без пробелов, и не начинается с цифры.\n`my_age` ✅\n`2cool` ❌ (начинается с цифры)\n`my age` ❌ (пробел)\n`a-b` ❌ (минус)",
+          "en": "Name rules: only letters, digits, `_` and `$`, no spaces, and it does not start with a digit.\n`my_age` ✅\n`2cool` ❌ (starts with a digit)\n`my age` ❌ (a space)\n`a-b` ❌ (a minus)"
         },
         "options": [
           "size 37",
@@ -1689,6 +1824,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Из материалов курса: в классе 23 ученика, делятся на группы по 5. Сколько полных групп и сколько учеников останется без группы? Напиши так: 1 2",
           "en": "From the course files: a class of 23 splits into groups of 5. How many full groups, and how many students are left without a group? Write like: 1 2"
         },
+        "example": {
+          "he": "17 תלמידים, קבוצות של 4 → קבוצות מלאות `17 / 4 = 4` → בלי קבוצה `17 % 4 = 1` → התשובה הייתה `4 1`.",
+          "ru": "17 учеников, группы по 4 → полных групп `17 / 4` = 4 → без группы `17 % 4` = 1 → ответ был бы `4 1`.",
+          "en": "17 students, groups of 4 → full groups `17 / 4` = 4 → without a group `17 % 4` = 1 → the answer would be `4 1`."
+        },
         "answer": {
           "accept": [
             "4 3"
@@ -1722,6 +1862,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int a = 11;`\n`int b = 3;`\n`System.out.println(a / b);`",
           "en": "From the course worksheet. What is printed?\n`int a = 11;`\n`int b = 3;`\n`System.out.println(a / b);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `a = 9`, `b = 2` → `9 / 2 = 4.5` → שניהם `int` → 4.",
+          "ru": "Тот же код, но `a = 9`, `b = 2` → 9 / 2 = 4.5 → оба `int` → 4.",
+          "en": "The same code, but `a = 9`, `b = 2` → 9 / 2 = 4.5 → both are `int` → 4."
+        },
         "answer": {
           "value": "3"
         },
@@ -1751,6 +1896,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מדף התרגול של הקורס. מה יודפס?\n`int total = 10;`\n`int items = 4;`\n`System.out.println((double) total / items);`",
           "ru": "Из листа упражнений курса. Что напечатает?\n`int total = 10;`\n`int items = 4;`\n`System.out.println((double) total / items);`",
           "en": "From the course worksheet. What is printed?\n`int total = 10;`\n`int items = 4;`\n`System.out.println((double) total / items);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `total = 7`, `items = 2` → `(double) 7 / 2 = 3.5` → יודפס `3.5`.",
+          "ru": "Тот же код, но `total = 7`, `items = 2` → `(double) 7 / 2` = 3.5 → напечатает `3.5`.",
+          "en": "The same code, but `total = 7`, `items = 2` → `(double) 7 / 2` = 3.5 → prints `3.5`."
         },
         "answer": {
           "value": "2.5"
@@ -1787,6 +1937,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int n = 621;`\n`System.out.println(n % 10 + n / 10 % 10 + n / 100);`",
           "en": "From the course worksheet. What is printed?\n`int n = 621;`\n`System.out.println(n % 10 + n / 10 % 10 + n / 100);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `n = 415` → `415 % 10 = 5` → `415 / 10 % 10 = 1` → `415 / 100 = 4` → `5 + 1 + 4 = 10`.",
+          "ru": "Тот же код, но `n = 415` → `415 % 10` = 5 → `415 / 10 % 10` = 1 → `415 / 100` = 4 → 5 + 1 + 4 = 10.",
+          "en": "The same code, but `n = 415` → `415 % 10` = 5 → `415 / 10 % 10` = 1 → `415 / 100` = 4 → 5 + 1 + 4 = 10."
+        },
         "answer": {
           "value": "9"
         },
@@ -1820,6 +1975,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`double y = 20.0;`\n`y /= 4;`\n`System.out.println(y);`",
           "en": "From the course worksheet. What is printed?\n`double y = 20.0;`\n`y /= 4;`\n`System.out.println(y);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `y = 9.0`, `y /= 2` → `y = 9.0 / 2 = 4.5` → יודפס `4.5`.",
+          "ru": "Тот же код, но `y = 9.0`, `y /= 2` → `y = 9.0 / 2` = 4.5 → напечатает `4.5`.",
+          "en": "The same code, but `y = 9.0`, `y /= 2` → `y = 9.0 / 2` = 4.5 → prints `4.5`."
+        },
         "answer": {
           "value": "5.0"
         },
@@ -1849,6 +2009,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מדף התרגול של הקורס. מה יודפס? כתבו כך: 1 2\n`int z = 8;`\n`int result = ++z;`\n`System.out.println(z + \" \" + result);`",
           "ru": "Из листа упражнений курса. Что напечатает? Напиши так: 1 2\n`int z = 8;`\n`int result = ++z;`\n`System.out.println(z + \" \" + result);`",
           "en": "From the course worksheet. What is printed? Write like: 1 2\n`int z = 8;`\n`int result = ++z;`\n`System.out.println(z + \" \" + result);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `z = 3` → `++z`: קודם `z = 4`, ואז `result = 4` → `4 4`.",
+          "ru": "Тот же код, но `z = 3` → `++z`: сначала `z` = 4, потом `result` = 4 → `4 4`.",
+          "en": "The same code, but `z = 3` → `++z`: first `z` = 4, then `result` = 4 → `4 4`."
         },
         "answer": {
           "accept": [
@@ -1883,6 +2048,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Из листа упражнений курса. Что напечатает? Напиши так: 1 2\n`int k = 12;`\n`int output = k++;`\n`System.out.println(k + \" \" + output);`",
           "en": "From the course worksheet. What is printed? Write like: 1 2\n`int k = 12;`\n`int output = k++;`\n`System.out.println(k + \" \" + output);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `k = 3` → `k++`: קודם `output = 3` (הישן), ואז `k = 4` → `4 3`.",
+          "ru": "Тот же код, но `k = 3` → `k++`: сначала `output` = 3 (старое), потом `k` = 4 → `4 3`.",
+          "en": "The same code, but `k = 3` → `k++`: first `output` = 3 (the old value), then `k` = 4 → `4 3`."
+        },
         "answer": {
           "accept": [
             "13 12"
@@ -1916,6 +2086,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int count = 5;`\n`count = --count;`\n`System.out.println(count);`",
           "en": "From the course worksheet. What is printed?\n`int count = 5;`\n`count = --count;`\n`System.out.println(count);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `count = 9` → `--count`: קודם `count` יורד ל־8, והערך הזה נשמר → 8.",
+          "ru": "Тот же код, но `count = 9` → `--count`: сначала `count` уменьшается до 8, это значение и записывается → 8.",
+          "en": "The same code, but `count = 9` → `--count`: first `count` drops to 8, and that value is stored → 8."
+        },
         "answer": {
           "value": "4"
         },
@@ -1947,6 +2122,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Из листа упражнений курса. Что напечатает?\n`int val = 15;`\n`val %= 4;`\n`System.out.println(val);`",
           "en": "From the course worksheet. What is printed?\n`int val = 15;`\n`val %= 4;`\n`System.out.println(val);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `val = 22`, `val %= 6` → `22 = 3 × 6 + 4` → השארית 4.",
+          "ru": "Тот же код, но `val = 22`, `val %= 6` → 22 = 3 × 6 + 4 → остаток 4.",
+          "en": "The same code, but `val = 22`, `val %= 6` → 22 = 3 × 6 + 4 → the remainder is 4."
+        },
         "answer": {
           "value": "3"
         },
@@ -1976,6 +2156,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מדף התרגול של הקורס. מה יודפס?\n`int p = 7;`\n`p++;`\n`p *= 2;`\n`System.out.println(p);`",
           "ru": "Из листа упражнений курса. Что напечатает?\n`int p = 7;`\n`p++;`\n`p *= 2;`\n`System.out.println(p);`",
           "en": "From the course worksheet. What is printed?\n`int p = 7;`\n`p++;`\n`p *= 2;`\n`System.out.println(p);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `p = 3` → `p++` → 4 → `p *= 2` → 8 → יודפס 8.",
+          "ru": "Тот же код, но `p = 3` → `p++` → 4 → `p *= 2` → 8 → напечатает 8.",
+          "en": "The same code, but `p = 3` → `p++` → 4 → `p *= 2` → 8 → prints 8."
         },
         "answer": {
           "value": "16"
@@ -2009,6 +2194,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס?\n`int a = 7;`\n`int b = 2;`\n`System.out.println(a / b);`",
           "ru": "Что будет напечатано?\n`int a = 7;`\n`int b = 2;`\n`System.out.println(a / b);`",
           "en": "What is printed?\n`int a = 7;`\n`int b = 2;`\n`System.out.println(a / b);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `a = 9`, `b = 4` → `9 / 4 = 2.25` → `int` → 2.",
+          "ru": "Тот же код, но `a = 9`, `b = 4` → 9 / 4 = 2.25 → `int` → 2.",
+          "en": "The same code, but `a = 9`, `b = 4` → 9 / 4 = 2.25 → `int` → 2."
         },
         "answer": {
           "value": "3"
@@ -2044,6 +2234,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`System.out.println(7 % 3);`",
           "en": "What is printed?\n`System.out.println(7 % 3);`"
         },
+        "example": {
+          "he": "`System.out.println(11 % 4);` → `11 = 2 × 4 + 3` → השארית 3.",
+          "ru": "`System.out.println(11 % 4);` → 11 = 2 × 4 + 3 → остаток 3.",
+          "en": "`System.out.println(11 % 4);` → 11 = 2 × 4 + 3 → the remainder is 3."
+        },
         "answer": {
           "value": "1"
         },
@@ -2074,6 +2269,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס?\n`int x = 5;`\n`x++;`\n`x++;`\n`x--;`\n`System.out.println(x);`",
           "ru": "Что будет напечатано?\n`int x = 5;`\n`x++;`\n`x++;`\n`x--;`\n`System.out.println(x);`",
           "en": "What is printed?\n`int x = 5;`\n`x++;`\n`x++;`\n`x--;`\n`System.out.println(x);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x = 2`, ו־`x++` פעם אחת, `x--` פעמיים → 2 → 3 → 2 → 1 → יודפס 1.",
+          "ru": "Тот же код, но `x = 2`, и `x++` один раз, `x--` два раза → 2 → 3 → 2 → 1 → напечатает 1.",
+          "en": "The same code, but `x = 2`, with `x++` once and `x--` twice → 2 → 3 → 2 → 1 → prints 1."
         },
         "answer": {
           "value": "6"
@@ -2106,6 +2306,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס?\n`System.out.println(10 / 4 * 4);`",
           "ru": "Что будет напечатано?\n`System.out.println(10 / 4 * 4);`",
           "en": "What is printed?\n`System.out.println(10 / 4 * 4);`"
+        },
+        "example": {
+          "he": "`System.out.println(7 / 2 * 2);` → משמאל לימין: `7 / 2 = 3` (int) → `3 * 2 = 6`. לא 7: השבר נעלם בשלב הראשון.",
+          "ru": "`System.out.println(7 / 2 * 2);` → слева направо: `7 / 2` = 3 (int) → `3 * 2` = 6. Не 7: дробь пропала на первом шаге.",
+          "en": "`System.out.println(7 / 2 * 2);` → left to right: `7 / 2` = 3 (int) → `3 * 2` = 6. Not 7: the fraction was lost in the first step."
         },
         "answer": {
           "value": "8"
@@ -2142,6 +2347,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`double d = 7 / 2;`\n`System.out.println(d);`",
           "en": "What is printed?\n`double d = 7 / 2;`\n`System.out.println(d);`"
         },
+        "example": {
+          "he": "`double d = 9 / 4;` → קודם מחשבים `9 / 4` ב־`int` → 2 → אחר כך שמים 2 ב־`double` → יודפס `2.0`. ה־`double` משמאל לא מציל את השבר.",
+          "ru": "`double d = 9 / 4;` → сначала считается `9 / 4` в `int` → 2 → потом 2 кладём в `double` → напечатает `2.0`. `double` слева не спасает дробь.",
+          "en": "`double d = 9 / 4;` → first `9 / 4` is computed as `int` → 2 → then 2 goes into a `double` → prints `2.0`. The `double` on the left does not save the fraction."
+        },
         "answer": {
           "value": "3"
         },
@@ -2177,6 +2387,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`int x = 10;`\n`x += 3;`\n`x %= 4;`\n`System.out.println(x);`",
           "en": "What is printed?\n`int x = 10;`\n`x += 3;`\n`x %= 4;`\n`System.out.println(x);`"
         },
+        "example": {
+          "he": "אותו קוד, אבל `x = 7` → `x += 3` → 10 → `x %= 4` → `10 = 2 × 4 + 2` → 2.",
+          "ru": "Тот же код, но `x = 7` → `x += 3` → 10 → `x %= 4` → 10 = 2 × 4 + 2 → 2.",
+          "en": "The same code, but `x = 7` → `x += 3` → 10 → `x %= 4` → 10 = 2 × 4 + 2 → 2."
+        },
         "answer": {
           "value": "1"
         },
@@ -2210,6 +2425,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано? (символ `'a'` — номер 97)\n`char c = 'a';`\n`int k = c + 2;`\n`System.out.println(k);`",
           "en": "What is printed? (the character `'a'` is number 97)\n`char c = 'a';`\n`int k = c + 2;`\n`System.out.println(k);`"
         },
+        "example": {
+          "he": "`char c = 'b';` ו־`int k = c + 3;` → `'b'` הוא מספר 98 → `98 + 3 = 101` → `k` הוא `int`, ולכן מודפס המספר 101 ולא אות.",
+          "ru": "`char c = 'b';` и `int k = c + 3;` → `'b'` — номер 98 → 98 + 3 = 101 → `k` — `int`, поэтому печатается число 101, а не буква.",
+          "en": "`char c = 'b';` and `int k = c + 3;` → `'b'` is number 98 → 98 + 3 = 101 → `k` is an `int`, so the number 101 is printed, not a letter."
+        },
         "answer": {
           "value": "99"
         },
@@ -2239,6 +2459,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה תדפיס השורה? (כתבו בדיוק את מה שיופיע על המסך)\n`System.out.println(\"Sum: \" + 2 + 3);`",
           "ru": "Что напечатает строка? (напиши точно то, что появится на экране)\n`System.out.println(\"Sum: \" + 2 + 3);`",
           "en": "What does this line print? (write exactly what appears on the screen)\n`System.out.println(\"Sum: \" + 2 + 3);`"
+        },
+        "example": {
+          "he": "`System.out.println(\"Total: \" + 4 + 1);` → `\"Total: \" + 4` → `\"Total: 4\"` → אחר כך + 1`` מדביק → `Total: 41`.",
+          "ru": "`System.out.println(\"Total: \" + 4 + 1);` → `\"Total: \" + 4` → `\"Total: 4\"` → потом `+ 1` склеивает → `Total: 41`.",
+          "en": "`System.out.println(\"Total: \" + 4 + 1);` → `\"Total: \" + 4` → `\"Total: 4\"` → then `+ 1` glues → `Total: 41`."
         },
         "answer": {
           "accept": [
@@ -2278,6 +2503,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "ru": "Что будет напечатано?\n`double avg = (double) (7 / 2);`\n`System.out.println(avg);`",
           "en": "What is printed?\n`double avg = (double) (7 / 2);`\n`System.out.println(avg);`"
         },
+        "example": {
+          "he": "`double avg = (double) (9 / 4);` → קודם הסוגריים: `9 / 4` ב־`int = 2` → אחר כך `(double) 2 = 2.0` → יודפס `2.0`. המרה אחרי החילוק כבר לא עוזרת.",
+          "ru": "`double avg = (double) (9 / 4);` → сначала скобки: `9 / 4` в `int` = 2 → потом `(double) 2` = 2.0 → напечатает `2.0`. Приведение после деления уже не помогает.",
+          "en": "`double avg = (double) (9 / 4);` → brackets first: `9 / 4` as `int` = 2 → then `(double) 2` = 2.0 → prints `2.0`. Casting after the division no longer helps."
+        },
         "answer": {
           "value": "3"
         },
@@ -2312,6 +2542,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "סכום הספרות של 5084. מה יודפס?\n`int n = 5084;`\n`int s = 0;`\n`s += n % 10;  n /= 10;`\n`s += n % 10;  n /= 10;`\n`s += n % 10;  n /= 10;`\n`s += n;`\n`System.out.println(s);`",
           "ru": "Сумма цифр 5084. Что будет напечатано?\n`int n = 5084;`\n`int s = 0;`\n`s += n % 10;  n /= 10;`\n`s += n % 10;  n /= 10;`\n`s += n % 10;  n /= 10;`\n`s += n;`\n`System.out.println(s);`",
           "en": "The digit sum of 5084. What is printed?\n`int n = 5084;`\n`int s = 0;`\n`s += n % 10;  n /= 10;`\n`s += n % 10;  n /= 10;`\n`s += n % 10;  n /= 10;`\n`s += n;`\n`System.out.println(s);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `n = 2031` → לוקחים 1, `n = 203` → לוקחים 3, `n = 20` → לוקחים 0, `n = 2` → `s += 2` → `1 + 3 + 0 + 2 = 6`.",
+          "ru": "Тот же код, но `n = 2031` → берём 1, n = 203 → берём 3, n = 20 → берём 0, n = 2 → `s += 2` → 1 + 3 + 0 + 2 = 6.",
+          "en": "The same code, but `n = 2031` → take 1, n = 203 → take 3, n = 20 → take 0, n = 2 → `s += 2` → 1 + 3 + 0 + 2 = 6."
         },
         "answer": {
           "value": "17"
@@ -2350,6 +2585,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "מה יודפס? (כתבו את שתי השורות, עם רווח ביניהן)\n`int x = 5;`\n`System.out.println(x++);`\n`System.out.println(x);`",
           "ru": "Что будет напечатано? (напиши обе строки через пробел)\n`int x = 5;`\n`System.out.println(x++);`\n`System.out.println(x);`",
           "en": "What is printed? (write both lines, separated by a space)\n`int x = 5;`\n`System.out.println(x++);`\n`System.out.println(x);`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `x = 8` → `println(x++)` מדפיס את הערך הישן 8, ורק אחר כך `x = 9` → השורה השנייה 9 → התשובה הייתה `8 9`.",
+          "ru": "Тот же код, но `x = 8` → `println(x++)` печатает старое значение 8, и только потом `x` = 9 → вторая строка 9 → ответ был бы `8 9`.",
+          "en": "The same code, but `x = 8` → `println(x++)` prints the old value 8, and only then `x` = 9 → the second line is 9 → the answer would be `8 9`."
         },
         "answer": {
           "accept": [
@@ -2391,6 +2631,11 @@ window.LESSONS["algo-2026-10-18"] = {
           "he": "125 דקות. מה יודפס?\n`int total = 125;`\n`System.out.println(total / 60 + \" h \" + total % 60 + \" min\");`",
           "ru": "125 минут. Что будет напечатано?\n`int total = 125;`\n`System.out.println(total / 60 + \" h \" + total % 60 + \" min\");`",
           "en": "125 minutes. What is printed?\n`int total = 125;`\n`System.out.println(total / 60 + \" h \" + total % 60 + \" min\");`"
+        },
+        "example": {
+          "he": "אותו קוד, אבל `total = 75` → `75 / 60 = 1` → `75 % 60 = 15` → יודפס `1 h 15 min`.",
+          "ru": "Тот же код, но `total = 75` → `75 / 60` = 1 → `75 % 60` = 15 → напечатает `1 h 15 min`.",
+          "en": "The same code, but `total = 75` → `75 / 60` = 1 → `75 % 60` = 15 → prints `1 h 15 min`."
         },
         "answer": {
           "accept": [
