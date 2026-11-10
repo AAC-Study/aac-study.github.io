@@ -271,7 +271,7 @@
       tk_format_number: 'כתבו מספר אחד.', tk_choose: 'בחרו תשובה:',
       tk_check: 'בדיקה', tk_correct: 'נכון! כל הכבוד', tk_correct_sub: 'המשימה סומנה כפתורה.', tk_wrong: 'עוד לא',
       tk_unparsed: 'לא הצלחתי לבדוק את התשובה הזו. העתיקו את הפרומפט והדביקו אותו בכל AI — הוא יבדוק את הפתרון.',
-      tk_hint: 'רמז', tk_hint_n: 'רמז {n}', tk_more_hint: 'עוד רמז', tk_hint_last: 'זה היה הרמז האחרון. הפתרון המלא נמצא למטה.',
+      tk_example: 'דוגמה', tk_hint: 'רמז', tk_hint_n: 'רמז {n}', tk_more_hint: 'עוד רמז', tk_hint_last: 'זה היה הרמז האחרון. הפתרון המלא נמצא למטה.',
       tk_hint_empty: 'הרמזים יופיעו כאן אחרי בדיקה — או פתחו את הראשון כבר עכשיו.', tk_show_hint: 'להציג רמז',
       tk_solution: 'תשובה ופתרון מלא', tk_open: 'לפתוח', tk_close: 'לסגור',
       tk_prompt: 'פרומפט ל־AI', tk_prompt_lead: 'העתיקו והדביקו בכל AI (ChatGPT, Claude, Gemini…), גם בצ׳אט חדש וריק. הפרומפט כולל את המשימה ואת התשובה שלכם.',
@@ -306,7 +306,7 @@
       tk_format_number: 'Запиши одно число.', tk_choose: 'Выбери ответ:',
       tk_check: 'Проверить', tk_correct: 'Верно! Отлично', tk_correct_sub: 'Задача отмечена как решённая.', tk_wrong: 'Пока нет',
       tk_unparsed: 'Я не смог проверить этот ответ — скопируй промпт и вставь его в любой ИИ, он проверит решение.',
-      tk_hint: 'Подсказка', tk_hint_n: 'Подсказка {n}', tk_more_hint: 'Ещё подсказка', tk_hint_last: 'Это была последняя подсказка. Полное решение — ниже.',
+      tk_example: 'Пример', tk_hint: 'Подсказка', tk_hint_n: 'Подсказка {n}', tk_more_hint: 'Ещё подсказка', tk_hint_last: 'Это была последняя подсказка. Полное решение — ниже.',
       tk_hint_empty: 'Подсказки появятся здесь после проверки — или открой первую прямо сейчас.', tk_show_hint: 'Показать подсказку',
       tk_solution: 'Ответ и полное решение', tk_open: 'Открыть', tk_close: 'Закрыть',
       tk_prompt: 'Промпт для ИИ', tk_prompt_lead: 'Скопируй и вставь в любой ИИ (ChatGPT, Claude, Gemini…), даже в новый пустой чат. В промпте есть задача и твой ответ.',
@@ -341,7 +341,7 @@
       tk_format_number: 'Write one number.', tk_choose: 'Choose an answer:',
       tk_check: 'Check', tk_correct: 'Correct! Well done', tk_correct_sub: 'The task is marked as solved.', tk_wrong: 'Not yet',
       tk_unparsed: 'I couldn\'t check this answer — copy the prompt and paste it into any AI, it will check your solution.',
-      tk_hint: 'Hint', tk_hint_n: 'Hint {n}', tk_more_hint: 'Another hint', tk_hint_last: 'That was the last hint. The full solution is below.',
+      tk_example: 'Example', tk_hint: 'Hint', tk_hint_n: 'Hint {n}', tk_more_hint: 'Another hint', tk_hint_last: 'That was the last hint. The full solution is below.',
       tk_hint_empty: 'Hints appear here after you check — or open the first one now.', tk_show_hint: 'Show a hint',
       tk_solution: 'Answer and full solution', tk_open: 'Open', tk_close: 'Close',
       tk_prompt: 'Prompt for AI', tk_prompt_lead: 'Copy and paste into any AI (ChatGPT, Claude, Gemini…), even a brand-new empty chat. The prompt includes the task and your answer.',
@@ -1032,6 +1032,9 @@
     var hintPanel = panel({ id: 'tk-hint-' + task.id, kind: 'hint', icon: 'bulb', title: t('tk_hint'), onOpen: function () {
       if (!hintsShown && hints.length) { hintsShown = 1; hintUsed = true; renderHints(); }
     } });
+    /* «Пример»: разобранный пример на других числах — не подсказка, звёзды не снимает */
+    var exPanel = task.example ? panel({ id: 'tk-ex-' + task.id, kind: 'ex', icon: 'book', title: t('tk_example') }) : null;
+    if (exPanel) exPanel.inner.appendChild(el('div', { class: 'tk-ex' }, [rich(pick(task.example, lang))]));
     var solPanel = panel({ id: 'tk-sol-' + task.id, kind: 'sol', icon: 'eye', title: t('tk_solution'), onOpen: function () { hintUsed = true; } });
     var promptPanel = panel({ id: 'tk-ai-' + task.id, kind: 'ai', icon: 'robot', title: t('tk_prompt'), onOpen: function () { refreshPrompt(); } });
 
@@ -1155,7 +1158,7 @@
     checkBtn.addEventListener('click', doCheck);
 
     var content = el('div', { class: 'tk' + (isAI ? ' tk--ai' : '') }, [
-      head, work, ansWrap, result, hintPanel.el, solPanel.el, promptPanel.el
+      head, work, ansWrap, result, exPanel && exPanel.el, hintPanel.el, solPanel.el, promptPanel.el
     ]);
 
     setMode(st.mode || 'draw');

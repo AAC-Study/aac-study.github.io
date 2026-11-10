@@ -445,7 +445,7 @@ body.no-scroll { overflow: hidden; }
 .remember small { color: var(--text-3); font-size: 13px; line-height: 1.4; }
 .form-ok { color: var(--ok); background: var(--ok-soft); padding: 10px 14px; border-radius: 10px; font-size: 14px; margin-bottom: 12px; font-weight: 600; }
 /* маленький технический код под ошибкой (для Claude/админа) */
-.err-code { display: block; margin-top: 6px; font-family: var(--mono); font-size: 11px; opacity: .6; cursor: help; word-break: break-word; }
+.err-code { display: block; margin-top: 6px; font-family: var(--mono); font-variant-ligatures: none; font-size: 11px; opacity: .6; cursor: help; word-break: break-word; }
 .err-code:hover, .err-code:focus { opacity: .9; }
 
 /* скрытый код ошибки: всплывает при наведении или нажатии на красную ошибку */
@@ -454,7 +454,7 @@ body.no-scroll { overflow: hidden; }
   border: 1px solid rgba(255,255,255,.14); border-radius: 10px; padding: 10px 12px; box-shadow: var(--shadow-lg); font-size: 12px; line-height: 1.45; cursor: auto; }
 .form-error.tip-open .err-tip { display: block; animation: tipIn .15s var(--ease); }
 .err-tip b { display: block; font-weight: 600; opacity: .8; }
-.err-tip code { display: block; font-family: var(--mono); font-size: 12px; margin: 4px 0 8px; word-break: break-word; user-select: all; -webkit-user-select: all; }
+.err-tip code { display: block; font-family: var(--mono); font-variant-ligatures: none; font-size: 12px; margin: 4px 0 8px; word-break: break-word; user-select: all; -webkit-user-select: all; }
 .err-tip__copy { border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.08); color: inherit; border-radius: 8px; padding: 5px 10px; font: inherit; font-size: 12px; cursor: pointer; }
 @keyframes tipIn { from { opacity: 0; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
 .err-code { display: none; }
@@ -469,9 +469,9 @@ body.no-scroll { overflow: hidden; }
 .rp-important li { margin: 3px 0; }
 .rp-important__no { margin: 8px 0 0; color: var(--bad); }
 .rp-attached { margin-top: 10px; font-size: 13px; color: var(--text-2); }
-.rp-attached code { display: block; margin-top: 3px; font-family: var(--mono); font-size: 12px; background: var(--bg-2, var(--accent-soft)); padding: 6px 8px; border-radius: 8px; word-break: break-word; }
+.rp-attached code { display: block; margin-top: 3px; font-family: var(--mono); font-variant-ligatures: none; font-size: 12px; background: var(--bg-2, var(--accent-soft)); padding: 6px 8px; border-radius: 8px; word-break: break-word; }
 .issue__err { font-size: 12px; margin: 4px 0 6px; color: var(--bad); }
-.issue__err code { font-family: var(--mono); }
+.issue__err code { font-family: var(--mono); font-variant-ligatures: none; }
 .auth-link-email { font-size: 17px; margin: 4px 0 10px; word-break: break-all; }
 .auth-link-btns { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
 

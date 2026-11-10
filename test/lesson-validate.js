@@ -50,6 +50,7 @@ process.argv.slice(2).forEach(function (id) {
     tri(id, w + '.text', tk.text);
     if (tk.kind === 'choice') (tk.options || []).forEach(function (o, i) { tri(id, w + '.options[' + i + ']', o); });
     (tk.hints || []).forEach(function (h, i) { tri(id, w + '.hints[' + i + ']', h); });
+    if (tk.example) tri(id, w + '.example', tk.example);   // свёрнутая вкладка «Пример» в задаче
     if (!(tk.solution || []).length) fail(id, w + ' no solution');
     (tk.solution || []).forEach(function (h, i) { tri(id, w + '.solution[' + i + ']', h); });
     var inp = rightInput(tk);

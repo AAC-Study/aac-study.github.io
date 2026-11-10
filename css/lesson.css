@@ -2,7 +2,7 @@
    Только токены из base.css. RTL — через [dir="rtl"] (без inset-inline-*). */
 
 .ls { max-width: 1180px; margin: 0 auto; padding: 8px 0 96px; position: relative; }
-.ls .m, .tk .m { font-family: var(--mono); font-size: .92em; padding: 0 .15em; color: var(--text); }
+.ls .m, .tk .m { font-family: var(--mono); font-variant-ligatures: none; font-size: .92em; padding: 0 .15em; color: var(--text); }
 .ls .m--nw, .tk .m--nw { white-space: nowrap; }
 .ls-dot { color: var(--text-3); }
 
@@ -147,7 +147,7 @@
 
 .ls-math {
   margin-top: 12px; padding: 12px 16px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--border);
-  font-family: var(--mono); font-size: 15px; line-height: 1.75; overflow-x: auto; -webkit-overflow-scrolling: touch; text-align: left;
+  font-family: var(--mono); font-variant-ligatures: none; font-size: 15px; line-height: 1.75; overflow-x: auto; -webkit-overflow-scrolling: touch; text-align: left;
 }
 .ls-step--tip .ls-math { background: var(--surface); }
 .ls-math__line { white-space: pre; }
@@ -289,7 +289,7 @@
 .tk-solved-chip svg { width: 15px; height: 15px; stroke-width: 2.6; }
 .tk-head__group { font-size: 14px; color: var(--text-3); margin-bottom: 4px; }
 .tk-head__q { font-size: 19px; font-weight: 600; line-height: 1.45; }
-.tk-head__q--math { font-family: var(--mono); font-size: 24px; font-weight: 600; letter-spacing: -.01em; text-align: left; overflow-wrap: anywhere; }
+.tk-head__q--math { font-family: var(--mono); font-variant-ligatures: none; font-size: 24px; font-weight: 600; letter-spacing: -.01em; text-align: left; overflow-wrap: anywhere; }
 
 /* toolbar */
 .tk-work { display: flex; flex-direction: column; gap: 10px; }
@@ -330,12 +330,12 @@
 .tk-canvas[hidden] { display: none; }
 .dr-canvas { position: absolute; top: 0; left: 0; display: block; touch-action: none; cursor: crosshair; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
 .dr-canvas.is-eraser { cursor: cell; }
-.tk-text { min-height: 220px; resize: vertical; font-family: var(--mono); line-height: 1.7; }
+.tk-text { min-height: 220px; resize: vertical; font-family: var(--mono); font-variant-ligatures: none; line-height: 1.7; }
 .tk-text[hidden] { display: none; }
 .tk-symbols { display: flex; flex-wrap: wrap; gap: 6px; }
 .tk-sym {
   min-width: 44px; height: 44px; padding: 0 10px; border-radius: 11px; border: 1px solid var(--border); background: var(--surface);
-  font-family: var(--mono); font-size: 18px; color: var(--text); transition: border-color .2s, background-color .2s, transform .12s var(--ease);
+  font-family: var(--mono); font-variant-ligatures: none; font-size: 18px; color: var(--text); transition: border-color .2s, background-color .2s, transform .12s var(--ease);
 }
 .tk-sym:hover { border-color: var(--accent); background: var(--accent-soft); }
 .tk-sym:active { transform: scale(.92); }
@@ -344,7 +344,7 @@
 .tk-answer { padding: 16px; border-radius: var(--radius); border: 1.5px solid var(--border); background: var(--surface); }
 .tk-answer__label { display: block; font-weight: 700; margin-bottom: 8px; }
 .tk-answer__row { display: flex; gap: 10px; align-items: stretch; flex-wrap: wrap; }
-.tk-answer__input { flex: 1 1 200px; min-width: 0; font-size: 18px; font-family: var(--mono); min-height: 50px; }
+.tk-answer__input { flex: 1 1 200px; min-width: 0; font-size: 18px; font-family: var(--mono); font-variant-ligatures: none; min-height: 50px; }
 .tk-answer__help { font-size: 13px; color: var(--text-3); margin-top: 8px; }
 .tk-check { position: relative; min-height: 50px; padding: 0 24px; font-weight: 700; flex: none; }
 .tk-check svg { stroke-width: 2.6; }
@@ -392,6 +392,9 @@
 .tk-panel--hint .tk-panel__icon { background: var(--warn-soft); color: var(--warn); }
 .tk-panel--sol .tk-panel__icon { background: var(--ok-soft); color: var(--ok); }
 .tk-panel--ai .tk-panel__icon { background: var(--accent-soft); color: var(--accent); }
+.tk-panel--ex .tk-panel__icon { background: var(--surface-2); color: var(--text); border: 1px solid var(--border); }
+.tk-panel--ex.is-open { border-color: var(--text-3); }
+.tk-ex { font-size: 15px; line-height: 1.6; }
 .tk-panel__title { flex: 1; min-width: 0; }
 .tk-panel__state { font-size: 13px; font-weight: 500; color: var(--text-3); }
 .tk-panel__chev { display: grid; color: var(--text-3); transition: transform .3s var(--ease); }
@@ -418,11 +421,11 @@
 
 .tk-sol { list-style: none; margin: 0; padding: 0; counter-reset: none; }
 .tk-sol li { padding: 3px 0; }
-.tk-sol__math { font-family: var(--mono); font-size: 16px; text-align: left; white-space: pre-wrap; padding-left: 14px !important; border-left: 2px solid var(--border); overflow-wrap: anywhere; }
+.tk-sol__math { font-family: var(--mono); font-variant-ligatures: none; font-size: 16px; text-align: left; white-space: pre-wrap; padding-left: 14px !important; border-left: 2px solid var(--border); overflow-wrap: anywhere; }
 .tk-sol__text { color: var(--text-2); font-weight: 600; font-size: 14px; margin-top: 10px; }
 .tk-sol__text:first-child { margin-top: 0; }
-.tk-sol__answer { color: var(--ok); font-size: 16px; padding: 10px 14px !important; margin-top: 12px; border-radius: 12px; background: var(--ok-soft); font-family: var(--mono); }
-.tk-prompt, .tk-any__area { min-height: 220px; font-family: var(--mono); font-size: 16px; line-height: 1.5; resize: vertical; }
+.tk-sol__answer { color: var(--ok); font-size: 16px; padding: 10px 14px !important; margin-top: 12px; border-radius: 12px; background: var(--ok-soft); font-family: var(--mono); font-variant-ligatures: none; }
+.tk-prompt, .tk-any__area { min-height: 220px; font-family: var(--mono); font-variant-ligatures: none; font-size: 16px; line-height: 1.5; resize: vertical; }
 .tk-prompt__btns, .tk-any__btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
 
 /* ---------- animations ---------- */
@@ -496,7 +499,7 @@
 .tk-code__label .ic { width: 18px; height: 18px; }
 .tk-code { min-height: 260px; white-space: pre; overflow-x: auto; tab-size: 4; -moz-tab-size: 4; direction: ltr; text-align: left; font-size: 15px; line-height: 1.6; }
 .tk-code__note { margin: 0; font-size: 13px; }
-.tk-work--code .tk-sym { font-family: var(--mono); min-width: 40px; }
+.tk-work--code .tk-sym { font-family: var(--mono); font-variant-ligatures: none; min-width: 40px; }
 .tk-preview__btn { align-self: flex-start; }
 .tk-preview[hidden] { display: none; }
 .tk-preview__frame { display: block; width: 100%; height: 340px; border: 1px solid var(--border); border-radius: 12px; background: #fff; }
@@ -555,5 +558,5 @@
 [dir="rtl"] .tk-head__q--code > .code-copy { direction: rtl; }
 
 /* блок кода в тексте задания (```…```) */
-.tk-pre { font-family: var(--mono); font-size: 14px; line-height: 1.55; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; margin: 8px 0; overflow-x: auto; white-space: pre; text-align: left; direction: ltr; color: var(--text); font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
+.tk-pre { font-family: var(--mono); font-variant-ligatures: none; font-size: 14px; line-height: 1.55; background: var(--surface-2); border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; margin: 8px 0; overflow-x: auto; white-space: pre; text-align: left; direction: ltr; color: var(--text); font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
 @media (max-width: 420px) { .tk-pre { font-size: 12.5px; padding: 10px 9px; } }
