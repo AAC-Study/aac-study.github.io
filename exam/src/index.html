@@ -1,0 +1,26 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0e1320"><link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png"><title>Экзамен מבוא למחשב</title><style>/*CSS*/</style></head>
+<body><div id="app"><div class="body home">
+<h1>📝 Экзамен מבוא למחשב</h1>
+<div class="card">Четверг 12.11 · 1 час · 3 задания:<div class="rule">1. Таблица: 10 · 2 · 8 · 16</div><div class="rule">2. Перевести в двоичную и сложить</div><div class="rule">3. Сложить отрицательные (дополнение до 2)</div><p class="mut">Везде показать путь и проверить ответ.</p></div>
+<div id="list"></div>
+<button class="btn sec" id="inst" style="display:none">📲 Установить как приложение</button>
+<p class="mut" id="off">⏳ Сохраняю на телефон…</p>
+</div></div>
+<script>
+var G=/*LIST*/;
+var L=document.getElementById('list');
+G.forEach(function(g,i){
+  var fin=0,best=0; try{fin=+JSON.parse(localStorage.getItem('ex_'+g.id+'_fin')||'0');best=+JSON.parse(localStorage.getItem('ex_'+g.id+'_best')||'0');}catch(e){}
+  var a=document.createElement('a'); a.className='big'+(i===0&&!fin?' hl':''); a.href=g.file+'.html'; a.style.textDecoration='none';
+  a.innerHTML='<div class="e">'+g.emoji+'</div><div><b>'+(i+1)+'. '+g.title+'</b><span>'+g.sub+(fin?' · ✅ пройдено':'')+(best?' · рекорд '+best:'')+'</span></div>';
+  L.appendChild(a);
+});
+var off=document.getElementById('off');
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').then(function(){return navigator.serviceWorker.ready;}).then(function(){off.textContent='✅ Сохранено на телефоне: работает без интернета';}).catch(function(){off.textContent='';});}else off.textContent='';
+var dp=null,ib=document.getElementById('inst');
+addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;ib.style.display='';});
+ib.onclick=function(){if(dp){dp.prompt();dp=null;ib.style.display='none';}};
+</script></body></html>
