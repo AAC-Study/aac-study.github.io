@@ -698,7 +698,7 @@ window.GAME = {
       S.dur = (q.t || 12) * Math.max(0.55, 1 - (S.level - 1) * 0.08);
       S.t0 = performance.now(); S.state = 'play'; S.pick = -1; S.rush = 0;
       qb.textContent = q.q; qb.style.display = A.style === 'race' ? '' : 'none';
-      btns.forEach(function (b, i) { b.textContent = S.opts[i]; b.className = S.opts[i].length > 9 ? 'long' : ''; b.disabled = false; });
+      btns.forEach(function (b, i) { b.textContent = (A.style === 'race' && S.opts[i].length > 10 ? (i + 1) + ' · ' : '') + S.opts[i]; b.className = S.opts[i].length > 9 ? 'long' : ''; b.disabled = false; });
       R.newQ();
     }
     function hud2() {
@@ -840,7 +840,8 @@ window.GAME = {
             ctx.fillStyle = col; ctx.fillRect(gx, gy, gw, 48);
             ctx.fillStyle = '#101828'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
             var t = S.opts[i] || '';
-            txtFit(t, gw - 8, 20); ctx.fillText(t, gx + gw / 2, gy + 24);
+            if (t.length > 10) t = String(i + 1);
+            txtFit(t, gw - 8, 22); ctx.fillText(t, gx + gw / 2, gy + 24);
           }
           /* машина */
           carX += (S.lane - carX) * Math.min(1, dt / 90);
