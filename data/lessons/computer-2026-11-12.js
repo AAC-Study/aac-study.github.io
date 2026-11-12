@@ -214,19 +214,37 @@ window.LESSONS["computer-2026-11-12"] = {
     {
       "kind": "board",
       "title": {
-        "he": "דוגמה 2: הפונקציה יוצאת `C̄`",
-        "ru": "Пример 2: функция получается `C̄`",
-        "en": "Example 2: the function comes out as `C̄`"
+        "he": "דוגמה 2: \"המספר זוגי\" — יוצא `C̄`",
+        "ru": "Пример 2: «число чётное» — получается `C̄`",
+        "en": "Example 2: \"the number is even\" — it comes out as `C̄`"
       },
       "text": {
-        "he": "בדוגמה השנייה `f = 1` בשורות `0, 2, 4, 6`. לפי אותה שיטה: `f = ĀB̄C̄ + ĀBC̄ + AB̄C̄ + ABC̄`.\nבכל ארבע השורות `C = 0`, ובכל השורות האחרות `C = 1`. לכן כל הפונקציה היא פשוט `C̄`: שער NOT אחד.",
-        "ru": "Во втором примере `f = 1` в строках 0, 2, 4, 6. Тем же способом: `f = ĀB̄C̄ + ĀBC̄ + AB̄C̄ + ABC̄`.\nВо всех четырёх строках `C = 0`, а во всех остальных `C = 1`. Значит, вся функция — просто `C̄`: один вентиль NOT.",
-        "en": "In the second example `f = 1` in rows 0, 2, 4, 6. The same way: `f = ĀB̄C̄ + ĀBC̄ + AB̄C̄ + ABC̄`.\nIn all four rows `C = 0`, and in all the other rows `C = 1`. So the whole function is simply `C̄`: one NOT gate."
+        "he": "בדוגמה השנייה `f = 1` בשורות `0, 2, 4, 6`. לפי אותה שיטה: `f = ĀB̄C̄ + ĀBC̄ + AB̄C̄ + ABC̄`.\nבכל ארבע השורות `C = 0`, ובכל השורות האחרות `C = 1`. לכן כל הפונקציה היא פשוט `C̄`: שער NOT אחד.\nזו הפונקציה \"המספר זוגי\": `0, 2, 4, 6` הם המספרים הזוגיים. בבינארי מספר זוגי תמיד נגמר ב־0, ו־C היא הספרה האחרונה.",
+        "ru": "Во втором примере `f = 1` в строках 0, 2, 4, 6. Тем же способом: `f = ĀB̄C̄ + ĀBC̄ + AB̄C̄ + ABC̄`.\nВо всех четырёх строках `C = 0`, а во всех остальных `C = 1`. Значит, вся функция — просто `C̄`: один вентиль NOT.\nЭто функция «число чётное»: 0, 2, 4, 6 — чётные числа. В двоичной записи чётное число всегда кончается на 0, а C — последняя цифра.",
+        "en": "In the second example `f = 1` in rows 0, 2, 4, 6. The same way: `f = ĀB̄C̄ + ĀBC̄ + AB̄C̄ + ABC̄`.\nIn all four rows `C = 0`, and in all the other rows `C = 1`. So the whole function is simply `C̄`: one NOT gate.\nThis is the function \"the number is even\": 0, 2, 4, 6 are the even numbers. In binary an even number always ends in 0, and C is the last digit."
       },
       "why": {
         "he": "למה זה חשוב? פונקציה ארוכה = הרבה שערים = מעגל יקר ואיטי יותר. אם רואים שכל השורות עם 1 חולקות דבר אחד (כאן `C = 0`), מקצרים את כל הפונקציה לשער אחד.",
         "ru": "Почему это важно? Длинная функция = много вентилей = схема дороже и медленнее. Если видно, что у всех строк с 1 есть что-то общее (здесь `C = 0`), всю функцию сокращают до одного вентиля.",
         "en": "Why does it matter? A long function = many gates = a costlier, slower circuit. If you see that all rows with 1 share one thing (here `C = 0`), the whole function shrinks to one gate."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "דוגמה 3: תנאי קבלה ללימודים",
+        "ru": "Пример 3: условия приёма на учёбу",
+        "en": "Example 3: admission conditions"
+      },
+      "text": {
+        "he": "מתקבלים אם: פסיכומטרי מעל 700 או בגרות מעל 80, וגם תנאי נוסף C שחייב להתקיים.\n• `A` — פסיכומטרי מעל 700\n• `B` — בגרות מעל 80\n• `C` — התנאי הנוסף\nהפונקציה:\n`f = (A + B) × C`\nהתרחישים מהשיעור: פסיכומטרי 600 ובגרות 85, ו־C מתקיים → `(0 + 1) × 1 = 1` — מתקבלים. פסיכומטרי 701 ובגרות 89, אבל C לא מתקיים → `(1 + 1) × 0 = 0` — לא מתקבלים.",
+        "ru": "Принимают, если: психометрия больше 700 или багрут больше 80, и при этом обязательно выполнено ещё одно условие C.\n• `A` — психометрия больше 700\n• `B` — багрут больше 80\n• `C` — дополнительное условие\nФункция:\n`f = (A + B) × C`\nСценарии с урока: психометрия 600 и багрут 85, C выполнено → `(0 + 1) × 1 = 1` — приняли. Психометрия 701 и багрут 89, но C не выполнено → `(1 + 1) × 0 = 0` — не приняли.",
+        "en": "You are admitted if: psychometric above 700 or bagrut above 80, and another condition C must also hold.\n• `A` — psychometric above 700\n• `B` — bagrut above 80\n• `C` — the extra condition\nThe function:\n`f = (A + B) × C`\nThe scenarios from class: psychometric 600 and bagrut 85, C holds → `(0 + 1) × 1 = 1` — admitted. Psychometric 701 and bagrut 89, but C does not hold → `(1 + 1) × 0 = 0` — not admitted."
+      },
+      "why": {
+        "he": "למה סוגריים? \"או\" (`+`) צריך לקרות לפני ה\"וגם\" (`×`), כמו בחשבון: `(0 + 1) × 1`. בלי סוגריים `A + B × C` אומר משהו אחר: מספיק פסיכומטרי מעל 700 גם בלי C. ושימו לב: \"מעל 700\" לא כולל 700 עצמו — מי שקיבל בדיוק 700, אצלו `A = 0`. בטבלת האמת יוצא 1 רק בשורות `011, 101, 111`.",
+        "ru": "Зачем скобки? «Или» (`+`) должно сработать раньше «и» (`×`), как в арифметике: `(0 + 1) × 1`. Без скобок `A + B × C` значит другое: хватит психометрии выше 700 даже без C. И внимание: «больше 700» не включает само 700 — у того, кто получил ровно 700, `A = 0`. В таблице истинности 1 выходит только в строках `011, 101, 111`.",
+        "en": "Why brackets? \"Or\" (`+`) must happen before \"and\" (`×`), as in arithmetic: `(0 + 1) × 1`. Without brackets `A + B × C` means something else: psychometric above 700 would be enough even without C. And note: \"above 700\" does not include 700 itself — whoever got exactly 700 has `A = 0`. In the truth table 1 comes out only in the rows `011, 101, 111`."
       }
     },
     {
@@ -844,6 +862,56 @@ window.LESSONS["computer-2026-11-12"] = {
             "he": "תשובה: 4",
             "ru": "Ответ: 4",
             "en": "Answer: 4"
+          }
+        ]
+      },
+      {
+        "id": "b6",
+        "group": "build",
+        "label": {
+          "he": "תנאי קבלה",
+          "ru": "Условия приёма",
+          "en": "Admission conditions"
+        },
+        "kind": "text",
+        "text": {
+          "he": "`f = (A + B) × C` מדוגמה 3. כתבו את כל עמודת f לשורות `000` עד `111`, מלמעלה למטה (8 ספרות).",
+          "ru": "`f = (A + B) × C` из примера 3. Напиши весь столбец f для строк от `000` до `111`, сверху вниз (8 цифр).",
+          "en": "`f = (A + B) × C` from example 3. Write the whole f column for the rows `000` to `111`, top to bottom (8 digits)."
+        },
+        "example": {
+          "he": "`f = A × B` (לא מהשיעור): 1 רק בשורות `110, 111` → `00000011`.",
+          "ru": "`f = A × B` (не с урока): 1 только в строках `110, 111` → `00000011`.",
+          "en": "`f = A × B` (not from class): 1 only in the rows `110, 111` → `00000011`."
+        },
+        "answer": {
+          "accept": [
+            "00010101",
+            "0 0 0 1 0 1 0 1",
+            "0,0,0,1,0,1,0,1",
+            "0, 0, 0, 1, 0, 1, 0, 1"
+          ]
+        },
+        "hints": [
+          {
+            "he": "כש־`C = 0`, f תמיד 0.",
+            "ru": "Когда `C = 0`, f всегда 0.",
+            "en": "When `C = 0`, f is always 0."
+          },
+          {
+            "he": "כש־`C = 1`, צריך לפחות אחד מ־A, B.",
+            "ru": "Когда `C = 1`, нужен хотя бы один из A, B.",
+            "en": "When `C = 1`, you need at least one of A, B."
+          }
+        ],
+        "solution": [
+          "C = 1:  001, 011, 101, 111",
+          "001: A + B = 0  →  0",
+          "011, 101, 111  →  1",
+          {
+            "he": "תשובה: 00010101",
+            "ru": "Ответ: 00010101",
+            "en": "Answer: 00010101"
           }
         ]
       }

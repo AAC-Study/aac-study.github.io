@@ -222,6 +222,32 @@ window.LESSONS["sql-2026-11-12"] = {
       }
     },
     {
+      "kind": "board",
+      "title": {
+        "he": "עוד פקודות מהשיעור",
+        "ru": "Ещё с урока: `-=`, `drop table` и insert с именами столбцов",
+        "en": "More from class: `-=`, `drop table` and insert with column names"
+      },
+      "text": {
+        "he": "• תרגיל: להוריד 2 כרטיסים צהובים רק למי שיש לו יותר מ־10. כמו ב־Java אפשר לכתוב `zahov -= 2`, או `zahov = zahov - 2`.\n• `update idkunim set bonus = 0` — בלי `where`, מאפס את הבונוס לכולם.\n• `drop table` מוחק את כל הטבלה. אחרי זה צריך שוב `create table` ו־`insert`.\n• אפשר לכתוב אחרי שם הטבלה, בסוגריים, לאילו עמודות נכנסים הערכים — \"כדי שהמערכת תבין לאיזה טור מוסיפים\".",
+        "ru": "• Упражнение: снять 2 жёлтые карточки только тем, у кого их больше 10. Как в Java, можно писать `zahov -= 2` или `zahov = zahov - 2`.\n• `update idkunim set bonus = 0` — без `where` обнуляет бонус всем.\n• `drop table` удаляет всю таблицу. После этого снова нужны `create table` и `insert`.\n• После имени таблицы в скобках можно написать, в какие столбцы идут значения — «чтобы система поняла, в какой столбец мы добавляем».",
+        "en": "• Exercise: take away 2 yellow cards only from those who have more than 10. As in Java you can write `zahov -= 2` or `zahov = zahov - 2`.\n• `update idkunim set bonus = 0` — with no `where` it resets everyone's bonus.\n• `drop table` deletes the whole table. After it you need `create table` and `insert` again.\n• After the table name you can write in brackets which columns the values go into — \"so the system understands which column we are adding to\"."
+      },
+      "math": [
+        "update idkunim set zahov -= 2 where zahov > 10",
+        "update idkunim set bonus = 0",
+        "",
+        "drop table idkunim",
+        "",
+        "insert into idkunim (prati, zahov) values ('dan', 3)"
+      ],
+      "why": {
+        "he": "מתי insert עם שמות עמודות? כשממלאים רק חלק מהעמודות: כל השאר יקבלו NULL. בלי הרשימה צריך לתת ערך לכל העמודות, בדיוק לפי הסדר שלהן. ולמה `drop table` מסוכן? כמו `delete` בלי `where`, אבל גרוע יותר: נעלמים גם הנתונים וגם הטבלה עצמה. (את השורה עם dan המצאנו לדוגמה.)",
+        "ru": "Когда нужен insert с именами столбцов? Когда заполняешь только часть столбцов: остальные получат NULL. Без списка нужно дать значение каждому столбцу, ровно в их порядке. А чем опасен `drop table`? Как `delete` без `where`, только хуже: исчезают и данные, и сама таблица. (Строку с dan мы придумали для примера.)",
+        "en": "When do you need insert with column names? When you fill only some of the columns: the rest get NULL. Without the list you must give a value for every column, exactly in their order. And why is `drop table` dangerous? Like `delete` without `where`, only worse: both the data and the table itself are gone. (The dan row is made up for the example.)"
+      }
+    },
+    {
       "kind": "tip",
       "title": {
         "he": "איך תיראה הבדיקה בסוף הקורס",
@@ -654,6 +680,44 @@ window.LESSONS["sql-2026-11-12"] = {
             "he": "תשובה: 7",
             "ru": "Ответ: 7",
             "en": "Answer: 7"
+          }
+        ]
+      },
+      {
+        "id": "s9",
+        "group": "idk",
+        "label": {
+          "he": "פחות 2 צהובים",
+          "ru": "Минус 2 жёлтые",
+          "en": "Minus 2 yellows"
+        },
+        "kind": "number",
+        "text": {
+          "he": "הטבלה `idkunim` מהשיעור (10 השורות מההתחלה):\n```\nprati, mishpaha, eretz, club, zahov, bonus\n('lev', 'deri', 'argentina', 'liverpool', 10, 6)\n('asaf', 'cohen', 'argentina', 'arsenal', 0, 0)\n('nati', 'hareven', 'spain', 'ajax', 0, 9)\n('yair', 'deri', 'argentina', 'liverpool', 12, 0)\n('uzi', 'mozkovitz', 'spain', 'juventus', 14, 8)\n('assi', 'yacobi', 'germany', 'juventus', 8, 19)\n('uzi', 'deri', 'argentina', 'liverpool', 2, 10)\n('roi', 'levi', 'germany', 'ajax', 8, 0)\n('yair', 'lerner', 'germany', 'arsenal', 18, 6)\n('avi', 'levi', 'germany', 'liverpool', 4, 4)\n```\nמריצים \n```\nupdate idkunim set zahov -= 2 where zahov > 10\n```\n בכמה שורות זה משנה משהו?",
+          "ru": "Таблица `idkunim` с урока (10 строк из начала):\n```\nprati, mishpaha, eretz, club, zahov, bonus\n('lev', 'deri', 'argentina', 'liverpool', 10, 6)\n('asaf', 'cohen', 'argentina', 'arsenal', 0, 0)\n('nati', 'hareven', 'spain', 'ajax', 0, 9)\n('yair', 'deri', 'argentina', 'liverpool', 12, 0)\n('uzi', 'mozkovitz', 'spain', 'juventus', 14, 8)\n('assi', 'yacobi', 'germany', 'juventus', 8, 19)\n('uzi', 'deri', 'argentina', 'liverpool', 2, 10)\n('roi', 'levi', 'germany', 'ajax', 8, 0)\n('yair', 'lerner', 'germany', 'arsenal', 18, 6)\n('avi', 'levi', 'germany', 'liverpool', 4, 4)\n```\nЗапускаем `update idkunim set zahov -= 2 where zahov > 10`. Во скольких строках это что-то меняет?",
+          "en": "The `idkunim` table from the lesson (the 10 starting rows):\n```\nprati, mishpaha, eretz, club, zahov, bonus\n('lev', 'deri', 'argentina', 'liverpool', 10, 6)\n('asaf', 'cohen', 'argentina', 'arsenal', 0, 0)\n('nati', 'hareven', 'spain', 'ajax', 0, 9)\n('yair', 'deri', 'argentina', 'liverpool', 12, 0)\n('uzi', 'mozkovitz', 'spain', 'juventus', 14, 8)\n('assi', 'yacobi', 'germany', 'juventus', 8, 19)\n('uzi', 'deri', 'argentina', 'liverpool', 2, 10)\n('roi', 'levi', 'germany', 'ajax', 8, 0)\n('yair', 'lerner', 'germany', 'arsenal', 18, 6)\n('avi', 'levi', 'germany', 'liverpool', 4, 4)\n```\nWe run `update idkunim set zahov -= 2 where zahov > 10`. In how many rows does it change something?"
+        },
+        "example": {
+          "he": "טבלה אחרת:\n```\nperot (id, pri, kamut)\n(1, 'tapuach', 4)\n(2, 'banana', 6)\n(3, 'tapuach', 2)\n(4, 'anavim', 9)\n(5, 'banana', 1)\n```\n```\nupdate perot set kamut -= 1 where kamut > 5\n```\n → banana (6) ו־anavim (9) → 2 שורות.",
+          "ru": "Другая таблица:\n```\nperot (id, pri, kamut)\n(1, 'tapuach', 4)\n(2, 'banana', 6)\n(3, 'tapuach', 2)\n(4, 'anavim', 9)\n(5, 'banana', 1)\n```\n`update perot set kamut -= 1 where kamut > 5` → banana (6) и anavim (9) → 2 строки.",
+          "en": "Another table:\n```\nperot (id, pri, kamut)\n(1, 'tapuach', 4)\n(2, 'banana', 6)\n(3, 'tapuach', 2)\n(4, 'anavim', 9)\n(5, 'banana', 1)\n```\n`update perot set kamut -= 1 where kamut > 5` → banana (6) and anavim (9) → 2 rows."
+        },
+        "answer": {
+          "value": "3"
+        },
+        "hints": [
+          {
+            "he": "`> 10` לא כולל את 10 עצמו (lev).",
+            "ru": "`> 10` не включает само 10 (lev).",
+            "en": "`> 10` does not include 10 itself (lev)."
+          }
+        ],
+        "solution": [
+          "yair deri 12 → 10, uzi mozkovitz 14 → 12, yair lerner 18 → 16",
+          {
+            "he": "תשובה: 3",
+            "ru": "Ответ: 3",
+            "en": "Answer: 3"
           }
         ]
       },
