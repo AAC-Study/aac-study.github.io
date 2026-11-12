@@ -170,9 +170,9 @@ window.LESSONS["computer-2026-11-12"] = {
         "en": "emu8086"
       },
       "text": {
-        "he": "על הלוח נכתב \"הרצה emu8086\". זו תוכנה שמדמה את המעבד 8086 של Intel: אפשר לכתוב בה פקודות אסמבלי ולראות איך המעבד מריץ אותן צעד אחר צעד.",
-        "ru": "На доске было написано «הרצה emu8086» (запуск emu8086). Это программа, которая изображает процессор Intel 8086: в ней можно писать команды ассемблера и смотреть, как процессор выполняет их шаг за шагом.",
-        "en": "The board said \"הרצה emu8086\" (running emu8086). It is a program that imitates the Intel 8086 processor: you can write assembly commands in it and watch the processor run them step by step."
+        "he": "על הלוח נכתב \"הרצה emu8086\". זו תוכנה שמדמה את המעבד 8086 של Intel: אפשר לכתוב בה פקודות אסמבלי ולראות איך המעבד מריץ אותן צעד אחר צעד.\nבתחילת השיעור המרצה ביקשה להוריד את התוכנה (האייקון ירוק): \"זה כלי\", ומתחילים לעבוד איתה כבר מהשבוע. לא לומדים את זה כדי להיות מתכנתי אסמבלי, אלא כדי להבין מה קורה בתוך המעבד.",
+        "ru": "На доске было написано «הרצה emu8086» (запуск emu8086). Это программа, которая изображает процессор Intel 8086: в ней можно писать команды ассемблера и смотреть, как процессор выполняет их шаг за шагом.\nВ начале урока преподавательница попросила скачать эту программу (значок зелёный): «это инструмент», работать с ней начинаем уже с этой недели. Учим это не для того, чтобы стать программистами на ассемблере, а чтобы понять, что происходит внутри процессора.",
+        "en": "The board said \"הרצה emu8086\" (running emu8086). It is a program that imitates the Intel 8086 processor: you can write assembly commands in it and watch the processor run them step by step.\nAt the start of the lesson the teacher asked us to download it (the icon is green): \"it is a tool\", and we start working with it this week. We do not learn it to become assembly programmers, but to understand what happens inside the CPU."
       },
       "why": {
         "he": "למה מראים אותו בקורס? כי בסוף הקורס לומדים אסמבלי (זה בתוכנית הקורס מהשיעור הראשון), ו־emu8086 מאפשר לראות איך פקודות קטנות רצות בתוך המעבד.",
