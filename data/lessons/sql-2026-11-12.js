@@ -12,9 +12,9 @@ window.LESSONS["sql-2026-11-12"] = {
     "en": "update and delete, and a car database exercise"
   },
   "summary": {
-    "he": "הטבלה idkunim: הכנסת 10 שורות בפקודה אחת, `update` עם ערך שמחושב מהישן (`zahov = zahov * 2`), `delete`, ומה קורה בלי `where`. ותרגיל: מסד targil עם טבלת רכבים, עמודה חדשה ועדכון גרמניה לטורקיה.",
-    "ru": "Таблица idkunim: 10 строк одной командой, `update` со значением из старого (`zahov = zahov * 2`), `delete` и что будет без `where`. И упражнение: база targil с таблицей машин, новый столбец и замена Германии на Турцию.",
-    "en": "The idkunim table: 10 rows in one command, `update` with a value computed from the old one (`zahov = zahov * 2`), `delete`, and what happens without `where`. And an exercise: the targil database with a car table, a new column and changing Germany to Turkey."
+    "he": "הטבלה idkunim: הכנסת 10 שורות בפקודה אחת, `update` עם ערך שמחושב מהישן (`zahov = zahov * 2`), `delete`, ומה קורה בלי `where`. ותרגיל: מסד targil עם טבלת רכבים, עמודה חדשה ועדכון גרמניה לטורקיה. בסוף: `alter table` (להוסיף ולמחוק עמודה), `*=`, ואיך תיראה הבדיקה בסוף הקורס.",
+    "ru": "Таблица idkunim: 10 строк одной командой, `update` со значением из старого (`zahov = zahov * 2`), `delete` и что будет без `where`. И упражнение: база targil с таблицей машин, новый столбец и замена Германии на Турцию. В конце: `alter table` (добавить и убрать столбец), `*=` и какой будет проверка в конце курса.",
+    "en": "The idkunim table: 10 rows in one command, `update` with a value computed from the old one (`zahov = zahov * 2`), `delete`, and what happens without `where`. And an exercise: the targil database with a car table, a new column and changing Germany to Turkey. At the end: `alter table` (add and remove a column), `*=`, and what the end-of-course test will look like."
   },
   "timeline": [
     {
@@ -168,9 +168,75 @@ window.LESSONS["sql-2026-11-12"] = {
         "en": "The exercise from the board:\n1. Create a database named targil.\n2. Create a table with the fields: car number, car name, year of manufacture, manufacturer. Think which type each field gets.\n3. Insert 3 rows of data.\n4. Run a general query.\n5. Run a query on car name and manufacturer.\n6. Show all cars from 2025.\nContinuation: add a column \"country of manufacture\", fill it in, and in all records where the country is Germany change it to Turkey."
       },
       "why": {
-        "he": "עמודה חדשה אפשר להוסיף עם העכבר ב־Design של הטבלה (כמו ב־05.11), או בקוד: \n```\nalter table שם_הטבלה add שם_העמודה nvarchar(20)\n```\n — את הפקודה הזאת לא ראינו על הלוח. אחרי ההוספה העמודה ריקה (NULL) בכל השורות, ולכן ממלאים אותה עם `update`.",
-        "ru": "Новый столбец можно добавить мышкой в Design таблицы (как 05.11) или кодом: `alter table имя_таблицы add имя_столбца nvarchar(20)` — эту команду на доске не видели. После добавления столбец пустой (NULL) во всех строках, поэтому его заполняют через `update`.",
-        "en": "A new column can be added with the mouse in the table's Design (like on 05.11) or in code: `alter table table_name add column_name nvarchar(20)` — this command was not seen on the board. After adding it, the column is empty (NULL) in every row, so you fill it with `update`."
+        "he": "עמודה חדשה אפשר להוסיף עם העכבר ב־Design של הטבלה (כמו ב־05.11), או בקוד: \n```\nalter table שם_הטבלה add שם_העמודה nvarchar(20)\n```\n — את הפקודה הזאת הראו בסוף השיעור (בשלב הבא). אחרי ההוספה העמודה ריקה (NULL) בכל השורות, ולכן ממלאים אותה עם `update`.",
+        "ru": "Новый столбец можно добавить мышкой в Design таблицы (как 05.11) или кодом: `alter table имя_таблицы add имя_столбца nvarchar(20)` — эту команду показали в конце урока (следующий шаг). После добавления столбец пустой (NULL) во всех строках, поэтому его заполняют через `update`.",
+        "en": "A new column can be added with the mouse in the table's Design (like on 05.11) or in code: `alter table table_name add column_name nvarchar(20)` — this command was shown at the end of the lesson (next step). After adding it, the column is empty (NULL) in every row, so you fill it with `update`."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "בסוף השיעור: alter table — להוסיף ולמחוק עמודה",
+        "ru": "В конце урока: alter table — добавить и убрать столбец",
+        "en": "At the end of the lesson: alter table — add and remove a column"
+      },
+      "text": {
+        "he": "`alter table` משנה את המבנה של הטבלה, לא את הנתונים:\n• `add` — מוסיף עמודה חדשה. בכל השורות היא ריקה (NULL), עד שממלאים אותה עם `update`.\n• `drop column` — מוחק עמודה, יחד עם כל הנתונים שבה.\nבשיעור הוסיפו עמודה ומחקו אותה, ואחר כך הוסיפו את `salary` ומילאו 100 לכולם:",
+        "ru": "`alter table` меняет устройство таблицы, а не данные:\n• `add` — добавляет новый столбец. Во всех строках он пустой (NULL), пока не заполнишь его через `update`.\n• `drop column` — удаляет столбец вместе со всеми данными в нём.\nНа уроке добавили столбец и удалили его, а потом добавили `salary` и всем заполнили 100:",
+        "en": "`alter table` changes the table's structure, not the data:\n• `add` — adds a new column. It is empty (NULL) in every row until you fill it with `update`.\n• `drop column` — removes a column together with all its data.\nIn class a column was added and removed, then `salary` was added and filled with 100 for everyone:"
+      },
+      "math": [
+        "alter table idkunim add adom int",
+        "alter table idkunim drop column adom",
+        "",
+        "alter table idkunim add salary int",
+        "update idkunim set salary = 100"
+      ],
+      "why": {
+        "he": "איך לזכור מי עושה מה? `insert` מוסיף שורות, `alter table … add` מוסיף עמודות, `update` משנה ערכים בתוך התאים, `delete` מוחק שורות, `drop column` מוחק עמודה. ולמה אחרי `add` צריך `update`? כי SQL לא יודע מה לשים בעמודה החדשה, ולכן משאיר NULL (\"אין ערך\").",
+        "ru": "Как запомнить, кто что делает? `insert` добавляет строки, `alter table … add` добавляет столбцы, `update` меняет значения в ячейках, `delete` удаляет строки, `drop column` удаляет столбец. А зачем после `add` нужен `update`? SQL не знает, что положить в новый столбец, поэтому оставляет NULL («нет значения»).",
+        "en": "How to remember who does what? `insert` adds rows, `alter table … add` adds columns, `update` changes values inside cells, `delete` removes rows, `drop column` removes a column. And why is `update` needed after `add`? SQL does not know what to put in the new column, so it leaves NULL (\"no value\")."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "`*=` ובונוס של 10000",
+        "ru": "`*=` и бонус 10000",
+        "en": "`*=` and a 10000 bonus"
+      },
+      "text": {
+        "he": "עוד פקודות מסוף השיעור:\n• `zahov *= 2` — כתיבה קצרה של `zahov = zahov * 2` (כמו ב־Java).\n• `bonus = +10000` — שם בבונוס בדיוק 10000 (הפלוס הוא רק סימן של מספר חיובי), לכל מי שיש לו יותר מ־10 צהובים.\n• ואז `delete` מוחק את כל מי שהבונוס שלו 10000 ומעלה.",
+        "ru": "Ещё команды из конца урока:\n• `zahov *= 2` — короткая запись `zahov = zahov * 2` (как в Java).\n• `bonus = +10000` — ставит в бонус ровно 10000 (плюс — просто знак положительного числа) всем, у кого больше 10 жёлтых карточек.\n• Потом `delete` удаляет всех, у кого бонус 10000 и больше.",
+        "en": "More commands from the end of the lesson:\n• `zahov *= 2` — short for `zahov = zahov * 2` (like in Java).\n• `bonus = +10000` — sets the bonus to exactly 10000 (the plus is just the sign of a positive number) for everyone with more than 10 yellow cards.\n• Then `delete` removes everyone whose bonus is 10000 or more."
+      },
+      "math": [
+        "update idkunim set zahov *= 2 where prati = 'yair'",
+        "update idkunim set bonus = +10000 where zahov > 10",
+        "delete from idkunim where bonus >= 10000"
+      ],
+      "why": {
+        "he": "מלכודת: `bonus = +10000` הוא לא \"להוסיף 10000\"! הוא מחליף את מה שהיה. להוסיף זה `bonus = bonus + 10000` או `bonus += 10000`. ועוד: `zahov > 10` לא כולל את 10 עצמו — ל־lev יש בדיוק 10, והוא לא מקבל בונוס.",
+        "ru": "Ловушка: `bonus = +10000` — это не «прибавить 10000»! Оно заменяет то, что было. Прибавить — это `bonus = bonus + 10000` или `bonus += 10000`. И ещё: `zahov > 10` не включает само 10 — у lev ровно 10, и бонус он не получает.",
+        "en": "A trap: `bonus = +10000` is not \"add 10000\"! It replaces what was there. Adding is `bonus = bonus + 10000` or `bonus += 10000`. Also: `zahov > 10` does not include 10 itself — lev has exactly 10 and gets no bonus."
+      }
+    },
+    {
+      "kind": "tip",
+      "title": {
+        "he": "איך תיראה הבדיקה בסוף הקורס",
+        "ru": "Какой будет проверка в конце курса",
+        "en": "What the end-of-course test will look like"
+      },
+      "text": {
+        "he": "המרצה סיפרה: בסוף הקורס הבדיקה תהיה בכתב, על כל הפקודות שנלמד עד אז. צריך יהיה ליצור טבלה ולהכניס לה כמה שורות נתונים (בערך שלוש — \"לא יותר מדי שורות\"). התאריך עוד לא נאמר. העצה שלה: להקדיש לזה כמה שעות בסוף השבוע.",
+        "ru": "Преподавательница рассказала: в конце курса проверка будет письменной, по всем командам, которые пройдём до тех пор. Нужно будет создать таблицу и вставить в неё несколько строк данных (около трёх — «не слишком много строк»). Дату пока не назвали. Её совет: посвятить этому несколько часов на выходных.",
+        "en": "The teacher said: at the end of the course the test will be in writing, on all the commands we learn by then. You will need to create a table and insert a few rows of data into it (about three — \"not too many rows\"). The date has not been given yet. Her advice: spend a few hours on it over the weekend."
+      },
+      "why": {
+        "he": "למה בכתב זה קשה יותר? אין SSMS שיסמן שגיאה באדום. צריך לזכור לבד: פסיקים בין העמודות, גרשיים סביב טקסט (`'lev'`), בלי גרשיים סביב מספרים, ופסיק בין השורות ב־`insert`. התרגול הכי טוב: לכתוב `create table` ו־`insert` על דף, ורק אחר כך להריץ ולבדוק.",
+        "ru": "Почему письменно труднее? Нет SSMS, который подчеркнёт ошибку красным. Нужно помнить самому: запятые между столбцами, кавычки вокруг текста (`'lev'`), без кавычек вокруг чисел и запятая между строками в `insert`. Лучшая тренировка: написать `create table` и `insert` на листке, и только потом запустить и проверить.",
+        "en": "Why is writing it harder? There is no SSMS to underline a mistake in red. You must remember yourself: commas between columns, quotes around text (`'lev'`), no quotes around numbers, and a comma between rows in `insert`. The best practice: write `create table` and `insert` on paper, and only then run it and check."
       }
     }
   ],
@@ -221,6 +287,18 @@ window.LESSONS["sql-2026-11-12"] = {
         "he": "בלי `order by` הסדר לא מובטח.",
         "ru": "Без `order by` порядок не гарантирован.",
         "en": "Without `order by` the order is not guaranteed."
+      }
+    },
+    {
+      "title": {
+        "he": "alter table",
+        "ru": "alter table",
+        "en": "alter table"
+      },
+      "text": {
+        "he": "`alter table טבלה add עמודה int` מוסיף עמודה (ריקה, NULL). `drop column` מוחק עמודה.",
+        "ru": "`alter table таблица add столбец int` добавляет столбец (пустой, NULL). `drop column` удаляет столбец.",
+        "en": "`alter table table add column int` adds a column (empty, NULL). `drop column` removes a column."
       }
     }
   ],
@@ -536,6 +614,50 @@ window.LESSONS["sql-2026-11-12"] = {
         ]
       },
       {
+        "id": "s8",
+        "group": "idk",
+        "label": {
+          "he": "בונוס 10000 ואז delete",
+          "ru": "Бонус 10000, потом delete",
+          "en": "A 10000 bonus, then delete"
+        },
+        "kind": "number",
+        "text": {
+          "he": "הטבלה `idkunim` מהשיעור (10 השורות מההתחלה):\n```\nprati, mishpaha, eretz, club, zahov, bonus\n('lev', 'deri', 'argentina', 'liverpool', 10, 6)\n('asaf', 'cohen', 'argentina', 'arsenal', 0, 0)\n('nati', 'hareven', 'spain', 'ajax', 0, 9)\n('yair', 'deri', 'argentina', 'liverpool', 12, 0)\n('uzi', 'mozkovitz', 'spain', 'juventus', 14, 8)\n('assi', 'yacobi', 'germany', 'juventus', 8, 19)\n('uzi', 'deri', 'argentina', 'liverpool', 2, 10)\n('roi', 'levi', 'germany', 'ajax', 8, 0)\n('yair', 'lerner', 'germany', 'arsenal', 18, 6)\n('avi', 'levi', 'germany', 'liverpool', 4, 4)\n```\nמריצים לפי הסדר:\n1. \n```\nupdate idkunim set zahov *= 2 where prati = 'yair'\n```\n2. \n```\nupdate idkunim set bonus = +10000 where zahov > 10\n```\n3. \n```\ndelete from idkunim where bonus >= 10000\n```\nכמה שורות יישארו?",
+          "ru": "Таблица `idkunim` с урока (10 строк из начала):\n```\nprati, mishpaha, eretz, club, zahov, bonus\n('lev', 'deri', 'argentina', 'liverpool', 10, 6)\n('asaf', 'cohen', 'argentina', 'arsenal', 0, 0)\n('nati', 'hareven', 'spain', 'ajax', 0, 9)\n('yair', 'deri', 'argentina', 'liverpool', 12, 0)\n('uzi', 'mozkovitz', 'spain', 'juventus', 14, 8)\n('assi', 'yacobi', 'germany', 'juventus', 8, 19)\n('uzi', 'deri', 'argentina', 'liverpool', 2, 10)\n('roi', 'levi', 'germany', 'ajax', 8, 0)\n('yair', 'lerner', 'germany', 'arsenal', 18, 6)\n('avi', 'levi', 'germany', 'liverpool', 4, 4)\n```\nЗапускаем по порядку:\n1. `update idkunim set zahov *= 2 where prati = 'yair'`\n2. `update idkunim set bonus = +10000 where zahov > 10`\n3. `delete from idkunim where bonus >= 10000`\nСколько строк останется?",
+          "en": "The `idkunim` table from the lesson (the 10 starting rows):\n```\nprati, mishpaha, eretz, club, zahov, bonus\n('lev', 'deri', 'argentina', 'liverpool', 10, 6)\n('asaf', 'cohen', 'argentina', 'arsenal', 0, 0)\n('nati', 'hareven', 'spain', 'ajax', 0, 9)\n('yair', 'deri', 'argentina', 'liverpool', 12, 0)\n('uzi', 'mozkovitz', 'spain', 'juventus', 14, 8)\n('assi', 'yacobi', 'germany', 'juventus', 8, 19)\n('uzi', 'deri', 'argentina', 'liverpool', 2, 10)\n('roi', 'levi', 'germany', 'ajax', 8, 0)\n('yair', 'lerner', 'germany', 'arsenal', 18, 6)\n('avi', 'levi', 'germany', 'liverpool', 4, 4)\n```\nRun in order:\n1. `update idkunim set zahov *= 2 where prati = 'yair'`\n2. `update idkunim set bonus = +10000 where zahov > 10`\n3. `delete from idkunim where bonus >= 10000`\nHow many rows are left?"
+        },
+        "example": {
+          "he": "טבלה אחרת:\n```\nperot (id, pri, kamut)\n(1, 'tapuach', 4)\n(2, 'banana', 6)\n(3, 'tapuach', 2)\n(4, 'anavim', 9)\n(5, 'banana', 1)\n```\n```\nupdate perot set kamut = +100 where kamut > 5\n```\n ואז `delete from perot where kamut >= 100` → banana (6) ו־anavim (9) מקבלים 100 ונמחקים → נשארות 3.",
+          "ru": "Другая таблица:\n```\nperot (id, pri, kamut)\n(1, 'tapuach', 4)\n(2, 'banana', 6)\n(3, 'tapuach', 2)\n(4, 'anavim', 9)\n(5, 'banana', 1)\n```\n`update perot set kamut = +100 where kamut > 5`, потом `delete from perot where kamut >= 100` → banana (6) и anavim (9) получают 100 и удаляются → остаются 3.",
+          "en": "Another table:\n```\nperot (id, pri, kamut)\n(1, 'tapuach', 4)\n(2, 'banana', 6)\n(3, 'tapuach', 2)\n(4, 'anavim', 9)\n(5, 'banana', 1)\n```\n`update perot set kamut = +100 where kamut > 5`, then `delete from perot where kamut >= 100` → banana (6) and anavim (9) get 100 and are deleted → 3 are left."
+        },
+        "answer": {
+          "value": "7"
+        },
+        "hints": [
+          {
+            "he": "אחרי שלב 1: yair deri 24, yair lerner 36.",
+            "ru": "После шага 1: yair deri 24, yair lerner 36.",
+            "en": "After step 1: yair deri 24, yair lerner 36."
+          },
+          {
+            "he": "`> 10` לא כולל את 10 עצמו (lev).",
+            "ru": "`> 10` не включает само 10 (lev).",
+            "en": "`> 10` does not include 10 itself (lev)."
+          }
+        ],
+        "solution": [
+          "zahov > 10: yair deri 24, uzi mozkovitz 14, yair lerner 36",
+          "10 − 3 = 7",
+          {
+            "he": "תשובה: 7",
+            "ru": "Ответ: 7",
+            "en": "Answer: 7"
+          }
+        ]
+      },
+      {
         "id": "c1",
         "group": "cars",
         "label": {
@@ -626,9 +748,9 @@ window.LESSONS["sql-2026-11-12"] = {
         },
         "kind": "choice",
         "text": {
-          "he": "המשך התרגיל: להוסיף לטבלה `rechev` עמודה `eretz`. איזו פקודה עושה את זה? (את הפקודה לא ראינו על הלוח; אפשר גם עם העכבר ב־Design.)",
-          "ru": "Продолжение упражнения: добавить в таблицу `rechev` столбец `eretz`. Какая команда это делает? (Этой команды на доске не было; можно и мышкой в Design.)",
-          "en": "The exercise continues: add a column `eretz` to the `rechev` table. Which command does it? (This command was not on the board; you can also use the mouse in Design.)"
+          "he": "המשך התרגיל: להוסיף לטבלה `rechev` עמודה `eretz`. איזו פקודה עושה את זה? (את הפקודה הראו בסוף השיעור; אפשר גם עם העכבר ב־Design.)",
+          "ru": "Продолжение упражнения: добавить в таблицу `rechev` столбец `eretz`. Какая команда это делает? (Эту команду показали в конце урока; можно и мышкой в Design.)",
+          "en": "The exercise continues: add a column `eretz` to the `rechev` table. Which command does it? (This command was shown at the end of the lesson; you can also use the mouse in Design.)"
         },
         "options": [
           "insert into rechev add eretz nvarchar(20)",
