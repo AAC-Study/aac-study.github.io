@@ -15,7 +15,7 @@ var L=document.getElementById('list');
 G.forEach(function(g,i){
   var fin=0,best=0; try{fin=+JSON.parse(localStorage.getItem('ex_'+g.id+'_fin')||'0');best=+JSON.parse(localStorage.getItem('ex_'+g.id+'_best')||'0');}catch(e){}
   var a=document.createElement('a'); a.className='big'+(i===0&&!fin?' hl':''); a.href=g.file+'.html'; a.style.textDecoration='none';
-  a.innerHTML='<div class="e">'+g.emoji+'</div><div><b>'+(i+1)+'. '+g.title+'</b><span>'+g.sub+(fin?' · ✅ пройдено':'')+(best?' · рекорд '+best:'')+'</span></div>';
+  a.innerHTML='<div class="e">'+g.emoji+'</div><div><b>'+(g.file.match(/^\d+/)||[i+1])[0]+'. '+g.title+'</b><span>'+g.sub+(fin?' · ✅ пройдено':'')+(best?' · рекорд '+best:'')+'</span></div>';
   L.appendChild(a);
 });
 var off=document.getElementById('off');

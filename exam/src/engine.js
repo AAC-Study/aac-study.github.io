@@ -438,6 +438,88 @@
     phase1();
   };
 
+  /* mulrow: почему строка = копия или нули, и почему сдвиг. Сам заполняешь строки и сумму. */
+  W.mulrow = function (s, body, foot, done) {
+    var base = s.base || 2, A = s.a, B = s.b, la = A.length, lb = B.length, Wd = la + lb, cols = Wd + 1, sz = cellSize(cols), g = gridBox(cols, sz), i, ch;
+    if (s.q) body.appendChild(el('div', 'card', s.q));
+    var ta = [], bc = [], rows = [], car = [], rr = [], val = [];
+    cell(g, '', '', sz); for (i = 0; i < Wd; i++) { ch = Wd - 1 - i; ta[ch] = cell(g, ch < la ? A[la - 1 - ch] : '', '', sz); }
+    cell(g, '×', 'sign', sz); for (i = 0; i < Wd; i++) { ch = Wd - 1 - i; bc[ch] = cell(g, ch < lb ? B[lb - 1 - ch] : '', '', sz); }
+    for (i = 0; i < cols; i++) cell(g, '', 'line', sz, 3);
+    cell(g, '', '', sz, sz * .55); for (i = 0; i < Wd; i++) car[Wd - 1 - i] = cell(g, '', 'carry', sz, sz * .55);
+    for (var j0 = 0; j0 < lb; j0++) { rows[j0] = []; val[j0] = []; cell(g, j0 ? '+' : '', 'sign', sz); for (i = 0; i < Wd; i++) rows[j0][Wd - 1 - i] = cell(g, '', '', sz); }
+    for (i = 0; i < cols; i++) cell(g, '', 'line', sz, 3);
+    cell(g, '', '', sz); for (i = 0; i < Wd; i++) rr[Wd - 1 - i] = cell(g, '', 'res', sz);
+    var say = el('div', 'say'), j = 0, p = 0, ph = 'row', c = 0, cin = 0, out = [], fin = false;
+    body.appendChild(g); body.appendChild(say);
+    var digits = base === 10 ? '0123456789' : '01';
+    function clr() { g.querySelectorAll('.cur,.bhl,.act').forEach(function (x) { x.classList.remove('cur', 'bhl', 'act'); }); }
+    function nextBtn(t, fn) { foot.innerHTML = ''; var b = el('button', 'btn', t); b.onclick = fn; foot.appendChild(b); }
+    function startRow() {
+      clr();
+      if (j >= lb) return nextBtn('Теперь складываем ↓', startSum);
+      var d = B[lb - 1 - j];
+      bc[j].classList.add('bhl');
+      for (var k = 0; k < j; k++) { rows[j][k].textContent = '0'; rows[j][k].classList.add('dim'); val[j][k] = 0; }
+      var place = base === 10 ? ['единицы', 'десятки', 'сотни'][j] : ['1-я справа', '2-я справа', '3-я справа'][j];
+      say.className = 'say';
+      say.innerHTML = 'Строка ' + (j + 1) + '. Жёлтая цифра нижнего числа: <b class="y">' + d + '</b> (' + place + ').<br>Умножаем на неё <b>каждую</b> цифру <b>верхнего</b> числа (всегда верхнего, не новых строк), справа налево.' +
+        (j ? '<br><span class="mut">Эта цифра стоит на ' + j + ' клетку левее → строку начинаем на ' + j + ' левее. Пустая клетка справа = <b>0</b>, поэтому это ×' + (base === 10 ? '10' : '10₂ (×2)') + '.</span>' : '');
+      p = 0; foot.innerHTML = ''; foot.appendChild(pad(digits, key)); ask();
+    }
+    function ask() {
+      g.querySelectorAll('.cur,.act').forEach(function (x) { x.classList.remove('cur', 'act'); });
+      ta[p].classList.add('cur'); rows[j][p + j].classList.add('res', 'act');
+      var d = B[lb - 1 - j];
+      var q = say.querySelector('.q') || say.appendChild(el('div', 'q'));
+      q.innerHTML = '<br><b class="a m" style="font-size:20px">' + A[la - 1 - p] + ' × ' + d + ' = ?</b>';
+    }
+    function key(k) {
+      if (fin) return;
+      if (ph === 'row') {
+        var d = +B[lb - 1 - j], a = +A[la - 1 - p], want = String(a * d), x = rows[j][p + j];
+        if (k !== want) { shake(x); var q = say.querySelector('.q'); if (q) q.innerHTML = '<br>❌ <b class="m">' + a + ' × ' + d + ' = ' + want + '</b>' + (d === 0 ? ' (всё × 0 = 0)' : ' (× 1 не меняет)'); return; }
+        x.textContent = k; x.classList.remove('act'); pop(x); val[j][p + j] = +k;
+        p++;
+        if (p < la) return ask();
+        clr();
+        var row = '';
+        for (var t = la - 1; t >= 0; t--) row += A[la - 1 - t] * +B[lb - 1 - j];
+        say.className = 'say ok';
+        say.innerHTML = '✅ ' + A + ' × ' + B[lb - 1 - j] + ' = <b class="g m">' + row + '</b> → ' + (B[lb - 1 - j] === '1' ? '<b>копия</b> верхнего (× 1 ничего не меняет)' : '<b>одни нули</b> (× 0 = 0)') + (j ? ', сдвинута на ' + j + ' влево' : '') + '.';
+        j++;
+        return j < lb ? nextBtn('Следующая цифра нижнего →', startRow) : nextBtn('Строки готовы. Складываем ↓', startSum);
+      }
+      var tot = cin; for (var q2 = 0; q2 < lb; q2++) tot += val[q2][c] || 0;
+      var w2 = String(tot % base);
+      if (k !== w2) { shake(rr[c]); say.className = 'say bad'; say.innerHTML = '❌ В столбике сумма ' + tot + (base === 2 && tot > 1 ? ' = ' + tot.toString(2) + ' в двоичной' : '') + '. Пишем последнюю цифру: ' + w2; return; }
+      rr[c].textContent = k; pop(rr[c]); out.unshift(k);
+      var nc = Math.floor(tot / base);
+      say.className = 'say ok'; say.innerHTML = '✅ пишем ' + k + (nc ? ', <b class="r">' + nc + '</b> наверх в следующий столбик' : '');
+      cin = nc; if (nc) { car[c + 1].textContent = String(nc); pop(car[c + 1]); }
+      c++; setTimeout(sumAsk, 600);
+    }
+    function lastCol() { var m = -1; for (var k2 = 0; k2 < Wd; k2++) for (var q3 = 0; q3 < lb; q3++) if (val[q3][k2]) m = k2; return m; }
+    function startSum() { ph = 'sum'; c = 0; cin = 0; foot.innerHTML = ''; foot.appendChild(pad(digits, key)); sumAsk(); }
+    function sumAsk() {
+      clr();
+      if (c > lastCol() && !cin) return end();
+      var parts = []; for (var q = 0; q < lb; q++) { var v = val[q][c]; parts.push(v == null ? 0 : v); rows[q][c].classList.add('cur'); }
+      if (cin) parts.push('<b class="r">' + cin + '</b>');
+      car[c].classList.add('cur'); rr[c].classList.add('cur', 'act');
+      say.className = 'say'; say.innerHTML = 'Складываем столбик ' + (c + 1) + ' справа:<br><b class="a m" style="font-size:20px">' + parts.join(' + ') + ' = ?</b><br><span class="mut">Пустая клетка = 0. Какую цифру пишем вниз?</span>';
+    }
+    function end() {
+      fin = true; clr(); foot.innerHTML = '';
+      var res = out.join('').replace(/^0+(?=.)/, ''), da = parseInt(A, base), db = parseInt(B, base), dr = parseInt(res, base);
+      say.className = 'say ok';
+      say.innerHTML = '✅ Ответ: <b class="g m">' + res + '</b>' + (base === 2 ? '<br>Проверка: ' + da + ' × ' + db + ' = ' + (da * db) + '. А ' + res + ' = ' + wsum(res) + ' = ' + dr + (dr === da * db ? ' ✅' : ' ❌') : '<br>Проверка на калькуляторе: ' + A + ' × ' + B + ' = ' + (da * db) + ' ✅') + (s.why ? '<br>' + s.why : '');
+      done();
+    }
+    nextBtn('Начать →', startRow);
+    say.innerHTML = 'Верхнее число: <b class="m">' + A + '</b>. Нижнее: <b class="m">' + B + '</b>.<br>Нижнее берём <b>по одной цифре</b>, справа налево. Каждая цифра даёт одну строку.<br>В нижнем ' + lb + ' цифр' + (lb < 5 ? 'ы' : '') + ' → будет <b>' + lb + ' строк' + (lb < 5 ? 'и' : '') + '</b>.';
+  };
+
   /* ---------- игра ---------- */
   var arcRun = null;
   function stopArc() { if (arcRun) { arcRun.stop(); arcRun = null; } }
