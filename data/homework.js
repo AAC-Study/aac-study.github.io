@@ -118,6 +118,27 @@ window.HOMEWORK = [
     level: 'So far in Intro to AI we learned: what AI is, tokens and the context window, Garbage In / Garbage Out, weak vs. strong prompts, the RTC-C framework (Role, Task, Context, Constraints) used iteratively, edge cases, and building a small app in Gemini Canvas from a prompt (a price calculator with shipping, profit and 18% VAT).'
   },
   {
+    id: 'ai-2026-11-09-car-rental', subject: 'ai', selfPrompt: true,
+    title: { he: 'משימה: פסאודו־קוד להשכרת רכב', ru: 'Задание: псевдокод для аренды машин', en: 'Task: pseudocode for car rental' },
+    given: '2026-11-09T10:15:00+02:00', givenDateOnly: true, due: null,
+    summary: {
+      he: 'לכתוב במילים שלכם פסאודו־קוד לאפליקציה של השכרת רכב (כמו Avis): השכרה לפי דרגת רכב, חישוב מחיר ובדיקת סטטוס. אחר כך לתת אותו ל-AI ולבקש קוד.',
+      ru: 'Написать своими словами псевдокод для приложения аренды машин (как Avis): аренда по классу машины, расчёт цены и проверка статуса. Потом дать его ИИ и попросить код.',
+      en: 'Write pseudocode in your own words for a car-rental app (like Avis): renting by car class, price calculation and a status check. Then give it to the AI and ask for code.'
+    },
+    original: { lang: 'he', text: 'מתוך השקף ודברי המרצה (עבדנו על זה בחדרים ב-Zoom):\nלכתוב בשפה שלכם פסאודו־קוד לאפליקציה של השכרת רכב, כמו Avis: כל הטיפול בהזמנות של לקוחות. שלוש פונקציות: השכרה (איזו דרגת רכב הלקוח רוצה: A, B או C, ומה עושים אם אין רכב פנוי), חישוב מחיר, ובדיקת סטטוס (ביטוח, "ההזמנה בוטלה" וכו\'). אחר כך להעתיק ל-ChatGPT או ל-Claude ולהפוך לקוד.' },
+    steps: [
+      { he: 'כתבו את הפונקציה הראשונה במילים: קולטים את פרטי הלקוח ואת דרגת הרכב; אם אין רכב פנוי, מה מחזירים?', ru: 'Напиши первую функцию словами: вводим данные клиента и класс машины; если свободной машины нет, что возвращаем?', en: 'Write the first function in words: read the customer details and the car class; if there is no free car, what do you return?' },
+      { he: 'פונקציה שנייה: איך מחשבים מחיר (למשל ימים × מחיר ליום). כתבו מה נכנס ומה יוצא.', ru: 'Вторая функция: как считаем цену (например, дни × цена за день). Напиши, что входит и что выходит.', en: 'Second function: how the price is calculated (e.g. days × price per day). Write what goes in and what comes out.' },
+      { he: 'פונקציה שלישית: בדיקת סטטוס — יש ביטוח? ההזמנה בוטלה? מה מציגים בכל מקרה.', ru: 'Третья функция: проверка статуса — есть страховка? заказ отменён? Что показываем в каждом случае.', en: 'Third function: a status check — is there insurance? was the order cancelled? What is shown in each case.' },
+      { he: 'בדקו שלכל "אם" יש גם "אחרת" (מה קורה כשאין נתונים או כשהלקוח לא מאשר).', ru: 'Проверь, что у каждого «если» есть и «иначе» (что будет, когда данных нет или клиент не согласен).', en: 'Check that every "if" also has an "otherwise" (what happens when there is no data or the customer does not agree).' },
+      { he: 'העתיקו את הפסאודו־קוד ל-ChatGPT או ל-Claude עם תפקיד ומגבלות (RTCC) ובקשו קוד ב-Java. עברו על הקוד שחזר ובדקו שכל צעד שלכם נמצא בו.', ru: 'Скопируй псевдокод в ChatGPT или Claude с ролью и ограничениями (RTCC) и попроси код на Java. Пройди по полученному коду и проверь, что каждый твой шаг в нём есть.', en: 'Copy the pseudocode into ChatGPT or Claude with a role and constraints (RTCC) and ask for Java code. Go over the returned code and check every one of your steps is in it.' }
+    ],
+    submit: { he: 'בשיעור הראו את התוצאה ב-Zoom. לא נאמר שצריך להגיש ב-Moodle — בדקו ב-Moodle.', ru: 'На уроке результат показывали в Zoom. Сдавать в Moodle не говорили — проверь Moodle.', en: 'In class the result was shown in Zoom. No Moodle submission was mentioned; check Moodle.' },
+    links: [],
+    level: 'So far in Intro to AI we learned: what AI is, tokens and the context window, the RTC-C / RTCC framework (Role, Task, Context, Constraints) used iteratively, a prompt that returns only a code block with at least 2 input/output examples (the snake_case exercise), pseudocode as a verbal step-by-step algorithm (read, check, if, print), and FIFO / LIFO.'
+  },
+  {
     id: 'fullstack-2026-10-28-mesakem', subject: 'fullstack',
     title: { he: 'תרגיל מסכם – HTML: אתר לעסק (4 דפים)', ru: 'Итоговое задание по HTML: сайт бизнеса (4 страницы)', en: 'HTML summary exercise: a business website (4 pages)' },
     given: '2026-10-28T11:19:00+02:00', due: null, aiRule: 'banned',
