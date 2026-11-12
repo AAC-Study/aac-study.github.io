@@ -18,7 +18,7 @@
       ls_ai_note: 'את המשימות האלה המציא AI לפי נושא השיעור. הן לא מהמורה, אבל בדיוק על אותו חומר.',
       ls_read_done: 'השיעור נקרא ✓', ls_reading: 'קריאה: {p}', ls_not_found: 'השיעור לא נמצא', ls_loading: 'טוען את השיעור…',
       ls_back: 'לכל השיעורים', ls_questions_lead: 'כל השאלות מהשיעור במקום אחד. לחצו על שאלה כדי לראות את התשובה.',
-      ls_show_in_flow: 'להראות במהלך השיעור', ls_part: 'חלק {i} מתוך {n}', ls_min: '~{m} דק׳', ls_next_part: 'הלאה: חלק {i}', ls_to_review: 'לחזרה', ls_close: 'סגירה', ls_tasks_count: '{n} משימות', ls_why: 'למה ככה?'
+      ls_show_in_flow: 'להראות במהלך השיעור', ls_part: 'חלק {i} מתוך {n}', ls_min: '~{m} דק׳', ls_next_part: 'הלאה: חלק {i}', ls_to_review: 'לחזרה', ls_close: 'סגירה', ls_tasks_count: '{n} משימות', ls_why: 'למה ככה?', ls_ask_ai: 'העתקת פרומפט ל־AI: "הסבר לי את המקום הזה"', ls_ask_ai_note: 'אם משהו לא ברור ואין את מי לשאול: מדביקים בכל AI. המקום הזה מהשיעור כבר בפנים.'
     },
     ru: {
       ls_files: 'Файлы', ls_flow: 'Ход урока', ls_questions: 'Вопросы', ls_review: 'Повторение',
@@ -31,7 +31,7 @@
       ls_ai_note: 'Эти задачи придумал ИИ по теме урока. Они не от преподавателя, но ровно по тому же материалу.',
       ls_read_done: 'Урок прочитан ✓', ls_reading: 'Прочитано: {p}', ls_not_found: 'Урок не найден', ls_loading: 'Загружаю урок…',
       ls_back: 'Ко всем урокам', ls_questions_lead: 'Все вопросы урока в одном месте. Нажми на вопрос, чтобы увидеть ответ.',
-      ls_show_in_flow: 'Показать в ходе урока', ls_part: 'Часть {i} из {n}', ls_min: '~{m} мин', ls_next_part: 'Дальше: часть {i}', ls_to_review: 'К повторению', ls_close: 'Закрыть', ls_tasks_count: 'Задач: {n}', ls_why: 'Почему так?'
+      ls_show_in_flow: 'Показать в ходе урока', ls_part: 'Часть {i} из {n}', ls_min: '~{m} мин', ls_next_part: 'Дальше: часть {i}', ls_to_review: 'К повторению', ls_close: 'Закрыть', ls_tasks_count: 'Задач: {n}', ls_why: 'Почему так?', ls_ask_ai: 'Скопировать промпт для ИИ: «объясни это место»', ls_ask_ai_note: 'Если непонятно, а спросить некого: вставь в любой ИИ. Это место урока уже внутри.'
     },
     en: {
       ls_files: 'Files', ls_flow: 'Lesson flow', ls_questions: 'Questions', ls_review: 'Review',
@@ -44,7 +44,7 @@
       ls_ai_note: 'These tasks were invented by AI on the lesson topic. They are not from the teacher, but cover exactly the same material.',
       ls_read_done: 'Lesson read ✓', ls_reading: 'Reading: {p}', ls_not_found: 'Lesson not found', ls_loading: 'Loading the lesson…',
       ls_back: 'All lessons', ls_questions_lead: 'All the questions from the lesson in one place. Tap a question to see the answer.',
-      ls_show_in_flow: 'Show in the lesson flow', ls_part: 'Part {i} of {n}', ls_min: '~{m} min', ls_next_part: 'Next: part {i}', ls_to_review: 'To the review', ls_close: 'Close', ls_tasks_count: '{n} tasks', ls_why: 'Why is it so?'
+      ls_show_in_flow: 'Show in the lesson flow', ls_part: 'Part {i} of {n}', ls_min: '~{m} min', ls_next_part: 'Next: part {i}', ls_to_review: 'To the review', ls_close: 'Close', ls_tasks_count: '{n} tasks', ls_why: 'Why is it so?', ls_ask_ai: 'Copy AI prompt: "explain this part"', ls_ask_ai_note: 'If something is unclear and there is no one to ask: paste it into any AI. This part of the lesson is already inside.'
     }
   });
 
@@ -449,8 +449,45 @@
       ]));
       var body = el('div', { class: 'ls-why__body' }, [rich(pick(it.why, lang))]);
       if (it.whyMath && it.whyMath.length) body.appendChild(mathBlock(it.whyMath));
+      body.appendChild(askAiBtn(it));
       d.appendChild(body);
       return d;
+    }
+
+    /* Идея 12.11: готовый промпт «объясни это место» — когда непонятно, а спросить или наговорить нельзя (люди вокруг).
+       Внутри уже лежит этот шаг урока (по-английски, как в промптах задач), ответ ИИ — на выбранном языке. */
+    function stepPrompt(it) {
+      var L = 'en', lines = [];
+      var code = (it.math || []).concat(it.whyMath || []);
+      if (it.title) lines.push('Title: ' + pick(it.title, L));
+      if (it.q) lines.push('Question asked in class: ' + pick(it.q, L), 'Answer given: ' + pick(it.a, L));
+      if (it.text) lines.push(pick(it.text, L));
+      if (code.length) lines.push('```', code.join('\n'), '```');
+      if (it.why) lines.push('Why (from the lesson notes): ' + pick(it.why, L));
+      return [
+        'You are a patient tutor. I am a beginner college student (software technician program in Israel, first semester).',
+        'Subject: ' + Tasks.subjectName(lesson.subject, L) + '. Lesson of ' + fmtDate(lesson.date) + ': ' + pick(lesson.title, L) + '.', '',
+        'This is the exact part of the lesson I do not fully understand:', '"""', lines.join('\n'), '"""', '',
+        'What I need:',
+        '1. Explain this part in simple words, as if I missed the class: what it is, why it works this way, and what it is for.',
+        '2. Go step by step, one operation per line. In code, go line by line (and in a loop, round by round).',
+        '3. Give ONE small example of your own with different numbers or names, and say clearly that it is your example, not from the lesson.',
+        '4. Name the most common mistake here and how to notice it.',
+        '5. End with ONE short question to check that I understood, and wait for my answer.',
+        '6. Stay at the level of this lesson; nothing advanced. If something is missing from the text above, ask me instead of guessing.', ''
+      ].concat(Tasks.DETAIL, ['', Tasks.WARN_FIRST, '', Tasks.replyLine(Tasks.aiLang())]).join('\n');
+    }
+    function askAiBtn(it) {
+      var b = el('button', { type: 'button', class: 'ls-ask', 'data-act': 'ask-ai',
+        html: Icons.get('robot') + '<span>' + U.esc(t('ls_ask_ai')) + '</span>' });
+      b.addEventListener('click', function (e) {
+        e.preventDefault();
+        Tasks.copyText(stepPrompt(it)).then(function () {
+          U.toast(t('tk_copied'));
+          b.classList.add('is-done'); setTimeout(function () { b.classList.remove('is-done'); }, 1500);
+        }, function () { U.toast(t('ls_ask_ai_note')); });
+      });
+      return el('div', { class: 'ls-ask-row' }, [b]);
     }
 
     // Flow

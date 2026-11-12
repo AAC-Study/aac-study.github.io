@@ -429,6 +429,23 @@ function watchErrors(page, list) {
     await ctx.close();
   });
 
+  await step('"why" box: copy an AI prompt that contains this exact step', async () => {
+    const ctx = await browser.newContext({ viewport: { width: 390, height: 860 }, permissions: ['clipboard-read', 'clipboard-write'] });
+    const page = await ctx.newPage(); const errs = []; watchErrors(page, errs);
+    await page.goto(URL('ru', 'light'));
+    await page.waitForSelector('#ls-step-0 .ls-why');
+    const w = page.locator('#ls-step-0 .ls-why');
+    await w.locator('summary').click();
+    await w.locator('.ls-ask').click();
+    await page.waitForTimeout(200);
+    const clip = await page.evaluate(() => navigator.clipboard.readText());
+    const title = await page.evaluate(() => { const l = window.LESSONS['math-2026-11-01']; const s = l.timeline[0]; return (s.title || s.q || {}).en || ''; });
+    assert.ok(clip.includes('exact part of the lesson') && clip.includes(title), clip.slice(0, 300));
+    assert.ok(/answer me in Russian/.test(clip));
+    assert.deepStrictEqual(errs, []);
+    await ctx.close();
+  });
+
   await browser.close();
   console.log(`\n${passed} passed, ${failures} failed`);
   process.exit(failures ? 1 : 0);
