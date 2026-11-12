@@ -122,11 +122,11 @@ window.HOMEWORK = [
     title: { he: 'משימה: פסאודו־קוד להשכרת רכב', ru: 'Задание: псевдокод для аренды машин', en: 'Task: pseudocode for car rental' },
     given: '2026-11-09T10:15:00+02:00', givenDateOnly: true, due: null,
     summary: {
-      he: 'לכתוב במילים שלכם פסאודו־קוד לאפליקציה של השכרת רכב (כמו Avis): השכרה לפי דרגת רכב, חישוב מחיר ובדיקת סטטוס. אחר כך לתת אותו ל-AI ולבקש קוד.',
-      ru: 'Написать своими словами псевдокод для приложения аренды машин (как Avis): аренда по классу машины, расчёт цены и проверка статуса. Потом дать его ИИ и попросить код.',
-      en: 'Write pseudocode in your own words for a car-rental app (like Avis): renting by car class, price calculation and a status check. Then give it to the AI and ask for code.'
+      he: 'לכתוב במילים שלכם פסאודו־קוד לאפליקציה של השכרת רכב (כמו Avis): כל הטיפול בהזמנות של לקוחות. אחר כך לתת אותו ל-AI ולבקש קוד.',
+      ru: 'Написать своими словами псевдокод для приложения аренды машин (как Avis): вся работа с заказами клиентов. Потом дать его ИИ и попросить код.',
+      en: 'Write pseudocode in your own words for a car-rental app (like Avis): all the handling of customer orders. Then give it to the AI and ask for code.'
     },
-    original: { lang: 'he', text: 'מתוך השקף ודברי המרצה (עבדנו על זה בחדרים ב-Zoom):\nלכתוב בשפה שלכם פסאודו־קוד לאפליקציה של השכרת רכב, כמו Avis: כל הטיפול בהזמנות של לקוחות. שלוש פונקציות: השכרה (איזו דרגת רכב הלקוח רוצה: A, B או C, ומה עושים אם אין רכב פנוי), חישוב מחיר, ובדיקת סטטוס (ביטוח, "ההזמנה בוטלה" וכו\'). אחר כך להעתיק ל-ChatGPT או ל-Claude ולהפוך לקוד.' },
+    original: { lang: 'he', text: 'מהשקף:\nבנו פסאודו קוד בשפתכם בנושא: השכרת רכב. אתם צריכים לבנות אפליקצייה לניהול צי רכבים (avis למשל). עליכם לבנות את כל הניהול של הזמנות לקוח.\n\nמה המרצה הזכירה בשיעור: דרגת רכב (A, B, C) ומה עושים אם אין רכב פנוי, חישוב מחיר, ביטוח, סטטוס ("ההזמנה בוטלה"). אחר כך מעתיקים ל-ChatGPT או ל-Claude והופכים לקוד.' },
     steps: [
       { he: 'כתבו את הפונקציה הראשונה במילים: קולטים את פרטי הלקוח ואת דרגת הרכב; אם אין רכב פנוי, מה מחזירים?', ru: 'Напиши первую функцию словами: вводим данные клиента и класс машины; если свободной машины нет, что возвращаем?', en: 'Write the first function in words: read the customer details and the car class; if there is no free car, what do you return?' },
       { he: 'פונקציה שנייה: איך מחשבים מחיר (למשל ימים × מחיר ליום). כתבו מה נכנס ומה יוצא.', ru: 'Вторая функция: как считаем цену (например, дни × цена за день). Напиши, что входит и что выходит.', en: 'Second function: how the price is calculated (e.g. days × price per day). Write what goes in and what comes out.' },
