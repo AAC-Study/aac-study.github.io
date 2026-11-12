@@ -711,7 +711,7 @@ window.GAME = {
       var parts = []; for (var q = 0; q < lb; q++) { var v = val[q][c]; parts.push(v == null ? 0 : v); rows[q][c].classList.add('cur'); }
       if (cin) parts.push('<b class="r">' + cin + '</b>');
       car[c].classList.add('cur'); rr[c].classList.add('cur', 'act');
-      say.className = 'say'; say.innerHTML = 'Складываем столбик ' + (c + 1) + ' справа:<br><b class="a m" style="font-size:20px">' + parts.join(' + ') + ' = ?</b><br><span class="mut">Пустая клетка = 0. Какую цифру пишем вниз?</span>';
+      say.className = 'say'; say.innerHTML = 'Складываем столбик ' + (c + 1) + ' справа:<br><b class="a m" style="font-size:20px">' + parts.join(' + ') + ' = ?</b><br><span class="mut">Тут <b>складываем</b> (не умножаем), только новые строки. Пустая клетка = 0. Сумма 2 = 10, 3 = 11: вниз последнюю цифру, 1 в следующий столбик слева.</span>';
     }
     function end() {
       fin = true; clr(); foot.innerHTML = '';
