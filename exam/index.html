@@ -110,12 +110,12 @@ b.r{color:var(--red)} b.g{color:var(--ok)} b.a{color:var(--ac)} b.y{color:var(--
 <p class="mut" id="off">⏳ Сохраняю на телефон…</p>
 </div></div>
 <script>
-var G=[{"id": "add", "file": "1-add", "emoji": "➕", "title": "Сложение в двоичной", "sub": "урок 05.11 · переносы «1 наверх»"}, {"id": "mul", "file": "2-mul", "emoji": "✖️", "title": "Умножение: «эти единички»", "sub": "урок 05.11 · те самые «1.1.1.1»"}, {"id": "neg", "file": "3-neg", "emoji": "🧲", "title": "Отрицательные числа", "sub": "урок 05.11 · задание 3 экзамена: −4 + −15"}, {"id": "b10", "file": "4-bin", "emoji": "🔢", "title": "Перевод 10 ↔ 2", "sub": "уроки 22.10 и 05.11 · вес разряда"}, {"id": "hex", "file": "5-hex", "emoji": "🔤", "title": "8-ичная и 16-ричная", "sub": "уроки 29.10 и 05.11 · группы по 3 и по 4"}, {"id": "exam", "file": "6-exam", "emoji": "📝", "title": "Вариант экзамена", "sub": "новый вариант каждый раз · как завтра"}];
+var G=[{"id": "add", "file": "1-add", "emoji": "➕", "title": "Сложение в двоичной", "sub": "урок 05.11 · переносы «1 наверх»"}, {"id": "mul", "file": "2-mul", "emoji": "✖️", "title": "Умножение: «эти единички»", "sub": "урок 05.11 · те самые «1.1.1.1»"}, {"id": "why", "file": "2-why", "emoji": "👆", "title": "Умножение: почему копия?", "sub": "почему копия, почему сдвиг · делаешь сам"}, {"id": "neg", "file": "3-neg", "emoji": "🧲", "title": "Отрицательные числа", "sub": "урок 05.11 · задание 3 экзамена: −4 + −15"}, {"id": "b10", "file": "4-bin", "emoji": "🔢", "title": "Перевод 10 ↔ 2", "sub": "уроки 22.10 и 05.11 · вес разряда"}, {"id": "hex", "file": "5-hex", "emoji": "🔤", "title": "8-ичная и 16-ричная", "sub": "уроки 29.10 и 05.11 · группы по 3 и по 4"}, {"id": "exam", "file": "6-exam", "emoji": "📝", "title": "Вариант экзамена", "sub": "новый вариант каждый раз · как завтра"}];
 var L=document.getElementById('list');
 G.forEach(function(g,i){
   var fin=0,best=0; try{fin=+JSON.parse(localStorage.getItem('ex_'+g.id+'_fin')||'0');best=+JSON.parse(localStorage.getItem('ex_'+g.id+'_best')||'0');}catch(e){}
   var a=document.createElement('a'); a.className='big'+(i===0&&!fin?' hl':''); a.href=g.file+'.html'; a.style.textDecoration='none';
-  a.innerHTML='<div class="e">'+g.emoji+'</div><div><b>'+(i+1)+'. '+g.title+'</b><span>'+g.sub+(fin?' · ✅ пройдено':'')+(best?' · рекорд '+best:'')+'</span></div>';
+  a.innerHTML='<div class="e">'+g.emoji+'</div><div><b>'+(g.file.match(/^\d+/)||[i+1])[0]+'. '+g.title+'</b><span>'+g.sub+(fin?' · ✅ пройдено':'')+(best?' · рекорд '+best:'')+'</span></div>';
   L.appendChild(a);
 });
 var off=document.getElementById('off');
