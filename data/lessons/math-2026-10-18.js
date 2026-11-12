@@ -1779,7 +1779,7 @@ window.LESSONS["math-2026-10-18"] = {
           "en": "Solve the system of equations\n`x + y = 8`\n`x − y = 6`\nWrite the answer like this: x = …, y = …"
         },
         "example": {
-          "he": "```\nx + y = 7\nx − y = 3\n```\nהמקדמים של y: `1` ו־−1``, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n2x = 10\nx = 10 / 2 = 5\n```\nמציבים את x במשוואה הראשונה:\n```\n5 + y = 7\ny = 2\n```",
+          "he": "```\nx + y = 7\nx − y = 3\n```\nהמקדמים של y: `1` ו־`−1`, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n2x = 10\nx = 10 / 2 = 5\n```\nמציבים את x במשוואה הראשונה:\n```\n5 + y = 7\ny = 2\n```",
           "ru": "```\nx + y = 7\nx − y = 3\n```\nКоэффициенты при y: `1` и `−1`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n2x = 10\nx = 10 / 2 = 5\n```\nПодставляем x в первое уравнение:\n```\n5 + y = 7\ny = 2\n```",
           "en": "```\nx + y = 7\nx − y = 3\n```\nThe y coefficients: `1` and `−1`, no need to multiply.\nThe y signs are different → we add:\n```\n2x = 10\nx = 10 / 2 = 5\n```\nPut x into the first equation:\n```\n5 + y = 7\ny = 2\n```"
         },
@@ -2011,7 +2011,7 @@ window.LESSONS["math-2026-10-18"] = {
           "en": "Solve the system of equations\n`−10x + 4y = −44`\n`7x − 4y = 26`\nWrite the answer like this: x = …, y = …"
         },
         "example": {
-          "he": "```\n−5x + 2y = −18\n3x − 2y = 10\n```\nהמקדמים של y: `2` ו־−2``, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n−2x = −8\nx = −8 / (−2) = 4\n```\nמציבים את x במשוואה הראשונה:\n```\n−5 × 4 + 2y = −18\n2y = 2\ny = 1\n```",
+          "he": "```\n−5x + 2y = −18\n3x − 2y = 10\n```\nהמקדמים של y: `2` ו־`−2`, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n−2x = −8\nx = −8 / (−2) = 4\n```\nמציבים את x במשוואה הראשונה:\n```\n−5 × 4 + 2y = −18\n2y = 2\ny = 1\n```",
           "ru": "```\n−5x + 2y = −18\n3x − 2y = 10\n```\nКоэффициенты при y: `2` и `−2`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n−2x = −8\nx = −8 / (−2) = 4\n```\nПодставляем x в первое уравнение:\n```\n−5 × 4 + 2y = −18\n2y = 2\ny = 1\n```",
           "en": "```\n−5x + 2y = −18\n3x − 2y = 10\n```\nThe y coefficients: `2` and `−2`, no need to multiply.\nThe y signs are different → we add:\n```\n−2x = −8\nx = −8 / (−2) = 4\n```\nPut x into the first equation:\n```\n−5 × 4 + 2y = −18\n2y = 2\ny = 1\n```"
         },
@@ -2232,7 +2232,7 @@ window.LESSONS["math-2026-10-18"] = {
           "en": "Solve the system of equations\n`4x + y = 9`\n`3x − 2y = 4`\nWrite the answer like this: x = …, y = …"
         },
         "example": {
-          "he": "```\n3x + y = 5\n2x − 3y = 7\n```\nרוצים להיפטר מ־y. המקדמים של y: `1` ו־−3``. את הראשונה כופלים ב־3, את השנייה ב־1:\n```\n9x + 3y = 15\n2x − 3y = 7\n```\nהסימנים של y שונים → מחברים:\n```\n11x = 22\nx = 22 / 11 = 2\n```\nמציבים את x במשוואה הראשונה:\n```\n3 × 2 + y = 5\ny = −1\n```",
+          "he": "```\n3x + y = 5\n2x − 3y = 7\n```\nרוצים להיפטר מ־y. המקדמים של y: `1` ו־`−3`. את הראשונה כופלים ב־3, את השנייה ב־1:\n```\n9x + 3y = 15\n2x − 3y = 7\n```\nהסימנים של y שונים → מחברים:\n```\n11x = 22\nx = 22 / 11 = 2\n```\nמציבים את x במשוואה הראשונה:\n```\n3 × 2 + y = 5\ny = −1\n```",
           "ru": "```\n3x + y = 5\n2x − 3y = 7\n```\nХотим убрать y. Коэффициенты при y: `1` и `−3`. Первое умножаем на 3, второе на 1:\n```\n9x + 3y = 15\n2x − 3y = 7\n```\nЗнаки при y разные → складываем:\n```\n11x = 22\nx = 22 / 11 = 2\n```\nПодставляем x в первое уравнение:\n```\n3 × 2 + y = 5\ny = −1\n```",
           "en": "```\n3x + y = 5\n2x − 3y = 7\n```\nWe want to remove y. The y coefficients: `1` and `−3`. Multiply the first by 3, the second by 1:\n```\n9x + 3y = 15\n2x − 3y = 7\n```\nThe y signs are different → we add:\n```\n11x = 22\nx = 22 / 11 = 2\n```\nPut x into the first equation:\n```\n3 × 2 + y = 5\ny = −1\n```"
         },
@@ -3008,7 +3008,7 @@ window.LESSONS["math-2026-10-18"] = {
           "en": "Solve the system of equations\n`x + y = 10`\n`x − y = 4`\nWrite the answer like this: x = …, y = …"
         },
         "example": {
-          "he": "```\nx + y = 11\nx − y = 5\n```\nהמקדמים של y: `1` ו־−1``, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n2x = 16\nx = 16 / 2 = 8\n```\nמציבים את x במשוואה הראשונה:\n```\n8 + y = 11\ny = 3\n```",
+          "he": "```\nx + y = 11\nx − y = 5\n```\nהמקדמים של y: `1` ו־`−1`, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n2x = 16\nx = 16 / 2 = 8\n```\nמציבים את x במשוואה הראשונה:\n```\n8 + y = 11\ny = 3\n```",
           "ru": "```\nx + y = 11\nx − y = 5\n```\nКоэффициенты при y: `1` и `−1`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n2x = 16\nx = 16 / 2 = 8\n```\nПодставляем x в первое уравнение:\n```\n8 + y = 11\ny = 3\n```",
           "en": "```\nx + y = 11\nx − y = 5\n```\nThe y coefficients: `1` and `−1`, no need to multiply.\nThe y signs are different → we add:\n```\n2x = 16\nx = 16 / 2 = 8\n```\nPut x into the first equation:\n```\n8 + y = 11\ny = 3\n```"
         },
@@ -3315,7 +3315,7 @@ window.LESSONS["math-2026-10-18"] = {
           "en": "Solve the system of equations\n`3x + 2y = 16`\n`5x − 2y = 0`\nWrite the answer like this: x = …, y = …"
         },
         "example": {
-          "he": "```\n2x + 3y = 9\n4x − 3y = 9\n```\nהמקדמים של y: `3` ו־−3``, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n6x = 18\nx = 18 / 6 = 3\n```\nמציבים את x במשוואה הראשונה:\n```\n2 × 3 + 3y = 9\n3y = 3\ny = 1\n```",
+          "he": "```\n2x + 3y = 9\n4x − 3y = 9\n```\nהמקדמים של y: `3` ו־`−3`, אין צורך לכפול.\nהסימנים של y שונים → מחברים:\n```\n6x = 18\nx = 18 / 6 = 3\n```\nמציבים את x במשוואה הראשונה:\n```\n2 × 3 + 3y = 9\n3y = 3\ny = 1\n```",
           "ru": "```\n2x + 3y = 9\n4x − 3y = 9\n```\nКоэффициенты при y: `3` и `−3`, умножать ничего не нужно.\nЗнаки при y разные → складываем:\n```\n6x = 18\nx = 18 / 6 = 3\n```\nПодставляем x в первое уравнение:\n```\n2 × 3 + 3y = 9\n3y = 3\ny = 1\n```",
           "en": "```\n2x + 3y = 9\n4x − 3y = 9\n```\nThe y coefficients: `3` and `−3`, no need to multiply.\nThe y signs are different → we add:\n```\n6x = 18\nx = 18 / 6 = 3\n```\nPut x into the first equation:\n```\n2 × 3 + 3y = 9\n3y = 3\ny = 1\n```"
         },
@@ -3539,7 +3539,7 @@ window.LESSONS["math-2026-10-18"] = {
           "en": "Solve the system of equations\n`3x + 4y = 10`\n`5x − 3y = 7`\nWrite the answer like this: x = …, y = …"
         },
         "example": {
-          "he": "```\n2x + 5y = 12\n3x − 2y = −1\n```\nרוצים להיפטר מ־y. המקדמים של y: `5` ו־−2``. את הראשונה כופלים ב־2, את השנייה ב־5:\n```\n4x + 10y = 24\n15x − 10y = −5\n```\nהסימנים של y שונים → מחברים:\n```\n19x = 19\nx = 19 / 19 = 1\n```\nמציבים את x במשוואה הראשונה:\n```\n2 × 1 + 5y = 12\n5y = 10\ny = 2\n```",
+          "he": "```\n2x + 5y = 12\n3x − 2y = −1\n```\nרוצים להיפטר מ־y. המקדמים של y: `5` ו־`−2`. את הראשונה כופלים ב־2, את השנייה ב־5:\n```\n4x + 10y = 24\n15x − 10y = −5\n```\nהסימנים של y שונים → מחברים:\n```\n19x = 19\nx = 19 / 19 = 1\n```\nמציבים את x במשוואה הראשונה:\n```\n2 × 1 + 5y = 12\n5y = 10\ny = 2\n```",
           "ru": "```\n2x + 5y = 12\n3x − 2y = −1\n```\nХотим убрать y. Коэффициенты при y: `5` и `−2`. Первое умножаем на 2, второе на 5:\n```\n4x + 10y = 24\n15x − 10y = −5\n```\nЗнаки при y разные → складываем:\n```\n19x = 19\nx = 19 / 19 = 1\n```\nПодставляем x в первое уравнение:\n```\n2 × 1 + 5y = 12\n5y = 10\ny = 2\n```",
           "en": "```\n2x + 5y = 12\n3x − 2y = −1\n```\nWe want to remove y. The y coefficients: `5` and `−2`. Multiply the first by 2, the second by 5:\n```\n4x + 10y = 24\n15x − 10y = −5\n```\nThe y signs are different → we add:\n```\n19x = 19\nx = 19 / 19 = 1\n```\nPut x into the first equation:\n```\n2 × 1 + 5y = 12\n5y = 10\ny = 2\n```"
         },

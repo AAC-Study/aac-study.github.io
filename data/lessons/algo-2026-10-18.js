@@ -2461,7 +2461,7 @@ window.LESSONS["algo-2026-10-18"] = {
           "en": "What does this line print? (write exactly what appears on the screen)\n`System.out.println(\"Sum: \" + 2 + 3);`"
         },
         "example": {
-          "he": "`System.out.println(\"Total: \" + 4 + 1);` → `\"Total: \" + 4` → `\"Total: 4\"` → אחר כך + 1`` מדביק → `Total: 41`.",
+          "he": "`System.out.println(\"Total: \" + 4 + 1);` → `\"Total: \" + 4` → `\"Total: 4\"` → אחר כך `+ 1` מדביק → `Total: 41`.",
           "ru": "`System.out.println(\"Total: \" + 4 + 1);` → `\"Total: \" + 4` → `\"Total: 4\"` → потом `+ 1` склеивает → `Total: 41`.",
           "en": "`System.out.println(\"Total: \" + 4 + 1);` → `\"Total: \" + 4` → `\"Total: 4\"` → then `+ 1` glues → `Total: 41`."
         },
