@@ -102,7 +102,7 @@ window.LESSONS["fullstack-2026-11-11"] = {
         "transform: skewX(50deg);     /* this one works */"
       ],
       "why": {
-        "he": "ב־CSS, אם אותה תכונה כתובה פעמיים באותו כלל, מנצחת זו שכתובה אחרונה. (כדי לקבל גם סיבוב וגם הטיה כותבים אותם בשורה אחת עם רווח: `transform: rotate(360deg) skewX(50deg);` — את זה לא ראינו בשיעור.)",
+        "he": "ב־CSS, אם אותה תכונה כתובה פעמיים באותו כלל, מנצחת זו שכתובה אחרונה. (כדי לקבל גם סיבוב וגם הטיה כותבים אותם בשורה אחת עם רווח: \n```\ntransform: rotate(360deg) skewX(50deg);\n```\n — את זה לא ראינו בשיעור.)",
         "ru": "В CSS, если одно свойство записано в правиле дважды, побеждает последнее. (Чтобы было и вращение, и наклон, их пишут в одной строке через пробел: `transform: rotate(360deg) skewX(50deg);` — этого на уроке не было.)",
         "en": "In CSS, if the same property is written twice in one rule, the last one wins. (To get both a turn and a slant, write them on one line with a space: `transform: rotate(360deg) skewX(50deg);` — this was not shown in class.)"
       }
@@ -115,7 +115,7 @@ window.LESSONS["fullstack-2026-11-11"] = {
         "en": "`@media`: a special style for a narrow screen"
       },
       "text": {
-        "he": "בקובץ `responsiveLesson.css` יש בלוק `@media screen and (max-width: 650px)`. כל מה שבתוכו עובד רק כשרוחב המסך 650px או פחות (טלפון). במסך רחב יותר הבלוק לא קיים מבחינת הדפדפן.\nמה משתנה בטלפון:\n• `p { column-count: 1; }` — הטקסט בעמודה אחת.\n• `#content { display: flex; flex-flow: column; }` — החלקים עומדים אחד מתחת לשני.\n• `h1 { align-self: center; }` — הכותרת באמצע.\n• `img { width: 100%; }` — התמונה ברוחב כל המסך.\n• `#mainTitle { font-size: 250%; }` — כותרת ראשית גדולה.",
+        "he": "בקובץ `responsiveLesson.css` יש בלוק `@media screen and (max-width: 650px)`. כל מה שבתוכו עובד רק כשרוחב המסך 650px או פחות (טלפון). במסך רחב יותר הבלוק לא קיים מבחינת הדפדפן.\nמה משתנה בטלפון:\n• `p { column-count: 1; }` — הטקסט בעמודה אחת.\n• \n```\n#content { display: flex; flex-flow: column; }\n```\n — החלקים עומדים אחד מתחת לשני.\n• `h1 { align-self: center; }` — הכותרת באמצע.\n• `img { width: 100%; }` — התמונה ברוחב כל המסך.\n• `#mainTitle { font-size: 250%; }` — כותרת ראשית גדולה.",
         "ru": "В файле `responsiveLesson.css` есть блок `@media screen and (max-width: 650px)`. Всё, что внутри, работает, только когда ширина экрана 650px или меньше (телефон). На экране шире браузер этот блок как будто не видит.\nЧто меняется на телефоне:\n• `p { column-count: 1; }` — текст в одну колонку.\n• `#content { display: flex; flex-flow: column; }` — части стоят одна под другой.\n• `h1 { align-self: center; }` — заголовок посередине.\n• `img { width: 100%; }` — картинка во всю ширину экрана.\n• `#mainTitle { font-size: 250%; }` — главный заголовок крупный.",
         "en": "The file `responsiveLesson.css` has a block `@media screen and (max-width: 650px)`. Everything inside works only when the screen is 650px wide or less (a phone). On a wider screen the browser acts as if the block is not there.\nWhat changes on a phone:\n• `p { column-count: 1; }` — the text in one column.\n• `#content { display: flex; flex-flow: column; }` — the parts stand one under another.\n• `h1 { align-self: center; }` — the heading in the middle.\n• `img { width: 100%; }` — the picture across the whole screen.\n• `#mainTitle { font-size: 250%; }` — a big main title."
       },
