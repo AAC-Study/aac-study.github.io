@@ -25,7 +25,7 @@ window.LESSONS["algo-2026-11-08"] = {
         "en": "Course summary: the for loop"
       },
       "text": {
-        "he": "בתחילת השיעור עברנו על הסיכום \"לולאת for\" מאתר הקורס.\n• מבנה: `for (אתחול; תנאי; עדכון)`. האתחול רץ פעם אחת, התנאי נבדק לפני כל סיבוב, העדכון רץ בסוף כל סיבוב.\n• עולה: `for (int i = 1; i <= 10; i++)`. יורד: `for (int i = 10; i >= 1; i--)`. בקפיצות: `i += 2` נותן 0, 2, 4 … 20.\n• `break` יוצא מהלולאה מיד. `continue` מדלג על שאר הסיבוב הנוכחי ועובר לסיבוב הבא.\n• טעויות נפוצות: `i--` עם התנאי `i < 10` (לולאה אינסופית), שוכחים את העדכון, ונקודה־פסיק `;` מיד אחרי `for (…)`.",
+        "he": "בתחילת השיעור עברנו על הסיכום \"לולאת for\" מאתר הקורס.\n• מבנה: `for (אתחול; תנאי; עדכון)`. האתחול רץ פעם אחת, התנאי נבדק לפני כל סיבוב, העדכון רץ בסוף כל סיבוב.\n• עולה: `for (int i = 1; i <= 10; i++)`. יורד: `for (int i = 10; i >= 1; i--)`. בקפיצות: `i += 2` נותן `0, 2, 4` … 20.\n• `break` יוצא מהלולאה מיד. `continue` מדלג על שאר הסיבוב הנוכחי ועובר לסיבוב הבא.\n• טעויות נפוצות: `i--` עם התנאי `i < 10` (לולאה אינסופית), שוכחים את העדכון, ונקודה־פסיק `;` מיד אחרי `for (…)`.",
         "ru": "В начале урока прошли конспект «Цикл for» с сайта курса.\n• Устройство: `for (начало; условие; шаг)`. Начало выполняется один раз, условие проверяется перед каждым кругом, шаг выполняется в конце каждого круга.\n• Вверх: `for (int i = 1; i <= 10; i++)`. Вниз: `for (int i = 10; i >= 1; i--)`. Через шаг: `i += 2` даёт 0, 2, 4 … 20.\n• `break` сразу выходит из цикла. `continue` пропускает остаток текущего круга и переходит к следующему.\n• Частые ошибки: `i--` при условии `i < 10` (бесконечный цикл), забыли шаг, и точка с запятой `;` сразу после `for (…)`.",
         "en": "At the start of the lesson we went over the \"for loop\" summary from the course site.\n• Structure: `for (start; condition; update)`. The start runs once, the condition is checked before every round, the update runs at the end of every round.\n• Up: `for (int i = 1; i <= 10; i++)`. Down: `for (int i = 10; i >= 1; i--)`. In steps: `i += 2` gives 0, 2, 4 … 20.\n• `break` leaves the loop at once. `continue` skips the rest of the current round and goes to the next one.\n• Common mistakes: `i--` with the condition `i < 10` (an endless loop), forgetting the update, and a semicolon `;` right after `for (…)`."
       },
@@ -233,12 +233,12 @@ window.LESSONS["algo-2026-11-08"] = {
     {
       "kind": "talk",
       "title": {
-        "he": "תרגילי while ו־for באתר הקורס (1–9)",
+        "he": "תרגילי while ו־for באתר הקורס (`1–9`)",
         "ru": "Упражнения на while и for на сайте курса (1–9)",
         "en": "while and for exercises on the course site (1–9)"
       },
       "text": {
-        "he": "באתר הקורס יש 9 תרגילים לתרגול עצמי (כאן רק הרשימה, בלי פתרונות):\n1. \"מספר יפה\": הספרה הימנית שווה לשמאלית (151, 959, 3333).\n2. כמה פעמים ספרה מופיעה במספר.\n3. סכום הספרות הזוגיות וסכום האי־זוגיות.\n4. היפוך מספר (12345 → 54321).\n5. משולש מספרים (1 / 1 2 / 1 2 3 …).\n6. משולש כוכביות הפוך.\n7. לוח הכפל 1–10.\n8. מספרים ראשוניים בטווח.\n9. מעוין מכוכביות.",
+        "he": "באתר הקורס יש 9 תרגילים לתרגול עצמי (כאן רק הרשימה, בלי פתרונות):\n1. \"מספר יפה\": הספרה הימנית שווה לשמאלית (`151, 959, 3333`).\n2. כמה פעמים ספרה מופיעה במספר.\n3. סכום הספרות הזוגיות וסכום האי־זוגיות.\n4. היפוך מספר (12345 → 54321).\n5. משולש מספרים (1 / 1 2 / 1 2 3 …).\n6. משולש כוכביות הפוך.\n7. לוח הכפל `1–10`.\n8. מספרים ראשוניים בטווח.\n9. מעוין מכוכביות.",
         "ru": "На сайте курса 9 упражнений для самостоятельной практики (здесь только список, без решений):\n1. «Красивое число»: правая цифра равна левой (151, 959, 3333).\n2. Сколько раз цифра встречается в числе.\n3. Сумма чётных цифр и сумма нечётных.\n4. Перевернуть число (12345 → 54321).\n5. Треугольник из чисел (1 / 1 2 / 1 2 3 …).\n6. Перевёрнутый треугольник из звёздочек.\n7. Таблица умножения 1–10.\n8. Простые числа в диапазоне.\n9. Ромб из звёздочек.",
         "en": "The course site has 9 exercises for self-practice (only the list here, no solutions):\n1. \"A nice number\": the rightmost digit equals the leftmost (151, 959, 3333).\n2. How many times a digit appears in a number.\n3. The sum of the even digits and the sum of the odd ones.\n4. Reverse a number (12345 → 54321).\n5. A number triangle (1 / 1 2 / 1 2 3 …).\n6. An upside-down star triangle.\n7. The multiplication table 1–10.\n8. Prime numbers in a range.\n9. A diamond of stars."
       }
@@ -374,7 +374,7 @@ window.LESSONS["algo-2026-11-08"] = {
           "en": "This is the average program from the lesson: it reads numbers until -111 and prints their average.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Please enter numbers until -111: \");\nint sum = 0;\nint count = 0;\nint num = input.nextInt();\nwhile (num != -111) {\n    sum += num;\n    count++;\n    num = input.nextInt();\n}\ndouble avg = (double) sum / count;\nSystem.out.println(avg);\n```\nThe user typed one after another: 7, 4, 6, 2, -111. What number does the program print on the last line?"
         },
         "example": {
-          "he": "המשתמש הקליד `10, 3, -111` → `sum = 13`, `count = 2` → `-111` עוצר ולא נספר → `(double) 13 / 2 = 6.5` → מודפס 6.5.",
+          "he": "המשתמש הקליד `10, 3, -111` → `sum = 13, count = 2` → `-111` עוצר ולא נספר → `(double) 13 / 2 = 6.5` → מודפס 6.5.",
           "ru": "Пользователь ввёл 10, 3, −111 → `sum = 13`, `count = 2` → −111 останавливает и не считается → `(double) 13 / 2 = 6.5` → печатается 6.5.",
           "en": "The user typed 10, 3, -111 → `sum = 13`, `count = 2` → -111 stops and is not counted → `(double) 13 / 2 = 6.5` → 6.5 is printed."
         },
@@ -444,7 +444,7 @@ window.LESSONS["algo-2026-11-08"] = {
           }
         ],
         "example": {
-          "he": "דוגמה הפוכה, שבה כן משנים בתוך הלולאה:\n```\nint i = 1;\nwhile (i < 4) {\n    System.out.println(i);\n    i++;\n}\n```\n`i++` מגדיל את `i` בכל סיבוב → 1, 2, 3 → כש־`i = 4` התנאי `4 < 4` לא נכון → הלולאה נגמרת אחרי 3 סיבובים.",
+          "he": "דוגמה הפוכה, שבה כן משנים בתוך הלולאה:\n```\nint i = 1;\nwhile (i < 4) {\n    System.out.println(i);\n    i++;\n}\n```\n`i++` מגדיל את `i` בכל סיבוב → `1, 2, 3` → כש־`i = 4` התנאי `4 < 4` לא נכון → הלולאה נגמרת אחרי 3 סיבובים.",
           "ru": "Обратный пример, где внутри цикла что-то меняется:\n```\nint i = 1;\nwhile (i < 4) {\n    System.out.println(i);\n    i++;\n}\n```\n`i++` увеличивает `i` на каждом круге → 1, 2, 3 → когда `i = 4`, условие `4 < 4` неверно → цикл кончается после 3 кругов.",
           "en": "The opposite example, where something changes inside the loop:\n```\nint i = 1;\nwhile (i < 4) {\n    System.out.println(i);\n    i++;\n}\n```\n`i++` makes `i` bigger every round → 1, 2, 3 → when `i = 4` the condition `4 < 4` is false → the loop ends after 3 rounds."
         },
@@ -658,12 +658,12 @@ window.LESSONS["algo-2026-11-08"] = {
         },
         "kind": "number",
         "text": {
-          "he": "זו תוכנית המונה מהשיעור: היא קולטת N, אחר כך N מספרים, וסופרת כמה מהם מתחלקים ב־7.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Please enter a number: \");\nint N = input.nextInt();\nSystem.out.println(\"Please enter \" + N + \" numbers: \");\nint num;\nint count = 0;\nfor (int i = 0; i < N; i++) {\n    num = input.nextInt();\n    if (num % 7 == 0) {\n        count++;\n    }\n}\nSystem.out.println(\"count of \" + N + \" numbers is \" + count);\n```\nהמשתמש הקליד קודם 6, ואחר כך: 14, 5, 21, 70, 8, 0. איזה מספר יופיע בסוף השורה האחרונה?",
+          "he": "זו תוכנית המונה מהשיעור: היא קולטת N, אחר כך N מספרים, וסופרת כמה מהם מתחלקים ב־7.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Please enter a number: \");\nint N = input.nextInt();\nSystem.out.println(\"Please enter \" + N + \" numbers: \");\nint num;\nint count = 0;\nfor (int i = 0; i < N; i++) {\n    num = input.nextInt();\n    if (num % 7 == 0) {\n        count++;\n    }\n}\nSystem.out.println(\"count of \" + N + \" numbers is \" + count);\n```\nהמשתמש הקליד קודם 6, ואחר כך: `14, 5, 21, 70, 8, 0`. איזה מספר יופיע בסוף השורה האחרונה?",
           "ru": "Это программа-счётчик с урока: она читает N, потом N чисел и считает, сколько из них делятся на 7.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Please enter a number: \");\nint N = input.nextInt();\nSystem.out.println(\"Please enter \" + N + \" numbers: \");\nint num;\nint count = 0;\nfor (int i = 0; i < N; i++) {\n    num = input.nextInt();\n    if (num % 7 == 0) {\n        count++;\n    }\n}\nSystem.out.println(\"count of \" + N + \" numbers is \" + count);\n```\nПользователь сначала ввёл 6, потом по очереди: 14, 5, 21, 70, 8, 0. Какое число будет в конце последней строки?",
           "en": "This is the counter program from the lesson: it reads N, then N numbers, and counts how many of them divide by 7.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Please enter a number: \");\nint N = input.nextInt();\nSystem.out.println(\"Please enter \" + N + \" numbers: \");\nint num;\nint count = 0;\nfor (int i = 0; i < N; i++) {\n    num = input.nextInt();\n    if (num % 7 == 0) {\n        count++;\n    }\n}\nSystem.out.println(\"count of \" + N + \" numbers is \" + count);\n```\nThe user first typed 6, then one after another: 14, 5, 21, 70, 8, 0. Which number is at the end of the last line?"
         },
         "example": {
-          "he": "המשתמש הקליד 4, ואחר כך 7, 10, 28, 3 → `7 % 7 = 0` כן → `10 % 7 = 3` לא → `28 % 7 = 0` כן → `3 % 7 = 3` לא → `count of 4 numbers is 2`.",
+          "he": "המשתמש הקליד 4, ואחר כך `7, 10, 28, 3` → `7 % 7 = 0` כן → `10 % 7 = 3` לא → `28 % 7 = 0` כן → `3 % 7 = 3` לא → `count of 4 numbers is 2`.",
           "ru": "Пользователь ввёл 4, потом 7, 10, 28, 3 → `7 % 7 = 0` да → `10 % 7 = 3` нет → `28 % 7 = 0` да → `3 % 7 = 3` нет → `count of 4 numbers is 2`.",
           "en": "The user typed 4, then 7, 10, 28, 3 → `7 % 7 = 0` yes → `10 % 7 = 3` no → `28 % 7 = 0` yes → `3 % 7 = 3` no → `count of 4 numbers is 2`."
         },
@@ -748,12 +748,12 @@ window.LESSONS["algo-2026-11-08"] = {
         },
         "kind": "text",
         "text": {
-          "he": "זו התוכנית משאלת המבחן, רק עם 5 מספרים במקום 100: לכל מספר תלת־ספרתי היא מדפיסה את סכום הספרות.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Please enter 5 numbers: \");\nint num;\nfor (int i = 0; i < 5; i++) {\n    num = input.nextInt();\n    if (num >= 100 && num <= 999) {\n        int sumDig = 0;\n        for (int j = 0; j < 3; j++) {\n            sumDig += (num % 10);\n            num /= 10;\n        }\n        System.out.println(sumDig);\n    }\n}\n```\nהמשתמש הקליד, אחד אחרי השני: 245, 7, 1000, 999, 100. אילו מספרים התוכנית תדפיס אחרי השורה הראשונה? כתבו אותם עם רווח ביניהם.",
+          "he": "זו התוכנית משאלת המבחן, רק עם 5 מספרים במקום 100: לכל מספר תלת־ספרתי היא מדפיסה את סכום הספרות.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Please enter 5 numbers: \");\nint num;\nfor (int i = 0; i < 5; i++) {\n    num = input.nextInt();\n    if (num >= 100 && num <= 999) {\n        int sumDig = 0;\n        for (int j = 0; j < 3; j++) {\n            sumDig += (num % 10);\n            num /= 10;\n        }\n        System.out.println(sumDig);\n    }\n}\n```\nהמשתמש הקליד, אחד אחרי השני: `245, 7, 1000, 999, 100`. אילו מספרים התוכנית תדפיס אחרי השורה הראשונה? כתבו אותם עם רווח ביניהם.",
           "ru": "Это программа из экзаменационной задачи, только на 5 чисел вместо 100: для каждого трёхзначного числа она печатает сумму цифр.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Please enter 5 numbers: \");\nint num;\nfor (int i = 0; i < 5; i++) {\n    num = input.nextInt();\n    if (num >= 100 && num <= 999) {\n        int sumDig = 0;\n        for (int j = 0; j < 3; j++) {\n            sumDig += (num % 10);\n            num /= 10;\n        }\n        System.out.println(sumDig);\n    }\n}\n```\nПользователь по очереди ввёл: 245, 7, 1000, 999, 100. Какие числа программа напечатает после первой строки? Напиши их через пробел.",
           "en": "This is the program from the exam question, only with 5 numbers instead of 100: for each three-digit number it prints the digit sum.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Please enter 5 numbers: \");\nint num;\nfor (int i = 0; i < 5; i++) {\n    num = input.nextInt();\n    if (num >= 100 && num <= 999) {\n        int sumDig = 0;\n        for (int j = 0; j < 3; j++) {\n            sumDig += (num % 10);\n            num /= 10;\n        }\n        System.out.println(sumDig);\n    }\n}\n```\nThe user typed one after another: 245, 7, 1000, 999, 100. Which numbers does the program print after the first line? Write them with spaces."
         },
         "example": {
-          "he": "אותה תוכנית עם 3 מספרים: 123, 50, 808 → 123 תלת־ספרתי → 3 + 2 + 1 = 6 → ‏50 לא (קטן מ־100) → 808 כן → 8 + 0 + 8 = 16 → מודפס `6 16`.",
+          "he": "אותה תוכנית עם 3 מספרים: `123, 50, 808` → 123 תלת־ספרתי → 3 + 2 + 1 = 6 → ‏50 לא (קטן מ־100) → 808 כן → 8 + 0 + 8 = 16 → מודפס `6 16`.",
           "ru": "Та же программа на 3 числа: 123, 50, 808 → 123 трёхзначное → 3 + 2 + 1 = 6 → 50 нет (меньше 100) → 808 да → 8 + 0 + 8 = 16 → печатается `6 16`.",
           "en": "The same program with 3 numbers: 123, 50, 808 → 123 has three digits → 3 + 2 + 1 = 6 → 50 no (less than 100) → 808 yes → 8 + 0 + 8 = 16 → `6 16` is printed."
         },
@@ -910,7 +910,7 @@ window.LESSONS["algo-2026-11-08"] = {
           "en": "This is the inner loop from the exam question, but it stops after 2 rounds, and `num` is already given.\n```\nint num = 472;\nint sumDig = 0;\nfor (int j = 0; j < 2; j++) {\n    sumDig += (num % 10);\n    num /= 10;\n}\nSystem.out.println(sumDig);\n```\nWhat does the program print?"
         },
         "example": {
-          "he": "אותה לולאה עם `num = 305` → סיבוב 1: `305 % 10 = 5`, `sumDig = 5`, `num = 30` → סיבוב 2: `30 % 10 = 0`, `sumDig = 5`, `num = 3` → מודפס 5.",
+          "he": "אותה לולאה עם `num = 305` → סיבוב 1: `305 % 10 = 5`, `sumDig = 5, num = 30` → סיבוב 2: `30 % 10 = 0`, `sumDig = 5, num = 3` → מודפס 5.",
           "ru": "Тот же цикл с `num = 305` → круг 1: `305 % 10 = 5`, `sumDig = 5`, `num = 30` → круг 2: `30 % 10 = 0`, `sumDig = 5`, `num = 3` → печатается 5.",
           "en": "The same loop with `num = 305` → round 1: `305 % 10 = 5`, `sumDig = 5`, `num = 30` → round 2: `30 % 10 = 0`, `sumDig = 5`, `num = 3` → 5 is printed."
         },
@@ -950,7 +950,7 @@ window.LESSONS["algo-2026-11-08"] = {
           "en": "A program in the style of the `break` example from the summary.\n```\nfor (int i = 3; i <= 10; i++) {\n    if (i == 7) {\n        System.out.println(\"Breaking at 7!\");\n        break;\n    }\n    System.out.println(i);\n}\n```\nWhich numbers are printed before the message `Breaking at 7!`? Write them with spaces."
         },
         "example": {
-          "he": "הדוגמה מהסיכום: הלולאה מ־1 עד 10, ו־`break` כש־`i == 5` → מודפסים 1, 2, 3, 4 → כש־`i = 5` מודפס `Breaking at 5!` ויוצאים, אז 5 עצמו לא מודפס.",
+          "he": "הדוגמה מהסיכום: הלולאה מ־1 עד 10, ו־`break` כש־`i == 5` → מודפסים `1, 2, 3, 4` → כש־`i = 5` מודפס `Breaking at 5!` ויוצאים, אז 5 עצמו לא מודפס.",
           "ru": "Пример из конспекта: цикл от 1 до 10 и `break`, когда `i == 5` → печатаются 1, 2, 3, 4 → при `i = 5` печатается `Breaking at 5!` и выход, так что само 5 не печатается.",
           "en": "The example from the summary: the loop from 1 to 10, and `break` when `i == 5` → 1, 2, 3, 4 are printed → at `i = 5` `Breaking at 5!` is printed and the loop ends, so 5 itself is not printed."
         },
@@ -1040,7 +1040,7 @@ window.LESSONS["algo-2026-11-08"] = {
           "en": "A loop in steps, like `i += 2` in the summary.\n```\nfor (int i = 0; i <= 20; i += 5) {\n    System.out.println(i);\n}\n```\nHow many numbers are printed?"
         },
         "example": {
-          "he": "הדוגמה מהסיכום, `i += 2` מ־0 עד 20 → 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 → 11 מספרים (גם 0 וגם 20 נספרים).",
+          "he": "הדוגמה מהסיכום, `i += 2` מ־0 עד 20 → `0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20` → 11 מספרים (גם 0 וגם 20 נספרים).",
           "ru": "Пример из конспекта, `i += 2` от 0 до 20 → 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 → 11 чисел (и 0, и 20 считаются).",
           "en": "The example from the summary, `i += 2` from 0 to 20 → 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 → 11 numbers (both 0 and 20 count)."
         },
@@ -1084,7 +1084,7 @@ window.LESSONS["algo-2026-11-08"] = {
           "en": "A loop going down in steps of 3.\n```\nfor (int i = 10; i >= 1; i -= 3) {\n    System.out.println(i);\n}\n```\nWhich numbers are printed? Write them with spaces."
         },
         "example": {
-          "he": "הדוגמה היורדת מהסיכום, עם `i--` מ־5 → 5, 4, 3, 2, 1 → כש־`i = 0` התנאי `0 >= 1` לא נכון.",
+          "he": "הדוגמה היורדת מהסיכום, עם `i--` מ־5 → `5, 4, 3, 2, 1` → כש־`i = 0` התנאי `0 >= 1` לא נכון.",
           "ru": "Пример вниз из конспекта, с `i--` от 5 → 5, 4, 3, 2, 1 → при `i = 0` условие `0 >= 1` неверно.",
           "en": "The counting-down example from the summary, with `i--` from 5 → 5, 4, 3, 2, 1 → at `i = 0` the condition `0 >= 1` is false."
         },
@@ -1166,7 +1166,7 @@ window.LESSONS["algo-2026-11-08"] = {
           "en": "Input checking with while, in the style of the summary example: ask for the grade again until it is from 0 to 100.\n```\nScanner input = new Scanner(System.in);\nSystem.out.println(\"Enter a grade (0-100): \");\nint grade = input.nextInt();\nwhile (grade < 0 || grade > 100) {\n    System.out.println(\"Wrong grade, try again: \");\n    grade = input.nextInt();\n}\nSystem.out.println(\"Your grade: \" + grade);\n```\nThe user typed one after another: 120, -5, 100. How many times is the line `Wrong grade, try again:` printed?"
         },
         "example": {
-          "he": "המשתמש הקליד 150, 90 → `150 > 100` נכון → מודפס `Wrong grade…` פעם אחת → נקלט 90 → `90 < 0 || 90 > 100` לא נכון → יוצאים → `Your grade: 90`.",
+          "he": "המשתמש הקליד `150, 90` → `150 > 100` נכון → מודפס `Wrong grade…` פעם אחת → נקלט 90 → `90 < 0 || 90 > 100` לא נכון → יוצאים → `Your grade: 90`.",
           "ru": "Пользователь ввёл 150, 90 → `150 > 100` верно → один раз печатается `Wrong grade…` → прочитано 90 → `90 < 0 || 90 > 100` неверно → выход → `Your grade: 90`.",
           "en": "The user typed 150, 90 → `150 > 100` is true → `Wrong grade…` is printed once → 90 is read → `90 < 0 || 90 > 100` is false → exit → `Your grade: 90`."
         },
@@ -1262,12 +1262,12 @@ window.LESSONS["algo-2026-11-08"] = {
         },
         "kind": "number",
         "text": {
-          "he": "לולאה \"אינסופית בכוונה\" עם `break`, כמו בסיכום: סוכמת מספרים עד שמקלידים 0.\n```\nScanner input = new Scanner(System.in);\nint sum = 0;\nwhile (true) {\n    int num = input.nextInt();\n    if (num == 0) {\n        break;\n    }\n    sum += num;\n}\nSystem.out.println(sum);\n```\nהמשתמש הקליד, אחד אחרי השני: 4, 9, 0, 6. מה התוכנית תדפיס?",
+          "he": "לולאה \"אינסופית בכוונה\" עם `break`, כמו בסיכום: סוכמת מספרים עד שמקלידים 0.\n```\nScanner input = new Scanner(System.in);\nint sum = 0;\nwhile (true) {\n    int num = input.nextInt();\n    if (num == 0) {\n        break;\n    }\n    sum += num;\n}\nSystem.out.println(sum);\n```\nהמשתמש הקליד, אחד אחרי השני: `4, 9, 0, 6`. מה התוכנית תדפיס?",
           "ru": "Цикл «бесконечный нарочно» с `break`, как в конспекте: складывает числа, пока не введут 0.\n```\nScanner input = new Scanner(System.in);\nint sum = 0;\nwhile (true) {\n    int num = input.nextInt();\n    if (num == 0) {\n        break;\n    }\n    sum += num;\n}\nSystem.out.println(sum);\n```\nПользователь по очереди ввёл: 4, 9, 0, 6. Что напечатает программа?",
           "en": "A loop that is \"endless on purpose\" with `break`, like in the summary: it adds numbers until 0 is typed.\n```\nScanner input = new Scanner(System.in);\nint sum = 0;\nwhile (true) {\n    int num = input.nextInt();\n    if (num == 0) {\n        break;\n    }\n    sum += num;\n}\nSystem.out.println(sum);\n```\nThe user typed one after another: 4, 9, 0, 6. What does the program print?"
         },
         "example": {
-          "he": "המשתמש הקליד 3, 3, 0 → `sum = 3`, אחר כך `sum = 6` → נקלט 0 → `break` → מודפס 6.",
+          "he": "המשתמש הקליד `3, 3, 0` → `sum = 3`, אחר כך `sum = 6` → נקלט 0 → `break` → מודפס 6.",
           "ru": "Пользователь ввёл 3, 3, 0 → `sum = 3`, потом `sum = 6` → прочитан 0 → `break` → печатается 6.",
           "en": "The user typed 3, 3, 0 → `sum = 3`, then `sum = 6` → 0 is read → `break` → 6 is printed."
         },
@@ -1306,7 +1306,7 @@ window.LESSONS["algo-2026-11-08"] = {
           "en": "How many rounds?\n```\nint i = 10;\nint rounds = 0;\nwhile (i > 0) {\n    i -= 4;\n    rounds++;\n}\nSystem.out.println(rounds);\n```\nWhat does the program print?"
         },
         "example": {
-          "he": "`i = 7` ו־`i -= 2` → ‏7, 5, 3, 1 נכנסים ללולאה → אחר כך `i = -1`, והתנאי `-1 > 0` לא נכון → 4 סיבובים.",
+          "he": "`i = 7` ו־`i -= 2` → `7, 5, 3, 1` נכנסים ללולאה → אחר כך `i = -1`, והתנאי `-1 > 0` לא נכון → 4 סיבובים.",
           "ru": "`i = 7` и `i -= 2` → в цикл заходят 7, 5, 3, 1 → потом `i = -1`, и условие `-1 > 0` неверно → 4 круга.",
           "en": "`i = 7` and `i -= 2` → 7, 5, 3, 1 enter the loop → then `i = -1`, and `-1 > 0` is false → 4 rounds."
         },
@@ -1343,7 +1343,7 @@ window.LESSONS["algo-2026-11-08"] = {
           "en": "Division with `(double)`.\n```\nint a = 9;\nint b = 4;\nSystem.out.println((double) a / b);\n```\nWhat does the program print?"
         },
         "example": {
-          "he": "`a = 7`, `b = 2` → `a / b` = 3 (שני int, השבר נמחק) → `(double) a / b` = 3.5.",
+          "he": "`a = 7, b = 2` → `a / b` = 3 (שני int, השבר נמחק) → `(double) a / b` = 3.5.",
           "ru": "`a = 7`, `b = 2` → `a / b` = 3 (два int, дробь отбрасывается) → `(double) a / b` = 3.5.",
           "en": "`a = 7`, `b = 2` → `a / b` = 3 (two ints, the fraction is dropped) → `(double) a / b` = 3.5."
         },
@@ -1447,12 +1447,12 @@ window.LESSONS["algo-2026-11-08"] = {
         "label": "D5",
         "kind": "text",
         "text": {
-          "he": "שני תנאי עצירה: 5 מספרים, או שהסכום עבר 20.\n```\nScanner input = new Scanner(System.in);\nint count = 0;\nint sum = 0;\nwhile (count < 5 && sum <= 20) {\n    int num = input.nextInt();\n    sum += num;\n    count++;\n}\nSystem.out.println(count + \" \" + sum);\n```\nהמשתמש הקליד, אחד אחרי השני: 6, 8, 9, 2, 1, 3. מה התוכנית תדפיס? (שני מספרים עם רווח)",
+          "he": "שני תנאי עצירה: 5 מספרים, או שהסכום עבר 20.\n```\nScanner input = new Scanner(System.in);\nint count = 0;\nint sum = 0;\nwhile (count < 5 && sum <= 20) {\n    int num = input.nextInt();\n    sum += num;\n    count++;\n}\nSystem.out.println(count + \" \" + sum);\n```\nהמשתמש הקליד, אחד אחרי השני: `6, 8, 9, 2, 1, 3`. מה התוכנית תדפיס? (שני מספרים עם רווח)",
           "ru": "Два условия остановки: 5 чисел или сумма больше 20.\n```\nScanner input = new Scanner(System.in);\nint count = 0;\nint sum = 0;\nwhile (count < 5 && sum <= 20) {\n    int num = input.nextInt();\n    sum += num;\n    count++;\n}\nSystem.out.println(count + \" \" + sum);\n```\nПользователь по очереди ввёл: 6, 8, 9, 2, 1, 3. Что напечатает программа? (два числа через пробел)",
           "en": "Two stop conditions: 5 numbers, or the sum is over 20.\n```\nScanner input = new Scanner(System.in);\nint count = 0;\nint sum = 0;\nwhile (count < 5 && sum <= 20) {\n    int num = input.nextInt();\n    sum += num;\n    count++;\n}\nSystem.out.println(count + \" \" + sum);\n```\nThe user typed one after another: 6, 8, 9, 2, 1, 3. What does the program print? (two numbers with a space)"
         },
         "example": {
-          "he": "המשתמש הקליד שישה 1 → אחרי 5 סיבובים `count = 5`, `sum = 5` → `5 < 5` לא נכון → עוצרים, ה־1 השישי לא נקלט → מודפס `5 5`.",
+          "he": "המשתמש הקליד שישה 1 → אחרי 5 סיבובים `count = 5, sum = 5` → `5 < 5` לא נכון → עוצרים, ה־1 השישי לא נקלט → מודפס `5 5`.",
           "ru": "Пользователь ввёл шесть единиц → после 5 кругов `count = 5`, `sum = 5` → `5 < 5` неверно → стоп, шестая единица не читается → печатается `5 5`.",
           "en": "The user typed six 1s → after 5 rounds `count = 5`, `sum = 5` → `5 < 5` is false → stop, the sixth 1 is not read → `5 5` is printed."
         },
@@ -1488,12 +1488,12 @@ window.LESSONS["algo-2026-11-08"] = {
         "label": "D6",
         "kind": "text",
         "text": {
-          "he": "כמו שאלת המבחן, אבל למספרים בני 4 ספרות.\n```\nScanner input = new Scanner(System.in);\nint num;\nfor (int i = 0; i < 3; i++) {\n    num = input.nextInt();\n    if (num >= 1000 && num <= 9999) {\n        int sumDig = 0;\n        for (int j = 0; j < 4; j++) {\n            sumDig += (num % 10);\n            num /= 10;\n        }\n        System.out.println(sumDig);\n    }\n}\n```\nהמשתמש הקליד, אחד אחרי השני: 1234, 999, 9081. אילו מספרים יודפסו? כתבו אותם עם רווח ביניהם.",
+          "he": "כמו שאלת המבחן, אבל למספרים בני 4 ספרות.\n```\nScanner input = new Scanner(System.in);\nint num;\nfor (int i = 0; i < 3; i++) {\n    num = input.nextInt();\n    if (num >= 1000 && num <= 9999) {\n        int sumDig = 0;\n        for (int j = 0; j < 4; j++) {\n            sumDig += (num % 10);\n            num /= 10;\n        }\n        System.out.println(sumDig);\n    }\n}\n```\nהמשתמש הקליד, אחד אחרי השני: `1234, 999, 9081`. אילו מספרים יודפסו? כתבו אותם עם רווח ביניהם.",
           "ru": "Как задача экзамена, но для четырёхзначных чисел.\n```\nScanner input = new Scanner(System.in);\nint num;\nfor (int i = 0; i < 3; i++) {\n    num = input.nextInt();\n    if (num >= 1000 && num <= 9999) {\n        int sumDig = 0;\n        for (int j = 0; j < 4; j++) {\n            sumDig += (num % 10);\n            num /= 10;\n        }\n        System.out.println(sumDig);\n    }\n}\n```\nПользователь по очереди ввёл: 1234, 999, 9081. Какие числа напечатаются? Напиши их через пробел.",
           "en": "Like the exam question, but for four-digit numbers.\n```\nScanner input = new Scanner(System.in);\nint num;\nfor (int i = 0; i < 3; i++) {\n    num = input.nextInt();\n    if (num >= 1000 && num <= 9999) {\n        int sumDig = 0;\n        for (int j = 0; j < 4; j++) {\n            sumDig += (num % 10);\n            num /= 10;\n        }\n        System.out.println(sumDig);\n    }\n}\n```\nThe user typed one after another: 1234, 999, 9081. Which numbers are printed? Write them with spaces."
         },
         "example": {
-          "he": "אותה תוכנית עם 2 מספרים: 2222, 50 → 2222 בן 4 ספרות → 2 + 2 + 2 + 2 = 8 → ‏50 לא → מודפס 8.",
+          "he": "אותה תוכנית עם 2 מספרים: `2222, 50` → 2222 בן 4 ספרות → 2 + 2 + 2 + 2 = 8 → ‏50 לא → מודפס 8.",
           "ru": "Та же программа на 2 числа: 2222, 50 → 2222 четырёхзначное → 2 + 2 + 2 + 2 = 8 → 50 нет → печатается 8.",
           "en": "The same program with 2 numbers: 2222, 50 → 2222 has four digits → 2 + 2 + 2 + 2 = 8 → 50 no → 8 is printed."
         },
