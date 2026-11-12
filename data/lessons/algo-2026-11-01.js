@@ -30,7 +30,7 @@ window.LESSONS["algo-2026-11-01"] = {
         "en": "An endless loop and a loop that never runs"
       },
       "text": {
-        "he": "שתי טעויות שצריך לבדוק בכל לולאה (דוגמה מהשיעור):\n• התנאי תמיד נכון: `for (int i = 0; i > -6; i++)` — 0, 1, 2… כולם גדולים מ-6-, והלולאה לא נגמרת. (בפועל היא נעצרת רק אחרי כ-2 מיליארד סיבובים, כש-`int` עובר את הגבול שלו.)\n• התנאי לא נכון כבר בפעם הראשונה: `for (int i = 0; i < -6; i++)` — 0 לא קטן מ-6-, אז הלולאה לא רצה אף פעם.",
+        "he": "שתי טעויות שצריך לבדוק בכל לולאה (דוגמה מהשיעור):\n• התנאי תמיד נכון: `for (int i = 0; i > -6; i++)` — 0, 1, 2… כולם גדולים מ־`-6`, והלולאה לא נגמרת. (בפועל היא נעצרת רק אחרי כ-2 מיליארד סיבובים, כש-`int` עובר את הגבול שלו.)\n• התנאי לא נכון כבר בפעם הראשונה: `for (int i = 0; i < -6; i++)` — 0 לא קטן מ־`-6`, אז הלולאה לא רצה אף פעם.",
         "ru": "Две ошибки, которые надо проверять в каждом цикле (пример с урока):\n• Условие всегда верно: `for (int i = 0; i > -6; i++)` — 0, 1, 2… все больше −6, и цикл не кончается. (На деле он остановится только примерно через 2 миллиарда проходов, когда `int` переполнится.)\n• Условие неверно уже в первый раз: `for (int i = 0; i < -6; i++)` — 0 не меньше −6, и цикл не выполнится ни разу.",
         "en": "Two mistakes to check in every loop (example from class):\n• The condition is always true: `for (int i = 0; i > -6; i++)` — 0, 1, 2… are all bigger than -6, and the loop does not end. (In practice it stops only after about 2 billion rounds, when the `int` overflows.)\n• The condition is false from the first check: `for (int i = 0; i < -6; i++)` — 0 is not less than -6, so the loop never runs."
       },
@@ -216,7 +216,7 @@ window.LESSONS["algo-2026-11-01"] = {
         "en": "When the count is unknown: while and a flag"
       },
       "text": {
-        "he": "ב-`for` מספר הסיבובים ידוע מראש. כשלא יודעים כמה ציונים יהיו, משתמשים ב-`while` ובדגל.\nמהלוח: דגל — קלט-דמה שתפקידו להגיד שהלולאה מסתיימת. כאן הדגל הוא `-1`: קולטים ציון ראשון לפני הלולאה, וכל עוד הוא לא הדגל — צוברים, סופרים וקולטים את הבא.\nעל המסך: קלט 80, 90, 94, -1 → `Average grade: 88.0`.",
+        "he": "ב-`for` מספר הסיבובים ידוע מראש. כשלא יודעים כמה ציונים יהיו, משתמשים ב-`while` ובדגל.\nמהלוח: דגל — קלט-דמה שתפקידו להגיד שהלולאה מסתיימת. כאן הדגל הוא `-1`: קולטים ציון ראשון לפני הלולאה, וכל עוד הוא לא הדגל — צוברים, סופרים וקולטים את הבא.\nעל המסך: קלט 80, 90, 94, ‎-1 → `Average grade: 88.0`.",
         "ru": "В `for` число проходов известно заранее. Когда неизвестно, сколько будет оценок, используют `while` и флаг.\nС доски: флаг — фиктивный ввод, задача которого сказать, что цикл заканчивается. Здесь флаг — `-1`: первую оценку читаем до цикла, и пока это не флаг — копим сумму, считаем и читаем следующую.\nНа экране: ввод 80, 90, 94, -1 → `Average grade: 88.0`.",
         "en": "In a `for` loop the number of rounds is known in advance. When we do not know how many grades there will be, we use `while` and a flag.\nFrom the board: a flag is dummy input whose job is to say that the loop ends. Here the flag is `-1`: read the first grade before the loop, and as long as it is not the flag — add it up, count it and read the next one.\nOn screen: input 80, 90, 94, -1 → `Average grade: 88.0`."
       },
@@ -985,12 +985,12 @@ window.LESSONS["algo-2026-11-01"] = {
         },
         "kind": "number",
         "text": {
-          "he": "זו תוכנית הממוצע עם הדגל `-1` מהמסך: היא קולטת ציונים עד שמקלידים `-1`.\n```\nScanner input = new Scanner(System.in);\nint sum = 0;\nint count = 0;\nint grade = input.nextInt();\nwhile (grade != -1) {\n    sum += grade;\n    count++;\n    grade = input.nextInt();\n}\ndouble average = (double) sum / count;\nSystem.out.println(\"Average grade: \" + average);\n```\nהמשתמש הקליד, אחד אחרי השני: 80, 90, 94, -1. איזה ממוצע התוכנית תדפיס?",
+          "he": "זו תוכנית הממוצע עם הדגל `-1` מהמסך: היא קולטת ציונים עד שמקלידים `-1`.\n```\nScanner input = new Scanner(System.in);\nint sum = 0;\nint count = 0;\nint grade = input.nextInt();\nwhile (grade != -1) {\n    sum += grade;\n    count++;\n    grade = input.nextInt();\n}\ndouble average = (double) sum / count;\nSystem.out.println(\"Average grade: \" + average);\n```\nהמשתמש הקליד, אחד אחרי השני: 80, 90, 94, ‎-1. איזה ממוצע התוכנית תדפיס?",
           "ru": "Это программа среднего с флагом `-1` с экрана: она читает оценки, пока не введут `-1`.\n```\nScanner input = new Scanner(System.in);\nint sum = 0;\nint count = 0;\nint grade = input.nextInt();\nwhile (grade != -1) {\n    sum += grade;\n    count++;\n    grade = input.nextInt();\n}\ndouble average = (double) sum / count;\nSystem.out.println(\"Average grade: \" + average);\n```\nПользователь по очереди ввёл: 80, 90, 94, -1. Какое среднее напечатает программа?",
           "en": "This is the average program with the flag `-1` from the screen: it reads grades until `-1` is typed.\n```\nScanner input = new Scanner(System.in);\nint sum = 0;\nint count = 0;\nint grade = input.nextInt();\nwhile (grade != -1) {\n    sum += grade;\n    count++;\n    grade = input.nextInt();\n}\ndouble average = (double) sum / count;\nSystem.out.println(\"Average grade: \" + average);\n```\nThe user typed one after another: 80, 90, 94, -1. What average does the program print?"
         },
         "example": {
-          "he": "המשתמש הקליד 70, 100, -1 → 70: `sum = 70`, `count = 1` → 100: `sum = 170`, `count = 2` → `-1` הוא הדגל, הלולאה נגמרה → `170 / 2 = 85` → התוכנית תדפיס `Average grade: 85.0`.",
+          "he": "המשתמש הקליד 70, 100, ‎-1 → 70: `sum = 70`, `count = 1` → 100: `sum = 170`, `count = 2` → `-1` הוא הדגל, הלולאה נגמרה → `170 / 2 = 85` → התוכנית תדפיס `Average grade: 85.0`.",
           "ru": "Пользователь ввёл 70, 100, -1 → 70: `sum` = 70, `count` = 1 → 100: `sum` = 170, `count` = 2 → `-1` — флаг, цикл закончился → 170 / 2 = 85 → программа напечатает `Average grade: 85.0`.",
           "en": "The user typed 70, 100, -1 → 70: `sum` = 70, `count` = 1 → 100: `sum` = 170, `count` = 2 → `-1` is the flag, the loop ends → 170 / 2 = 85 → the program prints `Average grade: 85.0`."
         },
@@ -1205,7 +1205,7 @@ window.LESSONS["algo-2026-11-01"] = {
         },
         "kind": "number",
         "text": {
-          "he": "תבנית המקסימום מהלוח: התוכנית קולטת ציונים בין 0 ל־100 וזוכרת את הגבוה ביותר. מספר מחוץ ל־0–100 עוצר את הלולאה.\n```\nScanner input = new Scanner(System.in);\nint max = 0;\nint grade = 0;\nwhile (grade >= 0 && grade <= 100) {\n    grade = input.nextInt();\n    if (grade > max && grade <= 100)\n        max = grade;\n}\nSystem.out.println(max);\n```\nהמשתמש הקליד, אחד אחרי השני: 70, 95, 88, -1. איזה מספר התוכנית תדפיס?",
+          "he": "תבנית המקסימום מהלוח: התוכנית קולטת ציונים בין 0 ל־100 וזוכרת את הגבוה ביותר. מספר מחוץ ל־0–100 עוצר את הלולאה.\n```\nScanner input = new Scanner(System.in);\nint max = 0;\nint grade = 0;\nwhile (grade >= 0 && grade <= 100) {\n    grade = input.nextInt();\n    if (grade > max && grade <= 100)\n        max = grade;\n}\nSystem.out.println(max);\n```\nהמשתמש הקליד, אחד אחרי השני: 70, 95, 88, ‎-1. איזה מספר התוכנית תדפיס?",
           "ru": "Шаблон максимума с доски: программа читает оценки от 0 до 100 и запоминает самую большую. Число вне 0–100 останавливает цикл.\n```\nScanner input = new Scanner(System.in);\nint max = 0;\nint grade = 0;\nwhile (grade >= 0 && grade <= 100) {\n    grade = input.nextInt();\n    if (grade > max && grade <= 100)\n        max = grade;\n}\nSystem.out.println(max);\n```\nПользователь по очереди ввёл: 70, 95, 88, -1. Какое число напечатает программа?",
           "en": "The maximum template from the board: the program reads grades from 0 to 100 and remembers the highest. A number outside 0–100 stops the loop.\n```\nScanner input = new Scanner(System.in);\nint max = 0;\nint grade = 0;\nwhile (grade >= 0 && grade <= 100) {\n    grade = input.nextInt();\n    if (grade > max && grade <= 100)\n        max = grade;\n}\nSystem.out.println(max);\n```\nThe user typed one after another: 70, 95, 88, -1. What number does the program print?"
         },
@@ -1242,12 +1242,12 @@ window.LESSONS["algo-2026-11-01"] = {
         "label": "MIN_VALUE",
         "kind": "number",
         "text": {
-          "he": "תרגיל 1 מתבניות מקסימום, אבל עם 5 מספרים: התוכנית מדפיסה את הגדול ביותר.\n```\nScanner input = new Scanner(System.in);\nint max = Integer.MIN_VALUE;\nfor (int i = 0; i < 5; i++) {\n    int x = input.nextInt();\n    if (x > max) max = x;\n}\nSystem.out.println(max);\n```\nהמשתמש הקליד, אחד אחרי השני: -7, -3, -12, -5, -9. מה התוכנית תדפיס?",
+          "he": "תרגיל 1 מתבניות מקסימום, אבל עם 5 מספרים: התוכנית מדפיסה את הגדול ביותר.\n```\nScanner input = new Scanner(System.in);\nint max = Integer.MIN_VALUE;\nfor (int i = 0; i < 5; i++) {\n    int x = input.nextInt();\n    if (x > max) max = x;\n}\nSystem.out.println(max);\n```\nהמשתמש הקליד, אחד אחרי השני: ‎-7, ‎-3, ‎-12, ‎-5, ‎-9. מה התוכנית תדפיס?",
           "ru": "Задача 1 из шаблонов максимума, но для 5 чисел: программа печатает самое большое.\n```\nScanner input = new Scanner(System.in);\nint max = Integer.MIN_VALUE;\nfor (int i = 0; i < 5; i++) {\n    int x = input.nextInt();\n    if (x > max) max = x;\n}\nSystem.out.println(max);\n```\nПользователь по очереди ввёл: -7, -3, -12, -5, -9. Что напечатает программа?",
           "en": "Exercise 1 from the maximum templates, but with 5 numbers: the program prints the largest.\n```\nScanner input = new Scanner(System.in);\nint max = Integer.MIN_VALUE;\nfor (int i = 0; i < 5; i++) {\n    int x = input.nextInt();\n    if (x > max) max = x;\n}\nSystem.out.println(max);\n```\nThe user typed one after another: -7, -3, -12, -5, -9. What does the program print?"
         },
         "example": {
-          "he": "המשתמש הקליד -4, -8, -1, -6, -2 → בהתחלה `max` הוא המספר הקטן ביותר → -4 גדול יותר, `max = -4` → -8 קטן יותר → -1 גדול יותר, `max = -1` → גם -6 וגם -2 קטנים יותר → התוכנית תדפיס -1.",
+          "he": "המשתמש הקליד ‎-4, ‎-8, ‎-1, ‎-6, ‎-2 → בהתחלה `max` הוא המספר הקטן ביותר → ‎-4 גדול יותר, `max = -4` → ‎-8 קטן יותר → ‎-1 גדול יותר, `max = -1` → גם ‎-6 וגם ‎-2 קטנים יותר → התוכנית תדפיס ‎-1.",
           "ru": "Пользователь ввёл -4, -8, -1, -6, -2 → `max` сначала самое маленькое число → -4 больше, `max` = -4 → -8 меньше → -1 больше, `max` = -1 → -6 и -2 меньше → программа напечатает -1.",
           "en": "The user typed -4, -8, -1, -6, -2 → at first `max` is the smallest number → -4 is bigger, `max` = -4 → -8 is smaller → -1 is bigger, `max` = -1 → -6 and -2 are smaller → the program prints -1."
         },
@@ -1273,7 +1273,7 @@ window.LESSONS["algo-2026-11-01"] = {
           "x = -5   →  no change",
           "x = -9   →  no change",
           {
-            "he": "מודפס -3. אם `max` היה מתחיל מ-0, היה מודפס 0.",
+            "he": "מודפס ‎-3. אם `max` היה מתחיל מ-0, היה מודפס 0.",
             "ru": "Печатается -3. Если бы `max` начинался с 0, напечаталось бы 0.",
             "en": "-3 is printed. If `max` had started at 0, 0 would be printed."
           }
@@ -1769,7 +1769,7 @@ window.LESSONS["algo-2026-11-01"] = {
         },
         "hints": [
           {
-            "he": "count יורד ב-2: 5, 3, 1, ואז -1.",
+            "he": "count יורד ב-2: 5, 3, 1, ואז ‎-1.",
             "ru": "count уменьшается на 2: 5, 3, 1, потом −1.",
             "en": "count goes down by 2: 5, 3, 1, then -1."
           }
@@ -1911,7 +1911,7 @@ window.LESSONS["algo-2026-11-01"] = {
           "en": "Write code: read `int num`. If num is positive, check if it is even and print \"מספר חיובי זוגי\" or \"מספר חיובי אי זוגי\". If negative, \"מספר שלילי\". What does the program print if the user typed 0?"
         },
         "example": {
-          "he": "המשתמש הקליד -4 → `-4 > 0` לא → `-4 < 0``` כן → התוכנית תדפיס \"מספר שלילי\". חשבו איזה תנאי יתקיים עבור 0.",
+          "he": "המשתמש הקליד ‎-4 → `-4 > 0` לא → `-4 < 0``` כן → התוכנית תדפיס \"מספר שלילי\". חשבו איזה תנאי יתקיים עבור 0.",
           "ru": "Пользователь ввёл -4 → `-4 > 0` нет → `-4 < 0` да → программа напечатает «מספר שלילי». Подумай, какое из условий выполнится для 0.",
           "en": "The user typed -4 → `-4 > 0` no → `-4 < 0` yes → the program prints \"מספר שלילי\". Think which condition holds for 0."
         },
@@ -3021,12 +3021,12 @@ window.LESSONS["algo-2026-11-01"] = {
         "label": "D10",
         "kind": "choice",
         "text": {
-          "he": "התוכנית מחפשת את הגדול מבין 3 מספרים, אבל `max` מתחיל מ־0.\n```\nScanner input = new Scanner(System.in);\nint max = 0;\nfor (int i = 0; i < 3; i++) {\n    int x = input.nextInt();\n    if (x > max) max = x;\n}\nSystem.out.println(max);\n```\nהמשתמש הקליד, אחד אחרי השני, 3 מספרים: -4, -2, -9. מה התוכנית תדפיס?",
+          "he": "התוכנית מחפשת את הגדול מבין 3 מספרים, אבל `max` מתחיל מ־0.\n```\nScanner input = new Scanner(System.in);\nint max = 0;\nfor (int i = 0; i < 3; i++) {\n    int x = input.nextInt();\n    if (x > max) max = x;\n}\nSystem.out.println(max);\n```\nהמשתמש הקליד, אחד אחרי השני, 3 מספרים: ‎-4, ‎-2, ‎-9. מה התוכנית תדפיס?",
           "ru": "Программа ищет самое большое из 3 чисел, но `max` начинается с 0.\n```\nScanner input = new Scanner(System.in);\nint max = 0;\nfor (int i = 0; i < 3; i++) {\n    int x = input.nextInt();\n    if (x > max) max = x;\n}\nSystem.out.println(max);\n```\nПользователь по очереди ввёл 3 числа: -4, -2, -9. Что напечатает программа?",
           "en": "The program looks for the largest of 3 numbers, but `max` starts at 0.\n```\nScanner input = new Scanner(System.in);\nint max = 0;\nfor (int i = 0; i < 3; i++) {\n    int x = input.nextInt();\n    if (x > max) max = x;\n}\nSystem.out.println(max);\n```\nThe user typed 3 numbers one after another: -4, -2, -9. What does the program print?"
         },
         "example": {
-          "he": "המשתמש הקליד 3, -5, 1 → `max = 0` → 3 גדול מ־0, `max = 3` → -5 קטן יותר → 1 קטן יותר → התוכנית תדפיס 3.",
+          "he": "המשתמש הקליד 3, ‎-5, 1 → `max = 0` → 3 גדול מ־0, `max = 3` → ‎-5 קטן יותר → 1 קטן יותר → התוכנית תדפיס 3.",
           "ru": "Пользователь ввёл 3, -5, 1 → `max` = 0 → 3 больше 0, `max` = 3 → -5 меньше → 1 меньше → программа напечатает 3.",
           "en": "The user typed 3, -5, 1 → `max` = 0 → 3 is bigger than 0, `max` = 3 → -5 is smaller → 1 is smaller → the program prints 3."
         },
@@ -3050,7 +3050,7 @@ window.LESSONS["algo-2026-11-01"] = {
           "-2 > 0  →  false",
           "-9 > 0  →  false",
           {
-            "he": "`max` נשאר 0 ומודפס 0 — מספר שבכלל לא הוקלד. התיקון: `int max = Integer.MIN_VALUE;` ואז יודפס -2.",
+            "he": "`max` נשאר 0 ומודפס 0 — מספר שבכלל לא הוקלד. התיקון: `int max = Integer.MIN_VALUE;` ואז יודפס ‎-2.",
             "ru": "`max` остаётся 0, и печатается 0 — число, которого не вводили. Исправление: `int max = Integer.MIN_VALUE;`, тогда напечатается -2.",
             "en": "`max` stays 0 and 0 is printed — a number nobody typed. The fix: `int max = Integer.MIN_VALUE;`, then -2 is printed."
           }

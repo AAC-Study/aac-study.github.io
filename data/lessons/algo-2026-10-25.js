@@ -1946,7 +1946,7 @@ window.LESSONS["algo-2026-10-25"] = {
           "en": "From the course worksheet. What is printed?\n`double salary = 12000;`\n`double creditPoints = 2.25;`\n`double tax;`\n`if (salary > 15000) tax = salary * 0.20;`\n`else if (salary > 8000) tax = salary * 0.10;`\n`else tax = salary * 0.05;`\n`tax = tax - 225 * creditPoints;`\n`System.out.println(tax);`"
         },
         "example": {
-          "he": "אותו קוד, אבל `salary = 6000`, `creditPoints = 2.0` → `6000 > 15000` לא → `6000 > 8000` לא → `tax = 6000 * 0.05 = 300` → `300 - 225 * 2.0` = `300 − 450 = −150` → יודפס -150.0``.",
+          "he": "אותו קוד, אבל `salary = 6000`, `creditPoints = 2.0` → `6000 > 15000` לא → `6000 > 8000` לא → `tax = 6000 * 0.05 = 300` → `300 - 225 * 2.0` = `300 − 450 = −150` → יודפס ‎-150.0``.",
           "ru": "Тот же код, но `salary = 6000`, `creditPoints = 2.0` → `6000 > 15000` нет → `6000 > 8000` нет → `tax = 6000 * 0.05` = 300 → `300 - 225 * 2.0` = 300 − 450 = −150 → напечатает `-150.0`.",
           "en": "The same code, but `salary = 6000`, `creditPoints = 2.0` → `6000 > 15000` no → `6000 > 8000` no → `tax = 6000 * 0.05` = 300 → `300 - 225 * 2.0` = 300 − 450 = −150 → prints `-150.0`."
         },
