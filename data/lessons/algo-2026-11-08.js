@@ -69,6 +69,39 @@ window.LESSONS["algo-2026-11-08"] = {
     {
       "kind": "board",
       "title": {
+        "he": "אופרטורים מקוצרים, וסכום זוגיים ואי־זוגיים",
+        "ru": "Составные операторы, суммы чётных и нечётных",
+        "en": "Compound operators, and sums of even and odd numbers"
+      },
+      "text": {
+        "he": "בתחילת השיעור חזרנו על האופרטורים המקוצרים: `x += k` זה `x = x + k` (אם `x = 10`, אחרי `x += 3` יוצא 13). כך גם `-=`, `*=`, `/=`, ו־`x++` / `x--` מוסיפים או מורידים 1.\nתרגיל: לקלוט 8 מספרים ב־for (מספר הסיבובים ידוע!) ולסכם. אחר כך: סכום נפרד לזוגיים ולאי־זוגיים. מה מחליט לאן כל מספר הולך? `num % 2 == 0`.\nבשיעור הכניסו גם שליליים: `-4` זוגי (מתעלמים מהמינוס), `-11` אי־זוגי.",
+        "ru": "В начале урока повторили составные операторы: `x += k` — это `x = x + k` (если `x = 10`, после `x += 3` будет 13). Так же `-=`, `*=`, `/=`, а `x++` / `x--` прибавляют или отнимают 1.\nУпражнение: ввести 8 чисел через for (число кругов известно!) и сложить. Потом: отдельная сумма чётных и нечётных. Что решает, куда идёт число? `num % 2 == 0`.\nНа уроке вводили и отрицательные: −4 чётное (минус не важен), −11 нечётное.",
+        "en": "At the start of the lesson we reviewed compound operators: `x += k` means `x = x + k` (if `x = 10`, after `x += 3` it is 13). Likewise `-=`, `*=`, `/=`, and `x++` / `x--` add or subtract 1.\nExercise: read 8 numbers with for (the number of rounds is known!) and add them up. Then: a separate sum for even and odd numbers. What decides where each number goes? `num % 2 == 0`.\nIn class negatives were entered too: -4 is even (ignore the minus), -11 is odd."
+      },
+      "math": [
+        "int num;",
+        "int evenSum = 0;",
+        "int oddSum = 0;",
+        "System.out.println(\"Please enter 8 numbers: \");",
+        "for (int i = 0; i < 8; i++) {",
+        "    num = input.nextInt();",
+        "    if (num % 2 == 0)",
+        "        evenSum += num;",
+        "    else",
+        "        oddSum += num;",
+        "}",
+        "System.out.println(\"Even sum: \" + evenSum);",
+        "System.out.println(\"Odd sum: \" + oddSum);"
+      ],
+      "why": {
+        "he": "למה בודקים `num % 2 == 0` ולא `num % 2 == 1`? כי ב־Java השארית של מספר שלילי שלילית: `-11 % 2` נותן `-1`, לא 1. אז `num % 2 == 1` היה מפספס את `-11`, ו־`== 0` עובד גם לשליליים. ולמה הסכום של אי־זוגיים יכול לצאת זוגי? אי־זוגי + אי־זוגי = זוגי (`27 + 1 = 28`) — זה סכום של מספרים אי־זוגיים, לא מספר אי־זוגי.",
+        "ru": "Почему проверяем `num % 2 == 0`, а не `num % 2 == 1`? В Java остаток отрицательного числа отрицательный: `-11 % 2` даёт −1, а не 1. Значит, `num % 2 == 1` пропустил бы −11, а `== 0` работает и для отрицательных. А почему сумма нечётных может выйти чётной? Нечётное + нечётное = чётное (`27 + 1 = 28`) — это сумма нечётных чисел, а не нечётное число.",
+        "en": "Why check `num % 2 == 0` and not `num % 2 == 1`? In Java the remainder of a negative number is negative: `-11 % 2` gives -1, not 1. So `num % 2 == 1` would miss -11, while `== 0` works for negatives too. And why can the sum of odd numbers come out even? Odd + odd = even (`27 + 1 = 28`) — it is a sum of odd numbers, not an odd number."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
         "he": "סכום וממוצע עד שמקלידים `-111`",
         "ru": "Сумма и среднее, пока не введут −111",
         "en": "Sum and average until -111 is typed"
@@ -154,25 +187,51 @@ window.LESSONS["algo-2026-11-08"] = {
     {
       "kind": "tip",
       "title": {
-        "he": "\"עד ש…\" בעברית = \"כל עוד לא…\" ב־while",
-        "ru": "«Пока не…» = условие «продолжаем, если…»",
-        "en": "\"Until…\" means \"while not…\""
+        "he": "\"עד ש…\" = \"כל עוד לא…\", או for עם break",
+        "ru": "«Пока не…» = «продолжаем, если…», или for с break",
+        "en": "\"Until…\" = \"while not…\", or for with break"
       },
       "text": {
-        "he": "בקונסולה היה גם תרגיל \"Please enter numbers until amount is 10 or sum > 468\" (את הקוד שלו לא ראינו). כדי לכתוב תנאי כזה הופכים אותו: עוצרים כשיש 10 מספרים או שהסכום עבר 468, ולכן ממשיכים כל עוד יש פחות מ־10 וגם הסכום לא עבר 468.\nה\"או\" של העצירה נהיה \"וגם\" של ההמשך.",
-        "ru": "В консоли было ещё упражнение «Please enter numbers until amount is 10 or sum > 468» (его код мы не видели). Чтобы написать такое условие, его переворачивают: остановиться, когда чисел 10 или сумма больше 468, значит продолжать, пока чисел меньше 10 и сумма не больше 468.\n«Или» в условии остановки становится «и» в условии продолжения.",
-        "en": "The console also showed the exercise \"Please enter numbers until amount is 10 or sum > 468\" (we did not see its code). To write such a condition you flip it: stop when there are 10 numbers or the sum is over 468, so continue while there are fewer than 10 and the sum is not over 468.\nThe \"or\" of stopping becomes the \"and\" of continuing."
+        "he": "התרגיל \"Please enter numbers until amount is 10 or sum > 468\" (ציונים, ובסוף ממוצע). שתי דרכים:\n1. while: הופכים את התנאי. עוצרים כשיש 10 מספרים או שהסכום עבר 468, ולכן ממשיכים כל עוד יש פחות מ־10 וגם הסכום לא עבר 468: `while (count < 10 && sum <= 468)`.\n2. for עד 10, ובפנים: אם הסכום עבר 468 — `break`. \"אין לי מה להמשיך\".\nבשיעור הכניסו ציונים כמו `86, 92, 73, 64, 85, 85` — אחרי 6 מספרים הסכום 485, יותר מ־468, והלולאה נעצרה. ככה נראית הדרך השנייה:",
+        "ru": "Упражнение «Please enter numbers until amount is 10 or sum > 468» (оценки, в конце среднее). Два способа:\n1. while: переворачиваем условие. Остановиться, когда чисел 10 или сумма больше 468, значит продолжать, пока чисел меньше 10 и сумма не больше 468: `while (count < 10 && sum <= 468)`.\n2. for до 10, а внутри: если сумма больше 468 — `break`. «Дальше продолжать незачем».\nНа уроке вводили оценки вроде 86, 92, 73, 64, 85, 85 — после 6 чисел сумма 485, больше 468, и цикл остановился. Так выглядит второй способ:",
+        "en": "The exercise \"Please enter numbers until amount is 10 or sum > 468\" (grades, with the average at the end). Two ways:\n1. while: flip the condition. Stop when there are 10 numbers or the sum is over 468, so continue while there are fewer than 10 and the sum is not over 468: `while (count < 10 && sum <= 468)`.\n2. for up to 10, and inside: if the sum is over 468 — `break`. \"Nothing left to continue for\".\nIn class grades like 86, 92, 73, 64, 85, 85 were entered — after 6 numbers the sum is 485, over 468, and the loop stopped. This is the second way:"
       },
       "math": [
-        "// stop:     count == 10 || sum > 468",
-        "while (count < 10 && sum <= 468) {",
-        "    …",
-        "}"
+        "int num;",
+        "int sum = 0;",
+        "int count = 0;",
+        "System.out.println(\"Please enter numbers until amount is 10 or sum > 468: \");",
+        "for (int i = 0; i < 10; i++) {",
+        "    num = input.nextInt();",
+        "    sum += num;",
+        "    count++;",
+        "    if (sum > 468)",
+        "        break;",
+        "}",
+        "System.out.println(\"Average: \" + (double) sum / count);"
       ],
       "why": {
         "he": "למה ה\"או\" נהיה \"וגם\"? while אומר מתי להמשיך, והתרגיל אומר מתי לעצור — זה ההפך. ההפך של \"A או B\" הוא \"לא A וגם לא B\". בדיקה מהירה: עם 10 מספרים התנאי `count < 10` כבר לא נכון, ולכן כל ה־`&&` לא נכון, והלולאה נעצרת. בדיוק מה שרצינו.",
         "ru": "Почему «или» становится «и»? while говорит, когда продолжать, а задание говорит, когда остановиться — это противоположное. Противоположность «A или B» — «не A и не B». Быстрая проверка: при 10 числах `count < 10` уже неверно, значит весь `&&` неверен, и цикл останавливается. Ровно то, что нужно.",
         "en": "Why does \"or\" become \"and\"? while says when to continue, the task says when to stop — the opposite. The opposite of \"A or B\" is \"not A and not B\". Quick check: with 10 numbers `count < 10` is false, so the whole `&&` is false, and the loop stops. Exactly what we want."
+      }
+    },
+    {
+      "kind": "tip",
+      "title": {
+        "he": "לבקש מ־Gemini להסביר — כמו סטודנט",
+        "ru": "Попросить Gemini объяснить — как студент",
+        "en": "Ask Gemini to explain — as a student"
+      },
+      "text": {
+        "he": "המרצה הראה איך לבקש מ־Gemini הסבר לפתרון של תרגיל ה־468: כתב לו \"אני סטודנט\", ואחרי התשובה הראשונה — \"לא הבנתי, תסביר יותר טוב, אבל בשמות משתנים ולא בקוד\". התשובה השנייה הסבירה שצריך שני משתנים (סכום ומונה), ושהלולאה ממשיכה כל עוד שני התנאים לא התקיימו.",
+        "ru": "Преподаватель показал, как попросить Gemini объяснить решение задачи про 468: написал ему «я студент», а после первого ответа — «не понял, объясни лучше, но через имена переменных, а не кодом». Второй ответ объяснил, что нужны две переменные (сумма и счётчик) и что цикл продолжается, пока ни одно из двух условий не выполнилось.",
+        "en": "The teacher showed how to ask Gemini to explain the 468 solution: the prompt said \"I am a student\", and after the first answer — \"I didn't understand, explain better, but with variable names, not code\". The second answer explained that two variables are needed (a sum and a counter) and that the loop goes on while neither condition has happened."
+      },
+      "why": {
+        "he": "למה זה עובד? \"אני סטודנט\" קובע את הרמה (זה ה־Role/Context מ־RTC-C בשיעור ה־AI). ו\"תסביר יותר\" לא מתחיל מאפס: המודל רואה את התשובה הקודמת ומשפר אותה. אותו דבר עושה הכפתור \"העתקת פרומפט ל־AI\" מתחת לכל \"למה ככה?\" באתר.",
+        "ru": "Почему это работает? «Я студент» задаёт уровень (это Role/Context из RTC-C на уроке ИИ). А «объясни подробнее» не начинает с нуля: модель видит прошлый ответ и улучшает его. То же делает кнопка «Скопировать промпт для ИИ» под каждым «Почему так?» на сайте.",
+        "en": "Why does it work? \"I am a student\" sets the level (the Role/Context of RTC-C from the AI lesson). And \"explain more\" does not start from scratch: the model sees its previous answer and improves it. The \"Copy an AI prompt\" button under every \"Why is it so?\" on the site does the same."
       }
     },
     {
@@ -205,6 +264,41 @@ window.LESSONS["algo-2026-11-08"] = {
         "he": "0 מתחלק ב־7 (`0 % 7 = 0`), וגם מספר שלילי כמו `-14` (`-14 % 7 = 0`). המונה סופר את כולם.",
         "ru": "0 делится на 7 (`0 % 7 = 0`), и отрицательное число вроде −14 тоже (`-14 % 7 = 0`). Счётчик посчитает их все.",
         "en": "0 divides by 7 (`0 % 7 = 0`), and so does a negative number like -14 (`-14 % 7 = 0`). The counter counts them all."
+      }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "האם יש את הספרה 6 במספר? while עם break",
+        "ru": "Есть ли в числе цифра 6? while с break",
+        "en": "Is there a 6 in the number? while with break"
+      },
+      "text": {
+        "he": "תרגיל: לקלוט מספר ולבדוק אם יש בו את הספרה 6. כל פעם לוקחים את הספרה האחרונה `num % 10` ומוחקים אותה `num / 10`, עד שהמספר נהיה 0. ברגע שמצאנו 6 — `break`: אין סיבה להמשיך.\nבשיעור: 171642 — נמצא 6. במספר 14795 — אין 6. (את שם המשתנה `found` הוספנו כדי שיהיה ברור.)",
+        "ru": "Задача: ввести число и проверить, есть ли в нём цифра 6. Каждый раз берём последнюю цифру `num % 10` и стираем её `num / 10`, пока число не станет 0. Как только нашли 6 — `break`: продолжать незачем.\nНа уроке: 171642 — 6 нашлась. В числе 14795 — шестёрки нет. (Переменную `found` мы добавили для понятности.)",
+        "en": "Task: read a number and check whether it contains the digit 6. Each time take the last digit `num % 10` and erase it with `num / 10`, until the number becomes 0. As soon as we find a 6 — `break`: no reason to continue.\nIn class: 171642 — a 6 was found. In 14795 — no 6. (We added the variable `found` for clarity.)"
+      },
+      "math": [
+        "System.out.println(\"Please enter a number: \");",
+        "int num = input.nextInt();",
+        "boolean found = false;",
+        "while (num != 0) {",
+        "    int dig = num % 10;",
+        "    if (dig == 6) {",
+        "        found = true;",
+        "        break;",
+        "    }",
+        "    num = num / 10;",
+        "}",
+        "if (found)",
+        "    System.out.println(\"6 is in the number\");",
+        "else",
+        "    System.out.println(\"No 6\");"
+      ],
+      "why": {
+        "he": "למה דווקא מהסוף? `% 10` נותן תמיד את הספרה האחרונה, ו־`/ 10` בין שני int מוחק אותה (`1716 / 10 = 171`). ככה עוברים על כל הספרות בלי לדעת מראש כמה יש — ולכן while ולא for. ולמה לא for כמו בשאלת המבחן? שם ידענו שיש בדיוק 3 ספרות.",
+        "ru": "Почему с конца? `% 10` всегда даёт последнюю цифру, а `/ 10` между двумя int её стирает (`1716 / 10 = 171`). Так проходим все цифры, не зная заранее, сколько их, — поэтому while, а не for. А почему не for, как в экзаменационной задаче? Там мы знали, что цифр ровно 3.",
+        "en": "Why from the end? `% 10` always gives the last digit, and `/ 10` between two ints erases it (`1716 / 10 = 171`). That way you go over all the digits without knowing in advance how many there are — hence while, not for. And why not for, as in the exam task? There we knew there are exactly 3 digits."
       }
     },
     {
@@ -358,9 +452,9 @@ window.LESSONS["algo-2026-11-08"] = {
         "en": "Minimum until -1"
       },
       "count7": {
-        "he": "מונה ב־for: מתחלק ב־7",
-        "ru": "Счётчик в for: делится на 7",
-        "en": "A counter in for: divisible by 7"
+        "he": "for: מונה וסכומים",
+        "ru": "for: счётчик и суммы",
+        "en": "for: a counter and sums"
       },
       "exam": {
         "he": "שאלת מבחן 2023: סכום ספרות",
@@ -1305,6 +1399,54 @@ window.LESSONS["algo-2026-11-08"] = {
             "he": "תשובה: 13",
             "ru": "Ответ: 13",
             "en": "Answer: 13"
+          }
+        ]
+      },
+      {
+        "id": "e1",
+        "group": "count7",
+        "label": {
+          "he": "זוגיים ואי־זוגיים",
+          "ru": "Чётные и нечётные",
+          "en": "Even and odd"
+        },
+        "kind": "text",
+        "text": {
+          "he": "תוכנית הזוגיים והאי־זוגיים מהשיעור:\n```\nint num;\nint evenSum = 0;\nint oddSum = 0;\nSystem.out.println(\"Please enter 8 numbers: \");\nfor (int i = 0; i < 8; i++) {\n    num = input.nextInt();\n    if (num % 2 == 0)\n        evenSum += num;\n    else\n        oddSum += num;\n}\nSystem.out.println(\"Even sum: \" + evenSum);\nSystem.out.println(\"Odd sum: \" + oddSum);\n```\nהמשתמש הקליד, אחד אחרי השני: `5, -8, 12, -3, 7, 0, 10, -1`. מה יודפס? כתבו את שני המספרים עם רווח (קודם Even, אחר כך Odd).",
+          "ru": "Программа чётных и нечётных с урока:\n```\nint num;\nint evenSum = 0;\nint oddSum = 0;\nSystem.out.println(\"Please enter 8 numbers: \");\nfor (int i = 0; i < 8; i++) {\n    num = input.nextInt();\n    if (num % 2 == 0)\n        evenSum += num;\n    else\n        oddSum += num;\n}\nSystem.out.println(\"Even sum: \" + evenSum);\nSystem.out.println(\"Odd sum: \" + oddSum);\n```\nПользователь по очереди ввёл: 5, −8, 12, −3, 7, 0, 10, −1. Что напечатается? Напиши два числа через пробел (сначала Even, потом Odd).",
+          "en": "The even/odd program from class:\n```\nint num;\nint evenSum = 0;\nint oddSum = 0;\nSystem.out.println(\"Please enter 8 numbers: \");\nfor (int i = 0; i < 8; i++) {\n    num = input.nextInt();\n    if (num % 2 == 0)\n        evenSum += num;\n    else\n        oddSum += num;\n}\nSystem.out.println(\"Even sum: \" + evenSum);\nSystem.out.println(\"Odd sum: \" + oddSum);\n```\nThe user typed one after another: 5, -8, 12, -3, 7, 0, 10, -1. What is printed? Write the two numbers with a space (Even first, then Odd)."
+        },
+        "example": {
+          "he": "הקלט `2, 3, 4, 5, 6, 7, 8, 9` → זוגיים 2 + 4 + 6 + 8 = 20 → אי־זוגיים 3 + 5 + 7 + 9 = 24 → מודפס `Even sum: 20` ו־`Odd sum: 24`.",
+          "ru": "Ввод 2, 3, 4, 5, 6, 7, 8, 9 → чётные 2 + 4 + 6 + 8 = 20 → нечётные 3 + 5 + 7 + 9 = 24 → печатается `Even sum: 20` и `Odd sum: 24`.",
+          "en": "Input 2, 3, 4, 5, 6, 7, 8, 9 → even 2 + 4 + 6 + 8 = 20 → odd 3 + 5 + 7 + 9 = 24 → it prints `Even sum: 20` and `Odd sum: 24`."
+        },
+        "answer": {
+          "accept": [
+            "14 8",
+            "14, 8",
+            "14,8"
+          ]
+        },
+        "hints": [
+          {
+            "he": "0 הוא זוגי: `0 % 2 == 0`.",
+            "ru": "0 — чётное: `0 % 2 == 0`.",
+            "en": "0 is even: `0 % 2 == 0`."
+          },
+          {
+            "he": "`-3` ו־`-1` אי־זוגיים: השארית `-1`, לא 0.",
+            "ru": "−3 и −1 нечётные: остаток −1, а не 0.",
+            "en": "-3 and -1 are odd: the remainder is -1, not 0."
+          }
+        ],
+        "solution": [
+          "Even:  -8 + 12 + 0 + 10 = 14",
+          "Odd:  5 + (-3) + 7 + (-1) = 8",
+          {
+            "he": "תשובה: 14 8",
+            "ru": "Ответ: 14 8",
+            "en": "Answer: 14 8"
           }
         ]
       }
