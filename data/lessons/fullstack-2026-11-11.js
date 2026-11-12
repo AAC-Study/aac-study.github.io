@@ -28,6 +28,11 @@ window.LESSONS["fullstack-2026-11-11"] = {
         "he": "בשיעור עבדו ב־VS Code עם Live Server בשתי תיקיות: \"lesson 7\" (הקבצים `example.html` ו־`responsiveLesson.css`) ו־\"lesson 8\" (`lesson8.html` ו־`lesson8-design.css`). הנושאים: מעבר חלק (transition) כשמעבירים עכבר, סיבוב והטיה (transform), דף שמתאים את עצמו לטלפון (`@media`) ואנימציה (`@keyframes`).",
         "ru": "На уроке работали в VS Code с Live Server в двух папках: «lesson 7» (файлы `example.html` и `responsiveLesson.css`) и «lesson 8» (`lesson8.html` и `lesson8-design.css`). Темы: плавный переход (transition) при наведении мыши, поворот и наклон (transform), страница, которая подстраивается под телефон (`@media`), и анимация (`@keyframes`).",
         "en": "In class we worked in VS Code with Live Server in two folders: \"lesson 7\" (the files `example.html` and `responsiveLesson.css`) and \"lesson 8\" (`lesson8.html` and `lesson8-design.css`). The topics: a smooth change (transition) on mouse hover, rotating and slanting (transform), a page that adapts to a phone (`@media`), and animation (`@keyframes`)."
+      },
+      "why": {
+        "he": "למה שני קבצים (HTML ו־CSS)? ב־HTML כתוב מה יש בדף, וב־CSS איך הוא נראה. כך אפשר לשנות עיצוב בלי לגעת בתוכן. Live Server מרענן את הדף בכל שמירה (Ctrl+S).",
+        "ru": "Зачем два файла (HTML и CSS)? В HTML написано, что есть на странице, а в CSS — как она выглядит. Так можно менять оформление, не трогая содержимое. Live Server обновляет страницу при каждом сохранении (Ctrl+S).",
+        "en": "Why two files (HTML and CSS)? HTML says what is on the page, CSS says how it looks. That way you change the design without touching the content. Live Server refreshes the page on every save (Ctrl+S)."
       }
     },
     {
@@ -150,7 +155,12 @@ window.LESSONS["fullstack-2026-11-11"] = {
       "math": [
         "#content { display: flex; flex-flow: column; }",
         "h1 { align-self: center; }"
-      ]
+      ],
+      "why": {
+        "he": "למה לא `text-align: center` על הכותרת? `text-align` ממרכז את הטקסט בתוך הקופסה, ו־`align-self` מזיז את הקופסה עצמה בתוך ה־flex. בטלפון רוצים שהקופסה כולה תעמוד באמצע.",
+        "ru": "Почему не `text-align: center` для заголовка? `text-align` центрирует текст внутри коробки, а `align-self` двигает саму коробку внутри flex. На телефоне хотят, чтобы вся коробка стояла посередине.",
+        "en": "Why not `text-align: center` on the heading? `text-align` centers the text inside the box, while `align-self` moves the box itself inside the flex. On a phone we want the whole box in the middle."
+      }
     },
     {
       "kind": "board",
@@ -200,6 +210,11 @@ window.LESSONS["fullstack-2026-11-11"] = {
         "he": "ב־`.shapes:hover` כתוב גם `transition-timing-function: ease-out;`. התכונה הזאת שייכת ל־transition, ולריבוע אין transition, ולכן היא לא משנה את האנימציה. לאנימציה יש תכונה משלה: `animation-timing-function` (את זה לא ראינו בשיעור).",
         "ru": "В `.shapes:hover` написано ещё `transition-timing-function: ease-out;`. Это свойство относится к transition, а у квадрата transition нет, поэтому на анимацию оно не влияет. У анимации своё свойство: `animation-timing-function` (на уроке его не было).",
         "en": "`.shapes:hover` also has `transition-timing-function: ease-out;`. That property belongs to transition, and the square has no transition, so it does not change the animation. An animation has its own property: `animation-timing-function` (not shown in class)."
+      },
+      "why": {
+        "he": "איך לבדוק את זה בעצמך? מוחקים את השורה, שומרים, ומסתכלים: האנימציה זהה. שורה שמחיקתה לא משנה כלום — לא עושה כלום.",
+        "ru": "Как проверить самому? Удаляешь строку, сохраняешь и смотришь: анимация такая же. Строка, удаление которой ничего не меняет, ничего и не делает.",
+        "en": "How to check it yourself? Delete the line, save, and look: the animation is the same. A line whose removal changes nothing does nothing."
       }
     }
   ],

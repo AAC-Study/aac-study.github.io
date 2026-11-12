@@ -91,7 +91,12 @@ window.LESSONS["algo-2026-11-08"] = {
         "}",
         "double avg = (double) sum / count;",
         "System.out.println(avg);"
-      ]
+      ],
+      "why": {
+        "he": "למה קולטים פעמיים — פעם לפני הלולאה ופעם בסופה? כי התנאי צריך מספר כדי לבדוק אותו כבר בכניסה הראשונה. אם קולטים רק בתחילת הגוף, הלולאה כבר בפנים כשמגיע `-111`, והוא נספר. ולמה `(double)`? `19 / 4` בין שני int נותן 4, ו־`(double) 19 / 4` נותן 4.75.",
+        "ru": "Зачем читать дважды — до цикла и в его конце? Условию нужно число, чтобы проверить его уже при первом входе. Если читать только в начале тела, цикл уже «внутри», когда приходит −111, и оно посчитается. А зачем `(double)`? `19 / 4` между двумя int даёт 4, а `(double) 19 / 4` даёт 4.75.",
+        "en": "Why read twice — before the loop and at its end? The condition needs a number to check right at the first entry. If you read only at the start of the body, the loop is already inside when -111 arrives, and it gets counted. And why `(double)`? `19 / 4` between two ints gives 4, while `(double) 19 / 4` gives 4.75."
+      }
     },
     {
       "kind": "tip",
@@ -163,7 +168,12 @@ window.LESSONS["algo-2026-11-08"] = {
         "while (count < 10 && sum <= 468) {",
         "    …",
         "}"
-      ]
+      ],
+      "why": {
+        "he": "למה ה\"או\" נהיה \"וגם\"? while אומר מתי להמשיך, והתרגיל אומר מתי לעצור — זה ההפך. ההפך של \"A או B\" הוא \"לא A וגם לא B\". בדיקה מהירה: עם 10 מספרים התנאי `count < 10` כבר לא נכון, ולכן כל ה־`&&` לא נכון, והלולאה נעצרת. בדיוק מה שרצינו.",
+        "ru": "Почему «или» становится «и»? while говорит, когда продолжать, а задание говорит, когда остановиться — это противоположное. Противоположность «A или B» — «не A и не B». Быстрая проверка: при 10 числах `count < 10` уже неверно, значит весь `&&` неверен, и цикл останавливается. Ровно то, что нужно.",
+        "en": "Why does \"or\" become \"and\"? while says when to continue, the task says when to stop — the opposite. The opposite of \"A or B\" is \"not A and not B\". Quick check: with 10 numbers `count < 10` is false, so the whole `&&` is false, and the loop stops. Exactly what we want."
+      }
     },
     {
       "kind": "board",
@@ -241,6 +251,11 @@ window.LESSONS["algo-2026-11-08"] = {
         "he": "באתר הקורס יש 9 תרגילים לתרגול עצמי (כאן רק הרשימה, בלי פתרונות):\n1. \"מספר יפה\": הספרה הימנית שווה לשמאלית (`151, 959, 3333`).\n2. כמה פעמים ספרה מופיעה במספר.\n3. סכום הספרות הזוגיות וסכום האי־זוגיות.\n4. היפוך מספר (12345 → 54321).\n5. משולש מספרים (1 / 1 2 / 1 2 3 …).\n6. משולש כוכביות הפוך.\n7. לוח הכפל `1–10`.\n8. מספרים ראשוניים בטווח.\n9. מעוין מכוכביות.",
         "ru": "На сайте курса 9 упражнений для самостоятельной практики (здесь только список, без решений):\n1. «Красивое число»: правая цифра равна левой (151, 959, 3333).\n2. Сколько раз цифра встречается в числе.\n3. Сумма чётных цифр и сумма нечётных.\n4. Перевернуть число (12345 → 54321).\n5. Треугольник из чисел (1 / 1 2 / 1 2 3 …).\n6. Перевёрнутый треугольник из звёздочек.\n7. Таблица умножения 1–10.\n8. Простые числа в диапазоне.\n9. Ромб из звёздочек.",
         "en": "The course site has 9 exercises for self-practice (only the list here, no solutions):\n1. \"A nice number\": the rightmost digit equals the leftmost (151, 959, 3333).\n2. How many times a digit appears in a number.\n3. The sum of the even digits and the sum of the odd ones.\n4. Reverse a number (12345 → 54321).\n5. A number triangle (1 / 1 2 / 1 2 3 …).\n6. An upside-down star triangle.\n7. The multiplication table 1–10.\n8. Prime numbers in a range.\n9. A diamond of stars."
+      },
+      "why": {
+        "he": "למה כאן אין פתרונות? אלה תרגילים לתרגול עצמי, ובהם לומדים באמת. כמעט בכולם יש את אותם כלים מהשיעור: `% 10` לספרה האחרונה, `/= 10` למחיקה שלה, מונה, ולולאה בתוך לולאה לצורות מכוכביות.",
+        "ru": "Почему здесь нет решений? Это упражнения для самостоятельной практики, на них по-настоящему и учатся. Почти во всех те же инструменты с урока: `% 10` для последней цифры, `/= 10`, чтобы её стереть, счётчик и цикл внутри цикла для фигур из звёздочек.",
+        "en": "Why are there no solutions here? These are self-practice exercises, and that is where real learning happens. Almost all use the same tools from class: `% 10` for the last digit, `/= 10` to erase it, a counter, and a loop inside a loop for star shapes."
       }
     }
   ],

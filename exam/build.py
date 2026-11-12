@@ -5,7 +5,7 @@ D = os.path.dirname(os.path.abspath(__file__))
 S = os.path.join(D, 'src')
 rd = lambda p: open(os.path.join(S, p), encoding='utf-8').read()
 css, gens, eng = rd('style.css'), rd('gens.js'), rd('engine.js')
-HEAD = '''<!doctype html><html lang="ru"><head><meta charset="utf-8">
+HEAD = '''<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0e1320"><link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png"><title>{t}</title><style>{css}</style></head>'''

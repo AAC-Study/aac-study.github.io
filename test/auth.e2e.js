@@ -55,9 +55,9 @@ const SB = 'https://zckcgydjbjpanegmyzvs.supabase.co';
     await p.waitForFunction(() => (document.querySelector('.cf-box') || {}).textContent === '[cf]');
     await p.fill('#f-email', 'a@gmail.com'); await p.fill('#f-pass', 'secret1'); await p.waitForTimeout(100);
     await p.click('form button[type=submit]');
-    await p.waitForFunction(() => document.querySelector('.form-error').style.display === 'block');
-    const e = await p.locator('.form-error').innerText(); assert(/подтверди почту/.test(e), e);
-    assert.strictEqual(await p.evaluate(() => window.__resets), 1);
+    // с 04.11 вход до подтверждения почты сразу открывает экран «Проверь почту» (с кнопкой «отправить снова»)
+    await p.waitForSelector('.auth-mail');
+    const e = await p.locator('.auth-mail').innerText(); assert(/Проверь почту/.test(e) && /a@gmail\.com/.test(e), e);
     assert.strictEqual(calls.find(x => x.path.startsWith('/auth/v1/token')).body.gotrue_meta_security.captcha_token, 'TOK1');
     assert.deepStrictEqual(errs, []); await ctx.close();
   });

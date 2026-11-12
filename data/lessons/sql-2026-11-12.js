@@ -28,6 +28,11 @@ window.LESSONS["sql-2026-11-12"] = {
         "he": "עד עכשיו יצרנו טבלאות (`create table`), הכנסנו שורות (`insert`) ושלפנו (`select`). היום שתי פקודות חדשות:\n• `update` — משנה ערכים בשורות שכבר קיימות.\n• `delete` — מוחקת שורות.\nבשתיהן `where` בוחר באילו שורות לגעת, בדיוק כמו ב־`select`.",
         "ru": "До сих пор мы создавали таблицы (`create table`), добавляли строки (`insert`) и выбирали (`select`). Сегодня две новые команды:\n• `update` — меняет значения в уже существующих строках.\n• `delete` — удаляет строки.\nВ обеих `where` выбирает, какие строки трогать, точно как в `select`.",
         "en": "So far we created tables (`create table`), added rows (`insert`) and queried (`select`). Today two new commands:\n• `update` — changes values in rows that already exist.\n• `delete` — removes rows.\nIn both, `where` chooses which rows to touch, exactly like in `select`."
+      },
+      "why": {
+        "he": "למה לא פשוט למחוק ולהכניס מחדש? כי בטבלה אמיתית יש אלפי שורות. `update` משנה רק את מה שצריך, ומשאיר את כל השאר כמו שהוא.",
+        "ru": "Почему не удалить и не вставить заново? В настоящей таблице тысячи строк. `update` меняет только нужное и оставляет всё остальное как было.",
+        "en": "Why not just delete and insert again? A real table has thousands of rows. `update` changes only what is needed and leaves everything else as it was."
       }
     },
     {
@@ -54,7 +59,12 @@ window.LESSONS["sql-2026-11-12"] = {
         "('roi', 'levi', 'germany', 'ajax', 8, 0),",
         "('yair', 'lerner', 'germany', 'arsenal', 18, 6),",
         "('avi', 'levi', 'germany', 'liverpool', 4, 4)"
-      ]
+      ],
+      "why": {
+        "he": "למה פקודת `insert` אחת ל־10 שורות? זה קצר יותר ורץ מהר יותר מ־10 פקודות נפרדות. שימו לב: פסיק בין השורות, ובסוף אין פסיק.",
+        "ru": "Зачем одна команда `insert` на 10 строк? Это короче и быстрее, чем 10 отдельных команд. Внимание: запятая между строками, а в конце запятой нет.",
+        "en": "Why one `insert` for 10 rows? It is shorter and runs faster than 10 separate commands. Note: a comma between rows, and no comma at the end."
+      }
     },
     {
       "kind": "board",
@@ -95,7 +105,12 @@ window.LESSONS["sql-2026-11-12"] = {
       "math": [
         "update idkunim set zahov = 0              -- all 10 rows",
         "update idkunim set zahov = 0 where prati = 'avi'   -- 1 row"
-      ]
+      ],
+      "why": {
+        "he": "איך לא לטעות? טריק: קודם כותבים `select * from idkunim where …` עם אותו תנאי, ורואים אילו שורות חוזרות. רק אחר כך מחליפים את `select *` ב־`update … set` או ב־`delete`.",
+        "ru": "Как не ошибиться? Приём: сначала пишешь `select * from idkunim where …` с тем же условием и смотришь, какие строки вернулись. Только потом меняешь `select *` на `update … set` или `delete`.",
+        "en": "How not to make a mistake? A trick: first write `select * from idkunim where …` with the same condition and see which rows come back. Only then replace `select *` with `update … set` or `delete`."
+      }
     },
     {
       "kind": "board",
@@ -115,7 +130,12 @@ window.LESSONS["sql-2026-11-12"] = {
         "",
         "insert into idkunim values ('etti', 'senyor', 'israel', 'macabbi', 2, 100)",
         "select * from idkunim"
-      ]
+      ],
+      "why": {
+        "he": "מה ההבדל בין `delete` ל\"לשים 0\"? `delete` מוחק את כל השורה, עם כל העמודות. `update … set zahov = 0` משאיר את השחקן בטבלה ומשנה רק עמודה אחת.",
+        "ru": "В чём разница между `delete` и «поставить 0»? `delete` удаляет всю строку со всеми столбцами. `update … set zahov = 0` оставляет игрока в таблице и меняет только один столбец.",
+        "en": "What is the difference between `delete` and \"setting 0\"? `delete` removes the whole row with all its columns. `update … set zahov = 0` keeps the player in the table and changes one column only."
+      }
     },
     {
       "kind": "tip",
@@ -128,6 +148,11 @@ window.LESSONS["sql-2026-11-12"] = {
         "he": "במסך אחרי ה־`insert`, השורה של etti הופיעה במקום הרביעי ולא בסוף: SQL Server שם אותה במקום שהתפנה אחרי ה־`delete`. בלי `order by` לא מובטח שום סדר של שורות.\nעוד דבר מהמסך: בטבלה הסופית spain כבר כתוב sfarad, ויש עוד שינויים. כלומר הורצו עוד פקודות `update`, שהטקסט שלהן לא רואים בצילום.",
         "ru": "На экране после `insert` строка etti оказалась на 4-м месте, а не в конце: SQL Server поставил её на место, освободившееся после `delete`. Без `order by` никакой порядок строк не гарантирован.\nЕщё с экрана: в итоговой таблице вместо spain уже написано sfarad, и есть другие изменения. Значит, запускали ещё команды `update`, текста которых на снимке не видно.",
         "en": "On screen after the `insert`, etti's row appeared in 4th place, not at the end: SQL Server put it in the spot freed by the `delete`. Without `order by` no row order is guaranteed.\nAlso from the screen: in the final table spain already reads sfarad, and there are other changes. So more `update` commands were run, whose text is not visible in the photo."
+      },
+      "why": {
+        "he": "למה זה חשוב? אם צריך סדר (לפי שם, לפי צהובים), כותבים `order by` — את זה למדנו ב־05.11. בלי זה אסור לסמוך על \"השורה האחרונה\".",
+        "ru": "Почему это важно? Если нужен порядок (по имени, по жёлтым карточкам), пишут `order by` — это проходили 05.11. Без него нельзя рассчитывать на «последнюю строку».",
+        "en": "Why does it matter? If you need an order (by name, by yellow cards), write `order by` — we learned it on 05.11. Without it you cannot rely on \"the last row\"."
       }
     },
     {

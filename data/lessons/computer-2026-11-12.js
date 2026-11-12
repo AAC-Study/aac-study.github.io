@@ -57,7 +57,12 @@ window.LESSONS["computer-2026-11-12"] = {
         "0 | 1 | 0",
         "1 | 0 | 0",
         "1 | 1 | 1"
-      ]
+      ],
+      "why": {
+        "he": "למה קוראים לזה \"כפל\"? כי הטבלה זהה ללוח הכפל של 0 ו־1: `0 × 0 = 0`, `0 × 1 = 0`, `1 × 1 = 1`. בחיים: נורה עם שני מתגים בטור דולקת רק כששניהם סגורים.",
+        "ru": "Почему это называют «умножением»? Таблица совпадает с таблицей умножения для 0 и 1: `0 × 0 = 0`, `0 × 1 = 0`, `1 × 1 = 1`. В жизни: лампочка с двумя выключателями подряд горит, только когда включены оба.",
+        "en": "Why is it called \"multiplication\"? The table matches the times table for 0 and 1: `0 × 0 = 0`, `0 × 1 = 0`, `1 × 1 = 1`. In life: a bulb with two switches in a row lights only when both are on."
+      }
     },
     {
       "kind": "board",
@@ -77,7 +82,12 @@ window.LESSONS["computer-2026-11-12"] = {
         "0 | 1 | 1",
         "1 | 0 | 1",
         "1 | 1 | 1"
-      ]
+      ],
+      "why": {
+        "he": "למה `1 + 1 = 1`? כי 1 כאן הוא לא כמות אלא \"כן/דולק\". \"דולק או דולק\" זה עדיין \"דולק\". בחיים: נורה עם שני מתגים במקביל דולקת אם לפחות אחד סגור.",
+        "ru": "Почему `1 + 1 = 1`? Потому что 1 здесь не количество, а «да/включено». «Включено или включено» — это всё ещё «включено». В жизни: лампочка с двумя выключателями рядом горит, если включён хотя бы один.",
+        "en": "Why `1 + 1 = 1`? Because 1 here is not an amount but \"yes/on\". \"On or on\" is still \"on\". In life: a bulb with two switches side by side lights if at least one is on."
+      }
     },
     {
       "kind": "board",
@@ -95,7 +105,12 @@ window.LESSONS["computer-2026-11-12"] = {
         "A → Ā",
         "0 → 1",
         "1 → 0"
-      ]
+      ],
+      "why": {
+        "he": "למה צריך NOT? הרבה תנאים הם \"לא\": \"המעלית עוצרת כשמשפחה A לא רוצה…\". בלי NOT אי אפשר לכתוב את `Ā` בפונקציה.",
+        "ru": "Зачем нужен NOT? Многие условия — с «не»: «когда семья A не хочет…». Без NOT нельзя записать `Ā` в функции.",
+        "en": "Why do we need NOT? Many conditions have a \"not\": \"when family A does not want…\". Without NOT you cannot write `Ā` in a function."
+      }
     },
     {
       "kind": "board",
@@ -140,7 +155,12 @@ window.LESSONS["computer-2026-11-12"] = {
         "0 | 1 | 1",
         "1 | 0 | 1",
         "1 | 1 | 0"
-      ]
+      ],
+      "why": {
+        "he": "איפה XOR שימושי? בחיבור בינארי: הספרה שנכתבת בטור היא בדיוק `A ⊕ B` (`1 + 1 = 10`, כותבים 0), וההעברה היא `A × B`. כך ה־ADDER במעבד בנוי.",
+        "ru": "Где пригождается XOR? В двоичном сложении: цифра, которую пишем в столбике, — это ровно `A ⊕ B` (`1 + 1 = 10`, пишем 0), а перенос — `A × B`. Так устроен ADDER в процессоре.",
+        "en": "Where is XOR useful? In binary addition: the digit written in the column is exactly `A ⊕ B` (`1 + 1 = 10`, write 0), and the carry is `A × B`. That is how the ADDER in the CPU is built."
+      }
     },
     {
       "kind": "talk",
@@ -153,6 +173,11 @@ window.LESSONS["computer-2026-11-12"] = {
         "he": "על הלוח נכתב \"הרצה emu8086\". זו תוכנה שמדמה את המעבד 8086 של Intel: אפשר לכתוב בה פקודות אסמבלי ולראות איך המעבד מריץ אותן צעד אחר צעד.",
         "ru": "На доске было написано «הרצה emu8086» (запуск emu8086). Это программа, которая изображает процессор Intel 8086: в ней можно писать команды ассемблера и смотреть, как процессор выполняет их шаг за шагом.",
         "en": "The board said \"הרצה emu8086\" (running emu8086). It is a program that imitates the Intel 8086 processor: you can write assembly commands in it and watch the processor run them step by step."
+      },
+      "why": {
+        "he": "למה מראים אותו בקורס? כי בסוף הקורס לומדים אסמבלי (זה בתוכנית הקורס מהשיעור הראשון), ו־emu8086 מאפשר לראות איך פקודות קטנות רצות בתוך המעבד.",
+        "ru": "Зачем его показали? В конце курса будет ассемблер (это есть в плане курса с первого урока), а emu8086 позволяет увидеть, как маленькие команды выполняются внутри процессора.",
+        "en": "Why was it shown? The course ends with assembly (it is in the course plan from the first lesson), and emu8086 lets you see small commands run inside the CPU."
       }
     },
     {
@@ -197,6 +222,11 @@ window.LESSONS["computer-2026-11-12"] = {
         "he": "בדוגמה השנייה `f = 1` בשורות `0, 2, 4, 6`. לפי אותה שיטה: `f = ĀB̄C̄ + ĀBC̄ + AB̄C̄ + ABC̄`.\nבכל ארבע השורות `C = 0`, ובכל השורות האחרות `C = 1`. לכן כל הפונקציה היא פשוט `C̄`: שער NOT אחד.",
         "ru": "Во втором примере `f = 1` в строках 0, 2, 4, 6. Тем же способом: `f = ĀB̄C̄ + ĀBC̄ + AB̄C̄ + ABC̄`.\nВо всех четырёх строках `C = 0`, а во всех остальных `C = 1`. Значит, вся функция — просто `C̄`: один вентиль NOT.",
         "en": "In the second example `f = 1` in rows 0, 2, 4, 6. The same way: `f = ĀB̄C̄ + ĀBC̄ + AB̄C̄ + ABC̄`.\nIn all four rows `C = 0`, and in all the other rows `C = 1`. So the whole function is simply `C̄`: one NOT gate."
+      },
+      "why": {
+        "he": "למה זה חשוב? פונקציה ארוכה = הרבה שערים = מעגל יקר ואיטי יותר. אם רואים שכל השורות עם 1 חולקות דבר אחד (כאן `C = 0`), מקצרים את כל הפונקציה לשער אחד.",
+        "ru": "Почему это важно? Длинная функция = много вентилей = схема дороже и медленнее. Если видно, что у всех строк с 1 есть что-то общее (здесь `C = 0`), всю функцию сокращают до одного вентиля.",
+        "en": "Why does it matter? A long function = many gates = a costlier, slower circuit. If you see that all rows with 1 share one thing (here `C = 0`), the whole function shrinks to one gate."
       }
     },
     {
@@ -210,6 +240,11 @@ window.LESSONS["computer-2026-11-12"] = {
         "he": "על הלוח היה גם תרגיל עם מזגן ו־3 משתנים (טמפרטורה מעל 30° ועוד תנאים) באותם שלבים: 1. טבלת אמת של `2³` שורות. 2. לחלץ פונקציה. 3. לצייר מפת שערים.\nוהתרגיל ההפוך: \"לפניך מפת שערים — חלץ פונקציה והצג אותה בטבלת אמת\". כאן הולכים מהציור לטבלה: לכל שורה מציבים את A, B, C ועוברים שער אחרי שער.",
         "ru": "На доске было ещё упражнение с кондиционером и 3 переменными (температура выше 30° и другие условия) по тем же шагам: 1. Таблица истинности на `2³` строк. 2. Вывести функцию. 3. Нарисовать карту вентилей.\nИ обратное упражнение: «Перед тобой карта вентилей — выведи функцию и покажи её таблицей истинности». Здесь идут от рисунка к таблице: для каждой строки подставляют A, B, C и проходят вентиль за вентилем.",
         "en": "The board also had an exercise with an air conditioner and 3 variables (temperature above 30° and other conditions) with the same steps: 1. A truth table of `2³` rows. 2. Extract the function. 3. Draw the gate map.\nAnd the reverse exercise: \"Here is a gate map — extract the function and show it as a truth table\". Here you go from the drawing to the table: for each row put in A, B, C and go gate by gate."
+      },
+      "why": {
+        "he": "איך עושים את התרגיל ההפוך? בונים טבלת אמת ריקה של 8 שורות, ולכל שורה מציבים A, B, C בציור, וכותבים מעל כל חוט 0 או 1, משמאל לימין, עד היציאה. זו אותה עבודה כמו \"מה התוכנית תדפיס\" ב־Java.",
+        "ru": "Как делать обратное упражнение? Строим пустую таблицу истинности на 8 строк, для каждой строки подставляем A, B, C в рисунок и над каждым проводом пишем 0 или 1, слева направо, до выхода. Это та же работа, что «что напечатает программа» в Java.",
+        "en": "How to do the reverse exercise? Build an empty 8-row truth table, put A, B, C into the drawing for each row, and write 0 or 1 above every wire, left to right, up to the output. It is the same work as \"what does the program print\" in Java."
       }
     }
   ],
