@@ -216,6 +216,42 @@ window.LESSONS["fullstack-2026-11-11"] = {
         "ru": "Как проверить самому? Удаляешь строку, сохраняешь и смотришь: анимация такая же. Строка, удаление которой ничего не меняет, ничего и не делает.",
         "en": "How to check it yourself? Delete the line, save, and look: the animation is the same. A line whose removal changes nothing does nothing."
       }
+    },
+    {
+      "kind": "board",
+      "title": {
+        "he": "דוגמה מהכיתה: דף בסגנון YouTube",
+        "ru": "Пример из класса: страница в стиле YouTube",
+        "en": "An example from class: a YouTube-style page"
+      },
+      "text": {
+        "he": "עבודה של חברים לכיתה על התרגיל \"להעתיק עיצוב של אתר\" (שיעור 04.11). היא מחברת את שני השיעורים:\n• מ־04.11: `display: grid` על `.container`. שני טורים (`200px` וכל השאר), שלוש שורות. ה־header תופס את שני הטורים (`1 / span 2`), ה־aside תופס שתי שורות בצד (`2 / span 2`). בתוך `main` יש עוד grid של 3 טורים לכרטיסי הווידאו.\n• מ־11.11: `:hover` עם `transition` ו־`transform: scale(1.1)`. כשהעכבר מעל התמונה, היא גדלה ב־10% בצורה חלקה.\nבעבודה המקורית יש גם סקריפט קצר שמפעיל וידאו כשהעכבר מעל. זה JavaScript, ועוד לא למדנו אותו.",
+        "ru": "Работа одногруппников по заданию «повторить оформление сайта» (урок 04.11). Она соединяет оба урока:\n• С 04.11: `display: grid` у `.container`. Два столбца (`200px` и всё остальное), три строки. header занимает оба столбца (`1 / span 2`), aside занимает две строки сбоку (`2 / span 2`). Внутри `main` ещё один grid на 3 столбца для карточек видео.\n• С 11.11: `:hover` с `transition` и `transform: scale(1.1)`. Когда мышь над картинкой, она плавно увеличивается на 10%.\nВ оригинальной работе есть ещё короткий скрипт, который запускает видео при наведении. Это JavaScript, его мы ещё не проходили.",
+        "en": "Classmates' work on the \"copy a site's design\" exercise (lesson 04.11). It joins both lessons:\n• From 04.11: `display: grid` on `.container`. Two columns (`200px` and the rest), three rows. The header takes both columns (`1 / span 2`), the aside takes two rows on the side (`2 / span 2`). Inside `main` there is another grid of 3 columns for the video cards.\n• From 11.11: `:hover` with `transition` and `transform: scale(1.1)`. When the mouse is over the picture, it grows smoothly by 10%.\nThe original work also has a short script that plays a video on hover. That is JavaScript, which we have not learned yet."
+      },
+      "math": [
+        ".container {",
+        "  display: grid;",
+        "  grid-template-columns: 200px auto;",
+        "  grid-template-rows: 70px 50px auto;",
+        "}",
+        "header { grid-column: 1 / span 2; grid-row: 1; }",
+        "aside  { grid-column: 1; grid-row: 2 / span 2; }",
+        "nav    { grid-column: 2; grid-row: 2; }",
+        "main {",
+        "  grid-column: 2; grid-row: 3;",
+        "  display: grid;",
+        "  grid-template-columns: auto auto auto;",
+        "  gap: 15px;",
+        "}",
+        ".thumbnail { transition: transform 0.3s ease; }",
+        ".thumbnail:hover { transform: scale(1.1); }"
+      ],
+      "why": {
+        "he": "שני דברים שכדאי לבדוק בעבודה כזאת:\n1. נתיב שמתחיל ב־`/` (למשל `/assets/a.jpg`) מחפש מהשורש. כשפותחים את הקובץ מהדיסק בלחיצה כפולה, התמונה לא תימצא. `assets/a.jpg` בלי `/` מחפש ליד קובץ ה־HTML.\n2. בלוק `@media` שמעתיקים מתרגיל אחר: להשאיר רק כללים לאלמנטים שיש בדף הזה. כלל של רוחב `200%` לכל התמונות היה מותח אותן בטלפון פי 2.",
+        "ru": "Две вещи, которые стоит проверить в такой работе:\n1. Путь, который начинается с `/` (например, `/assets/a.jpg`), ищет от корня. Если открыть файл с диска двойным щелчком, картинка не найдётся. `assets/a.jpg` без `/` ищет рядом с HTML-файлом.\n2. Блок `@media`, скопированный из другого задания: оставлять только правила для элементов, которые есть на этой странице. `img { width: 200%; }` растянул бы картинки на телефоне в 2 раза.",
+        "en": "Two things worth checking in work like this:\n1. A path that starts with `/` (for example `/assets/a.jpg`) searches from the root. If you open the file from disk by double-clicking, the picture is not found. `assets/a.jpg` without `/` searches next to the HTML file.\n2. An `@media` block copied from another exercise: keep only rules for elements that exist on this page. `img { width: 200%; }` would stretch the pictures on a phone 2 times."
+      }
     }
   ],
   "review": [
@@ -296,6 +332,11 @@ window.LESSONS["fullstack-2026-11-11"] = {
         "he": "שיעור 8: אנימציה",
         "ru": "Урок 8: анимация",
         "en": "Lesson 8: animation"
+      },
+      "yt": {
+        "he": "דוגמה: דף בסגנון YouTube",
+        "ru": "Пример: страница в стиле YouTube",
+        "en": "Example: a YouTube-style page"
       }
     },
     "teacher": [
@@ -829,6 +870,105 @@ window.LESSONS["fullstack-2026-11-11"] = {
             "he": "תשובה: שחור",
             "ru": "Ответ: чёрный",
             "en": "Answer: black"
+          }
+        ]
+      },
+      {
+        "id": "y1",
+        "group": "yt",
+        "label": {
+          "he": "header ב־grid",
+          "ru": "header в grid",
+          "en": "header in the grid"
+        },
+        "kind": "choice",
+        "text": {
+          "he": "זה ה־CSS מהדף בסגנון YouTube:\n```\n.container {\n  display: grid;\n  grid-template-columns: 200px auto;\n  grid-template-rows: 70px 50px auto;\n}\nheader { grid-column: 1 / span 2; grid-row: 1; }\naside  { grid-column: 1; grid-row: 2 / span 2; }\nnav    { grid-column: 2; grid-row: 2; }\nmain {\n  grid-column: 2; grid-row: 3;\n  display: grid;\n  grid-template-columns: auto auto auto;\n  gap: 15px;\n}\n.thumbnail { transition: transform 0.3s ease; }\n.thumbnail:hover { transform: scale(1.1); }\n```\nאיזה חלק מהדף תופס ה־header?",
+          "ru": "Это CSS страницы в стиле YouTube:\n```\n.container {\n  display: grid;\n  grid-template-columns: 200px auto;\n  grid-template-rows: 70px 50px auto;\n}\nheader { grid-column: 1 / span 2; grid-row: 1; }\naside  { grid-column: 1; grid-row: 2 / span 2; }\nnav    { grid-column: 2; grid-row: 2; }\nmain {\n  grid-column: 2; grid-row: 3;\n  display: grid;\n  grid-template-columns: auto auto auto;\n  gap: 15px;\n}\n.thumbnail { transition: transform 0.3s ease; }\n.thumbnail:hover { transform: scale(1.1); }\n```\nКакую часть страницы занимает header?",
+          "en": "This is the CSS of the YouTube-style page:\n```\n.container {\n  display: grid;\n  grid-template-columns: 200px auto;\n  grid-template-rows: 70px 50px auto;\n}\nheader { grid-column: 1 / span 2; grid-row: 1; }\naside  { grid-column: 1; grid-row: 2 / span 2; }\nnav    { grid-column: 2; grid-row: 2; }\nmain {\n  grid-column: 2; grid-row: 3;\n  display: grid;\n  grid-template-columns: auto auto auto;\n  gap: 15px;\n}\n.thumbnail { transition: transform 0.3s ease; }\n.thumbnail:hover { transform: scale(1.1); }\n```\nWhich part of the page does the header take?"
+        },
+        "options": [
+          {
+            "he": "רק את הטור השמאלי (200px)",
+            "ru": "Только левый столбец (200px)",
+            "en": "Only the left column (200px)"
+          },
+          {
+            "he": "את כל השורה העליונה, בשני הטורים",
+            "ru": "Всю верхнюю строку, оба столбца",
+            "en": "The whole top row, both columns"
+          },
+          {
+            "he": "שתי שורות בצד",
+            "ru": "Две строки сбоку",
+            "en": "Two rows on the side"
+          },
+          {
+            "he": "שום דבר, זו שגיאה",
+            "ru": "Ничего, это ошибка",
+            "en": "Nothing, it is an error"
+          }
+        ],
+        "example": {
+          "he": "ה־aside: `grid-row: 2 / span 2` → מתחיל בשורה 2 ותופס 2 שורות → שורות 2 ו־3, כל הגובה מתחת ל־header, בטור השמאלי.",
+          "ru": "aside: `grid-row: 2 / span 2` → начинается со строки 2 и занимает 2 строки → строки 2 и 3, вся высота под header, в левом столбце.",
+          "en": "The aside: `grid-row: 2 / span 2` → starts at row 2 and takes 2 rows → rows 2 and 3, the whole height under the header, in the left column."
+        },
+        "answer": {
+          "index": 1
+        },
+        "hints": [
+          {
+            "he": "`span 2` = כמה טורים לתפוס.",
+            "ru": "`span 2` = сколько столбцов занять.",
+            "en": "`span 2` = how many columns to take."
+          }
+        ],
+        "solution": [
+          "grid-column: 1 / span 2  →  columns 1 and 2",
+          "grid-row: 1  →  the top row",
+          {
+            "he": "תשובה: את כל השורה העליונה",
+            "ru": "Ответ: всю верхнюю строку",
+            "en": "Answer: the whole top row"
+          }
+        ]
+      },
+      {
+        "id": "y2",
+        "group": "yt",
+        "label": {
+          "he": "scale",
+          "ru": "scale",
+          "en": "scale"
+        },
+        "kind": "number",
+        "text": {
+          "he": "זה ה־CSS מהדף בסגנון YouTube:\n```\n.container {\n  display: grid;\n  grid-template-columns: 200px auto;\n  grid-template-rows: 70px 50px auto;\n}\nheader { grid-column: 1 / span 2; grid-row: 1; }\naside  { grid-column: 1; grid-row: 2 / span 2; }\nnav    { grid-column: 2; grid-row: 2; }\nmain {\n  grid-column: 2; grid-row: 3;\n  display: grid;\n  grid-template-columns: auto auto auto;\n  gap: 15px;\n}\n.thumbnail { transition: transform 0.3s ease; }\n.thumbnail:hover { transform: scale(1.1); }\n```\nתמונת הווידאו ברוחב 300px. כמה רחבה היא תיראה על המסך (בפיקסלים) כשהעכבר מעליה?",
+          "ru": "Это CSS страницы в стиле YouTube:\n```\n.container {\n  display: grid;\n  grid-template-columns: 200px auto;\n  grid-template-rows: 70px 50px auto;\n}\nheader { grid-column: 1 / span 2; grid-row: 1; }\naside  { grid-column: 1; grid-row: 2 / span 2; }\nnav    { grid-column: 2; grid-row: 2; }\nmain {\n  grid-column: 2; grid-row: 3;\n  display: grid;\n  grid-template-columns: auto auto auto;\n  gap: 15px;\n}\n.thumbnail { transition: transform 0.3s ease; }\n.thumbnail:hover { transform: scale(1.1); }\n```\nКартинка видео шириной 300px. Какой ширины она будет на экране (в пикселях), когда мышь над ней?",
+          "en": "This is the CSS of the YouTube-style page:\n```\n.container {\n  display: grid;\n  grid-template-columns: 200px auto;\n  grid-template-rows: 70px 50px auto;\n}\nheader { grid-column: 1 / span 2; grid-row: 1; }\naside  { grid-column: 1; grid-row: 2 / span 2; }\nnav    { grid-column: 2; grid-row: 2; }\nmain {\n  grid-column: 2; grid-row: 3;\n  display: grid;\n  grid-template-columns: auto auto auto;\n  gap: 15px;\n}\n.thumbnail { transition: transform 0.3s ease; }\n.thumbnail:hover { transform: scale(1.1); }\n```\nThe video picture is 300px wide. How wide does it look on screen (in pixels) when the mouse is over it?"
+        },
+        "example": {
+          "he": "`scale(1.5)` על תמונה של 200px → ‏200 × 1.5 = 300px. (מספרים אחרים, לא מהעבודה.)",
+          "ru": "`scale(1.5)` у картинки 200px → 200 × 1.5 = 300px. (Другие числа, не из работы.)",
+          "en": "`scale(1.5)` on a 200px picture → 200 × 1.5 = 300px. (Other numbers, not from the work.)"
+        },
+        "answer": {
+          "value": "330"
+        },
+        "hints": [
+          {
+            "he": "`scale(1.1)` = פי 1.1.",
+            "ru": "`scale(1.1)` = в 1.1 раза.",
+            "en": "`scale(1.1)` = 1.1 times."
+          }
+        ],
+        "solution": [
+          "300 × 1.1 = 330",
+          {
+            "he": "תשובה: 330",
+            "ru": "Ответ: 330",
+            "en": "Answer: 330"
           }
         ]
       }
